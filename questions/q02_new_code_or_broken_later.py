@@ -57,11 +57,17 @@ def main(quiet=False):
     out.add("size", "gpt_cause_same", "Of those, the same change",
             sum(r["first_cause"][:10] == r["second_cause"][:10] for r in both))
 
-    labels = [r["label"] for r in out.group("sens_never")]
-    out.chart(charts.grouped(
-        "q02-never-worked-or-broken-later", "Never-worked against broken-later bugs, under stricter readings", labels,
-        [("Never worked", [r["value"] for r in out.group("sens_never")]),
-         ("Broken later", [r["value"] for r in out.group("sens_broke")])]))
+    rows = []
+    for a, b in zip(out.group("sens_never"), out.group("sens_broke")):
+        key = a["metric"].replace("sens_never_", "")
+        out.add("never_share", "never_share_" + key, a["label"], round(100 * a["value"] / (a["value"] + b["value"])))
+        rows.append({"label": a["label"], "value": out.value("never_share_" + key),
+                     "note": f"{a['value']} never worked, {b['value']} broken later"})
+    out.chart(charts.bars(
+        "q02-share-never-worked", "Of the bugs that were either kind, the share that were new code that never worked",
+        rows, unit="%", top=100, reference=(50, "even")),
+        "Each row counts the same two kinds of bug under a different rule for which cases to include. A bar past "
+        "the dashed line means never-worked bugs outnumber broken-later ones.")
     out.save(quiet)
     return out
 

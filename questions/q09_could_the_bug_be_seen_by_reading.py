@@ -35,7 +35,8 @@ def main(quiet=False):
     out.chart(charts.part_of(
         "q09-what-each-bug-needed", "What a reviewer needed to see the bug, and how many were named",
         [{"label": label, "part": named[label], "whole": cases[label]} for _, label in NEEDS],
-        "Named by at least one reviewer", "Cases"))
+        "Named by at least one reviewer", "Cases"),
+        "The gray bar is the number of bugs of that kind, out of 30. The blue part is how many of them any reviewer named.")
     out.save(quiet)
     return out
 

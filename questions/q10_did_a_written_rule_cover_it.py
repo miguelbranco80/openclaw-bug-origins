@@ -16,7 +16,8 @@ def main(quiet=False):
     for row in load("named_cause_study.json"):
         out.add(row["group"], row["metric"], row["label"], row["value"])
     out.chart(charts.bars("q10-did-a-rule-cover-it", "Whether a written rule covered what went wrong, of 29 bugs",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("rules")]))
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("rules")]),
+              "Each bar is a number of bugs. The four bars add up to 29.")
     out.save(quiet)
     return out
 

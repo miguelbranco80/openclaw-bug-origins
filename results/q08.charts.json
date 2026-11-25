@@ -1,10 +1,12 @@
 [
  {
   "stem": "q08-where-the-reports-stand",
-  "title": "Where the 148 reported problems stand"
+  "title": "Where the 148 reported problems stand",
+  "reading": "Each bar is a number of reported problems. The four bars add up to 148."
  },
  {
   "stem": "q08-can-the-checkers-say-no",
-  "title": "The checkers tested on 14 known-real problems"
+  "title": "Known-real problems each checker confirmed, before and after the bug was fixed",
+  "reading": "Each bar is how many of the same 14 real problems the checker said were present. A sound checker is high in blue and low in orange."
  }
 ]

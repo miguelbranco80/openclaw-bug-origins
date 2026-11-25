@@ -1,15 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="134" viewBox="0 0 760 134" role="img" aria-label="Bugs per 100 changes, by how long the pull request was open">
 <title>Bugs per 100 changes, by how long the pull request was open</title>
 <text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open a day or more</text>
-<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,24 H516.0 Q520.0,24 520.0,28 V30 Q520.0,34 516.0,34 H0 Z" fill="#2a78d6"/>
-<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">10.88</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">10.88</text>
+<text x="489.0" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">30 sampled bugs; 10.2% of changes</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open 1 to 24 hours</text>
-<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,66 H233.1 Q237.1,66 237.1,70 V72 Q237.1,76 233.1,76 H0 Z" fill="#2a78d6"/>
-<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">4.96</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H192.0 Q196.0,66 196.0,70 V72 Q196.0,76 192.0,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">4.96</text>
+<text x="480.8" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">58 sampled bugs; 43.5% of changes</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open under an hour</text>
-<rect x="0" y="108" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,108 H53.8 Q57.8,108 57.8,112 V114 Q57.8,118 53.8,118 H0 Z" fill="#2a78d6"/>
-<text x="530.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">1.21</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H43.8 Q47.8,108 47.8,112 V114 Q47.8,118 43.8,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">1.21</text>
+<text x="480.8" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">15 sampled bugs; 46.2% of changes</text>
 </svg>

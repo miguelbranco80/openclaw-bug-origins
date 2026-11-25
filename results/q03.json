@@ -19,5 +19,17 @@
 {"group": "size", "metric": "recent_causes", "label": "Sampled bugs whose causing change is a commit since 10 Sep 2026", "value": 108, "low": null, "high": null},
 {"group": "size", "metric": "base_commits", "label": "All commits on main since 10 Sep 2026", "value": 39210, "low": null, "high": null},
 {"group": "size", "metric": "cause_median_files", "label": "Median files changed by a causing change", "value": 28.5, "low": null, "high": null},
-{"group": "size", "metric": "base_median_files", "label": "Median files changed by any commit", "value": 4, "low": null, "high": null}
+{"group": "size", "metric": "base_median_files", "label": "Median files changed by any commit", "value": 4, "low": null, "high": null},
+{"group": "rate_commits", "metric": "rate_commits_feat", "label": "Titled feat (a new feature)", "value": 1325, "low": null, "high": null},
+{"group": "rate_bugs", "metric": "rate_bugs_feat", "label": "Titled feat (a new feature)", "value": 28, "low": null, "high": null},
+{"group": "rate", "metric": "rate_feat", "label": "Titled feat (a new feature)", "value": 28.1, "low": null, "high": null},
+{"group": "rate_median_files", "metric": "rate_median_files_feat", "label": "Titled feat (a new feature)", "value": 19, "low": null, "high": null},
+{"group": "rate_commits", "metric": "rate_commits_fix", "label": "Titled fix", "value": 19951, "low": null, "high": null},
+{"group": "rate_bugs", "metric": "rate_bugs_fix", "label": "Titled fix", "value": 59, "low": null, "high": null},
+{"group": "rate", "metric": "rate_fix", "label": "Titled fix", "value": 3.9, "low": null, "high": null},
+{"group": "rate_median_files", "metric": "rate_median_files_fix", "label": "Titled fix", "value": 4, "low": null, "high": null},
+{"group": "rate_commits", "metric": "rate_commits_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 17934, "low": null, "high": null},
+{"group": "rate_bugs", "metric": "rate_bugs_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 21, "low": null, "high": null},
+{"group": "rate", "metric": "rate_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 1.6, "low": null, "high": null},
+{"group": "rate_median_files", "metric": "rate_median_files_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 4, "low": null, "high": null}
 ]

@@ -17,5 +17,9 @@
 {"group": "control_original", "metric": "dismissed_opus", "label": "Opus 5.5 checker", "value": 0, "low": null, "high": null},
 {"group": "control_fixed", "metric": "flipped_opus", "label": "Opus 5.5 checker", "value": 11, "low": null, "high": null},
 {"group": "size", "metric": "control_cases", "label": "Known-real reports used as the control", "value": 14, "low": null, "high": null},
-{"group": "size", "metric": "control_both_still", "label": "Still confirmed by both checkers after the fix", "value": 3, "low": null, "high": null}
+{"group": "size", "metric": "control_both_still", "label": "Still confirmed by both checkers after the fix", "value": 3, "low": null, "high": null},
+{"group": "confirmed_original", "metric": "confirmed_original_gpt", "label": "gpt-6.2 checker", "value": 14, "low": null, "high": null},
+{"group": "confirmed_fixed", "metric": "confirmed_fixed_gpt", "label": "gpt-6.2 checker", "value": 5, "low": null, "high": null},
+{"group": "confirmed_original", "metric": "confirmed_original_opus", "label": "Opus 5.5 checker", "value": 14, "low": null, "high": null},
+{"group": "confirmed_fixed", "metric": "confirmed_fixed_opus", "label": "Opus 5.5 checker", "value": 3, "low": null, "high": null}
 ]

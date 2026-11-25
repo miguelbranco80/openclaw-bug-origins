@@ -57,8 +57,10 @@ def main(quiet=False):
                        ("outside contributor", "Opened by an outside contributor")):
         out.add("authors", "authors_" + key.replace(" ", "_"), label, share(by_group[key], m))
 
-    out.chart(charts.bars("q15-how-changes-are-merged", "How ordinary pull requests were reviewed and merged, in percent",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("practice")], unit="%", top=100))
+    out.chart(charts.bars("q15-how-changes-are-merged", "Share of ordinary pull requests for which each statement is true",
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("practice")], unit="%", top=100),
+              f"Five separate yes-or-no facts about the same {m} randomly drawn pull requests. The bars are not parts of "
+              "a whole and do not add up.")
     out.save(quiet)
     return out
 

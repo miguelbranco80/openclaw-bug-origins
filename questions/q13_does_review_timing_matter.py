@@ -6,7 +6,6 @@ Reads: changes.jsonl, commits.tsv, sampled_fixes.jsonl. Method as in question 12
 
 Usage: python3 questions/q13_does_review_timing_matter.py
 """
-import charts
 from common import Result, compare, load
 
 COVERAGE = [("merged", "Bot reviewed the revision that merged"), ("earlier", "Bot reviewed only an earlier revision"),
@@ -32,10 +31,6 @@ def main(quiet=False):
     out = Result("q13")
     compare(out, "coverage", changes, coverage, COVERAGE, "merged")
     compare(out, "speed", changes, speed, SPEED, "later")
-    out.chart(charts.bars("q13-bugs-by-review-coverage", "Bugs per 100 changes, by which revision the bot reviewed",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("coverage_rate")]))
-    out.chart(charts.bars("q13-bugs-by-time-to-merge", "Bugs per 100 changes, by time from the bot's review to merge",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("speed_rate")]))
     out.save(quiet)
     return out
 

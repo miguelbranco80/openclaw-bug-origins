@@ -11,7 +11,6 @@ Usage: python3 questions/q11_does_skipping_a_pull_request_matter.py
 """
 import statistics
 
-import charts
 from common import SCALE, Result, load, load_commits, ratio_interval, traced
 
 
@@ -47,8 +46,6 @@ def main(quiet=False):
         out.add("strat_direct", "strat_direct_" + key, label, round(100 * b_direct * SCALE / n_direct, 2))
         out.add("strat_bugs", "strat_bugs_direct_" + key, label + ": sampled bugs from direct commits", b_direct)
 
-    out.chart(charts.bars("q11-bugs-per-100-commits-by-route", "Bugs per 100 commits, by how the change reached main",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("per_commit")]))
     out.save(quiet)
     return out
 

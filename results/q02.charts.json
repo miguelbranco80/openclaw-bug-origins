@@ -1,6 +1,7 @@
 [
  {
-  "stem": "q02-never-worked-or-broken-later",
-  "title": "Never-worked against broken-later bugs, under stricter readings"
+  "stem": "q02-share-never-worked",
+  "title": "Of the bugs that were either kind, the share that were new code that never worked",
+  "reading": "Each row counts the same two kinds of bug under a different rule for which cases to include. A bar past the dashed line means never-worked bugs outnumber broken-later ones."
  }
 ]

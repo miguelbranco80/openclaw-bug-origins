@@ -1,10 +1,12 @@
 [
  {
   "stem": "q05-age-of-broken-later-bugs",
-  "title": "Broken-later bugs, by time from cause to fix"
+  "title": "Broken-later bugs, by time from cause to fix",
+  "reading": "Each bar is a number of broken-later bugs. The four bars add up to 51."
  },
  {
   "stem": "q05-median-days-to-fix",
-  "title": "Median days from the causing change to the fix"
+  "title": "Median days from the causing change to the fix, for three kinds of bug",
+  "reading": "Each bar is the middle value of days on main before the fix, for one group of bugs. The three groups do not overlap."
  }
 ]

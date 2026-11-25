@@ -1,10 +1,12 @@
 [
  {
   "stem": "q07-known-bugs-named",
-  "title": "Known bugs named by each reviewer, out of 30"
+  "title": "Known bugs named by each reviewer, out of 30",
+  "reading": "Each bar is how many of the same 30 known bugs that reviewer named. The gray bar is what the project's bot had said at the time, for comparison."
  },
  {
   "stem": "q07-problems-reported",
-  "title": "Problems each reviewer reported across the 30 changes"
+  "title": "Problems each reviewer reported across the 30 changes",
+  "reading": "Each bar is the total number of problems that reviewer reported on the 30 changes, right or wrong."
  }
 ]

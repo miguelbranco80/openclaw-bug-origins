@@ -64,11 +64,15 @@ def main(quiet=False):
     out.chart(charts.grouped(
         "q06-what-the-review-said", "What the bot's review said about the bug, by two readers", labels,
         [("First reader (Claude)", [r["value"] for r in out.group("flag")]),
-         ("Second reader (GPT)", [r["value"] for r in out.group("gpt_flag")])]))
+         ("Second reader (GPT)", [r["value"] for r in out.group("gpt_flag")])]),
+        f"The same {len(reviewed)} reviews, read twice. Each bar is a number of bug-causing changes; each color adds "
+        f"up to {len(reviewed)}.")
     out.chart(charts.bars("q06-was-there-a-review", "Whether the bot had reviewed the causing change",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("status")]))
-    out.chart(charts.bars("q06-verdict-at-merge", "The bot's overall verdict when the change merged",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("verdict")]))
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("status")]),
+              f"Each bar is a number of bug-causing changes. The four bars add up to {len(data)}.")
+    out.chart(charts.bars("q06-verdict-at-merge", "The bot's overall verdict when the bug-causing change merged",
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("verdict")]),
+              f"Each bar is a number of bug-causing changes the bot had reviewed. The four bars add up to {len(reviewed)}.")
     out.save(quiet)
     return out
 

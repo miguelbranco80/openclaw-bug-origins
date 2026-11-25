@@ -19,7 +19,7 @@ THEMES = {
              "series": ["#3987e5", "#d95926"]},
 }
 WIDTH = 760
-BAR_AREA = 520   # widest a bar may be; the rest of the width is room for the value printed after it
+BAR_AREA = 430   # widest a bar may be; the rest of the width is room for the value and note printed after it
 BAR = 10
 FONT = 'font-family="system-ui, -apple-system, Segoe UI, sans-serif"'
 
@@ -67,16 +67,23 @@ def legend(colors, names, swatches, y):
     return out
 
 
-def bars(stem, title, rows, unit="", top=None, context=()):
+def bars(stem, title, rows, unit="", top=None, context=(), reference=None):
     """rows: dicts with label, value and optionally note (printed, muted, after the value).
-    `context` lists labels drawn in gray: reference rows that are not the subject of the chart."""
+    `context` lists labels drawn in gray: reference rows that are not the subject of the chart.
+    `reference` is (value, label): a vertical line across all bars at that value."""
     top = top or max(row["value"] for row in rows) or 1
-    height = 8 + 42 * len(rows)
+    head = 18 if reference else 0
+    height = 8 + head + 42 * len(rows)
 
     def body(colors):
         out = []
+        if reference:
+            x = BAR_AREA * reference[0] / top
+            out.append(text(x, 11, reference[1], colors["muted"], 11, anchor="middle"))
+            out.append(f'<line x1="{x:.1f}" y1="16" x2="{x:.1f}" y2="{height - 4}" stroke="{colors["muted"]}" '
+                       f'stroke-width="1" stroke-dasharray="3 3"/>')
         for i, row in enumerate(rows):
-            y = 16 + 42 * i
+            y = head + 16 + 42 * i
             out.append(text(0, y, row["label"], colors["ink2"]))
             color = colors["context"] if row["label"] in context else colors["series"][0]
             width = BAR_AREA * row["value"] / top

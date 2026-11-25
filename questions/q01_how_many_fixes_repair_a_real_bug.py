@@ -63,12 +63,15 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q01-what-fixes-repaired", "What each of the 300 sampled fixes repaired, by the first readers' rule",
         [{"label": r["label"], "value": r["value"], "note": f"plausibly {r['low']}–{r['high']}% of all fixes"}
-         for r in out.group("origin")]))
+         for r in out.group("origin")]),
+        "Each bar is a number of sampled fixes. The five bars add up to 300.")
     labels = [r["label"] for r in out.group("gpt_first")]
     out.chart(charts.grouped(
         "q01-two-readers", "How two makers' models sorted the same 60 fixes", labels,
         [("First reader (Claude)", [r["value"] for r in out.group("gpt_first")]),
-         ("Second reader (GPT)", [r["value"] for r in out.group("gpt_second")])]))
+         ("Second reader (GPT)", [r["value"] for r in out.group("gpt_second")])]),
+        "The same 60 fixes, sorted twice. Blue is where the first reader put them, orange where the second did; "
+        "each color adds up to 60.")
     out.save(quiet)
     return out
 

@@ -1,6 +1,7 @@
 [
  {
   "stem": "q09-what-each-bug-needed",
-  "title": "What a reviewer needed to see the bug, and how many were named"
+  "title": "What a reviewer needed to see the bug, and how many were named",
+  "reading": "The gray bar is the number of bugs of that kind, out of 30. The blue part is how many of them any reviewer named."
  }
 ]

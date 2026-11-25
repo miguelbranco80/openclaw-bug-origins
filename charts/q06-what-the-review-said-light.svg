@@ -5,30 +5,30 @@
 <rect x="185.0" y="3" width="10" height="10" rx="2" fill="#eb6834"/>
 <text x="201.0" y="12" fill="#52514e" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
 <text x="0.0" y="44" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Said nothing about this bug</text>
-<rect x="0" y="52" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,52 H516.0 Q520.0,52 520.0,56 V58 Q520.0,62 516.0,62 H0 Z" fill="#2a78d6"/>
-<text x="530.0" y="62" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">100</text>
-<text x="562.6" y="62" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First reader (Claude)</text>
-<rect x="0" y="74" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,74 H484.8 Q488.8,74 488.8,78 V80 Q488.8,84 484.8,84 H0 Z" fill="#eb6834"/>
-<text x="530.0" y="84" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">94</text>
-<text x="554.4" y="84" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
+<rect x="0" y="52" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,52 H426.0 Q430.0,52 430.0,56 V58 Q430.0,62 426.0,62 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="62" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">100</text>
+<text x="472.6" y="62" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First reader (Claude)</text>
+<rect x="0" y="74" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,74 H400.2 Q404.2,74 404.2,78 V80 Q404.2,84 400.2,84 H0 Z" fill="#eb6834"/>
+<text x="440.0" y="84" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">94</text>
+<text x="464.4" y="84" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
 <text x="0.0" y="122" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Raised a related concern, not this failure</text>
-<rect x="0" y="130" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,130 H53.2 Q57.2,130 57.2,134 V136 Q57.2,140 53.2,140 H0 Z" fill="#2a78d6"/>
-<text x="530.0" y="140" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">11</text>
-<text x="554.4" y="140" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First reader (Claude)</text>
-<rect x="0" y="152" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,152 H84.4 Q88.4,152 88.4,156 V158 Q88.4,162 84.4,162 H0 Z" fill="#eb6834"/>
-<text x="530.0" y="162" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17</text>
-<text x="554.4" y="162" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
+<rect x="0" y="130" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,130 H43.3 Q47.3,130 47.3,134 V136 Q47.3,140 43.3,140 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="140" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">11</text>
+<text x="464.4" y="140" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First reader (Claude)</text>
+<rect x="0" y="152" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,152 H69.1 Q73.1,152 73.1,156 V158 Q73.1,162 69.1,162 H0 Z" fill="#eb6834"/>
+<text x="440.0" y="162" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17</text>
+<text x="464.4" y="162" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
 <text x="0.0" y="200" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Named this bug</text>
-<rect x="0" y="208" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,208 H6.4 Q10.4,208 10.4,212 V214 Q10.4,218 6.4,218 H0 Z" fill="#2a78d6"/>
-<text x="530.0" y="218" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
-<text x="546.2" y="218" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First reader (Claude)</text>
-<rect x="0" y="230" width="520" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,230 H6.4 Q10.4,230 10.4,234 V236 Q10.4,240 6.4,240 H0 Z" fill="#eb6834"/>
-<text x="530.0" y="240" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
-<text x="546.2" y="240" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
+<rect x="0" y="208" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,208 H4.6 Q8.6,208 8.6,212 V214 Q8.6,218 4.6,218 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="218" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
+<text x="456.2" y="218" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First reader (Claude)</text>
+<rect x="0" y="230" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,230 H4.6 Q8.6,230 8.6,234 V236 Q8.6,240 4.6,240 H0 Z" fill="#eb6834"/>
+<text x="440.0" y="240" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
+<text x="456.2" y="240" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second reader (GPT)</text>
 </svg>

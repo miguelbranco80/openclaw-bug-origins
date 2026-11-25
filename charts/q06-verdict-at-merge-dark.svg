@@ -1,19 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="176" viewBox="0 0 760 176" role="img" aria-label="The bot&#x27;s overall verdict when the change merged">
-<title>The bot&#x27;s overall verdict when the change merged</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="176" viewBox="0 0 760 176" role="img" aria-label="The bot&#x27;s overall verdict when the bug-causing change merged">
+<title>The bot&#x27;s overall verdict when the bug-causing change merged</title>
 <text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Blocked</text>
-<rect x="0" y="24" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,24 H516.0 Q520.0,24 520.0,28 V30 Q520.0,34 516.0,34 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">51</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">51</text>
 <text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Needs changes</text>
-<rect x="0" y="66" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,66 H179.5 Q183.5,66 183.5,70 V72 Q183.5,76 179.5,76 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">18</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,66 H147.8 Q151.8,66 151.8,70 V72 Q151.8,76 147.8,76 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">18</text>
 <text x="0.0" y="100" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Needs maintainer review</text>
-<rect x="0" y="108" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,108 H77.6 Q81.6,108 81.6,112 V114 Q81.6,118 77.6,118 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">8</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,108 H63.5 Q67.5,108 67.5,112 V114 Q67.5,118 63.5,118 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">8</text>
 <text x="0.0" y="142" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Ready</text>
-<rect x="0" y="150" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,150 H363.1 Q367.1,150 367.1,154 V156 Q367.1,160 363.1,160 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="160" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">36</text>
+<rect x="0" y="150" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,150 H299.5 Q303.5,150 303.5,154 V156 Q303.5,160 299.5,160 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="160" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">36</text>
 </svg>

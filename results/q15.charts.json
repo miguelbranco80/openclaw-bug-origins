@@ -1,6 +1,7 @@
 [
  {
   "stem": "q15-how-changes-are-merged",
-  "title": "How ordinary pull requests were reviewed and merged, in percent"
+  "title": "Share of ordinary pull requests for which each statement is true",
+  "reading": "Five separate yes-or-no facts about the same 400 randomly drawn pull requests. The bars are not parts of a whole and do not add up."
  }
 ]

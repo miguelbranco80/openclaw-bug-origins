@@ -42,9 +42,18 @@ def main(quiet=False):
             next(r["value"] for r in load("named_cause_study.json") if r["metric"] == "median_days"))
 
     out.chart(charts.bars("q05-age-of-broken-later-bugs", "Broken-later bugs, by time from cause to fix",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("age")]))
-    out.chart(charts.bars("q05-median-days-to-fix", "Median days from the causing change to the fix",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("lifetime")], unit=" days"))
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("age")]),
+              f"Each bar is a number of broken-later bugs. The four bars add up to {len(broke)}.")
+    out.chart(charts.bars(
+        "q05-median-days-to-fix", "Median days from the causing change to the fix, for three kinds of bug",
+        [{"label": "Broken later, and the fix says what caused it", "value": out.value("median_named"),
+          "note": f"{len(named)} bugs"},
+         {"label": "Broken later, and the fix does not say", "value": out.value("median_unnamed"),
+          "note": f"{len(unnamed)} bugs"},
+         {"label": "New code that never worked", "value": out.value("median_never"), "note": f"{len(never)} bugs"}],
+        unit=" days"),
+        "Each bar is the middle value of days on main before the fix, for one group of bugs. The three groups do not "
+        "overlap.")
     out.save(quiet)
     return out
 

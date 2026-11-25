@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="760" height="176" viewBox="0 0 760 176" role="img" aria-label="Whether the bot had reviewed the causing change">
 <title>Whether the bot had reviewed the causing change</title>
 <text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Reviewed the revision that merged</text>
-<rect x="0" y="24" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,24 H516.0 Q520.0,24 520.0,28 V30 Q520.0,34 516.0,34 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">80</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">80</text>
 <text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Reviewed only an earlier revision</text>
-<rect x="0" y="66" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,66 H210.5 Q214.5,66 214.5,70 V72 Q214.5,76 210.5,76 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">33</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,66 H173.4 Q177.4,66 177.4,70 V72 Q177.4,76 173.4,76 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">33</text>
 <text x="0.0" y="100" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">A pull request, but no review before merge</text>
-<rect x="0" y="108" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,108 H171.5 Q175.5,108 175.5,112 V114 Q175.5,118 171.5,118 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">27</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,108 H141.1 Q145.1,108 145.1,112 V114 Q145.1,118 141.1,118 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">27</text>
 <text x="0.0" y="142" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">No pull request: committed straight to main</text>
-<rect x="0" y="150" width="520" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,150 H100.0 Q104.0,150 104.0,154 V156 Q104.0,160 100.0,160 H0 Z" fill="#3987e5"/>
-<text x="530.0" y="160" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">16</text>
+<rect x="0" y="150" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,150 H82.0 Q86.0,150 86.0,154 V156 Q86.0,160 82.0,160 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="160" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">16</text>
 </svg>

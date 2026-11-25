@@ -11,7 +11,7 @@ Usage: python3 questions/q03_what_kind_of_change_introduces_bugs.py
 import statistics
 
 import charts
-from common import Result, load, load_commits, pct, traced
+from common import SCALE, Result, load, load_commits, pct, traced
 
 NAMES = {"fix": "Titled fix", "feat": "Titled feat (a new feature)", "other": "Another title"}
 
@@ -54,16 +54,25 @@ def main(quiet=False):
     out.add("size", "cause_median_files", "Median files changed by a causing change", statistics.median(cause_sizes))
     out.add("size", "base_median_files", "Median files changed by any commit", int(statistics.median(all_sizes)))
 
-    labels = [r["label"] for r in out.group("cmp_cause")]
-    out.chart(charts.grouped(
-        "q03-causing-changes-against-all", "Bug-causing changes against all commits, in percent", labels,
-        [("Bug-causing changes", [r["value"] for r in out.group("cmp_cause")]),
-         ("All commits", [r["value"] for r in out.group("cmp_base")])], unit="%", top=100))
-    labels = [r["label"] for r in out.group("title_never")]
-    out.chart(charts.grouped(
-        "q03-title-of-causing-change", "Title of the causing change, by kind of bug", labels,
-        [("Never worked", [r["value"] for r in out.group("title_never")]),
-         ("Broken later", [r["value"] for r in out.group("title_broke")])]))
+    # Bugs per 100 commits, by the title of the commit. Titles come from the commit list for both sides.
+    def kind(prefix):
+        return prefix if prefix in ("fix", "feat") else "other"
+    rate_names = {"feat": "Titled feat (a new feature)", "fix": "Titled fix",
+                  "other": "Any other title (refactor, perf, test, chore, ...)"}
+    rows = []
+    for key in ("feat", "fix", "other"):
+        made = [c for c in commits.values() if kind(c["title_prefix"]) == key]
+        bugs_here = sum(kind(commits[f["cause_sha"]]["title_prefix"]) == key for f in recent)
+        out.add("rate_commits", "rate_commits_" + key, rate_names[key], len(made))
+        out.add("rate_bugs", "rate_bugs_" + key, rate_names[key], bugs_here)
+        out.add("rate", "rate_" + key, rate_names[key], round(100 * bugs_here * SCALE / len(made), 1))
+        out.add("rate_median_files", "rate_median_files_" + key, rate_names[key],
+                int(statistics.median(c["files_changed"] for c in made)))
+        rows.append({"label": rate_names[key], "value": out.value("rate_" + key),
+                     "note": f"{bugs_here} sampled bugs from {len(made):,} commits"})
+    out.chart(charts.bars("q03-bugs-per-100-commits-by-title", "Bugs per 100 commits, by how the change was titled", rows),
+              "Each bar is a rate: bugs fixed in the three weeks that trace back to commits with that title, per 100 "
+              "such commits made since 10 September. The three titles cover every commit.")
     out.save(quiet)
     return out
 

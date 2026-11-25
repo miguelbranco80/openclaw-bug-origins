@@ -70,6 +70,8 @@ report that never fitted a phone screen.
 ![What each of the 300 sampled fixes repaired, by the first readers' rule](charts/q01-what-fixes-repaired-light.svg#gh-light-mode-only)
 ![What each of the 300 sampled fixes repaired, by the first readers' rule](charts/q01-what-fixes-repaired-dark.svg#gh-dark-mode-only)
 
+*How to read it: Each bar is a number of sampled fixes. The five bars add up to 300.*
+
 <details><summary>The numbers behind this chart</summary>
 
 | | Count | Plausible range |
@@ -86,6 +88,8 @@ report that never fitted a phone screen.
 
 ![How two makers' models sorted the same 60 fixes](charts/q01-two-readers-light.svg#gh-light-mode-only)
 ![How two makers' models sorted the same 60 fixes](charts/q01-two-readers-dark.svg#gh-dark-mode-only)
+
+*How to read it: The same 60 fixes, sorted twice. Blue is where the first reader put them, orange where the second did; each color adds up to 60.*
 
 <details><summary>The numbers behind this chart</summary>
 
@@ -121,10 +125,12 @@ broke. The two kinds need different defenses. A test of the old behavior can cat
 never-worked bug has no old behavior to test against, so the only chance to catch it is when the new code is
 reviewed or first run.
 
-**Never-worked against broken-later bugs, under stricter readings**
+**Of the bugs that were either kind, the share that were new code that never worked**
 
-![Never-worked against broken-later bugs, under stricter readings](charts/q02-never-worked-or-broken-later-light.svg#gh-light-mode-only)
-![Never-worked against broken-later bugs, under stricter readings](charts/q02-never-worked-or-broken-later-dark.svg#gh-dark-mode-only)
+![Of the bugs that were either kind, the share that were new code that never worked](charts/q02-share-never-worked-light.svg#gh-light-mode-only)
+![Of the bugs that were either kind, the share that were new code that never worked](charts/q02-share-never-worked-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each row counts the same two kinds of bug under a different rule for which cases to include. A bar past the dashed line means never-worked bugs outnumber broken-later ones.*
 
 <details><summary>The numbers behind this chart</summary>
 
@@ -158,48 +164,38 @@ Recompute: `python3 questions/q02_new_code_or_broken_later.py`
 
 *Well supported. Measured against every commit on main in the same period, not against an estimate.*
 
-For each traced bug we looked at the change that introduced it. Its title tells you little:
-84 of the 156 were themselves titled "fix", but so is about half of everything
-merged, and some of those are large additions. One, titled as a fix, changed 138 files and added a whole rollback
-mechanism. Changes titled "feat" are a small share of all commits and a large share of causes.
+For each traced bug we looked at the title of the change that introduced it, and divided by how many commits carry
+that title. Changes titled "feat" caused 28.1 bugs per 100 commits, against 3.9
+for changes titled "fix" and 1.6 for everything else.
 
-**Bug-causing changes against all commits, in percent**
+**Bugs per 100 commits, by how the change was titled**
 
-![Bug-causing changes against all commits, in percent](charts/q03-causing-changes-against-all-light.svg#gh-light-mode-only)
-![Bug-causing changes against all commits, in percent](charts/q03-causing-changes-against-all-dark.svg#gh-dark-mode-only)
+![Bugs per 100 commits, by how the change was titled](charts/q03-bugs-per-100-commits-by-title-light.svg#gh-light-mode-only)
+![Bugs per 100 commits, by how the change was titled](charts/q03-bugs-per-100-commits-by-title-dark.svg#gh-dark-mode-only)
 
-<details><summary>The numbers behind this chart</summary>
-
-| | Bug-causing changes, % | All commits, % |
-|---|---:|---:|
-| Titled feat | 26 | 3.4 |
-| Titled fix | 55 | 50.9 |
-| Changed more than 30 files | 48 | 10.7 |
-| Changed more than 100 files | 25 | 1.5 |
-
-</details>
-
-**Title of the causing change, by kind of bug**
-
-![Title of the causing change, by kind of bug](charts/q03-title-of-causing-change-light.svg#gh-light-mode-only)
-![Title of the causing change, by kind of bug](charts/q03-title-of-causing-change-dark.svg#gh-dark-mode-only)
+*How to read it: Each bar is a rate: bugs fixed in the three weeks that trace back to commits with that title, per 100 such commits made since 10 September. The three titles cover every commit.*
 
 <details><summary>The numbers behind this chart</summary>
 
-| | Never worked | Broken later |
-|---|---:|---:|
-| Titled fix | 53 | 31 |
-| Titled feat (a new feature) | 42 | 6 |
-| Another title | 10 | 14 |
+| | Commits since 10 Sep | Sampled bugs | Bugs per 100 commits | Median files changed |
+|---|---:|---:|---:|---:|
+| Titled feat (a new feature) | 1325 | 28 | 28.1 | 19 |
+| Titled fix | 19951 | 59 | 3.9 | 4 |
+| Any other title (refactor, perf, test, chore, ...) | 17934 | 21 | 1.6 | 4 |
 
 </details>
+
+In absolute numbers most bugs still come from changes titled "fix" (84 of the
+156 traced), because half of everything merged carries that title. And a title is a loose label:
+one change titled as a fix touched 138 files and added a whole rollback mechanism. Feature changes are also larger
+than others, so part of their higher rate is size, which is the next finding.
 
 - **How we know.** The comparison uses the 108 sampled bugs whose causing change was made
   since 10 September 2026 and all 39,210 commits on main since that date, counted from git.
 - **How it was checked.** Titles and file counts are read mechanically from git, not judged. Which change caused
   each bug is the reader's judgment from finding 2.
-- **What it does not show.** What the change was really for. A title is a label, and "fix" covers everything from a
-  one-line repair to a 138-file addition.
+- **What it does not show.** What the change was really for, or how much of the gap is size. The rates are not
+  adjusted for the size of the change.
 
 Recompute: `python3 questions/q03_what_kind_of_change_introduces_bugs.py`
 
@@ -216,6 +212,8 @@ A causing change touched a median of 28.5 files; an ordinary commit touches
 ![Bugs per 100 commits, by size of the change](charts/q04-bugs-per-100-commits-light.svg#gh-light-mode-only)
 ![Bugs per 100 commits, by size of the change](charts/q04-bugs-per-100-commits-dark.svg#gh-dark-mode-only)
 
+*How to read it: Each bar is a rate: bugs fixed in the three weeks that trace back to commits of that size, per 100 such commits made since 10 September. The four sizes cover every commit.*
+
 Per file changed, the picture is different: between 1.76 and 3.8 bugs
 per 1,000 files changed in every size group, with no trend. On this evidence large changes hold more bugs because
 they hold more change, not because each part of them is worse.
@@ -224,6 +222,8 @@ they hold more change, not because each part of them is worse.
 
 ![Bugs per 1,000 files changed, by size of the change](charts/q04-bugs-per-1000-files-light.svg#gh-light-mode-only)
 ![Bugs per 1,000 files changed, by size of the change](charts/q04-bugs-per-1000-files-dark.svg#gh-dark-mode-only)
+
+*How to read it: The same bugs, divided by the total number of files those commits changed instead of by the number of commits.*
 
 <details><summary>The numbers behind this chart</summary>
 
@@ -256,10 +256,14 @@ Recompute: `python3 questions/q04_do_large_changes_cause_more_bugs.py`
 ![Broken-later bugs, by time from cause to fix](charts/q05-age-of-broken-later-bugs-light.svg#gh-light-mode-only)
 ![Broken-later bugs, by time from cause to fix](charts/q05-age-of-broken-later-bugs-dark.svg#gh-dark-mode-only)
 
-**Median days from the causing change to the fix**
+*How to read it: Each bar is a number of broken-later bugs. The four bars add up to 51.*
 
-![Median days from the causing change to the fix](charts/q05-median-days-to-fix-light.svg#gh-light-mode-only)
-![Median days from the causing change to the fix](charts/q05-median-days-to-fix-dark.svg#gh-dark-mode-only)
+**Median days from the causing change to the fix, for three kinds of bug**
+
+![Median days from the causing change to the fix, for three kinds of bug](charts/q05-median-days-to-fix-light.svg#gh-light-mode-only)
+![Median days from the causing change to the fix, for three kinds of bug](charts/q05-median-days-to-fix-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is the middle value of days on main before the fix, for one group of bugs. The three groups do not overlap.*
 
 <details><summary>The numbers behind this chart</summary>
 
@@ -298,6 +302,8 @@ in 2. Both readers agree on those. They differ on how often it raised a related 
 ![What the bot's review said about the bug, by two readers](charts/q06-what-the-review-said-light.svg#gh-light-mode-only)
 ![What the bot's review said about the bug, by two readers](charts/q06-what-the-review-said-dark.svg#gh-dark-mode-only)
 
+*How to read it: The same 113 reviews, read twice. Each bar is a number of bug-causing changes; each color adds up to 113.*
+
 <details><summary>The numbers behind this chart</summary>
 
 | | First reader (Claude) | Second reader (GPT) |
@@ -313,10 +319,14 @@ in 2. Both readers agree on those. They differ on how often it raised a related 
 ![Whether the bot had reviewed the causing change](charts/q06-was-there-a-review-light.svg#gh-light-mode-only)
 ![Whether the bot had reviewed the causing change](charts/q06-was-there-a-review-dark.svg#gh-dark-mode-only)
 
-**The bot's overall verdict when the change merged**
+*How to read it: Each bar is a number of bug-causing changes. The four bars add up to 156.*
 
-![The bot's overall verdict when the change merged](charts/q06-verdict-at-merge-light.svg#gh-light-mode-only)
-![The bot's overall verdict when the change merged](charts/q06-verdict-at-merge-dark.svg#gh-dark-mode-only)
+**The bot's overall verdict when the bug-causing change merged**
+
+![The bot's overall verdict when the bug-causing change merged](charts/q06-verdict-at-merge-light.svg#gh-light-mode-only)
+![The bot's overall verdict when the bug-causing change merged](charts/q06-verdict-at-merge-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is a number of bug-causing changes the bot had reviewed. The four bars add up to 113.*
 
 Warnings were not being ignored. 69 changes merged while the bot said "blocked" or "needs
 changes", but in 59 of them its open items were about something other than the
@@ -346,6 +356,8 @@ which reviewer wrote what then checked whether any reported problem was the know
 
 ![Known bugs named by each reviewer, out of 30](charts/q07-known-bugs-named-light.svg#gh-light-mode-only)
 ![Known bugs named by each reviewer, out of 30](charts/q07-known-bugs-named-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is how many of the same 30 known bugs that reviewer named. The gray bar is what the project's bot had said at the time, for comparison.*
 
 <details><summary>The numbers behind this chart</summary>
 
@@ -378,6 +390,8 @@ The count is not a steady climb across model versions, and it follows how much e
 ![Problems each reviewer reported across the 30 changes](charts/q07-problems-reported-light.svg#gh-light-mode-only)
 ![Problems each reviewer reported across the 30 changes](charts/q07-problems-reported-dark.svg#gh-dark-mode-only)
 
+*How to read it: Each bar is the total number of problems that reviewer reported on the 30 changes, right or wrong.*
+
 Of the 10 bugs that at least one reviewer named, 7 had been live for
 more than ten days.
 
@@ -408,10 +422,14 @@ failure happens?
 ![Where the 148 reported problems stand](charts/q08-where-the-reports-stand-light.svg#gh-light-mode-only)
 ![Where the 148 reported problems stand](charts/q08-where-the-reports-stand-dark.svg#gh-dark-mode-only)
 
-**The checkers tested on 14 known-real problems**
+*How to read it: Each bar is a number of reported problems. The four bars add up to 148.*
 
-![The checkers tested on 14 known-real problems](charts/q08-can-the-checkers-say-no-light.svg#gh-light-mode-only)
-![The checkers tested on 14 known-real problems](charts/q08-can-the-checkers-say-no-dark.svg#gh-dark-mode-only)
+**Known-real problems each checker confirmed, before and after the bug was fixed**
+
+![Known-real problems each checker confirmed, before and after the bug was fixed](charts/q08-can-the-checkers-say-no-light.svg#gh-light-mode-only)
+![Known-real problems each checker confirmed, before and after the bug was fixed](charts/q08-can-the-checkers-say-no-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is how many of the same 14 real problems the checker said were present. A sound checker is high in blue and low in orange.*
 
 17 of the other reports were later fixed on main by someone else, which is proof they were
 real. That count is a floor: the same search found the fix for only 8 of the
@@ -436,6 +454,8 @@ Recompute: `python3 questions/q08_are_the_other_reported_problems_real.py`
 
 ![What a reviewer needed to see the bug, and how many were named](charts/q09-what-each-bug-needed-light.svg#gh-light-mode-only)
 ![What a reviewer needed to see the bug, and how many were named](charts/q09-what-each-bug-needed-dark.svg#gh-dark-mode-only)
+
+*How to read it: The gray bar is the number of bugs of that kind, out of 30. The blue part is how many of them any reviewer named.*
 
 No reviewer named a bug that depended on how a browser lays out a page, what a database accepts or how a filesystem
 behaves under load. Size mattered too: reviewers named 6 of 12 bugs in
@@ -463,6 +483,8 @@ whose fix names the causing change, a rule existed for 4 when the change was wri
 ![Whether a written rule covered what went wrong, of 29 bugs](charts/q10-did-a-rule-cover-it-light.svg#gh-light-mode-only)
 ![Whether a written rule covered what went wrong, of 29 bugs](charts/q10-did-a-rule-cover-it-dark.svg#gh-dark-mode-only)
 
+*How to read it: Each bar is a number of bugs. The four bars add up to 29.*
+
 Recompute: `python3 questions/q10_did_a_written_rule_cover_it.py`
 
 ## 11. Changes committed straight to main show no sign of causing more bugs
@@ -471,11 +493,6 @@ Recompute: `python3 questions/q10_did_a_written_rule_cover_it.py`
 
 8.6% of commits since 10 September reached main with no pull request number in the title.
 Per commit they carried fewer bugs than changes that went through a pull request, not more.
-
-**Bugs per 100 commits, by how the change reached main**
-
-![Bugs per 100 commits, by how the change reached main](charts/q11-bugs-per-100-commits-by-route-light.svg#gh-light-mode-only)
-![Bugs per 100 commits, by how the change reached main](charts/q11-bugs-per-100-commits-by-route-dark.svg#gh-dark-mode-only)
 
 They are also smaller (a median of 2 files against 5),
 so size alone could explain the gap. Within changes of 6 files or more, the rate was
@@ -513,22 +530,20 @@ anyway.
 ![Bugs per 100 changes, by what the bot said when the change merged](charts/q12-bugs-by-bot-verdict-light.svg#gh-light-mode-only)
 ![Bugs per 100 changes, by what the bot said when the change merged](charts/q12-bugs-by-bot-verdict-dark.svg#gh-dark-mode-only)
 
+*How to read it: Each bar is a rate: bugs fixed in the three weeks that trace back to changes merged under that verdict, per 100 such changes. Verdicts seen on fewer than 20 sampled changes are left out.*
+
 Changes merged over the bot's objection caused sampled bugs 4.8 times as often as
 changes it called ready (plausibly 2.95 to 7.8). The bot objects more to large changes,
 and large changes carry more bugs, so part of that is size. Comparing only changes of similar size, the ratio is
 2.58 (plausibly 1.5 to 4.44). Changes the bot never
 reviewed were no different from ones it called ready.
 
-<details><summary>The numbers behind this chart</summary>
-
-| | Ordinary changes in the sample | Sampled bugs | Bugs per 100 changes |
-|---|---:|---:|---:|
-| Bot said ready | 256 | 36 | 2.09 |
-| Bot said blocked or needs changes | 83 | 56 | 10.03 |
-| Bot said needs maintainer review | 1 | 0 | 0.0 |
-| No bot review before merge | 60 | 11 | 2.73 |
-
-</details>
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| Bot said ready | 64% | 36 | 2.09 | (the baseline) |
+| Bot said blocked or needs changes | 20.8% | 56 | 10.03 | 2.58 times (plausibly 1.5 to 4.44) |
+| Bot said needs maintainer review | 0.2% | 0 | 0.0 | too few to say |
+| No bot review before merge | 15% | 11 | 2.73 | 1.18 times (plausibly 0.54 to 2.6) |
 
 - **How we know.** The comparison sample says how common each verdict is; the bug-causing changes say how many
   sampled bugs came from each. The ratio of those two is the relative bug rate. "Similar size" means within three
@@ -545,20 +560,22 @@ Recompute: `python3 questions/q12_does_merging_against_the_bot_matter.py`
 
 *Tentative. The intervals are wide and include no difference.*
 
-**Bugs per 100 changes, by which revision the bot reviewed**
-
-![Bugs per 100 changes, by which revision the bot reviewed](charts/q13-bugs-by-review-coverage-light.svg#gh-light-mode-only)
-![Bugs per 100 changes, by which revision the bot reviewed](charts/q13-bugs-by-review-coverage-dark.svg#gh-dark-mode-only)
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| Bot reviewed the revision that merged | 70.5% | 63 | 3.32 | (the baseline) |
+| Bot reviewed only an earlier revision | 14.5% | 29 | 7.43 | 1.39 times (plausibly 0.78 to 2.49) |
+| No bot review before merge | 15% | 11 | 2.73 | 0.75 times (plausibly 0.35 to 1.6) |
 
 Changes where the bot had seen only an earlier revision carried more bugs (2.24 times,
 plausibly 1.33 to 3.78), but those are larger changes with more rounds of revision. At
 equal size the ratio falls to 1.39 (plausibly
 0.78 to 2.49), which includes no difference.
 
-**Bugs per 100 changes, by time from the bot's review to merge**
-
-![Bugs per 100 changes, by time from the bot's review to merge](charts/q13-bugs-by-time-to-merge-light.svg#gh-light-mode-only)
-![Bugs per 100 changes, by time from the bot's review to merge](charts/q13-bugs-by-time-to-merge-dark.svg#gh-dark-mode-only)
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| Merged an hour or more after the bot's review | 23.5% | 29 | 4.58 | (the baseline) |
+| Merged 10 to 60 minutes after it | 45.6% | 43 | 3.51 | 0.61 times (plausibly 0.32 to 1.14) |
+| Merged within 10 minutes of it | 30.9% | 20 | 2.41 | 0.66 times (plausibly 0.33 to 1.32) |
 
 Changes merged within ten minutes of the bot's review did not carry more bugs: 0.66
 times the rate of those merged an hour or more later, at equal size (plausibly
@@ -580,30 +597,36 @@ Recompute: `python3 questions/q13_does_review_timing_matter.py`
 ![Bugs per 100 changes, by how long the pull request was open](charts/q14-bugs-by-time-open-light.svg#gh-light-mode-only)
 ![Bugs per 100 changes, by how long the pull request was open](charts/q14-bugs-by-time-open-dark.svg#gh-dark-mode-only)
 
+*How to read it: Each bar is a rate: bugs fixed in the three weeks that trace back to pull requests open that long, per 100 such pull requests. The three groups cover every pull request.*
+
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| Open a day or more | 10.2% | 30 | 10.88 | (the baseline) |
+| Open 1 to 24 hours | 43.5% | 58 | 4.96 | 0.44 times (plausibly 0.23 to 0.84) |
+| Open under an hour | 46.2% | 15 | 1.21 | 0.19 times (plausibly 0.09 to 0.39) |
+
 Pull requests merged within an hour of being opened carried 0.19 times the bugs of those
 open a day or more, at equal size (plausibly 0.09 to 0.39). A change that stays open is
 usually one that needed work, and those are the ones that later needed fixing.
 
-**Bugs per 100 changes, by who opened the change**
+The other three comparisons show no difference that can be told from none once size is held equal. They are given
+as tables, not charts, because a bar would suggest a difference the numbers do not support.
 
-![Bugs per 100 changes, by who opened the change](charts/q14-bugs-by-author-light.svg#gh-light-mode-only)
-![Bugs per 100 changes, by who opened the change](charts/q14-bugs-by-author-dark.svg#gh-dark-mode-only)
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| Opened by an outside contributor | 9.2% | 6 | 2.41 | (the baseline) |
+| Opened by a maintainer | 80.8% | 82 | 3.77 | 0.58 times (plausibly 0.19 to 1.75) |
+| Opened by an automation account | 10% | 15 | 5.58 | 1.18 times (plausibly 0.36 to 3.82) |
 
-**Bugs per 100 changes, by who merged it**
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| Merged by someone else | 11.2% | 10 | 3.3 | (the baseline) |
+| Merged by its own author | 88.8% | 93 | 3.89 | 0.56 times (plausibly 0.24 to 1.33) |
 
-![Bugs per 100 changes, by who merged it](charts/q14-bugs-by-merger-light.svg#gh-light-mode-only)
-![Bugs per 100 changes, by who merged it](charts/q14-bugs-by-merger-dark.svg#gh-dark-mode-only)
-
-**Bugs per 100 changes, by whether a person reviewed it**
-
-![Bugs per 100 changes, by whether a person reviewed it](charts/q14-bugs-by-human-review-light.svg#gh-light-mode-only)
-![Bugs per 100 changes, by whether a person reviewed it](charts/q14-bugs-by-human-review-dark.svg#gh-dark-mode-only)
-
-None of these three differences is distinguishable from none once size is held equal: maintainers against outside
-contributors 0.58 (plausibly 0.19 to 1.75),
-self-merged against merged by someone else 0.56 (plausibly
-0.24 to 1.33), no person's review against a person's review
-0.75 (plausibly 0.29 to 1.9).
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| A person reviewed it before merge | 4.5% | 11 | 9.09 | (the baseline) |
+| No person's review before merge | 95.5% | 92 | 3.58 | 0.75 times (plausibly 0.29 to 1.9) |
 
 - **How we know.** Same method as finding 12. A maintainer here is a person who merged at least one of the fetched
   pull requests; GitHub's own member label misses people whose membership is private.
@@ -616,10 +639,12 @@ Recompute: `python3 questions/q14_does_who_lands_the_change_matter.py`
 
 *Measured. Counted from git and GitHub; nothing is judged.*
 
-**How ordinary pull requests were reviewed and merged, in percent**
+**Share of ordinary pull requests for which each statement is true**
 
-![How ordinary pull requests were reviewed and merged, in percent](charts/q15-how-changes-are-merged-light.svg#gh-light-mode-only)
-![How ordinary pull requests were reviewed and merged, in percent](charts/q15-how-changes-are-merged-dark.svg#gh-dark-mode-only)
+![Share of ordinary pull requests for which each statement is true](charts/q15-how-changes-are-merged-light.svg#gh-light-mode-only)
+![Share of ordinary pull requests for which each statement is true](charts/q15-how-changes-are-merged-dark.svg#gh-dark-mode-only)
+
+*How to read it: Five separate yes-or-no facts about the same 400 randomly drawn pull requests. The bars are not parts of a whole and do not add up.*
 
 | | |
 |---|---:|

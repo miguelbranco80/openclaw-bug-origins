@@ -37,7 +37,28 @@ def chart(question, number=0):
     drawn = CHARTS[question][number]
     return (f"**{drawn['title']}**\n\n"
             f"![{drawn['title']}](charts/{drawn['stem']}-light.svg#gh-light-mode-only)\n"
-            f"![{drawn['title']}](charts/{drawn['stem']}-dark.svg#gh-dark-mode-only)")
+            f"![{drawn['title']}](charts/{drawn['stem']}-dark.svg#gh-dark-mode-only)\n\n"
+            f"*How to read it: {drawn['reading']}*")
+
+
+def ratio_table(question, prefix):
+    """One row per kind of change: how common it is, the bugs it produced, its bug rate, and the rate relative to
+    the first row with the size of the change held equal."""
+    rows = {r["metric"]: r for r in RESULTS[question]}
+    keys = [m[len(prefix) + 7:] for m in rows if m.startswith(prefix + "_share_")]
+    lines = ["| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |",
+             "|---|---:|---:|---:|---|"]
+    for i, key in enumerate(keys):
+        adjusted = rows.get(f"{prefix}_adjusted_{key}")
+        if i == 0:
+            versus = "(the baseline)"
+        elif adjusted:
+            versus = f"{adjusted['value']} times (plausibly {adjusted['low']} to {adjusted['high']})"
+        else:
+            versus = "too few to say"
+        lines.append(f"| {rows[f'{prefix}_share_{key}']['label']} | {rows[f'{prefix}_share_{key}']['value']}% | "
+                     f"{rows[f'{prefix}_bugs_{key}']['value']} | {rows[f'{prefix}_rate_{key}']['value']} | {versus} |")
+    return "\n".join(lines)
 
 
 def numbers(question, *groups, names=None):
@@ -187,25 +208,25 @@ worked". That is one reason the gap narrows when only confident or recent cases 
 
 *Well supported. Measured against every commit on main in the same period, not against an estimate.*
 
-For each traced bug we looked at the change that introduced it. Its title tells you little:
-{v('q03', 'title_fix')} of the {v('q02', 'traced')} were themselves titled "fix", but so is about half of everything
-merged, and some of those are large additions. One, titled as a fix, changed 138 files and added a whole rollback
-mechanism. Changes titled "feat" are a small share of all commits and a large share of causes.
+For each traced bug we looked at the title of the change that introduced it, and divided by how many commits carry
+that title. Changes titled "feat" caused {v('q03', 'rate_feat')} bugs per 100 commits, against {v('q03', 'rate_fix')}
+for changes titled "fix" and {v('q03', 'rate_other')} for everything else.
 
 {chart('q03', 0)}
 
-{numbers('q03', 'cmp_cause', 'cmp_base', names=['Bug-causing changes, %', 'All commits, %'])}
+{numbers('q03', 'rate_commits', 'rate_bugs', 'rate', 'rate_median_files', names=['Commits since 10 Sep', 'Sampled bugs', 'Bugs per 100 commits', 'Median files changed'])}
 
-{chart('q03', 1)}
-
-{numbers('q03', 'title_never', 'title_broke', names=['Never worked', 'Broken later'])}
+In absolute numbers most bugs still come from changes titled "fix" ({v('q03', 'title_fix')} of the
+{v('q02', 'traced')} traced), because half of everything merged carries that title. And a title is a loose label:
+one change titled as a fix touched 138 files and added a whole rollback mechanism. Feature changes are also larger
+than others, so part of their higher rate is size, which is the next finding.
 
 - **How we know.** The comparison uses the {v('q03', 'recent_causes')} sampled bugs whose causing change was made
   since 10 September 2026 and all {v('q03', 'base_commits')} commits on main since that date, counted from git.
 - **How it was checked.** Titles and file counts are read mechanically from git, not judged. Which change caused
   each bug is the reader's judgment from finding 2.
-- **What it does not show.** What the change was really for. A title is a label, and "fix" covers everything from a
-  one-line repair to a 138-file addition.
+- **What it does not show.** What the change was really for, or how much of the gap is size. The rates are not
+  adjusted for the size of the change.
 
 {run_line('q03')}
 
@@ -401,8 +422,6 @@ whose fix names the causing change, a rule existed for {v('q10', 'rules_existing
 {v('q11', 'direct_share_pct')}% of commits since 10 September reached main with no pull request number in the title.
 Per commit they carried fewer bugs than changes that went through a pull request, not more.
 
-{chart('q11', 0)}
-
 They are also smaller (a median of {v('q11', 'median_files_direct')} files against {v('q11', 'median_files_pr')}),
 so size alone could explain the gap. Within changes of 6 files or more, the rate was
 {v('q11', 'strat_direct_larger')} for direct commits against {v('q11', 'strat_pr_larger')} through a pull request.
@@ -435,7 +454,7 @@ and large changes carry more bugs, so part of that is size. Comparing only chang
 {v('q12', 'verdict_adjusted_objected')} (plausibly {span('q12', 'verdict_adjusted_objected')}). Changes the bot never
 reviewed were no different from ones it called ready.
 
-{numbers('q12', 'verdict_seen', 'verdict_bugs', 'verdict_rate', names=['Ordinary changes in the sample', 'Sampled bugs', 'Bugs per 100 changes'])}
+{ratio_table('q12', 'verdict')}
 
 - **How we know.** The comparison sample says how common each verdict is; the bug-causing changes say how many
   sampled bugs came from each. The ratio of those two is the relative bug rate. "Similar size" means within three
@@ -452,14 +471,14 @@ reviewed were no different from ones it called ready.
 
 *Tentative. The intervals are wide and include no difference.*
 
-{chart('q13', 0)}
+{ratio_table('q13', 'coverage')}
 
 Changes where the bot had seen only an earlier revision carried more bugs ({v('q13', 'coverage_ratio_earlier')} times,
 plausibly {span('q13', 'coverage_ratio_earlier')}), but those are larger changes with more rounds of revision. At
 equal size the ratio falls to {v('q13', 'coverage_adjusted_earlier')} (plausibly
 {span('q13', 'coverage_adjusted_earlier')}), which includes no difference.
 
-{chart('q13', 1)}
+{ratio_table('q13', 'speed')}
 
 Changes merged within ten minutes of the bot's review did not carry more bugs: {v('q13', 'speed_adjusted_fast')}
 times the rate of those merged an hour or more later, at equal size (plausibly
@@ -476,23 +495,22 @@ times the rate of those merged an hour or more later, at equal size (plausibly
 
 *Supported for time open. The other comparisons are too thin to show a difference either way.*
 
-{chart('q14', 3)}
+{chart('q14', 0)}
+
+{ratio_table('q14', 'open')}
 
 Pull requests merged within an hour of being opened carried {v('q14', 'open_adjusted_hour')} times the bugs of those
 open a day or more, at equal size (plausibly {span('q14', 'open_adjusted_hour')}). A change that stays open is
 usually one that needed work, and those are the ones that later needed fixing.
 
-{chart('q14', 0)}
+The other three comparisons show no difference that can be told from none once size is held equal. They are given
+as tables, not charts, because a bar would suggest a difference the numbers do not support.
 
-{chart('q14', 1)}
+{ratio_table('q14', 'author')}
 
-{chart('q14', 2)}
+{ratio_table('q14', 'merge')}
 
-None of these three differences is distinguishable from none once size is held equal: maintainers against outside
-contributors {v('q14', 'author_adjusted_maintainer')} (plausibly {span('q14', 'author_adjusted_maintainer')}),
-self-merged against merged by someone else {v('q14', 'merge_adjusted_self')} (plausibly
-{span('q14', 'merge_adjusted_self')}), no person's review against a person's review
-{v('q14', 'human_adjusted_no')} (plausibly {span('q14', 'human_adjusted_no')}).
+{ratio_table('q14', 'human')}
 
 - **How we know.** Same method as finding 12. A maintainer here is a person who merged at least one of the fetched
   pull requests; GitHub's own member label misses people whose membership is private.

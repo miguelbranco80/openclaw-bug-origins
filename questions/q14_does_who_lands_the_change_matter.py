@@ -26,13 +26,13 @@ def main(quiet=False):
     compare(out, "human", changes, lambda c: "yes" if c["human_review_before_merge"] else "no", HUMAN, "yes")
     compare(out, "open", changes,
             lambda c: "hour" if c["minutes_open"] < 60 else "hours" if c["minutes_open"] < 1440 else "day", OPEN, "day")
-    for prefix, title, stem in (
-        ("author", "Bugs per 100 changes, by who opened the change", "q14-bugs-by-author"),
-        ("merge", "Bugs per 100 changes, by who merged it", "q14-bugs-by-merger"),
-        ("human", "Bugs per 100 changes, by whether a person reviewed it", "q14-bugs-by-human-review"),
-        ("open", "Bugs per 100 changes, by how long the pull request was open", "q14-bugs-by-time-open"),
-    ):
-        out.chart(charts.bars(stem, title, [{"label": r["label"], "value": r["value"]} for r in out.group(prefix + "_rate")]))
+    out.chart(charts.bars(
+        "q14-bugs-by-time-open", "Bugs per 100 changes, by how long the pull request was open",
+        [{"label": label, "value": out.value("open_rate_" + key),
+          "note": f"{out.value('open_bugs_' + key)} sampled bugs; {out.value('open_share_' + key)}% of changes"}
+         for key, label in OPEN]),
+        "Each bar is a rate: bugs fixed in the three weeks that trace back to pull requests open that long, per 100 "
+        "such pull requests. The three groups cover every pull request.")
     out.save(quiet)
     return out
 

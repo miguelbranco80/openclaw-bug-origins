@@ -83,9 +83,9 @@ class Result:
         self.rows = []
         self.charts = []
 
-    def chart(self, drawn):
-        """Record a chart drawn by questions/charts.py so the report can place it."""
-        self.charts.append(drawn)
+    def chart(self, drawn, reading):
+        """Record a chart drawn by questions/charts.py, with one sentence saying what a bar is."""
+        self.charts.append(dict(drawn, reading=reading))
 
     def add(self, group, metric, label, value, low=None, high=None):
         assert all(row["metric"] != metric for row in self.rows), metric

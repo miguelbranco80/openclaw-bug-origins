@@ -63,9 +63,12 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q07-known-bugs-named", "Known bugs named by each reviewer, out of 30",
         [{"label": r["label"], "value": r["value"], "note": f"true rate plausibly {r['low']}–{r['high']}%"}
-         for r in out.group("named")], top=n, context={BOT}))
+         for r in out.group("named")], top=n, context={BOT}),
+        "Each bar is how many of the same 30 known bugs that reviewer named. The gray bar is what the project's bot "
+        "had said at the time, for comparison.")
     out.chart(charts.bars("q07-problems-reported", "Problems each reviewer reported across the 30 changes",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("findings")]))
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("findings")]),
+              "Each bar is the total number of problems that reviewer reported on the 30 changes, right or wrong.")
     out.save(quiet)
     return out
 

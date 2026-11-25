@@ -46,13 +46,20 @@ def main(quiet=False):
             sum(r["gpt_at_fix"] == "confirmed" and r["opus_at_fix"] == "confirmed" for r in control))
 
     out.chart(charts.bars("q08-where-the-reports-stand", "Where the 148 reported problems stand",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("quality")]))
-    labels = [r["label"] for r in out.group("control_original")]
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("quality")]),
+              "Each bar is a number of reported problems. The four bars add up to 148.")
+    for kind, label in (("gpt", "gpt-6.2 checker"), ("opus", "Opus 5.5 checker")):
+        out.add("confirmed_original", "confirmed_original_" + kind, label,
+                sum(r[kind + "_at_cause"] == "confirmed" for r in control))
+        out.add("confirmed_fixed", "confirmed_fixed_" + kind, label, sum(r[kind + "_at_fix"] == "confirmed" for r in control))
+    labels = [r["label"] for r in out.group("confirmed_original")]
     out.chart(charts.grouped(
-        "q08-can-the-checkers-say-no", "The checkers tested on 14 known-real problems", labels,
-        [("Wrongly dismissed, on the original code", [r["value"] for r in out.group("control_original")]),
-         ("Stopped confirming, once the bug was fixed", [r["value"] for r in out.group("control_fixed")])],
-        top=len(control)))
+        "q08-can-the-checkers-say-no", "Known-real problems each checker confirmed, before and after the bug was fixed",
+        labels,
+        [("While the bug was there", [r["value"] for r in out.group("confirmed_original")]),
+         ("After it was fixed", [r["value"] for r in out.group("confirmed_fixed")])], top=len(control)),
+        f"Each bar is how many of the same {len(control)} real problems the checker said were present. A sound checker "
+        "is high in blue and low in orange.")
     out.save(quiet)
     return out
 

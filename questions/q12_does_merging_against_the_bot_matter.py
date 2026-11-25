@@ -27,10 +27,14 @@ def main(quiet=False):
     changes = load("changes.jsonl")
     out = Result("q12")
     compare(out, "verdict", changes, level, LEVELS, "ready")
-    out.chart(charts.bars("q12-bugs-by-bot-verdict", "Bugs per 100 changes, by what the bot said when the change merged",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("verdict_rate")]))
-    out.chart(charts.bars("q12-how-common-each-verdict-is", "Share of ordinary changes merged under each verdict",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("verdict_share")], unit="%", top=100))
+    keep = [key for key, _ in LEVELS if out.value("verdict_seen_" + key) >= 20]
+    out.chart(charts.bars(
+        "q12-bugs-by-bot-verdict", "Bugs per 100 changes, by what the bot said when the change merged",
+        [{"label": label, "value": out.value("verdict_rate_" + key),
+          "note": f"{out.value('verdict_bugs_' + key)} sampled bugs; {out.value('verdict_share_' + key)}% of changes"}
+         for key, label in LEVELS if key in keep]),
+        "Each bar is a rate: bugs fixed in the three weeks that trace back to changes merged under that verdict, per "
+        "100 such changes. Verdicts seen on fewer than 20 sampled changes are left out.")
     out.save(quiet)
     return out
 

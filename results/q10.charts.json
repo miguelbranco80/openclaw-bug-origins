@@ -1,6 +1,7 @@
 [
  {
   "stem": "q10-did-a-rule-cover-it",
-  "title": "Whether a written rule covered what went wrong, of 29 bugs"
+  "title": "Whether a written rule covered what went wrong, of 29 bugs",
+  "reading": "Each bar is a number of bugs. The four bars add up to 29."
  }
 ]

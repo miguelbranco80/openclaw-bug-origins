@@ -20,5 +20,11 @@
 {"group": "size", "metric": "gpt_pair_n", "label": "Both readers said never-worked or broken-later", "value": 20, "low": null, "high": null},
 {"group": "size", "metric": "gpt_pair_same", "label": "Of those, same choice", "value": 19, "low": null, "high": null},
 {"group": "size", "metric": "gpt_cause_n", "label": "Fixes where both readers named a causing change", "value": 20, "low": null, "high": null},
-{"group": "size", "metric": "gpt_cause_same", "label": "Of those, the same change", "value": 18, "low": null, "high": null}
+{"group": "size", "metric": "gpt_cause_same", "label": "Of those, the same change", "value": 18, "low": null, "high": null},
+{"group": "never_share", "metric": "never_share_all", "label": "Every traced bug", "value": 67, "low": null, "high": null},
+{"group": "never_share", "metric": "never_share_hm", "label": "Reader was confident or fairly confident of the cause", "value": 66, "low": null, "high": null},
+{"group": "never_share", "metric": "never_share_high", "label": "Reader was confident of the cause", "value": 56, "low": null, "high": null},
+{"group": "never_share", "metric": "never_share_recent", "label": "Cause is a commit since 10 Sep 2026, readable in full", "value": 60, "low": null, "high": null},
+{"group": "never_share", "metric": "never_share_first60", "label": "First readers, on the fixes that were re-read", "value": 53, "low": null, "high": null},
+{"group": "never_share", "metric": "never_share_gpt60", "label": "Second model, on the same fixes", "value": 48, "low": null, "high": null}
 ]

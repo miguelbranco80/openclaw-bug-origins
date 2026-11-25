@@ -43,10 +43,16 @@ def main(quiet=False):
     out.add("size", "per_file_low", "Lowest bugs per 1,000 files changed across size groups", min(per_file))
     out.add("size", "per_file_high", "Highest bugs per 1,000 files changed across size groups", max(per_file))
 
+    notes = {key: f"{bugs[key]} sampled bugs from {count[key]:,} commits" for key, _, _, _ in GROUPS}
     out.chart(charts.bars("q04-bugs-per-100-commits", "Bugs per 100 commits, by size of the change",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("per_commit")]))
+                          [{"label": r["label"], "value": r["value"], "note": notes[r["metric"].replace("per_commit_", "")]}
+                           for r in out.group("per_commit")]),
+              "Each bar is a rate: bugs fixed in the three weeks that trace back to commits of that size, per 100 such "
+              "commits made since 10 September. The four sizes cover every commit.")
     out.chart(charts.bars("q04-bugs-per-1000-files", "Bugs per 1,000 files changed, by size of the change",
-                          [{"label": r["label"], "value": r["value"]} for r in out.group("per_file")]))
+                          [{"label": r["label"], "value": r["value"]} for r in out.group("per_file")]),
+              "The same bugs, divided by the total number of files those commits changed instead of by the number of "
+              "commits.")
     out.save(quiet)
     return out
 

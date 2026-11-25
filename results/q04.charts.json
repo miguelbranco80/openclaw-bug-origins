@@ -1,10 +1,12 @@
 [
  {
   "stem": "q04-bugs-per-100-commits",
-  "title": "Bugs per 100 commits, by size of the change"
+  "title": "Bugs per 100 commits, by size of the change",
+  "reading": "Each bar is a rate: bugs fixed in the three weeks that trace back to commits of that size, per 100 such commits made since 10 September. The four sizes cover every commit."
  },
  {
   "stem": "q04-bugs-per-1000-files",
-  "title": "Bugs per 1,000 files changed, by size of the change"
+  "title": "Bugs per 1,000 files changed, by size of the change",
+  "reading": "The same bugs, divided by the total number of files those commits changed instead of by the number of commits."
  }
 ]

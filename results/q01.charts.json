@@ -1,10 +1,12 @@
 [
  {
   "stem": "q01-what-fixes-repaired",
-  "title": "What each of the 300 sampled fixes repaired, by the first readers' rule"
+  "title": "What each of the 300 sampled fixes repaired, by the first readers' rule",
+  "reading": "Each bar is a number of sampled fixes. The five bars add up to 300."
  },
  {
   "stem": "q01-two-readers",
-  "title": "How two makers' models sorted the same 60 fixes"
+  "title": "How two makers' models sorted the same 60 fixes",
+  "reading": "The same 60 fixes, sorted twice. Blue is where the first reader put them, orange where the second did; each color adds up to 60."
  }
 ]
