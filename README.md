@@ -32,10 +32,13 @@ expect.
 - **About half the bugs were never regressions.** 443 were new code that never worked,
   against 389 working things broken later. A test of the old behavior cannot catch the
   first kind. *Finding 2.*
-- **The review bot rarely named the bug, yet its objection marks risk.** It had named the bug in
-  21 of the 645 bug-causing changes it reviewed. Changes merged over its
-  objection still carried 3.42 times the bugs of changes it called ready, even
-  though its complaint was usually about something else. *Findings 6 and 12.*
+- **The review bot rarely named the bug, yet its verdict marks risk.** Before a change merges, the bot gives a
+  verdict: ready, needs changes, or blocked. It had named the actual bug in 21 of the
+  645 bug-causing changes it reviewed. But changes merged while it said "needs changes" or
+  "blocked" carried 3.42 times the bugs of changes it called ready. It was not
+  hinting at the bug: in 346 of 418 such cases its
+  complaints were about something else, such as missing proof. Its doubt was a better signal than its reasons.
+  *Findings 6 and 12.*
 - **You can point at the risky changes before they merge.** 6.8% of changes show at least
   two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
   files), and those changes carry 48% of the traced bugs. *Finding 17.*
