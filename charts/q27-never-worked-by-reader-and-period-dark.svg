@@ -7,7 +7,7 @@
 <path d="M0,42 H284.1 Q288.1,42 288.1,46 V48 Q288.1,52 284.1,52 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="52" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">67%</text>
 <text x="472.6" y="52" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">105 never worked, 51 broken later</text>
-<text x="0.0" y="76" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Fixes from 2026-11-01 to 2026-11-23, read by gpt-6.2-sol</text>
+<text x="0.0" y="76" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Fixes from 2026-11-01 to 2026-11-22, read by gpt-6.2-sol</text>
 <rect x="0" y="84" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,84 H236.8 Q240.8,84 240.8,88 V90 Q240.8,94 236.8,94 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="94" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">56%</text>

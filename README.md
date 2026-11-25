@@ -1019,7 +1019,7 @@ the period.
 | | Fixes | Fixed no bug, % | Could not tell, % | Never worked | Broken later | Never worked, % of the two | Causes titled feat, % | Median files in a causing change | Median days broken, broken-later | Causing changes the bot reviewed | Bot named the bug |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | November fixes, read by Claude Opus 5.5 | 300 | 33 | 5 | 105 | 51 | 67 | 26 | 28.5 | 20.4 | 113 | 2 |
-| Fixes from 2026-11-01 to 2026-11-23, read by gpt-6.2-sol | 300 | 11 | 13 | 115 | 91 | 56 | 30 | 34.5 | 28.8 | 170 | 2 |
+| Fixes from 2026-11-01 to 2026-11-22, read by gpt-6.2-sol | 300 | 11 | 13 | 115 | 91 | 56 | 30 | 34.5 | 28.8 | 170 | 2 |
 | Fixes from 2026-09-10 to 2026-11-01, read by gpt-6.2-sol | 902 | 7 | 18 | 328 | 298 | 52 | 29 | 34 | 8.6 | 475 | 19 |
 
 </details>

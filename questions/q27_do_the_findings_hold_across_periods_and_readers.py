@@ -17,7 +17,7 @@ import collections
 import statistics
 
 import charts
-from common import FRAMES, READERS, SCALE, Result, load, load_commits, pct, recent_causes, wilson
+from common import FRAMES, READERS, SCALE, Result, load, load_commits, pct, recent_causes, utc_day, wilson
 
 REAL = ("regression", "never-worked", "latent")
 
@@ -69,7 +69,7 @@ def main(quiet=False):
     columns = [("published", first)]
     for frame in FRAMES:
         key = f"frame{frame['frame']}"
-        until = frame["until"][:10] if frame["until"] else max(c["committed_at"][:10] for c in load_commits().values())
+        until = frame["until"][:10] if frame["until"] else max(utc_day(c["committed_at"]) for c in load_commits().values()).isoformat()
         label = f"Fixes from {frame['since'][:10]} to {until}, read by {READERS['fixes']}"
         column(out, key, label, [f for f in fixes if frame_of(f["rank"]) == frame["frame"]],
                [r for r in reviews if frame_of(r["rank"]) == frame["frame"]])
