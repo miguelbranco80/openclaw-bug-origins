@@ -10,7 +10,7 @@ Usage: python3 questions/q22_do_occasional_contributors_cause_more_bugs.py
 """
 import collections
 
-from common import Result, compare_commits, load_commits, recent_causes
+from common import SCALE, Result, compare_commits, load_commits, recent_causes
 
 GROUPS = [("top", "The single most active author"), ("core", "Other authors with over 500 commits"),
           ("regular", "Authors with 21 to 500 commits"), ("occasional", "Authors with 20 commits or fewer")]
@@ -29,6 +29,10 @@ def main(quiet=False):
     compare_commits(out, "who", commits, recent_causes(commits), group, GROUPS, "top")
     out.add("size", "top_bugs_pct", "Share of the traced bugs that came from the most active author's changes, %",
             round(100 * out.value("who_bugs_top") / sum(out.value("who_bugs_" + key) for key, _ in GROUPS)))
+    rest = [key for key, _ in GROUPS if key != "top"]
+    out.add("size", "rest_rate", "Bugs per 100 commits, all other authors together",
+            round(100 * sum(out.value("who_bugs_" + key) for key in rest) * SCALE
+                  / sum(out.value("who_commits_" + key) for key in rest), 1))
     for key, label in GROUPS:
         out.add("authors", "authors_" + key, label, len({c["author_rank"] for c in commits.values() if group(c) == key}))
     out.save(quiet)
