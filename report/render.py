@@ -161,8 +161,11 @@ bugs against every commit and pull request of the period, to see which kinds of 
 - **Reading alone has a ceiling.** Two strong models, shown {v('q07', 'cases')} bug-causing changes from November
   with no hint, together named {v('q07', 'named_either_top')} of the bugs. {v('q09', 'needs_outside')} could not be seen by reading
   code at all, and nobody named those. *Findings 7 and 9.*
-- **It held up.** The seven earlier weeks, read by the same model, look like November. A second model disagrees on
-  what counts as a bug, and agrees on what caused one. *Finding 23.*
+- **The results repeat.** We checked two ways. The fixes from September and October give the same picture as those
+  from November. And a second model, reading the same November fixes, pointed at the same causing change in
+  {v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')} cases. Where the two models differ is on what counts
+  as a bug at all: one said {v('q27', 'not_bug_pct_frame1')}% of those fixes repaired nothing, the other
+  {v('q27', 'not_bug_pct_published')}%. *Findings 1 and 23.*
 
 {chart('q17', 0)}
 
