@@ -330,7 +330,7 @@ is committed too, the commit before it is `HEAD~1`. The earlier report itself is
   report measures between readers, not the same digits.
 - **The report's sentences.** Every number in `README.md` is looked up from the results, but the sentences around
   them ("no clear difference", "about three weeks") were written for the published numbers. After a regeneration,
-  read the summary table and each finding's first paragraph against its numbers and edit `report/render.py` where
+  read the main results, the ideas table and each finding's first paragraph against its numbers and edit `report/render.py` where
   a sentence no longer fits. `study.py compare` shows where to look first.
 - **Other reviewers in the blind review.** `questions/q07` compares named reviewers (the two strongest against the
   bot, three files at a time against the whole change). With a different `judging.review` list every reviewer still

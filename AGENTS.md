@@ -24,8 +24,10 @@ to rebuild the report, regenerate the study from nothing, or extend it, using `p
   against it carries `GIT_NO_LAZY_FETCH=1` (the scripts set it); a search without it once downloaded 12 GB.
 - **GitHub access is read-only.** No comments, reviews, issues or pushes to the studied project.
 - **`work/` is scratch and is never committed.** Do not commit model run logs: they contain machine paths.
-- **The report states findings, not recommendations.** Every number in `README.md` comes from `results/` through
-  `report/render.py`; never type a number into the report. After numbers change, read the sentences around them and
+- **The report states findings.** Its one section of ideas, "What the numbers point to", ties each idea to a count
+  in the report and names the step that was not tested. Keep it that way: no advice to the project, and no idea
+  without its count. Every number in `README.md` comes from `results/` through `report/render.py`; never type a
+  number into the report. After numbers change, read the sentences around them and
   edit the ones that no longer fit.
 - **Changing a brief changes the instrument.** Edit a brief under `fix-origins/` only on request, bump its version
   line, and note the change in `CORRECTIONS.md`.
