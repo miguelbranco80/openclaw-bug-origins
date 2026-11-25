@@ -177,7 +177,7 @@ def main() -> None:
     with open(OUT, "a") as f:
         for r in sorted(results, key=lambda r: r["rank"]):
             f.write(json.dumps(r) + "\n")
-    print(f"blamed {len(results)} fixes into {OUT}")
+    print(f"fixes newly blamed: {len(results)}")
 
 
 if __name__ == "__main__":

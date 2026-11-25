@@ -57,7 +57,7 @@ def main():
                                     "matching_finding": found[verdict["finding"] - 1] if verdict["finding"] else None,
                                     "grader_note": verdict["note"]}
             handle.write(json.dumps(row) + "\n")
-    print(len(tags), "cases,", len(grid), "grades")
+    print(f"blind review assembled: {len(tags)} cases, {len(grid)} reviewer-and-case grades")
 
 
 if __name__ == "__main__":

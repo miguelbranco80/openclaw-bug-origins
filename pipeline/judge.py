@@ -252,9 +252,13 @@ def review_cases(step, arm):
     cases = []
     for rank in pilot_ranks():
         folder = export(rank)
-        if not os.path.isdir(folder):
-            continue
         key = f"{rank:04d}"
+        if arm["mode"] != "whole" and not os.path.isdir(folder):
+            # Without the code export the file groups cannot be worked out; show the stored runs as they are.
+            stored = sorted(name for name in os.listdir(runs) if name.startswith(key + ".")) if os.path.isdir(runs) else []
+            for part in stored or [key + ".00"]:
+                cases.append(Case(part, "", folder, os.path.join(runs, part), "last", check_review))
+            continue
         if arm["mode"] == "whole":
             cases.append(Case(key, brief(PILOT, "prompt-whole.md"), folder, os.path.join(runs, key), "last",
                               check_review, also_done=(os.path.join(runs, key + ".json"),)))
@@ -305,7 +309,7 @@ def tag_cases(step, config):
     for rank in pilot_ranks():
         key = f"{rank:04d}"
         bundle = os.path.join(folder, key + ".md")
-        if not os.path.exists(bundle) or not os.path.isdir(export(rank)):
+        if not os.path.exists(bundle):
             continue
         described = open(bundle).read().split("\n## Reviewer", 1)[0].split("\n### Reviewer", 1)[0]
         task = ("\n\n## Your task\n\nTag one case. The current directory is the export directory. The bug is described "
@@ -345,8 +349,6 @@ def refute_cases(step, config):
         listing = open(os.path.join(folder, name)).read()
         for tree in ("cases", "fixed-cases"):
             if tree == "fixed-cases" and int(key) not in control:
-                continue
-            if not os.path.isdir(export(int(key), tree)):
                 continue
             target = os.path.join(verify, f"refute-{slot}" + ("" if tree == "cases" else "-fixed-cases"))
             task = ("\n\n## Your task\n\nThe repository directory is the current directory. Stay inside it: do not "
@@ -429,6 +431,8 @@ def log(step, case, config, seconds):
 def prepare(label, case):
     """The folder the model works in: the case's own, or a fresh one holding only the case's input files."""
     if case.cwd:
+        if not os.path.isdir(case.cwd):
+            raise model.RunFailed(f"the code export {case.cwd} does not exist; `python3 study.py run pilot` makes it")
         return case.cwd
     folder = scratch(label.replace(" ", "_"), case.key)
     for name, source in case.files.items():

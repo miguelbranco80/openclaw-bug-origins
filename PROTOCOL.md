@@ -56,7 +56,8 @@ re-reads a slice of every judgment.
 | `limits.github_reserve` | Stop using GitHub when fewer than this many calls are left in the hour, and wait for the reset |
 
 One thing is not in the settings because it differs per machine: where the clone of the project is. Set the
-environment variable `OPENCLAW_CLONE` to its path. Without it, `work/openclaw` is used.
+environment variable `OPENCLAW_CLONE` to its path once per shell (`export OPENCLAW_CLONE=/path/to/clone`); every
+`study.py` command except `rebuild`, `status` and `compare` needs it. Without it, `work/openclaw` is used.
 
 **Ranks.** A fix's rank is its place in its period's random order. Frame 1 has ranks 1, 2, 3, and so on; frame 2
 has ranks 100001, 100002, and so on. A rank never changes once given, so every stored answer stays valid when a
@@ -78,7 +79,9 @@ python3 study.py doctor
 ```
 
 It checks the settings, the clone, GitHub's remaining quota and whether each model tool is signed in, and says
-what to fix. To see how far a run has got:
+what to fix. A line marked `STOP` blocks the stages that need that thing; `NOTE` is information. A signed-out model
+tool is a `STOP` only when the settings give it cases that are not answered yet, so on the published study, where
+everything is answered, it is a `NOTE`. To see how far a run has got:
 
 ```bash
 python3 study.py status
@@ -87,7 +90,7 @@ python3 study.py status
 ## Try it small first
 
 Before a full regeneration, run a ten-fix study in a second copy of this repository. It exercises every stage and
-every model step in about an hour, and shows whether your clone, sign-ins and quotas are in order.
+every model step in about twenty minutes, and shows whether your clone, sign-ins and quotas are in order.
 
 ```bash
 git clone . ../study-trial && cd ../study-trial
@@ -98,11 +101,21 @@ python3 study.py reset --yes && cp examples/small-study.json study.json
 ```
 
 ```bash
-OPENCLAW_CLONE=/path/to/your/openclaw/clone python3 study.py run all
+export OPENCLAW_CLONE=/path/to/your/openclaw/clone
 ```
 
-`examples/small-study.json` uses Codex for every model step; edit its `judging` section to try other tools. With
-ten fixes the report's numbers mean nothing: the trial only shows that every step runs.
+```bash
+python3 study.py doctor && python3 study.py run all
+```
+
+- `reset` deletes the published study's data in that copy; that is what starting from nothing means. `git status`
+  will show those files as deleted.
+- `examples/small-study.json` uses Codex for every model step and two reviewers. It does not exercise the `claude`
+  backend, the `agent` backend or the three-files-at-a-time reviewer. Edit its `judging` section to try others.
+- With ten fixes the report's numbers mean nothing, and its closing note will list several comparisons as "(not
+  available)" because there were too few cases to make them. The trial only shows that every step runs.
+- To try an extension afterwards, commit the finished trial first (`git add -A && git commit -m trial`), then
+  follow [Extend](#extend-to-more-fixes-or-a-longer-period).
 
 ## Rebuild from the stored answers
 
@@ -160,7 +173,7 @@ or one stage at a time, in this order. Each stage skips what is already done, so
 | 4 | `bot` | Fetches what the review bot wrote on each causing pull request, as it stood at merge. A model says whether the bot named the bug | GitHub, model | `fix-origins/clawsweeper/` | `status`: `flag` answered equals its cases |
 | 5 | `facts` | Fetches who opened, merged and reviewed every pull request, and a random comparison sample of ordinary pull requests | clone, GitHub | `dataset/pull_requests.tsv`, `fix-origins/comparison/`, `dataset/changes.jsonl` | It prints how many pull requests it has of how many wanted |
 | 6 | `rereads` | A model from a different maker re-reads a slice of the fixes and every bot review | clone, model | `fix-origins/audit/raw/` | `status`: both re-read steps answered |
-| 7 | `pilot` | The blind review experiment: chooses cases, exports the code as it stood at each causing change, runs the reviewers, has graders say who named the known bug, and has checkers test the other reports | clone, GitHub, model, disk | `fix-origins/review-pilot/` | `status`: every `review`, `grade`, `tags`, `refute` and `laterfix` line answered |
+| 7 | `pilot` | The blind review experiment: chooses cases, exports the code as it stood at each causing change (into `work/exports/`, about 5 GB for the published 40 exports, never committed), runs the reviewers, has graders say who named the known bug, and has checkers test the other reports | clone, GitHub, model, disk | `fix-origins/review-pilot/` | `status`: every `review`, `grade`, `tags`, `refute` and `laterfix` line answered |
 | 8 | `report` | Assembles the dataset, runs every question, draws the charts, writes the report | nothing | `dataset/`, `results/`, `charts/`, `README.md` | It ends with "Rebuilt." Read the report's claims against its numbers (see [What a rerun cannot do](#what-a-rerun-cannot-do-for-you)) |
 
 Stage 7 is separate from the rest. Stages 1 to 6 and 8 give findings 1 to 6 and 11 to 26; stage 7 gives findings
@@ -287,20 +300,25 @@ Only the new ranks are blamed, read and judged.
 Then run all stages. Keep these in mind:
 
 - Give frames the same sampling share (sample divided by population; `frame` prints both), so that every fix counts
-  equally in the rates. `status` shows the populations.
+  equally in the rates. Run stage `frame` first to see the new frame's population, then set its `sample`; `doctor`
+  warns when the shares differ and says what sample would match frame 1.
 - `commits_since` and the clone's history must reach back at least as far as the earliest causes you expect.
-  `doctor` checks the clone.
+  `doctor` checks the clone. Stage `facts` prints a `NOTE` with how many traced bugs were left out of the
+  comparisons because their causing change is older than `commits_since`.
 - To study fixes after the pinned commit, fetch in the clone, set `tip` to the newer commit, and give the old frame
   an `until` equal to the old tip's date, so its population stays what it was.
 - The blind review's cases are the first eligible ones in rank order, so adding frames does not change them.
 
-**Compare with the study before the change.** Commit before extending. Afterwards:
+**Compare with the study before the change.** Commit before extending. After extending, and before committing
+again:
 
 ```bash
-python3 study.py compare HEAD~1
+python3 study.py compare HEAD
 ```
 
-lists every number that moved outside its earlier plausible range. The earlier report itself is in git history.
+`compare <commit>` sets the numbers now in `results/` against the same numbers at that commit, and lists each one
+that left its earlier plausible range, or changed by more than a tenth where it has no range. Once the extension
+is committed too, the commit before it is `HEAD~1`. The earlier report itself is in git history.
 
 ## What a rerun cannot do for you
 
@@ -313,8 +331,9 @@ lists every number that moved outside its earlier plausible range. The earlier r
 - **Other reviewers in the blind review.** `questions/q07` compares named reviewers (the two strongest against the
   bot, three files at a time against the whole change). With a different `judging.review` list every reviewer still
   gets its row, but those named comparisons are skipped and the report prints "(not available)" where its text
-  expected them. `study.py rebuild` ends with a note listing every such gap. Edit `report/render.py` to match the
-  new design.
+  expected them. Edit `report/render.py` to match the new design.
+- **Comparisons a small study cannot make.** A comparison with no cases on one side has no ratio, and the report
+  prints "(not available)" there too. `study.py rebuild` ends with a note listing every such gap.
 - **The first study.** `detection-check/` is a one-off done by hand in November 2026: 29 bugs whose fix named the
   change that caused them, each checked against the project's written rules. Its figures are typed into
   `dataset/named_cause_study.json`. It is not regenerated. Finding 10 and one comparison in finding 5 rest on it and

@@ -238,7 +238,7 @@ def main():
     with open(os.path.join(HERE, "clawsweeper", "table.jsonl"), "w") as handle:
         for row in rows:
             handle.write(json.dumps(row) + "\n")
-    print(f"{len(rows)} cases")
+    print(f"{len(rows)} traced bugs with a causing pull request; one bundle written for each whose pull request the bot reviewed")
 
 
 if __name__ == "__main__":

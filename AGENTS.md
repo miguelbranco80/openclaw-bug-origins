@@ -7,7 +7,8 @@ to rebuild the report, regenerate the study from nothing, or extend it, using `p
 ## Rules
 
 - **Start with `python3 study.py doctor`, and use `python3 study.py status` to see where a run stands.** Do not
-  guess what is done from memory or from file listings.
+  guess what is done from memory or from file listings. In `doctor`, `STOP` blocks the stages that need that thing
+  and `NOTE` is information; run it again after changing `study.json`.
 - **Run stages through `study.py`.** Do not call the collection scripts by hand, and do not write a second way to
   do something `study.py` already does.
 - **Never write, edit or "fix" a model's answer.** Answers under `fix-origins/` are data. If an answer is invalid,

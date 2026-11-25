@@ -168,7 +168,7 @@ def main() -> None:
             a["reader"] = args.reader or ("second" if args.second else "primary")
             o.write(json.dumps(build(a, blames[rank], pop[rank])) + "\n")
             written += 1
-    print(f"wrote {written} to {out}")
+    print(f"accepted answers added: {written} (to {os.path.basename(out)})")
     for p in problems:
         print("PROBLEM", p)
 

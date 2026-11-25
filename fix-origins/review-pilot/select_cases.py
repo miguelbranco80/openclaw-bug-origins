@@ -40,7 +40,7 @@ def main():
     ranks = sorted(picked["regression"] + picked["never-worked"])
     with open(os.path.join(HERE, "data", "pilot_ranks.json"), "w") as handle:
         json.dump(ranks, handle)
-    print(len(ranks), ranks)
+    print(f"blind review cases chosen: {len(ranks)} (ranks {ranks})")
 
 
 if __name__ == "__main__":

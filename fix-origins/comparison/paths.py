@@ -34,7 +34,7 @@ def main():
         areas[sha] = dict(counts)
     with open(os.path.join(HERE, "areas.json"), "w") as handle:
         json.dump(areas, handle, sort_keys=True)
-    print(len(areas), "commits")
+    print(f"folders counted for {len(areas)} commits")
 
 
 if __name__ == "__main__":

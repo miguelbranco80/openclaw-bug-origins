@@ -97,7 +97,7 @@ def main():
             handle.write("\n".join(lines) + "\n")
     with open(os.path.join(out, "key.json"), "w") as handle:
         json.dump(key, handle, indent=1)
-    print(f"{len(rows)} arm x case rows, {len(per_case)} bundles")
+    print(f"grading bundles written: {len(per_case)} cases, {len(rows)} reviewer-and-case rows")
 
 
 if __name__ == "__main__":

@@ -114,6 +114,10 @@ def main():
             handle.write(json.dumps(row) + "\n")
     print(len(rows), "changes;", sum(r["in_comparison_sample"] for r in rows), "in the comparison sample;",
           sum(r["sampled_bugs"] > 0 for r in rows), "bug-causing, carrying", sum(r["sampled_bugs"] for r in rows), "sampled bugs")
+    outside = sum(bugs.values()) - sum(r["sampled_bugs"] for r in rows)
+    if outside:
+        print(f"NOTE: {outside} traced bugs are left out of the comparisons: their causing change is older than "
+              "`commits_since` in study.json, or was not made through a pull request")
 
 
 if __name__ == "__main__":

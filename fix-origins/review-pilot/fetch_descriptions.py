@@ -47,7 +47,7 @@ def main():
         bodies[number] = {"title": pr["title"], "body": body}
     with open(path, "w") as handle:
         json.dump(bodies, handle)
-    print(len(bodies), "descriptions")
+    print(f"pull request descriptions as they read at merge: {len(bodies)}")
 
 
 if __name__ == "__main__":

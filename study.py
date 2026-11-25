@@ -189,6 +189,18 @@ def doctor():
     for frame, (low, high) in zip(data["frames"], frame_ranges()):
         say(f"  OK    frame {frame['id']}: fixes from {frame['since'][:10]} to {frame['until'][:10] if frame.get('until') else 'the pinned commit'}, "
             f"sample {frame['sample']} (ranks {low} to {high})")
+    fixes = population()
+    shares = []
+    for frame in data["frames"]:
+        size = sum(1 for rank in fixes if (rank - 1) // 100000 + 1 == frame["id"])
+        if size:
+            shares.append((frame, size, min(frame["sample"], size) / size))
+    if len(shares) > 1 and max(s for _, _, s in shares) > 1.1 * min(s for _, _, s in shares):
+        base = shares[0][2]
+        say("  NOTE  the frames sample different shares of their fixes: " +
+            ", ".join(f"frame {f['id']} {100 * s:.1f}%" for f, _, s in shares) +
+            ". Rates in the report assume equal shares. To match frame 1, use samples of " +
+            ", ".join(f"{round(size * base)} for frame {f['id']}" for f, size, _ in shares[1:]) + ".")
     say("The openclaw clone")
     stop = False
     for level, message in clone_checks():
@@ -203,19 +215,25 @@ def doctor():
         say(f"  STOP  {pause}")
         stop = True
     say("Model tools")
-    used = set()
-    for configured in data["judging"].values():
-        for config in configured if isinstance(configured, list) else [configured]:
+    used, waiting = set(), {}
+    for step in judge.STEPS:
+        for label, config, cases in judge.slots(step):
             used.add(config["backend"])
+            waiting[config["backend"]] = waiting.get(config["backend"], 0) + sum(not case.done() for case in cases)
     for backend in ("codex", "claude"):
         ok, detail = model.signed_in(backend)
-        needed = "needed by the settings" if backend in used else "not needed by the settings"
-        level = "OK" if ok else ("STOP" if backend in used else "NOTE")
+        left = waiting.get(backend, 0)
+        if backend not in used:
+            level, why = ("OK" if ok else "NOTE"), "not used by the settings"
+        elif left:
+            level, why = ("OK" if ok else "STOP"), f"the settings give it {left} cases still to answer"
+        else:
+            level, why = ("OK" if ok else "NOTE"), "used by the settings; every case it has now is answered"
         stop |= level == "STOP"
-        say(f"  {level:5} {backend}: {detail} ({needed})")
+        say(f"  {level:5} {backend}: {detail} ({why})")
         if not ok and backend in used:
-            say(f"        Sign in ({model.SIGN_IN[backend]}), or run its steps with --backend agent or another model. "
-                "Steps already answered are not affected.")
+            say(f"        Needed only when cases are added. Then sign in ({model.SIGN_IN[backend]}), or run its "
+                "steps with --backend agent, or with another tool and model.")
     free = shutil.disk_usage(ROOT).free // 2 ** 30
     say(f"Disk\n  {'OK' if free > 20 else 'NOTE':5} {free} GB free (the blind review exports need about 5 GB)")
     say("\n" + ("Something above says STOP. Clear it before running the stage that needs it." if stop else "Ready."))
@@ -241,7 +259,8 @@ def status():
 # ---- compare and reset --------------------------------------------------------------------------------------
 
 def compare(ref):
-    """Numbers whose value left their earlier plausible range, or changed by more than a tenth where there is none."""
+    """Numbers in the working folder's results/ against the same numbers at an earlier commit: those that left
+    their earlier plausible range, or changed by more than a tenth where there is no range."""
     changed = 0
     for path in sorted(glob.glob(os.path.join(ROOT, "results", "q*.json"))):
         name = os.path.basename(path)
@@ -256,14 +275,19 @@ def compare(ref):
             was = before.get(row["metric"])
             if not was or not isinstance(row["value"], (int, float)) or not isinstance(was["value"], (int, float)):
                 continue
-            if was["low"] is not None and was["high"] is not None:
+            # A range is only comparable when it is in the value's own units; some rows hold a count with a
+            # percentage range, and for those (and rows with no range) a change of more than a tenth counts.
+            ranged = was["low"] is not None and was["high"] is not None and was["low"] <= was["value"] <= was["high"]
+            if row["value"] == was["value"]:
+                moved = False
+            elif ranged:
                 moved = not was["low"] <= row["value"] <= was["high"]
             else:
-                moved = abs(row["value"] - was["value"]) > 0.1 * max(abs(was["value"]), 1e-9) and row["group"] not in ("size",)
+                moved = abs(row["value"] - was["value"]) > 0.1 * max(abs(was["value"]), 1e-9)
             if moved:
                 changed += 1
-                span = f" (was plausibly {was['low']} to {was['high']})" if was["low"] is not None else ""
-                say(f"{name[:3]} {row['label'][:70]:70} {was['value']} -> {row['value']}{span}")
+                span = f" (was plausibly {was['low']} to {was['high']})" if ranged else ""
+                say(f"{name[:3]} {row['metric'][:34]:34} {row['label'][:52]:52} {was['value']} -> {row['value']}{span}")
     say(f"\n{changed} numbers moved. Read the report's sentences about them against the new values (PROTOCOL.md, "
         "\"What a rerun cannot do for you\").")
 

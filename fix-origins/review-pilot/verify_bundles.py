@@ -82,7 +82,7 @@ def main():
             handle.write("\n".join(refute) + "\n")
         with open(os.path.join(out, "laterfix", f"{rank:04d}.md"), "w") as handle:
             handle.write("\n".join(later) + "\n")
-        print(f"{rank}: {len(items)} findings", flush=True)
+        print(f"case {rank}: {len(items)} reported problems to check", flush=True)
     with open(os.path.join(out, "key.json"), "w") as handle:
         json.dump(key, handle, indent=1)
 

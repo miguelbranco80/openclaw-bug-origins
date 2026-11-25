@@ -54,7 +54,7 @@ def main():
             proof[key[1:]] = entry
         with open(out_path, "w") as handle:
             json.dump(proof, handle, indent=0, sort_keys=True)
-    print(len(proof), "of", len(numbers))
+    print(f"descriptions measured for screenshots and videos: {len(proof)} of {len(numbers)} pull requests")
 
 
 if __name__ == "__main__":

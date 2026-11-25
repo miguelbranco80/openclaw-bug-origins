@@ -55,7 +55,7 @@ def main():
         data = gh.graphql(QUERY, n=number)
         with open(out, "w") as handle:
             json.dump(data["data"]["repository"]["pullRequest"], handle)
-    print(f"cached {len(os.listdir(RAW))} of {len(prs)}")
+    print(f"review-bot comments fetched for {len(os.listdir(RAW))} of {len(prs)} causing pull requests")
 
 
 if __name__ == "__main__":

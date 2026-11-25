@@ -105,7 +105,7 @@ def main():
         data = gh.graphql(QUERY, n=number)["data"]
         with open(out, "w") as handle:
             json.dump(slim(data["repository"]["pullRequest"]), handle)
-    print(f"have {len(os.listdir(raw))} of {len(numbers)}", flush=True)
+    print(f"comparison and causing pull requests fetched: {len(os.listdir(raw))} of {len(numbers)}", flush=True)
 
 
 if __name__ == "__main__":
