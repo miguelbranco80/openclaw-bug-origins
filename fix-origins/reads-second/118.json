@@ -1,0 +1,17 @@
+{
+  "rank": 118,
+  "sha": "dd11a9c2da9850f7dc091b5f011b66071b98ed4d",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a Gateway restart or update the Control UI showed only a small connection indicator, so planned downtime looked like a broken page.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Keeps the normal Control UI shell and drafts visible with a prominent connecting view during Gateway startup and reconnection, serves app documents and assets during startup/drain, and adds an asset-free retry page when the app document is unavailable.",
+  "reasoning": "The linked issue #191925 is a feature request ('Improve Gateway downtime holding and retry guidance') that states current source already retains the loaded Control UI and draft; the remaining work is described as presentation and guidance. This is a UX redesign, not a fix for behavior that previously worked or shipped broken."
+}

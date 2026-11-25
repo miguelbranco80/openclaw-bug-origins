@@ -4,7 +4,7 @@ Reviewers examined one change to a repository and reported possible defects. For
 later commits on the main branch, titled `fix` or `revert`, that touch the file the finding names. Decide whether
 one of them fixed the defect the finding describes.
 
-You may run only these two commands, from <openclaw>, each exactly in this form, and only for
+You may run only these two commands, in the checkout named in your task message, each in this form, and only for
 commit ids listed in your bundle:
 
     GIT_NO_LAZY_FETCH=1 git show -s --format='%s%n%n%b' <commit>
@@ -23,12 +23,11 @@ For each finding give `fixed`, one of:
 
 Be strict: a fix to a different defect in the same file is `no`.
 
-Write one JSON object per case, and nothing else, to the output path you were given:
+Answer with one JSON object of this shape (`case` is filled in for you). Your task message says how to deliver it:
 
 ```json
 {"case": "0008", "findings": {"F1": {"fixed": "yes", "commit": "abc123def456", "note": "one sentence"},
                               "F2": {"fixed": "no", "commit": null, "note": "one sentence"}}}
 ```
 
-Every finding id in the bundle must appear. When done, reply with one line per case: the case number and the ids
-you marked yes.
+Every finding id in the bundle must appear.

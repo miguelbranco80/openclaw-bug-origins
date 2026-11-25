@@ -1,0 +1,17 @@
+{
+  "rank": 213,
+  "sha": "b4068cb5ca0b5c83dc2f428f7036b1c7dccff762",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A subagent's completion row in the chat transcript showed a generic robot icon instead of the colored avatar its launch row used.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Named subagent completion rows now render the session-keyed SubagentName avatar/name and drop the generic bot icon, keeping it only for anonymous completions.",
+  "reasoning": "The completion component was created in 18136c960eaf (#198133) deliberately rendering `<Icon name=\"bot\" />` and the plain label; nothing broke or misbehaved, and the fix is a visual-consistency polish of that design rather than a repair of a failure. I read the introducing file's diff and the one-file fix; I classify it as a presentation/product change, though one could argue it as a never-worked inconsistency in 18136c960eaf."
+}

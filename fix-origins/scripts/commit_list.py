@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""List every commit on main since 2026-09-10 (UTC) with the facts the questions need: dataset/commits.tsv.
+"""List every commit on main since `commits_since` in study.json, with the facts the questions need:
+dataset/commits.tsv.
 
-Run from the root of an openclaw/openclaw clone, with this repository checked out as `research/`.
+Run from the root of the openclaw clone (study.py does this).
 
 Columns:
   sha, committed_at
@@ -23,17 +24,21 @@ Columns:
 
 Authors are told apart by the commit's author email, which is used only to count and rank and is not written out.
 
-Usage: python3 research/fix-origins/scripts/commit_list.py
+Usage: python3 <study>/fix-origins/scripts/commit_list.py
 """
 import collections
 import os
 import re
 import subprocess
+import sys
 from datetime import datetime, timezone
 
-TIP = "e6b42e31bc1522b8596958fbdd85c394b23fca7b"
-SINCE = "2026-09-10T00:00:00Z"
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))
+from pipeline.settings import settings  # noqa: E402
+
+TIP = settings()["tip"]
+SINCE = settings()["commits_since"]
 OUT = os.path.join(HERE, "..", "..", "dataset", "commits.tsv")
 TEST = re.compile(r"(\.test\.|\.spec\.|\.e2e\.|/__tests__/|/test/|/tests/|^test/|test-support|/fixtures/)")
 CODE = ("src/", "ui/", "extensions/", "packages/", "apps/")

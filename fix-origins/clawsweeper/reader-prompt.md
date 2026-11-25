@@ -1,9 +1,9 @@
 # Reader brief: did ClawSweeper flag this bug before the causing PR merged?
 
-You are given bundles, one per bug. Each bundle describes a bug that was later fixed in `openclaw/openclaw`, the PR
+You are given one bundle. It describes a bug that was later fixed in `openclaw/openclaw`, the PR
 that introduced it (the "causing PR"), and what the review bot ClawSweeper had written on that PR when it merged.
 The bot edits one comment in place, so a bundle holds the version in force at merge and the open items of up to
-three earlier versions. For each bundle decide whether the bot had warned about this bug.
+three earlier versions. Decide whether the bot had warned about this bug.
 
 Work only from the bundle and, if you need more of the review, the "Full text of this review version" file it
 names. Do not run git, `gh`, or any network command. Do not read `cases.jsonl` or other readers' output. The bundle
@@ -43,10 +43,10 @@ version, otherwise `null`.
 
 ## Output
 
-For each bundle write one JSON file at the output path you were given for that rank, with exactly these keys:
+Answer with one JSON object with exactly these keys. Your task message says how to deliver it. (`rank` is filled in
+for you.)
 
 ```json
 {"rank": 4, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "..."}
 ```
 
-Write nothing else to disk. When done, reply with one line per rank: `rank flagged where outcome`.

@@ -1,4 +1,7 @@
-# Reader dispatch text (batches 3 onward)
+# Reader dispatch text (batches 3 onward): historical
+
+> Kept as a record of how the first 300 fixes were read in November 2026. It is not used any more: the task text
+> is now written by `pipeline/judge.py`. See `PROTOCOL.md`.
 
 Each reader is a fresh model agent with shell access to the checkout. It receives this text with `<FULLHIST>`,
 `<S>` (a scratch directory holding `evidence/` and `reads/`) and the ranks filled in. A second reader gets the same

@@ -1,0 +1,17 @@
+{
+  "rank": 182,
+  "sha": "f03cea11e22279aff7be580296b1fc025537614c",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "413d2fc66983d396ff1e9281f568954ef3c83de6",
+  "cause_pr": 175291,
+  "confidence": "medium",
+  "cause_quote": "The new src/shared/agent-onboarding.ts hardcoded the saved greeting in English: `return name ? `Hi, I\u2019m ${name}. Happy to help.` : \"Hi! Happy to help.\";`, and agents.create carried no locale.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A user with a non-English Control UI language who created a new agent got an English introduction and an English role question.",
+  "impact": "presentation",
+  "area": "agents",
+  "summary": "Adds an optional locale to agents.create, saves the onboarding introduction from a per-locale table, and tells the model to ask the opening role question in the user's selected language.",
+  "reasoning": "The greeting builder and onboarding opening prompt were introduced in #175291 (413d2fc) with English-only text and no locale input; git log shows agent-onboarding.ts was untouched between that commit and the fix, so the English-only greeting shipped with the feature rather than being broken later. Confidence is medium because localizing the greeting could also be read as a feature extension rather than a defect, though the Control UI is localized into 23 languages and the fix is titled and framed as a fix."
+}

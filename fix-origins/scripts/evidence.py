@@ -20,6 +20,10 @@ os.environ["GIT_NO_LAZY_FETCH"] = "1"
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pipeline import gh  # noqa: E402
+from pipeline.settings import Paused, settings, stop_paused  # noqa: E402
 PRODUCT_DIRS = ("src/", "ui/", "extensions/", "packages/", "apps/")
 TEST_MARKERS = (".test.", "/test/", "test-support", "fixtures")
 FIX_DIFF_LINES = 700
@@ -48,11 +52,9 @@ def fix_pr(sha: str) -> dict | None:
     path = os.path.join(PR_CACHE, f"{nums[-1]}.json")
     if not os.path.exists(path):
         try:
-            raw = subprocess.run(["gh", "api", f"repos/openclaw/openclaw/pulls/{nums[-1]}"], check=True,
-                                 capture_output=True, text=True).stdout
-        except subprocess.CalledProcessError:
+            pr = gh.rest(f"repos/{settings()['repository']}/pulls/{nums[-1]}")
+        except RuntimeError:
             return None
-        pr = json.loads(raw)
         keep = {"number": pr["number"], "title": pr["title"], "body": pr.get("body") or "",
                 "user": pr["user"]["login"], "created_at": pr["created_at"], "merged_at": pr.get("merged_at")}
         with open(path, "w") as f:
@@ -117,7 +119,8 @@ def bundle(rec: dict) -> str:
            "| # | sha | removed lines | context lines | date | files | subject |",
            "|---|---|---|---|---|---|---|"]
     for i, c in enumerate(rec["candidates"], 1):
-        graft = " **(shallow graft: code older than 2026-09-03; not the real cause)**" if c.get("graft") else ""
+        graft = (f" **(shallow graft: code older than {c['date'][:10]}; not the real cause)**"
+                 if c.get("graft") else "")
         out.append(f"| {i} | `{c['sha'][:12]}`{graft} | {c['removed_lines']} | {c['context_lines']} | "
                    f"{c['date'][:10]} | {c['files_changed']} | {c['subject'].replace('|', '/')} |")
     out.append("")
@@ -141,12 +144,18 @@ def main() -> None:
     with open(os.path.join(ROOT, "blame.jsonl")) as f:
         for line in f:
             rec = json.loads(line)
-            if a.lo <= rec["rank"] <= a.hi:
-                with open(os.path.join(a.out, f"{rec['rank']:04d}.md"), "w") as o:
-                    o.write(bundle(rec))
+            path = os.path.join(a.out, f"{rec['rank']:04d}.md")
+            if a.lo <= rec["rank"] <= a.hi and not (os.path.exists(path) and os.path.getsize(path)):
+                text = bundle(rec)
+                with open(path + ".part", "w") as o:
+                    o.write(text)
+                os.replace(path + ".part", path)
                 n += 1
-    print(f"wrote {n} bundles to {a.out}")
+    print(f"wrote {n} new bundles to {a.out} (existing ones are kept)")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Paused as pause:
+        stop_paused(pause)

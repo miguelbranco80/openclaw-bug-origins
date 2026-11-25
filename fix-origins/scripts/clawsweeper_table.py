@@ -206,7 +206,7 @@ def main():
             f"reviewed head `{facts.get('reviewed_head')}`, final head `{facts['final_head']}` "
             f"({facts['status']}, commits after review: {facts.get('commits_after_review')})",
             f"- Headline: {facts.get('headline')}",
-            f"- Full text of this review version: {full_path}",
+            f"- Full text of this review version: {os.path.basename(full_path)} (beside this file)",
             "",
             "## ClawSweeper review in force at merge (boilerplate sections removed)",
             without_boilerplate(at_text)[:24000],

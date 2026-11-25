@@ -20,6 +20,10 @@ import subprocess
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pipeline import gh  # noqa: E402
+from pipeline.settings import Paused, settings, stop_paused  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(HERE))
 RAW = os.path.join(HERE, "raw")
 OUT = os.path.join(ROOT, "dataset", "pull_requests.tsv")
@@ -41,14 +45,8 @@ def fetch(batch, more=False):
     fields = FIELDS.replace("first: 8", "first: 100") if more else FIELDS
     parts = " ".join(f"p{n}: pullRequest(number: {n}) {{ {fields} }}" for n in batch)
     query = f'{{ repository(owner: "openclaw", name: "openclaw") {{ {parts} }} }}'
-    for attempt in range(5):
-        run = subprocess.run(["gh", "api", "graphql", "-f", "query=" + query], capture_output=True, text=True)
-        try:
-            data = json.loads(run.stdout)["data"]["repository"]
-            return [pr for pr in data.values() if pr]
-        except (ValueError, KeyError, TypeError):
-            time.sleep(10 * (attempt + 1))
-    raise SystemExit("gave up on batch starting " + str(batch[0]) + ": " + run.stdout[:300] + run.stderr[:300])
+    data = gh.graphql(query, tolerate_errors=True)["data"]["repository"]
+    return [pr for pr in data.values() if pr]
 
 
 def main():
@@ -90,4 +88,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Paused as pause:
+        stop_paused(pause)

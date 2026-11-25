@@ -1,0 +1,17 @@
+{
+  "rank": 180,
+  "sha": "8547d530ec1e55a0f177b6024cac1ac3e57530bf",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "2640154bcf801cd18f92fa20b5c4172f0539b284",
+  "cause_pr": 137071,
+  "confidence": "medium",
+  "cause_quote": "It replaced the uncancellable spawnSync probe with `await runUtf8CommandWithTimeout(..., { ..., signal: params?.signal, killProcessTree: true })`, so a cancelled caller now SIGTERM/SIGKILLs `claude auth status` mid-refresh.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After model discovery was cancelled during a Claude login refresh, the next Claude CLI turn stalled about 10 seconds or failed with 'another Claude Code process is refreshing it or exited mid-refresh'.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The Claude CLI auth-status probe no longer passes the caller's abort signal to the child process; a cancelled caller waits for the probe to exit on its own and only the 10 s deadline terminates it.",
+  "reasoning": "The removed `signal: params?.signal` line was added by 2640154bcf80 (#137071), whose diff converts probeClaudeCliAuthStatus from a blocking spawnSync (which callers could not cancel and whose timeout only sent a SIGTERM that Claude Code defers) to the async runner with the caller's signal and process-tree kill (SIGTERM then SIGKILL 300 ms later). That makes a cancelled discovery kill the refresh and orphan .oauth_refresh.lock; before it, a cancelled caller could not kill the probe. Medium because I could not confirm that the Claude Code version current in September 2026 already refreshed tokens under the lock inside `auth status`; if that came later the case would be latent."
+}

@@ -13,6 +13,7 @@ Usage: python3 dataset/build.py
 import json
 import os
 import shutil
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -32,7 +33,7 @@ COPIES = {
 def main():
     for target, source in COPIES.items():
         shutil.copyfile(os.path.join(SOURCE, source), os.path.join(HERE, target))
-    fixes = {}
+    fixes = fixes_in = {}
     with open(os.path.join(SOURCE, "cases.jsonl")) as handle:
         for line in handle:
             fix = json.loads(line)
@@ -47,6 +48,16 @@ def main():
                 "second_origin": second["origin"], "second_cause": second.get("cause_sha"),
                 "second_reasoning": second.get("reasoning"),
             }) + "\n")
+    sys.path.insert(0, ROOT)
+    from pipeline.settings import frame_offset, population, settings
+    fixes, frames = population(), []
+    for frame in settings()["frames"]:
+        ranks = [rank for rank in fixes if frame_offset(frame) < rank <= frame_offset(frame) + 100000 - 1]
+        frames.append({"frame": frame["id"], "since": frame["since"], "until": frame.get("until"),
+                       "population": len(ranks),
+                       "sampled": sum(1 for sha in fixes_in if (fixes_in[sha]["rank"] - 1) // 100000 + 1 == frame["id"])})
+    with open(os.path.join(HERE, "frames.json"), "w") as handle:
+        json.dump(frames, handle, indent=1)
     print("dataset assembled:", ", ".join(sorted(name for name in os.listdir(HERE) if "." in name and name != "build.py")))
 
 

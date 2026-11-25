@@ -1,0 +1,17 @@
+{
+  "rank": 261,
+  "sha": "21f17afce911a364138fa29fb10e20bffe15a3eb",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "29503e14a2d3e5b30ba8407b5a1d1630f49d23b9",
+  "cause_pr": 188497,
+  "confidence": "high",
+  "cause_quote": "#188497 added `if (updaterStopped) { const stop = readGatewayStop(); ... }` as the only stop-intent check before recovery, `throw new Error(\"Recovered update's Gateway service ownership could not be verified...\")` in restoreRepairGateway, and set `terminalRuntimePath = params.recoveryModulePath` only after recoverInterruptedManagedUpdate returned.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an interrupted managed update, recovery could restart a Gateway the operator had since stopped, a completed repair failed when service ownership could not be verified, and a failed post-core repair could lose its terminal failure record.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "Checks the durable Gateway stop intent before recovery and right before every native start, returns manual-start guidance instead of failing when ownership is unverified, and switches the terminal writer to the verified installed runtime before schema-changing finalization.",
+  "reasoning": "All removed lines blame to #188497 (29503e14), which introduced the interrupted-updater recovery path, restoreRepairGateway and its ownership throw; its diff shows the stop check gated on `updaterStopped` and done only once, and the terminal runtime path switched only after finalization, which are exactly the three defects the fix names. No intermediate commit changed these lines, so the defects shipped with the feature."
+}

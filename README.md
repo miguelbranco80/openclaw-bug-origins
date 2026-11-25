@@ -15,8 +15,9 @@ Findings 18 to 22 set the traced bugs against every commit on `main` since 10 Se
 Written 25 November 2026.
 
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
-reads only the dataset and writes the numbers and charts used below. `./rebuild.sh` runs them all and re-renders
-this page. How the dataset was collected, and what cannot be reproduced exactly, is in [REPRODUCE.md](REPRODUCE.md).
+reads only the dataset and writes the numbers and charts used below. `python3 study.py rebuild` runs them all and
+re-renders this page. [PROTOCOL.md](PROTOCOL.md) is the experimental setup: every step of the study, and how to
+regenerate it from nothing or extend it to other dates with one command and one settings file.
 Claims that an earlier draft made and a later check weakened are listed in [CORRECTIONS.md](CORRECTIONS.md).
 
 ## What the evidence supports, and how strongly
@@ -1055,8 +1056,10 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 
 | Folder | What it holds |
 |---|---|
+| `PROTOCOL.md` | The experimental setup: every step, what it needs, what it makes, how to check it |
+| `study.json`, `study.py`, `pipeline/` | The settings, the one command that runs every stage, and its parts |
 | `dataset/` | The facts every question reads, one table per kind of thing, with a data dictionary |
 | `questions/` | One script per question; each reads only `dataset/` and writes `results/` and `charts/` |
 | `report/` | The renderer for this page |
-| `fix-origins/` | How the dataset was collected: sampling, evidence bundles, prompts, runners, every model answer |
+| `fix-origins/` | How the dataset was collected: sampling, evidence bundles, the briefs given to models, every model answer |
 | `detection-check/` | The first, wording-based study |

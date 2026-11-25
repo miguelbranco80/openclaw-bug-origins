@@ -1,6 +1,6 @@
 # Grader brief: did each reviewer name the bug?
 
-Each bundle describes one bug that later had to be fixed, and lists the findings that several anonymous reviewers
+The bundle describes one bug that later had to be fixed, and lists the findings that several anonymous reviewers
 (Reviewer A, B, C, ...) reported when they reviewed the change that introduced it. The reviewers did not know about
 the bug. For each reviewer decide whether one of their findings is that bug.
 
@@ -20,13 +20,12 @@ For each reviewer give `flagged`, one of:
 Be strict and judge every reviewer by the same standard. When unsure between two levels, choose the lower one. Do
 not judge whether the other findings are correct.
 
-Write one JSON file per bundle at the output path you were given, with exactly this shape (every reviewer letter in
-the bundle must appear; `finding` is the 1-based number of the matching finding, or null):
+Answer with one JSON object of exactly this shape (every reviewer letter in the bundle must appear; `finding` is the
+1-based number of the matching finding, or null; `rank` is filled in for you). Your task message says how to
+deliver it:
 
 ```json
 {"rank": 8, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "one sentence"},
                           "B": {"flagged": "exact", "finding": 2, "note": "one sentence"}}}
 ```
 
-Write nothing else to disk. When done, reply with one line per bundle: `rank` followed by the letters you marked
-exact and the letters you marked related.

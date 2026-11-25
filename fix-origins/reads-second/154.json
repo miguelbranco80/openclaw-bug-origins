@@ -1,0 +1,17 @@
+{
+  "rank": 154,
+  "sha": "b9aa487b3ab4294d0e6dfa22e66f2700558b1ddb",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "58b88a8b0a80edd769c1335d971809ab9ff24a38",
+  "cause_pr": 182832,
+  "confidence": "high",
+  "cause_quote": "The new ProgressRuntime detail was built as formatUiExternalText(...).slice(0, 240), a plain UTF-16 slice that can split an emoji surrogate pair.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A session progress card's failed-run or failed-child detail could end in a broken replacement character when the 240-unit cut landed inside an emoji.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Replaced the plain .slice(0, 240) on the progress card runtime error detail with the existing surrogate-safe truncateUtf16Safe.",
+  "reasoning": "Blame of all removed lines points to 58b88a8b0a80, whose diff adds the ProgressRuntime component including the .slice(0, 240) detail; the feature and the unsafe cut shipped together. formatUiExternalText only trims and redacts, so nothing upstream made the slice safe."
+}

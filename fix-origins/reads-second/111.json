@@ -1,0 +1,17 @@
+{
+  "rank": 111,
+  "sha": "907e17b9ff49063230cb0bc745a662700128c47d",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway froze for about two seconds when plugin preparation created capture directories on a btrfs filesystem waiting for a transaction commit.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Moved creation and custody of plugin source/native capture roots and staging tokens from the Gateway main thread into the existing broker resource owner.",
+  "reasoning": "The synchronous capture-root creation on the main thread was a long-standing design (the parent allocation callback already existed before the blame candidates, e.g. dfb91dc29046 only moved worker-side root bookkeeping), and it is normally fast; it stalled only when the host filesystem (btrfs) blocked in wait_current_trans during a Team incident. No commit made this path slower, so it is environment-exposed latent behavior rather than a regression; the PR accepts higher total cost to keep the event loop free."
+}

@@ -21,6 +21,9 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pipeline import gh  # noqa: E402
+from pipeline.settings import Paused, settings, stop_paused  # noqa: E402
 ROOT = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.join(HERE, "..", "scripts"))
 from clawsweeper_table import is_bot, is_review, parse, verdict, versions, HEAD_RE, STATE_RE  # noqa: E402
@@ -88,7 +91,7 @@ def slim(pr):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--count", type=int, default=400)
+    parser.add_argument("--count", type=int, default=settings()["comparison_sample"])
     parser.add_argument("--shard", default="0/1", help="i/n: fetch every n-th pull request starting at i, to run workers side by side")
     args = parser.parse_args()
     raw = os.path.join(HERE, "raw")
@@ -99,21 +102,14 @@ def main():
         out = os.path.join(raw, f"{number}.json")
         if os.path.exists(out):
             continue
-        result = subprocess.run(["gh", "api", "graphql", "-f", f"query={QUERY}", "-F", f"n={number}"],
-                                capture_output=True, text=True)
-        if result.returncode != 0:
-            print(f"{number}: FAILED {result.stderr.strip()[:160]}", file=sys.stderr, flush=True)
-            time.sleep(2)
-            continue
-        data = json.loads(result.stdout)["data"]
+        data = gh.graphql(QUERY, n=number)["data"]
         with open(out, "w") as handle:
             json.dump(slim(data["repository"]["pullRequest"]), handle)
-        if data["rateLimit"]["remaining"] < 150:
-            print("rate limit low; stopping", file=sys.stderr)
-            break
-        time.sleep(0.15)
     print(f"have {len(os.listdir(raw))} of {len(numbers)}", flush=True)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Paused as pause:
+        stop_paused(pause)

@@ -58,45 +58,10 @@ export FIX_ORIGINS_FULL_GIT_DIR=$(sh research/fix-origins/scripts/fullhist.sh <s
 - The GitHub REST limit is 5,000 calls an hour, shared by all readers. Fifteen parallel readers exhausted it once.
   Run about ten readers at a time (one batch of 50) and cap each at about 15 REST calls per fix.
 
-## Extending the sample by one batch (ranks A to B)
+## Running or extending the collection
 
-Run from the repo root. Nothing here needs network except `evidence.py` fetching fix PR descriptions with `gh`.
-
-```bash
-python3 research/fix-origins/scripts/blame.py --from A --to B
-```
-
-```bash
-python3 research/fix-origins/scripts/evidence.py --from A --to B --out <scratch>/evidence
-```
-
-Then give each model reader the full text of [reader-prompt.md](reader-prompt.md), the hard rules above (no lazy
-fetch, path-limited searches, foreground commands only, the REST budget), the full-history git dir path, five ranks,
-the paths of their bundles `<scratch>/evidence/<rank as 4 digits>.md`, and an output path `<scratch>/reads/<rank>.json`
-per rank. The dispatch text used for batches 3 to 6 is in [dispatch-template.md](dispatch-template.md). Then:
-
-```bash
-python3 research/fix-origins/scripts/assemble.py --reads <scratch>/reads --from A --to B
-```
-
-(with `FIX_ORIGINS_FULL_GIT_DIR` exported as above, so causes older than the graft get a correct `is_ancestor_of_fix`)
-
-For the second reader, list the ranks with `scripts/second.py --from A --to B`, give a different reader the same
-prompt and bundles for those ranks (never the first answer), with outputs in a separate directory, and run:
-
-```bash
-python3 research/fix-origins/scripts/assemble.py --reads <scratch>/reads2 --from A --to B --second
-```
-
-`assemble.py` prints `PROBLEM` lines for missing or invalid answers and does not write them; re-run the reader for
-those ranks and assemble again (ranks already written are skipped). Finally recompute the figures:
-
-```bash
-python3 research/fix-origins/scripts/stats.py > research/fix-origins/stats.md
-```
-
-Keep the same `TIP`, cutoff and salt. Changing any of them starts a new frame (call it v2) rather than extending this
-one.
+Use `python3 study.py` from the repository root; [PROTOCOL.md](../PROTOCOL.md) explains every stage. The scripts in
+`scripts/` are called by it and are not meant to be run by hand.
 
 ## How the first 300 were produced (history worth knowing)
 

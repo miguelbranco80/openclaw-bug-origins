@@ -1,0 +1,17 @@
+{
+  "rank": 61,
+  "sha": "4af0013a2c5863c0aeaecaf0a1c51932dde6a228",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; the PR states layout, resizing and disclosure behavior were unchanged and before/after captures are byte-identical.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Compares the disclosure's applied open/active/instant fields instead of object identity and adds equality-filtered memos for two inert bindings, removing redundant DOM writes during resize.",
+  "reasoning": "The PR itself frames this as a work-count (style pass) improvement with no claimed latency or visible behavior change, and no regression from a faster prior state is shown; the identity comparison and inline inert bindings have been that way since the Solid port/review-controls commits. Under the rubric this is a performance improvement of code that was never slower before, so not-a-defect."
+}

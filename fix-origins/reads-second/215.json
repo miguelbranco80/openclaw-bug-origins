@@ -1,0 +1,17 @@
+{
+  "rank": 215,
+  "sha": "cab71dc06f8133c28e948183ee26bef97404f75a",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible to users; startup performance collectors could stop at a green /readyz before the batched terminal timeline events were written, missing startup evidence.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Gateway startup now calls flushDiagnosticsTimeline() before dispatch readiness and after the post-attach span, so batched timeline events are on disk before /readyz can turn green.",
+  "reasoning": "The diagnostics timeline writer batches events and flushes on a later setImmediate turn, which is fine for its own contract; it only became wrong once benchmark/perf collectors (scripts/bench-*, scripts/perf/*) used /readyz as the end of their evidence window. The batching code is older than the history I could search (no in-repo commit found by path-limited search), the change is a forward-port from release/2026.10.10 whose own message names no cause, and the fix notes main's readiness ordering differs from the release branch, so I name no cause or trigger commit."
+}

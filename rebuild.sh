@@ -9,7 +9,7 @@ P=$F/review-pilot
 
 # 1. From the models' stored answers to per-case files (in the collection folders).
 python3 $F/clawsweeper/assemble_results.py >/dev/null       # review table + readers' verdicts
-python3 $P/select_cases.py --skip 53,113,176 >/dev/null     # the 30 blind-review cases
+python3 $P/select_cases.py >/dev/null     # the 30 blind-review cases
 python3 $P/grade_bundles.py $P/data/runs $P/data/grade >/dev/null   # reviewers' raw output -> blind grading bundles
 mv $P/data/grade/findings.jsonl $P/findings.jsonl
 python3 $P/assemble_results.py >/dev/null                   # unblind the grades

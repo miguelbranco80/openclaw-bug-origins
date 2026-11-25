@@ -16,6 +16,10 @@ import re
 import subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pipeline import gh  # noqa: E402
+from pipeline.settings import Paused, settings, stop_paused  # noqa: E402
 IMAGE = re.compile(r"!\[[^\]]*\]\([^)]+\)|<img\b", re.I)
 ATTACHMENT = re.compile(r"https://github\.com/(?:user-attachments/assets|[\w.-]+/[\w.-]+/assets)/[\w/-]+")
 VIDEO_FILE = re.compile(r"https?://\S+\.(?:mp4|mov|webm|gif)\b", re.I)
@@ -41,11 +45,7 @@ def main():
             f"p{n}: pullRequest(number:{n}) {{ body mergedAt userContentEdits(first:100) {{ nodes {{ editedAt diff }} }} }}"
             for n in chunk)
         query = 'query { repository(owner:"openclaw", name:"openclaw") { ' + fields + " } }"
-        result = subprocess.run(["gh", "api", "graphql", "-f", "query=" + query], capture_output=True, text=True)
-        if result.returncode != 0:
-            print("failed:", result.stderr.strip()[:160])
-            continue
-        for key, pr in json.loads(result.stdout)["data"]["repository"].items():
+        for key, pr in gh.graphql(query)["data"]["repository"].items():
             edits = sorted((e["editedAt"], e["diff"]) for e in pr["userContentEdits"]["nodes"] if e["diff"] is not None)
             before = [e for e in edits if pr["mergedAt"] and e[0] <= pr["mergedAt"]]
             body = pr["body"] if not edits else (before[-1][1] if before else "")
@@ -58,4 +58,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Paused as pause:
+        stop_paused(pause)

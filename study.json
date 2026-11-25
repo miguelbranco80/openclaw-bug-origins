@@ -1,0 +1,111 @@
+{
+  "repository": "openclaw/openclaw",
+  "tip": "e6b42e31bc1522b8596958fbdd85c394b23fca7b",
+  "commits_since": "2026-09-10T00:00:00Z",
+  "frames": [
+    {
+      "id": 1,
+      "since": "2026-11-01T00:00:00Z",
+      "until": null,
+      "sample": 300,
+      "reread": 60
+    }
+  ],
+  "comparison_sample": 400,
+  "pilot": {
+    "per_kind": 15,
+    "skip": [
+      53,
+      113,
+      176
+    ],
+    "verify_arms": [
+      "gpt-6.2-sol__whole",
+      "claude-opus-5-5__whole"
+    ]
+  },
+  "judging": {
+    "origin": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    },
+    "origin_second": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    },
+    "origin_reread": {
+      "backend": "codex",
+      "model": "gpt-6.2-sol"
+    },
+    "flag": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    },
+    "flag_reread": {
+      "backend": "codex",
+      "model": "gpt-6.2-sol"
+    },
+    "review": [
+      {
+        "backend": "codex",
+        "model": "gpt-5.6-sol",
+        "mode": "whole"
+      },
+      {
+        "backend": "codex",
+        "model": "gpt-6-astra",
+        "mode": "whole"
+      },
+      {
+        "backend": "codex",
+        "model": "gpt-6.1-sol",
+        "mode": "whole"
+      },
+      {
+        "backend": "codex",
+        "model": "gpt-6.1-sol",
+        "mode": "per-file"
+      },
+      {
+        "backend": "codex",
+        "model": "gpt-6.2-sol",
+        "mode": "whole"
+      },
+      {
+        "backend": "claude",
+        "model": "claude-opus-5-5",
+        "mode": "whole"
+      }
+    ],
+    "grade": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    },
+    "grade_reread": {
+      "backend": "codex",
+      "model": "gpt-6.2-sol"
+    },
+    "tags": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    },
+    "laterfix": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    },
+    "refute_gpt": {
+      "backend": "codex",
+      "model": "gpt-6.2-sol"
+    },
+    "refute_opus": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
+    }
+  },
+  "limits": {
+    "effort": "medium",
+    "jobs": 4,
+    "max_wait_minutes": 60,
+    "github_reserve": 300
+  }
+}

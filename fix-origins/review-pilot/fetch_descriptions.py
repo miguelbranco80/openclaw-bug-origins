@@ -12,13 +12,19 @@ import os
 import subprocess
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pipeline import gh  # noqa: E402
+from pipeline.settings import Paused, settings, stop_paused  # noqa: E402
 ROOT = os.path.dirname(HERE)
 
 
 def main():
     ranks = json.load(open(os.path.join(HERE, "data", "pilot_ranks.json")))
     cases = {c["rank"]: c for c in (json.loads(line) for line in open(os.path.join(ROOT, "cases.jsonl")))}
-    numbers = sorted({cases[rank]["cause_pr"] for rank in ranks})
+    path = os.path.join(HERE, "data", "pilot_pr_bodies.json")
+    bodies = json.load(open(path)) if os.path.exists(path) else {}
+    numbers = sorted({cases[rank]["cause_pr"] for rank in ranks} - {int(number) for number in bodies})
     found = {}
     for start in range(0, len(numbers), 10):
         chunk = numbers[start:start + 10]
@@ -27,10 +33,8 @@ def main():
             for n in chunk
         )
         query = 'query { repository(owner:"openclaw", name:"openclaw") { ' + fields + " } }"
-        out = subprocess.run(["gh", "api", "graphql", "-f", "query=" + query], capture_output=True, text=True, check=True)
-        for key, value in json.loads(out.stdout)["data"]["repository"].items():
+        for key, value in gh.graphql(query)["data"]["repository"].items():
             found[key[1:]] = value
-    bodies = {}
     for number, pr in found.items():
         edits = sorted((e["editedAt"], e["diff"]) for e in pr["userContentEdits"]["nodes"] if e["diff"] is not None)
         before = [edit for edit in edits if edit[0] <= pr["mergedAt"]]
@@ -41,10 +45,13 @@ def main():
         else:
             body = "(description unavailable as of merge)"
         bodies[number] = {"title": pr["title"], "body": body}
-    with open(os.path.join(HERE, "data", "pilot_pr_bodies.json"), "w") as handle:
+    with open(path, "w") as handle:
         json.dump(bodies, handle)
     print(len(bodies), "descriptions")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Paused as pause:
+        stop_paused(pause)

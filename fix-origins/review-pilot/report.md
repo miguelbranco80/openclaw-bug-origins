@@ -60,7 +60,7 @@ the 12 bugs in changes of 7 files or fewer, and 4 of the 18 in larger ones.
 2. **Exports.** `export.py` wrote each repository as it stood at the causing commit into a plain directory with no
    git history, plus the change's diff and the PR description as it read at merge time. Two descriptions had been
    edited after merge to mention the later fix; the merge-time version removes that.
-3. **Reviews.** `run_codex.py` ran each GPT model through `codex exec` in the export directory: read-only sandbox,
+3. **Reviews.** `run_codex.py` (since replaced by `pipeline/judge.py`) ran each GPT model through `codex exec` in the export directory: read-only sandbox,
    user config ignored, project instructions off, medium effort, prompt in [prompt-whole.md](prompt-whole.md). The
    per-file setup split the changed code files into groups of three ([prompt-per-file.md](prompt-per-file.md)),
    86 runs. Opus 5.5 ran as one subagent per case with the same prompt.

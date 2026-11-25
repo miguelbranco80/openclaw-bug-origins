@@ -1,0 +1,17 @@
+{
+  "rank": 186,
+  "sha": "45b96ba60b1dcbe37ee633d9a70339061d842c7c",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "83f948498fde0dd597b95455adc30c216072cb28",
+  "cause_pr": 149520,
+  "confidence": "medium",
+  "cause_quote": "In extensions/codex/src/app-server/session-history.ts the commit added `limits: { maxBytes: Math.min(64 * 1024 * 1024, Math.max(1024, Math.floor((contextTokenBudget ?? 128_000) * 8))), maxEvents: 10_000 }` to the Codex history read, which drops the oldest turns once serialized history passes 8 bytes per budget token.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Codex, Agents API and Muse harness sessions with reasoning, screenshots or large tool output, older turns silently dropped from the model's history on each attempt well before compaction, and the provider prompt cache missed.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Makes resolveAgentHarnessHistoryLimits return the embedded runner's fixed 16 MiB / 10,000-event guard instead of a contextTokenBudget x 8 byte cap, and stops bundled harnesses passing the budget.",
+  "reasoning": "The harness helper was extracted in #159375 (42e53a49) from Codex session-history.ts, where the budget x 8 cap was first added by #149520 (83f94849); at that commit openModelContextAsync limits were optional and the Codex read previously passed none, so whole history was retained until compaction. The fix's mutation test (restoring 128_000 x 8 reproduces the 25-of-43 cut) matches that line. Medium rather than high because the cap was a deliberate memory bound whose bytes-per-token assumption failed for reasoning and image payloads, so one could also read it as a flawed design shipped with the bound."
+}

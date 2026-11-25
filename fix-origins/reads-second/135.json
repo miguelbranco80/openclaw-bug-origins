@@ -1,0 +1,17 @@
+{
+  "rank": 135,
+  "sha": "50cf956087f663e765ba626b71d8e63e4e1c0ee4",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "e29577b7d7df3204d49332afb88b95334a1e372a",
+  "cause_pr": 192352,
+  "confidence": "high",
+  "cause_quote": "The new Access page error map added `limit_reached: \"This claw has reached its limit for people or devices. Remove one to add another.\"` although the protocol at that commit also returned `limit_reached` for invitation limits such as `an invite lasts at most ${days} days`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an invitation hit a count or duration limit, the Remote access page told the owner to remove people or devices.",
+  "impact": "presentation",
+  "area": "plugins",
+  "summary": "Changed the limit_reached message to a generic limit notice that points the owner to the error details.",
+  "reasoning": "Blame puts the removed line on e29577b7d7df, which created people-error.ts; git grep at that commit shows packages/openclaw-id-protocol/src/authority/apply.ts already emitting limit_reached for invite count and lifetime limits, so the misleading guidance shipped with the page."
+}

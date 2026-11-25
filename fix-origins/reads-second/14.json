@@ -1,0 +1,17 @@
+{
+  "rank": 14,
+  "sha": "82a38fb2fe944b76c0604bb8ee1e0697404e64cd",
+  "rubric": "v1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Native Codex model discovery did not list newer ChatGPT models such as gpt-6.2-sol/astra because the bundled 0.164.0 Codex client was too old, and a completed failed turn carrying an audio fileId could fail protocol validation.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "Upgraded the bundled Codex runtime and version pins from 0.164.0 to 0.169.0, regenerated the app-server protocol schemas and validators, and added terminal-error/audio-fileId and launcher-diagnostic coverage.",
+  "reasoning": "The pinned 0.164.0 runtime and its generated schemas were correct when adopted (#181823); they became insufficient because OpenAI's backend gates new models by Codex client version and the upstream protocol added new shapes (audio fileId), both external changes. No in-repo commit broke working behavior, so this is latent with no in-repo trigger; it could also be read as a routine dependency bump."
+}

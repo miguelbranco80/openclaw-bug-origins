@@ -1,0 +1,17 @@
+{
+  "rank": 282,
+  "sha": "7e06a07a6279d1789549a1e77849698eea4915e3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "28e16eedc374234f8d71ac28ee204d99fa91504a",
+  "cause_pr": 159860,
+  "confidence": "medium",
+  "cause_quote": "#159860 added `case nativeDevice(gatewayUrl: String, token: String?, password: String?, legacyCredentials: [String: String]? = nil)` to the Equatable DashboardWindowAuth, so the socket-owned startup-credential projection became part of the auth equality the dashboard uses to decide document replacement.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the macOS app, a message queued while the Gateway was offline disappeared when the app reconnected to the same Gateway, because the embedded dashboard page was reloaded.",
+  "impact": "data-loss-or-duplication",
+  "area": "apps",
+  "summary": "Adds hasSameDocumentIdentity, which ignores the socket-owned legacyCredentials projection, and uses it instead of full auth equality when deciding whether a dashboard document must be replaced, refreshing the retained document's auth script instead.",
+  "reasoning": "The bug is that retiring the old socket's startup credentials before reconnect changed the auth value (legacyCredentials) and so looked like a credential change, replacing the WebView; the legacyCredentials field inside the Equatable nativeDevice case and the socket retirement logic both arrived in #159860 (GraphQL blame of line 57 and the API patch confirm), which handled only the reconnect-before-retirement order. The later #161464 added the retirement-after-reconnect test only; the retirement-first ordering failed on base per the PR, and I found no evidence it ever worked, so never-worked with medium confidence since the exact comparison lines in DashboardManager could not be read locally."
+}

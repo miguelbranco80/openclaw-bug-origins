@@ -1,0 +1,17 @@
+{
+  "rank": 5,
+  "sha": "fad45014d2d4fe2b4baad982fc3e7624d0e1fc38",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "f8550bc11d4d7e002e219e5ea908a34721c24db2",
+  "cause_pr": 122425,
+  "confidence": "medium",
+  "cause_quote": "The commit added `updateSlashMenu(target.value, state, slashMenuHost, requestUpdate);` to the composer's `handleSelect` textarea listener, and updateSlashMenu's argument branch sets `state.slashMenuIndex = 0`, so any native select event (keyboard text selection) reset the highlighted argument.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After highlighting a slash-command argument such as `ultra` and then selecting text with Shift+Arrow, Tab completed the first/default argument instead, so `/think ultra` sent no thinking level.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The slash menu now remembers the argument draft and keeps the highlighted argument by value when the same draft is re-parsed, instead of resetting the index to 0.",
+  "reasoning": "The select-event path that re-runs the slash menu predates the graft; GraphQL blame at the graft attributes the `updateSlashMenu` call in `handleSelect` to f8550bc11d4d (#122425), whose diff shows it added that line to a listener that previously only updated the skill menu, while the arg branch already reset `slashMenuIndex = 0`. Later Solid-store refactors (3c099685538f) and the command-mode-only sibling fix 788093dbc81f (#193758) carried the reset unchanged. Medium because I did not run the pre-#122425 UI to confirm the arg highlight survived keyboard selection there, though the listener had no slash-menu call before."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 203,
+  "sha": "e51bb0455e9d7f20ef633d67c452598354b0d54d",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "5d3e157432a84e085eebf5a43a7ae471ff0fefbb",
+  "cause_pr": 191978,
+  "confidence": "medium",
+  "cause_quote": "The guest-privacy change made person Activity reads return FORBIDDEN and only added `if (error instanceof GatewayRequestError && error.gatewayCode === \"FORBIDDEN\") { currentResult = undefined; ... }`, leaving invalidate() to re-request the denied selection on every unrelated session change.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A guest looking at a denied Activity view saw the permission error briefly replaced by loading placeholders whenever an unrelated session changed.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Session activity now records a settled FORBIDDEN denial and skips unrelated invalidations and bucket refreshes for it, while retries, changed queries and authority changes (sharing/profile-identity, new hello) still reload.",
+  "reasoning": "Person-Activity FORBIDDEN denials for guests were introduced by 5d3e157432a (#191978), whose UI part only cleared rows on FORBIDDEN and did not stop the existing invalidate/refresh paths from re-reading the denied query, so the flicker shipped with that feature. I confirmed the owner's history and the parent's invalidate() still refreshing on any session change; earlier refactors (10c95d1a605 etc.) predate the denial state, so they are not the cause."
+}

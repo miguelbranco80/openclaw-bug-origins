@@ -11,6 +11,9 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from pipeline import gh  # noqa: E402
+from pipeline.settings import Paused, settings, stop_paused  # noqa: E402
 RAW = os.path.join(HERE, "clawsweeper", "raw")
 
 QUERY = """
@@ -49,24 +52,14 @@ def main():
         out = os.path.join(RAW, f"{number}.json")
         if os.path.exists(out):
             continue
-        result = subprocess.run(
-            ["gh", "api", "graphql", "-f", f"query={QUERY}", "-F", f"n={number}"],
-            capture_output=True,
-            text=True,
-        )
-        if result.returncode != 0:
-            print(f"{number}: FAILED {result.stderr.strip()[:200]}", file=sys.stderr)
-            continue
-        data = json.loads(result.stdout)
+        data = gh.graphql(QUERY, n=number)
         with open(out, "w") as handle:
             json.dump(data["data"]["repository"]["pullRequest"], handle)
-        remaining = data["data"]["rateLimit"]["remaining"]
-        if remaining < 200:
-            print(f"rate limit low ({remaining}); stopping", file=sys.stderr)
-            break
-        time.sleep(0.2)
     print(f"cached {len(os.listdir(RAW))} of {len(prs)}")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Paused as pause:
+        stop_paused(pause)

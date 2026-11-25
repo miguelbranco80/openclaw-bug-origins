@@ -10,5 +10,5 @@ dest=$1
 objects=$(cd "$(git rev-parse --git-common-dir)/objects" && pwd)
 [ -d "$dest" ] || git init -q --bare "$dest"
 echo "$objects" > "$dest/objects/info/alternates"
-GIT_DIR="$dest" git rev-parse --verify -q e6b42e31bc1522b8596958fbdd85c394b23fca7b^{commit} >/dev/null
+GIT_DIR="$dest" git rev-parse --verify -q "${2:-HEAD}^{commit}" >/dev/null
 echo "$dest"

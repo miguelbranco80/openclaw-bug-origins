@@ -1,0 +1,17 @@
+{
+  "rank": 299,
+  "sha": "82210a2bbdb0fca4c7103871a6e5c39eeda6a64d",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A chat turn rejected for inactive operator authority showed 'operator execution/source authority is no longer active' with no instruction on how to recover.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "Appends a reconnect-and-resend / ask-an-administrator hint to the inactive operator execution and source authority error messages.",
+  "reasoning": "The production diff only changes error text; all revocation checks are unchanged, and the PR itself states the investigation found no stale-authority defect and that the triggering revocation remains unattributed. That is a copy/guidance change, so not-a-defect; no cause was sought."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 273,
+  "sha": "bfe47f1ccbf8e04408eb11bec502cce34b555c58",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "10d67445fbecbc3c25f9bb5a5020766e3513b64b",
+  "cause_pr": 196662,
+  "confidence": "medium",
+  "cause_quote": "#196662 added prepareLocalWorkspaceCheckpointCapture for `options.reason === \"checkpoint\"`, which on btrfs runs `await nativeWorktreeFilesystem.copy(projectionPath, root, options)` to snapshot the workspace and `removeLocalWorkspaceCheckpointCapture` to retire it on every changed command checkpoint.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a btrfs host with large sandbox workspaces, the Gateway stalled after agent commands, with SQLite waits of 9-19.6 s and RPC p99 around 52 s.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Removes per-command btrfs snapshot creation and retirement from sandbox command checkpoints, capturing changed checkpoints directly into an immutable Git result under a short guest pause.",
+  "reasoning": "Before #196662 (10d67445), command checkpoints paused the guest and captured directly into Git, which is the behavior this fix restores; #196662 introduced the per-checkpoint btrfs snapshot and removal, and #196727 (d7f90ec3) only narrowed it to large or slow workspaces such as the production one. The fix cites a production incident of Gateway-wide stalls attributed to those snapshots. Confidence is medium because #196662 was a deliberate pause-versus-I/O trade-off and the btrfs mechanism was inferred, not measured natively."
+}

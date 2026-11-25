@@ -13,8 +13,10 @@ import os
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATASET = os.path.join(ROOT, "dataset")
 RESULTS = os.path.join(ROOT, "results")
-POPULATION = 3996  # changes titled "fix" that touch product code, merged 1 to 22 November 2026
-SAMPLE = 300
+with open(os.path.join(DATASET, "frames.json")) as _handle:
+    FRAMES = json.load(_handle)  # the periods studied: how many fixes each holds and how many were sampled
+POPULATION = sum(frame["population"] for frame in FRAMES)  # changes titled "fix" that touch product code
+SAMPLE = sum(frame["sampled"] for frame in FRAMES)
 SCALE = POPULATION / SAMPLE
 
 

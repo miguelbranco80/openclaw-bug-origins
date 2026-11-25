@@ -1,0 +1,17 @@
+{
+  "rank": 184,
+  "sha": "80e233cdf6e6a1d7ce81f9fdb276e5d4246943f6",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Browser-compatible QuickTime (MOV) attachments showed \"Preparing playback\u2026\" for several seconds while the server re-encoded the whole clip before inline playback started.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Tries a lossless stream copy (remux) to MP4 for codec-compatible MOV videos, waits up to 500 ms for it on the first playback check, shares the in-flight job across requests, falls back to a full encode, and only shows the preparing state once the server reports pending.",
+  "reasoning": "The PR describes a speedup: the existing pipeline always re-encoded MOV playback renditions and returned 'preparing' immediately by design, and nothing indicates it was ever faster before. This is a performance improvement of code that was never slower than before, so not-a-defect; blame points only at a UI refactor and pre-graft code with no breaking change."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 274,
+  "sha": "5724f95182197bef11ed726debf42beee3eda002",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a yield, several finished child agents' results never came back to the parent chat (and sometimes no failure notice appeared) because one sibling in the batch had no live Gateway binding.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Partitions frozen subagent completion batches by Gateway owner and retirement state, captures the caller's Gateway binding for visible spawns and watched follow-ups, and consolidates the batch failure notice so bound siblings deliver independently.",
+  "reasoning": "At the fix parent, getSharedGatewayContextResolver throws 'incompatible Gateway bindings: bound and unbound owners' for a mixed batch, and visible spawn / sessions_send follow-up registration never passed gatewayContextResolver, so mixed batches failed whole; this is an interaction between batch settlement, restoration (which drops in-memory bindings) and paths that never captured a binding. The throw predates the file's creation in c69b8b98 (#153508, a large move) and I could not trace the introducing commit or establish that mixed batches ever worked, and the blame candidates (deslop refactor, #163195, #129535, #198807) touch peripheral lines rather than the failing mechanism."
+}

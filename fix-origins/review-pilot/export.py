@@ -29,7 +29,7 @@ def main():
     ranks = json.load(open(ranks_path))
     bodies = json.load(open(bodies_path))
     cases = {}
-    with open("research/fix-origins/cases.jsonl") as handle:
+    with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "cases.jsonl")) as handle:
         for line in handle:
             case = json.loads(line)
             cases[case["rank"]] = case

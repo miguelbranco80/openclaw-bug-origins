@@ -1,0 +1,17 @@
+{
+  "rank": 181,
+  "sha": "35702b4bec67c2d556356c9d86707c21cd37a26e",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "About 16 seconds into Codex login the terminal said 'Manual OAuth entry required' although finishing in the browser still worked, and with the callback port unusable it waited 16 seconds claiming to wait for the browser before offering the paste prompt.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Reworded the delayed Codex OAuth paste offer to say the browser can still finish, added a completion line when the browser wins after the prompt opens, and offers the paste prompt immediately with an explanation when the callback server failed to bind.",
+  "reasoning": "The PR itself shows unpatched 2026.10.9 completed the same callback and token exchange under the old wording, so login worked in every case; the change is status copy plus skipping a 16-second wait in the bind-failure case, where pasting the redirect URL already completed sign-in. The removed lines are mostly older than the graft, with only refactors after it (2d5b670129b8, b10d3f701143), and the wording has been reworked many times in the file's history, so there is no specific breaking commit; I treat it as a UX and copy improvement, not a defect."
+}

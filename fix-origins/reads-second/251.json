@@ -1,0 +1,17 @@
+{
+  "rank": 251,
+  "sha": "8253356c986427d888cbe24b2c3d6f3b702a2f79",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a background child's source session lifecycle changed before its completion turn ran, the requester never saw the child's finished answer or any notice about it.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Reclassifies the source-lifecycle-changed completion refusal from intentional_non_delivery to permanent_failure so the registry's existing failure notice shows the saved answer to the requester.",
+  "reasoning": "The removed line `disposition: \"intentional_non_delivery\"` in sourceOwnerChangedResult predates the graft (GraphQL blame points only to the c61ba3ea extraction refactor, which moved the existing literal unchanged), and its name shows a deliberate design that source-lifecycle refusals are silent non-delivery. The fix reverses that policy, following the same direction as #200760 (714129c06), which two days earlier deleted other deliberate post-completion refusals; no commit broke a working behavior, so this is a product/policy change rather than a regression. A reader treating the original design as a defect could call it never-worked, but its introducing commit is older than the graft and was not found."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 188,
+  "sha": "69b3f27bf3506463fb4abb658cc65084ade9a7bd",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "3d2f7ca06b264f5fdcdf2a6f74c5a0bfdf7a2f09",
+  "cause_pr": 178764,
+  "confidence": "low",
+  "cause_quote": "When it routed scheduled session-target turns through session admission, the commit made onTerminal record `failure ??= deliveryEvidence?.meta?.error?.message || ... || `Session event execution ${outcome}`` and changed the later cause assignments from `failure = error instanceof Error ? error : String(error)` to `failure ??= ...`, so the generic placeholder recorded first was never replaced by the real cause.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a scheduled session-target job failed (for example on a missing inference-account binding), cron run history and the disabled job's lastError showed only 'Session event execution failed' instead of the actionable cause.",
+  "impact": "other",
+  "area": "cron",
+  "summary": "Marks the generic 'Session event execution failed' text as a placeholder and lets the failed operation's recorded cause (result.cause) win when the session-event attempt finishes.",
+  "reasoning": "The generic fallback and the first-write-wins `failure ??=` recording for scheduled session-target turns arrived together in #178764 (3d2f7ca), which first ran scheduled conversation work through this session-event handoff; later commits (#182262 moved the fallback into settleSessionEventTurn, #192550 added result.cause only for the terminal outcome) kept the generic text winning for the recorded error. I did not confirm how the incident's refusal reached the recorded failure at 3d2f7ca (thrown error vs operation result), nor whether the pre-3d2f7ca cron path recorded the real cause, so confidence is low."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 294,
+  "sha": "9b0e696264b57d359cd2d8faa16a52496ca417f3",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The macOS welcome flow could not load connection options: openclaw.setup.detect returned UNAVAILABLE with 'No supported SQLite library for Bun on macOS' even though the bundled Bun Gateway was ready.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "Read-only SQLite subprocess launchers now add the Bun-on-macOS selected library path (OPENCLAW_SQLITE_LIBRARY) to the projected child environment.",
+  "reasoning": "Per issue #203124 and PR #203177, state metadata reads pass a reduced worker environment ({OPENCLAW_STATE_DIR, ...} from openclaw-state-worker-context.capture.ts) to the read-only worker, which has used caller env since September (blame 71a1d0d2060/a06612710e6); the child then re-runs SQLite selection without the env-only library path. That code worked for Node and for Homebrew-discovered libraries (fixed paths), and broke only once the library came solely from OPENCLAW_SQLITE_LIBRARY, as in the macOS app's bundled Bun runtime; I found no single commit that removed a previously working handoff despite the 'restore' title, so I classify it as latent with no identified trigger (an alternative reading is never-worked from 757e482ab646, which added the env override and forwarded it only to the KNN child)."
+}

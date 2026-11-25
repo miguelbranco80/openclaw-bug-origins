@@ -9,6 +9,7 @@ All files describe `openclaw/openclaw` as of commit `e6b42e31bc1522b8596958fbdd8
 |---|---|---|
 | `commits.tsv` | commit on `main` since 2026-09-10 (UTC), 39,210 rows | `fix-origins/scripts/commit_list.py`, from git |
 | `pull_requests.tsv` | merged pull request named in `commits.tsv` (35,833 rows) | `fix-origins/population/fetch_pull_requests.py`, from GitHub |
+| `frames.json` | period of fixes studied, with how many fixes it holds and how many were sampled | `dataset/build.py`, from `study.json` and `fix-origins/population.tsv` |
 | `sampled_fixes.jsonl` | sampled fix (300), with the first reader's answer | `fix-origins/scripts/assemble.py`, from the readers' answers in `fix-origins/reads/` |
 | `fix_rereads_claude.jsonl` | fix re-read by a second Claude reader (47) | `dataset/build.py`, from `fix-origins/second_reads.jsonl` |
 | `fix_rereads_gpt.jsonl` | fix re-read by a GPT reader (60) | `fix-origins/audit/collect.py` |

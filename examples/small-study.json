@@ -1,0 +1,37 @@
+{
+  "repository": "openclaw/openclaw",
+  "tip": "e6b42e31bc1522b8596958fbdd85c394b23fca7b",
+  "commits_since": "2026-10-15T00:00:00Z",
+  "frames": [
+    {"id": 1, "since": "2026-11-21T00:00:00Z", "until": null, "sample": 10, "reread": 3}
+  ],
+  "comparison_sample": 20,
+  "pilot": {
+    "per_kind": 1,
+    "skip": [],
+    "verify_arms": ["gpt-6.2-sol__whole", "gpt-6.1-sol__whole"]
+  },
+  "judging": {
+    "origin": {"backend": "codex", "model": "gpt-6.2-sol"},
+    "origin_second": {"backend": "codex", "model": "gpt-6.2-sol"},
+    "origin_reread": {"backend": "codex", "model": "gpt-6.1-sol"},
+    "flag": {"backend": "codex", "model": "gpt-6.2-sol"},
+    "flag_reread": {"backend": "codex", "model": "gpt-6.1-sol"},
+    "review": [
+      {"backend": "codex", "model": "gpt-6.2-sol", "mode": "whole"},
+      {"backend": "codex", "model": "gpt-6.1-sol", "mode": "whole"}
+    ],
+    "grade": {"backend": "codex", "model": "gpt-6.2-sol"},
+    "grade_reread": {"backend": "codex", "model": "gpt-6.1-sol"},
+    "tags": {"backend": "codex", "model": "gpt-6.2-sol"},
+    "refute_gpt": {"backend": "codex", "model": "gpt-6.2-sol"},
+    "refute_opus": {"backend": "codex", "model": "gpt-6.1-sol"},
+    "laterfix": {"backend": "codex", "model": "gpt-6.2-sol"}
+  },
+  "limits": {
+    "effort": "medium",
+    "jobs": 4,
+    "max_wait_minutes": 60,
+    "github_reserve": 300
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 102,
+  "sha": "535cf43388e7d4b63e1c14754e1fa84a40889136",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Changing Visitor Access maxVisitors or defaultTtlDays while agent turns were running queued a full plugin replacement, so the config update timed out, readiness failed and new runs were delayed.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "Declared visitor limit settings as hot-reload prefixes read live from committed runtime config, and let the loader lend the retained Gateway plugin instance only when the run's plugin config matches committed config.",
+  "reasoning": "Visitor Access (older than the graft) always captured its config at registration, so any config edit required plugin replacement; that was fine until the reload machinery evolved to gate new agent work behind exclusive replacement that drains held turns (e.g. 88fff4ed5ae, 2d5c68187a3, 62e0b2b7fcf), turning a limit edit into a 60 s blocked window. No single commit broke a previously working path that I can quote, and the drain gating is deliberate design, so this is a long-standing plugin contract exposed by changes outside it rather than a regression; I could not pin one trigger commit."
+}

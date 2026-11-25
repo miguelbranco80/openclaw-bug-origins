@@ -1,0 +1,17 @@
+{
+  "rank": 235,
+  "sha": "85441bb44cb69da7444bcdc734d611cd492a9751",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "fd77e9230188b4041ee240517e407e1fed6d470a",
+  "cause_pr": 153542,
+  "confidence": "high",
+  "cause_quote": "The new chat-tool-output.ts added `if (!output || output.outputText === undefined) { this.loadState = \"unavailable\"; ... }` and rendered the copy/download actions whenever loadState was not loading, regardless of empty text.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening a successful image-only tool result in the Control UI showed 'Full output unavailable' and copy/download buttons that exported empty text.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Treats a single matched completed tool result as available even without text, and hides copy/download actions when the output text is empty.",
+  "reasoning": "The removed `loadedCard.outputText === undefined` condition and the unconditional actions block trace back through the Solid refactors (#176599, #179556) and the Lit-to-Solid migration (#168739) unchanged to the original full-output recovery component added in fd77e9230188 (#153542). That diff contains both the same undefined-text-means-unavailable check and the actions rendered for any non-loading state, so non-text results were mislabeled from the start; the fix PR notes image-only MCP results come from existing MCP conversion, not a later change."
+}

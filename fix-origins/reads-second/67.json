@@ -1,0 +1,17 @@
+{
+  "rank": 67,
+  "sha": "37343952e7db27cc7d7ccfc8c00ea09f82da6f8c",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing functionally wrong; an operator inspecting the wiki log or blob store saw each unchanged explicit compile write a new identical cache publication that replaced the previous row.",
+  "impact": "slower-or-heavier",
+  "area": "plugins",
+  "summary": "Explicit Memory Wiki compiles now keep the existing compiled-cache publication when the source generation and persisted output are unchanged, instead of writing and committing an identical replacement.",
+  "reasoning": "Issue #168784 shows explicit compile always published a fresh but identical snapshot; the compiled output stayed correct and the documented reuse rule only covered source synchronization, so explicit-compile reuse is a new optimization that removes churn rather than a repair of broken behavior. No commit is shown to have removed earlier reuse in the explicit path (the blame candidates are type/refactor cleanups); if one treats the churn as a defect it would be never-worked in the original compiled-cache publication design, which I could not pin to a commit."
+}

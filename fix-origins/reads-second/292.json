@@ -1,0 +1,17 @@
+{
+  "rank": 292,
+  "sha": "ac008ae0b850ff5082a247924e5b9e636edbb1ce",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "bfbb6560585b1b7241a44a5202d927d093e776a8",
+  "cause_pr": 193548,
+  "confidence": "high",
+  "cause_quote": "#193548 deleted the plaintext cache writer together with `sweepMaterializedArchiveCache(cacheDir)` and its age-based `fs.rmSync(entry.path, { force: true })` loop, leaving existing session-archive-read-cache files with no remaining code to remove them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After upgrading, old plaintext session archive cache files stayed in the OpenClaw temp directory indefinitely, consuming disk space.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "Adds a Doctor legacy-state check that reports leftover session archive read-cache bytes read-only on lint and removes recognized cache files (and the empty directory) on repair, including the update path.",
+  "reasoning": "Before #193548 the age-based sweep bounded and expired the plaintext archive cache; #193548 (an hour before this fix) removed the writer and the sweep without a migration, so caches already on disk were never reclaimed, which is exactly what the fix's PR states. I read the #193548 diff of archive-compression.ts and confirmed the removed sweep lines; the fix adds the missing one-time Doctor cleanup."
+}

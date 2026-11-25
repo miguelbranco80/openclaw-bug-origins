@@ -31,7 +31,7 @@ Also give:
 - `same_as`: if this finding describes the same defect as an earlier finding in the list, that finding's id,
   otherwise null.
 
-End by writing one JSON object, and nothing else, to the output path you were given:
+Answer with one JSON object of this shape (`case` is filled in for you). Your task message says how to deliver it:
 
 ```json
 {"case": "0008", "findings": {"F1": {"verdict": "confirmed", "impact": "user-visible", "evidence": "...", "same_as": null}}}
