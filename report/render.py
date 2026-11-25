@@ -378,7 +378,7 @@ rarely named the bug, the changes it objected to were the riskier ones.
 
 - **How we know.** A model compared each bug with the review text under a strict rule: it counts as named only if
   fixing what the review described would have prevented the bug.
-- **How it was checked.** For {v('q06', 'other_n')} November cases both makers' models read the same review of the
+- **How it was checked.** For {v('q06', 'other_n')} November cases both models read the same review of the
   same causing change. They gave the same answer for {v('q06', 'other_same')}, and agreed on whether the bug was
   named for {v('q06', 'other_exact_same')}.
 - **What it does not show.** How many bugs the bot stopped. A bug it caught and the author fixed before merge never
