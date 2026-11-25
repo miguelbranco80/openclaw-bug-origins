@@ -1,0 +1,10 @@
+[
+ {
+  "stem": "q13-bugs-by-review-coverage",
+  "title": "Bugs per 100 changes, by which revision the bot reviewed"
+ },
+ {
+  "stem": "q13-bugs-by-time-to-merge",
+  "title": "Bugs per 100 changes, by time from the bot's review to merge"
+ }
+]

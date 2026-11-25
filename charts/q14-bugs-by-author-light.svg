@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="134" viewBox="0 0 760 134" role="img" aria-label="Bugs per 100 changes, by who opened the change">
+<title>Bugs per 100 changes, by who opened the change</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Opened by an outside contributor</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H220.6 Q224.6,24 224.6,28 V30 Q224.6,34 220.6,34 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2.41</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Opened by a maintainer</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H347.3 Q351.3,66 351.3,70 V72 Q351.3,76 347.3,76 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">3.77</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Opened by an automation account</text>
+<rect x="0" y="108" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H516.0 Q520.0,108 520.0,112 V114 Q520.0,118 516.0,118 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">5.58</text>
+</svg>

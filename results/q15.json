@@ -1,0 +1,23 @@
+[
+{"group": "size", "metric": "commits", "label": "Commits on main, 10 Sep to 22 Nov 2026", "value": 39210, "low": null, "high": null},
+{"group": "size", "metric": "commits_per_day", "label": "Commits per day", "value": 531, "low": null, "high": null},
+{"group": "size", "metric": "fix_title_pct", "label": "Share of commits titled fix", "value": 50.9, "low": null, "high": null},
+{"group": "size", "metric": "under_10_files_pct", "label": "Share of commits changing fewer than 10 files", "value": 70.8, "low": null, "high": null},
+{"group": "size", "metric": "over_100_files_pct", "label": "Share of commits changing more than 100 files", "value": 1.5, "low": null, "high": null},
+{"group": "size", "metric": "mean_files", "label": "Mean files changed per commit", "value": 13.4, "low": null, "high": null},
+{"group": "size", "metric": "median_files", "label": "Median files changed per commit", "value": 4, "low": null, "high": null},
+{"group": "size", "metric": "sample", "label": "Pull requests in the random comparison sample", "value": 400, "low": null, "high": null},
+{"group": "practice", "metric": "self_merged_pct", "label": "Merged by its own author", "value": 88.8, "low": null, "high": null},
+{"group": "practice", "metric": "no_human_review_pct", "label": "Merged with no review by a person", "value": 95.5, "low": null, "high": null},
+{"group": "practice", "metric": "bot_reviewed_pct", "label": "Reviewed by the bot before merge", "value": 85, "low": null, "high": null},
+{"group": "practice", "metric": "bot_objected_pct", "label": "Merged while the bot said blocked or needs changes", "value": 20.8, "low": null, "high": null},
+{"group": "practice", "metric": "under_hour_pct", "label": "Merged within an hour of being opened", "value": 46.2, "low": null, "high": null},
+{"group": "size", "metric": "human_review_pct", "label": "Share with a review by a person before merge", "value": 4.5, "low": null, "high": null},
+{"group": "size", "metric": "median_minutes_open", "label": "Median minutes from opening a pull request to merging it", "value": 70, "low": null, "high": null},
+{"group": "size", "metric": "median_minutes_after_bot", "label": "Median minutes from the bot's review to the merge", "value": 19, "low": null, "high": null},
+{"group": "size", "metric": "mergers", "label": "Distinct people who merged a fetched pull request", "value": 20, "low": null, "high": null},
+{"group": "size", "metric": "top_author_pct", "label": "Share of sampled pull requests opened by the most active account", "value": 55.5, "low": null, "high": null},
+{"group": "authors", "metric": "authors_maintainer", "label": "Opened by a maintainer", "value": 80.8, "low": null, "high": null},
+{"group": "authors", "metric": "authors_automation", "label": "Opened by an automation account", "value": 10, "low": null, "high": null},
+{"group": "authors", "metric": "authors_outside_contributor", "label": "Opened by an outside contributor", "value": 9.2, "low": null, "high": null}
+]

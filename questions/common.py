@@ -3,6 +3,7 @@
 Every question script reads only files under dataset/ and writes results/<id>.json (one row per number, with a
 group, a unique metric name, a plain label and a value) plus its charts under charts/.
 """
+import collections
 import csv
 import json
 import math
@@ -108,3 +109,87 @@ class Result:
             for row in self.rows:
                 spread = f"  ({row['low']} to {row['high']})" if row["low"] is not None else ""
                 print(f"{row['label']}: {row['value']}{spread}")
+
+
+# --- comparing kinds of change -------------------------------------------------------------------------------
+# dataset/changes.jsonl holds a random comparison sample of ordinary pull requests and every bug-causing pull
+# request found in the fix sample. For a property with a few levels (say, what the review bot said at merge), the
+# comparison sample says how common each level is among all changes, and the bug-causing changes say how many
+# sampled bugs came from each level. Their ratio is how much more often one kind of change causes a bug than another.
+
+SIZE_GROUPS = (("1 to 5 files", 0, 5), ("6 to 30 files", 6, 30), ("Over 30 files", 31, 10 ** 9))
+
+
+def size_group(change):
+    return next(name for name, low, high in SIZE_GROUPS if low <= change["files_changed"] <= high)
+
+
+def pull_request_commits():
+    return sum(1 for commit in load_commits().values() if commit["pr_number"])
+
+
+def odds_ratio(a, b, c, d, z=1.96):
+    """(a/b) / (c/d) with a 95% interval; a, b are bug counts, c, d comparison counts. None if any count is 0."""
+    if min(a, b, c, d) == 0:
+        return None
+    ratio = (a / b) / (c / d)
+    spread = math.sqrt(1 / a + 1 / b + 1 / c + 1 / d)
+    return round(ratio, 2), round(ratio * math.exp(-z * spread), 2), round(ratio * math.exp(z * spread), 2)
+
+
+def stratified_ratio(tables, z=1.96):
+    """Mantel-Haenszel ratio over strata of (a, b, c, d), with the Robins-Greenland-Breslow interval."""
+    tables = [t for t in tables if sum(t) > 0]
+    r = sum(a * d / (a + b + c + d) for a, b, c, d in tables)
+    s = sum(b * c / (a + b + c + d) for a, b, c, d in tables)
+    if r == 0 or s == 0:
+        return None
+    pr = sum((a + d) / (a + b + c + d) * (a * d / (a + b + c + d)) for a, b, c, d in tables)
+    ps_qr = sum((a + d) / (a + b + c + d) * (b * c / (a + b + c + d)) + (b + c) / (a + b + c + d) * (a * d / (a + b + c + d))
+                for a, b, c, d in tables)
+    qs = sum((b + c) / (a + b + c + d) * (b * c / (a + b + c + d)) for a, b, c, d in tables)
+    spread = math.sqrt(pr / (2 * r * r) + ps_qr / (2 * r * s) + qs / (2 * s * s))
+    ratio = r / s
+    return round(ratio, 2), round(ratio * math.exp(-z * spread), 2), round(ratio * math.exp(z * spread), 2)
+
+
+def compare(out, prefix, changes, level_of, levels, reference):
+    """Add, for each level of a property: how common it is, how many sampled bugs it produced, the bug rate, and
+    the rate relative to the reference level, crude and adjusted for the size of the change.
+
+    levels: list of (key, label). level_of(change) returns a key or None to leave the change out.
+    """
+    sample = [c for c in changes if c["in_comparison_sample"] and level_of(c) is not None]
+    causing = [c for c in changes if c["sampled_bugs"] and level_of(c) is not None]
+    total = pull_request_commits()
+    seen = collections.Counter(level_of(c) for c in sample)
+    bugs = collections.Counter()
+    for c in causing:
+        bugs[level_of(c)] += c["sampled_bugs"]
+    for key, label in levels:
+        share = seen[key] / len(sample) if sample else 0
+        out.add(prefix + "_seen", f"{prefix}_seen_{key}", label, seen[key])
+        out.add(prefix + "_share", f"{prefix}_share_{key}", label, round(100 * share, 1))
+        out.add(prefix + "_bugs", f"{prefix}_bugs_{key}", label, bugs[key])
+        rate = 100 * bugs[key] * SCALE / (share * total) if share else 0
+        out.add(prefix + "_rate", f"{prefix}_rate_{key}", label, round(rate, 2))
+        if key == reference:
+            continue
+        crude = odds_ratio(bugs[key], bugs[reference], seen[key], seen[reference])
+        if crude:
+            out.add(prefix + "_ratio", f"{prefix}_ratio_{key}", label, *crude)
+        tables = []
+        for name, _, _ in SIZE_GROUPS:
+            in_group = lambda c: size_group(c) == name
+            tables.append((
+                sum(c["sampled_bugs"] for c in causing if in_group(c) and level_of(c) == key),
+                sum(c["sampled_bugs"] for c in causing if in_group(c) and level_of(c) == reference),
+                sum(1 for c in sample if in_group(c) and level_of(c) == key),
+                sum(1 for c in sample if in_group(c) and level_of(c) == reference),
+            ))
+        adjusted = stratified_ratio(tables)
+        if adjusted:
+            out.add(prefix + "_adjusted", f"{prefix}_adjusted_{key}", label, *adjusted)
+    out.add("size", prefix + "_sample", "Ordinary changes in the comparison sample with this property known", len(sample))
+    out.add("size", prefix + "_causing_bugs", "Sampled bugs from changes with this property known",
+            sum(c["sampled_bugs"] for c in causing))

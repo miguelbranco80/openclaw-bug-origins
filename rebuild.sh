@@ -17,6 +17,8 @@ python3 $P/verify_tabulate.py $P/data/verify $P/data/grade/grid.json >/dev/null 
 python3 $P/verify_control.py >/dev/null                     # the checkers' control
 python3 $F/audit/collect.py $F/audit/raw $P/data/grade/key.json $P/data/grade/grid.json >/dev/null  # second-model re-reads
 
+python3 $F/comparison/build_changes.py >/dev/null           # fetched pull request facts -> dataset/changes.jsonl
+
 # 2. The dataset: the facts every question reads.
 python3 dataset/build.py >/dev/null
 

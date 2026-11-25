@@ -17,6 +17,7 @@ All files describe `openclaw/openclaw` as of commit `e6b42e31bc1522b8596958fbdd8
 | `blind_review_regrades_gpt.jsonl` | reviewer and case pair regraded by a GPT grader (180) | `fix-origins/audit/collect.py` |
 | `reported_problems.jsonl` | problem reported by gpt-6.2 or Opus 5.5 (148), with three checks | `fix-origins/review-pilot/verify_tabulate.py` |
 | `checker_control.jsonl` | reported problem in the ten control cases (52), judged on the fixed code | `fix-origins/review-pilot/verify_control.py` |
+| `changes.jsonl` | pull request: a random comparison sample of 400 ordinary ones, plus every bug-causing one | `fix-origins/comparison/build_changes.py`, from GitHub facts fetched by `fetch.py` |
 | `named_cause_study.json` | figure of the first, wording-based study | Entered by hand from `detection-check/report.md` |
 
 Run `python3 dataset/build.py` to refresh the copies after changing a collection step.
@@ -34,6 +35,15 @@ bug, for the first two origins); `confidence` in that cause (`high`, `medium`, `
 causing commit: `date`, `days_to_fix`, `prefix`, `subject`, `author`, `files_changed`); `fix_names_cause` (the fix's
 message or PR text mentions the causing change); `fix_adds_test`; `user_visible`, `user_saw`, `impact`, `area`,
 `summary`, `reasoning` (the reader's words); `blame_agrees`, `blame_in_top5`, `blame` (what `git blame` suggested).
+
+**`changes.jsonl`**: `sha`, `pr_number`, `committed_at`, `files_changed`, `title_prefix`; `in_comparison_sample`
+(true for the 400 drawn at random from all pull request commits in `commits.tsv`, in ascending order of
+`sha256("comparison-v1:" + sha)`); `sampled_bugs` (how many of the 300 sampled fixes trace back to this change; 0 for
+most), `bug_kinds`; `author`, `author_group` (`maintainer`: a person who merged at least one fetched pull request;
+`outside contributor`; `automation`), `author_association` (GitHub's own label, kept for reference), `from_fork`;
+`merged_by`, `merged_by_group`, `self_merged`; `minutes_open`; `human_review_before_merge`; `bot_review` (`reviewed
+the merged revision`, `reviewed an earlier revision`, `no review before merge`), `bot_verdict_at_merge`,
+`minutes_bot_review_to_merge`.
 
 **`fix_rereads_*.jsonl`**: `rank`; `first_origin`, `second_origin`; `first_cause`, `second_cause`.
 
@@ -56,7 +66,8 @@ code); `gpt_at_fix`, `opus_at_fix` (verdict on the code after the known bug was 
 
 ## What is judgment and what is not
 
-Facts read from git or GitHub: everything in `commits.tsv`; dates, titles, file counts, authors, mergers; the review
+Facts read from git or GitHub: everything in `commits.tsv` and `changes.jsonl` (apart from `sampled_bugs`, which
+counts model-traced bugs); dates, titles, file counts, authors, mergers; the review
 bot's verdict and timing.
 
 Model judgments: `origin`, `cause_sha`, `confidence`, `user_visible`, `impact`; `flagged`; `needs`; every grade;

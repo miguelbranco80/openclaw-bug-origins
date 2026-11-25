@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="218" viewBox="0 0 760 218" role="img" aria-label="How ordinary pull requests were reviewed and merged, in percent">
+<title>How ordinary pull requests were reviewed and merged, in percent</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Merged by its own author</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H457.8 Q461.8,24 461.8,28 V30 Q461.8,34 457.8,34 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">88.8%</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Merged with no review by a person</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H492.6 Q496.6,66 496.6,70 V72 Q496.6,76 492.6,76 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">95.5%</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Reviewed by the bot before merge</text>
+<rect x="0" y="108" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H438.0 Q442.0,108 442.0,112 V114 Q442.0,118 438.0,118 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">85%</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Merged while the bot said blocked or needs changes</text>
+<rect x="0" y="150" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H104.2 Q108.2,150 108.2,154 V156 Q108.2,160 104.2,160 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">20.8%</text>
+<text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Merged within an hour of being opened</text>
+<rect x="0" y="192" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,192 H236.2 Q240.2,192 240.2,196 V198 Q240.2,202 236.2,202 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">46.2%</text>
+</svg>

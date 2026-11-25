@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="92" viewBox="0 0 760 92" role="img" aria-label="Bugs per 100 changes, by whether a person reviewed it">
+<title>Bugs per 100 changes, by whether a person reviewed it</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">A person reviewed it before merge</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H516.0 Q520.0,24 520.0,28 V30 Q520.0,34 516.0,34 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">9.09</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">No person&#x27;s review before merge</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H200.8 Q204.8,66 204.8,70 V72 Q204.8,76 200.8,76 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">3.58</text>
+</svg>

@@ -50,6 +50,7 @@ cd openclaw && git clone https://github.com/miguelbranco80/openclaw-bug-origins.
 | First readers' answers into one file | `python3 research/fix-origins/scripts/assemble.py --reads <dir> --from 1 --to 300` | `cases.jsonl` |
 | Pilot PR descriptions | `python3 research/fix-origins/review-pilot/fetch_descriptions.py` | `data/pilot_pr_bodies.json` |
 | Pilot exports | `python3 research/fix-origins/review-pilot/export.py <out> <ranks.json> <bodies.json>` | one directory per case |
+| Comparison sample of pull requests | `python3 research/fix-origins/comparison/fetch.py` then `build_changes.py` | `comparison/raw/`, `dataset/changes.jsonl` |
 | Commit list with sizes | `python3 research/fix-origins/scripts/commit_list.py` | `dataset/commits.tsv` |
 
 All history is pinned to commit `e6b42e31bc1522b8596958fbdd85c394b23fca7b`. `fix-origins/README.md` describes the
@@ -100,6 +101,7 @@ grade the new letter in each bundle under `data/grade/bundles/`.
 
 **A new question.** Questions of the form "do changes of kind X cause more bugs" need the attribute for the traced
 causing changes and for ordinary changes. `questions/q04_do_large_changes_cause_more_bugs.py` and
-`questions/q11_does_skipping_a_pull_request_matter.py` show the pattern using `dataset/commits.tsv`. Attributes that
-git does not record, such as what the review bot said, need a comparison sample of ordinary changes fetched from
-GitHub.
+`questions/q11_does_skipping_a_pull_request_matter.py` show the pattern using `dataset/commits.tsv`. For attributes
+that git does not record, such as what the review bot said or who merged, `dataset/changes.jsonl` holds a random
+comparison sample of ordinary pull requests beside the bug-causing ones, and `compare` in `questions/common.py` turns
+any property of a change into bug rates and ratios. `questions/q12` to `q14` use it.

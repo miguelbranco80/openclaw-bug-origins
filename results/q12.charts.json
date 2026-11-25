@@ -1,0 +1,10 @@
+[
+ {
+  "stem": "q12-bugs-by-bot-verdict",
+  "title": "Bugs per 100 changes, by what the bot said when the change merged"
+ },
+ {
+  "stem": "q12-how-common-each-verdict-is",
+  "title": "Share of ordinary changes merged under each verdict"
+ }
+]
