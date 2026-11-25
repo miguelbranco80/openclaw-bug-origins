@@ -141,10 +141,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 ## Main results
 
-Some of this is what any engineer would guess, and the value is in having a number for it. The rest we did not
-expect.
-
-**As you would expect, now with numbers**
+**Expected results**
 
 - **New code is where the bugs are.** Changes that add a new code file are {v('q24', 'new_share_adds')}% of commits
   and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs ({v('q24', 'new_bugs_adds')} of
@@ -157,13 +154,11 @@ expect.
 - **Files that several people are editing at once carry more bugs:** {v('q23', 'shared_adjusted_high')} times, for
   files two or more other people had changed in the previous two weeks. *Finding 20.*
 
-**What we did not expect**
+**Less expected results...**
 
-- **Tests came with nearly every bug.** {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came
-  from a change that also changed tests. Shipping tests with a change is not a sign it is safe. *Finding 21.*
-- **About half the bugs were never regressions.** {v('q02', 'sens_never_all')} were new code that never worked,
-  against {v('q02', 'sens_broke_all')} working things broken later. A test of the old behavior cannot catch the
-  first kind. *Finding 2.*
+- **You can point at the risky changes before they merge.** {v('q17', 'changes_pct_two')}% of changes show at least
+  two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
+  files), and those changes carry {v('q17', 'bugs_pct_two')}% of the traced bugs. *Finding 17.*
 - **The review bot rarely named the bug, yet its verdict marks risk.** Before a change merges, the bot gives a
   verdict: ready, needs changes, or blocked. It had named the actual bug in {v('q06', 'flag_exact')} of the
   {v('q06', 'reviewed')} bug-causing changes it reviewed. But changes merged while it said "needs changes" or
@@ -171,11 +166,14 @@ expect.
   hinting at the bug: in {v('q06', 'merged_against_unrelated')} of {v('q06', 'merged_against')} such cases its
   complaints were about something else, such as missing proof. Its doubt was a better signal than its reasons.
   *Findings 6 and 12.*
-- **You can point at the risky changes before they merge.** {v('q17', 'changes_pct_two')}% of changes show at least
-  two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
-  files), and those changes carry {v('q17', 'bugs_pct_two')}% of the traced bugs. *Finding 17.*
-- **A screenshot or video goes with more bugs, not fewer.** Among interface changes, those with one carried
-  {v('q16', 'interface_adjusted_yes')} times the bugs. *Finding 16.*
+- **A screenshot or video goes with more bugs, not fewer.** (In hindsight makes sense because interface changes are
+  hard). Among interface changes, those with one carried {v('q16', 'interface_adjusted_yes')} times the bugs.
+  *Finding 16.*
+- **Tests came with nearly every bug.** {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came
+  from a change that also changed tests. Shipping tests with a change is not a sign it is safe. *Finding 21.*
+- **About half the bugs were never regressions.** {v('q02', 'sens_never_all')} were new code that never worked,
+  against {v('q02', 'sens_broke_all')} working things broken later. A test of the old behavior cannot catch the
+  first kind. *Finding 2.*
 - **Fast merges are the safe ones.** Pull requests merged within the hour carried far fewer bugs than those open a
   day or more: {v('q14', 'open_adjusted_hour')} times as many. *Finding 14.*
 - **Nobody looks overloaded.** An author's heavy days are no worse than their light ones, although one account

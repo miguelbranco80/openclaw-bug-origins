@@ -24,6 +24,9 @@ to rebuild the report, regenerate the study from nothing, or extend it, using `p
   against it carries `GIT_NO_LAZY_FETCH=1` (the scripts set it); a search without it once downloaded 12 GB.
 - **GitHub access is read-only.** No comments, reviews, issues or pushes to the studied project.
 - **`work/` is scratch and is never committed.** Do not commit model run logs: they contain machine paths.
+- **`README.md` is generated. Never edit it directly:** the next rebuild overwrites it. Change the text in
+  `report/render.py` and run `python3 study.py rebuild`. If someone has edited `README.md` on GitHub, carry their
+  edit into `report/render.py` before rebuilding, then check the rebuilt file against theirs.
 - **The report states findings.** Its one section of ideas, "What the numbers point to", ties each idea to a count
   in the report and names the step that was not tested. Keep it that way: no advice to the project, and no idea
   without its count. Every number in `README.md` comes from `results/` through `report/render.py`; never type a
