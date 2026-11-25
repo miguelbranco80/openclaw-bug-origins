@@ -1,19 +1,9 @@
-# Results page: source and corrections
+# Corrections
 
-This folder holds the data files behind the report, the script that builds them, the renderer for the top-level
-`README.md`, and the source of an interactive version of the same report (`index.html`, which needs a host page to
-draw its charts). The top-level `README.md` is the current statement of what the studies support. Where it differs from the earlier per-study reports
-(`../report.md`, `../clawsweeper/report.md`, `../review-pilot/report.md`, `../../detection-check/report.md`),
-the top-level report is right and those reports are superseded.
-
-## Files
-
-| File | What it is |
-|---|---|
-| `index.html` | An interactive version of the report. It needs a host page that supplies the data and draws the charts. |
-| `*.json` | Its five data files, exported from the question scripts' results by `report/export_dashboard.py`. |
-
-The report itself is the top-level `README.md`, rendered by `report/render.py` from `results/`.
+The top-level `README.md` is the current statement of what the studies support. The earlier per-study reports
+(`fix-origins/report.md`, `fix-origins/clawsweeper/report.md`, `fix-origins/review-pilot/report.md`,
+`detection-check/report.md`) are kept as working records. Where they differ from the README, the README is right.
+This file lists what changed and why.
 
 ## What the second-model check changed
 
@@ -39,6 +29,6 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
 ## Not done
 
 - No project code was run and no test was written.
-- The "what each bug needed" tags (finding 8) were not re-read by a second model.
+- The "what each bug needed" tags (finding 9) were not re-read by a second model.
 - The GPT reader could not look up history older than September 2026 on GitHub, so it answered "could not tell" for
   16 of 60 fixes.

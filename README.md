@@ -16,6 +16,7 @@ Written 25 November 2026.
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
 reads only the dataset and writes the numbers and charts used below. `./rebuild.sh` runs them all and re-renders
 this page. How the dataset was collected, and what cannot be reproduced exactly, is in [REPRODUCE.md](REPRODUCE.md).
+Claims that an earlier draft made and a later check weakened are listed in [CORRECTIONS.md](CORRECTIONS.md).
 
 ## What the evidence supports, and how strongly
 

@@ -1,4 +1,4 @@
-> **Superseded where it differs.** This is the working report of one study. The top-level `README.md` is the current statement of the findings, and `fix-origins/dashboard/README.md` lists what changed after a second-model check.
+> **Superseded where it differs.** This is the working report of one study. The top-level `README.md` is the current statement of the findings, and `CORRECTIONS.md` lists what changed after a second-model check.
 
 # Pilot: can a reviewer that sees only the causing change name the bug?
 

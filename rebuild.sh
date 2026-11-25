@@ -25,7 +25,6 @@ python3 dataset/build.py >/dev/null
 # 3. One script per question: numbers into results/, charts into charts/.
 python3 questions/run_all.py
 
-# 4. The report, and the data files of its interactive version.
+# 4. The report.
 python3 report/render.py
-python3 report/export_dashboard.py
 echo "Rebuilt. Run 'git status --short' to see whether anything changed."
