@@ -9,10 +9,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 ## Main results
 
-Some of this is what any engineer would guess, and the value is in having a number for it. The rest we did not
-expect.
-
-**As you would expect, now with numbers**
+**Expected results**
 
 - **New code is where the bugs are.** Changes that add a new code file are 13.7% of commits
   and the source of 69% of the traced bugs (346 of
@@ -25,22 +22,22 @@ expect.
 - **Files that several people are editing at once carry more bugs:** 1.67 times, for
   files two or more other people had changed in the previous two weeks. *Finding 20.*
 
-**What we did not expect**
+**Less expected results...**
 
+- **You can point at the risky changes before they merge.** 6.8% of changes show at least
+  two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
+  files), and those changes carry 48% of the traced bugs. *Finding 17.*
+- **The review bot rarely named the bug, yet its objection marks risk.** It had named the bug in
+  21 of the 645 bug-causing changes it reviewed. Changes merged over its
+  objection still carried 3.42 times the bugs of changes it called ready, even
+  though its complaint was usually about something else. *Findings 6 and 12.*
+- **A screenshot or video goes with more bugs, not fewer.** (In hindsight makes sense because interface changes are hard).
+  Among interface changes, those with one carried 3.72 times the bugs. *Finding 16.*
 - **Tests came with nearly every bug.** 494 of the 505 traced bugs came
   from a change that also changed tests. Shipping tests with a change is not a sign it is safe. *Finding 21.*
 - **About half the bugs were never regressions.** 443 were new code that never worked,
   against 389 working things broken later. A test of the old behavior cannot catch the
   first kind. *Finding 2.*
-- **The review bot rarely named the bug, yet its objection marks risk.** It had named the bug in
-  21 of the 645 bug-causing changes it reviewed. Changes merged over its
-  objection still carried 3.42 times the bugs of changes it called ready, even
-  though its complaint was usually about something else. *Findings 6 and 12.*
-- **You can point at the risky changes before they merge.** 6.8% of changes show at least
-  two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
-  files), and those changes carry 48% of the traced bugs. *Finding 17.*
-- **A screenshot or video goes with more bugs, not fewer.** Among interface changes, those with one carried
-  3.72 times the bugs. *Finding 16.*
 - **Fast merges are the safe ones.** Pull requests merged within the hour carried far fewer bugs than those open a
   day or more: 0.28 times as many. *Finding 14.*
 - **Nobody looks overloaded.** An author's heavy days are no worse than their light ones, although one account
