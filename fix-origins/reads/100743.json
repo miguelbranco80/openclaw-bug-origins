@@ -1,0 +1,17 @@
+{
+  "rank": 100743,
+  "sha": "ff9e8818527accde219a9e4da9c7e0ea25a2f04c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "3e5f7d43aaa1bc9704fc57955793cc1acaaaeb6e",
+  "cause_pr": 166616,
+  "confidence": "high",
+  "cause_quote": "The new workspace binder passed `assertCommitAllowed: assertCurrent` unconditionally to `patchSessionEntryCore`, selecting a native transaction on the same database handle as the retained canonical reader.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first model request for a required native worker session returned HTTP 500 when the Gateway tried to bind a new workspace while holding a canonical session reader.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix uses worker write grants to bind workspaces without an inherited source and keeps native transactions for bindings with inherited source callbacks.",
+  "reasoning": "The introducing diff adds automatic workspace preparation for required workers inside session admission, and the preceding dispatch path expected an existing session-owned workspace. The new binder's commit callback opens a transaction on the retained reader's handle, causing the reader's currency check to reject the bind before the first model request. The fix PR reports reproducing that exact failure with the real admission and workspace committer."
+}

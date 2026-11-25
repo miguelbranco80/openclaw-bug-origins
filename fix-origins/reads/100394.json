@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "0a8e3604ba24de4791d3505b7a442e8017276dd0",
+  "cause_pr": 98236,
+  "confidence": "high",
+  "cause_quote": "The SQLite migration passed `expectedExistingSessionId: entry.sessionId` from the Gateway's earlier snapshot and added `if (expectedExistingSessionId && entry?.sessionId !== expectedExistingSessionId)`, which threw after compaction rotated the ID.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An accepted chat message failed with a session-refresh error if the previous turn compacted the conversation while the message was being prepared.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix preserves and verifies compaction lineage so an accepted chat message continues under the current session ID with its original send identity.",
+  "reasoning": "I checked the migration's parent and confirmed that compaction could already rotate the persisted session ID and that reply initialization loaded the current session without enforcing the Gateway's earlier ID. The migration added the stale-ID rejection at initialization, and #139624 later brought the same check forward into reply admission.",
+  "rank": 100394,
+  "sha": "1d697aa9660c050a49ffb48236acf5d8679bfa8e",
+  "rubric": "v1.2"
+}

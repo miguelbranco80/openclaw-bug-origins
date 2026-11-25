@@ -1,17 +1,17 @@
 {
   "rank": 274,
   "sha": "5724f95182197bef11ed726debf42beee3eda002",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9b1bc3bb93e6a004a534c4f485f26d34c911b02a",
+  "cause_pr": 132090,
+  "confidence": "medium",
+  "cause_quote": "The shared Gateway resolver changed its mismatch branch from `: undefined` to `: () => undefined;`, so one unbound child supplied an explicit rejecting resolver for the entire batch.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A yielded parent agent waiting on several subagents could lose all of their finished results, sometimes with no failure notice, when one child in the completion batch had no live Gateway binding (after restart, visible spawning, or binding cleanup).",
-  "impact": "data-loss-or-duplication",
+  "user_saw": "After yielding, the requester could miss several finished child results, sometimes without a visible failure notice.",
+  "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Partitions frozen subagent completion batches by Gateway owner and retirement state, captures the caller's Gateway binding at visible spawn and watched follow-up registration, routes yielded-batch failures through the required-completion notice owner, and keeps Talk final attachments working across partitions.",
-  "reasoning": "The batch-wide failure comes from getSharedGatewayContextResolver throwing 'incompatible Gateway bindings: bound and unbound owners' for mixed batches. That throw is in gateway-context-binding.ts, which c69b8b98686 (#153508, an unrelated subject) created, and the -S search on its likely prior home in gateway-request-scope.ts timed out. Mixed batches also depend on separate gaps: restored rows lose their in-memory binding, and visible spawn did not capture the binding, from code I traced back to before the graft. The lost failure notice involves the yielded-batch path from #198807 and #163195. No single commit plainly introduced the failure, so I can't name a causing line with a straight face."
+  "summary": "The fix preserves captured Gateway bindings, settles child results separately by Gateway owner and retirement state, and retains visible failure notices and Talk finals.",
+  "reasoning": "I checked the parent of #132090: the existing yielded wake already dispatched the full batch, and a mixed batch supplied no resolver, so dispatch could use a live Gateway request scope. #132090 made that same batch reject dispatch, and #137606 later moved the rejection before dispatch by throwing on mixed bindings. The parent code confirms the fallback path, but whether a particular mixed batch completed depended on a live request scope."
 }

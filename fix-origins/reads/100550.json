@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users who requested omitted thinking could still receive an Anthropic thinking summary.",
+  "impact": "presentation",
+  "area": "models/providers",
+  "summary": "The fix moves rolling Anthropic defaults to Opus 5.5, preserves configured aliases during Claude CLI setup, and forwards thinkingDisplay through both Anthropic request paths.",
+  "reasoning": "I checked the Opus 5.5 foundation diff, whose commit message explicitly says it preserves the Opus 5 defaults and aliases. Both request paths already dropped thinkingDisplay in the July 1 snapshot, and a later transport move carried the omission forward. The available history stops before I could verify when the omission was introduced or whether either affected path had previously honored the setting.",
+  "rank": 100550,
+  "sha": "5e5f9c27559776303d962aa37f8c09f676e640d4",
+  "rubric": "v1.2"
+}

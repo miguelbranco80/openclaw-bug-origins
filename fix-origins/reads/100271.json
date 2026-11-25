@@ -1,0 +1,17 @@
+{
+  "rank": 100271,
+  "sha": "48447a63c6d12ba74f3d922e55815f045eb5fc5f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7f9bf1d79aef6bf7732f1bebb5823b5035699dd9",
+  "cause_pr": 141562,
+  "confidence": "high",
+  "cause_quote": "The new reconciliation path called `finishRunRecord(record, { status: \"failed\", reason: \"abandoned\" })`, and successful repair only added the `reconcile:acknowledged` step, so the existing report continued to show an active failure.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After successfully repairing an abandoned update, operators still saw failure warnings and recovery actions in the CLI and Control UI.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The fix clears stale recovery prompts after acknowledgement while preserving failure history, and makes the update parent restore and verify the managed Gateway before exiting after a finalization timeout.",
+  "reasoning": "I classified the stale warnings after successful repair because their origin is directly traceable. The parent commit sent repair straight to finalization, while #141562 introduced ledger-only acknowledgement and left the report rendering acknowledged runs through its existing failed-status branch. The Gateway timeout follows a separate path through the immediate exit introduced in #140648."
+}

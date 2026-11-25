@@ -1,0 +1,17 @@
+{
+  "rank": 100600,
+  "sha": "95c905af60dbfffaf40801649e072af97be4de4a",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The model received altered numbers from web_fetch, including rounded identifiers and large exponents converted to null.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves original JSON number tokens while retaining two-space pretty-printing in web_fetch.",
+  "reasoning": "The diff for #108230 extends JSON handling to structured +json responses and shows that application/json already used `JSON.stringify(JSON.parse(body), null, 2)`. That round trip predates the July 1 graft, and the offline history stops at a missing commit, so I could not verify when standard JSON responses first began losing numeric fidelity."
+}

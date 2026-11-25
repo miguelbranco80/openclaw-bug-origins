@@ -1,0 +1,8 @@
+{
+  "rank": 100011,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge finding covers spurious dividers for skipped fallback candidates. The Selected-model accounting provenance entry says the original intent was preserved and raises no concern about a finalizer\u2019s response metadata blocking recovery."
+}

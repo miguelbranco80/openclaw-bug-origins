@@ -1,0 +1,17 @@
+{
+  "rank": 100348,
+  "sha": "a7c6c126faed721b2b614b5ec792c4c38f597d83",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "19fe87965eaae2ad4fcf7039793b53f6d1f9770d",
+  "cause_pr": 168859,
+  "confidence": "high",
+  "cause_quote": "The diff replaced the `for (;;) {` retry loop and its catch for `sidecar changed during reclaim policy callback` with a single `const lock = acquireFileLockSync(path, {` call, allowing the error to abort admission when the holder released normally.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A managed update could fail with `sidecar changed during reclaim policy callback` if another process released the lock while the updater was checking whether it could reclaim it.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix restores retries within the original deadline when a completed reclaim callback finds that the lock sidecar has disappeared, and preserves bounded stdout and stderr from each contention test child.",
+  "reasoning": "First-parent history and the production diffs confirm that #167051 introduced the bounded retry and that it was present immediately before #168859. The earlier release test expected the contender to acquire the lock after normal release, and #168859 removed both that test case and the error handler that made acquisition possible."
+}

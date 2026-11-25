@@ -1,0 +1,17 @@
+{
+  "rank": 100390,
+  "sha": "df0b49080d52f628558e3fb40c5a10a3a86fcfd3",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix combines the event and identity inserts for ordinary PostgreSQL transcript appends into one statement, saving three database round trips per measured warm turn.",
+  "reasoning": "The append path already used separate event and identity inserts before transcript batching landed in PR #175193, and the nearby statement optimization in PR #176487 changed batch size and navigation handling. The fix's baseline completed turns and restart readback successfully, and its measurements show reduced database work with the same transaction and advisory-lock counts."
+}

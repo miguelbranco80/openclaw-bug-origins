@@ -1,0 +1,8 @@
+{
+  "rank": 100167,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier finding \u201cProve revocation before a recovered automation commit\u201d concerned authorization at the write boundary, and the at-merge \u201cReview config compatibility\u201d item concerned upgrade impact. Neither addressed the recovery guard that blocked authenticated CLI or API tasks when an inter-session steering message was the latest input."
+}

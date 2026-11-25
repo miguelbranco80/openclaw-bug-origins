@@ -1,0 +1,8 @@
+{
+  "rank": 100493,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence item \u201cRequester authority reaches adoption\u201d describes reuse of path-containment checks without flagging that they run before ownership is checked. The earlier findings concern the inherited workspace override, saved skills snapshot, and handoff recovery details."
+}

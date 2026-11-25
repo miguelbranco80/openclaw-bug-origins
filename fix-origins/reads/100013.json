@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "08529d444da7c734e70db5af9fa0d68a7850dcb4",
+  "cause_pr": 58823,
+  "confidence": "high",
+  "cause_quote": "The diff moved `...(agentConfig?.model ? [{ raw: agentConfig.model, source: \"agent\" as const }] : []),` below the `params.cfg.agents?.defaults?.subagents?.model` candidate, so a global CLI default could displace a sandbox-compatible agent primary.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A cron run reported as sandboxed could execute the inherited CLI model's native tools on the gateway host outside Docker.",
+  "impact": "permissions",
+  "area": "cron",
+  "summary": "The fix rejects every CLI-backed model candidate before process launch when the cron session is sandboxed or requires isolation.",
+  "reasoning": "I checked the parent of #58823 and confirmed that cron already used the shared selector, which chose the agent's API-backed primary ahead of the global subagent default and routed it to the embedded runner's sandbox setup. The precedence change sent that same configuration through the existing host CLI path without a sandbox check. This identifies where the inherited-default case regressed, while the origin of the older unguarded CLI path remains unverified.",
+  "rank": 100013,
+  "sha": "7abbf8507aa2fc52952621a497ece0e019b2748e",
+  "rubric": "v1.2"
+}

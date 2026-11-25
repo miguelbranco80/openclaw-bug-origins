@@ -1,0 +1,17 @@
+{
+  "rank": 100173,
+  "sha": "cf70b5fc14ddf286dba2eeceb7d0fc61f76181b8",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see duplicate deferred maintenance tasks for the same session when a task callback scheduled maintenance again during setup.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix reserves a tracked maintenance run before task lookup or creation and waits for work started during preparation before disposing resources.",
+  "reasoning": "The fix's tests use synchronous callbacks to show how a second request can enter before the scheduler records its active run. The same lookup and creation ordering was already present at the July 1 shallow boundary, and the available older history could not establish when that ordering shipped or when a production callback first exposed it."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100168,
+  "sha": "2ab22d8772fbd8b7f7744ba0eaff5efeca096520",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "964fa991c0aff81e2ae46a0c9f99ebc0ab349d1a",
+  "cause_pr": 132716,
+  "confidence": "medium",
+  "cause_quote": "The new Vitest declaration loader added `const compiled = resolveVitestWorkerDeclaration(declaration, await owner.acquire());`, so the first declaration import waited for the invocation's worker compilation.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Developers and CI saw the first test or setup hook in affected Vitest suites stall or time out while workers compiled.",
+  "impact": "sequence-or-timing",
+  "area": "other",
+  "summary": "The fix moves compiled worker preparation into Vitest collection for 70 affected suites, outside their test and hook deadlines.",
+  "reasoning": "I checked that the parent of #132716 already had lazy imports inside the media and CLI test hooks and that #132716 added the loader that made the first declaration import wait for compilation. #162792 moved that wait outside the deadline for 335 suites and documented the remaining cases this fix follows up on. The history establishes when the wait entered the deadline, but it does not establish when compilation first took long enough to time out."
+}

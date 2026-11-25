@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "662abec754123d558f914378135f68404d88b977",
+  "cause_pr": 115643,
+  "confidence": "high",
+  "cause_quote": "The new store called `client.request(SESSION_PULL_REQUESTS_SUBSCRIBE_METHOD, { ... })` without a timeout and scheduled retries only in `.catch()`, so a lost acknowledgment on an open connection could leave the request pending indefinitely.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pull-request indicators could stay stale or a manual refresh could get stuck while chat remained connected.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix gives pull-request subscription requests a 30-second deadline, aborts obsolete requests, and preserves refresh intent for retry.",
+  "reasoning": "I checked the commit that introduced push subscriptions and confirmed that its browser client set no default RPC deadline, so an unanswered declaration could never reach the store's retry handler. The later same-set coalescing change also made subsequent refreshes wait behind a stalled declaration, but the initial subscription already failed to recover from a lost acknowledgment when it shipped.",
+  "rank": 100558,
+  "sha": "f4151933b8ff2c9f150e43604acc3c7da160cd1b",
+  "rubric": "v1.2"
+}

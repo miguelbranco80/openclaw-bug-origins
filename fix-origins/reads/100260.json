@@ -1,0 +1,17 @@
+{
+  "rank": 100260,
+  "sha": "f883a852363f27b2a07b432d704fe122e0ff04ec",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "187594c66309a878436434668c85b2f1fb85d6e9",
+  "cause_pr": 159873,
+  "confidence": "high",
+  "cause_quote": "The new script call to `prepareCronRunAdmission` passed `scheduledToolPolicy: request.scheduledToolPolicy,` so the message-action grant carried the persisted policy without the creator origin required by core admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A scheduled script's Telegram delete action failed with a missing or mismatched creator-origin error even though the job had a matching recorded origin.",
+  "impact": "permissions",
+  "area": "cron",
+  "summary": "The fix passes the prepared runtime's resolved creator-origin policy to scheduled script admission while retaining Telegram's separate conversation-binding check.",
+  "reasoning": "The parent of #159873 already enforced matching creator origin for scheduled message actions, and its script runner did not mint a scheduled message-action grant. The #159873 diff introduced that grant for scripts using a policy whose persisted shape lacked the origin. I checked that #176158 later restored the origin during tool preparation while leaving the admission argument unchanged."
+}

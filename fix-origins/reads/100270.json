@@ -1,0 +1,17 @@
+{
+  "rank": 100270,
+  "sha": "6535e863fb634871c3baee9ddf312b50c9c9d1d9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0acd851a3b3d6142f1e569a0e5616db62361969e",
+  "cause_pr": 100535,
+  "confidence": "high",
+  "cause_quote": "The initial Worktrees renderer used `${t(\"worktrees.restore\")}` and `${t(\"common.delete\")}` as the row buttons\u2019 sole accessible names, so every row with the same action exposed the same name.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Screen-reader users navigating by button name heard identical names for actions on different rows and could not tell which session, worktree, or MCP app each button targeted.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix appends the session label or key, worktree name, or MCP app title to each affected button\u2019s accessible name.",
+  "reasoning": "The fix covers four independently introduced instances, and the cause field records the earliest confirmed one, the original Worktrees renderer. I checked the introducing diffs for the Sessions table menu, the native catalog session menu, and the MCP app settings button, and each shipped with a generic name before the Solid migrations."
+}

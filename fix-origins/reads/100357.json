@@ -1,0 +1,17 @@
+{
+  "rank": 100357,
+  "sha": "9bcf4426229c1f24344193811b4541dcad55c764",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b4e27f8b3da207619aa47e25c80665d79779872a",
+  "cause_pr": 111669,
+  "confidence": "high",
+  "cause_quote": "The refactor inserted `await ensureTransportRuntimeHost();` immediately before `return await resolveRuntime(model).complete(model, context, options);`, so a completion cancelled during setup still reached the provider.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Cancelling a completion during transport setup could still send a request to the model provider.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix makes `complete` recheck cancellation and lets PDF and image fallbacks revalidate their retained resources after transport setup and before provider dispatch.",
+  "reasoning": "I checked the causing commit and its parent: `complete` previously invoked the runtime directly, and #111669 inserted the asynchronous gap that let cancellation occur before dispatch. The path history confirmed that the later change added a post-setup check to `completeSimple` while leaving `complete` exposed."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100018,
+  "sha": "19eddcf75194e9fca33b146b3b820a0a00831576",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "bb7d32e55d48a85c6a08b374064e7a45d1e52b9c",
+  "cause_pr": 167739,
+  "confidence": "high",
+  "cause_quote": "The introducing diff stored each database record with `state.admissions.set(record.identity, record)` and published every unretired record to worker bootstrap via `setEnvironmentData(SQLITE_DATABASE_ADMISSIONS_KEY, captureSqliteDatabaseAdmissions())`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the Gateway had opened and closed hundreds of databases, new Code Mode workers ran out of memory before executing.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix retires shared SQLite admission metadata after the last connection closes or its worker exits, preserves descriptor custody, and gives reopened databases a fresh admission generation.",
+  "reasoning": "The local history and introducing diff show that process-wide admission sharing first shipped with records that survived ordinary close and were included in every new worker's bootstrap. The fix PR reproduced worker startup failure with 41.5 MB of retained metadata after 300 closes, confirming the consequence of the original retention behavior."
+}

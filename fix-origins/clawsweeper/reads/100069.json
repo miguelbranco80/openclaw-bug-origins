@@ -1,0 +1,8 @@
+{
+  "rank": 100069,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item concerns scripts receiving a starting payload, and the Diagnostic compatibility row records the 60-second default. Neither raises a concern about a missing or unrelated macOS LaunchAgent making piped status wait past the caller\u2019s deadline."
+}

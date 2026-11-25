@@ -1,0 +1,17 @@
+{
+  "rank": 28,
+  "sha": "f1a55b0c26f2aeae6fca3aa249122914e6a642b3",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "2c87e333990141e6aa433fd05f1a82f09fca8a5e",
+  "cause_pr": 169722,
+  "confidence": "high",
+  "cause_quote": "The new New Session gate `return this.devicePlacementRuntime()?.cloudPlacementExecutionMode !== \"worker-turn\" ? t(\"newSession.deviceFolderRuntimeUnsupported\")` treats an absent runtime as unsupported, but models.list already omitted agentRuntime for rows on the implicit OpenClaw runtime.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "New Session disabled 'Existing folder' on a paired device with 'Existing device folders require a worker-turn runtime' for models on the default OpenClaw runtime with no runtime set in config.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "models.list now states the resolved runtime on every row (openclaw/implicit for the default), and the UI skips implicit runtimes when pinning a session runtime.",
+  "reasoning": "The existing-device-folder feature and its runtime gate arrived in 2c87e333990 (#169722); at that commit models-list-result.ts already spread `...(agentRuntime ? { agentRuntime } : {})` and resolveCatalogDecisionRuntime returned undefined for auto->openclaw, while resolveDraftAgentRuntime returned undefined for explicit models without runtime metadata. So the gate disabled the folder for implicit-runtime models from the day it shipped; the earlier models.list blame commits only shaped the pre-existing omission contract."
+}

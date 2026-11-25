@@ -1,0 +1,17 @@
+{
+  "rank": 100407,
+  "sha": "913a4002bc64c370d70ae09e24e4aa57321f06fc",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators could see a generic lease-loss error that omitted which heartbeat operation first detected the loss.",
+  "impact": "other",
+  "area": "storage",
+  "summary": "The fix adds the first heartbeat operation that detected lease loss and its observed outcome to the existing error diagnostics.",
+  "reasoning": "The original heartbeat reported a generic worker exit, and the later renewal-diagnostics change added exception details and a generic ownership-loss message without tracking the first operation that detected loss. The fix and its test diff show an expansion of diagnostic detail, with the existing lease-loss behavior and error codes preserved."
+}

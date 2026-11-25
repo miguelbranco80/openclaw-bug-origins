@@ -1,0 +1,17 @@
+{
+  "rank": 100749,
+  "sha": "6248825df550bb9cd38a0da8b2a3592593a3aeb9",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "other",
+  "summary": "The fix restores passing max-lines checks by moving terminal auth tests into a sibling file and reusing the existing transcript recap map.",
+  "reasoning": "First-parent history and blob IDs confirm that #161820 reversed the three-file lint repair from #161826 and that this fix restored the same three files. The reported failure was limited to max-lines lint checks, which the rubric classifies as not-a-defect."
+}

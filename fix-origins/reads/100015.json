@@ -1,0 +1,17 @@
+{
+  "rank": 100015,
+  "sha": "4c34d8eeadfc63260d0e5b1fc9f1c96ad196b5f2",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "283d5e6fe371725484cd316151051b977b2c5a66",
+  "cause_pr": 164197,
+  "confidence": "high",
+  "cause_quote": "The commit added `withCurrent: connection.withCurrent` to the cleanup unsubscribe call, so an interrupted turn's cancelled foreground authority rejected the request before it reached the app-server.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After interrupting a Codex chat, the next message waited for other active chats on the shared app-server to finish.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix uses the attempt's cleanup authority to unsubscribe after an interrupt, preserving the shared app-server when unsubscription succeeds.",
+  "reasoning": "I checked the causing commit's parent and confirmed that ordinary interrupted-turn cleanup already called `releaseThreadSubscription()` without an authority argument and could send `thread/unsubscribe` directly. The causing diff added an abort-sensitive foreground authority to that same path, so cancellation looked like an unsubscribe failure and caused cleanup to retire the shared client."
+}

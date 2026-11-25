@@ -1,0 +1,8 @@
+{
+  "rank": 100381,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items concern startup payload compatibility, configuration, and migration, while the review history flags provider cancellation. The Startup identity safeguards section describes readiness checks without raising the risk that a loopback bind on macOS could report the port free while the wildcard Gateway was accepting connections."
+}

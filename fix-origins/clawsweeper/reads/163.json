@@ -1,1 +1,8 @@
-{"rank": 163, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review (of an earlier head) only raises chat bundle growth and test-line allocation, plus a generic layout-shift measurement gap; nothing mentions the off panel's settings-group display override, the disabled busy button losing focus, raw Gateway error text, or a missing fallback when plugins.changed is dropped."}
+{
+  "rank": 163,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items concern chat bundle growth and test-line allocation, and the Tests section asks for layout-shift measurements without identifying the off-panel misalignment. The Technical review describes the pre-existing unknown-method error on page load and does not address the new activation flow."
+}

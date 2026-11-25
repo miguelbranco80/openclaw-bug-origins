@@ -1,6 +1,17 @@
 {
+  "rank": 249,
+  "sha": "9170655ee2784810bdeadb7936c85334a691e406",
+  "rubric": "v1.1",
   "origin": "never-worked",
   "cause_sha": "fc58825c81bd466691afb484427677f9a99002fc",
+  "cause_pr": null,
   "confidence": "high",
-  "reasoning": "The commit that introduced live chat automation cards set `retryable: true` in the catch block for every non-aborted `cron.get` error, including the not-found response for a deleted job. I checked that the original card showed Retry whenever `state().retryable && !state().loading` and that c9cc12844c7d preserved that condition."
+  "cause_quote": "The new watch-job-definition.ts catch block set `update({ loading: false, writable: false, retryable: true, error: state.error })` with the comment 'Removed and inaccessible jobs intentionally have the same Gateway read contract', and the card rendered Retry whenever `state().retryable`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After removing an automation, its card in the original chat still said 'Automation unavailable' and offered a Retry button that could never bring it back.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The chat automation card now distinguishes an exact cron-job-not-found read from a failed request, labeling removed jobs 'Removed' without Retry while keeping Retry for transient failures.",
+  "reasoning": "The in-chat automation card and its exact-job watcher were introduced in fc58825c81bd, which treated every read failure, including not-found for a deleted job, as retryable and showed Retry; c9cc12844c7d later restructured the card but kept the same `retryable` handling. No earlier version behaved correctly, so it is never-worked with fc58825c81bd as cause (its subject carries no PR number)."
 }

@@ -1,1 +1,8 @@
-{"rank": 195, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review finds no defects and the earlier version only asked to rename a PR body heading; no item concerns a concurrent transcript append failing the version-checked initial admission."}
+{
+  "rank": 195,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes exact transcript-version checking at final admission as a safeguard. The earlier stale-admission item asks for integration validation without raising the risk that a metadata-only append during preparation could prevent a saved request from resuming."
+}

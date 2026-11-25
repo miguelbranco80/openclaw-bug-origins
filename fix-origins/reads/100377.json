@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "13ce3686f3bcc2ecd1d60cc8861c93ee87bdfb84",
+  "cause_pr": 149284,
+  "confidence": "high",
+  "cause_quote": "Changing `CDP_READY_AFTER_LAUNCH_MAX_TIMEOUT_MS` from `250` to `1500` let startup accept responses that the unchanged 300 ms HTTP probe on the next operation would time out on, triggering a restart.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The next browser action could restart a healthy managed Chrome after a slow startup and close its open tabs.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix gives startup and subsequent managed Chrome operations the same readiness allowance, propagates cancellation, and preserves profile data when browser ownership is uncertain.",
+  "reasoning": "The parent code already reused a running Chrome when its probes passed, and startup readiness had a 250 ms cap within the next operation's 300 ms HTTP budget. PR #149284 widened startup alone, so a 750 ms response could now produce a successful start followed by an unnecessary restart. The fix extends the existing 750 ms startup test to cover the next operation and assert that the same process survives.",
+  "rank": 100377,
+  "sha": "0b43274974cb4374e0070ce74a3d7d14a90c2389",
+  "rubric": "v1.2"
+}

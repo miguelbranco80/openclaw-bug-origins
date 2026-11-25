@@ -1,0 +1,8 @@
+{
+  "rank": 114,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge section called for merge validation and flagged Cron script compatibility. The earlier findings concerned MCP result shapes, stored scripts, and reserved global names, with no warning about the read tool\u2019s boolean enum in Gemini or Vertex requests."
+}

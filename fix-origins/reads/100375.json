@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An ordinary message from an authorized Matrix sender could cause the bot to post a final reply to the room even with visibleReplies set to message_tool.",
+  "impact": "permissions",
+  "area": "channels",
+  "summary": "Matrix now sets CommandSource to text only for recognized control commands when text commands are enabled.",
+  "reasoning": "The July Matrix refactor carried over the unconditional CommandSource assignment from the old handler, and the reply policy at the start of the available history already selected automatic delivery for explicit command turns before consulting group visibility settings. The older path history stopped at a missing commit, so I could not verify whether the visibility policy shipped with this defect or had worked for Matrix before a later change.",
+  "rank": 100375,
+  "sha": "5ee11829a617670836f15fb364e31ba37379dee1",
+  "rubric": "v1.2"
+}

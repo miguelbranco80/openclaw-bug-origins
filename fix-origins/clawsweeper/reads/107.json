@@ -1,1 +1,8 @@
-{"rank": 107, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review's items concern native-plugin handle retirement proof and nonreactive locale translations in board renderers (including board-document.tsx), plus an earlier plugin-view application-context fallback; none concerns the lazy BoardDocument error boundary showing raw errors instead of the stale-chunk reload message."}
+{
+  "rank": 107,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cKeep gallery previews passive\u201d finding and its earlier counterpart concern granted MCP Apps starting sandbox bridges in gallery cards. The reported bug occurs when the preview renderer fails to download and the card displays a misleading, clipped error message."
+}

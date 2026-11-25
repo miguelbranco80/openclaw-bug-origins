@@ -1,0 +1,17 @@
+{
+  "rank": 100592,
+  "sha": "815a9bd7d23a59162df2e7215d4c7bf4754ddee0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9903991f62b5548e4447fa137b1def2d8cb68e64",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The stop code replaced `setTimeout(finish, timeoutMs)` with polling based on `const deadline = Date.now() + timeoutMs` and `const remainingMs = deadline - Date.now()`, making the grace period sensitive to wall-clock steps.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A system clock correction could make a managed local provider time out during startup or escalate to a forced stop too early or too late.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix switched managed local-provider readiness and process-stop deadlines to monotonic time.",
+  "reasoning": "The causing diff shows that local-provider restarts previously used a relative timer for the stop grace period and that the replacement shared by restart and shutdown used wall-clock polling. I confirmed that the September extraction carried that polling into the process helper. The readiness defect predates the shallow boundary, so I could verify the stop regression but could not locate the original readiness change offline."
+}

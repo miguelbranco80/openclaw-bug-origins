@@ -1,0 +1,8 @@
+{
+  "rank": 231,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 item \u201cCanonicalize the trusted runtime temp root before cleanup\u201d flagged a macOS path alias that blocked cleanup of coverage directories. Fixing the alias would still leave ordinary agent validation directories in host /tmp outside the 24-hour sweep."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "e6b356f35ada8a8a1359b8fb2f31e3f39e59e61b",
+  "cause_pr": 121899,
+  "confidence": "high",
+  "cause_quote": "The observer added `lastTaskSummaryById.set(task.id, summary);` before broadcasting, so after a broadcast threw, `if (lastTaskSummaryById.get(task.id) === summary) { return; }` skipped the next identical update.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A task update could be missing after a failed broadcast, or a replacement task's terminal could close unexpectedly.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The gateway now rechecks ownership before publishing task updates and closing terminals, includes the requester in deduplication, and rolls back the deduplication entry when a broadcast fails.",
+  "reasoning": "I checked the causing commit's diff and its parent: the parent attempted a broadcast for every task upsert, and the registry caught observer errors so a later upsert could still be published. The new cache suppressed that later attempt even when the first broadcast threw. The fix also addresses a separate stale terminal close that predates the deduplication change.",
+  "rank": 100566,
+  "sha": "058dcbbcd99a4515e8476e7ca090d5661c72e7cc",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "d0ea7eae7eade7740fad79db1aa73a2ebd337bde",
+  "cause_pr": 170828,
+  "confidence": "high",
+  "cause_quote": "The new preflight ran `const postgres = paths.find((pathname) => readBackupEngine(pathname).engine === \"postgres\");` before `const engines = (await readTargetEngines()) ?? [\"sqlite\"];`, so it copied database images before checking whether the target already supported PostgreSQL.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Updates to targets that supported PostgreSQL incurred unnecessary disk I/O, and repeated Git checks copied database images again.",
+  "impact": "slower-or-heavier",
+  "area": "update",
+  "summary": "The updater now checks the target's declared PostgreSQL support before scanning local stores and still rejects targets that would strand a PostgreSQL store.",
+  "reasoning": "The path history and introducing diff show that #170828 added PostgreSQL compatibility admission with the database image reads already ordered ahead of the target capability check. The same diff shows that readBackupEngine prepares a private database image, and the fix PR reports that compatible targets now incur zero engine-image reads at the affected admission boundaries.",
+  "rank": 100881,
+  "sha": "646445dca8e70d95fc0c98f2ff27c433ebc54420",
+  "rubric": "v1.2"
+}

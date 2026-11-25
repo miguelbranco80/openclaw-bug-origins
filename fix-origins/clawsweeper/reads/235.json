@@ -1,1 +1,8 @@
-{"rank": 235, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Review covers truncation, persistence and access controls; nothing mentions text-less (image-only) results being classified as unavailable by the full-output loader."}
+{
+  "rank": 235,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Verification section reports successful clipboard and download checks for text output. The earlier Before merge items concern branch conflicts, and no review item raises the unavailable message or empty exports for successful image-only results."
+}

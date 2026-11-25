@@ -1,0 +1,8 @@
+{
+  "rank": 49,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge review\u2019s only open item was CI failure attribution. The review history covered Unix signal propagation through respawn wrappers and test fixture cleanup, with no concern about Ctrl+C leaving device Gateway reads pending."
+}

@@ -1,6 +1,7 @@
 {
   "flagged": "exact",
   "where": "at-merge",
-  "quote": "This new, more specific selector also owns `::after` and supplies `opacity: 0`, so the dictation border disappears even when no file is being dragged; it also replaces the border's background and geometry.",
-  "note": "The “Preserve the pseudo-element used by active dictation” item identified the CSS collision that hid the animated recording border when dictation started in New Session. It remained open at merge, and no human comment in the bundle answered it."
+  "quote": "This new, more specific selector also owns `::after` and supplies `opacity: 0`, so the dictation border disappears even when no file is being dragged; it also replaces the border's background and geometry. Use an unused paint surface, such as `::before`, for the drop tint",
+  "outcome": "open-at-merge",
+  "note": "The P2 finding 'Preserve the pseudo-element used by active dictation' names the exact collision with .agent-chat__input--dictating::after and the ::before repair the fix later applied. It was still open at merge with no human reply."
 }

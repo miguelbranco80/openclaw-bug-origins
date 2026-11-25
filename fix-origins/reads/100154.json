@@ -1,0 +1,17 @@
+{
+  "rank": 100154,
+  "sha": "af03aa072fc53ae697dcc2baba7772c6e6fe4eba",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "929bfc04f52953173748ac6c04881754b0b7514e",
+  "cause_pr": 168607,
+  "confidence": "medium",
+  "cause_quote": "The batching change submitted input with `expected: before.version` and called `throwSessionInputActorFailure(actorOutcome, authorityFailure)` on every non-committed result, so an intervening metadata write could fail the turn before input was saved.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A follow-up message in a warmed ACP chat session could fail to complete.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix retries stale input admission once, persists ACP input before publishing the start event, and waits for terminal delivery and persistence before removing routing.",
+  "reasoning": "The batching commit's parent already contained cold-then-warm Gateway ACP completion coverage and committed input through the session worker without the new actor version check. The batching diff introduced the stale-version failure path, and the fix's custody tests reproduce it by inserting a metadata write before actor admission. The fix also closes a terminal routing cleanup race whose origin I could not tie to the batching commit."
+}

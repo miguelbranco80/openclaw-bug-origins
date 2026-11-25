@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "8c2996e01303dee2e0602d0617fbebea436c5ebe",
+  "cause_pr": 141476,
+  "confidence": "high",
+  "cause_quote": "The team-mode feature added `return grouped;` inside the main-session row filter, keeping Home in the list even though the agent header already linked to the same session.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Show all agents mode, an agent\u2019s Home appeared both as the header\u2019s destination and as a session row, while session identity icons crowded the status indicators on the right.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix makes the agent header the sole Home entry, places session identity icons 8 px before their titles, and keeps Home\u2019s child conversations and retry controls reachable.",
+  "reasoning": "I checked the team-mode introducing diff and confirmed that the header already targeted `card.mainKey`, the row filter retained that session, and the renderer placed identity icons in the trailing slot. The intervening #151401 fix removed a chip-mode exception while preserving the team-mode Home row.",
+  "rank": 100660,
+  "sha": "0ca3500309587d5da20ae208da642609165961b2",
+  "rubric": "v1.2"
+}

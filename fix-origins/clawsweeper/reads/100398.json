@@ -1,0 +1,8 @@
+{
+  "rank": 100398,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier P2 findings addressed signed thinking history lost during conversion when token caps were missing or small. The at-merge Tests section focused on cap and budget coverage and did not raise the risk that runtime reasoning capped at high could override a session\u2019s xhigh or max selection."
+}

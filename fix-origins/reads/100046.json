@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "ef2653756ee9af72be15bf968863790327b5e891",
+  "user_visible": "yes",
+  "user_saw": "After pairing with a Gateway configured with a Control UI base path, opening Settings in the mobile app returned HTTP 404.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The shared setup-code resolver now adds the configured Control UI base path to eligible origin-only pairing URLs while preserving explicit overrides, remote URLs, and configured proxy paths.",
+  "reasoning": "The resolver already emitted origin-only URLs before the Settings change, and the fix's paired-flow evidence shows that those URLs still supported Gateway authentication. The iOS Settings migration replaced the native screen with an embedded Dashboard page that derives its mount from the paired endpoint path, exposing the omission when the app requested `/settings` instead of `/gateway/settings`.",
+  "rank": 100046,
+  "sha": "2e022fc146b656e1466099dc8ac02fb277666fc5",
+  "rubric": "v1.2"
+}

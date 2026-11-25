@@ -1,0 +1,8 @@
+{
+  "rank": 100276,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cComplete next step\u201d item covered the merge conflict and CI, while earlier items covered upgrade compatibility and credential fallback. None raised DeepSeek\u2019s second primary category or the exactly-one-category validation it broke."
+}

@@ -1,7 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "outcome": null,
-  "note": "The finding “Bind the macOS refresh to the snapshot route” concerns a stale response after switching Gateways. The reported bug occurs when clearing a personal accent with Talk Mode loaded, because Talk Mode has already written the resolved personal color into the Gateway fallback."
-}

@@ -1,0 +1,8 @@
+{
+  "rank": 100158,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier archived-receipt finding addressed path aliases during backup restore, and the migration-custody item addressed index-recovery test fixtures. Neither points to SQLite\u2019s variable limit on large credential inserts or to the stale receipt after Doctor replaces the database on btrfs."
+}

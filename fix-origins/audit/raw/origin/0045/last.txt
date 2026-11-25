@@ -1,0 +1,17 @@
+{
+  "rank": 45,
+  "sha": "30cdb9263f88e1764cd0b13fb3f67ac7c7e5689b",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "f8550bc11d4d7e002e219e5ea908a34721c24db2",
+  "cause_pr": 122425,
+  "confidence": "high",
+  "cause_quote": "It added caret-local `const completion = findInlineSlashCompletion(value, caret)` only after the existing `const argMatch = value.match(/^\\/(\\S+)\\s(.*)$/); if (argMatch) { ... return; }` branch, so a draft that starts with a command never reaches the inline completion.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Typing a second slash command such as `/statu` later in a draft that began with `/name ...` showed no completion menu, and Enter sent the whole draft.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "Computes the caret-local slash completion before the leading-command argument branch and lets a visible inline completion own Enter, so later commands in a command draft can be completed and sent alone.",
+  "reasoning": "Both the argMatch branch and findInlineSlashCompletion are already present at the grafted history root, so I traced the inline completion through gh api to #122425, whose diff places the new inline path after the unchanged leading-command early return. That ordering is the precedence the fix reverses; later Solid ports (#174321, #182363) carried it over unchanged."
+}

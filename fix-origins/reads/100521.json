@@ -1,0 +1,17 @@
+{
+  "rank": 100521,
+  "sha": "f02c8eba42a217ec7b414e03a5c4d92693caa6b6",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A member with general write access could archive or restore a thread created by someone else.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix limits archive and restore on multi-user gateways to thread creators and admins and aligns the UI and agent controls with that rule.",
+  "reasoning": "The PR explicitly describes the creator-and-admin restriction as a requested policy change. The prior RPC documentation grouped archive and restore with write-scoped session organization, and the earlier agent-tool change explicitly documented archive and restore access for assigned human owners."
+}

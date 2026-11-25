@@ -1,0 +1,17 @@
+{
+  "rank": 100503,
+  "sha": "73c9e39c619a290e8b27c7f7f7ce714440650fa1",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "64c543a78b7fe2497bb40e5b73c47483e900ff06",
+  "cause_pr": 139246,
+  "confidence": "high",
+  "cause_quote": "The new `|| status?.type === \"systemError\"` admitted settled failures into the configuration refresh path, which still required a `notLoaded` notification and had no way to wait for teardown before resuming.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a provider error, retries with changed instructions failed with an unload confirmation error while another Codex conversation kept the shared server active.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "Managed Codex servers now unload released threads immediately, and OpenClaw waits for the matching unload notification before resuming the same conversation with refreshed instructions.",
+  "reasoning": "The parent of #139246 accepted only idle or unloaded threads for configuration refresh, and #139246 itself added a test expecting a settled failure with changed instructions to be refused. I checked #149000's diff and Gateway test, which show that its later client replacement restored recovery for eligible cases while preserving the existing refusal when a sibling was active."
+}

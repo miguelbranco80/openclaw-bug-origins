@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "4af8616c62ae05f9eb47b436fd2c2e394c50c436",
+  "cause_pr": 143768,
+  "confidence": "high",
+  "cause_quote": "The commit routed configured binaries through `ensureManagedCrabboxBinary` and added `const VERSION_TIMEOUT_MS = 5_000`, so a healthy executable whose version probe exceeded five seconds fell through to managed installation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a busy Gateway startup, cloud workers could use an older managed Crabbox CLI in place of the healthy newer CLI the operator configured.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix raises the Crabbox version-probe timeout to 30 seconds and combines remote commands for project preparation and snapshot capture.",
+  "reasoning": "I checked the introducing diff and its removed code, which show that Linux worker provisioning previously used the configured executable directly without a mandatory version probe. The live trace reported in the fix PR showed that a healthy 6.922-second probe selected managed 0.56 in place of configured 0.64. The remote-command reductions are performance improvements alongside that regression fix.",
+  "rank": 100745,
+  "sha": "8b1403496ac0aab04de77cbfd2aa61304b88de44",
+  "rubric": "v1.2"
+}

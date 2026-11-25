@@ -1,0 +1,17 @@
+{
+  "rank": 100133,
+  "sha": "a0bc65a3b3027744b2bb0ca380c44a9e3a936ad0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8fc5038f8cf094b23279ab88fa125ecdbc5d4a8e",
+  "cause_pr": 159065,
+  "confidence": "high",
+  "cause_quote": "The introducing diff calls `method: \"device.pair.setupCode\"` with `timeoutMs: 30_000`, so the qualification harness fails any direct setup request that takes more than 30 seconds.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "The iOS release qualification job could time out while requesting a pairing setup code after a cold Simulator boot.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix raises the iOS qualification setup-code deadline from 30 to 60 seconds and captures diagnostics once if the request is still pending after 10 seconds.",
+  "reasoning": "The introducing diff replaced the QR CLI invocation with a direct Gateway RPC and gave that request a 30-second deadline from the start. I checked the subsequent harness history and found that the deadline persisted through the setup refactor and the switch to the stable Gateway. The fix PR records a hosted request that succeeded in 34.311 seconds, confirming that the original deadline could reject a successful setup even though the source of the delay remains unknown."
+}

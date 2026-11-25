@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "b107d4af14d7d3d190fd8310c41b95142a5414c5",
+  "cause_pr": 158491,
+  "confidence": "high",
+  "cause_quote": "The new package publication journal rejected the install when `authority.installKey !== params.liveRoot`, comparing the recorded canonical key with the raw path through the directory alias.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A global npm upgrade through a directory alias such as macOS `/var` rolled back with a message saying it required its original POSIX npm directory.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix resolves a temporarily missing package root through its canonical parent while preserving the rejection of dangling symlinks.",
+  "reasoning": "I checked the introducing diff and its parent, which used the ordinary package swap without the new journal preparation check. PR #163086 later canonicalized the live root when it existed, but the resolver still returned the raw alias when the package directory was absent, so the new activation path continued to reject the same installation in that state.",
+  "rank": 100244,
+  "sha": "a1903fca5bdbbc953d97ae5de9031822ae6b9547",
+  "rubric": "v1.2"
+}

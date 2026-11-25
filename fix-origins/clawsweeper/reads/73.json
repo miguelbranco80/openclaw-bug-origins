@@ -1,0 +1,8 @@
+{
+  "rank": 73,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item asked whether captured recovery reasons survived the shared formatter during an updater run. That check would leave untested whether `openclaw qr --json` prints the specific pairing refusal reason to stderr."
+}

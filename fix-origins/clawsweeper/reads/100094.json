@@ -1,0 +1,8 @@
+{
+  "rank": 100094,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d item warned that clearing Bash task IDs too soon could allow premature subprocess reuse. The at-merge \u201cNotification settlement\u201d section described retaining pending IDs without raising the risk that a nested agent or workflow reports completion only to its launcher, leaving the parent reply open."
+}

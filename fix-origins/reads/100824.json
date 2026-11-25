@@ -1,0 +1,17 @@
+{
+  "rank": 100824,
+  "sha": "a5519acee02a9c8ccada6be4770d9b7ef02e3910",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "27d6c8816721acf515715874961cfd3963a14582",
+  "cause_pr": 87643,
+  "confidence": "high",
+  "cause_quote": "The original dashboard title code passed `maxLength: DASHBOARD_SESSION_TITLE_MAX_CHARS` before normalization and selected the first nonblank, non-fence line with `.find((line) => line && !line.startsWith(\"```\"))`, so an explanation ahead of the title was saved as the title.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An automatically named chat could show a clipped model explanation or a prefix such as \u201cSession title:\u201d in its name.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The gateway now extracts the title from the full model response, strips recognized title prefixes, and applies the length limit afterward.",
+  "reasoning": "The introducing diff shows that the dashboard feature capped the model response before normalization, picked the first eligible line, and stripped only a bare English `Title:` prefix. I checked the later Haiku routing change, which changed the model and runtime without changing title extraction, and the fix PR reproduced the same failure with controlled Ollama responses."
+}

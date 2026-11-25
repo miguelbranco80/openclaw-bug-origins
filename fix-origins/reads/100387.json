@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "03e4bc05af6695095c9b8e7b3cc562d067d3e56e",
+  "user_visible": "yes",
+  "user_saw": "When the Codex receiver\u2019s execution budget expired during startup, the terminal error said only `turn/start aborted`.",
+  "impact": "presentation",
+  "area": "agents",
+  "summary": "The fix preserves the originating abort reason as `Error.cause` and includes its text in the Codex app-server cancellation message.",
+  "reasoning": "The client already reduced signal cancellations to a generic abort message before its typed cancellation wrapper was introduced. I checked that #134755 moved execution-budget enforcement from watches armed after turn startup to a deadline that could call `runAbortController.abort(error)` while `turn/start` was pending. That new use of the existing signal exposed the loss of its reason.",
+  "rank": 100387,
+  "sha": "ddaec524b19f7283a38c208f8646060005c78388",
+  "rubric": "v1.2"
+}

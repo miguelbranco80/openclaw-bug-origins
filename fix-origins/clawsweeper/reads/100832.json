@@ -1,0 +1,8 @@
+{
+  "rank": 100832,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes public filtering without raising a risk that it could discard the native addon's required glibc version. The earlier Before merge items concern integration conflicts, recovery qualification, and data-model compatibility."
+}

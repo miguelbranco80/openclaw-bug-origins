@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Linux, a large Gateway briefly became unresponsive when exec tools or Git helpers launched commands.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix routes supported Linux Gateway command launches through a lightweight broker so the kernel copies the broker's page tables instead of the Gateway's.",
+  "reasoning": "The PR profile measured 56 clone calls averaging 55.6 ms in a Gateway with 5.4 GB RSS, showing that the cost became significant with a large parent process. The Execa adoption diff shows that the same paths already launched children directly through Node's spawn and execFile APIs. The available history did not identify a specific change that pushed the Gateway into this condition.",
+  "rank": 100861,
+  "sha": "67cedc32e9967d01586c65dc3b18073e9beb5551",
+  "rubric": "v1.2"
+}

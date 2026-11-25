@@ -1,17 +1,17 @@
 {
-  "rank": 241,
-  "sha": "99d5703eeb3f9ff56bb4aa123052aec5283054a8",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "3d7f8fbf399df62820f8982cab7f7c2de83648b0",
-  "cause_pr": 182516,
+  "origin": "regression",
+  "cause_sha": "f36f0cc6fca969f191f2e9ce2d01ebb5efab7308",
+  "cause_pr": 182267,
   "confidence": "high",
-  "cause_quote": "Inside the single for-loop over message.tasks it added the gate `(parentTaskId === undefined || input.pendingBackgroundTaskIds.has(parentTaskId) || input.pendingBackgroundTaskIds.has(id))`, so a child seen before its parent in the same snapshot found no held parent and was skipped.",
+  "cause_quote": "The ownership check `task.owned_by_subagent === true || typeof task.parent_task_id === \"string\" ? false : (previous ?? inputUuid)` excluded nested Agents and Workflows from the holds that kept the turn open for their replies.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With the Claude CLI runtime, answers from nested subagents or workflows were lost because the turn ended after the root agent's answer when a task snapshot listed a child before its parent.",
+  "user_saw": "Claude CLI could end the turn after the root task replied, dropping later replies from nested agents or workflows.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Replaced the single-pass background-task hold scan with a fixed-point scan (after recording ownership for the whole snapshot) so children listed before parents still get held.",
-  "reasoning": "Before 3d7f8fbf (#182516) nested Agents/Workflows with a parent_task_id were owner=false and never held; that commit introduced holding children of held parents, with the parent-held check evaluated in one pass in snapshot order, which is exactly the ordering defect fixed here. Intervening commits (c93890f, etc.) only renamed calls to tasks.*; the PR body confirms main's scan was single-pass."
+  "summary": "The fix records task ownership for the full snapshot, then repeats the hold scan until every eligible descendant is held regardless of snapshot order.",
+  "reasoning": "Tracing the fix's child-first fixture through the parent of #182267 shows that nested tasks inherited or defaulted to the current input's ownership and acquired holds in either snapshot order. #182267 excluded those tasks entirely, and #182516 restored their eligibility but required the parent hold to exist when the single scan reached the child, leaving child-first snapshots broken.",
+  "rank": 241,
+  "sha": "99d5703eeb3f9ff56bb4aa123052aec5283054a8",
+  "rubric": "v1.2"
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100181,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier finding \u201cRetain the lease ID when provisioning fails before registration\u201d concerns recovery during provisioning. The at-merge \u201cBefore merge\u201d items concern compatibility and upgrade validation, and neither review raises the risk that sandbox list reports a runtime as stopped when lease inspection fails."
+}

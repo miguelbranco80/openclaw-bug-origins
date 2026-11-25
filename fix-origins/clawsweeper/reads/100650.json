@@ -1,0 +1,8 @@
+{
+  "rank": 100650,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier managed lifecycle item focused on descendant cleanup after aborts or restarts. The at-merge SDK contract audit was broad and gave no indication that bypassing the supervisor would break Windows npm launcher resolution."
+}

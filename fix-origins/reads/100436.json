@@ -1,0 +1,17 @@
+{
+  "rank": 100436,
+  "sha": "a9479eb77d0e5cfb0686862b96720ea9e858cbe9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "38dd3c28dd42f8c853f35b37ac688c4701bcf474",
+  "cause_pr": 161260,
+  "confidence": "high",
+  "cause_quote": "The diff added `turn.pendingBackgroundTaskIds.add(task.task_id)` for every listed Agent or workflow and queued every `task_notification` without checking whether its status was `stopped`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Claude CLI prompt could time out without delivering its final reply after a background task was stopped or a task from an earlier prompt reappeared.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix tracks task ownership across Claude CLI inputs, releases stopped tasks, and keeps waiting for genuinely pending work from the current input.",
+  "reasoning": "I checked the parent of #161260 and confirmed that an empty task snapshot cleared the Agent and workflow hold, allowing the ordinary final result in the earlier-input fixture to complete. #161260 made that hold persist after the snapshot cleared and also began holding Bash tasks first announced as already backgrounded, so a stopped task with no follow-up result could strand the final answer. The older Bash path already held tasks first seen in the foreground, so the regression attribution applies to the persistent Agent and workflow hold and the newly covered Bash event order."
+}

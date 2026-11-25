@@ -1,0 +1,17 @@
+{
+  "rank": 100762,
+  "sha": "7d8052136eec2398e5752ee4465f5ea8677ac0a8",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Memory Wiki could miss relevant pages for Cyrillic or Japanese queries and rank unrelated pages first for accented Latin queries.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix preserves Unicode letters, numbers, and combining marks when splitting Memory Wiki queries into search terms.",
+  "reasoning": "The July 1 snapshot already used the ASCII-only splitter in page scoring, where term matching required at least one token. The available path history stops at the shallow boundary, so I could not verify whether the splitter shipped with search or replaced earlier working behavior."
+}

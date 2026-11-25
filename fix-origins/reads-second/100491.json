@@ -1,0 +1,17 @@
+{
+  "rank": 100491,
+  "sha": "c57f5b61e4c735d618c93362095caa25cfb8e717",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0dc63eecaddd06b66c3db3f92ab67644a526e954",
+  "cause_pr": 162175,
+  "confidence": "high",
+  "cause_quote": "The new branch called `await runSelectedMemoryProviderStatus(opts, runtimeConfig, slotOwner);` and immediately returned, bypassing command secret resolution and passing raw `cfg` into `getActiveMemoryProvider`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw memory status` and Doctor reported \"Invalid API key\" for a selected memory plugin that worked through the Gateway with the same SecretRef.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix makes `memory status` and Doctor resolve the selected memory plugin\u2019s manifest-declared SecretRefs before probing and report the provider as unavailable if resolution fails.",
+  "reasoning": "The #162175 diff introduced selected-provider health reporting in `memory status` and passed unresolved configuration to the provider from the first implementation. Path history shows that #162176 subsequently introduced Doctor\u2019s provider-runtime probe with the same omission."
+}

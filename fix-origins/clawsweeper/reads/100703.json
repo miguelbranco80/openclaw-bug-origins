@@ -1,0 +1,8 @@
+{
+  "rank": 100703,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The merge-time Findings section was empty. The earlier branch-adoption item concerned identity observers seeing the old manager, while this bug came from the transcript version advancing before the row refresh could reuse the committed entry projection."
+}

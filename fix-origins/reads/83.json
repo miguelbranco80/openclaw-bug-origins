@@ -1,17 +1,17 @@
 {
   "rank": 83,
   "sha": "c1be284382db0511bf1dde1ab75fbf6cdb938354",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A Telegram private-chat message sent with a requested message effect arrived without the effect and without any error.",
-  "impact": "other",
+  "user_saw": "Telegram private-chat messages arrived without the requested effect and no error was shown.",
+  "impact": "failed-every-time",
   "area": "channels",
-  "summary": "Carries the shared message tool's effectId through Telegram's text, rich, media and location send paths as message_effect_id for private chats, omitting it for groups.",
-  "reasoning": "At the fix's parent the Telegram plugin has no effect/message_effect_id code at all; the shared tool's effectId is described as 'sendWithEffect id/name' with iMessage-style effect names in its tests, so Telegram never implemented or promised effects. Forwarding it is a new Telegram capability rather than repair of broken behavior, so no causing commit applies."
+  "summary": "The fix forwards a numeric effect ID to Telegram on the first accepted message of a private-chat send.",
+  "reasoning": "The shared effectId option predates the shallow history boundary, and the available Telegram history showed no earlier forwarding of that option. The apparent removal of message_effect_id was from a type declaration whose send-context field list already omitted it. The offline history could not establish when Telegram first accepted the shared option or whether it ever delivered the requested effect before this fix."
 }

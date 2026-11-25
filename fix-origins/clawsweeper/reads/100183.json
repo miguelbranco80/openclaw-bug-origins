@@ -1,0 +1,8 @@
+{
+  "rank": 100183,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier finding concerns missing acknowledgement for a nonempty SDK diff, and the at-merge Before merge items concern failed checks and limited source access. Neither addresses dependency installation when both refs resolve to the same commit."
+}

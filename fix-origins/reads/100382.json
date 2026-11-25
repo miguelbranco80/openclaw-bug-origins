@@ -1,0 +1,17 @@
+{
+  "rank": 100382,
+  "sha": "f8b194a5beda90905849c2ded0164012c6fee918",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "a05cfd475675c5b77eb70b17a67ad8ead51da152",
+  "user_visible": "yes",
+  "user_saw": "When running OpenClaw under Bun, users could see the browser relay hang, Slack ignore proxy settings, or network-backed plugins fail to start.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix routes plugin WebSocket and proxy traffic through Bun-compatible adapters and adjusts the Nextcloud shutdown and Codex launcher paths.",
+  "reasoning": "The browser relay already imported `ws` directly and Slack already loaded `undici` by package name before #114256 reopened CLI and Gateway use on Bun builds with `node:sqlite`. That runtime opt-in exposed the existing networking code to Bun's partial package implementations, and the earlier gateway-client fix #139919 confirms the same WebSocket option and lifecycle incompatibility."
+}

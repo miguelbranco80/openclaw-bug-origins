@@ -1,0 +1,8 @@
+{
+  "rank": 100746,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Render Home draft and outbox indicators in the rail",
+  "outcome": "answered",
+  "note": "The review history flags how the rail renders Home\u2019s session indicators, which points to the rendering path where an attention control intercepted clicks. The author\u2019s \u201cPersonal pin and Home attention repair\u201d comment reports restoring the draft and outbox indicators, while the review item itself only calls for restoring those indicators."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "d55993e76dcc73def660ca9ecf0ab083f33b3cb7",
+  "cause_pr": 180125,
+  "confidence": "high",
+  "cause_quote": "The diff removed `if (!thread.draft.trim())` and its `setDraft` call using `buildCompanionQuestionPrefill(attachment.selectionAnnotation.text) ?? \"\"`, leaving the question empty after a comment was saved.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After saving a highlighted-text comment in Side chat, the user could send it only by typing a separate question.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix supplies a default question when a saved selection comment is the only input, enabling both Ask and the keyboard shortcut.",
+  "reasoning": "Before #180125, saving a comment into an empty Side chat composer inserted a short quote, and the previous browser test submitted that draft with the full selection and comment. #180125 removed the prefill while the question resolver still required draft text or an image, so saving a comment into an empty composer began disabling Ask.",
+  "rank": 100514,
+  "sha": "552234b59046734131112e6a4a373cfcadbafe21",
+  "rubric": "v1.2"
+}

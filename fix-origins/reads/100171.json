@@ -1,0 +1,17 @@
+{
+  "rank": 100171,
+  "sha": "798c2974bd4b2e4689518e3c38e0c2ac2e451045",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Speech or video generation could return unusable media as a successful result when the provider sent HTTP 200 with a malformed or wrong-family Content-Type.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix validates audio and video Content-Type headers and releases Sora\u2019s submission guard before polling or downloading.",
+  "reasoning": "At the oldest readable snapshot, the shared reader already accepted wrong-family binary responses and Sora already kept its submission guard through polling and download. The August video validation fix reused the existing check, and the later shared downloader refactor preserved it. Path history stopped at a missing object, so I could verify neither where the defects were introduced nor whether either behavior had previously worked."
+}

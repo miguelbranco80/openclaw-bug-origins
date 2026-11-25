@@ -1,0 +1,17 @@
+{
+  "rank": 97,
+  "sha": "8760e152b93dd838a0792abd5e44459c873b712c",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Uploading a reference image to edit with a ClawRouter OpenAI image model was rejected as unsupported.",
+  "impact": "other",
+  "area": "models/providers",
+  "summary": "Adds OpenAI image-edit support (the /v1/images/edits route, edit capability offers, inline reference images) to the ClawRouter image generation provider.",
+  "reasoning": "The PR states the previous generation-only scope intentionally rejected edits and that this adds a separately granted, newly requested edit route with a companion backend change. That is a feature addition titled as a fix, not a defect in existing behavior."
+}

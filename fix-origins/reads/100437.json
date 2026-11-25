@@ -1,0 +1,17 @@
+{
+  "rank": 100437,
+  "sha": "9a5d08effa30fa39cfcedba65c110003db2aa3c9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a4514a0aff9de7bd299f70d821398df606df1a4f",
+  "cause_pr": 135528,
+  "confidence": "high",
+  "cause_quote": "The original migration added `throw new Error(\"workspace does not map to exactly one configured agent\");` before `isHistoryOnlyBackup(...)`, so retiring the workspace made Doctor warn before it could recognize the completed archive.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After retiring a workspace, operators saw Doctor repeatedly warn about a legacy Workshop backup that had already been archived.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "Doctor now verifies that a history-only archive independently preserves the backup manifest and saved workspace contents before checking current workspace ownership.",
+  "reasoning": "The introducing diff added history-only archival, retained the legacy source, and required a current workspace owner before checking whether the archive already existed. I checked the original implementation, the later owner-by-content change, and the fix's test for archiving before retiring the workspace. The later change introduced the specific `no verified owner` wording, while the original implementation already warned in that sequence."
+}

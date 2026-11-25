@@ -1,0 +1,8 @@
+{
+  "rank": 100372,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focused on intentional refusal for invalid profiles and on verifying filesystem safety checks. Neither those items nor the earlier findings raised a concern about how the PowerShell bootstrap quotes profile paths containing typographic apostrophes."
+}

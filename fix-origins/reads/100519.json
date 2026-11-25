@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "eb4f3d792f416df4f24f1dd4037b14d79891b6ba",
+  "cause_pr": 99396,
+  "confidence": "high",
+  "cause_quote": "The introducing diff put `if (requesterHasUnsettledDescendants())` and its early `return false` before the `params.completeBatch(batchRunIds)` branch that clears an already-delivered singleton.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An already-delivered subagent result could trigger an extra parent-agent turn after a running sibling finished.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix retires redundant requester wakes before checking for running descendants and keeps waiting when a continuation is still owed.",
+  "reasoning": "The original requester-wake commit persisted a pending wake after child cleanup and checked for running descendants before deciding whether the completed child owed a continuation. I checked the code before the October wake refactor and before the session-controller refactor and found the same ordering in both. The fix's end-to-end test documents the resulting extra aggregate wake for separately delivered completions.",
+  "rank": 100519,
+  "sha": "850fdaffc3b0af6225809891621a2652b2bc7077",
+  "rubric": "v1.2"
+}

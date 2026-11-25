@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "593c7ed65a01bf4454717b029a775aef40ae8f6d",
+  "cause_pr": 131473,
+  "confidence": "high",
+  "cause_quote": "The recovery diff added `recoverInterruptedOneShot: params.mode === \"startup\"`, allowing an interrupted one-shot to replay without checking whether the recipient had already accepted its delivery.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A recipient could get the same one-shot cron announcement or webhook twice if the Gateway restarted after the recipient accepted the first delivery but before the Gateway recorded the acknowledgment.",
+  "impact": "data-loss-or-duplication",
+  "area": "cron",
+  "summary": "The fix records delivery attempts durably before sending, replays only one-shot runs whose receipts prove delivery never started, and leaves ambiguous runs disabled with an Unknown delivery status.",
+  "reasoning": "I checked the causing commit and its parent. The parent already supported announcements and webhooks, and its startup recovery disabled interrupted one-shots and skipped catch-up. The causing commit enabled catch-up based on startup mode alone, and the fix\u2019s documented negative control reproduced duplicate delivery for both transports with that recovery policy.",
+  "rank": 100752,
+  "sha": "187594c66309a878436434668c85b2f1fb85d6e9",
+  "rubric": "v1.2"
+}

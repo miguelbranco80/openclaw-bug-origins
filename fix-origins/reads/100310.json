@@ -1,0 +1,17 @@
+{
+  "rank": 100310,
+  "sha": "e6afd9d7b46d152c8d6c33a42d1b41db51599010",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Web fetch merged adjacent table values and flattened code indentation, sometimes running the code into the following paragraph.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix separates HTML table cells and preserves preformatted code and its boundaries in web fetch output.",
+  "reasoning": "I checked the July HTML scanner rewrite and its parent, where the renderer already stripped cell tags without inserting separators and collapsed spaces inside preformatted blocks. Both behaviors were present at the July 1 shallow boundary, and the offline history lookup could not traverse its missing parent, so I could not verify when either defect was introduced."
+}

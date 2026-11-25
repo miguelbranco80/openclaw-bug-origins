@@ -1,0 +1,17 @@
+{
+  "rank": 100835,
+  "sha": "aa04ec44ec16b4ada80f285b7c8b945ad4c3a146",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "19296b003b55eac8f9a43cd0a3fc6f9e783e66b9",
+  "cause_pr": 110308,
+  "confidence": "high",
+  "cause_quote": "The new normalizer used `typeof row.published === \"string\" && PUBLISHED_RE.test(row.published) ? row.published : undefined`, so any date-shaped string passed, including `2026-02-30`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A web search result could show an impossible publication date such as February 30.",
+  "impact": "presentation",
+  "area": "agents",
+  "summary": "The shared web search normalizer now omits publication dates with invalid calendar prefixes and preserves accepted values verbatim.",
+  "reasoning": "The introducing diff added the normalized results contract and wired it into the registered web search tool in the same commit. The original regex checked the shape of the date alone, and the affected file's history shows that the publication filter was unchanged until this fix."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100787,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item asked for a signed-in trace to verify tier selection on supported and unsupported models. That check could pass on the first turn and miss the absent provider that causes resumed turns to fall back to Fast."
+}

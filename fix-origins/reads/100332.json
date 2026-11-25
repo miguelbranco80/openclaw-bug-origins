@@ -1,0 +1,17 @@
+{
+  "rank": 100332,
+  "sha": "0ce7a497352d59d466f1aa812e1d84728002518b",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "aa0ad4c78044f389460de42caa798ad5f75c86a9",
+  "cause_pr": 145172,
+  "confidence": "high",
+  "cause_quote": "The original Storage settings page added `new PollController(this, 2_000, \u2026, false)` and called `this.maintenancePoll.start()` when maintenance was running, scheduling status reads regardless of tab visibility.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Storage settings tab kept making unnecessary Gateway status requests in the background while maintenance was running.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Storage settings now pause automatic maintenance polling while the tab is hidden and refresh once when it becomes visible again.",
+  "reasoning": "The feature's introducing diff starts a two-second poll during maintenance, and the controller at that commit invokes its callback without checking tab visibility. Immediately before the Solid migration, Storage settings still used the controller's default `always` mode, so the migration carried forward the background polling behavior."
+}

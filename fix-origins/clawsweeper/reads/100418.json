@@ -1,0 +1,8 @@
+{
+  "rank": 100418,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section describes atomic receipt completion without raising a concern about closing the receipt before a timed-out execution settles. The Before merge items across both versions concern upgrade compatibility and failed checks."
+}

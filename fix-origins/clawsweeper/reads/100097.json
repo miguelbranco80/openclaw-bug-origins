@@ -1,0 +1,8 @@
+{
+  "rank": 100097,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cKeep recovery inside the product\u201d concerns what users can do after an update or restart failure. The earlier items concern owner guidance and status reporting, and no review item raises the health RPC\u2019s suppression of paired device credentials on trusted-proxy Gateways."
+}

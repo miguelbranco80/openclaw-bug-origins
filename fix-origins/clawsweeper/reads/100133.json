@@ -1,0 +1,8 @@
+{
+  "rank": 100133,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Earlier hosted native qualification attempts stopped at first-seed submission and setup-code issuance. The exact-head qualifier has not completed, so the release path may still stop before its chat assertions.",
+  "outcome": "open-at-merge",
+  "note": "The Before merge item \u201cResolve merge risk (P1)\u201d flagged a failure at the hosted setup-code step, giving maintainers a reason to investigate the pairing RPC. It left the cause unresolved and did not identify the 30-second deadline or the cold Simulator boot condition."
+}

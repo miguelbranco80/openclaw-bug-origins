@@ -1,0 +1,17 @@
+{
+  "rank": 100330,
+  "sha": "b280e5f40f9186b37339c9eed90f8ef38128f8a2",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix makes two admission-refusal declarations private and switches session-send test fixtures to the asynchronous refusal factory.",
+  "reasoning": "The introducing diff added both exports, and path history confirms that it was the last commit to touch the module at the revision flagged by the scheduled dependency check. The fix addresses two unused-export findings while preserving runtime admission behavior."
+}

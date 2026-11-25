@@ -1,0 +1,17 @@
+{
+  "rank": 100161,
+  "sha": "9741736cacafabeebc409a0a2695cc1a0f5ff544",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "f77b4efb78b541f9c8e4f314aefdc8648b7fee88",
+  "cause_pr": 145712,
+  "confidence": "high",
+  "cause_quote": "The team introduction wrote each member\u2019s workspace as `workspace: path.join(workspaceRoot, member.id)`, while guided onboarding still recorded the parent directory as `workspace` in the setup receipt.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Guided onboarding could pass the provider check without creating the requested team, or create all four agents and still fail to finish setup.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix keeps first-run provider activation from claiming the agent roster and records the selected coordinator so setup can validate and recover the team under its approved workspace root.",
+  "reasoning": "PR #145712 introduced the guided team option and placed the coordinator in a child directory, but receipt completion still required the coordinator\u2019s workspace to equal the recorded parent directory. I checked that this mismatch existed in the introducing commit and that the intervening commits left the receipt check and team setup logic intact."
+}

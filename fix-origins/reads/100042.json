@@ -1,0 +1,17 @@
+{
+  "rank": 100042,
+  "sha": "eee6823c07ed47fb2c6b9fbb59e1287e05cb425f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Valid custom values such as `customer-layout` failed validation before the MCP tool ran.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves unrestricted strings when flattening root union branches whose alternatives for a given property consist entirely of plain strings or string presets.",
+  "reasoning": "The normalizer already flattened root unions before it moved into the AI package, and its merge code emitted only enum values whenever either branch supplied an enum. The two later blame candidates changed root property preservation and literal key handling while keeping that merge rule. The defective code predates the shallow boundary, and missing objects prevented the full-history path log from reaching the introducing change."
+}

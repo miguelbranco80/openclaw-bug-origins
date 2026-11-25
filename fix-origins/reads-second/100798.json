@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "97bbbc2271f82c1ba8f4f8af45703f857c4aa59a",
+  "cause_pr": 103769,
+  "confidence": "high",
+  "cause_quote": "The new resolver returned `primaryProfile ? `${derived}@${primaryProfile}` : derived`, carrying over the primary's auth profile but dropping its model-scoped CLI runtime when selecting the derived model.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a Claude CLI-only setup, session digests failed with \u201cNo API key found for provider anthropic\u201d and the observer stopped after two attempts.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "Automatic utility completions now fall back to the primary model's eligible CLI runtime when the derived model has no usable provider credential.",
+  "reasoning": "PR #103769 introduced automatic utility selection and sent the derived Anthropic model through a completion path that required provider credentials, even though the primary could already use a model-scoped CLI runtime. I checked the pre-introduction selection and PR #135711, which later routed utility calls through the selected model's runtime but left the automatic selection without the primary model's pin.",
+  "rank": 100798,
+  "sha": "2dd93a290b748686160b4a478b7ee003cc0f9f24",
+  "rubric": "v1.2"
+}

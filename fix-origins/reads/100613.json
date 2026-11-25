@@ -1,0 +1,17 @@
+{
+  "rank": 100613,
+  "sha": "4b4ece33cc3cdc95b70eccaaeaa036546113d204",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "5bc6dc832557f338b72cfaf30f3adc90f5c371e6",
+  "cause_pr": 152655,
+  "confidence": "high",
+  "cause_quote": "The added `recovery?.bindExpected(pending.publication?.records.get(scope.taskId));` applied the recovery guard to ordinary successful metadata receipts, so `recovery?.assertCurrent();` threw when task completion superseded the receipt.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Gateway task-list request could fail instead of showing the completed task when a metadata write overlapped completion.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix limits strict row checks to recovered publications and uses the write witness to suppress superseded notifications.",
+  "reasoning": "The parent already served `tasks.list` and persisted agent-event metadata synchronously, so the list could return a completed task without waiting for a worker receipt. The causing commit moved metadata persistence to a worker and made list reads wait for accepted events, allowing the new recovery guard to turn normal receipt supersession into a request failure. The fix's Gateway test covers that exact ordering."
+}

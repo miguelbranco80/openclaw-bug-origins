@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "01689fdd902f3a93275d428f45e728f0a8bd70b7",
+  "cause_pr": 184531,
+  "confidence": "high",
+  "cause_quote": "The introducing diff put `const source = await prepareSessionCreateRequestedCwd({` before `if (loaded.entry.worktree)`, so the session-creation path check could reject an already owned checkout before ownership was checked.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A user without `operator.admin` was denied when publishing a PR with an explicit path to their session\u2019s managed checkout outside the configured workspace.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix validates explicit paths against the session\u2019s existing managed worktree and applies session-creation path permissions only when adopting a new checkout.",
+  "reasoning": "The path history and introducing diff show that explicit `workspacePath` publication shipped with the path check ahead of the ownership branch. The helper already required `operator.admin` for paths outside the configured workspace, and #185203 changed the checkout comparison while leaving that earlier check in place.",
+  "rank": 100493,
+  "sha": "49d16f126479ae716b3d331bc79c1819616d99d5",
+  "rubric": "v1.2"
+}

@@ -1,7 +1,7 @@
 {
   "rank": 120,
   "sha": "4c61c20fb1a7e0e98c994ec48b16284f2dd8ce0a",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; a macOS outbox attachment-budget test intermittently failed in CI.",
+  "user_saw": "nothing visible",
   "impact": "sequence-or-timing",
   "area": "apps",
-  "summary": "The ChatFileAdmissionTests fixture now awaits settleComposerDraft before setting its input, so draft loading cannot advance the revision mid-test.",
-  "reasoning": "The change touches only a Swift test file and the PR states no product behavior changes: production code correctly preserved the newer draft, and the test raced initial draft loading. A test-only flake fix titled fix(ci) is a tooling/CI change under the rubric, so not-a-defect."
+  "summary": "The macOS outbox attachment-budget test now waits for the composer draft to finish loading before setting its input.",
+  "reasoning": "The fix changes only the test fixture, and the PR reports that production correctly preserved the newer draft when loading advanced its revision after the test captured it. I checked the test file history and confirmed that the draft persistence change updated the enqueue fixture, while this fix addresses the timing of its input assertion."
 }

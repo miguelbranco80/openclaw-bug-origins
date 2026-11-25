@@ -1,0 +1,8 @@
+{
+  "rank": 234,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve embedded Back navigation on linked destinations\u201d item concerned a missing Back header in native WebViews. The at-merge \u201cResolve merge risk\u201d item concerned unavailable visual captures, and neither item addressed the browser redirect from /settings to Chat that rebuilt the outgoing page."
+}

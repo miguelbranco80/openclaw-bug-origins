@@ -1,0 +1,17 @@
+{
+  "rank": 100128,
+  "sha": "418940c3e23333160e3d5770b5cd3fc6aa33f68d",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "26d200c6a3032fbcf019c9579e592419231b288f",
+  "cause_pr": 103463,
+  "confidence": "high",
+  "cause_quote": "The introducing diff ran `const prepared = await preparedPromise;` before calling `generateNarrationWithUtilityModel`, where `const timeout = setTimeout(() => controller.abort(), NARRATION_TIMEOUT_MS);` started the ten-second timer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A chat progress draft could show a narrated status more than ten seconds after narration started.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix gives model preparation and narration generation a shared ten-second deadline and discards results that arrive after it.",
+  "reasoning": "The original narrated-progress feature awaited asynchronous model preparation before starting the generation timer, so slow preparation could push a displayed update past ten seconds from the first release. I checked the introducing diff and the path history for the timer and preparation await, and confirmed that the fix's parent still had the same ordering."
+}

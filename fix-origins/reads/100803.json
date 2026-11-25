@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "05117d9db7bf8211ac1d5fe6b3a3da6232eedb25",
+  "cause_pr": 154671,
+  "confidence": "medium",
+  "cause_quote": "The worker migration added `mutation.publish(receipt)` to a callback registered through `publication.servicePending(install)`, allowing a binding reader to see the committed generation before the approval handler updated the live session.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A node could lose its live gateway session during a successful reapproval and miss the approval notification.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix uses the worker\u2019s commit receipt to update the live node\u2019s permissions and pairing generation before registry readers can reconcile the session.",
+  "reasoning": "I checked the migration\u2019s parent, where approval and the follow-up binding read used local database access and an existing test verified that the same connection received the approval event and could republish its inventory. The worker migration let readers observe the committed generation while the handler was still awaiting approval or its follow-up read, so reconciliation could retire the connection as stale. The fix\u2019s new test covers reconciliation before worker reply delivery, although the available history does not establish when that timing first occurred in production.",
+  "rank": 100803,
+  "sha": "94f180d9ab19d969d59298312cff8ed019e18b58",
+  "rubric": "v1.2"
+}

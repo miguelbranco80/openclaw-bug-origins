@@ -1,0 +1,17 @@
+{
+  "rank": 100053,
+  "sha": "8095304914588d01c552977744595ceed8da985f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, Gmail forwarding stayed down even after the watcher\u2019s port became free.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The Gmail watcher now retries address-in-use failures after 5, 10, and 20 seconds and logs an error if all three retries fail.",
+  "reasoning": "The watcher history shows that the branch stopping retries after a recognized bind failure predates the shallow boundary. The July fix made bind errors easier to detect, and the August restart fix preserved the stop policy. Offline history could not establish when that policy was introduced or whether a transient bind conflict had previously recovered."
+}

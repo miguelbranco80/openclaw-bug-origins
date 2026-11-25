@@ -1,0 +1,17 @@
+{
+  "rank": 100129,
+  "sha": "aa154c3c7899fae22b0a86521d29a7e0e7f83b0f",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "224d32739a50212dddd7878b476a85084c1cf7f1",
+  "cause_pr": 165401,
+  "confidence": "high",
+  "cause_quote": "The diff changed session reuse to `await resolveSessionLifecycleTimestampsAsync({`, whose `await readSessionTranscriptAnchorsAsync(` made a restored wake with missing lifecycle metadata wait for the transcript reader during admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, a restored requester wake could time out before making its first model request.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes Gateway startup await both history and maintenance reader readiness before activating restored requester recovery.",
+  "reasoning": "I checked that the parent already activated restored recovery and used `loadTranscriptHeaderSync` for the lifecycle fallback, so that read did not need to wait for worker startup. The fix message reports that the same controlled requester flow passed on the parent and failed on the causing commit. A faster host did not reproduce the commit boundary under natural timing, and a constrained host trace showed maintenance reader startup also competing for the shared compute slot."
+}

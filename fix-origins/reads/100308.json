@@ -1,0 +1,17 @@
+{
+  "rank": 100308,
+  "sha": "fbb42c7f95fe439a1c38c479f582ffd69733ba8f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "047470456ff2e47175edd82e1f3464358ed40022",
+  "cause_pr": 131370,
+  "confidence": "high",
+  "cause_quote": "The new controller declared `const goalOperations = new WeakMap<ChatHost, GoalOperation>();` and wired Clear to `actions.onGoalAction?.(goal.id, \"clear\")`, so reloading discarded the retry identity and a committed Clear could remove the control needed to retry.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a lost reply, operators could be left unsure whether a Goal change took effect, and a committed Clear could remove the control they needed to check.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix preserves unconfirmed Goal requests across reconnects and reloads, adds a Check outcome action, and keeps committed changes successful when notifications fail.",
+  "reasoning": "I checked the introducing diff and the subsequent history of the Goal controller and Gateway handler. The original direct controls kept retry identity only in memory and tied retry to the original action, so a reload or disappearance of that action could strand recovery from launch. The original Gateway handler also called `emitSessionsChanged` after committing and before replying, allowing a notification exception to turn committed success into a reported failure before the later event-worker refactor."
+}

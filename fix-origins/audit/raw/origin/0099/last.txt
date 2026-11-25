@@ -1,0 +1,17 @@
+{
+  "rank": 99,
+  "sha": "8c292ddb1b143685d7146193caa7f132d57a136f",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing reported; in theory a transcripts list call by a caller denied most meetings could scan the whole archive before returning.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Bounds each transcripts list call to one 200-row page and returns a nextOffset continuation instead of auto-paging through the archive past denied rows.",
+  "reasoning": "The unbounded page walk was a deliberate pre-graft design ('hidden meetings must not crowd accessible captures out'); issue #161327 is a code-audit finding about missing work bounds, with no reported failure or slowdown. This is resource hardening, so not-a-defect per the rubric."
+}

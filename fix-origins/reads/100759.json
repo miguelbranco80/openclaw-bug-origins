@@ -1,0 +1,17 @@
+{
+  "rank": 100759,
+  "sha": "4188d76981b6e2028c9b7f03f7aeee248368f094",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "7d5f4cdca9ed8fda8ab304b084e25f2427ae3ed0",
+  "cause_pr": 179908,
+  "confidence": "high",
+  "cause_quote": "The refactor added strict callback comparisons such as `a.getAttachments === b.getAttachments` and `a.resolveArtifactDownload === b.resolveArtifactDownload` to the identity check that aborts a pending transfer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the pane refreshed while Attach to session was downloading a file, the file silently failed to appear in the draft.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps composer and download callbacks stable across equivalent pane refreshes so pending files can attach to the existing draft.",
+  "reasoning": "I checked the original Attach to session implementation and the parent of #179908. The earlier implementation let the download continue as long as the file, source, session, read signal and other scope fields stayed the same, even though the pane already recreated the callbacks. The refactor added those callbacks to the cancellation check, so an equivalent refresh could abort the download before it reached the draft."
+}

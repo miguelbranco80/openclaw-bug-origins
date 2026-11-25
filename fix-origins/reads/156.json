@@ -1,17 +1,17 @@
 {
-  "rank": 156,
-  "sha": "8d4ca5408cb478955474444a1537e71aee1081f5",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "origin": "regression",
+  "cause_sha": "fe265106c397a1409cd18f7502c4aa38919e337d",
+  "cause_pr": 174902,
+  "confidence": "high",
+  "cause_quote": "The synchronous factory gained a `warnPluginSdkDeprecation` call with `pluginId` and `method: \"createPluginStateSyncKeyedStore\"`, explicitly naming Matrix when core selected its saved-auth probe.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Running `openclaw agents list` (and channel capabilities, interactive remove, fallback status, health) printed two DEP_PLUGIN_SDK deprecation warnings blaming the bundled Matrix plugin, though core made the deprecated call.",
+  "user_saw": "Running `openclaw agents list` with saved Matrix credentials displayed the binding but printed SDK deprecation warnings that blamed Matrix.",
   "impact": "presentation",
   "area": "cli",
-  "summary": "Switched agents list, channel capabilities, interactive channel removal, fallback channel status and health from the synchronous listReadOnlyChannelPluginsForConfig to the awaited listReadOnlyChannelPluginsForConfigAsync so the deprecated sync Matrix saved-auth probe no longer runs.",
-  "reasoning": "These callers used the synchronous read-only plugin inventory long before the change (agents.providers.ts already did before the #177514 fold), when it was a supported API; it became noisy only once the SDK began emitting once-per-process deprecation warnings for synchronous plugin-state stores (PluginStateSyncKeyedStore.entries warnings predate a157713fe8a; the createPluginStateSyncKeyedStore warning was added by fe265106c39 #174902), which the bundled hasAnyMatrixAuth probe hits. The sibling fix c71a8b62a92 (#190257, issue #190243) migrated status/channels list/doctor the same way; this one finishes the remaining callers. No single in-repo commit both introduced the warning and is clearly the trigger (two warnings with different origins), so trigger is left null."
+  "summary": "The fix moved five CLI channel inventories to awaited discovery so they use the asynchronous saved-auth probe.",
+  "reasoning": "The parent already used synchronous channel discovery for agent listings, and Matrix's probe already read saved credentials through the synchronous store. The store's `entries()` operation could already warn, but #174902 added a factory warning explicitly attributed to Matrix and changed deduplication so the factory and operation could each warn. The later refactor moved the existing synchronous inventory call into the command.",
+  "rank": 156,
+  "sha": "8d4ca5408cb478955474444a1537e71aee1081f5",
+  "rubric": "v1.2"
 }

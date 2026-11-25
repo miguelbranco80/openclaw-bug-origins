@@ -1,0 +1,17 @@
+{
+  "rank": 100469,
+  "sha": "99d2eadea8c478c5c314ded88b1f3391d01ded8e",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix applies current session membership checks to Gateway collaboration reads and interactions while preserving independent scope requirements.",
+  "reasoning": "I checked the fix parent's role schema, which accepted only `none`, `view`, `suggest`, and `write`, and confirmed that #184515 added `invited` after this fix. The PR reproduced the collaboration failures by locally enabling `invited` on both revisions and reported matching outcomes for the existing `view` and `none` policies. This change completed part of the invitation-only rollout before operators could configure it."
+}

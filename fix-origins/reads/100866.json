@@ -1,0 +1,17 @@
+{
+  "rank": 100866,
+  "sha": "d09ffd222826fcd4545431f24056de42373f6e69",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After rebuilding a source checkout, an operator could see the still-running Gateway fail to load modules from that checkout.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes build entry points refuse to replace output shared by a running managed Gateway and lets stop and restart commands use the existing build.",
+  "reasoning": "I verified that the July 1 snapshot already had tsdown recursively deleting output before rebuilding, and the later source-server updater described an existing practice of building before restarting the Gateway. The offline path history stopped at a missing parent, so I could not verify when the unsafe overlap first became possible or whether the same workflow had previously worked."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100823,
+  "sha": "b1b4aad2d0af2da120006a5f915225d0c65a9f50",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "2d87a461a65c78f31d3e3f942f036cedb13054d9",
+  "cause_pr": 185567,
+  "confidence": "high",
+  "cause_quote": "The new replay path called `params.existingImages.filter((image) => [...previous.hashes.values()].some((hashes) => hashes.has(imageHash(image))))` before sanitization, so resized images were discarded when their raw hashes differed from the saved output hashes.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An image pasted while the agent was working became unavailable to the agent after its next tool call if the image had to be resized.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix sanitizes inline images before checking their saved hashes and counts only newly missing or changed images as additional failures.",
+  "reasoning": "I checked the causing commit's parent and confirmed that replay passed inline images directly to the loader, which sanitized them on each request. PR #185567 added a filter that compared raw input hashes against saved sanitized output hashes, so an image could reach the model on the first request and be dropped on the next. The fix's test covers that sequence with an inline image above the configured size limit."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100355,
+  "sha": "b69c1547ab535658f9c6048f7ccae52247e846de",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "509cb47840c0cdd57567f401426f11cde6828c1a",
+  "cause_pr": 161539,
+  "confidence": "high",
+  "cause_quote": "The change to `const journalOwners = (await params.placements.listWorkspaceReconciliationOwners()).filter(` let forced abandonment pause before selecting pending results and placements, so it could resume and tear down a replacement owner.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a forced stop, a replacement cloud worker turn could be marked failed and lose its pending workspace result.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix captures placement and turn ownership before cleanup, checks it again during state transitions, and preserves replacement workspace results and journals.",
+  "reasoning": "I checked the parent of #161539 and confirmed that journal preparation and pending-result selection were synchronous, so an active turn with no pending result could not be replaced during those reads. The journal refactor introduced a yield before result selection, and the fix's tests reproduce the same stale-owner failure during the later asynchronous pending-result read. The subsequent move to asynchronous placement transitions added a separate window for same-generation claim replacement."
+}

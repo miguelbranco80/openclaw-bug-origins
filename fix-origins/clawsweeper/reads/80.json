@@ -1,0 +1,8 @@
+{
+  "rank": 80,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The macOS temp-root finding concerns path rejection during cleanup. The scheduling section describes hourly maintenance without raising the risk that frequent Gateway restarts could keep the first pass from running."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 60,
+  "sha": "9d28854c4322988d1ad1443604e365547b224695",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "c9449d77b40a9f1f2967b8ec607713aed7c03848",
+  "cause_pr": 51324,
+  "confidence": "medium",
+  "cause_quote": "#51324 added persistChatSendImages with `if (params.images.length === 0 || isAcpBridgeClient(params.client)) { return []; }`, so ACP bridge photos were never saved to the user turn, plus a test asserting that omission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Photos sent through the ACP bridge (for example from a Rabbit R1) were answered by the assistant but missing from the user's message in the Control UI chat history, even after reload.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "Removed the ACP-bridge exclusion in prepareChatSendUserTurn so bridge photos are persisted through the same inbound-media owner as Control UI uploads.",
+  "reasoning": "The ACP exclusion was introduced together with chat.send inbound image persistence in c9449d77 (#51324, read via gh api), on the premise that ACP screenshots were transient and handled upstream; the fix PR shows no upstream owner exists, so ACP photos never appeared in history from the start. The later 83b060d refactor only moved the same condition inline. It is a deliberate but mistaken exclusion rather than a pure policy reversal, hence never-worked at medium confidence rather than not-a-defect."
+}

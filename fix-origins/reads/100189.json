@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "4e12d0556b106ceac3e8930311c0ed968c16d50a",
+  "cause_pr": 122194,
+  "confidence": "medium",
+  "cause_quote": "The stateful SSE feature added `lastResponseItems: response.output`, so warm requests inherited terminal reasoning that could differ from the reasoning reconstructed from the saved transcript.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Reopening a long OpenAI session caused subsequent turns to miss prompt-cache hits and pay for uncached input.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix preserves empty reasoning content containers, saves the terminal reasoning snapshot when available, and releases completed async tool calls when the stream ends.",
+  "reasoning": "The fix's SSE fixture shows warm requests inheriting terminal output through `previous_response_id` and the first reopened request replaying the transcript in full. I checked the SSE introduction and its parent, which already stripped empty reasoning content in transcript storage and kept existing item-done ciphertext when terminal ciphertext arrived. The two paths could therefore diverge from the first stateful SSE implementation, although the local history does not establish when the provider first emitted the differing snapshots.",
+  "rank": 100189,
+  "sha": "6b13edf810259d6d204f40b1ef5be9170f132645",
+  "rubric": "v1.2"
+}

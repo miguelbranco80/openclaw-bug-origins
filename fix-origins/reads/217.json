@@ -1,17 +1,17 @@
 {
   "rank": 217,
   "sha": "bbbf6cb3f308b66c8f7cbfbda3e6c74f2258332e",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a9e9dec42dfa7430c324cfe90f91214042c826c6",
+  "cause_pr": 139397,
+  "confidence": "high",
+  "cause_quote": "The change added `this.eventProjection.handleRetry(params)` under `if (params.willRetry === true)`, emitting `stream: \"run_status\"` with `phase: \"retrying\"` while the channel reply handler had no branch for that stream.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "While Codex retried a model request, chats showed only a typing indicator for minutes with no explanation of the delay.",
-  "impact": "presentation",
+  "user_saw": "Telegram users saw only a typing indicator while Codex retried a model request.",
+  "impact": "failed-every-time",
   "area": "channels",
-  "summary": "Tags Codex app-server retry status with reason codex_retry and projects it through the existing model-wait progress path so chats show a transient \"Still working. Retrying…\" notice.",
-  "reasoning": "The model-wait progress projection added in 8e02fdeaaa2e (#172951) was designed for waiting_for_model phases (local model responses and slot waits) and never covered provider retries; the fix adds a new progress notice for a new phase rather than restoring behavior that once worked. Nothing failed: typing was shown and the final answer arrived, so this is a UX enhancement framed as a fix."
+  "summary": "The fix routes Codex retry events through channel progress previews so a single retry notice appears and clears when the reply arrives.",
+  "reasoning": "I checked the introducing diff and its channel reply handler: the parent skipped `willRetry` notifications, and #139397 began emitting retry status without forwarding it to channel previews. The later local-model progress change forwarded only waits in the `waiting_for_model` phase, leaving Codex retry notices absent."
 }

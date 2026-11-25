@@ -1,0 +1,8 @@
+{
+  "rank": 100823,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cRelease image decisions when their session retires\u201d finding concerns memory retained after session cleanup. The Tests section notes missing end-to-end coverage for consecutive image requests without pointing to the hash mismatch that drops resized images on replay."
+}

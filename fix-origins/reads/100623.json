@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see message text, tool arguments, or tool results in ordinary debug logs when an MCP server wrote them to stderr.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "The built-in MCP client now logs a fixed stderr activity notice once per connection and continues draining stderr through shutdown.",
+  "reasoning": "The diff for #110652 shows that it improved buffering and shutdown logging for an existing logger that already copied raw stderr into debug logs. The same exposure was present at the shallow boundary, and the offline path history ended at a missing object before I could verify which commit introduced it.",
+  "rank": 100623,
+  "sha": "c20c28929a479fbd2b27f12c69abf08ba1d74646",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100487,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d items asked for upgrade proof covering refreshed Bun service arguments and Gateway readiness. The at-merge \u201cVerification\u201d section cites systemd evidence, and no review item raises the risk that macOS service inspection rejects the added --no-install flag."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "cfe95266afb2965d99605cf00d0a9b9e36a76305",
+  "cause_pr": 104251,
+  "confidence": "high",
+  "cause_quote": "The redesign added `cronState.cronRunsJobId = job.id;` before `await loadCronRuns(cronState, job.id);` and rendered the retained rows immediately in the newly selected task\u2019s detail pane.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After switching automations, a user could see the previous task\u2019s runs under the new task, and a successful history retry could leave the old error banner visible.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix ties retained run history to the selected task and filters and clears the history-specific error after a successful retry.",
+  "reasoning": "I checked the redesign\u2019s parent and confirmed that clicking a task row updated the history\u2019s task ID only after the requested rows arrived, so a failed switch between tasks left the old rows under their original task. The redesign changed that ordering, and the later request-ownership guard addressed late responses while leaving already displayed rows in place. The stale retry banner had a separate origin in #130430, which moved the Refresh action\u2019s list-load reset from `cronError` to `cronJobsError` while history failures still used `cronError`.",
+  "rank": 100756,
+  "sha": "32d980b1316ad00a54d3ad05bcd9e29a3e8d9fde",
+  "rubric": "v1.2"
+}

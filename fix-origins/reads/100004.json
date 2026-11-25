@@ -1,0 +1,17 @@
+{
+  "rank": 100004,
+  "sha": "22b41f9dc71d16ff1030f921d50acff76af031b0",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "9153127616ad857ab46bd5488caa851bedd93664",
+  "user_visible": "yes",
+  "user_saw": "Gateway operators saw slow Codex catalog warnings in journald without the phase timings or counters.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix appends redacted structured fields to warn, error, and fatal records in pretty and compact console output.",
+  "reasoning": "I checked the logger before the Codex diagnostics landed and confirmed that plain console output already used the message alone while JSON console output and file logs carried metadata. PR #148639 exposed that longstanding limitation for the reported warning by adding `log.warn(`slow Codex catalog ${kind}`, metadata)`, with the diagnostic timings and counters supplied only as structured fields."
+}

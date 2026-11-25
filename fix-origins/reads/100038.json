@@ -1,0 +1,17 @@
+{
+  "rank": 100038,
+  "sha": "5a207d65c7a66f7b1218ff28e14a4de62caa5a87",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "3d14bba719490d42150f446d5cf6b0d2357db02f",
+  "cause_pr": 139525,
+  "confidence": "high",
+  "cause_quote": "The new startup renderer added `<div class=\"skeleton loading-skeleton__composer\"></div>`, which used the shared skeleton colors with no local highlight override.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In affected themes, the dashboard's loading placeholders looked frozen while the dashboard was still loading.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix gives startup and route-loading skeletons a visible two-second sweep using a translucent theme text color and preserves static placeholders for reduced motion.",
+  "reasoning": "The introducing diff replaced the animated mascot with skeletons on both startup and route loading. At that commit, I verified that the shared skeleton filled with `--bg-muted` and swept with `--bg-hover` by default, and that the light and dark defaults already assigned those tokens identical colors, making the new shimmer invisible from its first release in those themes."
+}

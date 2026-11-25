@@ -1,0 +1,17 @@
+{
+  "rank": 100808,
+  "sha": "7acf043d85c2449597c7afcbd9f9045789293a8c",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "aaf5d23883a14f7224b4e9e2ddb513038716bad7",
+  "cause_pr": 107735,
+  "confidence": "high",
+  "cause_quote": "The commit added `withDynamicToolSideEffectEvidence(response, terminalResolution.sideEffectEvidence);`, which overwrote the bridge's side-effect evidence with the terminal observer's classification based on the tool name and arguments.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A fallback attempt could launch the same background work again after the first attempt had already started it.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "The fix passes the Codex bridge's replay-safety verdict to the terminal observer so fallback preserves evidence of work that already started.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the bridge marked async launches as unsafe to replay and the projector carried that evidence into the attempt's retry metadata. The causing commit routed settlement through a terminal observer that received no replay-safety verdict, treated an ordinarily replay-safe tool such as `web_search` as safe, and cleared the bridge's evidence."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100555,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cCheck matching PRs beyond the three visible chips\u201d finding concerned a candidate limit that could leave an obsolete warning visible. No review item raised the risk of publication options timing out while waiting for PR diff statistics and check rollups."
+}

@@ -1,7 +1,17 @@
 {
-  "origin": "latent",
-  "cause_sha": null,
-  "trigger_sha": "5d3e157432a84e085eebf5a43a7ae471ff0fefbb",
-  "confidence": null,
-  "reasoning": "The earlier Activity controller and its replacement both scheduled reads on session changes and cleared the displayed error when a read started. The trigger commit added `throw sessionMutationForbiddenError(...)` for guests opening another person's timeline, so the existing refresh logic began replacing that settled denial with loading placeholders on unrelated session events."
+  "rank": 203,
+  "sha": "e51bb0455e9d7f20ef633d67c452598354b0d54d",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "5d3e157432a84e085eebf5a43a7ae471ff0fefbb",
+  "cause_pr": 191978,
+  "confidence": "medium",
+  "cause_quote": "The guest-privacy change added the `error.gatewayCode === \"FORBIDDEN\"` branch that clears `currentResult` and rows but records no settled-denial state, so the existing `invalidate()` path reloads the denied query (loading placeholders) on every unrelated session change.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A guest viewing another person's Activity saw the permission error flicker into loading placeholders (and a fresh denied request) whenever an unrelated session changed.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The Activity session owner now remembers a settled FORBIDDEN denial and ignores unrelated invalidations and bucket rollovers, while explicit retry, changed filters and authority changes (sharing/profile-identity events, new hello) still reload.",
+  "reasoning": "`git log -S FORBIDDEN` on session-activity-owner.ts shows the denial handling first arrived in 5d3e157 (#191978), which made person activity deny guests and cleared rows on denial without any guard in invalidate/load, so the flicker shipped with the denial feature. The blame candidate 10c95d1a is the earlier Solid refactor that created the generic invalidate-and-reload path, which was fine before denials existed; medium because the reload path is older and the defect is the interaction."
 }

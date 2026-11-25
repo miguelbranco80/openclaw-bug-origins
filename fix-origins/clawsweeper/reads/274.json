@@ -1,0 +1,8 @@
+{
+  "rank": 274,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cBatch ownership repair\u201d item describes the rejecting resolver for partly unbound settlement batches as intended behavior and raises no concern about losing sibling results after yielding. The \u201cBefore merge\u201d items concern CI and maintainer acceptance."
+}

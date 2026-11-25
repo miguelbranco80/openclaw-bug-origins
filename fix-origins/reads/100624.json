@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "4b9ff9dd206ba31205c9202858eb7fe3a1d508ea",
+  "user_visible": "yes",
+  "user_saw": "Doctor warned that a repaired session still used a legacy model route after the next Claude CLI turn.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "All four CLI result paths now report the selected model provider when available and fall back to the backend ID otherwise.",
+  "reasoning": "I checked the runner before the August refactor and confirmed that all four result paths already reported the CLI backend ID as the provider. The Doctor migration in #142284 exposed that existing behavior by starting to rewrite saved Claude CLI session routes to `anthropic`, which the next turn would overwrite with `claude-cli`.",
+  "rank": 100624,
+  "sha": "425109cd6de58d225d90d6ac2d31c666fbae8806",
+  "rubric": "v1.2"
+}

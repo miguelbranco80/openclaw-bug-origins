@@ -1,0 +1,17 @@
+{
+  "rank": 206,
+  "sha": "7b0a97a4c96ea05816296f780b7edf0e053260d0",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "ec5d369a6f664c46e8faf5199b5d85c2cca3e6f6",
+  "cause_pr": 179387,
+  "confidence": "medium",
+  "cause_quote": "It gated the primary webhook with `isDeferredCronAdmission(job, result)`, whose `hasUnstartedCronAdmission` requires `result.triggerEval === undefined` and `admissionDeferred === true`, so deferrals after a fired trigger and empty-scratch skips still POSTed their skip text.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A webhook receiver got a 'finished' POST with status skipped and skip text such as 'Automation scratch is explicitly empty' as the summary for runs that never executed.",
+  "impact": "other",
+  "area": "cron",
+  "summary": "The primary cron webhook now skips every result that is skipped with executionStarted false, instead of reusing the scheduling predicate isDeferredCronAdmission.",
+  "reasoning": "Admission deferral (admission-deferred.ts), the empty-scratch skip text and the webhook gate all first appear in ec5d369a6f66 (neither 'admissionDeferred' nor the scratch skip text exist at its parent), and that commit reused a scheduling predicate that deliberately excludes runs with a trigger result, so the delivery gate never covered fired-trigger deferrals or non-deferral pre-execution skips. Medium confidence because the PR also frames not POSTing skipped runs as a behavior change, so the empty-scratch half is partly a policy choice."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100289,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Resolve merge risk item focused on the suspension-to-systemd handoff, and the earlier recovery finding concerned rollback after a confirmed startup failure. Neither review questioned whether activation could be marked verified when the Gateway could not list sessions."
+}

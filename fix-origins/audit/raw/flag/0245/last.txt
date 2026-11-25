@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The consumer-test cutover item focused on updating tests that still expected receipt revocation to reject admitted work. The abort-wording item addressed exception text after successful cancellation, and neither item raised the missing abort signal for MCP loopback calls."
+  "outcome": null,
+  "note": "The 'Complete the consumer-test cutover for removed receipt checks' finding touches the removed receipt check but endorses it and asks to update tests to accept admitted work; it never notes that MCP loopback callers set no approvalSignals and so lose Stop. Considered related but chose none since the item points away from the bug."
 }

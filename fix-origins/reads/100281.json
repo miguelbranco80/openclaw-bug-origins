@@ -1,0 +1,17 @@
+{
+  "rank": 100281,
+  "sha": "d6158cc48033794ef09f6c9b34e1a377b767f604",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first message sent to a listed Copilot model such as Kimi K3 failed with an HTTP 400 error.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix uses Copilot\u2019s advertised endpoints to route requests and its advertised reasoning levels to enable adaptive thinking for unfamiliar Claude models.",
+  "reasoning": "The checked history shows that live catalog discovery and ID-based transport and Claude capability rules were already in place before July 2026, though the offline history did not establish their exact introduction. Copilot\u2019s listing of Kimi K3 exposed the Responses fallback, and the PR reproduced the Claude failure by simulating a newly listed adaptive-only model whose ID OpenClaw did not recognize. The evidence points to provider catalog changes exposing those assumptions without an identified in-repo trigger."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100680,
+  "sha": "4d755295bc37cf910e168578697528af1753b98b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "cbaf1123550572466a9aeac9275a290fae267dc6",
+  "cause_pr": 109709,
+  "confidence": "high",
+  "cause_quote": "The diff added `return this.agent.hasQueuedMessages();` to `handlePostAgentRun`, so a pending steer made the session call `agent.continue()` even after a model request failed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a second message arrived during a failing model request, the user could see a failure notice for the first question and receive only an answer to the second.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix lets the embedded runner retry or fall back for the failed request and lets the queued steer run as a separate follow-up.",
+  "reasoning": "In the parent of #109709, the core loop already accepted steers and exited on model errors, and the session settled when no compaction was needed, leaving the failure for the embedded runner\u2019s existing retry path. #109709 made a pending queue sufficient to continue, and `agent.continue()` drained the steer into a new prompt before the runner could retry the original question. The later `agent_settled` refactor preserved that decision."
+}

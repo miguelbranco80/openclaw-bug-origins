@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "b1f4aac349f93e34931bb6940d117a79851ef1e0",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `name: \"openclaw\"` and registered it at runtime with `...createOpenClawDelegateToolsForRun({ ...options, sessionAgentId })` without adding it to the core tool catalog.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The OpenClaw setup and repair helper was missing from the Control UI tool catalog.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix makes Full the default for unprofiled local onboarding, saves Full explicitly in Security settings, and adds the setup helper to the shared tool catalog used by the Gateway and Control UI.",
+  "reasoning": "I checked the helper\u2019s introducing diff and verified that the Gateway already built its core catalog from `listCoreToolSections`, whose definitions omitted `openclaw` at introduction and still omitted it immediately before the fix. The onboarding switch from Coding to Full separately revises an intentional, documented default.",
+  "rank": 100646,
+  "sha": "ba057a52ae01508744f79eb02f508c20b52fe94e",
+  "rubric": "v1.2"
+}

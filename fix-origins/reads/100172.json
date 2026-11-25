@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "8a4f9ab3e04c941030fc4153c910588d9e0113bd",
+  "cause_pr": 142679,
+  "confidence": "high",
+  "cause_quote": "The Windows (WSL2) launch added `operatingSystems: catalog.operatingSystems.filter((os) => os !== \"windows/wsl2\")` when Crabbox was too old or its version could not be verified.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On older Crabbox installations or when the version could not be verified, the cloud OS pickers hid provider-advertised macOS and Windows choices without showing how to enable them.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix shows unavailable macOS and Windows choices as disabled with instructions to upgrade Crabbox and restart the Gateway, while preserving provisioning checks.",
+  "reasoning": "I checked the Windows (WSL2) launch diff and its parent-side tests, which showed that Crabbox discovery previously offered only Linux. The launch shipped the silent omission for Windows (WSL2), and the macOS launch in #143463 extended the same filter to every non-Linux target.",
+  "rank": 100172,
+  "sha": "1c72b612a852d7d5ae7cc8615748d19a9cb8a9ad",
+  "rubric": "v1.2"
+}

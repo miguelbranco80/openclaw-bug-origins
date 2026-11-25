@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ba3711bb825d6150470e0f08fa45a841750e386d",
+  "cause_pr": 111933,
+  "confidence": "high",
+  "cause_quote": "The widget introduction resolved retained targets with `const url = resolveInlineWidgetUrl(canvasSurfaceUrl, widget.target);` and appended each frame\u2019s native update through `widgetSyncPromise = widgetSyncPromise.catch(() => {}).then(...)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After switching Gateways, a retained Quick Chat widget could try to load using the replacement Gateway\u2019s access, and slow native updates could make the preview lag behind the current layout.",
+  "impact": "permissions",
+  "area": "apps",
+  "summary": "The fix binds Quick Chat widget refreshes and native views to the owning Gateway and keeps only the latest pending layout update.",
+  "reasoning": "The first Quick Chat widget implementation retained reply widgets through disconnects, rerendered them against the current Canvas URL on reconnect, and queued each frame\u2019s native update behind the last. The later reply recovery commit added Gateway generation checks for incoming chat events, while the widget rendering path still resolved retained targets against the current URL.",
+  "rank": 100879,
+  "sha": "47060d1cef27c69794b68f6652ba183ad65a494d",
+  "rubric": "v1.2"
+}

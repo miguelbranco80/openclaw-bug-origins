@@ -1,1 +1,8 @@
-{"rank": 53, "flagged": "related", "where": "earlier-only", "quote": "On a persistent browser after upgrade, this filter excludes those still-open tabs unless the session transcript references them, so an existing session panel can appear to lose its tabs.", "outcome": "answered", "note": "The earlier P1 finding says the session filter hides untracked tabs, which is the mechanism behind the bug, but it is about pre-upgrade panel tabs, not the focus page's fixed startup tab sent with an empty reference list. steipete accepted it as intended and the at-merge version listed no findings."}
+{
+  "rank": 53,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cExisting browser owner\u201d item describes how the focused route passes the selected tab without raising a concern about session-scoped filtering. The earlier \u201cResolve merge risk\u201d items cover Android acceptance, older Gateway compatibility, and merge conflicts, leaving the cold-start tab omission unaddressed."
+}

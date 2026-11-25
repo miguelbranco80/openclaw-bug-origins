@@ -1,0 +1,8 @@
+{
+  "rank": 100801,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The executor-fence finding concerned rollback mutations continuing after the original helper died. The SQLite compatibility and recovery items did not address admission creating a fresh lease database when the original authority store was missing."
+}

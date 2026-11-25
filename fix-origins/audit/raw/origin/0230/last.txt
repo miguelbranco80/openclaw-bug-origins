@@ -1,0 +1,17 @@
+{
+  "rank": 230,
+  "sha": "301b2a18ba1ec1925a6ff7abe3000ac03015d768",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "f49742bd5e3f280811414425070bbe390840cf81",
+  "cause_pr": 125822,
+  "confidence": "medium",
+  "cause_quote": "The created-thinking claim logic added `} else if (claim && eventIsCurrent && thinkingLevel !== undefined) { claimChanged = thinkingLevelClaims.delete(claimKey); }`, which retires the claim on any applied event carrying thinking metadata, even when the reducer rejected the snapshot as stale-active and kept the old row.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After creating a session with a thinking choice and changing it (e.g. /think low), the Control UI thinking picker could flip back to the older choice (High) when an automatic title update arrived, until the next session list refresh.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "Only retires a pending thinking-level claim on a session-changed event when the reducer actually admitted the row, so a rejected equal-clock title snapshot no longer clears the newer choice.",
+  "reasoning": "The removed condition sits in session-thinking-claims.ts, created by the refactor 1ad9fe2 (#143049), but that code was moved verbatim from ui/src/lib/sessions/index.ts, where GraphQL blame attributes the claim logic including the delete branch to f49742b (#125822). At f49742b, reconcile.ts already rejected stale-active snapshots (`isStaleForActiveSession` returning the unchanged result) while still returning `applied: true` with the existing row, so the claim was cleared from the start; medium because I did not confirm the title producer emitted thinking metadata at that time."
+}

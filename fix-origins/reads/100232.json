@@ -1,0 +1,17 @@
+{
+  "rank": 100232,
+  "sha": "c2bacf334ba1f32bde16e95a5306515a4e2912c4",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "3d7d21166f0962f05937376db16f3861a9b5bc85",
+  "user_visible": "yes",
+  "user_saw": "An explicit model catalog refresh could report a healthy provider as unavailable and omit its models if the provider took more than five seconds to respond.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix passes the explicit refresh deadline to shared HTTP acquisition and separates pending loads by timeout budget.",
+  "reasoning": "The parent of #145190 used a five-second discovery limit in catalog preparation, and the shared row-fetch helper independently used `const timeoutMs = params.timeoutMs ?? 5_000;`. The #145190 diff added `providerDiscoveryTimeoutMs: PREPARED_MODEL_CATALOG_WORKER_TIMEOUT_MS` to the worker's acquisition call, giving provider discovery 180 seconds while leaving the HTTP helper's existing default in effect."
+}

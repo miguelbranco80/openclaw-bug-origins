@@ -1,0 +1,17 @@
+{
+  "rank": 100358,
+  "sha": "552b54b86c133ad9773cade18b272dd0a081ee67",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "697f773c4a8fd883d1ce1d9732dfff41166d1e2d",
+  "cause_pr": 132073,
+  "confidence": "high",
+  "cause_quote": "The original revocation path filtered the Cloudflare policy with `return emails.filter((email) => !targets.has(email));` and then deleted the grant record with `await this.store.delete(email);`, leaving already-admitted Gateway authority active.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A visitor could keep using an open Gateway connection or have active or queued work continue after an invitation expired or was revoked.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix binds Gateway access and accepted work to the original Visitor grant and cancels active or queued work when that grant ends.",
+  "reasoning": "The introducing diff delegated enforcement to Cloudflare policy membership and explicitly documented that existing Access sessions were outside the revocation path. The later invitation checks in #153987 validated guest permissions before granting access, and the queued-run authority in #153989 tracked operator identity, role and source without binding them to a Visitor grant."
+}

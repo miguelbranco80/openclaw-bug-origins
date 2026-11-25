@@ -1,0 +1,8 @@
+{
+  "rank": 100670,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence items on cache identity and existing mutation invalidation describe safeguards. Neither raises a concern about a page cached during a managed write being reused after rollback."
+}

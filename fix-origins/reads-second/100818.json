@@ -1,0 +1,17 @@
+{
+  "rank": 100818,
+  "sha": "51614f7b17c443ac027b89672ab77a5c9ff64115",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix removes the export keyword from the file-local Synology Chat webhook path source type.",
+  "reasoning": "The PR documents an unused-export finding from Knip in scheduled CI. The commit diff confirms that only the export modifier changed, leaving the type, plugin API, and runtime behavior intact."
+}

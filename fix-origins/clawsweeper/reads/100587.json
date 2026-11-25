@@ -1,0 +1,8 @@
+{
+  "rank": 100587,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cBind worker reads to the file identity admitted by policy\u201d concerned a file replacement race. The earlier findings concerned path authorization and handling, and none of the available review text raised TypeScript config resolution when workers launch outside the checkout."
+}

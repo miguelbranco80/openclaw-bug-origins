@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "ce1fd810bba5c767abcc5521130444286665011e",
+  "cause_pr": 176406,
+  "confidence": "high",
+  "cause_quote": "The new desktop Details rule for `.session-progress-card__step` added `align-items: center;`, centering the marker vertically across the full height of a wrapped description.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the desktop chat Details panel, task status icons appeared halfway down wrapped descriptions instead of beside the first line.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix restores first-line alignment in the Details checklist, gives status icons a fixed-width column, and connects the steps with a vertical rail.",
+  "reasoning": "In the parent commit, the existing Details checklist used `align-items: start`, and the browser test checked first-line alignment for wrapped descriptions. PR #176406 overrode that CSS on desktop and changed the test to expect the marker at the center of the entire description. The fix removes the override and restores the first-line assertion.",
+  "rank": 100182,
+  "sha": "6160b254974cfaa1d1e5ddbad69c1961bd5b21b7",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "c2189713f2a93cac5aab4645b4f8dcdc86cc1aeb",
+  "cause_pr": 131689,
+  "confidence": "high",
+  "cause_quote": "The new canonical Gateway send path used `!actionHasTarget(\"send\", request.params, { channel })` without passing the selected adapter's aliases, then assigned `request.params.to = target.to` when that check missed the destination.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Gateway send addressed through an installed adapter's destination alias could fail with a conflicting-target error when the account default pointed somewhere else.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix carries the selected adapter's alias metadata or known absence through message routing and reserves bundled discovery for callers that have yet to select an adapter.",
+  "reasoning": "The causing commit's parent used canonical Gateway routing only for polls, and the commit introduced canonical sends with a default-target check that ignored the selected adapter's aliases. I checked the fix's `roomId` fixture and the pre-fix normalization code, which rejects a selected delivery alias when it differs from the injected `to`. The shared bootstrap lookup predates the shallow boundary, so this attribution is to the Gateway send failure introduced by the new route.",
+  "rank": 100151,
+  "sha": "8577a92716ce87da858caedd11bc709bd237c46b",
+  "rubric": "v1.2"
+}

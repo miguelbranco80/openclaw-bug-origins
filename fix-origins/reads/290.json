@@ -1,17 +1,17 @@
 {
   "rank": 290,
   "sha": "bda0fa9bacf7cb9a84a98f71b56866ac03e7572e",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "ecdc40dbcf9bfc4c083237fdfa69ea949088f27c",
+  "cause_pr": 170387,
+  "confidence": "medium",
+  "cause_quote": "The port switched the wizard fallback to `<Picker params={params()} />` and added `return props.class ?? pickerClass(props.params);`, which reads `params.variant` while the memoized object can still be undefined.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Fresh provider setup in the Control UI threw \"Cannot read properties of undefined (reading 'variant')\" when advancing from the API-key field to the endpoint compatibility choice.",
-  "impact": "failed-every-time",
+  "user_saw": "During fresh provider setup, submitting the API key could crash the wizard before it displayed the endpoint compatibility choices.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "Replaces SingleChoice's whole-object createMemo of picker params with one stable object of reactive getters so the Picker never receives undefined params during step transitions (plus benchmark and wire-link simulator fixes).",
-  "reasoning": "The whole-object `createMemo<PickerParams<...>>` was introduced by 0a32b78ba64 (#171882, Oct 15) and later reshaped by 4285c6ced42 (#191385, Nov 3, Continue-confirm flow for model-setup pickers with more than two options), while the Picker/select-picker internals that read `params.variant` changed in many commits since. The PR does not say when the transition last worked, and its own unit transition test passes on base, so I could not tie the undefined-params failure to the introducing commit, to 4285c6ced42, or to a Solid/picker change with a quotable line."
+  "summary": "The fix gives the wizard picker a stable parameter object whose getters track the active step.",
+  "reasoning": "I checked the port's parent and confirmed that the API-key-to-compatibility sequence already existed and the wizard passed its parameters directly to the Lit picker with a static class. The port introduced the render-time class lookup on the memoized object, and a later refactor inlined the same lookup. The fix PR reproduced the crash on its base, but the available evidence does not date the first observed failure to the port."
 }

@@ -1,1 +1,8 @@
-{"rank": 68, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review at merge lists no findings; nothing mentions Doctor or triage pointing OPENCLAW_STATE_DIR at a private copy and so hashing to a namespace the sweep never visits. The only prior finding mentioned (fixed-prefix starvation) is a different issue."}
+{
+  "rank": 68,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests section calls for end-to-end proof of plain status and scheduled Gateway cleanup without identifying the Doctor and triage namespace mismatch. The Evidence section\u2019s prior finding concerns fixed scan limits within the sweep, which would still miss the per-run namespaces after those limits were removed."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "9faa93d44c85d807d3c73db2420f4e85c24d3784",
+  "cause_pr": 158414,
+  "confidence": "medium",
+  "cause_quote": "The new admission path called `assertPluginNativeReferenceNamespace(...)` inside `for (const target of hardlinkedTargets)`, repeating synchronous companion verification under the existing catalog deadline.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On the affected Windows setup, the Gateway repeatedly timed out and started capturing the same native plugin again before its model catalog could finish loading.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix lets native admission continue while verification makes progress, reuses the verified capture across catalog refreshes, and reports stalled admission without automatically restarting it.",
+  "reasoning": "I checked #158414 and its parent and found that the parent copied dependency files and already enforced a 180-second catalog deadline, while #158414 introduced the hardlink companion-verification path under that same deadline. #162254 later reduced repeat verification within a capture, but the fix's fixture still reproduced the timeout before the worker could retain a prepared generation. The evidence supports a defect present from the introduction of native-reference admission, though it does not establish when the reporter's exact Windows setup first crossed the deadline.",
+  "rank": 100720,
+  "sha": "c19dc239d20b08948d5f18a89b97ef6a1b5a9bac",
+  "rubric": "v1.2"
+}

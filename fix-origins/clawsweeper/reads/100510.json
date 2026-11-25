@@ -1,0 +1,8 @@
+{
+  "rank": 100510,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding about scoping progress-card notifications concerned subscriber isolation, and earlier findings concerned legacy checklist clearing and native Codex plan normalization. The earlier request to preserve update-plan semantics did not identify the runner's missing check for unfinished steps before finalizing."
+}

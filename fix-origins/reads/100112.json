@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "2d319961d58908a98e1c549d49a62403b2a55b96",
+  "cause_pr": 104254,
+  "confidence": "high",
+  "cause_quote": "The new action guard installed `await opts.page.route(\"**\", handler);`, putting every request through Playwright interception during existing browser interactions.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A server could receive a cross-origin request during a browser action even when its CORS policy denied the request.",
+  "impact": "permissions",
+  "area": "plugins",
+  "summary": "The fix replaces catch-all Playwright routing with document-only CDP interception so Chromium handles CORS preflights natively.",
+  "reasoning": "I checked the introducing diff and its parent and confirmed that existing click actions previously ran without the catch-all route added by #104254. The fix PR's Chromium comparison showed that the rejecting server received only the preflight without the route and received the cross-origin request with it. Guarded `goto` already used catch-all routing before #104254, and its introduction predates the available local file history.",
+  "rank": 100112,
+  "sha": "ae3561e289dc95232b362329bd7657ddc46adfe0",
+  "rubric": "v1.2"
+}

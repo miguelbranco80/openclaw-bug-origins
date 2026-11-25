@@ -1,17 +1,17 @@
 {
   "rank": 177,
   "sha": "f1144b0391b0138e2afa5efb0af023f8e6af9b21",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
+  "trigger_sha": "b4104e29b5ff70e88abf719fd430e60b0841db96",
   "user_visible": "yes",
-  "user_saw": "After archiving a session, clicking Undo took a noticeable moment to bring the row back, and work the archive had already stopped stayed stopped.",
-  "impact": "slower-or-heavier",
+  "user_saw": "After archiving a running session, users had to wait for Undo to appear, and clicking it restored the session without resuming the stopped work.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "Archive in the Control UI became a deferred commit held behind the Undo toast, so Undo cancels locally with no Gateway write and the old archive-then-unarchive restore machinery (and the Sessions page's separate flow) was removed.",
-  "reasoning": "PR #194694 describes a redesign of Undo from a compensating action (archive now, send unarchive later) into a cancellation, explicitly listed as a behavior change with archiving now applied seconds later. The prior design worked as built (Undo did restore the session, just via a round trip), so this is a UX/latency improvement rather than a defect introduced by a specific commit."
+  "summary": "The Control UI hides the session immediately and defers the Gateway archive while Undo is available, so Undo can restore the row instantly and keep active work running.",
+  "reasoning": "The original Undo in #110605 waited for the archive to finish and sent an `archived: false` patch, which restored the archive state for the inactive sessions eligible at the time. I checked that #120892 expanded archiving to running sessions and added `abortChatRunsForSessionKeyWithPartials` before the archive committed, while the existing Undo still only reversed the archive state."
 }

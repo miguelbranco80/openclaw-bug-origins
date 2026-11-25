@@ -1,0 +1,17 @@
+{
+  "rank": 100221,
+  "sha": "aa42103a719b2d432ff2513159e65a652be4c451",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During an update, the Gateway stayed offline while Doctor ran optional checks.",
+  "impact": "slower-or-heavier",
+  "area": "update",
+  "summary": "The updater runs 12 optional Doctor inspections after verifying Gateway readiness and preserves their findings in the update result.",
+  "reasoning": "The baseline update completed successfully, and the fix shortens its outage by moving advisory work after readiness. I checked the September restart changes and found that fresh Doctor already ran before a restart, including when plugin changes required a separate stop and restart."
+}

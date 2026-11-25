@@ -1,0 +1,8 @@
+{
+  "rank": 100631,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The finding \u201cBypass the list memo for mutating-thread eligibility\u201d warns that stale cached data can authorize a terminal action. It provides no lead on cache eviction discarding an in-flight catalog read and causing a duplicate native read."
+}

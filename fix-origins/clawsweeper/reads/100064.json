@@ -1,0 +1,8 @@
+{
+  "rank": 100064,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cResolve merge risk\u201d item called for controlled comparisons of Gateway GC and latency. The review raised no concern about the pre-commit replica subscription that caused publication to recompute and clone the sharing projection."
+}

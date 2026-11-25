@@ -1,17 +1,17 @@
 {
-  "rank": 285,
-  "sha": "35b84dab3891fb9213a64300e968a59bbf78c8a8",
-  "rubric": "v1.1",
   "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
+  "trigger_sha": "51e16b62302c54937a50153864e3bd9abd1e65d5",
   "user_visible": "yes",
-  "user_saw": "On a pnpm install, the second `openclaw update` ended with exit 1 `update-recovery-pending` although the new Gateway was serving, and every later update was refused for unfinished recovery.",
-  "impact": "failed-every-time",
+  "user_saw": "On the second consecutive pnpm update, the CLI exited with `update-recovery-pending` even though the new Gateway was serving, and the unfinished recovery record blocked later updates.",
+  "impact": "sequence-or-timing",
   "area": "update",
-  "summary": "While an update retains its running runtime, registers a process-wide worker resolver that createCpuTrackedWorker applies, so detached process owners (state lease heartbeat carrier, file-log pool) load worker scripts from the retained copy instead of the removed installed package.",
-  "reasoning": "The retained-runtime generation (#153764, 2026-09-22) bound worker resolution through async context only, and the shared lease heartbeat carrier spawns workers via runInDetachedAsyncContext (present since at least #168807-era code in October); this was harmless as long as the updater's own dist stayed on disk, which still holds for npm and first pnpm installs. It broke only once the updater itself ran from a pnpm group-local virtual store that activation moves into the transaction backup, an install-layout situation produced by recent pnpm update work (#200366/#201735/#202017), but I could not pin which single commit first made activation move the running updater's group, so no trigger_sha is given."
+  "summary": "The fix makes detached workers load scripts from the retained updater runtime after pnpm activation moves the installed package.",
+  "reasoning": "The original retained-runtime resolver used `scope.getStore()?.generation`, so it covered work in the update\u2019s async context while detached workers still used the installed path. PR #188404 added `heartbeat: \"worker\"` to the existing plugin lifecycle lease, whose previous path used timer renewal, bringing that lease onto a detached worker path. The fix\u2019s trace confirms that this worker tried to load its script from the old pnpm store path after activation moved it, causing the lease to fail.",
+  "rank": 285,
+  "sha": "35b84dab3891fb9213a64300e968a59bbf78c8a8",
+  "rubric": "v1.2"
 }

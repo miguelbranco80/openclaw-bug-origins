@@ -1,0 +1,17 @@
+{
+  "rank": 100374,
+  "sha": "ecf0fc5803e602c715d5556313e95217b097a5ab",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "49d916e8e96b09e41cde4ea9c87a84a490d80ff6",
+  "cause_pr": 130016,
+  "confidence": "medium",
+  "cause_quote": "The new disabled-corpus response said, 'Enable memory.search.experimental.sessionMemory and add \"sessions\" to memory.search.sources, then retry memory_search,' making a configuration change the only recovery it offered.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With semantic session indexing disabled, users could be told to enable it even when the agent could look up the transcript through session history.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "The fix explains when the semantic sessions corpus is unavailable and makes the recovery advice conditional on the session-history capabilities available for the run.",
+  "reasoning": "I checked the introducing diff and confirmed that the explicit disabled-corpus response shipped with configuration-only recovery advice. The later sanitized-history prompt already checked tool availability, and the unconditional sessions_search advice described in the PR reproduction is absent from the merged parent\u2019s tool description and disabled-corpus response. The classification follows the guidance defect in the merged diff."
+}

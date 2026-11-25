@@ -1,0 +1,17 @@
+{
+  "rank": 100066,
+  "sha": "ecfbddbbcc819d0bb9d5ef10adf560117cf67a4a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "979c0fc29e196000294a9ab5b5b5fc908a879d70",
+  "cause_pr": 144871,
+  "confidence": "high",
+  "cause_quote": "The original worker added `if (serialized.byteLength > SQLITE_WORKER_MAX_RESULT_BYTES) { throw new Error(\"SQLite worker result exceeds the transport byte limit\"); }` and defined that limit as `64 * 1024 * 1024`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A SQLite worker read returned an error whenever the serialized result exceeded 64 MiB.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix transfers SQLite worker results larger than 64 MiB in bounded frames and returns the result after complete reassembly.",
+  "reasoning": "The introducing diff added the SQLite worker and its 64 MiB rejection check together, so oversized reads failed from the first version of the worker API. First-parent history and the intervening acquisition refactor show that the check persisted until this fix, whose PR reproduced the failure by reading three stored 24 MiB values."
+}

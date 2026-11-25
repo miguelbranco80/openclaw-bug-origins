@@ -1,17 +1,17 @@
 {
   "rank": 111,
   "sha": "907e17b9ff49063230cb0bc745a662700128c47d",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a99f797f39ce3a02258b0b5dd3b3b2b9485a8c2d",
+  "cause_pr": 172750,
+  "confidence": "medium",
+  "cause_quote": "The new preparation client ran `const root = createPluginSourceCaptureRoot(storage.stateDir, \"plugin-preparation-\");` on the Gateway thread before dispatching work to the preparation worker.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The Gateway froze for about two seconds when plugin preparation created capture directories on a btrfs filesystem waiting for a transaction commit.",
-  "impact": "slower-or-heavier",
+  "user_saw": "The Gateway could briefly stop responding while plugin preparation waited for the filesystem to create a capture directory.",
+  "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Moved creation and custody of plugin source/native capture roots and staging tokens from the Gateway main thread into the existing broker resource owner.",
-  "reasoning": "The synchronous capture-root creation on the main thread was a long-standing design (the parent allocation callback already existed before the blame candidates, e.g. dfb91dc29046 only moved worker-side root bookkeeping), and it is normally fast; it stalled only when the host filesystem (btrfs) blocked in wait_current_trans during a Team incident. No commit made this path slower, so it is environment-exposed latent behavior rather than a regression; the PR accepts higher total cost to keep the event loop free."
+  "summary": "The fix moved physical source and native capture directory and staging-token operations into the broker so filesystem delays would no longer block the Gateway event loop.",
+  "reasoning": "The external-plugin preparation worker shipped with a synchronous source-root allocation on the Gateway thread, and the helper at that revision created directories and acquired the staging token synchronously. I checked that native-root allocation moved onto the host separately in #177067 and that the model-catalog pool already used synchronous directory creation, so the cited commit accounts for the external-plugin source path within a fix that covers several paths."
 }

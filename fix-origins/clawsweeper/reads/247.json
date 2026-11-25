@@ -1,1 +1,8 @@
-{"rank": 247, "flagged": "related", "where": "at-merge", "quote": "Use the projected identities in the remaining eligibility checks and retain refusal or verified retirement for this state; add a public-repair regression.", "outcome": "open-at-merge", "note": "The P2 finding flags a check that still compares raw historical identities instead of remount-projected ones, the same mechanism, but it targets the previous-generation refusal (a false settlement), not the automatic onlyStaleLease gate that declines settlement after renumbering. Chose related, not exact, because fixing only the named refusal would not have prevented the bug."}
+{
+  "rank": 247,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 finding flags a dry run that incorrectly admits a same-device preparation after package or launcher drift. The shipped bug occurs earlier, when a changed filesystem device number causes the automatic settlement gate to reject recovery before verification."
+}

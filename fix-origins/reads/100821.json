@@ -1,0 +1,17 @@
+{
+  "rank": 100821,
+  "sha": "974c99df3832ce3b50afc6b70fd45189aa6f017a",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A malformed aspect ratio such as `16x9` could produce a default square image and a successful exit after a potentially billable provider request.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix makes the image generate and edit commands reject malformed aspect ratios before sending a provider request.",
+  "reasoning": "The October refactor preserved the existing unchecked forwarding of `--aspect-ratio`, and the July 1 snapshot already shows both commands forwarding raw ratios to a runtime that could discard them and still dispatch. The offline history stops at the shallow boundary, so I could not verify whether this behavior shipped with the option or replaced earlier validation."
+}

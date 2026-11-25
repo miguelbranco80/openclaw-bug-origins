@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users with write access could change an existing session\u2019s model but needed administrator access to change its thinking level or fast mode through the Control UI pickers or slash commands.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix lets write-scoped operators set or clear session thinking and fast-mode overrides and gives the context-window control its own admin permission check.",
+  "reasoning": "I checked the Gateway scope history and the diff for #120875, which added only model changes to the write allowlist and explicitly documented and tested that thinking and fast-mode changes required admin access. The fix expands that documented permission policy.",
+  "rank": 100037,
+  "sha": "3621a16d7201600cbb3907ee37c6b754ed0852d2",
+  "rubric": "v1.2"
+}

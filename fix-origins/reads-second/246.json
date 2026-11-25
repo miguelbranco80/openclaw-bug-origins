@@ -1,17 +1,17 @@
 {
   "rank": 246,
   "sha": "0eb1fa3f7471ec2466cfa503d6b5252d3c94b591",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
-  "trigger_sha": "d74a4aeb7d62362234570f2e8245830f5edae49f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d74a4aeb7d62362234570f2e8245830f5edae49f",
+  "cause_pr": 176422,
+  "confidence": "high",
+  "cause_quote": "The new cron restore path passed `snapshot: source.snapshot` to `restoreGatewayOperatorSource`, which rejected the saved source whenever `generationOwner.requiredGeneration !== snapshot.sharedGeneration`.",
+  "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After any trusted-proxy settings change (including an upgrade that adds a required header), automations created through proxy sign-in were refused and auto-disabled with 'Restart recovery authentication owner changed'.",
-  "impact": "failed-every-time",
+  "user_saw": "After a proxy admission setting changed, the next run of an automation created from a proxy-signed-in chat was refused and the automation was disabled.",
+  "impact": "sequence-or-timing",
   "area": "cron",
-  "summary": "Operator-source restore skips the exact shared-auth generation comparison for sources authenticated by the trusted proxy itself and relies on the saved grant check instead.",
-  "reasoning": "The exact check `generationOwner.requiredGeneration !== snapshot.sharedGeneration` dates from 961f5c0b7099 (#166553), where it guarded short-lived Control UI restart recovery and the trusted-proxy generation already hashed proxy admission settings (ws-shared-generation.ts unchanged in substance since); refusing recovery there with 'start a new user turn' was a defensible conservative policy. d74a4aeb7d6 (#176422) made long-lived cron jobs retain operator sources and restore through the same restoreGatewayOperatorSource path, relying on authority surviving proxy-policy changes that the restore code never promised, so I classify it latent with that commit as trigger; a reader could also defend never-worked at d74a4aeb7d6."
+  "summary": "Saved proxy-authenticated automations now revalidate the creator\u2019s access grant without requiring an exact match on the proxy admission hash.",
+  "reasoning": "The introducing diff added saved operator authority for scheduled continuations and routed each occurrence through the existing exact-generation check. At that commit, trusted-proxy sessions already saved a generation that hashed required headers, so changing those headers could invalidate a saved automation even while the creator\u2019s grant remained valid. The Enterprise upgrade exposed the same failure by changing the rendered proxy configuration."
 }

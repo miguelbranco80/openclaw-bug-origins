@@ -1,0 +1,17 @@
+{
+  "rank": 100011,
+  "sha": "b68da67ec7594e50734cb3333b2f3cf9707b8659",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4944a6df77080f328fed59ee22384e3ee45d522f",
+  "cause_pr": 169773,
+  "confidence": "high",
+  "cause_quote": "The new recovery guard compared `buildModelCatalogRef(agentMeta.provider, agentMeta.model)` to the selected model and set `fallbackTransition.stateChanged = false` when they differed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the session returned to the selected model, users could still see it marked as using a fallback and miss the recovery notice in chat history.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix uses the admitted session model to determine whether a successful turn clears the fallback notice.",
+  "reasoning": "Before #169773, accounting passed `sessionModel` to `resolveFallbackTransition` and persisted the cleared state when the session returned to its selected model. The commit added a second check that used response metadata, which can identify a different model when a tool-free finalizer produces the reply. That mismatch blocked the existing state clear and suppressed the new chat-history recovery notice."
+}

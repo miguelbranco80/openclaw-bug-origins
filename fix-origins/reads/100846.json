@@ -1,0 +1,17 @@
+{
+  "rank": 100846,
+  "sha": "d48dfd6c974dcfe27eb6a3f1089b353bd8ab61e4",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "New Microsoft Foundry configurations for affected GPT-5 deployments showed limits of 128,000 context tokens and 16,384 output tokens, below the documented capacities.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix assigns documented GPT-5 families 400,000 context tokens and 128,000 output tokens in new Microsoft Foundry configurations while preserving existing configured limits.",
+  "reasoning": "The July 29 blame candidate added native limits for newer GPT-5 families, but its parent and the July 1 snapshot already applied the 128,000/16,384 fallback to the affected models. The offline path history stopped at a missing commit before July 1, so I could not verify when the undersized defaults first shipped or what exposed them."
+}

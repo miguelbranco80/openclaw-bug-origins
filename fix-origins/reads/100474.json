@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "6c9809acf1bd5a606907783f05ed0b6ecf5b748d",
+  "cause_pr": 161267,
+  "confidence": "high",
+  "cause_quote": "The diff replaced `const activeRegistry = getActivePluginRegistry();` with `const gatewayRegistry = resolveLendingGatewayRegistry(input, metadataSnapshot);`, whose lookup starts with `const requestRegistry = getPluginRuntimeGatewayRequestScope()?.pluginRegistry;` and therefore misses the startup registry in detached cron runs.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first scheduled condition check after a Gateway restart could time out while re-registering plugins, leaving Gateway health checks and channel sockets unresponsive.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix passes a live Gateway plugin registry resolver through cron startup and hot reload so scheduled runs can reuse compatible plugins.",
+  "reasoning": "I checked the parent of #161267 and confirmed that scheduled conditions already used the prepared inbound loader, which could reuse a compatible process-active Gateway registry even though the scheduler discarded inherited request scope. The same commit changed an existing loader test from unscoped reuse to explicitly scoped reuse, and the fix's restart reproduction showed that the missing registry scope caused duplicate registrations and a timeout.",
+  "rank": 100474,
+  "sha": "3e16525c4d672a0522e43dcf599fa4f5edb4850a",
+  "rubric": "v1.2"
+}

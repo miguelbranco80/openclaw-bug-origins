@@ -1,0 +1,8 @@
+{
+  "rank": 100838,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Loose built helpers launched with --import, --require, or loader hooks now fail admission; the maintainer-authored PR explicitly accepts startup-hook incompatibility to preserve exclusive child reaping.",
+  "outcome": "unclear",
+  "note": "The compatibility-risk label identified the new admission failure for built helpers running with --import, which covers the instrumentation hook inherited through NODE_OPTIONS. The review treated the risk as accepted, and the bundle contains no human reply."
+}

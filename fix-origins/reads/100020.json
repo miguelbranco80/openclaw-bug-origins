@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix bundles the Mistral chat client into @openclaw/ai, cutting the measured npm 12 install from 47,898 to 41,793 entries.",
+  "reasoning": "I checked the guard's introduction and the SDK dependency history. The PR reports that cumulative growth in generated runtime files, Control UI assets, and extensions pushed a previously passing install from 47,494 entries over the unchanged 47,500-entry guard, while the failed candidate remained below the 50,000-entry limit in shipped updaters. The two measured revisions were unavailable in the local checkout, so the PR measurements establish the threshold crossing without identifying a specific triggering commit.",
+  "rank": 100020,
+  "sha": "ae160c8261f4661b53121000ab5c6130a82924eb",
+  "rubric": "v1.2"
+}

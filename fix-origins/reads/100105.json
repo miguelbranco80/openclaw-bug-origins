@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The gateway could consume excessive memory when loading or inspecting an oversized configured TLS file.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix caps gateway certificate and private-key reads at 64 KiB during startup, renewal, and public certificate inspection while preserving support for larger CA bundles.",
+  "reasoning": "The startup loader already buffered both files before the July 2026 history boundary, and the available offline history could not establish when those reads were introduced. I verified that certificate-only inspection used an unbounded read from its introduction and that renewal reused the existing loader. The fix\u2019s tests show that main accepted files above the new limit, but the bundle documents no observed resource failure or earlier size limit.",
+  "rank": 100105,
+  "sha": "4ab7c08be3314e7a864bd991492710f6e946e2a3",
+  "rubric": "v1.2"
+}

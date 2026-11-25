@@ -1,0 +1,17 @@
+{
+  "rank": 100401,
+  "sha": "25aecf8d10512338ed06180bed5f023cd388d673",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "baf06ed4f997e0cb28a5cf8bf0de9d9816572ed7",
+  "cause_pr": 129922,
+  "confidence": "high",
+  "cause_quote": "The introducing diff initialized `let generations: RetainedGeneration[] = [];`, populated it with `generations = await loadCachedGenerations(cacheDir, operation);`, and called `rootState.retainedAssets?.resolveAsset(fileRel)` synchronously, so requests during verification missed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "For several seconds after a Gateway restart, an already-open Control UI tab could get a 404 and fail to open a view it had not yet loaded.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix makes retained asset requests that miss during startup verification wait for the inventory and retry the lookup.",
+  "reasoning": "The introducing diff added both the retained-asset HTTP fallback and post-ready preparation, so the server could accept requests while the retained generation list was still empty. The #131930 diff reduced startup work but still populated that list only after inventory verification, preserving the startup window that shipped with the feature."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 167,
   "sha": "82b682c627ba8bfc2c2bd51cf46ad8f51c583857",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "9344233e7a66fe36479d55b7f7ae8e10eb886586",
   "cause_pr": 185730,
-  "confidence": "low",
-  "cause_quote": "#185730 made startup 'admit one \"The Gateway restarted while you were working. Resume your work...\" input' immediately, with the only re-admission in enqueueSessionEventAttempt being the config-change retainForConfigChange path, so a workspace-node NOT_CONNECTED failure settled terminally.",
+  "confidence": "medium",
+  "cause_quote": "The new startup path cleared the marker with `resumeAfterRestart: undefined`, enqueued one `source: \"restart\"` event, and handled rejected acceptance with `if (!accepted.ok) { throw new Error(accepted.error); }`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After a Gateway restart mid-turn, an agent with a dedicated workspace node got a restart failure notice (node not connected) instead of resuming, and the user had to send a new message.",
+  "user_saw": "After a Gateway restart, users saw a restart failure and had to send another message if their agent\u2019s dedicated workspace node was still reconnecting.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Restart-sourced session events that fail with an undispatched workspace-node NOT_CONNECTED error are now re-admitted every second for up to 60 seconds instead of failing terminally.",
-  "reasoning": "Remote/dedicated workspaces existed since September (ce616b64177, b856d4e0f4d), and the current restart-resume path that admits the resume input right at startup was introduced by 9344233e7a66 (#185730) on Oct 28 with no wait for the workspace node to reconnect, so this setup never worked on that path. I did not verify whether the retired pre-#185730 recovery machinery handled node reconnects, and the fix is partly a new retry policy, hence low confidence."
+  "summary": "The fix retries eligible restart inputs once per second for up to 60 seconds when the Gateway confirms the workspace command was never dispatched because the node was disconnected.",
+  "reasoning": "The introducing diff sent the startup resume input through a handoff whose only retry condition was a configuration change, so a transient workspace disconnect could end the new resume flow on its first attempt. I checked the parent\u2019s recovery code and found retry machinery in the older paths, but could not verify that it successfully resumed the same interrupted turn when a dedicated workspace node was still disconnected."
 }

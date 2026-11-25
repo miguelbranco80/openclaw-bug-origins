@@ -1,0 +1,17 @@
+{
+  "rank": 100265,
+  "sha": "c190df12716a17d23a1c00eaf106044d2f2c9317",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c828f7ed1d560295f78166a98fb54687dc162b28",
+  "cause_pr": 164490,
+  "confidence": "high",
+  "cause_quote": "Changing the guard to `if (schemaChange || control || dataChange) {` routed ordinary writes through the existing `yield* callStatement(...)` wrapper, which left the native iterator open if `next()` threw.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a write failed with a constraint error, a later valid retry could fail with the same error.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix closes the native SQLite iterator when stepping throws and preserves the original error.",
+  "reasoning": "I checked the causing commit and its parent. Before the change, the ordinary `INSERT ... RETURNING` in the fix's test bypassed schema tracking, and the existing Kysely iterator path called `return()` directly on the native iterator after an error. The new guard put the generator between Kysely and the native iterator, so the same cleanup call reached an already-closed generator and left the cached statement carrying the old error."
+}

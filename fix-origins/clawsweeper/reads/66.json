@@ -1,0 +1,8 @@
+{
+  "rank": 66,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Before merge lists CI follow-up, and the earlier review history covers respawn signal handling and CLI test fixtures. Neither raises the risk that Ctrl+C leaves camera or location commands waiting for an uncancelled node lookup."
+}

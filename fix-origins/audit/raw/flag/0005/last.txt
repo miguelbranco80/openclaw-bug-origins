@@ -1,1 +1,7 @@
-{"flagged":"none","where":null,"quote":null,"note":"The earlier “Consume the complete inline argument token” finding concerned Enter dispatching a truncated argument when the caret was inside it. The at-merge “Before merge” items concerned verification and did not identify the highlighted argument resetting when the user selected text."}
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "No review version mentions the select handler re-running updateSlashMenu or the highlighted argument resetting to index 0. The earlier P2 finding about consuming the complete inline argument token concerns truncated dispatch with the caret mid-token, a different failure."
+}

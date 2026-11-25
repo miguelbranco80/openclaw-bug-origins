@@ -1,0 +1,17 @@
+{
+  "rank": 100350,
+  "sha": "a74f408db7fbabcdca1089cec8d50f16d6a4f418",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "11759fbac94842ea13b454fa79127835fb41bc68",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The commit changed each padded row to `grid-template-columns: subgrid` and set the shared touch layout to `grid-template-columns: 20px minmax(0, 1fr) 32px max-content`, so the row's 8px start padding consumed the space between the 20px avatar and the name.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On touch devices, names touched their avatars and the avatars, names, action icons, and session counts were vertically misaligned.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix sizes the mobile avatar column to its content, centers the row contents, and renders the menu icon as a block.",
+  "reasoning": "I checked the causing commit's parent, where each row defined its own 20px avatar track and 8px gap inside its padding. The causing diff moved those tracks to the list, making the padded row a subgrid and removing the visible avatar-to-name gap. The fix PR reports that intrinsic sizing restored the 8px gap at both tested mobile widths."
+}

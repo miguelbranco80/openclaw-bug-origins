@@ -1,0 +1,17 @@
+{
+  "rank": 100048,
+  "sha": "495b4d8750bbb1383ea231080433673f926cd88e",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "9ae24dfffeec447863d995d7dded5c8827b5ac66",
+  "user_visible": "yes",
+  "user_saw": "After upgrading, operators could still see an old systemd stop policy that interrupted active turns or a Windows Gateway task that would not retry after a crash.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The updater now backs up managed Gateway service definitions, repairs recognized policy drift after package activation, and preserves operator edits.",
+  "reasoning": "I checked the Linux policy change in #140568, which switched newly generated units to `KillMode=mixed` for cooperative shutdown and documented that ordinary upgrades left existing units unchanged. I also checked #132186, which added three crash-restart retries to newly generated Windows task definitions. Preserving installed definitions became a problem once the upgraded Gateway needed those newer policies."
+}

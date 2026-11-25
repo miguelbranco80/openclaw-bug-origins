@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge What this changes section describes avoiding database sidecars without raising a concern about snapshot copying. The Before merge items in the supplied versions focus on proxy headers and TLS, with no warning about slow status reads or partial snapshots."
+  "outcome": null,
+  "note": "All review items concern TLS pin preservation, edge-auth headers, and transport proof; nothing mentions the artifactPreservingReadOnly snapshot copy making gateway status slow."
 }

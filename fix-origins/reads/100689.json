@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0606e31d0e623f010a96f0efe7d6434324cb6467",
+  "cause_pr": 126306,
+  "confidence": "high",
+  "cause_quote": "The initial broker matched a closed PR only when `candidate.state === \"closed\" && candidate.body.includes(params.marker)`, so an accepted update on a PR whose body still held the original request marker fell through to `if (!pullRequestUrl)` and could create a replacement.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After GitHub accepted an update but confirmation was interrupted, recovery could create a replacement PR if the original had closed or report a failure after the branch was deleted or merged.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The Gateway now verifies and records an interrupted update against its original PR before retrying publication, preserving later local work and allowing explicitly new requests.",
+  "reasoning": "The initial broker already supported pushes to existing open PRs and restart recovery, but its lookup required the current request marker in the body of a closed PR even though pushes left that body intact. I checked the original diff and tests, the requester-recovery change, and the later guest PR feature, which added special handling for imported PRs while the ordinary authorized retry retained the original gap.",
+  "rank": 100689,
+  "sha": "745e8f2121c2ec4d711f659265dbd355854f5097",
+  "rubric": "v1.2"
+}

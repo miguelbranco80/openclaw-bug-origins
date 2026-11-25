@@ -1,1 +1,8 @@
-{"rank": 44, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The single finding is about updating footer browser tests to the new overlap contract; it mentions preserving last-content clearance only as a test requirement and says nothing about scroll padding being dropped (Firefox or otherwise). Chose none over related because the item does not flag clearance as at risk."}
+{
+  "rank": 44,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Update these assertions to the new overlap contract while preserving last-content clearance, notice ordering, and actionable controls",
+  "outcome": "open-at-merge",
+  "note": "The P2 footer-test item called for checking that the last reply and its controls stayed clear under the new overlap. It did not identify that Firefox omits the grid scrollport\u2019s bottom padding from the scroll range."
+}

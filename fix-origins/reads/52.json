@@ -1,17 +1,17 @@
 {
   "rank": 52,
   "sha": "feebcaa6160f2f3694eff41f0040014bed7ab133",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "535fcd9ea81c7c791c235cf0758222c93db86c56",
+  "cause_pr": 146291,
+  "confidence": "high",
+  "cause_quote": "The commit replaced byte-for-byte backups with `await handle.writeFile(params.previousRaw, \"utf8\");`, which saves the already-decoded replacement characters in place of the original malformed bytes.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "An operator whose config or include file already contained invalid UTF-8 bytes would see openclaw config set succeed while those bytes were silently turned into replacement characters, also in rotated backups; no such report was filed.",
+  "user_saw": "`openclaw config set` reported success while replacing malformed UTF-8 in a config file and saving the altered bytes in its recovery backup.",
   "impact": "data-loss-or-duplication",
   "area": "cli",
-  "summary": "Ordinary config writes now strictly decode the original root and include files with decodeUtf8Input before staging backups and refuse with '<path> must be valid UTF-8.' instead of rewriting malformed bytes.",
-  "reasoning": "The lossy `readFileSync(..., \"utf-8\")` reread in the write guard is long-standing code (blame reaches the shallow graft and 78ca70be only moved it); the fix is one of a series of malformed-UTF-8 hardening sweeps (#167251, #180861, #179022, #186476) that add strict decoding to rewriters, found by audit rather than a user report. It changes policy from lossy success to refusal for already-corrupt input, so I classify it as hardening without a reported failure; if counted as a defect it would be never-worked in pre-graft config I/O whose introducing commit I did not trace."
+  "summary": "The fix validates UTF-8 in the root config and its includes before ordinary writes stage backups or replace a file.",
+  "reasoning": "I checked the causing diff against its parent and confirmed that root backups previously used `copyFile` and include backups used `readBytes`, so both preserved the original bytes even when a save rewrote malformed text. The commit switched both writers to staging backups from decoded strings, which made the original malformed bytes unrecoverable from the new backup."
 }

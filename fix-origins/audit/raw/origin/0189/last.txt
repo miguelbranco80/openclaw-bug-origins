@@ -1,0 +1,17 @@
+{
+  "rank": 189,
+  "sha": "327800ef7d7e438a0fc45607888d19a80bd03991",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "73a0ce119fde4c99608ed39d8d2fa2edec352727",
+  "cause_pr": 196923,
+  "confidence": "high",
+  "cause_quote": "#196923 replaced `runtime.scheduler.beginClose();` with `runtime.scheduler.fence();` at close intake and moved `runtime.scheduler.beginClose()` into `cancelReceivedWork`, so the ScopeUpgradeCoordinator, which closes on its scheduler scope's abort signal, stayed live while restart markers were being saved.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible reported; a scope-upgrade observer queued just before Gateway close could start another pairing-state read while restart markers were being persisted.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "ScopeUpgradeCoordinator gains a synchronous beginClose that Gateway close calls right after the scheduler fence, so scope-upgrade observers stop at close intake while the awaited drain stays with later cleanup.",
+  "reasoning": "0dc75157e1b had made the coordinator retire observers when its scheduler scope aborts, which happened at close intake via runtime.scheduler.beginClose(). Hours before this fix, #196923 (73a0ce119fd) swapped that call for scheduler.fence() and deferred beginClose to cancelReceivedWork after restart persistence, so the abort (and observer retirement) moved past the restart-marker save; the fix PR says it 'preserves the delayed received-work cancellation introduced for restart durability' and its regression fails on main."
+}

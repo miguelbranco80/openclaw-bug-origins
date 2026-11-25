@@ -2,18 +2,18 @@
 <title>Broken-later bugs, by time from cause to fix</title>
 <text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Under a day</text>
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,24 H299.5 Q303.5,24 303.5,28 V30 Q303.5,34 299.5,34 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">12</text>
+<path d="M0,24 H343.6 Q347.6,24 347.6,28 V30 Q347.6,34 343.6,34 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">97</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">1 to 7 days</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,66 H122.5 Q126.5,66 126.5,70 V72 Q126.5,76 122.5,76 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">5</text>
+<path d="M0,66 H236.1 Q240.1,66 240.1,70 V72 Q240.1,76 236.1,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">67</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7 to 30 days</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,108 H426.0 Q430.0,108 430.0,112 V114 Q430.0,118 426.0,118 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17</text>
+<path d="M0,108 H372.2 Q376.2,108 376.2,112 V114 Q376.2,118 372.2,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">105</text>
 <text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Over 30 days</text>
 <rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,150 H426.0 Q430.0,150 430.0,154 V156 Q430.0,160 426.0,160 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17</text>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">120</text>
 </svg>

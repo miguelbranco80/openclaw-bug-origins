@@ -1,0 +1,17 @@
+{
+  "rank": 100654,
+  "sha": "c7b896dbb137818089fb86944747601d7ea3f82f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c33a7f6324969b12fb1542aea498f74142209bd8",
+  "cause_pr": 157433,
+  "confidence": "high",
+  "cause_quote": "The new manifest put `\"id\": \"levanto-sage\"` with `\"chat\": false` under `modelCatalog.providers` and omitted the discovery mode, so static validation required a `contextWindow` the row did not supply.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix declares runtime discovery for Levanto so the bundled catalog check accepts Sage\u2019s decision-only model row.",
+  "reasoning": "First-parent history shows #157433 introduced the Levanto manifest, and I verified the missing discovery declaration in its diff. At that commit, the existing bundled Doctor check sent populated catalogs without runtime or refreshable discovery to the static config builder, which throws when `contextWindow` is absent. The documented failure occurred in the bundled validation test."
+}

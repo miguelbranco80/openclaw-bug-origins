@@ -1,0 +1,8 @@
+{
+  "rank": 100218,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge review mentions picker changes in \u201cWhat this changes,\u201d while its \u201cBefore merge\u201d items concern queue behavior and validation. The supplied earlier findings address pending-settings Steer eligibility and encrypted-content recovery, and none describes a pane render closing the reopened model picker."
+}

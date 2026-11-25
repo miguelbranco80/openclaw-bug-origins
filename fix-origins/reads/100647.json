@@ -1,0 +1,17 @@
+{
+  "rank": 100647,
+  "sha": "d03e0a0b2b9bde2a843514181f27e007478a7b83",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix makes internal helpers private, names the lazy-imported functions used by gateway cleanup so the dependency scanner can identify them, and moves plugin-record tests to public entry points.",
+  "reasoning": "The product diff changes export visibility and how the gateway references the same lazily imported cleanup functions, which is dependency-scan maintenance. The test diff confirms that the removed plugin-record helper imports were replaced with calls through the public commit and transform functions."
+}

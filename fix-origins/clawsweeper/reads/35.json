@@ -1,0 +1,8 @@
+{
+  "rank": 35,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Review metrics mentions validation contracts broadly, and Evidence discusses plugin-schema validation for channel listings. Neither section raises a concern about the configuration read used by skills browsing."
+}

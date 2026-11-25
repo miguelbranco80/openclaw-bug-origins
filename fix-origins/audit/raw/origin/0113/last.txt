@@ -1,1 +1,17 @@
-{"origin":"unclear","cause_sha":null,"confidence":null,"reasoning":"The fix and its persistence test show that Agents API omitted prior transcript messages and tool outcomes when creating a native session or returning to a retained one. The September onboarding guide describes same-runtime continuation, and the October diffs I checked showed no earlier working cross-runtime handoff. The original harness diff was unavailable locally, so I could not verify whether the omission shipped with the harness or arose later."}
+{
+  "rank": 113,
+  "sha": "46589542ffb6e71ee1632e713acdef97ceb4326e",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "e9fcdb4002d1fc434cbe25ca4c4a50a534b56dc8",
+  "cause_pr": 151176,
+  "confidence": "medium",
+  "cause_quote": "The MVP harness created the native session with `client.create(controller.signal, [\"You are the OpenClaw assistant...\", params.extraSystemPrompt].filter(Boolean).join(\"\\n\\n\"), params.model.id)` and then sent only `params.prompt`, never importing the existing OpenClaw transcript.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After switching an existing chat to the Agents API runtime, the agent forgot the earlier task and the actions it had already completed.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "Seeds a fresh Agents API native session with a bounded, quoted projection of prior OpenClaw history (and, for retained sessions, the work recorded since the last native reply) so runtime switches keep context.",
+  "reasoning": "PR #196467 states the native runtime 'previously received the new continuation request but no imported transcript'; the fix removes no prior history-import code (the old `messages` callback only fed hooks), and the introducing MVP commit e9fcdb4002d's create call carries only instructions and the model id. No later commit removed a working history import, so the gap shipped with the harness; medium confidence because carrying history across runtime switches may not have been an MVP goal, making this arguably a feature gap."
+}

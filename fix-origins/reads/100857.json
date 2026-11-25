@@ -1,0 +1,17 @@
+{
+  "rank": 100857,
+  "sha": "2bf25ef2633d25b506b2fdffbfdd3adf919845ca",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plugin author could receive a temporary file path outside the directory they requested when a UUID override contained traversal segments.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix uses shared fs-safe helpers to reject unsafe UUID overrides and stage downloads with Windows-safe filenames.",
+  "reasoning": "At the July 1 shallow boundary, the public SDK already exported the helper, and the helper interpolated the trimmed UUID into a joined path without validating it. The September dot-segment fix left UUID handling unchanged, and the offline history stops at the shallow boundary, so I could not verify whether the unsafe handling shipped with the override or replaced an earlier working implementation."
+}

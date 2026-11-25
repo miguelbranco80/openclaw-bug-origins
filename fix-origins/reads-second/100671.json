@@ -1,0 +1,17 @@
+{
+  "rank": 100671,
+  "sha": "d607801a534ef1711cb8b23e85bb456efba88477",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "1bcc4c5e7063e2614208e7408be181ade80e0335",
+  "user_visible": "yes",
+  "user_saw": "Web chat showed delivery errors as queued messages repeatedly retried during a Gateway suspension, then took longer to send after the Gateway resumed on the same connection.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The web chat outbox now parks sends quietly while Gateway admission is paused and resumes them when admission reopens.",
+  "reasoning": "The outbox already used WebSocket connectivity to gate sends and paced retryable refusals before cooperative suspension existed. The suspension commit added a retryable gateway-suspending refusal on sockets that could stay connected, exposing the outbox's assumption that transport connectivity was enough to resume sending."
+}

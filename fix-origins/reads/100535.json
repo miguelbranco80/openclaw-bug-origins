@@ -1,0 +1,17 @@
+{
+  "rank": 100535,
+  "sha": "6f39e23d920a7fd8a234bda419705edb13e1e456",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A user asking how /queue works got an invalid queue mode error instead of an agent reply.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves ordinary chat prose that mentions /queue while retaining validation for explicit directives and native slash commands.",
+  "reasoning": "The oldest readable parser already consumed the first unrecognized word after an inline /queue, and its caller already passed that word to the invalid-mode validator. Both October refactor candidates preserved that behavior, and the offline history could not identify the pre-July commit that first introduced it."
+}

@@ -2,16 +2,16 @@
  {
   "stem": "q06-what-the-review-said",
   "title": "What the bot's review said about the bug, by two readers",
-  "reading": "The same 113 reviews, read twice. Each bar is a number of bug-causing changes; each color adds up to 113."
+  "reading": "The same 88 reviews, read twice. Each bar is a number of bug-causing changes; each color adds up to 88."
  },
  {
   "stem": "q06-was-there-a-review",
   "title": "Whether the bot had reviewed the causing change",
-  "reading": "Each bar is a number of bug-causing changes. The four bars add up to 156."
+  "reading": "Each bar is a number of bug-causing changes. The four bars add up to 832."
  },
  {
   "stem": "q06-verdict-at-merge",
   "title": "The bot's overall verdict when the bug-causing change merged",
-  "reading": "Each bar is a number of bug-causing changes the bot had reviewed. The four bars add up to 113."
+  "reading": "Each bar is a number of bug-causing changes the bot had reviewed. The four bars add up to 645."
  }
 ]

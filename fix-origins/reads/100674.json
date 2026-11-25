@@ -1,0 +1,17 @@
+{
+  "rank": 100674,
+  "sha": "3026b63c3dbac90d06977e7bab72b106b57d19be",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "cbc53ac75eca314efebdcc57cfcbb68ce5d4e99e",
+  "cause_pr": 169622,
+  "confidence": "high",
+  "cause_quote": "The refactor added `const retained = await prepareSessionMutationFacts({ ... allowMissing: true, ... })` and rechecked it with `retained.readCurrent(params.context.getRuntimeConfig())`, while chat dispatch passed `bindSessionCreation` and `onSessionCreated` without forwarding `followRegistration`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first chat message sent to a new configured session store failed before the model could reply.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix forwards the committed SQLite store registration from reply admission to the Gateway request's retained authorization.",
+  "reasoning": "I checked the refactor's parent, where chat authorization used `withSessionSharingTarget` and the existing Gateway product test expected a first turn in a fresh configured store to reach the provider and complete. The refactor switched chat to retained facts that assert the store registry is current, so reply admission's own registration invalidated those facts when dispatch failed to forward the registration callback."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "b4b1984fe7a9d3b32445fe7bc66d21eadf9ffa6c",
+  "user_visible": "yes",
+  "user_saw": "A backup created with `--no-include-workspace` still contained managed chat checkout files, including build output under a previous worktree root.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "State-only backups now read live, pending, and recovering checkout paths from one database snapshot and exclude those paths while preserving nested durable state.",
+  "reasoning": "I checked the backup planner and CLI documentation from before managed worktrees existed, which show that the option skipped workspace sources discovered from configuration while still archiving the state directory. PR #100535 stored managed checkouts under that directory, and PR #100788 made those checkouts chat workspaces through `managedWorktrees.create`, exposing them to state traversal outside the configured workspace inventory.",
+  "rank": 100477,
+  "sha": "efcd5d5086dff564f91cedc85067564bf7b7235b",
+  "rubric": "v1.2"
+}

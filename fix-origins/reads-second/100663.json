@@ -1,0 +1,17 @@
+{
+  "rank": 100663,
+  "sha": "985445e864637b52efbd9de70ed94a04549e5f45",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix makes three declarations module-private and registers two performance scripts as Knip entry points.",
+  "reasoning": "The commit message attributes the findings to the CI dependency check. The full diff confirms that the changes are limited to removing unused exports and teaching Knip about a preload and a benchmark invoked outside the static import graph."
+}

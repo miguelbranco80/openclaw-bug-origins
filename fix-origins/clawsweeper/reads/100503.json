@@ -1,0 +1,8 @@
+{
+  "rank": 100503,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Native loaded-thread override replacement requires idle status, no subscribers, direct-input eligibility, and successful shutdown. Otherwise resume can acknowledge the thread while ignoring overrides; systemError alone is insufficient.",
+  "outcome": "unclear",
+  "note": "The Evidence item \u201cConfiguration replacement requires observed teardown\u201d identifies the teardown requirement for changing instructions on a failed thread, but describes ignored overrides and omits the unload-confirmation failure when a sibling keeps the server active. ClawSweeper listed no open finding, and the human comment did not address that scenario."
+}

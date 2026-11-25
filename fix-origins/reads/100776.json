@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "b46c38cfa732db83ec33a9607b15faa948d7816c",
+  "cause_pr": 147994,
+  "confidence": "high",
+  "cause_quote": "The new runtime selector used `.filter((variant) => !variant.nativeRuntime || variant.nativeRuntime === params.runtimeId)`, allowing an API catalog entry to supply the displayed limit when the selected native runtime had no matching entry.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After discovery, a refresh, or a runtime switch, status and session reports could show an old context limit, another runtime\u2019s limit, or a generic 200,000-token limit.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes status and session reports use current, runtime-scoped catalog capacity, configured caps, or a matching verified run budget, and show unknown when capacity is unavailable.",
+  "reasoning": "The introducing diff added cross-runtime catalog selection and wired the selected entry into Gateway session rows, where I verified that its context tokens fed the displayed limit. The wrong-runtime limit was therefore possible from the feature\u2019s first commit. The fix also addresses stale-cache and CLI fallback paths, whose original introduction I could not verify from the available offline history.",
+  "rank": 100776,
+  "sha": "8eefd336a473762b1e1b80c359e2d2416f1a011b",
+  "rubric": "v1.2"
+}

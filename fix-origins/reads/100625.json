@@ -1,0 +1,17 @@
+{
+  "rank": 100625,
+  "sha": "a026d5423313cdb58fa496e222aeaee0ce7a1789",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "acffa7681f09ddda8698aa22a907a51b84c65f30",
+  "cause_pr": 155632,
+  "confidence": "high",
+  "cause_quote": "The new candidate admission call added `handoffFromGateway: (state) =>` to service inspection, activating the ancestry guard on a path that passed no `updateRun`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Gateway-triggered update under systemd rejected its authorized helper as being inside the Gateway process tree and stopped before replacing the package.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Candidate inspection falls back to the inherited update run ID to verify the helper's live handoff lease.",
+  "reasoning": "The parent of #155632 passed `updateRun: opts.run` to managed package inspection, and #153020 recorded a successful Linux handoff. The new candidate inspection supplied a handoff callback without supplying `updateRun`, so the guard rejected the helper before checking its lease. The later guard rewrite in #158314 preserved the same run-ID lookup."
+}

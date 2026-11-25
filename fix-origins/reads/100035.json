@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "a860374eede6b95d64200a97e28e8940aeb0469f",
+  "cause_pr": 178037,
+  "confidence": "high",
+  "cause_quote": "The diff removed `{agentMenu(card)}` from the pinned tile, cutting off access to Unpin, Sessions, Settings, and Delete from that tile.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pinned tiles offered no way to unpin the agent or open its Sessions, Settings, or Delete actions, even when the kebab showed Create Claw.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix replaces the pinned tile\u2019s Create Claw kebab with the full agent menu, accessible by right-click or keyboard shortcut.",
+  "reasoning": "The parent of #178037 rendered the shared action menu on pinned tiles, and the test changed in that commit previously exercised unpinning through it. #178037 removed the menu, and #179098 later restored a kebab limited to Create Claw, leaving the earlier actions unavailable from pinned tiles.",
+  "rank": 100035,
+  "sha": "b9d5ac5f7f56e99e3256982963b701584950e7c4",
+  "rubric": "v1.2"
+}

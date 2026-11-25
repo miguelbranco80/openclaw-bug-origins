@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "f703d803cc1b9db615774c6b28c58dda8cbb0e11",
+  "cause_pr": 113681,
+  "confidence": "high",
+  "cause_quote": "#113681 introduced the `qwen/qwen3.6-27b` catalog row with `\"input\": [\"text\", \"image\"]`, so OpenClaw advertised images for a model that rejects them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Groq Qwen 3.6 rejected every turn at the default thinking level, and both Groq Qwen 3.6 and Cohere North Mini Code rejected image attachments that OpenClaw advertised as supported.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix marks both models as text-only, maps Groq Qwen thinking levels to supported effort values, and requests separately streamed reasoning.",
+  "reasoning": "I selected the Groq refresh as the primary cause because the fix addresses its every-turn failure: #113681 introduced this model with an incorrect image capability and no effort mapping in the manifest, and the Groq runtime entry point did not call the compatibility resolver added for the model. The fix records live API rejections for images and unsupported efforts. I also verified that #102489 independently introduced the incorrect image capability in Cohere's first North Mini Code catalog row.",
+  "rank": 100497,
+  "sha": "839b47aa412d85b066fdbe24b80557b964dbba1e",
+  "rubric": "v1.2"
+}

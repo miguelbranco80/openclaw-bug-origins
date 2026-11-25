@@ -1,0 +1,17 @@
+{
+  "rank": 220,
+  "sha": "74fe09926ab5e4d12f6248d533338ff4c9f1f04e",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; GitHub PR metadata reads and edits used more Gateway main-thread CPU than needed on large session and role inventories.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Reuses retained plugin grants and the existing live subagent latest-child index and drops intermediate authority assertions already covered by transport and final-disclosure guards, cutting GitHub PR action CPU.",
+  "reasoning": "The PR is a performance optimization measured on a synthetic inventory (metadata edit CPU 67 to 28 ms) with no reported failure and no claim that the work was ever cheaper; the redundant checks accumulated across the feature commits blamed (bf90074c33e2, 4f9aa4c9354a, 526371eefd46) rather than being broken by one. The second commit only keeps the PR's own change from altering requester order, which was not a defect on main."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100150,
+  "sha": "87aa01a9ec08effb7dc2dc040e53e1d8128782de",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "b107d4af14d7d3d190fd8310c41b95142a5414c5",
+  "cause_pr": 158491,
+  "confidence": "high",
+  "cause_quote": "The commit writes `version: 4` on cancellation and adds `lease.version === 4` to the branch in `reclaimable()` that returns `false`, so the new lease can still return busy after its owner exits.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an operator retried the update, OpenClaw said another update was already running even though the cancelled updater had exited.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The fix reports the retained lease and its observed process state, with profile-aware status and repair commands.",
+  "reasoning": "I checked the introducing diff and its parent: the Gateway's existing joined-handoff message already said the updater was running, and PR #158491 introduced a cancelled lease that could survive the updater's exit and reach that message. The cancelled-lease path therefore shipped with the misleading report. PR #177932 later enabled explicit repair to settle dead cancelled leases, while the refusal still used the old message."
+}

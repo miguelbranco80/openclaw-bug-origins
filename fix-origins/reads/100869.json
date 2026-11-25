@@ -1,0 +1,17 @@
+{
+  "rank": 100869,
+  "sha": "0e6818f076d304fe363dad62a1a070f084dffb49",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "027dd4c7cd5f9313ed23ad9f5947f6131c688951",
+  "cause_pr": 166845,
+  "confidence": "medium",
+  "cause_quote": "The commit added `void runWithGatewayDetachedWorkContinuation(async () => {` around each pending orphan check and moved the session lookup to `readSessionEntryReadOnlyInWorker`, so restart recovery could queue a worker read for each retained run without waiting for the previous one.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart with a large retained subagent backlog, reconnecting clients saw session requests rejected because the reader task limit was full.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix puts detached subagent recovery and cleanup under the existing two-slot per-Gateway budget to preserve reader capacity for reconnecting clients.",
+  "reasoning": "In the parent of #166845, restart recovery already checked retained runs for orphanhood, but those checks read session entries synchronously and did not queue tasks in the bounded projection pool already used by client reads. The commit moved those checks into detached worker calls, matching the fix PR's diagnosis that orphan reads and target discovery filled the reader pools. I verified the code paths in both revisions, but the evidence bundle only reports a load replay against a later baseline, so it does not establish how much earlier cleanup work contributed."
+}

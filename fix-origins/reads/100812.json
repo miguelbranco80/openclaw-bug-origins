@@ -1,0 +1,17 @@
+{
+  "rank": 100812,
+  "sha": "f36b4629ab3af1a06c42b422354add2b627eb9b1",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An automatic session-reset hook could fail with \u201cAsync work scope is closed\u201d and skip its delayed work after the triggering request ended.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix gives automatic session-reset hooks their own async work scope while preserving Gateway drain accounting.",
+  "reasoning": "The hook shipped in #61675 with an independent Gateway work reservation, before #136146 introduced the async work scope and its closed-scope rejection. The fix's test shows how a delayed callback inherits a closed requester scope, but the available history did not establish which commit first put the affected production reset path under a scope that closed before the callback resumed."
+}

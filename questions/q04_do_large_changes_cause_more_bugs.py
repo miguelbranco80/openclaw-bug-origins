@@ -3,8 +3,8 @@
 
 Reads: sampled_fixes.jsonl, commits.tsv.
 Method: every commit on main since 10 Sep 2026 is put in a size group by files changed. A "bug" is one sampled fix
-traced to a causing commit in that list, scaled from the sample of 300 to all 3,996 fixes in the period. So the
-rates are "bugs fixed in the three weeks, per 100 commits made since 10 September".
+traced to a causing commit in that list, scaled from the sample to all fixes in the period. So the
+rates are "bugs fixed in the period studied, per 100 commits made since 10 September".
 Answer in short: per change, yes, steeply. Per file changed, no: the rate is roughly flat.
 
 Usage: python3 questions/q04_do_large_changes_cause_more_bugs.py
@@ -47,7 +47,7 @@ def main(quiet=False):
     out.chart(charts.bars("q04-bugs-per-100-commits", "Bugs per 100 commits, by size of the change",
                           [{"label": r["label"], "value": r["value"], "note": notes[r["metric"].replace("per_commit_", "")]}
                            for r in out.group("per_commit")]),
-              "Each bar is a rate: bugs fixed in the three weeks that trace back to commits of that size, per 100 such "
+              "Each bar is a rate: bugs fixed in the period studied that trace back to commits of that size, per 100 such "
               "commits made since 10 September. The four sizes cover every commit.")
     out.chart(charts.bars("q04-bugs-per-1000-files", "Bugs per 1,000 files changed, by size of the change",
                           [{"label": r["label"], "value": r["value"]} for r in out.group("per_file")]),

@@ -1,0 +1,17 @@
+{
+  "rank": 100648,
+  "sha": "da80fb5d38356e42cee7825a6d4c73be7c4294bf",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4cf9af2cdea98ac6693145dc6c5c3ff450cb7a9d",
+  "cause_pr": 171326,
+  "confidence": "high",
+  "cause_quote": "Replacing `reader.readEntries(...)` with `reader.readExactEntries({ selection: { kind: \"session-id-or-key\", sessionIdOrKey: params.sessionId }, ... })` made the CLI's pre-dispatch lookup throw `SessionMetadataUnavailableError` when SQLite had no schema yet.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw agent --session-id <id>` just after the local Gateway reported readiness could fail before sending the turn.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The CLI delegates session ID lookup and abort targeting to the Gateway and requests create-or-resume support for named sessions.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the local CLI already supported `--session-id` and that its worker listing returned an empty result for a schema-less store, allowing dispatch to continue. The new exact-entry lookup throws on `schema-missing`, which matches the local failure reported in the fix's negative control."
+}

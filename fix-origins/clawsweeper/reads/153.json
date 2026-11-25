@@ -1,1 +1,8 @@
-{"rank": 153, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No findings at merge; the earlier version asked only for authority-chain proof for guests and revocation. Nothing concerns taking the base commit from lagging PR details instead of the live branch ref."}
+{
+  "rank": 153,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings section was empty. The earlier Add real behavior proof and Resolve merge risk items addressed authorization during base transfer and recovery, leaving unexamined whether stale PR metadata could make a refresh report current after the target branch advanced."
+}

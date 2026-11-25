@@ -1,0 +1,8 @@
+{
+  "rank": 250,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cBefore merge\u201d items address archived-session selection and shared-workspace provenance. The `--json` option appears only in help output, and no finding addresses how the report describes deletion scope when another memory plugin is selected."
+}

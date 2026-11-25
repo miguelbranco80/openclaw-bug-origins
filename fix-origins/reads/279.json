@@ -1,17 +1,17 @@
 {
   "rank": 279,
   "sha": "128365b5518541890a3d7251f806deee5c9b5e55",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "59b8a114bf6dede71999976ddc87fd3edf382c85",
   "cause_pr": 192345,
   "confidence": "high",
-  "cause_quote": "The new tunnel child built WebSocket upgrades as `new WebSocket(\\`ws+unix:${target.socketPath}:${head.path}\\`, ...)` and forwarded client request headers (including Content-Length) unchanged to `http.request({ socketPath, method, path, headers })`.",
+  "cause_quote": "The original HTTP proxy passed `headers` directly to `http.request`, preserving the client-declared body length, and the original WebSocket proxy interpolated `head.path` into `ws+unix:${target.socketPath}:${head.path}`, allowing URL parsing to alter the intended destination.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Through the OpenClaw ID tunnel, WebSocket paths with colons in the query (such as session keys) arrived truncated, and requests with mismatched body headers could be misframed onto another route.",
-  "impact": "other",
+  "user_saw": "Some OpenClaw ID tunnel requests arrived with truncated bodies or reached a different route or socket than intended.",
+  "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "The tunnel child now strips client Content-Length and sends chunked HTTP bodies, connects WebSockets through an explicit Unix-socket createConnection, and the workspace upload reader accepts bodies without a declared length.",
-  "reasoning": "Both proxy files were created in 59b8a114bf6d (#192345) and not touched again before the fix; that commit's ws-proxy.ts line 34 uses the ws+unix URL form, which mis-splits paths containing colons (the PR shows '/ws?session=agent:main:main' arriving as '/ws?session=agent'), and http-proxy.ts passed client framing headers through. The defects shipped with the feature, so never-worked."
+  "summary": "The fix rebuilds tunneled HTTP request framing, pins WebSocket upgrades to the configured Unix socket, and accepts framed workspace uploads without a declared length while retaining the streaming byte limit.",
+  "reasoning": "The introducing diff added both gateway proxies with the same framing and URL construction used at the fix's parent, and first-parent path history shows no intervening changes to those files. The fix PR's before-and-after observations confirm that the original implementation could truncate bodies, misroute requests on a reused connection, and send WebSocket upgrades to an unintended path or socket."
 }

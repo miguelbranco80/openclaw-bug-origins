@@ -1,0 +1,17 @@
+{
+  "rank": 100368,
+  "sha": "3fb4bddaeed61c3a7a0e7afa138651e9270d93d9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6a97159ececbf6c0f5a2180b97d761ba1c5fe4df",
+  "cause_pr": 134943,
+  "confidence": "high",
+  "cause_quote": "The original native plugin renderer used `const active = href === `${window.location.pathname}${window.location.search}`;`, so any extra query parameter cleared the selected state, and its subscriptions omitted the router.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plugin page such as Workboard could stay highlighted after the user left it, lose its highlight when a filter was added, or show a narrower selected row than built-in pages.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix subscribes plugin sidebar links to route changes, matches the destination path and required query parameters, and lets plugin links fill the available row width.",
+  "reasoning": "The feature commit introduced native plugin sidebar navigation with exact URL equality and subscriptions only to plugin and session state. I checked the later move into the runtime file and confirmed it preserved both behaviors. The row-width issue came from a separate later change in #156050 that added a flex sizing rule targeting only the direct first child, which is the wrapper for native plugin links."
+}

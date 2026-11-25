@@ -1,17 +1,17 @@
 {
-  "rank": 263,
-  "sha": "1110e81c7b93da2eb1a8b3ba26f70cf4a9660553",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "origin": "never-worked",
+  "cause_sha": "99ba844a3cd592adea6dac7421f9d9f7a0f7161d",
+  "cause_pr": 193677,
+  "confidence": "high",
+  "cause_quote": "The Gateway maintenance callback added `result.scratch = await cleanScratch({`, and the new helper scanned and deleted each expired tree by calling `walk` directly on that same thread.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "During background reclaim of large expired scratch clones, the Gateway thread spent minutes of CPU and tens of GB of allocation on recursive deletion, competing with chat responsiveness.",
+  "user_saw": "Chat could become less responsive while the Gateway cleaned up large expired scratch clones.",
   "impact": "slower-or-heavier",
   "area": "gateway",
-  "summary": "Atomically claims each expired scratch directory by rename and moves its recursive inspection and deletion into the existing filesystem worker, leaving expiry, custody and identity decisions on the Gateway thread.",
-  "reasoning": "Scratch expiry was added by 99ba844a (#193677, 2026-11-05) as paced main-thread streaming deletion, and it has always run on the Gateway thread; this change relocates that work to a worker for a measured performance gain rather than restoring earlier behavior or fixing incorrect results. Per the rubric, improving code that was never faster is not-a-defect, although the cost was user-visible as Gateway load."
+  "summary": "The fix moves recursive scratch scanning and deletion into a filesystem worker and atomically renames expired directories so new work can reuse the original path.",
+  "reasoning": "The introduction diff shows that automatic scratch expiry ran the recursive scan and deletion on the Gateway thread from its first release. I checked the intervening history, which changed expiry rules and scheduling while retaining that execution path. The fix PR measured main-thread contention on a synthetic workload with six large clones, and production chat latency was unmeasured.",
+  "rank": 263,
+  "sha": "1110e81c7b93da2eb1a8b3ba26f70cf4a9660553",
+  "rubric": "v1.2"
 }

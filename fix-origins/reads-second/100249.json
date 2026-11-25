@@ -1,0 +1,17 @@
+{
+  "rank": 100249,
+  "sha": "e276e1e1ab248122ff902ad42d9c43dfc449ffe0",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After cancelling a queued chat turn, the user could see the turn already in progress stay stuck until `agent.wait` timed out.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Queued chat cancellation now releases both the source dispatch and queue references to the session work admission.",
+  "reasoning": "I traced the two-reference design to #119594, which added `releaseQueuedFollowupWorkAdmission = retainGatewayWorkAdmission()` and released the queue reference in `onSettled`. The immediately preceding patch, #164181, added a release on abort for the queue reference alone, leaving the source reference with the waiting dispatch. The diffs establish the ownership gap, but I could not verify when it first began blocking the preceding turn."
+}

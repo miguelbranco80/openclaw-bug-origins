@@ -1,0 +1,17 @@
+{
+  "rank": 100771,
+  "sha": "9764de1747490dd2595305ab2376427e1a39d742",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "24ae0fc1984c9563ebd7b4417489ddf6abd88d78",
+  "cause_pr": 141121,
+  "confidence": "high",
+  "cause_quote": "The warm-reload implementation added `const warmConnectPending = initialConnectPending && runtime.warmBoot && !this.loginGatePinned;`, so a transport error made the cached shell ineligible even while the Gateway was still retrying.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a warm reload, users could see their cached chat disappear behind the sign-in screen when the first Gateway connection attempt failed.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps cached chat, drafts, queued messages, and loaded widgets usable during connection failures and adds account-scoped offline reload and delivery recovery.",
+  "reasoning": "I traced the warm-reload failure to the commit that introduced rendering cached chat before the Gateway connected. In that revision, the Gateway store already kept a retrying first connection in `connecting` while setting `lastError`, which made `initialConnectPending` false and returned the UI to sign-in. The same condition remained in the fix's parent, and the fix adds a test that keeps the warm shell visible through an unreachable Gateway retry."
+}

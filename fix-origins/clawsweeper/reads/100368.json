@@ -1,0 +1,8 @@
+{
+  "rank": 100368,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings concerned operator authority, and the earlier History item about honoring the configured Control UI base path concerned plugin admission. Neither addressed how sidebar selection updates on navigation or matches URLs with extra query parameters."
+}

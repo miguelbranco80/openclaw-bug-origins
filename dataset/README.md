@@ -10,11 +10,13 @@ All files describe `openclaw/openclaw` as of commit `e6b42e31bc1522b8596958fbdd8
 | `commits.tsv` | commit on `main` since 2026-09-10 (UTC), 39,210 rows | `fix-origins/scripts/commit_list.py`, from git |
 | `pull_requests.tsv` | merged pull request named in `commits.tsv` (35,833 rows) | `fix-origins/population/fetch_pull_requests.py`, from GitHub |
 | `frames.json` | period of fixes studied, with how many fixes it holds and how many were sampled | `dataset/build.py`, from `study.json` and `fix-origins/population.tsv` |
-| `sampled_fixes.jsonl` | sampled fix (300), with the first reader's answer | `fix-origins/scripts/assemble.py`, from the readers' answers in `fix-origins/reads/` |
-| `fix_rereads_claude.jsonl` | fix re-read by a second Claude reader (47) | `dataset/build.py`, from `fix-origins/second_reads.jsonl` |
-| `fix_rereads_gpt.jsonl` | fix re-read by a GPT reader (60) | `fix-origins/audit/collect.py` |
-| `bot_reviews.jsonl` | sampled bug traced to a causing change (156), with the review bot's review at merge | `fix-origins/clawsweeper/assemble_results.py` |
-| `bot_review_rereads_gpt.jsonl` | reviewed case re-read by a GPT reader (113) | `fix-origins/audit/collect.py` |
+| `readers.json` | which model read what: the main reader and the other maker's reader | `dataset/build.py`, from `study.json` |
+| `published_2026_11.json` | every number of the study as first published (tag `published-2026-11`) | Copied once from that tag's `results/` |
+| `sampled_fixes.jsonl` | sampled fix (1,202), with the main reader's answer | `fix-origins/scripts/assemble.py`, from the readers' answers in `fix-origins/reads/` |
+| `fix_rereads_same_model.jsonl` | fix read a second time by the main reader's model (191) | `dataset/build.py`, from `fix-origins/second_reads.jsonl` |
+| `fix_rereads_other_maker.jsonl` | fix also read by the other maker's model (the 300 November fixes) | `fix-origins/audit/collect.py` |
+| `bot_reviews.jsonl` | sampled bug traced to a causing change (832), with the review bot's review at merge | `fix-origins/clawsweeper/assemble_results.py` |
+| `bot_review_rereads_other_maker.jsonl` | reviewed November case also read by the other maker's model, where both named the same causing pull request (88) | `fix-origins/audit/collect.py` |
 | `blind_review.jsonl` | blind-review case (30), with every reviewer's grade | `fix-origins/review-pilot/assemble_results.py` |
 | `blind_review_regrades_gpt.jsonl` | reviewer and case pair regraded by a GPT grader (180) | `fix-origins/audit/collect.py` |
 | `reported_problems.jsonl` | problem reported by gpt-6.2 or Opus 5.5 (148), with three checks | `fix-origins/review-pilot/verify_tabulate.py` |
@@ -52,7 +54,7 @@ message or PR text mentions the causing change); `fix_adds_test`; `user_visible`
 
 **`changes.jsonl`**: `sha`, `pr_number`, `committed_at`, `files_changed`, `title_prefix`; `in_comparison_sample`
 (true for the 400 drawn at random from all pull request commits in `commits.tsv`, in ascending order of
-`sha256("comparison-v1:" + sha)`); `sampled_bugs` (how many of the 300 sampled fixes trace back to this change; 0 for
+`sha256("comparison-v1:" + sha)`); `sampled_bugs` (how many of the sampled fixes trace back to this change; 0 for
 most), `bug_kinds`; `author`, `author_group` (`maintainer`: a person who merged at least one fetched pull request;
 `outside contributor`; `automation`), `author_association` (GitHub's own label, kept for reference), `from_fork`;
 `merged_by`, `merged_by_group`, `self_merged`; `minutes_open`; `human_review_before_merge` (a person other than

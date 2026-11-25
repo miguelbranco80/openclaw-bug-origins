@@ -1,17 +1,17 @@
 {
   "rank": 65,
   "sha": "c23cd7f6ec5f5813a0a33897949d9d0691507d83",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "9344233e7a66fe36479d55b7f7ae8e10eb886586",
   "cause_pr": 185730,
   "confidence": "high",
-  "cause_quote": "In resolvePrivateCompletionDeliveryResult it changed `if (outcome?.reason === \"cancelled\" && outcome.stopReason !== \"restart\")` to `if (outcome?.reason === \"cancelled\")`, so a restart-aborted private continuation became intentional non-delivery.",
+  "cause_quote": "The refactor replaced `if (outcome?.reason === \"cancelled\" && outcome.stopReason !== \"restart\")` with `if (outcome?.reason === \"cancelled\")`, routing restart interruptions into terminal `intentional_non_delivery`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A finished subagent result queued behind a private requester continuation was never delivered after a Gateway restart; it was marked failed and lost.",
+  "user_saw": "After a Gateway restart, a completed subagent result could disappear before the requesting agent received it.",
   "impact": "data-loss-or-duplication",
   "area": "agents",
-  "summary": "Excludes stopReason=restart from the private completion delivery's cancelled branch so restart-aborted deliveries stay retryable and startup recovery delivers them.",
-  "reasoning": "The fix restores exactly the restart exclusion that 9344233e7a66 (graceful-restart resume refactor) deleted from resolvePrivateCompletionDeliveryResult; before that commit, restart cancellations fell through to the retryable outcome instead of terminal non-delivery. The refactor's diff on this file shows the removed `&& outcome.stopReason !== \"restart\"` guard, and the fix's red-on-base Gateway restart e2e shows the queued result turning failed without it."
+  "summary": "The fix keeps undelivered private subagent results pending for startup recovery when a Gateway restart interrupts delivery.",
+  "reasoning": "I checked the refactor's parent and found that the private delivery handler already treated restart interruption as retryable, with tests covering private completion settlement after requester recovery. The refactor removed the restart exception, and the fix's reported process test shows that this sent a queued result to permanent failure."
 }

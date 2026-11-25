@@ -1,7 +1,7 @@
 {
   "rank": 2,
   "sha": "5d106ddc20f8fc5176f4048fb24ee9c2ddd93790",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With one agent selected and My sessions chosen, the Control UI sidebar listed conversations and pins belonging to other agents.",
-  "impact": "presentation",
+  "user_saw": "With Roboclaw selected, My sessions could show conversations from another agent, while All owners narrowed the list to Roboclaw.",
+  "impact": "other",
   "area": "ui",
-  "summary": "Always passes the selected agentId in owner-filtered sidebar session queries and filters personal pins and sections to the selected agent, keeping Show all and rail shortcuts cross-agent.",
-  "reasoning": "The removed line `agentId: ownerId ? undefined : agentId` came from f9cb55fd00c4 (#170865), which deliberately extended an existing cross-agent My sessions scope (`ownerId === selfId ? undefined : agentId`) to every explicit owner, so owner filters ignoring the agent was intended design. The fix PR says the contributor 'explicitly chose agent scope first, then owner filtering' and adds new docs for that scope, making this a product decision rather than a break of working behavior."
+  "summary": "The change scopes owner-filtered session lists, sidebar pins, and personal sections to the selected agent while preserving cross-agent browsing through Show all and global rail shortcuts.",
+  "reasoning": "I checked #170072, which deliberately removed the agent filter for My sessions and added a test for cross-agent results, and #170865, which extended that behavior to named owners. The fix PR records a new product decision to apply agent scope first, and the patch updates the existing cross-agent test and documents the new rule."
 }

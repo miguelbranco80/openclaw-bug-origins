@@ -1,0 +1,8 @@
+{
+  "rank": 100018,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cIdentity and publication lifecycle\u201d section describes admission sharing without raising a retention concern. The earlier \u201cPreserve first-creation admission for reclamation workers\u201d finding concerns an ENOENT on first creation, a separate path from closed-database metadata accumulating in new workers\u2019 bootstrap data."
+}

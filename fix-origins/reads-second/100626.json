@@ -1,0 +1,17 @@
+{
+  "rank": 100626,
+  "sha": "781d200f69aa1fbe0e7ed85809fc8c14824f9280",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The fix removes two test-only diagnostics type exports and derives the debug-page fixture types from the existing CommandLaneDiagnostics type.",
+  "reasoning": "The PR reports two unused-export findings from the scheduled production Knip check. The fix diff confirms that every change is to a type declaration, type import, or fixture type annotation, so the fix addresses a tooling finding."
+}

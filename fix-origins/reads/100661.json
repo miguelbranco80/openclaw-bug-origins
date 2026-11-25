@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "e226ebb149e14cfa13d354ed48ba61a5c55ac568",
+  "cause_pr": 170973,
+  "confidence": "high",
+  "cause_quote": "The new `message_end` handler called `recordEmbeddedSessionForkMessage(ctx.params.sessionId, ctx.params.runId, evt.message)` for assistant messages, and `snapshot.context.messages.push(completed)` put their tool calls into replay before the matching results arrived.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A background reviewer could report a still-running tool call as aborted and cause successful work to be repeated.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix adds a temporary, non-error pending result to the fork for each newly published tool call whose real result has yet to arrive.",
+  "reasoning": "I checked the causing commit's parent and confirmed that built-in forks already answered side questions from a frozen prepared request, so a newly published in-flight call could not be reported as aborted. The later change began appending assistant messages and tool results as separate events, creating a window where the existing replay repair turned the missing result into an error.",
+  "rank": 100661,
+  "sha": "f4f0255bc773d767c5ddc43a15e20202c8e33065",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100207,
+  "sha": "1a7f9628e785c59e7843186cc0feca0aeefe9508",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "173c4679059489ea0597a64f5b26733adfc2ddc9",
+  "cause_pr": 151470,
+  "confidence": "medium",
+  "cause_quote": "The new sidebar projection used `isSubagentSessionKey(child.key) ? child.children : [child]` to hide the run's own row while preserving its warning on the parent, but the parent chat received no child diagnostic.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The sidebar flagged a failed or blocked child session, but opening the parent chat showed no explanation or direct link to that child.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix shows the child session's name, full diagnostic, and an Open session action above the parent composer, and preserves active child attention when the parent opens.",
+  "reasoning": "The parent of #151470 still rendered subagent rows in the sidebar, and #151470 introduced the documented workflow of inspecting hidden runs in chat from an ancestor's warning. Its sidebar diff retained the warning, while the chat notice renderer at that revision only handled the current chat's run error and had no child attention input. The fix's browser reproduction confirms the missing notice on its baseline when no new parent reply carries the child's diagnostic."
+}

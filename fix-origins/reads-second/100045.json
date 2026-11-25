@@ -1,0 +1,17 @@
+{
+  "rank": 100045,
+  "sha": "bc34252247d0b4a3a3f1e0068edb9b2335ec0600",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An MCP server's tools could be missing from a new session or cron run if its first tool listing took more than 1.5 seconds and no request timeout was configured.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix raises the default MCP catalog listing timeout from 1.5 seconds to 10 seconds when no explicit request timeout is configured.",
+  "reasoning": "I verified that the fix's parent used the 1.5-second fallback for servers without an explicit request timeout. The fix description attributes the cap to PR #85063, but the local path history stopped at the July 1 graft because an older object was missing. I could not inspect that PR's diff or verify whether slow listings had worked before it."
+}

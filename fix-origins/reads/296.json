@@ -1,17 +1,17 @@
 {
   "rank": 296,
   "sha": "c28b082ac2fdcd5a03eaa17e7f034b65710ab0d2",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "30aa1f890a3ccb93f1899456eda7e3c7c2b84eb1",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "medium",
-  "cause_quote": "The doctor added the Chromium executable check as `status: status.detectError ? \"fail\" : status.detectedExecutablePath ? \"pass\" : \"warn\"` and the idle summary \"Browser is launchable but not running\", passing on executable presence alone.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On Linux, browser doctor reported a managed Chromium as healthy and launchable even though it exited 127 on a missing shared library, so the real cause stayed hidden.",
+  "user_saw": "Browser doctor reported managed Chromium as healthy and launchable on Linux even though a missing shared library prevented it from starting.",
   "impact": "failed-every-time",
-  "area": "plugins",
-  "summary": "The browser doctor route now runs a bounded `--version` probe of a local Linux Chromium executable and reports the loader error as a failed executable check, and the idle text no longer says 'launchable'.",
-  "reasoning": "The doctor feature (feat(browser): expose doctor diagnostics to agents, pre-graft, read via gh api) introduced the executable check that passes whenever an executable path is detected and the 'launchable' wording; no later commit changed that logic, so the misleading health report shipped with the feature. It is borderline with a diagnostic enhancement, hence medium confidence; the commit subject has no PR number."
+  "area": "cli",
+  "summary": "Browser doctor now runs a bounded Chromium version probe for local managed Linux profiles and reports loader errors.",
+  "reasoning": "The oldest locally readable browser doctor already passed the executable check when discovery returned a path without an error, and its route relied on executable discovery alone. The later executable-probe refactor and profile-selection fix did not introduce that check. The behavior predates the July 1 shallow boundary, and missing history objects prevented verifying the introducing diff offline."
 }

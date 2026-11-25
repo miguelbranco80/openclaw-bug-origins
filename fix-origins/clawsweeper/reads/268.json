@@ -1,0 +1,8 @@
+{
+  "rank": 268,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cAdd real behavior proof\u201d item focused on requester isolation and revocation, and the earlier \u201cPreserve cleanup recovery\u201d finding concerned storage failures. Neither addressed calendar-date validation for MCP event timestamps or subscription expiries."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100246,
+  "sha": "a5106ecf04913d4ff5374d0991dac148faf06510",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "082c68a9cbd83c20579e6e532d82e08cff17996f",
+  "cause_pr": 167384,
+  "confidence": "high",
+  "cause_quote": "The commit replaced `await options.clearDraft(!handedOffAttachments)` with `draftCleanup = options.clearDraft(!handedOffAttachments)` and moved `await draftCleanup` into `finally`, allowing navigation to publish the confirmed URL while IndexedDB cleanup was pending.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After closing the tab immediately when the confirmed conversation URL appeared, users could reopen New session and see the prompt and images they had already sent.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix waits for the submitted draft to be cleared from IndexedDB before publishing the confirmed conversation URL.",
+  "reasoning": "I checked the causing commit and its parent, which already awaited draft cleanup before navigating to the accepted conversation. The causing diff moved that wait after navigation, creating the window in which closing the tab could interrupt cleanup and leave the sent draft in storage."
+}

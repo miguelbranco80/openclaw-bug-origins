@@ -1,0 +1,17 @@
+{
+  "rank": 100801,
+  "sha": "01855443a451005e5eb1ad7a46e7e1e959f86c65",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "high",
+  "cause_quote": "The new executor opened the default lease store with `store = createManagedHandoffLeaseStore()` and fell through to `store.acquire(key, randomUUID(), { kind: \"update\" })` when the missing database was reported as `absent`, allowing SQLite to create a fresh store.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an interrupted package update, the updater could proceed with a new lease database even though the original authority store was missing.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix binds recovery to the recorded installation key and lease database identity and refuses pending recovery before writable update preparation.",
+  "reasoning": "The first-parent history and introducing diff show that #140339 added the package update executor with path-based lease acquisition from its first version. I traced its missing-store path through the lease read and writable SQLite open, then checked that the fix requires the captured database and parent directory identities for recovery."
+}

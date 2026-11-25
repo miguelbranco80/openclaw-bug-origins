@@ -1,0 +1,17 @@
+{
+  "rank": 100153,
+  "sha": "9c253952601063a8eccc1f733ac55e95cc9961cc",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When credential removal overlapped a config reload, the operator could be told to restart the Gateway even though the model publication had been replaced.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Gateway hot reload now treats a superseded model publication as cancellation even while its config application is still current, and still schedules recovery for genuine build failures.",
+  "reasoning": "The blamed commit added a partial exception to an existing restart handler, so its config-currentness check left the reported case broken. The earlier credential-removal PR reports passing coverage for overlapping writes, and a later publication change added a typed rejection when a refresh loses ownership without a current successor. The available diffs do not establish which change first sent this credential-removal sequence through the restart handler."
+}

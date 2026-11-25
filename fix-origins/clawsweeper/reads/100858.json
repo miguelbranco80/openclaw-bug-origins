@@ -1,0 +1,8 @@
+{
+  "rank": 100858,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section describes how restore errors affect rollback verification, and the Tests section asks for an end-to-end run with working launchers. Neither raises the loss of launcher and backup paths from the error shown when launcher restoration fails."
+}

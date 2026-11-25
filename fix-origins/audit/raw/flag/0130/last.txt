@@ -3,5 +3,5 @@
   "where": null,
   "quote": null,
   "outcome": null,
-  "note": "The earlier “Keep Review available after a same-session reset” finding concerned a stale lifecycle revision while the checkout still existed. Neither review raised the misleading owner-changed error or missing restore guidance for a cleaned-up worktree."
+  "note": "The at-merge review has no items or findings. The earlier P2 finding 'Keep Review available after a same-session reset' concerns the lifecycle-revision check in the same reader rejecting a reset session, a different condition from a removed or missing worktree producing the misleading owner-changed error; it would not have led to the restore guidance fix."
 }

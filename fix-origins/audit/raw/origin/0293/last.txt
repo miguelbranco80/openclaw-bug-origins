@@ -1,0 +1,17 @@
+{
+  "rank": 293,
+  "sha": "31ad71a8addc1d42fbc5478f7e114860f5cbf6c7",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "77d9f42c86bf42ee05f997ec5f838ad95d268a0a",
+  "cause_pr": 172026,
+  "confidence": "medium",
+  "cause_quote": "The new loopback-bundle-mcp.ts acquired configured MCP with `requesterSenderId: undefined` (commented \"Requester-scoped servers need a verified sender, which completions and automations lack\"), so per-requester servers were dropped from every Claude CLI turn.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Claude CLI turns, a per-requester OAuth or resolver-based MCP server's tools never appeared, even for a connected user, with no log or notice saying why, while the default runtime listed and called them.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "Serves requester-scoped MCP tools on Claude CLI loopback turns through the shared harness owner bound to the turn's verified sender, and lists a refusing sign-in tool with an explicit message on senderless turns.",
+  "reasoning": "Per-requester MCP servers never reached Claude CLI: before #172026 the native Claude path resolved OAuth with the operator identity and acquired the runtime without a requester, and only the Codex app-server called materializeRequesterScopedMcpToolsForHarnessRunCore (checked with git grep at 77d9f42c86bf^). #172026 introduced the loopback bridge for configured MCP with an explicit `requesterSenderId: undefined` and docs saying requester-scoped servers \"are not offered on these turns\", so the gap shipped with the path the fix repairs rather than breaking a working one. Medium confidence because the omission was deliberate and could also be read as a missing feature."
+}

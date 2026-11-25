@@ -1,0 +1,17 @@
+{
+  "rank": 100406,
+  "sha": "2db1eb183e76fe3e5adb0126831b0f3d8460516b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "513597f11e256112ccf9770eb19b91be3b4f610a",
+  "cause_pr": 148857,
+  "confidence": "high",
+  "cause_quote": "Backup discovery added `probeSqliteDatabaseHeaders(probePaths)`, and the helper sent the entire deduplicated list to one `spawnSync` with `input: JSON.stringify(paths)` and `timeout: 10_000`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the state directory contained enough readable files to exceed the probe deadline, `openclaw backup create` stopped with a SQLite detection error and produced no archive.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix probes SQLite headers in batches of at most 4,096 paths, gives each batch its own 10-second deadline, and reports the underlying error if a batch fails.",
+  "reasoning": "I checked the parent of #148857 and confirmed that existing backup discovery classified SQLite candidates by filename, so ordinary files could be backed up without passing through a timed header scan. #148857 added a single probe with a fixed deadline to that existing backup path, and #183476 kept the same workload and deadline when it moved the probe to a declared worker. The fix bundle records two timeouts before batching and two verified archives afterward using the same large file set."
+}

@@ -2,5 +2,6 @@
   "flagged": "related",
   "where": "earlier-only",
   "quote": "Retire or supersede the claim when accepting a canonical event row with `updatedAt >=` the claim timestamp, and add a deferred-refresh regression.",
-  "note": "The earlier “Retire claims on accepted newer session events” finding warned that a claim could linger after an accepted update. The shipped bug cleared the claim when the reducer rejected a stale title update, and the finding was dropped from the open items by merge."
+  "outcome": "dropped",
+  "note": "The earlier P2 finding 'Retire claims on accepted newer session events' concerns the same claim-retirement-on-session-event mechanism and frames it around accepted rows, but it asks for retirement rather than warning that a stale-rejected equal-clock snapshot would wrongly clear a newer claim; the at-merge version drops it. Chose related over exact because doing what it says does not by itself prevent the bug."
 }

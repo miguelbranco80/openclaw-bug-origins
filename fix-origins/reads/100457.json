@@ -1,0 +1,17 @@
+{
+  "rank": 100457,
+  "sha": "52ecede9f75ac12efcc4420b4db08f830f0836bd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "949dbc578efe9da59510fbc5f11683b51618a0b4",
+  "cause_pr": 169757,
+  "confidence": "high",
+  "cause_quote": "The replacement call `readRetainedSessionEntryFacts({ agentId, path: storePath }, ...)` passed the logical store path to a reader that requires the physical SQLite path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI showed \u201cSession workspace changed during file read\u201d when users tried to list or open files in an unchanged managed worktree session.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The Gateway now uses the session\u2019s captured SQLite read source to recheck worktree ownership during file reads.",
+  "reasoning": "The worktree guard already existed, and I verified that immediately before #169757 its fallback resolved the session by key and agent through the Gateway\u2019s normal store lookup. The replacement reader returns undefined when it cannot find a SQLite write token for the supplied path, so passing the logical path made the guard reject an unchanged session."
+}

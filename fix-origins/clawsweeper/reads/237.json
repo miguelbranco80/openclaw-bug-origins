@@ -1,1 +1,8 @@
-{"rank": 237, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review's items cover MCP resource _meta forwarding, Apple and Telegram question-control verification (Apple item mentions 'optional clearing' only as a platform runtime check), and mobile label/value compatibility; none concerns the Control UI question summary showing 'Answered' for an empty allowEmpty answer."}
+{
+  "rank": 237,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge checklist calls for verifying optional clearing on Apple clients and terminal labels for Telegram choices. Neither check targets how the shared summary displays an explicitly empty answer after submission or reopening."
+}

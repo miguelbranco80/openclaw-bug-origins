@@ -1,0 +1,17 @@
+{
+  "rank": 100859,
+  "sha": "be8fbac7dd856aaf0ea09d75afc3e6518440a1c3",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A goal started with `/goal` could lose entire lines of requirements or collapse significant whitespace before the agent received it.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves multiline goal objectives, retains the first completion timestamp, and lets goal tools accept an explicit null budget.",
+  "reasoning": "The earliest available snapshots already show the command normalizer dropping multiline tails and the goal parser collapsing whitespace for explicit actions. The August transition refactor carried forward the existing timestamp overwrite, and the September normalization change retained the existing default for `/goal`. The history stops before the defective goal code was introduced, so I could not verify whether the objective bug shipped with the feature or broke later."
+}

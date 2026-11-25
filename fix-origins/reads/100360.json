@@ -1,0 +1,17 @@
+{
+  "rank": 100360,
+  "sha": "21cf514b0f6c809ef1089bef5e18192be898bcfd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a9e9dec42dfa7430c324cfe90f91214042c826c6",
+  "cause_pr": 139397,
+  "confidence": "medium",
+  "cause_quote": "The diff raised `MAX_TRANSIENT_RETRIES` from `3` to `8` and routed provider transport failures classified as `timeout` through `failoverRetryController.maybeRetryTransient({ reason: failureReason, ... })`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Models setup screen or `openclaw onboard` could wait more than a minute and then report a timeout for a refused connection or an unresolvable hostname.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Setup verification now preserves transport error codes, skips retries for definite connection failures, and gives endpoint-specific guidance.",
+  "reasoning": "The parent already ran setup verification through the embedded runner, whose three default retries allowed about 3.5 to 10.5 seconds of backoff for immediate failures without a retry hint. PR #139397 expanded that budget enough to account for the minute-long wait, and PR #144195 later added the generic setup timeout wording. The earlier timing is inferred from the retry code."
+}

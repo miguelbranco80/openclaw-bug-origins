@@ -1,0 +1,8 @@
+{
+  "rank": 100736,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items address service ownership refusals, updater integration, and general compatibility proof. The earlier findings focus on service reassignment, and no review item raises package preflight rejecting a Doctor-repairable legacy config during a plain same-version update."
+}

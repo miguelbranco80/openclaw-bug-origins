@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ec5d369a6f664c46e8faf5199b5d85c2cca3e6f6",
+  "cause_pr": 179387,
+  "confidence": "high",
+  "cause_quote": "The cutover removed `heartbeat: HeartbeatSchema.unwrap()` from the strict agent-defaults schema, added `throw new Error(scratch.warnings.join(\"\\n\"))` to Doctor retirement, and added `throw new Error(conflict)` to update admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an upgrade, Doctor could exit before completing the heartbeat migration, leaving the Gateway unable to start.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix lets deferred plugin settlement proceed with readable, unchanged config and lets heartbeat retirement finish while preserving operator scratch and HEARTBEAT.md.",
+  "reasoning": "PR #179387 introduced the heartbeat-to-Automations cutover and shipped both blockers. I checked its parent and confirmed that plugin settlement already required `snapshot.valid` while the schema still accepted `agents.defaults.heartbeat`; the cutover removed that key from the schema while settlement still ran before repair. The same diff introduced the retirement and update-admission paths that turned a preserved scratch conflict into a fatal error.",
+  "rank": 100095,
+  "sha": "60e2d4b5ee9d241b9eb9147feeb3fbe0453c783b",
+  "rubric": "v1.2"
+}

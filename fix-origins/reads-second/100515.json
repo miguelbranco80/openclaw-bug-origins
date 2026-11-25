@@ -1,0 +1,17 @@
+{
+  "rank": 100515,
+  "sha": "3183356530eba63691696970acf4b315c4e502ef",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "75bcd267f5e72086fa5361e263b0f6cb1248adc6",
+  "cause_pr": 134068,
+  "confidence": "high",
+  "cause_quote": "The original list formatter inserted `owner=${entry.ownerLabel}` directly into each row and sent the formatted result to `defaultRuntime.writeStdout(format(result))`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Skills library output could show fake rows or change the terminal display when metadata contained line breaks or terminal control sequences.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The fix sanitizes metadata in human-readable skills library lists, reads, receipts, and activation messages while preserving raw JSON and requested file contents.",
+  "reasoning": "The introducing commit added the personal skills library CLI with unsanitized metadata interpolation already in place. I checked that its library store used the profile display name directly as the owner label and that the CLI passed formatted output to the stdout writer."
+}

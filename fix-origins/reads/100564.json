@@ -1,0 +1,17 @@
+{
+  "rank": 100564,
+  "sha": "88f497e75143e9a5527832e4cc7756ab3a8d47e9",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a refresh found that the open folder was unavailable, the Files panel lost its Parent folder button and the user could not navigate back through the panel.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The Files panel now uses the selected path to show a Parent folder button and an unavailable-folder message when a refresh returns no directory listing.",
+  "reasoning": "I checked the September Files panel redesign and confirmed that its parent already used the same `browser ? renderBrowserRows() : nothing` gate. Before the July Control UI refactor, the UI already relied on `browser.parentPath` and the Gateway already omitted `browser` for missing directories. Both behaviors predate the shallow boundary, and missing objects in the offline history prevented me from verifying the introducing diff."
+}

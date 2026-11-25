@@ -1,0 +1,17 @@
+{
+  "rank": 100580,
+  "sha": "9a51afb295d33740678cfd796bbcd425b1566dfe",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "UI developers saw ten TypeScript errors when editor checks included the native Mermaid tests and plain-Node QA fixtures.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix localizes the native Mermaid bridge types and enables JavaScript inference for QA fixture imports in the UI editor configuration.",
+  "reasoning": "The checked diff changes TypeScript declarations, a browser test's type annotations, and the editor configuration. The PR reports that these changes cleared all ten diagnostics and produced byte-identical native renderer output, so the fix falls under the rubric's tooling and type-change category."
+}

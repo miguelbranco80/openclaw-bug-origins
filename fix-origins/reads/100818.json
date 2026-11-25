@@ -1,0 +1,17 @@
+{
+  "rank": 100818,
+  "sha": "51614f7b17c443ac027b89672ab77a5c9ff64115",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "channels",
+  "summary": "Removed the export from Synology Chat's file-local webhook path source type to clear a scheduled CI finding.",
+  "reasoning": "The fix removes a single export keyword from an alias used only in its defining file, and the PR reports that this clears the Knip unused-export finding without changing webhook behavior. I checked the file history and confirmed that the earlier CI cleanup removed an unrelated export from the same file. The alias predates the shallow boundary, and the available offline history did not establish its introduction."
+}

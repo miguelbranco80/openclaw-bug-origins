@@ -1,0 +1,17 @@
+{
+  "rank": 100460,
+  "sha": "68313e2fab70c830425490cd7eecfcba128800b0",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible was reported.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix reduces SQLite work during session cleanup, exact-session transcript search, transcript generation creation, and ACP replay trimming.",
+  "reasoning": "The prepared-query refactor preserved the existing replay count across sessions, and exact-session search inherited the global dirty-state lookup when it was introduced. The PR measured lower CPU use on synthetic stores and reported equivalent product results. The reproduced browser failure was in the test fixture\u2019s handling of subscriptions."
+}

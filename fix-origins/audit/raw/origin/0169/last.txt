@@ -1,0 +1,17 @@
+{
+  "rank": 169,
+  "sha": "422ff062032e6eb46d4d505bf80f84a7da04e3ff",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; local check:changed runs reported eleven dead exports.",
+  "impact": "other",
+  "area": "other",
+  "summary": "Made unused exports module-private (prepareSessionEventDelivery, formatDays, and others), inlined a test helper, and added type-only re-exports of six existing plugin SDK hook and metric types from plugin-entry.",
+  "reasoning": "This is a tooling/lint cleanup of dead-export findings inherited from #200533, #193550, #198455 and #200817 with no runtime behavior change, as the PR itself states. The SDK re-exports expose existing types and don't repair a reported failure, so the rubric classes this as not-a-defect."
+}

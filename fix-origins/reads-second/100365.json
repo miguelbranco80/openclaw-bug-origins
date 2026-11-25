@@ -1,0 +1,17 @@
+{
+  "rank": 100365,
+  "sha": "ad7669535c379858904a577a3fe4b802f6e22730",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a Dashboard update failed, the operator saw an INFO completion entry in the Gateway log that omitted the reason.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The Gateway now logs failed Dashboard updates at WARN with a public reason and a sanitized error summary.",
+  "reasoning": "The July 1 snapshot already logged the same status-only INFO completion entry for results that could carry an error reason. PR #128868 introduced the upstream-mismatch refusal used in the fix's reproduction and left the completion logger alone. The available path history stops at the shallow boundary, so I could not establish when the general logging defect began or whether an earlier version logged those reasons."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100562,
+  "sha": "1541902c5cad9e0f3e2ba38b2a78dbfaddff74c1",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "fe3b2891fdeaa1a891d54cb2b306e975fc5408cf",
+  "cause_pr": 146850,
+  "confidence": "high",
+  "cause_quote": "The new loop `while (contextEnd > 0 && pending.length > 0)` let each poll scan back to byte zero when no PEM delimiter resolved the pending context.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Leaving the Control UI Logs page open made the Gateway increasingly sluggish as the daily log grew.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix caches PEM redaction state at the last complete log cursor and restores the default-pattern prefilter for per-record redaction.",
+  "reasoning": "I checked the parent of #146850 and confirmed that incremental log reads were bounded by the byte window. The diff added the backward scan to the existing tail reader, and the commit recorded a roughly 53-fold slowdown on repeated polls with no decisive PEM marker. The fix also addresses a separate per-record slowdown from #170023, whose pattern-array copy bypassed the transport prefilter."
+}

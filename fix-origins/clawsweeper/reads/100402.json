@@ -1,0 +1,8 @@
+{
+  "rank": 100402,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge P1 item warned that failed CLI or Gateway cleanup could block later work, and the earlier MCP item concerned legacy runtimes without a cleanup hook. Neither raised the cleanup failure after removing an MCP server whose executable was missing."
+}

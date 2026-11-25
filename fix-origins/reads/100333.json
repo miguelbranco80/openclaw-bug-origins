@@ -1,0 +1,17 @@
+{
+  "rank": 100333,
+  "sha": "8e4fe46d59c0f72953f33871fe3e9211816bc1cd",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix keys credential authority, session actor settlement, and GitHub lifecycle publications and receipts by the store anchor.",
+  "reasoning": "The raw handle was the correct publication key for SQLite, while the PostgreSQL adapter opened its publication scope on a separate store anchor, causing raw-handle lookups to miss transaction state during commit or rollback. I checked that #171434 preserved PostgreSQL's existing anchor key and that the fix's parent still enabled PostgreSQL only for Workboard, so the mismatch was exposed by distinct-anchor fixtures before any supported PostgreSQL cutover for the affected stores."
+}

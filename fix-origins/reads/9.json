@@ -1,17 +1,17 @@
 {
-  "rank": 9,
-  "sha": "3e3911e1d6d391f4d84cb2103a6031fb8fe32214",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "f5ad8e5b53d418e17390a75b004fcccfb5fc064a",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "medium",
-  "cause_quote": "It added per-chat/action typing coalescing (`if (lastAttemptAt !== undefined && currentTime - lastAttemptAt < minIntervalMs) { return; }`, wired with `minIntervalMs: TELEGRAM_TYPING_COALESCE_MS`) whose window nothing cleared when a bot message was delivered.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On an immediate follow-up message in a Telegram chat or topic, the bot's typing indicator appeared about 5 seconds late.",
+  "user_saw": "When a user sent a follow-up immediately after a Telegram bot reply, the bot's typing indicator took about five seconds to appear.",
   "impact": "sequence-or-timing",
   "area": "channels",
-  "summary": "A successful Telegram send/copy/forward now clears the typing coalescing gate for that chat or topic, and a late in-flight action can no longer restore the stale gate.",
-  "reasoning": "The blockedUntilByKey gate predates the graft; GraphQL blame at b14a2cae4bf6 and gh api diffs show it came from f5ad8e5b53d4 ('fix telegram topic bottleneck', 2026-05-10), which introduced the time-window coalescing for typing, and 760160c64145 the same day reshaped it into blockedUntilByKey set in a finally block (the late-restore part). The window was never reset on message delivery from the start, so an immediate next turn's first typing cue was suppressed since coalescing shipped; later commits only moved it to the account throttler and topic keys. Medium because the delay depends on follow-up timing inside the window and I did not confirm the full delivery path at f5ad8e."
+  "summary": "The fix clears the chat or topic's typing gate after successful Telegram message delivery and prevents an older pending action from restoring it.",
+  "reasoning": "The locally available July snapshot already configured a four-second chat-action gate with no delivery invalidation, and the July lifecycle fix retained that interval. The September forum-topic change moved the existing gate into the account throttler and added topic keys. The older path history stopped at a missing object, so I could not verify when the gate was introduced or establish that immediate follow-up typing had previously worked.",
+  "rank": 9,
+  "sha": "3e3911e1d6d391f4d84cb2103a6031fb8fe32214",
+  "rubric": "v1.2"
 }

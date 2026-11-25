@@ -1,0 +1,17 @@
+{
+  "rank": 100570,
+  "sha": "b18521eecc6d8485863fa523e2a08cd95a054f32",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "85a176b98ab114bf7dd58604ae64f004d73933c4",
+  "cause_pr": 122470,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set paired rows to `grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);` and each side to `grid-template-columns: 42px 16px minmax(max-content, 1fr);`, allowing long text tracks to extend beyond their half of the row even with wrapping enabled.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Long lines in Review\u2019s split diff crossed the divider and overlapped the opposite side\u2019s text even with Wrap lines enabled.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix gives split rows shared columns that fit the available width when wrapping is enabled and expand for horizontal scrolling when wrapping is disabled.",
+  "reasoning": "The feature commit replaced the previous unified-only render path with a selectable split renderer and introduced the CSS that caused the overlap. The same paired-row and text-track sizing rules were still present in the stylesheet immediately before the fix."
+}

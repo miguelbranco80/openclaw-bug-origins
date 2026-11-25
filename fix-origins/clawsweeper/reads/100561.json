@@ -1,0 +1,8 @@
+{
+  "rank": 100561,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review recommends tying migration notices to durable Doctor writes, and the Durable update completion item describes when completion is recorded. Neither raises a concern about the deferred warning remaining in update reports or Doctor history after completion."
+}

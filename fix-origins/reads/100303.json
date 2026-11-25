@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "high",
+  "cause_quote": "PR #140339 replaced the branch guarded by `await activateManagedServiceUpdateHandoff()` with an unconditional `await stopManagedServiceBeforeMutableUpdate(roots);`, sending the managed updater through the ancestry guard while its Gateway ancestor was still running.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS, a Gateway-started update handed off successfully, then refused to activate because the updater was still inside the Gateway process tree.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix lets a managed update helper proceed through both the shared activation check and the native LaunchAgent stop by revalidating its live handoff lease.",
+  "reasoning": "I checked the parent of #140339 and confirmed that managed activation used a separate handoff path that called `launchctl bootout` directly and acknowledged that the Gateway had stopped. The new unconditional stop call put the helper behind the existing ancestry refusal, and #144532 subsequently added an activation exception only for Linux, leaving the macOS failure in place.",
+  "rank": 100303,
+  "sha": "99ce0ed8812f6ce8aade38b839adee3b14176657",
+  "rubric": "v1.2"
+}

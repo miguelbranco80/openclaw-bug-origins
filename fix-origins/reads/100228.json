@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening Chat or New Session downloaded Review panel code even when the panel stayed closed.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix defers loading the Review panel until it opens while keeping tool output immediate.",
+  "reasoning": "The module-split diff shows that Chat already registered the panel eagerly, and the fix's parent already listed the panel in the Chat boot group after a separate manifest correction. The September bundle growth prompted the work, but a separate partition change restored the 215 KiB budget before this fix merged, so the shipped change reduced startup downloads.",
+  "rank": 100228,
+  "sha": "fa13650f912f5343833114e8b568898864b55248",
+  "rubric": "v1.2"
+}

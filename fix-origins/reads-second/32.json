@@ -1,17 +1,17 @@
 {
   "rank": 32,
   "sha": "86fa3cedff45f1806bad18e3fd84f515b36088c9",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; the process-owned camera manager kept a reference to a destroyed MainActivity until a replacement Activity attached.",
-  "impact": "slower-or-heavier",
+  "user_saw": "Nothing visible.",
+  "impact": "sequence-or-timing",
   "area": "apps",
-  "summary": "CameraCaptureManager now observes the attached lifecycle owner, clears its reference on ON_DESTROY, removes the old observer on replacement and ignores already-destroyed owners.",
-  "reasoning": "Issue #195636 came from code review and reports only a retained destroyed Activity; the PR keeps the existing foreground admission that already stopped captures from binding to a stale owner, and the only device evidence is a trace showing the reference held until the next attach, with no reported failure. The strong `lifecycleOwner = owner` reference goes back past the January 2026 package renames to the original Android node code, so no introducing commit could be pinned. A stricter reader could call it a never-worked memory leak, but with no observed user failure and no traceable cause, I classify it as leak hardening."
+  "summary": "The Android camera manager clears its Activity reference when the current owner is destroyed and rejects attempts to attach an already-destroyed owner.",
+  "reasoning": "At the July 1 history boundary, NodeApp already retained a process-wide runtime and the camera manager already stored its lifecycle owner without clearing it on destruction. The September capture-isolation change added cancellation for active captures and left idle ownership as it was. The older path history stopped at a missing object, so I could not establish when the camera manager first began outliving its Activity."
 }

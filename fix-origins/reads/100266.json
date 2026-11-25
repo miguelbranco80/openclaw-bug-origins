@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Discord and LINE, a long code block sent in newline chunk mode could arrive with an unclosed fence and a continuation outside the code block.",
+  "impact": "presentation",
+  "area": "channels",
+  "summary": "The fix disables length-based splitting in the planner\u2019s plain-text paragraph pass so the channel chunker can split long fenced code blocks and close each part correctly.",
+  "reasoning": "The July 1 snapshot already used plain-text length splitting on oversized paragraphs before passing them to Discord\u2019s fence-aware chunker. I checked the later planner and paragraph-splitting diffs and found that they preserved this behavior. The offline history stopped at the shallow boundary, so I could not verify whether the defect shipped with newline chunking or broke a previously working delivery path.",
+  "rank": 100266,
+  "sha": "08a66424b09039c8b2aeb605a9eab203b7d79858",
+  "rubric": "v1.2"
+}

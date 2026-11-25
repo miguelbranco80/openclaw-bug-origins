@@ -1,0 +1,17 @@
+{
+  "rank": 132,
+  "sha": "eab97af9a602183fb1adee3e8bfba2a7179d3c5b",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible in any established flow; only a synthetic repro that sets a relative PATH and changes the process cwd between probes showed a stale 'binary available' answer.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "Added the current working directory to the successful-binary-probe cache key in src/shared/config-eval.ts when PATH contains a relative entry.",
+  "reasoning": "The fix PR itself calls this internal correctness hardening and says no stock CLI flow that changes cwd between these probes has been established; issue #162648 is a code-level repro (PATH=./bin plus chdir) rather than an observed user failure. The PATH/PATHEXT-only cache key long predates the fix (history back past the shallow graft), so there is no breaking commit; with no reachable failure it is classified as hardening, not a defect."
+}

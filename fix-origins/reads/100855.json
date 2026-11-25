@@ -1,0 +1,17 @@
+{
+  "rank": 100855,
+  "sha": "c6765932e7d39bb16131d74bc3b6b39c33dd3669",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A log follower could silently skip newly appended records when the log was truncated during a read and regrew before the next poll.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The log-tail reader now advances its cursor to the byte after the last newline it actually read.",
+  "reasoning": "The blamed incomplete-record fix preserved the existing use of the sampled file size for reads ending in a newline. The source at the July 1 history boundary already assigned `cursor = size` after a potentially short read, so the same truncation and regrowth sequence could skip records then. The older path history stopped at a missing object, leaving the introducing diff unverified."
+}

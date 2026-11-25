@@ -1,0 +1,8 @@
+{
+  "rank": 100706,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAccept safe same-version additive columns during preflight\u201d finding concerned a compatibility option in the projected-runtime check. The reported bug arose earlier, when the integrity check could fail before offline preflight read the schema version. The findings open at merge concerned ownership races."
+}

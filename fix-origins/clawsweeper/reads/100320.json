@@ -1,0 +1,8 @@
+{
+  "rank": 100320,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier P2 finding asked for URL-download tests to accept images above the storage cap and verify rejection above the new ceiling. At merge, the Review metrics section described the JSON budget without raising any concern that it could reject a Gemini 4K response through OpenRouter."
+}

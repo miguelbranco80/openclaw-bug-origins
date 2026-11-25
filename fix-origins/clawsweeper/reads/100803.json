@@ -1,0 +1,8 @@
+{
+  "rank": 100803,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 finding covers dropped invocation cancellations while pairing publication is blocked. Repairing that send path would leave the reapproval race intact: registry readers could still see the committed generation before the approval handler updated the live session."
+}

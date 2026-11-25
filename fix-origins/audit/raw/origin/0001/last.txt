@@ -1,0 +1,17 @@
+{
+  "rank": 1,
+  "sha": "0c73fa0684d3cc96170ac6a2d5432594d549da06",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Creating a managed worktree with large dependency includes took about a minute of copying in a long-running, memory-heavy Gateway.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Runs the batched native cp copies through one small helper process instead of forking GNU cp from the large Gateway process per 128-file batch, and adds bounded copyDetails diagnostics.",
+  "reasoning": "The per-batch spawn path came from the day-old performance fix af7fd744c051 (#196298), which cut provisionCopy from ~174 s to ~5 s in small processes; in large-memory Gateways it was ~60 s, still faster than before it, so this is a further performance improvement of code that was never slower than its predecessor. The underlying slow provisioning was long-standing, not introduced by a specific breaking commit; I read both PR descriptions and the blame table."
+}

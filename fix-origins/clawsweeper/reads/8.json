@@ -1,1 +1,8 @@
-{"rank": 8, "flagged": "exact", "where": "earlier-only", "quote": "Adding grid layout without a bounded column lets the implicit auto track expand to the receipt's unbroken text width. The existing browser scenario with a 512-character progress step in a 220px container now reports scrollWidth 3067 rather than 220, producing horizontal overflow instead of truncation.", "outcome": "dropped", "note": "The 2026-10-27T15:12 version's P2 'Constrain the new grid so long receipts remain inside the transcript' names the unbounded grid track on .chat-activity-group causing overflow and prescribes minmax(0, 1fr), which is what the fix did. The at-merge version treats it as addressed ('Prior findings addressed') and no longer lists it, yet the overflow shipped."}
+{
+  "rank": 8,
+  "flagged": "exact",
+  "where": "earlier-only",
+  "quote": "Adding grid layout without a bounded column lets the implicit auto track expand to the receipt's unbroken text width.",
+  "outcome": "dropped",
+  "note": "The earlier \u201cConstrain the new grid so long receipts remain inside the transcript\u201d item identified the same unbounded grid track and resulting overflow from unbroken text. The merge-time review marked that finding addressed after reporting an explicit column, while the bug account says the overflow shipped."
+}

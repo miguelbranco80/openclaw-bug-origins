@@ -1,0 +1,17 @@
+{
+  "rank": 100464,
+  "sha": "529b4d75b7030592d7e0718fa63fb9db16ce8ec3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "76bf977faefe65a52134a0589b80af8e3d784037",
+  "cause_pr": 139495,
+  "confidence": "high",
+  "cause_quote": "The new rehearsal compared every top-level key with `.filter((key) => !isDeepStrictEqual(before[key], current[key]))`, and `if (keys.length)` turned any difference into `repair-requires-config-change`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The older updater stopped with `repair-requires-config-change` even though candidate validation passed and Doctor had only updated bookkeeping.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix defers version, wizard, and migration bookkeeping in the rehearsal config while preserving real migrations and normal writes after activation.",
+  "reasoning": "I checked the introducing diff and its parent: Doctor already updated wizard history and stamped the config version on writes, and the new bounded-repair path ran `doctor --fix` against the copy and rejected every changed key. The false rejection was possible from the first version of that comparison, and the fix PR reproduced it with the published 2026.9.4 validator."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100401,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "A filled cache can therefore delay all Gateway listeners before the post-ready sidecar begins; load and validate generations asynchronously from `prepare()` instead.",
+  "outcome": "answered",
+  "note": "The earlier \u201cDefer retained-cache verification until after Gateway bind\u201d item flagged listener delays from cache verification. The 12:23 reply confirmed the move to post-ready preparation, which still left a window for lazy-chunk requests to return 404 while verification ran."
+}

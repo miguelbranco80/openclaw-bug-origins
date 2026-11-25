@@ -1,0 +1,8 @@
+{
+  "rank": 100425,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Replacing each action and formatting the rejection in this test\u2019s own finalizer bypasses real local error owners.",
+  "outcome": "open-at-merge",
+  "note": "The \u201cExercise real JSON command failure owners\u201d finding identified a test gap around locally handled errors and cited sessions compact as its concrete example. Testing real command handlers could have exposed the config patch and config unset failure with --json and no --dry-run, which the finding did not identify."
+}

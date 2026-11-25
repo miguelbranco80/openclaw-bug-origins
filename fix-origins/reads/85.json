@@ -1,17 +1,17 @@
 {
-  "rank": 85,
-  "sha": "8051834a3ded5bc2a566c0fecbe98ad66b6f2555",
-  "rubric": "v1.1",
   "origin": "regression",
-  "cause_sha": "0dd9e0b7f7548ad751bd8e0dfdaed4d92e736ed7",
-  "cause_pr": 172763,
-  "confidence": "medium",
-  "cause_quote": "copySourceFile replaced the plain `copyFileDescriptorSync(source.descriptor, target)` byte copy with `copyRootFileSync({ ..., clone: \"auto\", ... })`, so artifact-preserving inspection snapshots started reflinking (FICLONE) the live database inode.",
+  "cause_sha": "9a0146355c023f05d271834446a9b08830c81ad1",
+  "cause_pr": 162466,
+  "confidence": "high",
+  "cause_quote": "The commit routed existing inspection copies through `await copySqliteFile(sourcePath, targetPath, source.identity)`, whose `clone: \"auto\"` option allowed a reflink to hold the live source inode while a writer waited.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a Btrfs host with a large, fragmented live SQLite database, Gateway database writes stalled while a read-only inspection snapshot was being taken.",
-  "impact": "slower-or-heavier",
+  "user_saw": "Database writes could stall while a read-only inspection snapshotted a large, fragmented SQLite database on Btrfs.",
+  "impact": "sequence-or-timing",
   "area": "storage",
-  "summary": "Artifact-preserving SQLite inspection copies (sync and async) now use byte copies with clone: \"never\" instead of reflink/copy-offload, while offline snapshot publication keeps clone-first.",
-  "reasoning": "Before #172763 the synchronous inspection copy was a plain descriptor byte copy, which does not hold the source inode in Btrfs clone metadata reservation; #172763 switched it to clone \"auto\", and the fix's regression test (sync inspection returned a clone/offload transfer) targets exactly that line. The async inspection path got clone \"auto\" earlier in #162466 (9a0146355c02), and the incident's exact caller and latency attribution are not established in the PR, so confidence is medium."
+  "summary": "The fix uses byte copies for synchronous and asynchronous inspections while retaining clone-first transfer for verified offline snapshots.",
+  "reasoning": "I checked the parent of #162466 and confirmed that existing inspection snapshots used a pinned descriptor byte copy, then verified that #162466 switched the existing artifact-preserving acquisition to the clone-enabled helper. #172763 later added cloning to the synchronous path, and the incident trace confirmed a writer waiting on the source inode during FICLONE while the exact inspection caller remained unidentified.",
+  "rank": 85,
+  "sha": "8051834a3ded5bc2a566c0fecbe98ad66b6f2555",
+  "rubric": "v1.2"
 }

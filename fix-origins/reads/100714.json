@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "60adac1aff6f1a147b04920fbb498f1ce10c8016",
+  "cause_pr": 139822,
+  "confidence": "high",
+  "cause_quote": "The new callback `budgetCompactionSummary(body, suffix, maxChars, qualityRetention)` passed below-minimum head cuts to a fitter that set `high = mid - 1` when their estimated token cost exceeded the budget.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a small-context session overflowed, compaction could report that required facts exceeded the summary budget even though those facts would fit after trimming optional prose.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix skips summary candidates below the required-fact minimum so the fitter can trim optional prose and still cancel when the required facts genuinely exceed the token budget.",
+  "reasoning": "I checked the introducing diff and its parent, which finalized safeguard summaries once at the fixed 16,000-character cap. PR #139822 introduced foreground-token fitting with a callback that could return a dense head cut below the retention minimum. That cut could cost more tokens than a larger candidate that preserved the facts, causing the search to discard the viable candidate from the first implementation.",
+  "rank": 100714,
+  "sha": "a5a92cd2231b5f6bc57ee843aae7a89c5caf6adc",
+  "rubric": "v1.2"
+}

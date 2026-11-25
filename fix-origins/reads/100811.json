@@ -1,0 +1,17 @@
+{
+  "rank": 100811,
+  "sha": "f481daa407fffe48501ba190924246cfcb11ec05",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c42e11eec1554a001ef477645e4bd9fbfbbbbb08",
+  "cause_pr": 179218,
+  "confidence": "high",
+  "cause_quote": "The rail branch added `...(rail ? { placement: \"right-end\" as const } : {})`, moving the existing identity menu beside the rail and putting its gateway submenu low enough for the shared height cap to clip it before it could flip upward.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With nine saved gateways, the navigation rail submenu clipped the ninth gateway and Gateway Settings.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix sizes side menus against the viewport so they can flip or fall back to a centered, scrollable position while preserving consumer-specific height limits.",
+  "reasoning": "The parent already rendered the gateway submenu and Gateway Settings, and #179218 changed the placement of the existing identity menu from above its anchor to beside the rail. The shared overlay already capped height against the initial anchor region, and the fix PR reports that reverting only #179218's placement change made the same nine-gateway scenario pass."
+}

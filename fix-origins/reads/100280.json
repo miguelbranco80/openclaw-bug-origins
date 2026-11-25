@@ -1,0 +1,17 @@
+{
+  "rank": 100280,
+  "sha": "50eefaed0bcf3e446fece6926a1ec75511dd98f0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "64853b1a9d505dc3980e4bedfc39ee79c043ffbf",
+  "cause_pr": 124301,
+  "confidence": "high",
+  "cause_quote": "Adding `props.runStatus?.phase ?? \"\"` and `props.runStatus?.occurredAt ?? 0` to `trackTranscriptRenderDependencies` made status-only updates invalidate every settled message row.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix removes run status phase and timestamp from the transcript render dependencies so status-only updates leave settled messages idle.",
+  "reasoning": "I checked the parent of #124301, where the composer already displayed interruption feedback and the transcript render guard did not depend on run status. #124301 moved interruption feedback into its own transcript row and also added status to the shared render dependencies, causing settled messages to rerender even on completion-only updates. #127823 moved the feedback back to the composer and left both dependencies in place."
+}

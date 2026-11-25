@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Inference help and shell completion incurred the startup cost of loading runtimes used to execute inference commands.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "The fix defers provider execution, authentication, configuration, and Gateway imports until an inference command runs while preserving help and completion entries.",
+  "reasoning": "The CLI already imported execution runtimes at module scope before the domain split, and the later lazy-loading changes kept loading registrars to build the complete help and completion tree. The PR demonstrates that the fix eliminates those imports during discovery and reports no failed invocation or prior deterioration in startup performance.",
+  "rank": 100635,
+  "sha": "c4257984ae196c7b1a2e2a708e49f52745bf23a0",
+  "rubric": "v1.2"
+}

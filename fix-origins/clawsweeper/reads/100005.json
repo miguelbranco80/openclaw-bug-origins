@@ -1,0 +1,8 @@
+{
+  "rank": 100005,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cWhat this changes\u201d section describes the cancellation gap the PR aimed to fix. The earlier \u201cPass lifecycle authorization into the shared Stop plan\u201d finding concerns authority after cancellation is signalled, leaving unexamined whether Stop can reach an admitted HTTP run before its runner handle exists."
+}

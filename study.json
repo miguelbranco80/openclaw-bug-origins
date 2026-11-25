@@ -8,7 +8,16 @@
       "since": "2026-11-01T00:00:00Z",
       "until": null,
       "sample": 300,
-      "reread": 60
+      "reread": 300,
+      "reread_bot": false
+    },
+    {
+      "id": 2,
+      "since": "2026-09-10T00:00:00Z",
+      "until": "2026-11-01T00:00:00Z",
+      "sample": 902,
+      "reread": 0,
+      "reread_bot": false
     }
   ],
   "comparison_sample": 400,
@@ -26,24 +35,24 @@
   },
   "judging": {
     "origin": {
-      "backend": "claude",
-      "model": "claude-opus-5-5"
+      "backend": "codex",
+      "model": "gpt-6.2-sol"
     },
     "origin_second": {
-      "backend": "claude",
-      "model": "claude-opus-5-5"
+      "backend": "codex",
+      "model": "gpt-6.2-sol"
     },
     "origin_reread": {
-      "backend": "codex",
-      "model": "gpt-6.2-sol"
-    },
-    "flag": {
       "backend": "claude",
       "model": "claude-opus-5-5"
     },
-    "flag_reread": {
+    "flag": {
       "backend": "codex",
       "model": "gpt-6.2-sol"
+    },
+    "flag_reread": {
+      "backend": "claude",
+      "model": "claude-opus-5-5"
     },
     "review": [
       {
@@ -104,7 +113,7 @@
   },
   "limits": {
     "effort": "medium",
-    "jobs": 4,
+    "jobs": 12,
     "max_wait_minutes": 60,
     "github_reserve": 300
   }

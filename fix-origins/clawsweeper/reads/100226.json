@@ -1,0 +1,8 @@
+{
+  "rank": 100226,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cLive admission and cleanup custody\u201d section describes identity checks at admission and leaves unaddressed the risk that refresh-lock preparation could block first-session creation in a fresh store. The earlier \u201cBefore merge\u201d item only requested coordinator approval."
+}

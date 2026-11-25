@@ -1,0 +1,17 @@
+{
+  "rank": 100392,
+  "sha": "5159f10d8f696068406851e00be3ebe4db5fa9e9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0bab08510e75938e8317aa54d5d5c37a49ef7543",
+  "cause_pr": 106352,
+  "confidence": "high",
+  "cause_quote": "The new `dashboardJsonFailure` called `writeRuntimeJson(runtime, { ok: false, reason }, 0);` and then `runtime.exit(1);`, leaving stderr empty.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a dashboard handoff failed, `openclaw dashboard --json` exited with an error and left stderr empty.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The fix adds the dashboard handoff failure reason and a diagnostic command to stderr while preserving the JSON response.",
+  "reasoning": "The landed product diff changes the dashboard CLI, while the subagent recovery implementation referenced in the PR description landed separately in #176861. The introducing diff for `dashboard --json` already sent failures only to stdout, which the runtime implementation confirms. The later blame candidate #168812 changed the JSON envelope and left stderr behavior as it was."
+}

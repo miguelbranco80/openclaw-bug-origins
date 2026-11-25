@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "plugins",
+  "summary": "OpenClaw upgraded its managed Codex runtime from 0.159.1 to 0.160.0 to pick up upstream SQLite startup and logging improvements.",
+  "reasoning": "The path history confirms that #161446 moved the managed runtime from 0.158.0 to 0.159.1, and this fix updates the version pins and related metadata. The PR describes a supported dependency upgrade and reports no specific OpenClaw startup failure resolved by it. The available evidence does not establish that the earlier pin broke behavior that had worked on main.",
+  "rank": 100092,
+  "sha": "1b8d4594fe59123e654516f361cca12b51dd1a4a",
+  "rubric": "v1.2"
+}

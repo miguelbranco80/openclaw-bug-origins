@@ -1,0 +1,17 @@
+{
+  "rank": 100384,
+  "sha": "4d50f6c26235a798bd33398caa0812c7f5fd4997",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "01689fdd902f3a93275d428f45e728f0a8bd70b7",
+  "cause_pr": 184531,
+  "confidence": "high",
+  "cause_quote": "The new workspacePath branch added `return handoff(\"GitHub publication\", \"sessions.github.publish\", publishParams);`, which yielded the turn through a publish action the transcript only recognized for prepare_pr.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a successful PR publication from a local checkout, chat showed \u201cInterrupted\u201d and split the reply into separate blocks.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix recognizes GitHub publication handoff receipts and keeps the publication report and resumed reply in the same answer block.",
+  "reasoning": "The introducing diff added the local checkout publication handoff, and its parent only had a handoff for PR preparation. The UI still required prepare_pr to recognize the handoff receipt, and its grouping logic excluded assistant reports without a run ID, so the new publication flow shipped with both display defects."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 50,
+  "sha": "cc7f6b97120e761eaea7aea9702cf89e017febb9",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS, Deep Research report prose looked thinner than they preferred because of the app-wide antialiased font smoothing.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Set -webkit-font-smoothing/-moz-osx-font-smoothing to auto on the Deep Research report element so it keeps macOS stem darkening.",
+  "reasoning": "The thin rendering comes from the Control UI's deliberate app-wide antialiased body smoothing, not from broken code. The fix is one of a batch of typography-preference PRs (alongside #197458 for chat text) that changes the look of one element, with screenshots waived. This is a visual design adjustment, not a malfunction, so it is not a defect. The context blame (9d4d6c62c065, which added the pane) contains nothing wrong."
+}

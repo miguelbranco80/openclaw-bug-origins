@@ -1,0 +1,17 @@
+{
+  "rank": 187,
+  "sha": "0181ef700d4aaaf75a5d72c9ac95092cd132996c",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "28e16eedc374234f8d71ac28ee204d99fa91504a",
+  "cause_pr": 159860,
+  "confidence": "medium",
+  "cause_quote": "#159860 introduced native Dashboard auth whose challenge is refused once the window closes (its test case `case \"close\": controller.closeDashboard()` expects an error) while the Control UI treats that refusal as `retryable: error instanceof NativeGatewayAuthUnavailableError` with `closeReason: \"native authorization unavailable\"`, and window close still only called `webView.stopLoading()`, leaving the committed page reconnecting.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After closing or replacing a natively authenticated macOS Dashboard window, its hidden page kept reconnecting every few seconds and the Gateway log filled with repeated pre-connect 4008 'native authorization unavailable' warnings.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "Closing or replacing a native macOS Dashboard window now unloads its committed document (keeping the trusted route for reopen), and the Gateway rate-limits repeated pre-connect 4008 native-refusal warnings.",
+  "reasoning": "The close path's `stopLoading()` predates the graft and was fine while documents carried their own token; the reconnect loop only appears once native auth is bound to the open window, which #159860 (28e16eedc37) added together with the retryable 4008 close in ui/src/api/gateway.ts (GraphQL blame of those lines points to it) and a test asserting close denies the challenge. I did not confirm the exact cadence path in the app, so confidence is medium; the log-limiter part is hardening on top."
+}

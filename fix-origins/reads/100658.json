@@ -1,0 +1,17 @@
+{
+  "rank": 100658,
+  "sha": "9e579cde6fcea3738b771d999dafffacb145d0cd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "627bad22de79f9a0f5b572d9accd873f8d03e5bb",
+  "cause_pr": 182412,
+  "confidence": "high",
+  "cause_quote": "The added `await directory.mkdir(path.relative(ancestor, canonicalSource));` created protected skill directories in the workspace projection after its baseline had been captured, and layout preparation returned without checkpointing them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A guest preparing an owned PR from a fresh conversation was told the workspace contained unsaved work before any PR source was applied.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix checkpoints the managed workspace when sandbox setup creates protected skill directories, allowing the initial PR import to pass the clean-workspace check.",
+  "reasoning": "The parent of #182412 already had the initial PR import and a test covering successful import into an empty workspace, and its mount resolver only selected directories that already existed. #182412 added directory creation after baseline capture, so the existing manifest comparison rejected the fresh projection because it contained `.agents`, `.agents/skills`, and `skills` while the canonical workspace was empty."
+}

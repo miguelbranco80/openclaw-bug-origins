@@ -1,0 +1,17 @@
+{
+  "rank": 11,
+  "sha": "f8de201a3cae55d84b961d4a5a58b4a40d598a63",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "21db4e956ed4affe1d3d5966eee44804681f645d",
+  "cause_pr": 145688,
+  "confidence": "medium",
+  "cause_quote": "The new resolver accepted any non-Bun node via `!process.versions.bun && (!requiredFlag || process.allowedNodeEnvironmentFlags.has(requiredFlag))` in both the fast path and the probe, with no check against the supported Node floor.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When OpenClaw ran under Bun with an old Node (e.g. 20) earlier on PATH, Node-only helper processes such as Gateway post-ready maintenance crashed with a syntax error on a `using` declaration.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "Made the Node helper resolver fast path and the standalone probe also require isSupportedOpenClawNodeVersion, so unsupported Node installs are skipped in favor of a supported one.",
+  "reasoning": "The resolver was introduced in #145688 without any version gate, while node-version.mjs and package.json engines at that commit already required Node >=24.16, so it could select an unsupported Node from day one; later commits (#183120, #183493) only moved the same predicate into a generated probe. Medium rather than high because the visible crash also needed compiled code using newer syntax, but the missing check against an already-existing support contract is the defect."
+}

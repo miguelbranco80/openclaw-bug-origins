@@ -1,0 +1,17 @@
+{
+  "rank": 100192,
+  "sha": "8c2d6b14f3b38c5faaa2140c2952723e8bb5cc5c",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b287d63101e1f440df5b915e54bb72bb55bce2b2",
+  "cause_pr": 133578,
+  "confidence": "high",
+  "cause_quote": "The new `/status` filter, `isLiveUnendedSubagentRun(entry, now) || pendingDescendants > 0`, drops a still-owned run with no pending descendants once it crosses the stale cutoff.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A subagent could disappear from the active count while it was still running, allowing another spawn or letting its parent settle early.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix keeps runs with a current local execution claim or exact queue reservation in activity accounting and requires an execution claim to report an executor as live.",
+  "reasoning": "I checked the parent of #133578 and verified that `/status` received visible unended rows and counted them regardless of age. The cited diff introduced the age cutoff into that existing status path. The registry already used the age-only rule before July 1, and the available offline history did not establish when it first entered the registry."
+}

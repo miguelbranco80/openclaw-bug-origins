@@ -1,17 +1,17 @@
 {
   "rank": 235,
   "sha": "85441bb44cb69da7444bcdc734d611cd492a9751",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "fd77e9230188b4041ee240517e407e1fed6d470a",
   "cause_pr": 153542,
-  "confidence": "medium",
-  "cause_quote": "The full-output loader added `if (!output || output.outputText === undefined) { this.loadState = \"unavailable\"; return; }`, treating a matched completed result with no text (such as an image-only result) as unavailable.",
+  "confidence": "high",
+  "cause_quote": "The new full-output inspector set the state to unavailable under `if (!output || output.outputText === undefined)` and rendered copy and download controls whenever `this.loadState === \"loading\"` was false.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Opening a successful image-only tool result in Chat showed 'Full output unavailable' and offered copy/download buttons that exported empty text.",
+  "user_saw": "Opening a successful image-only tool result showed \u201cFull output unavailable\u201d and offered copy and download controls that exported empty text.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Treats any single matched completed tool result as available even without text, and hides copy/download output actions when the text is empty.",
-  "reasoning": "git log -S 'outputText === undefined' shows the check entered with the original full-output recovery in #153542 (Lit chat-tool-output.ts) and was carried verbatim into the Solid view by #168739 (75df19cf9e4) and later refactors, so the misclassification of text-less results shipped with the feature. Medium confidence because I did not confirm image-only MCP results reached this view at the time #153542 landed, though the PR says they come from existing MCP content conversion."
+  "summary": "The Control UI now accepts a uniquely matched completed result without text and shows copy and download controls only when there is text to export.",
+  "reasoning": "The introducing diff replaced the Markdown details view with a full-output inspector that treated missing text as a failed lookup, even though the tool-card extractor returns undefined text for image-only content. Both Solid refactors carried forward that availability check and the export controls, so the defect shipped with the original inspector."
 }

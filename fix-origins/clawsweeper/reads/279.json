@@ -1,1 +1,8 @@
-{"rank": 279, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "All review versions focus on authority-chain proof, protocol revocation and data-model compatibility; nothing concerns the tunnel child's ws+unix URL splitting paths with colons or forwarding client Content-Length to the HTTP proxy."}
+{
+  "rank": 279,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cAdd real behavior proof\u201d item focused on device authorization after revocation or restart, and the earlier protocol finding concerned delegated devices retaining owner access. Neither raised a concern about HTTP body framing or WebSocket route and socket selection."
+}

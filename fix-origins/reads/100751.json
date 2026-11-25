@@ -1,0 +1,17 @@
+{
+  "rank": 100751,
+  "sha": "bd6416c6d5b4dcc205a07b567cd51a2119684e38",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "5ab3ae253694508f6eee4039354cb9be3f518574",
+  "cause_pr": 163834,
+  "confidence": "high",
+  "cause_quote": "The commit added `const signal = getAsyncWorkSignal()` and then `signal?.throwIfAborted()` immediately before `return consume(read)`, so closing the producer scope could prevent the recap broadcast.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Subscribed Activity clients could keep showing a stale recap after successful compaction even though the updated recap had been saved.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix detaches accepted recap notifications from the producer\u2019s cancellation scope, waits for them during Gateway shutdown, and rejects new notifications once shutdown begins.",
+  "reasoning": "The parent of #163834 already routed deferred recap broadcasts through `withReadySessionRows`, which passed the broadcast callback directly to row preparation and could deliver it after producer closure. The new cancellation check made that same callback throw if the compaction or scheduler scope closed before the row was ready. The fix PR reports a fresh stored recap with no subscriber push on the baseline and verifies delivery after producer closure."
+}

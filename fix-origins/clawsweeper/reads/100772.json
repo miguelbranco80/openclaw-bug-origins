@@ -1,0 +1,8 @@
+{
+  "rank": 100772,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item discussed restarting the Gateway to clear resources left behind by third-party plugins. The earlier \u201cExclude unchanged failed plugins from replacement rejection\u201d finding concerned retained startup errors, and neither item addressed a file watcher echo canceling a pending restart during config acceptance."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100856,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "A completed shared receipt written by v2026.9.1 legitimately has no lifecycle companion row. On upgrade, discovery throws here (or in the missing-table branch), and `sessions.github.options` fails before returning either account choices or `pendingPersonal`.",
+  "outcome": "dropped",
+  "note": "The earlier \u201cPreserve options discovery for legacy terminal receipts\u201d item flagged a throw in shared receipt discovery when lifecycle data was missing on upgrade. The requested fix covered unbound legacy receipts, while the shipped error occurred when a bound receipt remained after idle cleanup retired its worktree."
+}

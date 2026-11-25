@@ -1,0 +1,8 @@
+{
+  "rank": 100421,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Downgraded binaries do not enforce the new account boundary; writes made during a downgrade make subsequent automatic recovery ineligible.",
+  "outcome": "dropped",
+  "note": "The earlier P1 merge risk about downgrade writes pointed to the same transcript coverage check that blocked replay. It addressed writes by older binaries, while the shipped bug occurred when successful Gateway compaction advanced the transcript watermark."
+}

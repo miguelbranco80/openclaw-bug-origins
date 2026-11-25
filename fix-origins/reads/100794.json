@@ -1,0 +1,17 @@
+{
+  "rank": 100794,
+  "sha": "e9390ffd104ef34f4f43be3118c56c1ee40f5f54",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "89938348684eaa6b4e152aaf468cffc73057be07",
+  "cause_pr": 153043,
+  "confidence": "high",
+  "cause_quote": "The diff set update-mode work policy to `(params.timeoutMs ?? null)` and replaced the npm child's `timeoutMs: Math.max(timeoutMs, 300_000)` with `timeoutMs: resolveInstallWorkTimeoutMs(workTimeoutMs, Math.max(timeoutMs, 300_000))`, making the forwarded internal allowance override the five-minute minimum.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A healthy plugin update could time out after the core upgrade even when the operator supplied no timeout.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix carries the operator's explicit timeout separately from internal allowances so post-core plugin work can finish while metadata probes stay bounded.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the existing post-core updater already forwarded its numeric allowance to the npm installer, where a five-minute minimum let the reported 65-second child finish. PR #153043 made the same forwarded number a work deadline, so the 60-second allowance in the reported reproduction stopped the child."
+}

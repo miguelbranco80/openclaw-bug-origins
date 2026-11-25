@@ -1,0 +1,8 @@
+{
+  "rank": 100241,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAllow explicit recovery after GC defers the repository\u201d finding addressed cleanup backoff skipping repair. At merge, \u201cBounded recovery in the existing owner\u201d described the inventory and five-minute limit without raising the risk that every retry could time out before fetching objects for later worktrees."
+}

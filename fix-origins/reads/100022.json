@@ -1,0 +1,17 @@
+{
+  "rank": 100022,
+  "sha": "794a184cfb66ba45348ca67e58d58fbbaa5fb177",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The new canary threw on snapshot failure while `phase` was `\"snapshot\"`, then classified it with `phase === \"doctor\" || phase === \"lint\" ? \"doctor-failed\" : \"runtime-verification-failed\"`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When candidate snapshot preparation failed, operators saw a runtime verification failure headline and retry instructions that pointed to runtime verification.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The canary now reports `candidate-snapshot-failed` for snapshot preparation failures while preserving timeout precedence.",
+  "reasoning": "The introducing diff added both the snapshot phase and the fallback that mislabeled its failures from the first version of the canary. The later capacity change added snapshot-specific details without changing that classification, and path history shows the snapshot-specific reason first appeared in this fix."
+}

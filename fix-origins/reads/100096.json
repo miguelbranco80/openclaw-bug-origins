@@ -1,0 +1,17 @@
+{
+  "rank": 100096,
+  "sha": "445eb593e38a37a3c788906a9226c353b3d55c89",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "40d4e321105a860880657891e3a43920485dabc5",
+  "cause_pr": 98698,
+  "confidence": "high",
+  "cause_quote": "The new Android status mapper added `\"AUTH_BOOTSTRAP_TOKEN_INVALID\" -> \"Setup code expired\"`, treating every rejection under that code as proof of expiry.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The app could say that a rejected setup code had expired even when the gateway had only established that it was invalid.",
+  "impact": "presentation",
+  "area": "apps",
+  "summary": "The fix describes rejected setup codes as no longer valid in Android and Apple recovery UI and directs users to get a fresh code.",
+  "reasoning": "The Android commit introduced the specific status label where Settings previously displayed \u201cAuthentication needed,\u201d and its parent already described the gateway failure as \u201cinvalid or expired.\u201d The expiry claim was therefore wrong from the first version of that status mapping. Similar wording in Android onboarding and the Apple apps predates the local history boundary, so the cited commit establishes the origin of the Android status mapping."
+}

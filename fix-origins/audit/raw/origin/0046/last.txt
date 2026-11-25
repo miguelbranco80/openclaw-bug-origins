@@ -1,0 +1,17 @@
+{
+  "rank": 46,
+  "sha": "2dd3ffec0063c60ef3815637a2e85c6757a42fd5",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "unclear",
+  "user_saw": "Only with a deliberately malformed setup (the relay credential path pointing at a writerless FIFO) would the native hook relay hang instead of denying; no real user report.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "Replaced the native-hook relay's hand-written credential open/stat/read with the fs-safe readRegularFile helper so special files such as a FIFO are rejected without blocking.",
+  "reasoning": "The blocking open has been there since the remote relay client was added in 90d30a1178a7 (open with O_RDONLY|O_NOFOLLOW but no O_NONBLOCK before the isFile check), so if this counted as a defect it would be never-worked. Both the superseded PR #172271 and this PR describe it as malformed local input reproduced with a synthetic mkfifo. No user hit it, so this is hardening without a reported failure."
+}

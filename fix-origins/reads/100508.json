@@ -1,0 +1,17 @@
+{
+  "rank": 100508,
+  "sha": "e738c1467779af8e455ef41e8081cf10fa3c164c",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "agents",
+  "summary": "The QA scenario now requires an accepted child run, successful completion, and a subsequent public reply reporting the result delivered to the requester.",
+  "reasoning": "The old scorer accepted a reply with the expected labels and, in mock mode, a planned sessions_spawn call, so a refused spawn could still produce a passing QA result. The July 1 snapshot already contains both checks, and later changes before the fix left them in place. The older path history stopped at a missing commit, so the introduction of those checks and any earlier behavior could not be verified."
+}

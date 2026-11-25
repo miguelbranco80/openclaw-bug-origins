@@ -1,0 +1,8 @@
+{
+  "rank": 100560,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Windows descendant-settlement finding concerns child processes that keep writing after executor release, and the at-merge rollback finding concerns mutations after authority expires. Neither points to the immediate-parent PID check that rejects a Windows candidate with a valid lease."
+}

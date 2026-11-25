@@ -1,17 +1,17 @@
 {
   "rank": 154,
   "sha": "b9aa487b3ab4294d0e6dfa22e66f2700558b1ddb",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "58b88a8b0a80edd769c1335d971809ab9ff24a38",
   "cause_pr": 182832,
   "confidence": "high",
-  "cause_quote": "The new ProgressRuntime component computed the failure detail as `formatUiExternalText(...).slice(0, 240)`, a plain UTF-16 slice that can split an emoji surrogate pair.",
+  "cause_quote": "The new failure-detail renderer called `formatUiExternalText(...).slice(0, 240)`, which can split an emoji\u2019s UTF-16 surrogate pair.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A session progress card's failed-run or failed-child detail could end in a broken replacement character when the 240-unit cut fell inside an emoji.",
+  "user_saw": "A session progress card showed a replacement character (\ufffd) when the 240-unit cutoff split an emoji in a parent or child run\u2019s failure message.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Truncates the progress-card failure detail with the existing surrogate-safe truncateUtf16Safe instead of a plain slice.",
-  "reasoning": "ProgressRuntime and its 240-unit detail cap were added in 58b88a8b0a80 (#182832); its diff adds the `.slice(0, 240)` line fresh, with no removed equivalent, and no later commit touched the file before the fix. The defect shipped with the feature."
+  "summary": "The fix uses surrogate-safe truncation to keep emoji intact within the session progress card\u2019s 240-unit failure-detail limit.",
+  "reasoning": "I checked the introducing diff and confirmed that PR #182832 added both the failure-detail renderer and its calls from the progress cards. The renderer shipped with the unsafe slice, and the fix PR reports the replacement glyph in Chromium for both parent and child failures."
 }

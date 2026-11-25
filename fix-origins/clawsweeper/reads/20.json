@@ -1,0 +1,8 @@
+{
+  "rank": 20,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "When memory remains below 1 GiB and no idle process is available, this throws an untyped rate_limit failure.",
+  "outcome": "dropped",
+  "note": "The earlier \u201cPreserve the host-memory diagnosis in channel replies\u201d finding addressed misleading reply text and explicitly kept the rate-limit classification. The bot marked the copy fix resolved at merge, while the saved-login cooldown and misleading reply at the 16-session cap remained."
+}

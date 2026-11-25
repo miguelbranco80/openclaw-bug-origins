@@ -1,0 +1,17 @@
+{
+  "rank": 100306,
+  "sha": "559161db9c03d96f97a58fdb6bfb9b53de27bd4c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "bf90074c33e2f11ddecf6f75d108902e7656c181",
+  "cause_pr": 172901,
+  "confidence": "high",
+  "cause_quote": "The initial merge payload sent `sha: params.expectedHeadCommit`, `merge_method: params.mergeMethod`, and an optional `commit_message`, leaving `commit_title` unset and allowing GitHub to use the original commit subject.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A one-commit PR landed with its original generic commit subject even after its title was improved during review.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The Gateway now sends the current PR title as `commit_title` when it requests a managed squash merge.",
+  "reasoning": "The introducing diff already delegated the squash title to GitHub, whose default for an affected one-commit PR could use the original commit subject even if the title had been edited on GitHub. The later metadata-edit feature added an in-tool way to change the title while retaining the same merge behavior, and first-parent history shows the fix was the first commit to send `commit_title` from this handler."
+}

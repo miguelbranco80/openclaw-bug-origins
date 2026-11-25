@@ -1,0 +1,8 @@
+{
+  "rank": 36,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The CSS budget item concerns stylesheet size and obsolete selectors. The keyboard navigation item concerns offscreen tabs when the rail overflows, and neither item addresses the fixed-height picker on an unconfigured installation."
+}

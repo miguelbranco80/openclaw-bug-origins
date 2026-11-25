@@ -1,0 +1,8 @@
+{
+  "rank": 100782,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cFence detached cleanup to the created child session\u201d concerns rollback deleting a replacement child. The earlier caller-expiry findings concern reset and group updates, and no item raises the risk that a detached cross-agent reply inherits expired caller authority after reload."
+}

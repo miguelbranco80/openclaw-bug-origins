@@ -1,1 +1,8 @@
-{"rank": 180, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Review items concern the public prepareSyntheticAuth hook, cloud cleanup proof and skill-resource root binding; nothing flags that cancelling the Claude auth probe kills it mid-refresh (human comments actually requested the cancellable, process-tree-killing probe)."}
+{
+  "rank": 180,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "ClawSweeper\u2019s \u201cBefore merge\u201d items focused on public hook approval and cloud teardown proof. The human review raised a separate descendant cleanup issue, and no bot item warned that cancelling the Claude auth probe could strand its OAuth refresh lock."
+}

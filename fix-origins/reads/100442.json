@@ -1,0 +1,17 @@
+{
+  "rank": 100442,
+  "sha": "30d563e262aa5639f69d3880e9ab8d853c190e82",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1ca60fbc3a3f85c7072a9029346b5d31402ac0e4",
+  "cause_pr": 114388,
+  "confidence": "high",
+  "cause_quote": "The refactor replaced selection of the marked or first agent with `return tryResolveRawLegacyDefaultAgentId(cfg) ?? resolveSoleAgentId(cfg, context);` while migrating the default marker to `agents.defaults.systemAgent.agentId`, which neither branch reads.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a multi-agent setup with a configured default, `agents bind` and `agents unbind` complained that there was no explicit owner when `--agent` was omitted.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix makes bind and unbind honor the configured default, normalizes binding account IDs consistently with routing, and makes noninteractive `agents add` exit with status 1 when a binding conflicts.",
+  "reasoning": "The parent commit's bind and unbind paths both used `resolveDefaultAgentId` to select the marked agent when `--agent` was omitted. The ownership refactor removed that marker from the CLI's config snapshot and made the same resolver throw on a multi-agent roster, while the later default-selection repair left these callers on the restrictive resolver. This classification covers the verified default-agent regression in the bundled fix, and the origins of the account-casing and exit-status defects could not be verified offline."
+}

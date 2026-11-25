@@ -1,0 +1,17 @@
+{
+  "rank": 100795,
+  "sha": "b734148504ce8c8dabe3acebde10912ce8eefebd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "195e29343ba1d02f4ce09473737a8bb97811d97b",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new `<details>` handler called `const blocks = htmlNodesToBlocks(bodyNodes);` without a depth check, reentering the same handler for each nested `<details>` until the stack could overflow.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an assistant reply contained thousands of nested `<details>` blocks, the Telegram user received a generic failure notice and never saw the reply.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix bounds Telegram rich-block parsing and rendering, caps nesting at 15 containers, and preserves deeper text and media URLs as plain text.",
+  "reasoning": "The parent had a rich-block renderer but no `<details>` mapping, and the introducing diff added both uncapped recursion in `unwrapUnclosed` and recursive rendering of nested details bodies. The later Markdown-inside-details rewrite changed the recursive rendering path and still imposed no bound before rendering, so the overflow was possible from the first version of the feature."
+}

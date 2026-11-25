@@ -1,17 +1,17 @@
 {
   "rank": 163,
   "sha": "d80b444161de19302b00cb18e5862d1ed9822654",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "3e114e23c33c55585bb6859bc695693749139f03",
   "cause_pr": 192766,
   "confidence": "high",
-  "cause_quote": "#192766 added the off panel as `<div class=\"sw-empty sw-plugin-off oc-settings-group settings-group\">` (whose settings-group block display overrides `.sw-empty { display: grid }`), a `disabled={current().enabling}` button that drops focus, and `<ErrorBanner message={error()} />` showing raw Gateway text.",
+  "cause_quote": "The new Turn on button used `disabled={current().enabling}`, so keyboard focus fell to the document body when activation began.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The Skill Workshop off panel was mis-laid out, showed raw Gateway error text, lost keyboard focus while turning on, and could stay stuck on \"Turning on…\" if the plugins.changed broadcast was dropped.",
-  "impact": "presentation",
+  "user_saw": "The Skill Workshop off panel was misaligned, showed raw Gateway errors, and lost keyboard focus during activation, with \u201cTurning on\u2026\u201d stuck indefinitely if the update never arrived.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "Fixed the Skill Workshop off-state panel layout, summarized enable/check errors behind Show details, kept the busy button focusable and moved focus to the loaded Workshop, and added a one-time recheck with a Reload fallback after a successful enable.",
-  "reasoning": "All the fixed problems are in the off-state panel that 3e114e23c33c (#192766) introduced the same day; its view.tsx diff adds the conflicting settings-group classes, the disabled busy button, the raw-error banner and the enable flow with no fallback if the broadcast never arrives. The fix PR itself describes this as a UX audit of the state from #192766, so the defects shipped with the feature."
+  "summary": "The fix stacks the off panel, summarizes Gateway failures with expandable details, preserves and hands off keyboard focus, and rechecks plugin status if the Workshop does not load.",
+  "reasoning": "I checked the introducing diff and its parent and confirmed that #192766 added the off panel and its in-page activation flow. The new panel inherited an existing CSS rule that overrode its grid, and the new activation handler left the button busy after success until a Gateway broadcast arrived, with no fallback if the broadcast was missed."
 }

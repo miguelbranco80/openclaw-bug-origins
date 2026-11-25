@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "5238648a3b8e67825f5eebefbb2a31ab1c70e55a",
+  "cause_pr": 128793,
+  "confidence": "high",
+  "cause_quote": "PR #128793 added `next.push(projected.message)` for each commentary fragment and enabled `includeCommentaryFallbacks: true` in the tail call that still passed `maxMessages: max`, allowing the page limit to split one stored row.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A small history page could show the assistant\u2019s final answer while omitting commentary that never appeared when loading older history.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix keeps fragments from the same transcript row together on tail and numeric-offset pages and adds directional cursors to those reads.",
+  "reasoning": "PR #128793 introduced separate history entries for native commentary, and its ordinary tail already applied a strict display-message limit after projection. With a limit of one, the final answer consumed the slot and the numeric offset resumed before the entire stored row, leaving the commentary unreachable. I checked that PR #128964 replaced the original helper with an inline slice that preserved the same behavior.",
+  "rank": 100732,
+  "sha": "e5ca68c31a7c254eebb1e8a297024b2536274a67",
+  "rubric": "v1.2"
+}

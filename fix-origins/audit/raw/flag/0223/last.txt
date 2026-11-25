@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The “Subscribe the Agents header to locale changes” finding concerns stale translations after a language switch. The review items in the bundle do not address JSX dropping the space between a settings sentence and the following value."
+  "outcome": null,
+  "note": "The P2 findings concern the Agents header not reacting to locale changes and a removed model-picker reset assertion; nothing mentions JSX dropping the whitespace between a translated sentence and the following value."
 }

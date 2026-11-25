@@ -1,0 +1,17 @@
+{
+  "rank": 100205,
+  "sha": "0ed829e7fe4e178ea9e4693427c70e73139290d8",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6d01bf549cb381c4228ba5043996143cf45cef24",
+  "cause_pr": 168790,
+  "confidence": "high",
+  "cause_quote": "The Solid port added `<details class=\"lr-file\" open={props.expanded}>`, which reapplied the default closed state on tab revisions and overwrote the user's toggle.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A GitHub pull request file diff they had opened was collapsed when they returned to its reader tab.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix memoizes the document's file expansion preference so tab updates preserve manual toggles while changes to the preference still update the disclosure.",
+  "reasoning": "Before the migration, the Lit panel kept tab content mounted by tab ID, and its boolean attribute binding left the disclosure alone when the expansion preference stayed the same. I checked the migration diff and its parent, where the existing GitHub panel end-to-end test already asserted that an opened file diff stayed open after switching tabs and returning. The Solid migration made the file's open binding react to tab revisions even when the expansion preference was unchanged."
+}

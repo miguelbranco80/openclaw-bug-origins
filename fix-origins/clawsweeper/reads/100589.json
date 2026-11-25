@@ -1,0 +1,8 @@
+{
+  "rank": 100589,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence item \u201cCleanup ownership and caller cutover\u201d describes the stop owner without raising a concern about the TLS renewal call passing an array as a handle. The earlier \u201cResolve merge risk\u201d items address upgrade compatibility and mergeability."
+}

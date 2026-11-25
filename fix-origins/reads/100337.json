@@ -1,0 +1,17 @@
+{
+  "rank": 100337,
+  "sha": "d1b9f9033ce488cd82411ee204431ed113a599cd",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A held file could stop a plugin update after the installed manifest had been deleted, leaving the plugin unusable and blocking a normal retry.",
+  "impact": "data-loss-or-duplication",
+  "area": "plugins",
+  "summary": "The fix restores missing files from the backup while preserving surviving files and reports the retained backup path if recovery cannot finish.",
+  "reasoning": "PR #138870 added an explicit refusal when the install directory still existed during rollback. Its parent already used the copy fallback to move the backup back to the live path, and the available history does not establish that this earlier code could repair a partially deleted directory. The first affected version remains unverified."
+}

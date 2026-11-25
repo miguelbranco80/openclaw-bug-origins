@@ -1,0 +1,17 @@
+{
+  "rank": 100639,
+  "sha": "99d173f93a02f280a5bff96cfc8e328ccb5849d8",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6d01bf549cb381c4228ba5043996143cf45cef24",
+  "cause_pr": 168790,
+  "confidence": "high",
+  "cause_quote": "The migration recovered focus through `this.activateFocusedAnchor(focused)`, but that helper called `this.activateFromBootstrap(anchor, target, \"pointer\", LINK_READER_HOVERCARD_OPEN_DELAY_MS)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a user focused a link before its hovercard provider mounted, the preview opened after a hover delay and stayed open after keyboard focus moved away.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix routes recovered focus through the same immediate activation, focus-visible check, and keyboard dismissal behavior as a normal focus event.",
+  "reasoning": "Before the Solid migration, the provider installed its focus listener synchronously on connection and activated eligible links with `\"focus\", 0`, and the existing keyboard-exit test focused the link without waiting for an update. The migration deferred listener setup to bridge mounting and routed recovered focus through pointer activation, which explains both the delay and the dismissal failure covered by the fix's pre-mount test case."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 64,
   "sha": "43396ecfd6e5a7c392050eb311d59d8c4f267df3",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0a45707dda5b5bd96e4db70bf7171f55b6afd038",
+  "cause_pr": 147519,
+  "confidence": "high",
+  "cause_quote": "The initial Systems workspace added both `const emptyTitle = !controller.connected ? t(\"systems.offlineGateway\")` and a separate `!controller.connected` callout that rendered `t(\"systems.offlineGateway\")` again.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "While the Gateway was disconnected, the Systems page repeated the same reconnect advice in the overview and Backups and suggested refreshing devices, which could not help offline.",
+  "user_saw": "When the Gateway disconnected, Systems repeated its reconnect instructions and could suggest refreshing devices before the connection returned.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Removes the duplicate offline notice and disconnected backup-section advice from the Systems page so the workspace's single connection-recovery explanation remains.",
-  "reasoning": "The duplicated reconnect guidance was a deliberate notice added with #147519 and kept through the Solid migration; nothing failed, the page just said the same thing twice and offered an unhelpful refresh hint. This is a copy and presentation cleanup with no broken behavior, so not-a-defect."
+  "summary": "The fix displays reconnect guidance once in the Systems workspace, hides Backups and desktop hints while disconnected, and keeps Device details available.",
+  "reasoning": "The original Systems workspace diff shows that one disconnect could display the same message in both the workspace callout and the desktop empty state. The later Backups feature added another use of the same message, and the Solid migration carried the existing duplication forward."
 }

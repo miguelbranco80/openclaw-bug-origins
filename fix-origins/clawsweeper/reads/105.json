@@ -1,1 +1,8 @@
-{"rank": 105, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "All versions concern default-on dreaming, Active Memory defaults, the memory-host SDK contract and generic proof; nothing addresses standing-intent whole-token matching or CJK text."}
+{
+  "rank": 105,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focused on upgrade defaults, SDK compatibility, and runtime proof. The Stored data model section mentioned standing-intent storage but raised only migration compatibility, so it gave no warning about trigger matching in unspaced CJK prompts."
+}

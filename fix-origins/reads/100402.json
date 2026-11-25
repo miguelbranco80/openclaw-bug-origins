@@ -1,0 +1,17 @@
+{
+  "rank": 100402,
+  "sha": "3ab06f3597aab23ca1fe8f36671a50f048cd2691",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "bcef3b3526dd1d015e0b1c1030a1dea12cf1b517",
+  "cause_pr": 139657,
+  "confidence": "high",
+  "cause_quote": "The MCP transport switched from direct spawn to `const child = await createOwnedStdioProcess({`, then made `close()` rethrow the retained startup cleanup error with `throw this.startupCleanupError;`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After removing a tool server whose executable was missing, the next turn in the same chat failed because cleanup could not be confirmed.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix carries the POSIX anchor PID in the startup-error receipt and waits for bounded cleanup before returning the original launch error.",
+  "reasoning": "I checked the parent, where a missing executable failed the direct spawn and config reload used best-effort disposal, allowing the conversation to continue. The migration routed MCP through the POSIX relay, whose startup failure lacked the anchor PID needed to confirm group extinction, and made that cleanup failure block subsequent use of the session."
+}

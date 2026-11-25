@@ -1,0 +1,17 @@
+{
+  "rank": 100277,
+  "sha": "86b83b74b4c68e147277b022b517c0d8b5322c16",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d96e17bcbcda59d0a72afca04498e889ccb1abff",
+  "cause_pr": 141437,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `readHistoricalHistoryAnchorPage(projection, history.displaySource, options)` only to the canonical anchor reader, which the Claude CLI import path bypassed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the first Claude CLI turn following a reset, opening history around an older message returned an empty page.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix routes pre-reset anchors outside the CLI index to the canonical reader and preserves that reader's cursor source and message sequence.",
+  "reasoning": "The September change introduced reopening closed reset intervals within the same transcript through the canonical anchor reader. I checked the gateway at that commit and confirmed that requests with an active Claude CLI import used a merge limited to the latest reset window and returned an empty page when the anchor was absent. The October indexing rewrite preserved that failure through its index-only lookup."
+}

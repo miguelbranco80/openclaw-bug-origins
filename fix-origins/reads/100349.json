@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Two bots in a Telegram group kept replying to each other after exceeding the configured bot-loop budget.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix passes Telegram peer-bot identities to the shared loop guard, logs over-budget drops, and cleans up the acknowledgment reaction when a turn is dropped.",
+  "reasoning": "The July Telegram handler diff preserves a comment describing the earlier platform behavior: bots could receive other bots\u2019 posts in channels, but not in groups. The fix report reproduces the loop with Telegram\u2019s Bot-to-Bot setting enabled, and the dispatch history shows the Telegram adapter already omitted the peer-bot facts the shared guard requires. The evidence points to Telegram\u2019s group delivery capability exposing that omission, with no in-repo trigger identified.",
+  "rank": 100349,
+  "sha": "4a2143b81d6420a9d6e83cb65a2c6122a2688763",
+  "rubric": "v1.2"
+}

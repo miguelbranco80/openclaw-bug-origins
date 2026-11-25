@@ -1,0 +1,17 @@
+{
+  "rank": 100084,
+  "sha": "f9371958b137ec885ec0e53551755894ec48598f",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "11ed401370525a573a618191579c80f519c2dfc4",
+  "cause_pr": 130354,
+  "confidence": "high",
+  "cause_quote": "The fixture changed `grep '${toolMarker}' /dev/null || sleep 5` to `sleep 5 # ${toolMarker}`, which the mock's exact command matcher rejected.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Slack QA operators saw progress scenarios fail with final-only replies, test messages remain in Slack, and final capture fail after a Gateway restart.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix updates the mock to recognize the current Slack progress command, registers scenario messages for cleanup even when assertions fail, and reacquires database read admission for each capture read.",
+  "reasoning": "I checked that immediately before #130354 the fixture's grep command matched the parser and that the mock's structured dispatch test covered commentary, tool execution, and the final reply. #130354 broke that match, and later printf rewrites preserved the mismatch. The cleanup and restart repairs address separate harness defects."
+}

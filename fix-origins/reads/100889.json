@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators running concurrent ACP agents on a high-core Gateway could see excessive thread counts and scheduler load.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The ACPX service caps each managed child's default Tokio worker count at eight or the available CPU count, whichever is lower, and honors explicit operator overrides.",
+  "reasoning": "The July ACPX runtime already delegated to an upstream runtime and supported a Rust Codex adapter, and the local ACPX history shows no earlier Tokio worker cap. The installed-agent picker added a new ACP caller, but the fix does not tie the thread growth to that caller, and the available offline history could not establish when the problematic worker sizing began.",
+  "rank": 100889,
+  "sha": "187bc24e8839e84aa447c78fa86fce94fc91ffb3",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ddb31b38a88ccab79ee28d9f4b39ce7a0026448e",
+  "cause_pr": 154044,
+  "confidence": "high",
+  "cause_quote": "The feature set `{ controlUiVisible: false, projectSessionActive: false }` for refresh runs, tripping the existing admission guard, and wrote a terminal queue receipt only under `if (params.suppressReplies && completed)`, leaving canceled runs with their old acceptance.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The work progress card could stay stale when a refresh aborted during session preparation or when retrying a canceled queued refresh appeared to succeed without starting another update.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix lets hidden refreshes prepare their sessions and records an abort receipt before removing the queued request so it can be retried.",
+  "reasoning": "The feature commit introduced the refresh endpoint and set `projectSessionActive` to false for its hidden runs, while the parent already rejected that value during session preparation. The same commit added queued refresh receipt handling that depended on settlement still owning the queue entry, but the existing abort listener removed it first. First-parent history through the fix confirms that both paths shipped with the feature.",
+  "rank": 100579,
+  "sha": "f42d19405e95066b14f39e2bc6220da968a5420a",
+  "rubric": "v1.2"
+}

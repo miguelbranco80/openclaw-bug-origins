@@ -1,0 +1,8 @@
+{
+  "rank": 100862,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The extension parser accepts a valid direct remote route as well as a loopback route, so the unavailable native-host implementation must be verified as the enforcing owner for local-only bootstrap, exact origins, and safe manifest/launcher ownership.",
+  "outcome": "answered",
+  "note": "The earlier \u201cAudit native-host pairing ownership before merge\u201d item called for checking manifest ownership during pairing and left the risk of replacing the manifest between validation and read unspecified. The maintainer responded that the audit was complete and the host verified manifest ownership."
+}

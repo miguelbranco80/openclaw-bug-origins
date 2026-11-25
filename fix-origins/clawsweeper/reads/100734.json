@@ -1,0 +1,8 @@
+{
+  "rank": 100734,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge checklist asks for proof that new default model references resolve and calls out Ollama Cloud alias compatibility. It does not address how GMI Cloud\u2019s GPT-5.6 Sol requests set reasoning_effort on tool turns."
+}

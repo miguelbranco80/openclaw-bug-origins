@@ -1,0 +1,17 @@
+{
+  "rank": 100705,
+  "sha": "aea667c764a8592d58a0efa4e85d741a70b4862b",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With loop detection enabled, the agent could keep rediscovering the same tools or resuming unchanged work without triggering a warning or block.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix compares Code Mode calls and outcomes using execution inputs, pending operations, and guest results while ignoring display titles and volatile receipt metadata.",
+  "reasoning": "The earliest available snapshot already shows Code Mode emitting cumulative telemetry and pending bridge IDs and the detector hashing receipt content. Later diffs show that #138568 added display titles to the hashed arguments and #147278 added fresh reference IDs to oversized result receipts, each creating another way to evade detection. The available offline history stops before the original telemetry and bridge-ID behavior can be traced to an introducing commit or checked against an earlier working version."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100363,
+  "sha": "11741283eb04dbf1f8678b162e89d23c35032470",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "fa407417f0a2c01308a657bf64ccd774397b4d4c",
+  "user_visible": "yes",
+  "user_saw": "After switching conversations, users could still see a grouped conversation created by an agent in the sidebar, but searching for its title or transcript text returned no results.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix makes ordinary agent-spawned conversations in custom groups eligible for search and shared navigation while retaining the subagent, visibility, and archive filters.",
+  "reasoning": "The shared UI filter already used `!row.spawnedBy` to keep child rows out of the top-level session inventory, and #126388 exposed the gap by promoting categorized children into sidebar groups while leaving that filter in place. I checked that the palette already used the exclusion for title and transcript search before #152314 moved those filters to the Gateway, where the same exclusion continued."
+}

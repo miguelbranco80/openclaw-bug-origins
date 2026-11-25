@@ -1,0 +1,8 @@
+{
+  "rank": 100466,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cResolve merge risk\u201d item focused on worker command compatibility and recovery during finalization. The \u201cRetained runtime lifecycle\u201d section described the runtime copy without raising the risk that a snapshot failure could abort the update before installation."
+}

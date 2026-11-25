@@ -1,0 +1,17 @@
+{
+  "rank": 100669,
+  "sha": "2f2dc1efeb2a81e05b37c043cef10de2e3d5372b",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "3c3b8d4388e2d5143395db6b4342f1de5c72ca8b",
+  "cause_pr": 120781,
+  "confidence": "high",
+  "cause_quote": "The original recovery code added `ownershipRecords.push(...readLegacySessionRecords(params.target, ownershipIssues, { sourcePath: move.archivePath }))`, passing one argument per archived record and exceeding Node's argument limit for sufficiently large registries.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Doctor could skip recovering retained transcripts with a stack overflow warning when an archived session registry was very large.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Doctor now appends archived ownership records, settlement findings, restore results, and warnings without spreading unbounded arrays into function calls.",
+  "reasoning": "The #120781 diff introduced archived ownership lookup with an unbounded spread, and its registry reader accepted valid entries without a record-count cap. The #153314 diff moved the same operation into a helper, and the fix PR documents the failure with a 500,000-entry registry. The settlement overflow was introduced separately by #155194 and was reproduced with synthetic findings, while the reporter's exact failure path remained unconfirmed."
+}

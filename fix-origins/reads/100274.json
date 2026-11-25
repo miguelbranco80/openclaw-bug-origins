@@ -1,0 +1,17 @@
+{
+  "rank": 100274,
+  "sha": "9b9cba43e33c50ff91e92793b700b720eb55bfee",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "641434b6f2edee99097cea13a847e9ec981f02c1",
+  "cause_pr": 128905,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `params.onLifecycleCommitted?.();` after the awaited `runPreparedSqliteSessionWrite`, so a failure after SQLite committed could skip the notification.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see a cleanup failure report that said the changes had not committed even though the session rows were already deleted.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix records cleanup as committed when the outer SQLite transaction commits, before lifecycle publication and owner cleanup.",
+  "reasoning": "PR #128905 introduced both the reported commit status and the callback that sets it. In that revision, lifecycle publication and a fallible deletion-owner check already ran after the database write but before the awaited writer returned, so the status could be wrong from its first release."
+}

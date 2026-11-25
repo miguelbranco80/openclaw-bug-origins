@@ -1,0 +1,8 @@
+{
+  "rank": 100115,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "For an idle parent with collapsed running children, the new own-run predicate removes the activity indicator, and the trailing description no longer mentions activity.",
+  "outcome": "answered",
+  "note": "The earlier \u201cPreserve an accessible summary of hidden running children\u201d item identified why the parent lost its activity indicator and asked for a screen-reader announcement on the child toggle. The maintainer added that announcement and confirmed the parent glyph would stay unringed, so the visual regression remained."
+}

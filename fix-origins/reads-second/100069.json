@@ -1,0 +1,17 @@
+{
+  "rank": 100069,
+  "sha": "8d4dee3e0b78a3d4d77974cbd94a11543d242782",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1b3f38e7e4ffeee844ee7a3bbcdaf293c65eb2e1",
+  "cause_pr": 153063,
+  "confidence": "high",
+  "cause_quote": "The diff replaced the direct `probeGateway` call with `await ... waitForGatewayDiagnosticReadiness(...)`, whose `if (!command || ...)` branch returned `{ status: \"unknown\" }` and let the new startup wait run to its deadline.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS with isolated state and a relocated HOME, piped `openclaw status` could produce no output before a caller's 30-second deadline.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "The fix limits native Gateway readiness checks to the selected installation.",
+  "reasoning": "Before #153063, ordinary status probed the selected Gateway directly with a 2.5-second default probe timeout and did not wait on a LaunchAgent. #153063 put a 60-second readiness budget on that path, and the waiter's early exit for a free port required a stopped runtime, so an unknown runtime could consume the budget. The later absent-Gateway fix added a strict command read and a native-runtime fallback, preserving the long wait when the unrelated LaunchAgent prevented a missing-unit verdict."
+}

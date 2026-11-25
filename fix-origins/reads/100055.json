@@ -1,0 +1,17 @@
+{
+  "rank": 100055,
+  "sha": "4c1855035ed6700a0b4c4e864fd8fcdd876e30ca",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1bc029e59c6cef775559b6603091316560b00760",
+  "cause_pr": 176498,
+  "confidence": "high",
+  "cause_quote": "The new CSS used `[data-mobile-composer=\"true\"][data-composer-editing=\"false\"]` to apply `white-space: nowrap` to the textarea and `display: none` to `.agent-chat__composer-controls`, even when a draft was present.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a mobile user typed a draft and tapped outside the composer, it shrank to one line and hid the toolbar.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps the mobile composer expanded with its toolbar visible while an unfocused draft contains text.",
+  "reasoning": "I checked the introducing commit's parent and verified that the existing mobile layout rendered the toolbar without a focus requirement. PR #176498 tied both the one-line layout and toolbar visibility to editing state alone. A later layout change briefly allowed the text to wrap again while still hiding the unfocused toolbar, and the immediate predecessor restored the one-line layout."
+}

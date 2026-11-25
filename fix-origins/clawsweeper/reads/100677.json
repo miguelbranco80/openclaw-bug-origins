@@ -1,0 +1,8 @@
+{
+  "rank": 100677,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier commit-callback finding concerned saving credentials, and the Before merge items concerned security-owner approval. The review never raised that MiniMax OAuth could keep requesting tokens after chat owner permission was revoked."
+}

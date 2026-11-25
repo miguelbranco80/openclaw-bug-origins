@@ -1,0 +1,17 @@
+{
+  "rank": 22,
+  "sha": "dc66ed00e3ad2300c50bbb8bda9d9a9c594d992d",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "b70c33caa86685bba2ef707d54dd2e6df3fca44e",
+  "cause_pr": 190627,
+  "confidence": "high",
+  "cause_quote": "The perf rewrite removed the early `if (!sessionId) { return finalized; }` guard and now always runs `if (registerRunCleanup) { registerRunCleanup(async () => publish()); }`, so empty one-shot tool catalogs register a second cleanup callback.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; main CI failed the one-shot supervisor tests (expected one cleanup callback, received two).",
+  "impact": "other",
+  "area": "agents",
+  "summary": "Returns the finalized tool catalog early when it is empty, before registering schema-settlement cleanup.",
+  "reasoning": "Before b70c33caa866, finalizeAgentTools returned before any settlement registration when there was no sessionId (the one-shot path), and supervisor.one-shot-tools.test.ts already asserted a single cleanup callback. b70c33caa866's diff deletes that guard and registers the publish cleanup unconditionally; the fix PR cites that commit and the failing main CI run. The extra callback only publishes an empty set, so the effect is a red test rather than user-visible failure."
+}

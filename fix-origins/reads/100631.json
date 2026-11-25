@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6dbe7ff1e2faff0f98c80b5fafd246b384f8439f",
+  "cause_pr": 114961,
+  "confidence": "high",
+  "cause_quote": "The new single-flight cache ran `cache.set(key, entry)` and evicted the oldest entry with `cache.delete(oldest.value)` before `return await page`, so it could discard a request that was still running.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When enough other queries ran during a Codex catalog refresh, reopening the same page could start another native read and make the user wait for a page they had already seen.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix tracks pending Codex catalog reads separately from the 32-entry completed-page cache so overlapping calls can share the active read and still receive the last successful page during refresh.",
+  "reasoning": "I checked the first single-flight implementation, which replaced direct listing with a bounded map that could evict an unresolved promise and let the next identical query start a second read. The later stale-while-revalidate change kept pending refreshes and their stale pages in that same map, so eviction also interrupted immediate stale-page delivery from the day that behavior shipped.",
+  "rank": 100631,
+  "sha": "bfcde1ce74d0701ae587371bcd03e15b6d48a809",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100002,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Creation now retains a listener in `listenersByRun`, but `registerSessionFollowupTask` discards the receipt and throws when creation returns a terminal task.",
+  "outcome": "open-at-merge",
+  "note": "The P2 item in Before merge identified the listener leak when Gateway rejects a follow-up for an already finished task and called for releasing the receipt on that path. The item was still open at merge and received no human response."
+}

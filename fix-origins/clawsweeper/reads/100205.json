@@ -1,0 +1,8 @@
+{
+  "rank": 100205,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cRecover focused anchors with keyboard intent\u201d concerns hovercards getting stuck open after keyboard focus moves away. The earlier \u201cComplete next step\u201d items ask for bridge integration or CI investigation without identifying the reader\u2019s diff collapsing on a tab switch."
+}

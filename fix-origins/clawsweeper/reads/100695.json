@@ -1,0 +1,8 @@
+{
+  "rank": 100695,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "This guard now falls through and publishes the invalidated snapshot while replacement facts are pending; the base guard rejected it. Treat absent facts like an unknown assistant fact when the captured revision has been superseded.",
+  "outcome": "answered",
+  "note": "The P2 item \u201cReject superseded backfills when retained facts are absent\u201d identifies the same race in which a running backfill republishes an older preview after broad invalidation clears the retained facts. The PR author acknowledged the finding and recorded it as a follow-up."
+}

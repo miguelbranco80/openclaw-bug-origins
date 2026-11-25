@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "a1107a5217b67fbb2e4ecb27d7bc458cc3713a9c",
+  "cause_pr": 156584,
+  "confidence": "high",
+  "cause_quote": "The commit added `owner.settled = child.exitCode !== null && child.signalCode === null;`, which accepts the helper's explicit exit code 143 as proof of cleanup, and `if (installed?.kind !== \"system\")`, which skips operator-restart restrictions for `dueling` installations.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway replacement could proceed while an interrupted helper's updater was still running, and updates could omit operator-restart guidance when matching user and system units coexisted.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix requires a helper cleanup receipt before Gateway replacement and applies system-scope update restrictions to matching user and system units.",
+  "reasoning": "I checked the introducing diff and its parent, which refused system-scope Gateway handoffs and already had a SIGTERM handler that called `process.exit(143)`. The new replacement join treated that exit as settlement, and the admission check introduced in the same commit skipped the existing `dueling` result returned for matching units.",
+  "rank": 100893,
+  "sha": "6e2839353873395b6a98ca51e569f15fd1edec36",
+  "rubric": "v1.2"
+}

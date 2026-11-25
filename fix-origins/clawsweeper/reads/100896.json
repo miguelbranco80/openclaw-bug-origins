@@ -1,0 +1,8 @@
+{
+  "rank": 100896,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "\u201cCandidate isolation and downgrade behavior\u201d describes how the canary redirects state without raising a concern about which files Doctor rehearses. \u201cReview config compatibility\u201d is generic, and the earlier backup findings concern package recovery after activation fails."
+}

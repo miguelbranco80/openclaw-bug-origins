@@ -1,17 +1,17 @@
 {
   "rank": 91,
   "sha": "f6abc882721d0facb24452469b77cf58b95d25a7",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "94d45c8d5144dacde3e76ef1bab8046e9523b66b",
   "cause_pr": 194885,
   "confidence": "high",
-  "cause_quote": "#194885 replaced the read-side checkpoint with `readLocalWorkspacePath(...)` and `readRoot = backing.root` under `if (params.worktreeId && params.root && !params.historical)` (no sandbox check), while saves still only ran `checkpointLocalWorkspacePath` before writing canonical files, so previews read the stale private checkout.",
+  "cause_quote": "The diff changed file reads to use `root: boundary.readRoot ?? boundary.root` and selected private backing under `if (params.worktreeId && params.root && !params.historical)`, while the save path only checkpointed before writing the canonical file.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After saving a file in the Control UI, the next preview showed the old content, and host-only sessions with a leftover sandbox checkout previewed stale guest bytes.",
+  "user_saw": "The Control UI could show old sandbox contents after a successful save or when a host-only session retained a former sandbox checkout.",
   "impact": "sequence-or-timing",
-  "area": "ui",
-  "summary": "Saves now write canonical files and import the change into the private sandbox checkout under the same settled custody, and private backing reads are limited to sandbox sessions.",
-  "reasoning": "The fix PR names #194885 as the source, and its diff (read at 94d45c8d5144) switches file reads from checkpointing then reading canonical files to reading the live private backing for any worktree session, without syncing saves into that backing or gating on a sandbox. Before that commit reads checkpointed guest state and read canonical paths, so save-then-preview worked; the fix adds the `sandbox &&` guard and post-save projection sync."
+  "area": "gateway",
+  "summary": "The fix synchronizes successful canonical saves into the private checkout before releasing workspace custody and limits private reads to sandbox sessions.",
+  "reasoning": "I checked the causing commit's parent and confirmed that saves wrote to the canonical workspace and file previews resolved against that same root after a checkpoint. The causing diff routed previews to the retained private checkout without importing the saved bytes or requiring the session to be sandboxed, and the fix's test diff covers both stale reads."
 }

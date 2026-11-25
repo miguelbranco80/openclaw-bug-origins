@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "678cdf4246e730628c5779034c2d226d8246b325",
+  "cause_pr": 154792,
+  "confidence": "high",
+  "cause_quote": "The diff changed metadata preparation to `const nextMetadata = await withPluginCache(cache, () =>` and added `assertCurrent();` immediately after it, so a watcher event delivered during the new await could invalidate the transaction before its checkpoint reconciled the event.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway could reject an explicit `plugins.reload` as superseded when the config watcher reported an unchanged file.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix runs the reload transaction checkpoint after asynchronous plugin metadata preparation so it can reconcile unchanged watcher events before checking whether the transaction is still current.",
+  "reasoning": "The parent already supported explicit `plugins.reload`, and its lifecycle test expected the request to succeed after a config write. The parent's metadata lookup was synchronous between transaction checkpoints, so a watcher callback could not interleave at that point. PR #154792 introduced that interleaving, and the fix's test injects the watcher event there to reproduce the false rejection.",
+  "rank": 100324,
+  "sha": "1096d5ffc65ffef832a4d61156a194d327028c2b",
+  "rubric": "v1.2"
+}

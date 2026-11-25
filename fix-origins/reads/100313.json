@@ -1,0 +1,17 @@
+{
+  "rank": 100313,
+  "sha": "3cd9950c462b4cf4bd56becf5517f14adbfc574e",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a measured 38 GB deployment snapshot, Doctor spent about nine minutes copying and validating a full rollback backup for a small schema migration.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix runs eligible schema version migrations before broader Doctor repairs so they can use table-scoped rollback archives, while retaining full-file backups for installed updater drivers and undeclared migrations.",
+  "reasoning": "PR #171764 introduced scoped backups as opt-in with an empty registry, and PR #172390 explicitly retained full backups while the complete Doctor runner could write beyond a migration's declared tables. The fix's diff adds the first agent v27 declaration and lets the existing shared-state v23 declaration work with undeclared planner statistics, reducing the cost of the existing backup policy."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100276,
+  "sha": "03e9e7a5fe104c91370040d75627095f626333b0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "51aa1b76d5d3dde7b4972e09f28f6495b081a7d6",
+  "cause_pr": 175729,
+  "confidence": "high",
+  "cause_quote": "The DeepSeek Search API commit replaced `\"categories\": [\"models\"]` with `\"categories\": [\"models\", \"web\"]`, violating the existing one-category check.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix restored `models` as DeepSeek's sole primary category and preserved its web search registration.",
+  "reasoning": "I checked that the bundled-plugin test already rejected manifests whose category count was anything other than one. The Search API commit's diff shows that DeepSeek previously met that requirement with a single `models` category and began failing it when the commit added `web`."
+}

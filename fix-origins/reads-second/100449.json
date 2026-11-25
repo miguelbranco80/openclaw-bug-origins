@@ -1,0 +1,17 @@
+{
+  "rank": 100449,
+  "sha": "4ca02f6c720e6346a0d57b158cc38484fdf5c8da",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "383f8947c1daa9deacec4dc9cf312ffd254ecbf6",
+  "cause_pr": 115922,
+  "confidence": "high",
+  "cause_quote": "The added `if (!isDefaultInstallIdentity(env))` branch threw for custom state paths in the service mutation guard already shared by Gateway and Node.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators using a custom Node state directory got a service management refusal when they tried to install, start, stop, restart, or uninstall the Node service.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix limits Gateway installation identity checks to Gateway services and makes Node lifecycle commands validate config without startup maintenance, plugin discovery, or config observation.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the Node installer already preserved `OPENCLAW_STATE_DIR` and delegated lifecycle actions to the shared service adapter, whose mutation guard only refused externally supervised services. PR #115922 added the default-install identity check to that shared guard, so an existing custom state directory began blocking Node commands before they reached the native service manager."
+}

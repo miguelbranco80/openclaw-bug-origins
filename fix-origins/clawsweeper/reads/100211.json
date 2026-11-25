@@ -1,0 +1,8 @@
+{
+  "rank": 100211,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Current-main failure path item described the preexisting case where some blockers had no reason to display. The Regression coverage item reported that the new notice cleared after preference restoration and did not flag that it could also disappear when a different blocker took over before setup finished."
+}

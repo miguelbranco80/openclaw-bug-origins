@@ -1,1 +1,8 @@
-{"rank": 160, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review found no defects and only raised generic merge risks about signed-Mac SSO verification and production LOC; nothing addresses hellos sent while Serve is unpublished never being renewed when the route returns."}
+{
+  "rank": 160,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "[P1] Withdraw cached browser identity after Serve exit",
+  "outcome": "answered",
+  "note": "The earlier finding flagged stale dashboard identity when Serve went down. The author responded with a repair for changed or withdrawn URLs in open windows, while sessions that received no identity URL during the outage still needed a fresh Gateway hello when Serve recovered."
+}

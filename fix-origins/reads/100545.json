@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "8bd895862d13c46618d8a331998970c2f3ea7180",
+  "cause_pr": 131826,
+  "confidence": "high",
+  "cause_quote": "The commit made unrecognized attachment errors fall through to `return \"delivery-failed\";` and mapped that code to `Delivery failed. Try sending this file again.`",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Chat told users to resend an oversized attachment even though the unchanged file would fail again and the saved copy was available in Files.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix preserves size-limit errors through reply preparation and shows a size-specific attachment card with a Find in Files action where available.",
+  "reasoning": "The parent of #131826 already enforced the media size limit and displayed a warning that suggested sending a smaller file. The diff replaced that warning with a per-file classifier that sent size failures to the generic retry message, introducing the misleading guidance that the fix addresses.",
+  "rank": 100545,
+  "sha": "73378c7b44a697ebd22ae67fabbb1bfce83196ea",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100050,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 finding \u201cPreserve closed session RPCs through nested-worker policy\u201d concerns tool policy stripping sessions_send before dispatch. The reported bug occurs during dispatch, when the target and shared-parent lookups omit the sending agent and select the default agent\u2019s store."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 84,
   "sha": "c91b0904ad4f1de9833a0e81d3c30f1150d44b06",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "2488d794ca7cb55ede223157beb6eadc161dee57",
+  "cause_pr": 108838,
+  "confidence": "high",
+  "cause_quote": "The child-session feature put the live `<openclaw-elapsed-time>` inside `<span class=\"session-row-trail\" id=${metaId ?? nothing}>` and skipped the actions for child rows with `${session.isChild ? nothing`, leaving the trailing column sized by the clock text.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "In the Control UI sidebar, a running child session's elapsed label shifted and squeezed the title by a few pixels when the clock went from 9s to 10s.",
+  "user_saw": "When a running child session's elapsed label changed from 9s to 10s, the label shifted and the sidebar title lost space.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Reserves a 7ch minimum, leading-aligned slot for the sidebar elapsed-time trail so the label and title stay put when the digit count grows.",
-  "reasoning": "git log -L on the .session-row-trail CSS shows it never reserved width for the elapsed text (only tabular-nums, since before the 2026-09-03 graft), so the label always moved when a digit was added; no commit broke a stable layout. This is a layout-stability polish choice (trading title width for a still clock) with no functional failure; if counted as a defect it would be never-worked from pre-graft code whose introducing commit I did not trace."
+  "summary": "The fix gives the elapsed label a 7ch minimum slot and aligns its text to the leading edge.",
+  "reasoning": "I checked the child-session introduction diff and its stylesheet, which placed the ticking label in an auto-sized, end-aligned column with no reserved width. The clock was present in that layout from its first sidebar release, and the later row styling and offscreen clock changes did not introduce the width dependency."
 }

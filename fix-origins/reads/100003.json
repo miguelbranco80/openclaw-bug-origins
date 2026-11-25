@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plugin reload timed out after 60 seconds while healthy work was still running, so the operator had to retry after it finished.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix added a cancellable `--wait` option that lets a targeted plugin reload wait for admitted work without a drain deadline.",
+  "reasoning": "I checked the diff for #151273, which explicitly introduced and documented the 60-second pre-stop deadline, and #157796 carried that deadline over to retained work. The reported timeout matched that policy, and the fix diff retains the default while adding an opt-in wait mode.",
+  "rank": 100003,
+  "sha": "2d5c68187a38db0c3bbe4cc18be77c12b0f54727",
+  "rubric": "v1.2"
+}

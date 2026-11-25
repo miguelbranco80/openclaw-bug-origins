@@ -1,0 +1,17 @@
+{
+  "rank": 180,
+  "sha": "8547d530ec1e55a0f177b6024cac1ac3e57530bf",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "2640154bcf801cd18f92fa20b5c4172f0539b284",
+  "cause_pr": 137071,
+  "confidence": "medium",
+  "cause_quote": "#137071 made probeClaudeCliAuthStatus async and cancellable, passing `signal: params?.signal` with `killProcessTree: true` to runUtf8CommandWithTimeout, so a cancelled caller SIGTERM/SIGKILLs `claude auth status` mid-refresh.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first Claude CLI turn after an idle period stalled about 10 seconds or failed with 'another Claude Code process is refreshing it or exited mid-refresh'.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The Claude CLI auth probe no longer forwards the caller's abort signal to the child process; a cancelled caller waits for `claude auth status` to exit on its own, so Claude Code's OAuth refresh lock is released.",
+  "reasoning": "The removed line `signal: params?.signal` blames to 2640154 (#137071), whose diff shows it replacing a synchronous spawnSync probe (no caller cancellation, SIGTERM-only timeout) with the async cancellable runner, so the cancel-kill path shipped with the defect. Medium rather than high because the failure also depends on Claude Code's `auth status` refreshing tokens under a lock, which I could not confirm existed at that time (if it came later this would lean latent)."
+}

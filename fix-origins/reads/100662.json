@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "cbc201727b664ce07b0cc90729ccfaa4bd24945d",
+  "cause_pr": 169327,
+  "confidence": "high",
+  "cause_quote": "The new scanner used `const records = params.events.map(({ eventJson }): unknown => JSON.parse(eventJson));`, retaining every decoded event through the usage scan.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway memory usage rose during keyed usage refreshes for large incognito conversations.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The incognito usage scanner now keeps only navigation and usage fields from each decoded event while preserving usage totals and the checkpoint hash.",
+  "reasoning": "The actor-owned scanner retained the full decoded transcript from its first implementation in #169327. I checked that #170712 activated that scanner without changing the decode loop and that the retired worker also accumulated decoded incognito events, so there was no verified working baseline for full-transcript retention.",
+  "rank": 100662,
+  "sha": "a247b26751beddb36c33fd00a5fc1dfa275428f8",
+  "rubric": "v1.2"
+}

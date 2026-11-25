@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators saw a prompt-cache drop warning that could label a continuation miss as unattributed and lacked side-by-side details for the two requests.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "The fix adds bounded request and response metadata to cache-drop warnings, pairing the last measured cache hit with the request that showed the drop.",
+  "reasoning": "I checked #168019 and #168848, which introduced continuation-aware prefix comparisons and the unattributed label for continuation drops. The fix adds a new diagnostic capability, and its synthetic tests verify that the new fields are captured and paired while leaving the cause of live provider cache drops unverified.",
+  "rank": 100329,
+  "sha": "0d49b19ecfe2cf2a4b16f4f6f334552b41be771e",
+  "rubric": "v1.2"
+}

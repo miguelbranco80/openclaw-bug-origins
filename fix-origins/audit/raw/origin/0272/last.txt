@@ -1,0 +1,17 @@
+{
+  "rank": 272,
+  "sha": "f17c94115978d10e0702dd48170464a1f4c84dc0",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "37ffe3ce94e29935903ed9c9b83b24bd086a0e74",
+  "cause_pr": 161913,
+  "confidence": "high",
+  "cause_quote": "The storage-locations feature added the guard `throw new Error(\"--namespace requires --from <location>.\");` to backup verify and restore as a plain Error, which runCommandWithRuntime rethrows in JSON mode and the top-level handler formats as an unexpected failure with a Doctor hint.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw backup verify|restore --namespace n --json` without `--from` printed a generic 'unexpected runtime error' block with an `openclaw doctor` hint on stderr instead of the plain remedy message.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Routes the backup verify/restore '--namespace requires --from' guard through throwExpectedCliError so JSON mode prints the remedy instead of the generic failure and Doctor hint.",
+  "reasoning": "Blame of the removed line and the feature diff show #161913 introduced the guard as a plain `new Error` on day one. At that commit the expected-error mechanism (isExpectedCliError/ExpectedCliError) already existed, runCommandWithRuntime already rethrew all errors in JSON mode, and formatCliFailureLines already gave non-expected errors the generic title plus `Try: openclaw doctor`. So the JSON-mode output was wrong from the start, and no later commit broke it."
+}

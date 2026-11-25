@@ -1,0 +1,8 @@
+{
+  "rank": 100099,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge item on session pagination calls for regression checks around reconnects and history hydration. The available review versions raise no concern about Load more sessions staying enabled while a sidebar refresh causes clicks to be ignored."
+}

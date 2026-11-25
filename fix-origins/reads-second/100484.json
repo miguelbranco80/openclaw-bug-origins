@@ -1,0 +1,17 @@
+{
+  "rank": 100484,
+  "sha": "4959773fa7fb0db1cc1a36172ee278be32d25519",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "7c6b8bcfcc991d25340c16da32d5a550345673d6",
+  "user_visible": "yes",
+  "user_saw": "Codex turns failed when the macOS sandbox blocked `/bin/ps`, and automatic setup could select Ollama without surfacing the Codex error.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix uses native process inspection for Codex on macOS Bun and surfaces Codex detection and inspection errors during automatic setup.",
+  "reasoning": "I checked that #132610 made `execFile(\"ps\", \u2026)` part of mandatory Codex startup registration, where it worked on hosts that allowed `ps`. The documented failure occurs in the signed standalone Bun deployment added by #172384 when Seatbelt denies that executable. I also checked #169628, whose initial automatic setup loop continued to the next candidate after a Codex activation error, explaining the separate Ollama fallback symptom."
+}

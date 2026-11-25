@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Before merge items call for runtime checks of optional clearing on Apple and terminal feedback on Telegram. Neither check exercises the Control UI summary that displays “Answered” for an empty submission."
+  "outcome": null,
+  "note": "The review's items cover MCP resource _meta forwarding, Apple and Telegram question-control verification (Apple item mentions 'optional clearing' only as a platform runtime check), and mobile label/value compatibility; none concerns the Control UI question summary showing 'Answered' for an empty allowEmpty answer."
 }

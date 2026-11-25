@@ -1,17 +1,17 @@
 {
   "rank": 269,
   "sha": "1cf477ee81337da45e57968e928fb91ad94e84eb",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "af1b5e2a07480b8e6034cf6c4cc4ed1983f7ebfd",
+  "cause_pr": 185676,
+  "confidence": "high",
+  "cause_quote": "The commit replaced the application-relative tap with `app.scrollViews[\"chat-transcript\"].coordinate(withNormalizedOffset: CGVector(dx: 0.99, dy: 0.05)).tap()`, making XCTest resolve the transcript repeatedly while synthesizing the tap.",
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; only the iOS release screenshot UI test spent tens of seconds dismissing the keyboard.",
+  "user_saw": "Release screenshot automation could spend tens of seconds dismissing the chat keyboard.",
   "impact": "slower-or-heavier",
   "area": "apps",
-  "summary": "Resolves the chat transcript gutter point once and taps it relative to the app origin in the iOS screenshot UITest, avoiding repeated transcript lookups during tap synthesis.",
-  "reasoning": "The only file changed is apps/ios/UITests/OpenClawSnapshotUITests.swift; the PR states app behavior and captured screens are unchanged and it only speeds up screenshot-test automation. A test-tooling performance change is not-a-defect under the rubric; the slow gutter tap came from af1b5e2 (#185676), which was a working (if slow) test step."
+  "summary": "The fix resolves the transcript gutter point once and taps it relative to the application origin.",
+  "reasoning": "I checked the causing diff and its parent. The parent already dismissed the keyboard and asserted that it disappeared, using an application-relative tap that did not resolve the transcript. The PR's instrumented comparison recorded three transcript lookups during tap synthesis with the old gutter tap and zero after resolving the point up front."
 }

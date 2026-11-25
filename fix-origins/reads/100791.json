@@ -1,0 +1,17 @@
+{
+  "rank": 100791,
+  "sha": "93fc6c3ca6bc5e8465cd506d73bf6c79c09484be",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8c2996e01303dee2e0602d0617fbebea436c5ebe",
+  "cause_pr": 141476,
+  "confidence": "high",
+  "cause_quote": "The new owner avatar branch called `renderAgentIdentityAvatar({ id: owner.identity.id, avatar: avatar.kind === \"profile\" ? avatar.url : null })`, omitting the `textAvatar` input that the shared renderer used to display emoji.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The session owner dropdown showed a generated face in place of the agent\u2019s configured emoji.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix resolves configured emoji and images from the agent roster and hydrated identity for owner and participant avatars.",
+  "reasoning": "Before #141476, the owner menu passed an image URL to the generic viewer avatar. #141476 introduced shared agent avatar rendering for owners and participants, but both new call sites omitted the emoji input, so emoji-only agents received generated faces from the start. The later Solid port and renderer consolidation preserved that omission."
+}

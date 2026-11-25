@@ -1,17 +1,17 @@
 {
-  "rank": 70,
-  "sha": "dbc1aa04e88f531910d70512009c74e355311c92",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "origin": "regression",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The new `original.replace(/(\\$(?:basedir|basedir_win)[/\\\\]|%~dp0\\\\)([^\"\\r\\n]+)/gu, \u2026)` required a slash immediately after the base variable, so it published pnpm\u2019s separately quoted `\"$basedir_abs\"/'\u2026'` target with its temporary-stage reference intact.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After `openclaw update` on a pnpm global install, every `openclaw` command failed with Cannot find module .../.openclaw-update-native-XXXXXX/.../openclaw.mjs and the Gateway restart was refused, leaving it down.",
+  "user_saw": "After updating a pnpm install, every `openclaw` invocation failed with `Cannot find module`, and on some setups the Gateway stayed down.",
   "impact": "failed-every-time",
   "area": "update",
-  "summary": "Launcher relocation and verification now parse shell words so pnpm's quoted `\"$basedir_abs\"/'../...'` shim form is relocated, the swap refuses or fails on a launcher still naming the stage, Doctor and Gateway startup repair already-broken launchers, and service revalidation also matches the unchanged unit against its own install root.",
-  "reasoning": "The relocation regex from 51211ac26ca0 (#170131) matched `$basedir_abs/`, which is exactly the shim text pnpm 12.12.1 wrote in issue #169244 (`exec node \"$basedir_abs/../.openclaw-update-native-...`); the fix's own repair code says the unhandled form is pnpm 12.15+'s separately quoted `\"$basedir_abs\"/'...'`, so the breakage came from pnpm changing its shim quoting, not from an in-repo commit. The service-ownership refusal likewise depends on pnpm's versioned-store layout keeping the old store directory; with no in-repo change identified as the trigger, this is latent."
+  "summary": "The fix relocates and verifies pnpm launchers, repairs launchers left pointing at deleted stages, and lets Gateway restart revalidate an unchanged service against its own install root.",
+  "reasoning": "I checked that the preceding updater let pnpm write directly to the live bin directory and that #131043 reported successful real pnpm 11 and 12 update runs. #138839 switched pnpm updates to staged launcher publication with a matcher that missed the affected shim, and #170131 added the contiguous `$basedir_abs/` spelling while still missing the separately quoted form. The cause fields track the broken CLI launcher, while the Gateway restart refusal came from a separate ownership check that reused the pnpm link after the swap repointed it.",
+  "rank": 70,
+  "sha": "dbc1aa04e88f531910d70512009c74e355311c92",
+  "rubric": "v1.2"
 }

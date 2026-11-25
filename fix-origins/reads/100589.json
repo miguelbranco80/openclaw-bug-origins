@@ -1,0 +1,17 @@
+{
+  "rank": 100589,
+  "sha": "b405e7f644106306d2d3965ecf22335fdbe15716",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "ad08bd71ff1b2cf31977a1647b65f6266afb2fb8",
+  "cause_pr": 146275,
+  "confidence": "high",
+  "cause_quote": "The refactor changed the publisher to `const publish = (...sidecars: GatewayPostReadySidecarHandle[]) => {`, so the existing `registerGatewayLifetimeSidecars([tlsRenewal])` call registered the array itself as a handle.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A TLS-enabled Gateway could report a cleanup error on shutdown and leave its certificate renewal watcher running until the process exited.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix passes the TLS renewal handle directly to the Gateway sidecar stop owner.",
+  "reasoning": "First-parent history shows that #146267 introduced TLS renewal before #146275. I checked the pre-refactor publisher and the renewal handle: the publisher unpacked the caller's array and shutdown invoked the handle's `stop()` method. The refactor left the TLS call unchanged, so the owner received an array with no `stop()` method, which also explains the typecheck error reported in the fix PR."
+}

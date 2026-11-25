@@ -1,0 +1,17 @@
+{
+  "rank": 100110,
+  "sha": "13b3d42eeed6030ed32e34da64d77a1faae68fb9",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "aed1b0546611ffe049c08690cd84a566d9f7626a",
+  "user_visible": "yes",
+  "user_saw": "On macOS, `openclaw gateway stop --disable` could report success while the LaunchAgent remained loaded, and a subsequent update could refuse to proceed.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Both macOS Gateway stop modes now unload the LaunchAgent and verify that its observed processes have exited before reporting success, and update and repair errors name the profile-aware stop command.",
+  "reasoning": "The oldest available stop code already accepted a stopped but loaded LaunchAgent after `--disable`, which fulfilled the documented purpose of persisting the disabled policy. The #153637 diff exposed that behavior by changing runtime publication from accepting a loaded, stopped, disabled job to requiring `state.loadState.status === \"not-loaded\"` on macOS. The fix PR reproduced the loaded label after `--disable`, but the reporter\u2019s exact default-stop failure was not reproduced, and the original stop implementation predates the available local history."
+}

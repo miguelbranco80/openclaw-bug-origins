@@ -1,0 +1,8 @@
+{
+  "rank": 100757,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes reader handoffs and cleanup without raising the loss of the restart cancellation reason when admission is released. The earlier Before merge item about retained-reader authority addresses a merge conflict and authorization checks."
+}

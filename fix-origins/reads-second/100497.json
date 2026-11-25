@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "f703d803cc1b9db615774c6b28c58dda8cbb0e11",
+  "cause_pr": 113681,
+  "confidence": "high",
+  "cause_quote": "The diff introduced `\"id\": \"qwen/qwen3.6-27b\"` with `\"input\": [\"text\", \"image\"]`, advertising images for a model whose endpoint rejects them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Groq Qwen 3.6 turns failed with HTTP 400 at the default thinking level, and both models were offered for image attachments that their providers rejected.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix marks both models as text-only, maps Groq Qwen thinking levels to the provider\u2019s accepted efforts, and requests parsed reasoning.",
+  "reasoning": "The Groq manifest history shows that #113681 introduced the Qwen 3.6 row with the incorrect image flag, and the Cohere diff independently shows that #102489 introduced North Mini Code with the same incorrect flag. The Groq refresh also updated a reasoning compatibility helper, and a later cleanup removed it after it became unreferenced. The evidence does not establish when enabled reasoning first failed on the Gateway path, so the cited cause is the verified Groq image capability defect.",
+  "rank": 100497,
+  "sha": "839b47aa412d85b066fdbe24b80557b964dbba1e",
+  "rubric": "v1.2"
+}

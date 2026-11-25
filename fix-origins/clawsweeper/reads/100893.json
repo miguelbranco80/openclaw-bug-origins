@@ -1,0 +1,8 @@
+{
+  "rank": 100893,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cPreserve requester revocation before system-service activation\u201d item concerns package activation after an access grant is revoked. The review describes the helper settlement barrier and operator restarts without raising a concern about exit status being accepted as proof of cleanup or restart guidance being skipped when matching user and system units coexist."
+}

@@ -44,7 +44,7 @@ re-reads a slice of every judgment.
 | `repository` | The GitHub repository studied |
 | `tip` | The pinned commit. All history is read as of this commit, so reruns see the same history |
 | `commits_since` | Start of the list of all commits (the denominator for "bugs per 100 commits") |
-| `frames` | The periods of fixes. Each has an `id`, a `since` date, an optional `until` date, a `sample` size, and `reread`: how many of its sampled fixes the second-maker model re-reads |
+| `frames` | The periods of fixes. Each has an `id`, a `since` date, an optional `until` date, a `sample` size, `reread`: how many of its sampled fixes the other maker's model also reads, and `reread_bot`: whether the other maker's model also reads this period's bot reviews (default yes) |
 | `comparison_sample` | How many ordinary pull requests to fetch as a comparison group |
 | `pilot.per_kind` | Blind review experiment: how many broken-later and how many never-worked cases to take |
 | `pilot.skip` | Cases left out of the blind review because their causing commit could not be read in the original clone. Empty for a new study |
@@ -138,7 +138,9 @@ git clone --no-checkout --single-branch --branch main --shallow-since=2026-09-03
 
 - This takes about ten minutes and 12 GB. It was tested on 25 November 2026: the stages give the same sampling
   frame and commit list from this clone as from the clone the published study used.
-- `--shallow-since` must be on or before the earliest date in `study.json`. The published study used 2026-09-03.
+- `--shallow-since` must be on or before the earliest date in `study.json`, and earlier is better: a reader can
+  only trace a cause as far back as the clone goes. The first version used 2026-09-03; the current one was deepened
+  to 2026-07-01 with `git -C work/openclaw fetch --shallow-since=2026-07-01 origin main` (two more minutes, 2 GB).
 - `--filter=blob:limit=10m` leaves out files over 10 MB. The scripts set `GIT_NO_LAZY_FETCH=1` on every git command
   so that git never downloads a missing file on its own. During the original study, searches without that setting
   pulled in 12 GB.
@@ -307,7 +309,9 @@ Then run all stages. Keep these in mind:
   comparisons because their causing change is older than `commits_since`.
 - To study fixes after the pinned commit, fetch in the clone, set `tip` to the newer commit, and give the old frame
   an `until` equal to the old tip's date, so its population stays what it was.
-- The blind review's cases are the first eligible ones in rank order, so adding frames does not change them.
+- The blind review's cases are chosen once and pinned: the facts it uses about each case are kept in
+  `fix-origins/review-pilot/data/pilot_cases.jsonl` and `pilot_bot.jsonl`. Adding frames, or changing the main
+  reader, does not change the experiment. Delete `review-pilot/data/` to choose and run it again.
 
 **Compare with the study before the change.** Commit before extending. After extending, and before committing
 again:
@@ -340,6 +344,21 @@ is committed too, the commit before it is `HEAD~1`. The earlier report itself is
   describe November 2026 only.
 - **The same GitHub.** Pull request descriptions and bot comments can be edited later. The fetch steps read them as
   they stood at merge, from GitHub's edit history, which keeps this stable.
+
+## The two versions of this study
+
+| | Published first (tag `published-2026-11`) | Current |
+|---|---|---|
+| Fixes | 300, from 1 to 22 November 2026 | 1,202: those 300, and 902 from 10 September to 1 November |
+| Main reader of fixes and bot reviews | Claude Opus 5.5 | gpt-6.2-sol, for every fix of both periods |
+| Other maker's check | gpt-6.2-sol on 60 fixes and all 113 bot reviews | The Claude Opus 5.5 answers already made: all 300 November fixes, and its verdicts on bot reviews where both readers named the same causing pull request |
+| Clone history | from 3 September 2026 | from 1 July 2026, so that September fixes can be traced about as far back as November's were |
+| Blind review experiment | 30 cases from the November fixes as Opus read them | The same experiment, unchanged and pinned |
+
+One reader for both periods means a difference between the periods is a difference in the fixes, not in who read
+them. With the longer period, every comparison of bug rates also holds equal when the change landed, because an
+older change has had longer for its bugs to be found and fixed. `fix-origins/audit/reuse_published_opus.py` moved the Opus answers into the check's folders. To see the first
+version: `git checkout published-2026-11`. To list what changed: `python3 study.py compare published-2026-11`.
 
 ## What differs from how the published answers were made
 

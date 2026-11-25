@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge Evidence section describes the switch to linked publication tasks without raising a concern about task identity across fresh calls for the same checkout. The earlier “Add data-model compatibility proof” item concerned recovery of existing receipts after an upgrade."
+  "outcome": null,
+  "note": "The review in force at merge lists no findings or before-merge items, and the earlier version only asked for data-model upgrade proof; nothing concerns keying publication tasks by the invocation idempotency key so republishing opens a second PR."
 }

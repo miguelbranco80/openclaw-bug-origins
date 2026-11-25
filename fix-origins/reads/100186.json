@@ -1,0 +1,17 @@
+{
+  "rank": 100186,
+  "sha": "e986481fc31e36c350e85ae60de1d350dfdc3876",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After typing `openclaw 'completion' --shell f` in PowerShell, a user saw `file-transfer` suggested instead of `fish`.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "PowerShell completion now uses parsed string literal values to identify quoted subcommands and continues to read other expressions as source text without evaluating them.",
+  "reasoning": "Local line history shows that command-path construction already used `Extent.Text`, which retains quote delimiters, before the July 2026 history boundary. The older path history stopped at a missing object, so I could not verify when that parsing logic was introduced or whether quoted subcommands had ever completed correctly on main."
+}

@@ -1,0 +1,7 @@
+{
+ "fixes": "gpt-6.2-sol",
+ "fixes_second": "gpt-6.2-sol",
+ "fixes_other_maker": "Claude Opus 5.5",
+ "bot_reviews": "gpt-6.2-sol",
+ "bot_reviews_other_maker": "Claude Opus 5.5"
+}

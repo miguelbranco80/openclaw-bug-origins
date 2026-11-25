@@ -1,0 +1,8 @@
+{
+  "rank": 100634,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items cover CLI fallback, core/plugin rollout, and general compatibility checks. No review item raises the risk that an ACP harness reset creates state under a read-only installation directory."
+}

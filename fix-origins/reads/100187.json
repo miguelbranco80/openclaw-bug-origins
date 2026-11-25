@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "b68c44ca8f3ca9d0d4bccb7b620f867547e4cd55",
+  "cause_pr": 169128,
+  "confidence": "medium",
+  "cause_quote": "The migration changed the handoff to `modal.container.append(host)` and gave the enclosing open `<dialog>` `scale: 1`, which made the dialog the containing block for the fixed toast.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a background session finished with the command palette open, its toast appeared inside the palette and jumped back to the viewport corner when the palette closed.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix presents the toast host as a manual popover so it keeps its viewport position and responsive offset while remaining usable inside the modal.",
+  "reasoning": "The migration's parent already showed background-session completion toasts and handed them to the legacy modal host, whose palette styles applied no persistent transform. The migration moved the fixed toast inside a native dialog with a persistent scale, which explains the reported displacement. The earlier placement was inferred from the source because browser verification was outside the checkout's read-only scope.",
+  "rank": 100187,
+  "sha": "078b11daa8b0caf2b8910702728adc76b4e3cf4c",
+  "rubric": "v1.2"
+}

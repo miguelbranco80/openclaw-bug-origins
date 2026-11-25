@@ -1,1 +1,8 @@
-{"rank": 273, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review has no items or findings, only a request to complete native nested-subvolume proof; the earlier finding was an import cycle. Nothing raises per-checkpoint btrfs snapshot creation/removal causing filesystem-wide commits that stall Gateway SQLite."}
+{
+  "rank": 273,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Reported median pause is 194.23 ms, while median command completion increases from 2,374.14 to 3,038.07 ms.",
+  "outcome": "unclear",
+  "note": "The example in What this changes records slower command completion after an edit in a 62,000-file btrfs workspace. The review treats the slowdown as a tradeoff and leaves its link to snapshot creation, cleanup, and Gateway stalls unexplored."
+}

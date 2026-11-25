@@ -1,0 +1,17 @@
+{
+  "rank": 100068,
+  "sha": "d8d8e12784bbc947279d4a839f1e3684f896c5f8",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "61cf4b924660434cbfb374f4f0f7ef9893a00d54",
+  "cause_pr": 116298,
+  "confidence": "high",
+  "cause_quote": "The new Buzz QA adapter used `const credentialFile = options.credentialFile?.trim();` and passed the shortened value to `readBuzzQaCredentialFile`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an operator supplied a credential filename with leading or trailing spaces, Buzz QA loaded the file with the trimmed name or reported that it could not find that file.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix preserves the literal `--credential-file` path while still rejecting whitespace-only input.",
+  "reasoning": "I checked the introducing commit and the first-parent history of the Buzz QA directory. The commit added the Buzz QA CLI and adapter together, and the adapter already trimmed the path before the credential reader resolved and opened it, so literal whitespace in filenames was broken from the first release of the command."
+}

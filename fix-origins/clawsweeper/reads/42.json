@@ -1,1 +1,8 @@
-{"rank": 42, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "All review versions concern only the median ACK latency tradeoff and merge conflicts; nothing addresses how dispatch diagnostics attribute steered prepared-reply run time to the preparation phase."}
+{
+  "rank": 42,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items concern ACK latency targets, maintainer approval, and an earlier merge conflict. The review mentions startup diagnostics but raises no concern about time spent awaiting an existing agent run being logged as preparation."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100437,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d item mentions unresolved legacy ownership and backups in general, while the merge-time item concerns ambiguous restore pointers. Neither identifies Doctor\u2019s ownership check running before it recognizes an already archived backup."
+}

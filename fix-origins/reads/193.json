@@ -1,17 +1,17 @@
 {
   "rank": 193,
   "sha": "101a6afdecdc3dd3fdd6acd758abc0209b94f00a",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "3a72a300745b5d99a0fd840c423813834a2078b4",
-  "cause_pr": 86060,
-  "confidence": "medium",
-  "cause_quote": "#86060 added `.option(\"--value-json\", \"Parse <value> as JSON for JSON/JSONC/JSONL leaf replacement\")` and passed `{ valueJson: options.valueJson === true }` to setOcPath, but only the JSON branches read it, so YAML and Markdown targets accepted and ignored the flag.",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "`openclaw path set ... --value-json` on a YAML or Markdown-frontmatter file reported success but wrote the JSON text as a plain string instead of a typed value.",
+  "user_saw": "The command reported success after writing literal JSON text as a string into YAML or Markdown frontmatter.",
   "impact": "failed-every-time",
   "area": "cli",
-  "summary": "setOcPath now rejects valueJson for Markdown and YAML targets with a not-writable error that points to the plain positional value, leaving the file unchanged.",
-  "reasoning": "The --value-json flag was introduced in 3a72a300 (#86060), after YAML support already existed (#81436), and from the start it was honored only for JSON/JSONC/JSONL while other formats silently dropped it, so the silent acceptance shipped with the flag. I read #86060's diff through the GitHub API; the exact non-JSON dispatch lines could not be read locally because the blob is missing, so confidence is medium."
+  "summary": "The fix rejects `--value-json` for YAML and Markdown before editing and names the supported formats in the error.",
+  "reasoning": "The oldest readable snapshot already registers `--value-json` for the shared `path set` command and applies it only in the JSON replacement branch, so YAML and Markdown edits silently discard the flag. The fix PR traces the format contract to #86060, but the offline path history stopped at the July 1 boundary, leaving the introducing diff and any earlier rejection behavior unverified."
 }

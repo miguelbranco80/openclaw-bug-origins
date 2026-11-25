@@ -1,0 +1,17 @@
+{
+  "rank": 100328,
+  "sha": "2d1973e31d3a40aca37bbe4400277ed0e0541bc4",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4cb509a12759d29cfe130b5461f99c788f350e43",
+  "cause_pr": 151879,
+  "confidence": "high",
+  "cause_quote": "The diff added `const requester = { ...params.identity, ... }` and `settleRequesterRun(requester, result.result, () => admission?.assertSourceCurrent())`, routing child settlement through the policy-scoped key in the channel runner's identity.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a channel conversation with a separate peer-scoped policy key, the parent stalled after its private subagent finished.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix uses the conversation session key for logical run identity and keeps the peer-scoped key for harness policy.",
+  "reasoning": "Before #151879, the embedded attempt settled children with `requesterSessionKey: attempt.sessionKey`, and the channel runner supplied the conversation key to that attempt. The July refactor had already assigned `selection.sessionKey` to logical run identity, but #151879 moved settlement to that identity, so the registry began looking for children under the peer-scoped policy key."
+}

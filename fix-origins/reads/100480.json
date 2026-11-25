@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "23173ed1f61ba6f210e3e7af0a33d87471400ccb",
+  "user_visible": "yes",
+  "user_saw": "After a managed workspace refreshed its base, Review could show upstream files and commits as part of the task.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "Local Review now uses the workspace\u2019s accepted base for the full diff, branch history, and deciding which commits can be opened.",
+  "reasoning": "Before #174532, the projection recorded checkout HEAD as its initial base, and local Review already inferred its comparison base from shared refs. The #174532 diff added `refresh_base` and persisted `base_commit: snapshot.current.baseCommit!` when accepting the refreshed source, allowing the workspace base to advance while those refs remained stale. The unchanged Review route still omitted `baseCommit`, so the refresh workflow exposed the limits of its existing ref-based fallback.",
+  "rank": 100480,
+  "sha": "1d71aef2b129773517cb26ff1ae98069f3d14d16",
+  "rubric": "v1.2"
+}

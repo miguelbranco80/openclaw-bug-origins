@@ -1,6 +1,7 @@
 {
   "flagged": "related",
   "where": "at-merge",
-  "quote": "The stop-history reader has the same problem, while createInstalledRuntimeLedger is initialized only after recovery finalization succeeds, which is never reached.",
-  "note": "The P1 item “Read migrated history through the verified candidate runtime” flagged the same schema compatibility problem during initial history reads. It remained open at merge, and fixing those reads alone would still leave terminal failure writes vulnerable after a schema-changing repair failed."
+  "quote": "this reader still opens history through the staged helper's older database admission. That admission rejects newer schema versions before returning the run. The stop-history reader has the same problem, while createInstalledRuntimeLedger is initialized only after recovery finalization succeeds",
+  "outcome": "open-at-merge",
+  "note": "The open P1 'Read migrated history through the verified candidate runtime' targets the staged-versus-installed runtime choice after a schema-advancing repair, but it is about initial reads, not losing the terminal failure write, and says nothing about the one-time stop-intent check or the ownership-verdict throw."
 }

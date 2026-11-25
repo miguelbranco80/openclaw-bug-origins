@@ -13,6 +13,20 @@
 "images": 0,
 "videos": 0
 },
+"120781": {
+"characters": 25930,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 1
+},
+"129416": {
+"characters": 3884,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "131922": {
 "characters": 6582,
 "edited_after_merge": true,
@@ -25,6 +39,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 6,
+"videos": 0
+},
+"135840": {
+"characters": 3110,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
 "videos": 0
 },
 "137335": {
@@ -41,6 +62,20 @@
 "images": 0,
 "videos": 0
 },
+"140897": {
+"characters": 51546,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 2
+},
+"141476": {
+"characters": 7847,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 10,
+"videos": 0
+},
 "142102": {
 "characters": 15160,
 "edited_after_merge": false,
@@ -54,6 +89,13 @@
 "evidence_heading": false,
 "images": 0,
 "videos": 0
+},
+"142782": {
+"characters": 11217,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
+"videos": 2
 },
 "143534": {
 "characters": 714,
@@ -76,8 +118,50 @@
 "images": 0,
 "videos": 0
 },
+"143747": {
+"characters": 3345,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"143758": {
+"characters": 5181,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 1
+},
+"143761": {
+"characters": 9078,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
+"143768": {
+"characters": 3974,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "143856": {
 "characters": 12055,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"143858": {
+"characters": 3356,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"143905": {
+"characters": 22231,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -104,6 +188,55 @@
 "images": 0,
 "videos": 0
 },
+"144155": {
+"characters": 8397,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144252": {
+"characters": 8586,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144329": {
+"characters": 8386,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144404": {
+"characters": 9315,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144420": {
+"characters": 4973,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144454": {
+"characters": 5027,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144531": {
+"characters": 2627,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "144665": {
 "characters": 1721,
 "edited_after_merge": false,
@@ -116,6 +249,34 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"144762": {
+"characters": 3190,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144871": {
+"characters": 3907,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"144907": {
+"characters": 988,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 0,
+"videos": 0
+},
+"145019": {
+"characters": 2637,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
 "videos": 0
 },
 "145047": {
@@ -139,8 +300,29 @@
 "images": 2,
 "videos": 0
 },
+"145305": {
+"characters": 15496,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "145310": {
 "characters": 1270,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"145335": {
+"characters": 6757,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 0,
+"videos": 0
+},
+"145390": {
+"characters": 13179,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -167,6 +349,13 @@
 "images": 0,
 "videos": 0
 },
+"145664": {
+"characters": 11468,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "145685": {
 "characters": 2437,
 "edited_after_merge": false,
@@ -181,6 +370,13 @@
 "images": 0,
 "videos": 0
 },
+"145712": {
+"characters": 5597,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
 "145774": {
 "characters": 1064,
 "edited_after_merge": false,
@@ -188,8 +384,22 @@
 "images": 0,
 "videos": 0
 },
+"145927": {
+"characters": 2426,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "146067": {
 "characters": 3568,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"146092": {
+"characters": 28430,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -209,6 +419,27 @@
 "images": 0,
 "videos": 0
 },
+"146267": {
+"characters": 5689,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"146275": {
+"characters": 5337,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"146291": {
+"characters": 5352,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "146410": {
 "characters": 4780,
 "edited_after_merge": false,
@@ -216,8 +447,29 @@
 "images": 2,
 "videos": 0
 },
+"146475": {
+"characters": 2147,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"146495": {
+"characters": 1969,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "146546": {
 "characters": 4175,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"146563": {
+"characters": 3636,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -228,6 +480,20 @@
 "edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"146700": {
+"characters": 4133,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"146702": {
+"characters": 9235,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
 "videos": 0
 },
 "146723": {
@@ -251,6 +517,13 @@
 "images": 2,
 "videos": 0
 },
+"146850": {
+"characters": 2078,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "147032": {
 "characters": 1490,
 "edited_after_merge": false,
@@ -267,6 +540,13 @@
 },
 "147115": {
 "characters": 2626,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
+"147195": {
+"characters": 5576,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 3,
@@ -300,8 +580,43 @@
 "images": 0,
 "videos": 0
 },
+"147472": {
+"characters": 2168,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "147508": {
 "characters": 1534,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"147519": {
+"characters": 4227,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"147540": {
+"characters": 2809,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"147571": {
+"characters": 5108,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"147711": {
+"characters": 9273,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -314,11 +629,25 @@
 "images": 0,
 "videos": 0
 },
+"147794": {
+"characters": 4092,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "147847": {
 "characters": 2971,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"147994": {
+"characters": 5529,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
 "videos": 0
 },
 "147998": {
@@ -335,8 +664,29 @@
 "images": 0,
 "videos": 0
 },
+"148209": {
+"characters": 14494,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 21,
+"videos": 43
+},
+"148305": {
+"characters": 4105,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "148351": {
 "characters": 4052,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"148440": {
+"characters": 2925,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -349,8 +699,50 @@
 "images": 4,
 "videos": 2
 },
+"148623": {
+"characters": 2134,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"148624": {
+"characters": 2349,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
+"videos": 0
+},
+"148709": {
+"characters": 4803,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "148781": {
 "characters": 1875,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"148790": {
+"characters": 3528,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"148857": {
+"characters": 3821,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"148910": {
+"characters": 3540,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -368,6 +760,27 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 2,
+"videos": 0
+},
+"149223": {
+"characters": 5388,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"149284": {
+"characters": 1706,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"149286": {
+"characters": 7205,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 9,
 "videos": 0
 },
 "149488": {
@@ -412,8 +825,36 @@
 "images": 2,
 "videos": 0
 },
+"150128": {
+"characters": 8611,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"150196": {
+"characters": 21793,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"150224": {
+"characters": 9733,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "150330": {
 "characters": 1809,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"150354": {
+"characters": 22324,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -440,8 +881,36 @@
 "images": 0,
 "videos": 0
 },
+"150702": {
+"characters": 3878,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 0,
+"videos": 0
+},
 "150725": {
 "characters": 13092,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"150734": {
+"characters": 3977,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"150755": {
+"characters": 6199,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"150816": {
+"characters": 13110,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -454,11 +923,25 @@
 "images": 0,
 "videos": 0
 },
+"151003": {
+"characters": 8171,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "151014": {
 "characters": 766,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"151022": {
+"characters": 3276,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
 "videos": 0
 },
 "151029": {
@@ -510,6 +993,41 @@
 "images": 0,
 "videos": 0
 },
+"151456": {
+"characters": 2767,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
+"videos": 0
+},
+"151545": {
+"characters": 5709,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"151611": {
+"characters": 1739,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"151618": {
+"characters": 7719,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 8,
+"videos": 16
+},
+"151670": {
+"characters": 4786,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "151686": {
 "characters": 1844,
 "edited_after_merge": false,
@@ -526,6 +1044,13 @@
 },
 "151763": {
 "characters": 2341,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"151879": {
+"characters": 5434,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -552,6 +1077,13 @@
 "images": 0,
 "videos": 0
 },
+"152027": {
+"characters": 5538,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 10
+},
 "152094": {
 "characters": 10796,
 "edited_after_merge": true,
@@ -573,6 +1105,34 @@
 "images": 0,
 "videos": 0
 },
+"152641": {
+"characters": 9477,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"152655": {
+"characters": 8042,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"152691": {
+"characters": 5459,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"152734": {
+"characters": 2534,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "152758": {
 "characters": 4362,
 "edited_after_merge": false,
@@ -580,11 +1140,46 @@
 "images": 4,
 "videos": 0
 },
+"152786": {
+"characters": 6735,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"152875": {
+"characters": 16712,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "153028": {
 "characters": 4333,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 1,
+"videos": 0
+},
+"153043": {
+"characters": 11249,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 2
+},
+"153063": {
+"characters": 17988,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"153243": {
+"characters": 3045,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
 "videos": 0
 },
 "153245": {
@@ -601,11 +1196,32 @@
 "images": 0,
 "videos": 0
 },
+"153266": {
+"characters": 2226,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "153288": {
 "characters": 4444,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 4,
+"videos": 0
+},
+"153420": {
+"characters": 3253,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"153432": {
+"characters": 3707,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
 "videos": 0
 },
 "153455": {
@@ -615,11 +1231,32 @@
 "images": 2,
 "videos": 0
 },
+"153537": {
+"characters": 3842,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 1,
+"videos": 0
+},
 "153542": {
 "characters": 5768,
 "edited_after_merge": true,
 "evidence_heading": true,
 "images": 2,
+"videos": 0
+},
+"153597": {
+"characters": 3751,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"153634": {
+"characters": 2798,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
 "videos": 0
 },
 "153651": {
@@ -636,8 +1273,43 @@
 "images": 0,
 "videos": 0
 },
+"153764": {
+"characters": 4273,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"153849": {
+"characters": 3275,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "153906": {
 "characters": 1252,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"153989": {
+"characters": 6998,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"154044": {
+"characters": 7219,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"154087": {
+"characters": 4694,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -657,6 +1329,20 @@
 "images": 0,
 "videos": 0
 },
+"154199": {
+"characters": 5265,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"154324": {
+"characters": 7064,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "154417": {
 "characters": 5840,
 "edited_after_merge": false,
@@ -666,6 +1352,13 @@
 },
 "154472": {
 "characters": 5040,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"154489": {
+"characters": 8827,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -692,6 +1385,13 @@
 "images": 0,
 "videos": 0
 },
+"154671": {
+"characters": 20400,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "154783": {
 "characters": 1882,
 "edited_after_merge": false,
@@ -699,8 +1399,29 @@
 "images": 0,
 "videos": 0
 },
+"154792": {
+"characters": 27993,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"154804": {
+"characters": 25480,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "154914": {
 "characters": 3028,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"154991": {
+"characters": 4617,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -748,12 +1469,26 @@
 "images": 2,
 "videos": 0
 },
+"155538": {
+"characters": 1911,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "155560": {
 "characters": 7046,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 3,
 "videos": 1
+},
+"155632": {
+"characters": 30128,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
 },
 "155680": {
 "characters": 8462,
@@ -764,6 +1499,13 @@
 },
 "155740": {
 "characters": 16965,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"155842": {
+"characters": 5321,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -783,6 +1525,27 @@
 "images": 0,
 "videos": 0
 },
+"156033": {
+"characters": 3654,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"156050": {
+"characters": 6720,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 10,
+"videos": 0
+},
+"156064": {
+"characters": 1594,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "156079": {
 "characters": 46412,
 "edited_after_merge": false,
@@ -797,8 +1560,29 @@
 "images": 0,
 "videos": 0
 },
+"156227": {
+"characters": 11653,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"156346": {
+"characters": 12023,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "156519": {
 "characters": 4299,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"156584": {
+"characters": 9549,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -816,6 +1600,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"156926": {
+"characters": 9439,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 6,
 "videos": 0
 },
 "157029": {
@@ -853,11 +1644,46 @@
 "images": 0,
 "videos": 0
 },
+"157413": {
+"characters": 34409,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"157433": {
+"characters": 10771,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"157806": {
+"characters": 18038,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"157954": {
+"characters": 4940,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "158037": {
 "characters": 2037,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 3,
+"videos": 0
+},
+"158091": {
+"characters": 6295,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
 "videos": 0
 },
 "158128": {
@@ -881,6 +1707,34 @@
 "images": 0,
 "videos": 0
 },
+"158313": {
+"characters": 5776,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"158314": {
+"characters": 27162,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"158317": {
+"characters": 6112,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"158414": {
+"characters": 10798,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "158443": {
 "characters": 16786,
 "edited_after_merge": true,
@@ -888,8 +1742,36 @@
 "images": 0,
 "videos": 0
 },
+"158491": {
+"characters": 6318,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"158703": {
+"characters": 3452,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"158732": {
+"characters": 11496,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "158802": {
 "characters": 48746,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"158848": {
+"characters": 7215,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -909,9 +1791,30 @@
 "images": 0,
 "videos": 0
 },
+"158950": {
+"characters": 8996,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "159052": {
 "characters": 3404,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"159065": {
+"characters": 13300,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"159073": {
+"characters": 7806,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -930,6 +1833,13 @@
 "images": 0,
 "videos": 0
 },
+"159179": {
+"characters": 19997,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "159534": {
 "characters": 3302,
 "edited_after_merge": false,
@@ -937,9 +1847,30 @@
 "images": 0,
 "videos": 0
 },
+"159678": {
+"characters": 3828,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"159767": {
+"characters": 9329,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
+"videos": 11
+},
 "159860": {
 "characters": 6089,
 "edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"159873": {
+"characters": 26971,
+"edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -986,8 +1917,36 @@
 "images": 0,
 "videos": 0
 },
+"160080": {
+"characters": 3520,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"160089": {
+"characters": 6102,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "160121": {
 "characters": 3611,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"160173": {
+"characters": 4043,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"160203": {
+"characters": 11014,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1014,9 +1973,23 @@
 "images": 0,
 "videos": 0
 },
+"160297": {
+"characters": 8532,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "160334": {
 "characters": 5637,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"160442": {
+"characters": 14613,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -1035,6 +2008,13 @@
 "images": 0,
 "videos": 0
 },
+"160682": {
+"characters": 4937,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "160698": {
 "characters": 3843,
 "edited_after_merge": false,
@@ -1049,6 +2029,34 @@
 "images": 0,
 "videos": 0
 },
+"160946": {
+"characters": 7426,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"161044": {
+"characters": 11406,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"161104": {
+"characters": 5415,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"161114": {
+"characters": 15637,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "161204": {
 "characters": 11623,
 "edited_after_merge": false,
@@ -1056,8 +2064,36 @@
 "images": 0,
 "videos": 0
 },
+"161260": {
+"characters": 5804,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"161267": {
+"characters": 24694,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"161492": {
+"characters": 7212,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
 "161518": {
 "characters": 4297,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"161539": {
+"characters": 6400,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1098,6 +2134,34 @@
 "images": 6,
 "videos": 1
 },
+"161958": {
+"characters": 9798,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
+"videos": 0
+},
+"162175": {
+"characters": 6160,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162176": {
+"characters": 22981,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162257": {
+"characters": 4150,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "162286": {
 "characters": 1549,
 "edited_after_merge": false,
@@ -1119,9 +2183,51 @@
 "images": 0,
 "videos": 0
 },
+"162403": {
+"characters": 7014,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162466": {
+"characters": 20652,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162481": {
+"characters": 7471,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162521": {
+"characters": 8504,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "162591": {
 "characters": 2259,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162614": {
+"characters": 18333,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"162669": {
+"characters": 12637,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -1147,6 +2253,13 @@
 "images": 0,
 "videos": 0
 },
+"163195": {
+"characters": 12309,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "163196": {
 "characters": 4493,
 "edited_after_merge": false,
@@ -1156,6 +2269,27 @@
 },
 "163203": {
 "characters": 9171,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"163221": {
+"characters": 9436,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"163270": {
+"characters": 7496,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"163287": {
+"characters": 7465,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1189,6 +2323,20 @@
 "images": 0,
 "videos": 0
 },
+"163461": {
+"characters": 13448,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"163471": {
+"characters": 11482,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "163649": {
 "characters": 3050,
 "edited_after_merge": false,
@@ -1198,6 +2346,20 @@
 },
 "163740": {
 "characters": 6537,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"163834": {
+"characters": 8883,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"163889": {
+"characters": 21903,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1217,8 +2379,22 @@
 "images": 0,
 "videos": 0
 },
+"164197": {
+"characters": 12492,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "164206": {
 "characters": 12848,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"164236": {
+"characters": 12547,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1227,6 +2403,34 @@
 "164269": {
 "characters": 7303,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"164306": {
+"characters": 12880,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"164490": {
+"characters": 40484,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"164558": {
+"characters": 9445,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"164755": {
+"characters": 21653,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -1247,6 +2451,13 @@
 },
 "164834": {
 "characters": 6946,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"164853": {
+"characters": 5097,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1273,8 +2484,36 @@
 "images": 0,
 "videos": 0
 },
+"165399": {
+"characters": 14604,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "165502": {
 "characters": 5416,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"165534": {
+"characters": 11943,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"165567": {
+"characters": 6065,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"165607": {
+"characters": 11162,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1315,6 +2554,20 @@
 "images": 4,
 "videos": 0
 },
+"166400": {
+"characters": 3347,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"166425": {
+"characters": 3256,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "166540": {
 "characters": 5788,
 "edited_after_merge": false,
@@ -1322,8 +2575,43 @@
 "images": 0,
 "videos": 0
 },
+"166553": {
+"characters": 25600,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 1
+},
+"166616": {
+"characters": 8385,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "166660": {
 "characters": 3323,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"166703": {
+"characters": 30065,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"166845": {
+"characters": 4695,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"166868": {
+"characters": 5548,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1342,6 +2630,27 @@
 "evidence_heading": true,
 "images": 0,
 "videos": 0
+},
+"167054": {
+"characters": 7987,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"167059": {
+"characters": 5407,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"167163": {
+"characters": 6886,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 1
 },
 "167220": {
 "characters": 5563,
@@ -1364,6 +2673,20 @@
 "images": 0,
 "videos": 0
 },
+"167384": {
+"characters": 5115,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"167514": {
+"characters": 2740,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "167520": {
 "characters": 46819,
 "edited_after_merge": false,
@@ -1371,8 +2694,36 @@
 "images": 0,
 "videos": 0
 },
+"167697": {
+"characters": 6331,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"167739": {
+"characters": 28224,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"167875": {
+"characters": 29673,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "167963": {
 "characters": 10894,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"167968": {
+"characters": 5056,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1387,6 +2738,13 @@
 },
 "168058": {
 "characters": 11295,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168080": {
+"characters": 9326,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1413,6 +2771,13 @@
 "images": 0,
 "videos": 0
 },
+"168206": {
+"characters": 13984,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "168245": {
 "characters": 549,
 "edited_after_merge": false,
@@ -1422,6 +2787,34 @@
 },
 "168294": {
 "characters": 1963,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168325": {
+"characters": 7552,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168453": {
+"characters": 17035,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168587": {
+"characters": 5041,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168607": {
+"characters": 40535,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1448,6 +2841,20 @@
 "images": 13,
 "videos": 0
 },
+"168779": {
+"characters": 8130,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 14,
+"videos": 0
+},
+"168790": {
+"characters": 7165,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 10,
+"videos": 0
+},
 "168819": {
 "characters": 8521,
 "edited_after_merge": false,
@@ -1457,6 +2864,20 @@
 },
 "168848": {
 "characters": 5039,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168859": {
+"characters": 16553,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168864": {
+"characters": 6271,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1476,6 +2897,41 @@
 "images": 5,
 "videos": 2
 },
+"168942": {
+"characters": 26440,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"168992": {
+"characters": 13649,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 0,
+"videos": 0
+},
+"168997": {
+"characters": 4798,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
+"videos": 0
+},
+"169124": {
+"characters": 10136,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169128": {
+"characters": 7726,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
 "169214": {
 "characters": 8081,
 "edited_after_merge": false,
@@ -1490,6 +2946,34 @@
 "images": 0,
 "videos": 0
 },
+"169237": {
+"characters": 9954,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169246": {
+"characters": 5168,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 6,
+"videos": 0
+},
+"169327": {
+"characters": 15541,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169364": {
+"characters": 6805,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "169436": {
 "characters": 3768,
 "edited_after_merge": false,
@@ -1497,8 +2981,29 @@
 "images": 0,
 "videos": 0
 },
+"169512": {
+"characters": 5871,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
+"169564": {
+"characters": 10276,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
 "169616": {
 "characters": 4992,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169622": {
+"characters": 27605,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1518,6 +3023,20 @@
 "images": 0,
 "videos": 0
 },
+"169660": {
+"characters": 14461,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"169690": {
+"characters": 5880,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "169722": {
 "characters": 9390,
 "edited_after_merge": false,
@@ -1525,8 +3044,36 @@
 "images": 3,
 "videos": 0
 },
+"169752": {
+"characters": 5357,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169757": {
+"characters": 30014,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169773": {
+"characters": 5726,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 3,
+"videos": 0
+},
 "169787": {
 "characters": 2535,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"169946": {
+"characters": 10169,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1546,6 +3093,20 @@
 "images": 0,
 "videos": 0
 },
+"170387": {
+"characters": 11809,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 14,
+"videos": 0
+},
+"170456": {
+"characters": 3274,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "171097": {
 "characters": 3795,
 "edited_after_merge": false,
@@ -1560,9 +3121,23 @@
 "images": 0,
 "videos": 0
 },
+"171298": {
+"characters": 6611,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "171320": {
 "characters": 6007,
 "edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"171336": {
+"characters": 13615,
+"edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -1581,8 +3156,36 @@
 "images": 0,
 "videos": 0
 },
+"171623": {
+"characters": 3920,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"171633": {
+"characters": 6455,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "171678": {
 "characters": 9686,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"171717": {
+"characters": 3817,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"171729": {
+"characters": 4337,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1630,6 +3233,34 @@
 "images": 0,
 "videos": 0
 },
+"172266": {
+"characters": 25431,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"172287": {
+"characters": 8672,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"172362": {
+"characters": 2346,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"172440": {
+"characters": 5022,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "172512": {
 "characters": 1108,
 "edited_after_merge": false,
@@ -1642,6 +3273,20 @@
 "edited_after_merge": true,
 "evidence_heading": true,
 "images": 3,
+"videos": 0
+},
+"172559": {
+"characters": 5574,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
+"videos": 0
+},
+"172590": {
+"characters": 5745,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 0,
 "videos": 0
 },
 "172763": {
@@ -1658,12 +3303,26 @@
 "images": 0,
 "videos": 0
 },
+"172802": {
+"characters": 12503,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "172842": {
 "characters": 9512,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
+},
+"172901": {
+"characters": 9782,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
+"videos": 1
 },
 "173221": {
 "characters": 5551,
@@ -1681,6 +3340,13 @@
 },
 "173346": {
 "characters": 2686,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"173455": {
+"characters": 8041,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1707,10 +3373,38 @@
 "images": 2,
 "videos": 0
 },
+"173901": {
+"characters": 6007,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "173964": {
 "characters": 1898,
 "edited_after_merge": false,
 "evidence_heading": false,
+"images": 0,
+"videos": 0
+},
+"174022": {
+"characters": 6656,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"174043": {
+"characters": 2865,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 1,
+"videos": 0
+},
+"174046": {
+"characters": 2979,
+"edited_after_merge": false,
+"evidence_heading": true,
 "images": 0,
 "videos": 0
 },
@@ -1728,8 +3422,22 @@
 "images": 0,
 "videos": 0
 },
+"174183": {
+"characters": 3655,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "174196": {
 "characters": 9119,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"174206": {
+"characters": 3425,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1744,6 +3452,13 @@
 },
 "174296": {
 "characters": 2361,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"174315": {
+"characters": 4997,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1770,9 +3485,44 @@
 "images": 0,
 "videos": 0
 },
+"174599": {
+"characters": 11412,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"174610": {
+"characters": 10499,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"174660": {
+"characters": 7469,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"174661": {
+"characters": 2659,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "174735": {
 "characters": 2001,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"174740": {
+"characters": 1859,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -1784,11 +3534,25 @@
 "images": 0,
 "videos": 0
 },
+"174902": {
+"characters": 4418,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "174912": {
 "characters": 10060,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"174984": {
+"characters": 3464,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 12,
 "videos": 0
 },
 "175025": {
@@ -1812,6 +3576,27 @@
 "images": 0,
 "videos": 0
 },
+"175077": {
+"characters": 13735,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"175157": {
+"characters": 6828,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"175256": {
+"characters": 11260,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "175291": {
 "characters": 5457,
 "edited_after_merge": false,
@@ -1819,8 +3604,36 @@
 "images": 3,
 "videos": 1
 },
+"175307": {
+"characters": 4401,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"175347": {
+"characters": 6563,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"175349": {
+"characters": 11805,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
+"videos": 0
+},
 "175524": {
 "characters": 2834,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"175534": {
+"characters": 6937,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1835,6 +3648,13 @@
 },
 "175605": {
 "characters": 2023,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"175729": {
+"characters": 13430,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -1889,6 +3709,13 @@
 "images": 0,
 "videos": 0
 },
+"176106": {
+"characters": 3170,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "176199": {
 "characters": 4166,
 "edited_after_merge": false,
@@ -1901,6 +3728,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"176406": {
+"characters": 5147,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 8,
 "videos": 0
 },
 "176411": {
@@ -1920,6 +3754,13 @@
 "176436": {
 "characters": 2524,
 "edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"176460": {
+"characters": 4124,
+"edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -1966,6 +3807,13 @@
 "images": 0,
 "videos": 0
 },
+"176653": {
+"characters": 5834,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 14,
+"videos": 0
+},
 "176717": {
 "characters": 8427,
 "edited_after_merge": false,
@@ -1994,6 +3842,20 @@
 "images": 0,
 "videos": 0
 },
+"176958": {
+"characters": 6810,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"177067": {
+"characters": 2963,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "177140": {
 "characters": 1367,
 "edited_after_merge": false,
@@ -2003,6 +3865,13 @@
 },
 "177217": {
 "characters": 1123,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"177232": {
+"characters": 3447,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2078,6 +3947,20 @@
 "images": 2,
 "videos": 0
 },
+"177659": {
+"characters": 3013,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"177698": {
+"characters": 64639,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "177761": {
 "characters": 4056,
 "edited_after_merge": false,
@@ -2092,6 +3975,20 @@
 "images": 0,
 "videos": 0
 },
+"177926": {
+"characters": 3994,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"178037": {
+"characters": 2096,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "178066": {
 "characters": 3249,
 "edited_after_merge": false,
@@ -2104,6 +4001,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"178089": {
+"characters": 2152,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
 "videos": 0
 },
 "178097": {
@@ -2141,6 +4045,13 @@
 "images": 0,
 "videos": 0
 },
+"178767": {
+"characters": 4470,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "178781": {
 "characters": 1657,
 "edited_after_merge": false,
@@ -2162,11 +4073,32 @@
 "images": 0,
 "videos": 2
 },
+"179029": {
+"characters": 4364,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 4,
+"videos": 0
+},
+"179059": {
+"characters": 2440,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "179124": {
 "characters": 11931,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"179218": {
+"characters": 4427,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
 "videos": 0
 },
 "179387": {
@@ -2181,6 +4113,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"179699": {
+"characters": 6258,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 11,
 "videos": 0
 },
 "179744": {
@@ -2211,6 +4150,20 @@
 "images": 0,
 "videos": 0
 },
+"179908": {
+"characters": 5872,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
+"videos": 0
+},
+"179992": {
+"characters": 10855,
+"edited_after_merge": false,
+"evidence_heading": false,
+"images": 0,
+"videos": 0
+},
 "180067": {
 "characters": 11170,
 "edited_after_merge": false,
@@ -2218,11 +4171,25 @@
 "images": 0,
 "videos": 0
 },
+"180125": {
+"characters": 2318,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "180133": {
 "characters": 3743,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 5,
+"videos": 0
+},
+"180139": {
+"characters": 13368,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 3,
 "videos": 0
 },
 "180273": {
@@ -2255,6 +4222,13 @@
 },
 "180462": {
 "characters": 3123,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"180466": {
+"characters": 5158,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2295,6 +4269,13 @@
 "images": 0,
 "videos": 0
 },
+"181128": {
+"characters": 2612,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "181274": {
 "characters": 3140,
 "edited_after_merge": false,
@@ -2304,6 +4285,13 @@
 },
 "181279": {
 "characters": 4013,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"181307": {
+"characters": 10906,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2325,6 +4313,13 @@
 },
 "181474": {
 "characters": 3247,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"181506": {
+"characters": 6921,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2386,6 +4381,13 @@
 "images": 0,
 "videos": 0
 },
+"182109": {
+"characters": 11479,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "182207": {
 "characters": 3533,
 "edited_after_merge": false,
@@ -2407,8 +4409,22 @@
 "images": 0,
 "videos": 0
 },
+"182306": {
+"characters": 2336,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "182316": {
 "characters": 2396,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"182412": {
+"characters": 2170,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2470,6 +4486,20 @@
 "images": 0,
 "videos": 0
 },
+"183267": {
+"characters": 7971,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
+"videos": 0
+},
+"183276": {
+"characters": 35986,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "183510": {
 "characters": 9410,
 "edited_after_merge": false,
@@ -2503,6 +4533,13 @@
 "edited_after_merge": true,
 "evidence_heading": true,
 "images": 2,
+"videos": 0
+},
+"183816": {
+"characters": 21940,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
 "videos": 0
 },
 "184004": {
@@ -2542,6 +4579,34 @@
 },
 "184462": {
 "characters": 2022,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"184531": {
+"characters": 3784,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"184546": {
+"characters": 2799,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"184547": {
+"characters": 5866,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"184581": {
+"characters": 18736,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2638,11 +4703,32 @@
 "images": 0,
 "videos": 0
 },
+"185567": {
+"characters": 3080,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"185597": {
+"characters": 6861,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "185641": {
 "characters": 20215,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 8,
+"videos": 0
+},
+"185676": {
+"characters": 5814,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
 "videos": 0
 },
 "185730": {
@@ -2785,12 +4871,26 @@
 "images": 0,
 "videos": 0
 },
+"187822": {
+"characters": 5995,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 5,
+"videos": 1
+},
 "187966": {
 "characters": 7113,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
+},
+"188162": {
+"characters": 11178,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 7,
+"videos": 2
 },
 "188266": {
 "characters": 4075,
@@ -2806,6 +4906,27 @@
 "images": 0,
 "videos": 0
 },
+"188372": {
+"characters": 3786,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
+"188379": {
+"characters": 9550,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"188402": {
+"characters": 14072,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "188497": {
 "characters": 7054,
 "edited_after_merge": false,
@@ -2813,9 +4934,30 @@
 "images": 0,
 "videos": 0
 },
+"188513": {
+"characters": 4028,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"188576": {
+"characters": 20988,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "188645": {
 "characters": 2470,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"188891": {
+"characters": 3643,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -2829,6 +4971,13 @@
 },
 "188978": {
 "characters": 23133,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"189008": {
+"characters": 5124,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -2967,6 +5116,13 @@
 "images": 0,
 "videos": 0
 },
+"191398": {
+"characters": 4853,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 6,
+"videos": 6
+},
 "191424": {
 "characters": 7213,
 "edited_after_merge": false,
@@ -3009,6 +5165,13 @@
 "images": 0,
 "videos": 0
 },
+"192135": {
+"characters": 6027,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 16,
+"videos": 0
+},
 "192169": {
 "characters": 1868,
 "edited_after_merge": false,
@@ -3046,6 +5209,13 @@
 },
 "192392": {
 "characters": 7662,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"192534": {
+"characters": 6099,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -3105,6 +5275,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"193677": {
+"characters": 5997,
+"edited_after_merge": true,
+"evidence_heading": true,
+"images": 3,
 "videos": 0
 },
 "193993": {
@@ -3184,9 +5361,23 @@
 "images": 0,
 "videos": 0
 },
+"196181": {
+"characters": 7192,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
+"videos": 0
+},
 "196297": {
 "characters": 9322,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"196298": {
+"characters": 7603,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0
@@ -3240,6 +5431,13 @@
 "images": 0,
 "videos": 0
 },
+"197739": {
+"characters": 6564,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
 "198245": {
 "characters": 7198,
 "edited_after_merge": false,
@@ -3259,6 +5457,13 @@
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"199123": {
+"characters": 3071,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 2,
 "videos": 0
 },
 "199139": {
@@ -3289,6 +5494,13 @@
 "images": 0,
 "videos": 0
 },
+"199825": {
+"characters": 5602,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 1,
+"videos": 0
+},
 "199929": {
 "characters": 6857,
 "edited_after_merge": false,
@@ -3298,6 +5510,13 @@
 },
 "200211": {
 "characters": 6388,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"200394": {
+"characters": 4867,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
@@ -3408,11 +5627,32 @@
 "images": 0,
 "videos": 0
 },
+"201407": {
+"characters": 4879,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 8,
+"videos": 2
+},
 "201463": {
 "characters": 8711,
 "edited_after_merge": false,
 "evidence_heading": true,
 "images": 0,
+"videos": 0
+},
+"201493": {
+"characters": 3004,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"201656": {
+"characters": 2695,
+"edited_after_merge": false,
+"evidence_heading": true,
+"images": 4,
 "videos": 0
 },
 "201735": {
@@ -3467,6 +5707,13 @@
 "203487": {
 "characters": 7136,
 "edited_after_merge": false,
+"evidence_heading": true,
+"images": 0,
+"videos": 0
+},
+"82290": {
+"characters": 18256,
+"edited_after_merge": true,
 "evidence_heading": true,
 "images": 0,
 "videos": 0

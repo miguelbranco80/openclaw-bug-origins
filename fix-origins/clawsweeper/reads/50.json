@@ -1,0 +1,8 @@
+{
+  "rank": 50,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cKeep the header source count reactive\u201d finding addressed a stale count, and the earlier Tests section focused on Gateway behavior. The at-merge Evidence section covered screenshots and safe report rendering without raising inherited font smoothing or thin report text on macOS."
+}

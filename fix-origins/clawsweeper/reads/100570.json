@@ -1,0 +1,8 @@
+{
+  "rank": 100570,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding concerned file actions that opened the live workspace, and the earlier findings concerned which commits could be diffed. No review item raised a concern about long lines crossing the split-diff divider with Wrap lines enabled."
+}

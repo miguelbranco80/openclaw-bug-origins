@@ -1,0 +1,17 @@
+{
+  "rank": 100707,
+  "sha": "e03beb40aae324d9a9c0fc30e22b170e27b7cd9d",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix deletes the retired session runtime-context helper flagged by the production unused-file check.",
+  "reasoning": "The diff for #182262 removes both production callers and their test references as automation result publication moves to the conversation-result code. The fix deletes only the orphaned helper, so it is dead-code cleanup prompted by an internal check."
+}

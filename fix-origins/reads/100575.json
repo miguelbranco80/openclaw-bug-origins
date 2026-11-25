@@ -1,0 +1,17 @@
+{
+  "rank": 100575,
+  "sha": "f0c576f48831456411bf3caaa5d842bb933ec9c3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "2bc50d0656bd3c5905f0d972ff429c8388c43b9e",
+  "cause_pr": 100288,
+  "confidence": "high",
+  "cause_quote": "The original setup probe called `runEmbedded` with `sessionKey: `temp:setup-inference:${runId}`` and supplied no hidden run context, so the Gateway treated its terminal events as visible chat.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Gateway client could show a model verification check as a completed or failed chat.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix registers setup verification probes as hidden runs so the Gateway suppresses their chat and session events, including events processed after probe cleanup.",
+  "reasoning": "The first Gateway onboarding probe already passed its temporary session key to the embedded runner, whose terminal events carried that key to a Gateway projector that defaulted to visible chat. I checked that the later standalone verification RPC reused the same probe and that the September rewrite still supplied no visibility flags. The fix evidence confirms Gateway event leakage on both success and failure, while actual browser or Web Push delivery remains unverified."
+}

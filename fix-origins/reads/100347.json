@@ -1,0 +1,17 @@
+{
+  "rank": 100347,
+  "sha": "ccd0b930b05d76de4fcdc681f4352313a600d6be",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators could observe temporary memory spikes during compile validation on vaults with long audit histories.",
+  "impact": "slower-or-heavier",
+  "area": "plugins",
+  "summary": "Memory Wiki now replays the audit journal in 64 KiB chunks during compile identity validation, reducing peak memory use.",
+  "reasoning": "The path history and introducing diff show that compile identity validation read and split the entire journal from its first implementation in #110167. The fix PR measured higher peak memory as journals grew and confirmed matching identity results after streaming, with no reported compile failure or earlier lower-memory implementation of the same validation."
+}

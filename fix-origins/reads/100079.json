@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "ca009ba036a80172885b60feb7dcc4f0920744e3",
+  "cause_pr": 174043,
+  "confidence": "high",
+  "cause_quote": "The filter `(routeId) => routeId !== \"plugins\" && Object.hasOwn(DYNAMIC_ROUTE_PATH_PARAMS, routeId)` admitted the existing `plugin` route ID, generating `/plugin/` as an offline shell prefix.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a Gateway, VPN, or proxy outage, opening a plugin HTTP page could show the cached Control UI instead of the browser's network error or the server's error response.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix excludes `/plugin/` descendants from offline shell fallback while preserving the exact `/plugin` Control UI route.",
+  "reasoning": "Before #174043, the service worker's navigation handler left `/plugin/` requests to the browser. I checked the parent route definitions and the causing diff, which fed the generated `/plugin/` prefix into the worker's navigation matcher and enabled cached-shell substitution after a network failure or server error.",
+  "rank": 100079,
+  "sha": "90f1387dca4c2ece89293d37730894c7869e8781",
+  "rubric": "v1.2"
+}

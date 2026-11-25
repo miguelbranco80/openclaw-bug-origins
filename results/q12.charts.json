@@ -2,6 +2,6 @@
  {
   "stem": "q12-bugs-by-bot-verdict",
   "title": "Bugs per 100 changes, by what the bot said when the change merged",
-  "reading": "Each bar is a rate: bugs fixed in the three weeks that trace back to changes merged under that verdict, per 100 such changes. Verdicts seen on fewer than 20 sampled changes are left out."
+  "reading": "Each bar is a rate: bugs fixed in the period studied that trace back to changes merged under that verdict, per 100 such changes. Verdicts seen on fewer than 20 sampled changes are left out."
  }
 ]

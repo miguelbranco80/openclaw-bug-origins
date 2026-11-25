@@ -1,0 +1,8 @@
+{
+  "rank": 253,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge item concerns CI failures, and the Review history lists findings about Unix signal propagation through respawn wrappers, built-CLI test assertions, and a capture fixture deadline. None of those items raises a concern about a pending skills status read continuing after an interrupt."
+}

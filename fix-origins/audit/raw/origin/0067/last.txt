@@ -1,6 +1,17 @@
 {
-  "origin": "unclear",
+  "rank": 67,
+  "sha": "37343952e7db27cc7d7ccfc8c00ea09f82da6f8c",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
   "cause_sha": null,
+  "cause_pr": null,
   "confidence": null,
-  "reasoning": "The September diffs already show explicit compiles generating a fresh publication ID and writing a new cache entry, and the October teardown diff shows the existing deletion of the predecessor. I found no earlier working reuse path, and the pre-September diffs for the original persisted cache and dashboard publication were unavailable, so I could not verify whether replacement shipped with the feature."
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible beyond redundant compiled-cache publications in the vault log; each unchanged `wiki compile` replaced an identical cache row.",
+  "impact": "slower-or-heavier",
+  "area": "plugins",
+  "summary": "writeMemoryWikiCompiledCache now keeps the existing persisted publication when the source generation is unchanged and the validated persisted snapshot equals the newly compiled one, instead of writing and swapping in an identical row.",
+  "reasoning": "The reporting issue #168784 shows explicit compile always published a fresh row and deleted the active one, and states the docs only promise reuse for source synchronization; the issue explicitly 'asks for' equivalent reuse on explicit compile. Nothing broke or returned wrong data: this adds a reuse optimization to code that never had it, so it is a performance/behavior improvement rather than a defect."
 }

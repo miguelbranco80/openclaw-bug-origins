@@ -1,0 +1,17 @@
+{
+  "rank": 100343,
+  "sha": "6dbf1873f98a1154b06d1a3c39efc26b41dbcce9",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During the fs-safe upgrade, file operations such as Memory Wiki rollback could fail with `helper-unavailable` because the native helper was disabled.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix adopts fs-safe 0.13.1, lets supported installations select the native helper automatically, and preserves existing filename behavior.",
+  "reasoning": "The fs-safe 0.5 adoption diff shows that OpenClaw deliberately defaulted to JavaScript file operations, and the 0.12.0 adoption retained that default on macOS and Linux. The fix\u2019s documentation explains that atomic no-clobber moves require native support under 0.13.1, so the dependency upgrade exposed the incompatibility with the existing default. The local history shows no separate OpenClaw commit that enabled the new requirement before this fix."
+}

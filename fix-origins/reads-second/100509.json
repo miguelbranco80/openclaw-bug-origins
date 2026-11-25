@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `desktop-browser-smoke` without a machine-class override reserved a `beast` machine for a screenshot and short recording.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "The fix defaults Mantis desktop browser smoke to `tiny` while preserving explicit and environment overrides.",
+  "reasoning": "The September refactor moved the existing `beast` default into the shared resolver, and the October refactor preserved that default when it moved option resolution into session creation. The previous documentation specified `beast`, and the PR reports successful captures on smaller machines without identifying a failure on `beast`, so this was a change in resource allocation policy.",
+  "rank": 100509,
+  "sha": "1d6c385ae8f677716e3162533c5879daffcffa5f",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100247,
+  "sha": "3f99631b7ea2aef88b1742ffe817108e7734981c",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix made VoiceCallConfigSchema private and switched tests and fixtures to normalizeVoiceCallConfig.",
+  "reasoning": "I checked the preceding refactor, which replaced the last production import of VoiceCallConfigSchema with normalizeVoiceCallConfig and left the schema exported for tests. The fix resolves the resulting unused-export finding in CI and preserves runtime behavior."
+}

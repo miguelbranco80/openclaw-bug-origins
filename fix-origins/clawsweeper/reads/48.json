@@ -1,1 +1,8 @@
-{"rank": 48, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge items concern the 2026.9.3 post-core executor guard, wrapper import closure, and a generic data-model compatibility proof request; nothing addresses restorePluginCohortMigrationRowsInDatabase refusing when an obligation changed after publication."}
+{
+  "rank": 48,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Findings section flags an older updater handoff and a missing wrapper dependency. The Evidence section describes the rollback comparisons as preserving ownership and leaves unexamined what happens when a plugin migration decision or install record changes after publication."
+}

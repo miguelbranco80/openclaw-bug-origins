@@ -1,0 +1,8 @@
+{
+  "rank": 100385,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "This condition sends a warning for every skipped outcome, including scheduled jobs with payload.skipIfScratchEmpty.",
+  "outcome": "open-at-merge",
+  "note": "The \u201cKeep intentional scratch-empty skips silent\u201d item identifies the same notification branch and illustrates the problem with scratch-empty skips. Fixing that example alone would still leave notices when a scheduled automation\u2019s condition returned false."
+}

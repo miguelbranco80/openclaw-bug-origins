@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The new guard `if (!params.prepareGitExposure && preflightBaseSha === params.beforeSha)` returned `already-current` before checking whether the installed runtime artifacts were complete.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw update` on a Git checkout already at the requested commit failed runtime verification and left the missing artifacts unrepaired.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Git updates now skip rebuilding only when the installed runtime passes artifact verification, and Git status JSON reports artifact readiness and the built version.",
+  "reasoning": "I checked the parent of #138839 and confirmed that the Git updater ran the build and repaired missing Control UI assets even when the target commit matched HEAD. #138839 added the same-commit shortcut before the build, and #156996 narrowed that shortcut to builds with matching provenance, leaving incomplete runtimes with matching provenance on the same failing path.",
+  "rank": 100633,
+  "sha": "c1245de88a079fbc753cacbeb7983cb9ece46d08",
+  "rubric": "v1.2"
+}

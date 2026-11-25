@@ -1,0 +1,17 @@
+{
+  "rank": 100541,
+  "sha": "dc07bb8c9626d6c1ce73a4af46e5b3ace07d7a6d",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9bb764cb29f0a7cf7885efb5b3476ad996990b6c",
+  "cause_pr": 174315,
+  "confidence": "high",
+  "cause_quote": "The diff removed the PostgreSQL guard around `for (const file of input.additionalPaths ?? (await discoverBackupDatabasePaths({ ...input, agentRegistry: [] })))`, exposing SQLite updates to plugin metadata reads that resolve machine state from the worker environment.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update for a healthy selected profile failed with a schema error when the default profile had a newer database schema.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The update worker sets `OPENCLAW_STATE_DIR` from the request's explicit `stateDir` before inspection or snapshot discovery.",
+  "reasoning": "The causing commit's parent already inspected SQLite state using the selected `stateDir` and skipped supplemental backup discovery for SQLite. The causing diff removed that guard, and the metadata path at that revision read bundled discovery policy from the database resolved through `env`. The inspection payload already omitted `OPENCLAW_STATE_DIR`, so the newly reachable read could open the default profile's database."
+}

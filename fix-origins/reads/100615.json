@@ -1,0 +1,17 @@
+{
+  "rank": 100615,
+  "sha": "c531ab224174d94e78e803de46355915298ab477",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "076ae3e01b96744bab74dd29e5291f830341cdda",
+  "cause_pr": 161492,
+  "confidence": "high",
+  "cause_quote": "The original change handler added `event.currentTarget.checked = props.options[option];`, immediately restoring the previous checkbox state while the Gateway save was pending.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a user clicked a CI automation toggle, it snapped back while the save was pending and the popover shifted.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix shows each toggle choice immediately, keeps other toggles usable during the save, and removes routine status rows and automation links while preserving errors and blockers.",
+  "reasoning": "The introducing commit added both automation components with the immediate checkbox reset, a shared saving flag that disabled all toggles, and a saving message that changed the popover layout. The file history shows only one intervening edit, which removed help text and left the change handler and save behavior intact."
+}

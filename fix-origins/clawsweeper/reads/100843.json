@@ -1,0 +1,8 @@
+{
+  "rank": 100843,
+  "flagged": "exact",
+  "where": "earlier-only",
+  "quote": "When an ordinary conversation changes instructions, releasing its subscription can start native asynchronous shutdown; thread/resume then returns the pinned Codex implementation's 'thread is closing' RPC error.",
+  "outcome": "dropped",
+  "note": "The earlier P1 item \u201cAwait teardown for healthy threads before resuming\u201d warned that a configuration refresh could resume during native teardown and fall back to a fresh thread without the conversation history. The merge-time review marked the finding resolved, but the race shipped."
+}

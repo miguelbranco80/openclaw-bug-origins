@@ -1,0 +1,8 @@
+{
+  "rank": 100161,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "`completeLocalSetupRecovery` compares that child workspace with the recorded parent and throws. Even skipping provider setup therefore leaves a persisted team with a pending receipt instead of completing onboarding.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item \u201cAlign the team workspace with setup receipt completion\u201d identified the exact parent-child workspace mismatch that blocked setup after the team was created. A second open P1 item identified why provider activation skipped team creation, and no human comment answered either item."
+}

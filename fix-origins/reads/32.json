@@ -1,17 +1,17 @@
 {
   "rank": 32,
   "sha": "86fa3cedff45f1806bad18e3fd84f515b36088c9",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; the app kept one destroyed Activity in memory until the next Activity attached.",
-  "impact": "slower-or-heavier",
+  "user_saw": "nothing visible",
+  "impact": "sequence-or-timing",
   "area": "apps",
-  "summary": "CameraCaptureManager now observes the attached lifecycle owner, clears it on ON_DESTROY if it is still current, removes the old observer on replacement, and ignores owners that are already destroyed.",
-  "reasoning": "Issue #195636 came from static review: it describes a retained reference and a hypothetical bind against a destroyed owner, and the only device evidence is a trace showing the reference held until a replacement attaches. Captures already require foreground admission, which implies a live replacement Activity, so no failed capture was reported. The plain `lifecycleOwner = owner` store is long-standing (GraphQL blame goes back past the graft to January 2026 renames) and was never changed by a breaking commit, so this is lifecycle hardening of a bounded single-object leak rather than a reported defect."
+  "summary": "The Android camera manager now clears its current Activity reference when that Activity is destroyed and refuses to attach an already-destroyed owner.",
+  "reasoning": "The July 1 snapshot already shows the process-wide runtime owning the camera manager and the manager storing MainActivity as its lifecycle owner without clearing it on destruction. The September capture-isolation patch added an observer scoped to active captures, so it does not explain the idle retention. The offline history lookup stopped at a missing commit, leaving it unclear whether the camera feature shipped with the retention bug or an earlier change introduced it."
 }

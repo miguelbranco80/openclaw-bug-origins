@@ -1,0 +1,8 @@
+{
+  "rank": 100611,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cKeep an inventory loading state beside Gateway presence\u201d finding concerned a missing skeleton on the Devices page. The at-merge \u201cResolve merge risk\u201d item concerned reuse of the shared helper and gave no warning that the Settings sidebar\u2019s seven loading bars would shift into a search field and grouped navigation rows."
+}

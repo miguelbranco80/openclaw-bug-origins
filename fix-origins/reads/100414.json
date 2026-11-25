@@ -1,0 +1,17 @@
+{
+  "rank": 100414,
+  "sha": "634ca9ee00f8f8ae2f71ed9a3cc4f6c297da3589",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c40f15cd8a45233fc5b5541a13ab040939209146",
+  "cause_pr": 146092,
+  "confidence": "high",
+  "cause_quote": "The new reader used a bare `catch {` to discard the load error and emitted the fixed message `Config unavailable; using environment and default agent directory settings.`",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Doctor warned that configuration was unavailable without explaining why it had rejected the existing file.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The fix adds the original load error to the directory-resolution warning when an existing configuration file is rejected.",
+  "reasoning": "First-parent history and the introducing diff show that PR #146092 added the directory-resolution reader with both the bare catch and the generic fallback warning. The fix PR's pre-fix Doctor run confirmed that this path omitted the schema-validation reason."
+}

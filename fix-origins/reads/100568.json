@@ -1,0 +1,17 @@
+{
+  "rank": 100568,
+  "sha": "e2aa96231351d765fd45f65a08ca50cab2e851a6",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8f589bac90d45caf282ff221df3df46005aa8f35",
+  "cause_pr": 148209,
+  "confidence": "medium",
+  "cause_quote": "The new `ModalBottomSheet(` passed `onDismissRequest = onDismiss` and left `sheetGesturesEnabled` at its default, allowing a downward swipe at the top of the list to dismiss the picker.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Android, the saved Gateway picker closed when a downward swipe started at or reached the top of the list.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix disables drag and nested-scroll dismissal in the Android Gateway picker while preserving Back, outside-tap, and accessibility dismissal.",
+  "reasoning": "The introducing diff wired the scrollable picker into Material 3's default sheet gestures, and local history shows that its source stayed the same until the fix. The fix PR reproduced dismissal with a native finger swipe, while the introducing tests used programmatic scrolling. An intervening Compose BOM upgrade leaves the exact touch behavior of the original dependency version unverified."
+}

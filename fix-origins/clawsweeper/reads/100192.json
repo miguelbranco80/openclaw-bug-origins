@@ -1,0 +1,8 @@
+{
+  "rank": 100192,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Regression coverage item cites stale-run status accounting as covered by tests. Neither the at-merge review nor the earlier open items raises a concern that the stale cutoff could exclude a subagent that was still running."
+}

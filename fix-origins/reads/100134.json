@@ -1,0 +1,17 @@
+{
+  "rank": 100134,
+  "sha": "0851ea913342e06b5803833742025008fcb23f92",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected Bun builds, gateway HTTP clients could receive a connection reset in place of a complete 413 response, and queued HEAD rejections could lose their clean half-close.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix detects Bun's new HTTP socket behavior, uses an ordered half-close on affected builds, and waits for socket assignment before flushing queued HEAD rejections.",
+  "reasoning": "The helper's introducing diff used `res.end(body, ...)` for Bun, relying on the runtime to finish the response and half-close the socket. The fix PR reports that the same OpenClaw code passed all 31 wire-level cases on stock Bun and the pre-sync fork, then failed nine after upstream Bun #43557 made `res.end()` on `Connection: close` use `destroySoon`. The OpenClaw path history confirms the native Bun branch persisted through later edits, and the PR identifies the runtime change as the trigger ahead of an OpenClaw Bun pin update."
+}

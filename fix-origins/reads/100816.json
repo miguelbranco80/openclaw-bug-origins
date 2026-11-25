@@ -1,0 +1,17 @@
+{
+  "rank": 100816,
+  "sha": "d038d1dbbfcf3ed5010912301a7d6c406003d231",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "fdae00fe82e27dce6c7e55b3ea9b92ca44a1dd73",
+  "cause_pr": 156033,
+  "confidence": "high",
+  "cause_quote": "The adapter added `if (directMessageOnly && input.conversation.kind !== \"direct\")`, which rejects the runner's hard-coded group probe, and `previous?.bound && (previous.id !== input.conversation.id || previous.kind !== input.conversation.kind)`, which rejects a probe whose logical conversation differs from the route already bound by the scenario.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "QA operators saw repeated Telegram latency checks rejected or sent to a different conversation after the selected scenario ran.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix uses the selected scenario attempt's observed conversation and topic for Telegram probes, sends as the provisioned primary participant, and chains only replies from the probe itself.",
+  "reasoning": "I checked the parent of #156033 and confirmed that the same probe already ran after the selected scenario through a single userbot tied to the lane's native chat, with no rejection based on the probe's logical conversation or sender label. The diff for #156033 made those inputs part of native routing and admission while leaving the probe's fixed group and sender in place, so an existing check could now be rejected."
+}

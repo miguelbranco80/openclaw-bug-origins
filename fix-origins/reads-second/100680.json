@@ -1,0 +1,17 @@
+{
+  "rank": 100680,
+  "sha": "4d755295bc37cf910e168578697528af1753b98b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "cbaf1123550572466a9aeac9275a290fae267dc6",
+  "cause_pr": 109709,
+  "confidence": "high",
+  "cause_quote": "The commit added `return this.agent.hasQueuedMessages();`, which continued the session whenever input was queued, even after a failed model request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a second message arrived while the first model request was failing, the user got an answer to the second message and the first question went unanswered.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix makes the session settle after a model request fails so the runner can retry the original question and process the queued message as a separate turn.",
+  "reasoning": "In the parent of #109709, steering was already the default, the embedded runner handled retries, and a failed request that did not require a compaction retry could settle even with queued input. The diff for #109709 added a queue check that continued the session before the runner could handle the failure. The later #110174 change preserved that behavior when it converted the return value from a boolean to a named action."
+}

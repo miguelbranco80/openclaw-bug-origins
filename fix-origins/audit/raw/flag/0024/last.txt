@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Before merge finding concerns the sanitizer’s public SDK entry point. The Evidence section describes prefix truncation without raising a concern about Tool Search returning a partial network page with its next-page cursor intact."
+  "outcome": null,
+  "note": "The only finding concerns exporting the sanitizer from the deprecated security-runtime SDK barrel; nothing addresses Tool Search network pages being truncated to 20,000 characters while keeping a next-page cursor."
 }

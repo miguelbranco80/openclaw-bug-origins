@@ -1,0 +1,17 @@
+{
+  "rank": 100670,
+  "sha": "1919beb03d47cabdb85daeb3e07bc4d964b55c04",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "297fca0c6184d59836cb70001b193f10115dc9d1",
+  "cause_pr": 152734,
+  "confidence": "high",
+  "cause_quote": "The new `recentHistoryWindows.set(key, {` call stored `page: structuredClone(page)` even during a managed write, allowing a later read to reuse the rolled-back page when the same revision recurred.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Session history could show a rolled-back message or omit committed messages after a rollback or database replacement.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix bypassed shared recent-history and reset/control caches during managed writes and bound reset/control cache entries to the SQLite connection.",
+  "reasoning": "The parent of #152734 already supported recent-history reads and managed rollbacks, and its recent-history reader computed each page from the current projection. The #152734 diff added shared page reuse keyed in part by generation and indexed sequence, which the fix's rollback tests show can recur after an aborted write. The fix also addressed older reset-window caching from #112988 and unindexed-control caching from #149741."
+}

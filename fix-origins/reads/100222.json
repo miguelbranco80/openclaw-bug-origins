@@ -1,0 +1,17 @@
+{
+  "rank": 100222,
+  "sha": "1c636922a3e88e6bc3be9495e5794bb11ffcbda1",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "39ddf710f0f3f873c7fb2e73f8127bf649f9b018",
+  "cause_pr": 110605,
+  "confidence": "high",
+  "cause_quote": "The original toast started `globalThis.setTimeout(() => this.dismiss(), options.durationMs ?? DEFAULT_TOAST_DURATION_MS)` unconditionally, so keyboard focus and pointer hover could not delay dismissal.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The archive Undo toast disappeared after six seconds even while the user hovered over it or kept keyboard focus on Undo.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The shared toast now pauses expiry while hovered or focused and resumes the remaining time once both interactions end.",
+  "reasoning": "I checked the introducing diff, which added archive Undo with an unconditional dismissal timer and no hover or focus handlers. The toast file's first-parent history shows that the interaction handlers first appeared in this fix, so the reported failure was present when archive Undo shipped."
+}

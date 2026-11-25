@@ -1,1 +1,8 @@
-{"rank": 229, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review has no findings; its items ask for the pending published-2026.9.4 package rerun and generic data-model compatibility proof. It describes private-path containment approvingly and never questions rejecting dependency targets that resolve into the staged candidate package via host links."}
+{
+  "rank": 229,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items call for a package rerun covering the optional-import correction and for upgrade compatibility proof. The Evidence section describes containment checks and symlink-escape coverage without raising the risk that Doctor could reject a valid dependency reached through a Windows junction into the staged package."
+}

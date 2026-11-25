@@ -1,0 +1,8 @@
+{
+  "rank": 100024,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Before merge finding concerned OpenRouter\u2019s hook turning 429s into timeouts. The merge-time Evidence section distinguished free-credit exhaustion from throttling but raised no concern about the missing DashScope route aliases that kept Qwen\u2019s classifier from running."
+}

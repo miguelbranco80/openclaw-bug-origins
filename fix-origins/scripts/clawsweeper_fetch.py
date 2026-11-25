@@ -55,7 +55,8 @@ def main():
         data = gh.graphql(QUERY, n=number)
         with open(out, "w") as handle:
             json.dump(data["data"]["repository"]["pullRequest"], handle)
-    print(f"review-bot comments fetched for {len(os.listdir(RAW))} of {len(prs)} causing pull requests")
+    have = sum(os.path.exists(os.path.join(RAW, f"{number}.json")) for number in prs)
+    print(f"review-bot comments fetched for {have} of {len(prs)} causing pull requests")
 
 
 if __name__ == "__main__":

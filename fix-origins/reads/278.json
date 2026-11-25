@@ -1,17 +1,17 @@
 {
-  "rank": 278,
-  "sha": "3f2e7078de23a41f21f14f57e76523be5c165f11",
-  "rubric": "v1.1",
   "origin": "never-worked",
   "cause_sha": "be2850e6d25ea785b61f965bfb34d5737d8d2f24",
   "cause_pr": 168199,
   "confidence": "medium",
-  "cause_quote": "The new agents-delete-drain.ts added every stored session from readSessionEntrySummariesInWorker as a target and started them all at once with `const sessions = [...targets.values()].map(async (target) => { const drain = await prepareSessionLifecycleDrain(target);`.",
+  "cause_quote": "The introducing diff used `const sessions = [...targets.values()].map(async (target) => {` and immediately awaited `prepareSessionLifecycleDrain(target)` for every target, launching drains for all stored sessions without a concurrency limit.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Deleting an agent with hundreds of idle stored sessions failed with 'worker task capacity reached' and cleanup stayed pending, and a pending deletion made the session catalog unavailable.",
+  "user_saw": "An agent with hundreds of idle sessions could remain stuck deleting after a Gateway restart with a `worker task capacity reached` error, and a pending deletion could make the session catalog unavailable.",
   "impact": "failed-every-time",
-  "area": "gateway",
-  "summary": "Agent deletion now drains stored sessions with a concurrency limit of four, and session catalogs skip agents with a pending deletion.",
-  "reasoning": "be2850e6d25e created the drain with an unbounded map over all stored sessions, and at that commit prepareSessionLifecycleDrain already did placement reads via readSessionWorkerPlacementAsync, whose getManyAsync runs on the shared state worker (runOpenClawStateWorkerOperation), so large histories could hit worker capacity from the start; bb4fa451b28e only wrapped the same fan-out with onPrepared/finished handling. Medium because I did not confirm the exact worker capacity cap at be2850e6, and the catalog-unavailability half of the fix may have a different origin that I did not trace."
+  "area": "agents",
+  "summary": "The fix limits agent deletion to four concurrent session drains and skips deleting agents when building session catalogs.",
+  "reasoning": "The deletion path introduced in #168199 inventoried idle sessions and drained them concurrently, and its placement checks already reached worker-backed reads. I checked that #172511 retained the eager fan-out and that #194541 only changed how drain errors were formatted in that file. The fix bundle reproduces worker exhaustion on the immediate parent, while the original failure threshold and the separate catalog defect's origin remain unverified.",
+  "rank": 278,
+  "sha": "3f2e7078de23a41f21f14f57e76523be5c165f11",
+  "rubric": "v1.2"
 }

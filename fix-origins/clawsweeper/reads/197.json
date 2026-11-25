@@ -1,1 +1,8 @@
-{"rank": 197, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Findings concern the shipped 2026.9.3 post-core handoff lacking an executor and the wrapper import closure; nothing addresses hashing a missing package.json in a prior plugin directory and rolling back the core update."}
+{
+  "rank": 197,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Findings section flags a missing executor in the post-core handoff and a missing wrapper dependency. The data-model compatibility item asks for proof about stored recovery records and gives no indication that the pre-swap snapshot can fail when an installed plugin is missing package.json."
+}

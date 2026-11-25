@@ -1,0 +1,17 @@
+{
+  "rank": 100144,
+  "sha": "56521b610f441ae4f7190a2d82b7acd4feba2991",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "882b2fe9004a59230d8fcae0cb17880f65e7bac0",
+  "cause_pr": 106232,
+  "confidence": "high",
+  "cause_quote": "The initial Reef guard passed the entire message to `hasHighEntropyToken(text)`, whose `text.match(/\\b[A-Fa-f0-9]{32,}\\b/g)` fed GitHub revision IDs into the secret-denial heuristic.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Reef blocked messages containing ordinary GitHub revision links when the revision ID was flagged as a secret.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix preserves the originating chat for task replies, separates transcript mirroring from saved delivery routes, and exempts GitHub revision IDs in commit, blob, and tree links from Reef\u2019s entropy heuristic.",
+  "reasoning": "The classification covers the Reef false positive, whose origin is directly verifiable in this multi-defect fix. The introducing diff added the unqualified scan when Reef entered OpenClaw main, and path history shows the scanner stayed unchanged until this fix. The WebChat fallback predates the shallow checkout boundary, and the visible Gateway refactor preserves the earlier route overwrite."
+}

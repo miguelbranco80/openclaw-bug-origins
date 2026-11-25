@@ -1,0 +1,8 @@
+{
+  "rank": 100353,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "At merge, the Evidence section treated the fallback as correctly scoped to the compaction boundary. The earlier Resolve merge risk item warned about dropping current-session context and did not raise the risk of replaying previously compacted history."
+}

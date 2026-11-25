@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "1c88dd27dd189ec89f4218380be235d893c9b28a",
+  "cause_pr": 164306,
+  "confidence": "high",
+  "cause_quote": "The new verifier returned `...result(\"verified\")` after checking Gateway health, process identity, and `http.healthz !== 200 || http.readyz !== 200`, without calling `sessions.list`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The updater could report that activation was verified even though the Gateway could not list sessions.",
+  "impact": "other",
+  "area": "update",
+  "summary": "The updater now requires a valid response to one authenticated compact `sessions.list` request from the same Gateway boot before it marks activation verified.",
+  "reasoning": "The introducing diff added immutable activation and its verifier together, and the original probe helper called the `health` RPC while the verifier relied on health, HTTP readiness, and process identity to declare success. The file history shows that the intervening refactors never added or removed a session listing check, so the false-positive path was present from the first implementation.",
+  "rank": 100289,
+  "sha": "b96c661becbce19eaeed6334b55ec44ea4e96b39",
+  "rubric": "v1.2"
+}

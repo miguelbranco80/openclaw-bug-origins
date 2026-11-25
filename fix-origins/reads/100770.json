@@ -1,0 +1,17 @@
+{
+  "rank": 100770,
+  "sha": "d39b1225ab4aac8ac8442fd353707cc907ec73e1",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "b280237832a056d42f88ddd13a75526053da4a1b",
+  "cause_pr": 143758,
+  "confidence": "high",
+  "cause_quote": "The new settings branch used `: html` followed by `<div class=\"plugins-toolbar\">` in place of a page heading, then rendered `renderSkillLibrary(this.library)` separately inside the settings workspace.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Skills settings page had no title or description, and its four primary actions appeared in two separate rows.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix adds the shared Skills settings header and groups Search skills, Workshop, Create skill, and Import skill in one toolbar that wraps on narrow screens.",
+  "reasoning": "I checked the route and rendering diffs for #143758 and confirmed that it introduced `/settings/skills` as a dedicated settings surface. The same diff gave that surface a navigation toolbar without a heading and rendered the existing creation and import controls separately, so the layout defect shipped with the page."
+}

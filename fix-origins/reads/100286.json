@@ -1,0 +1,17 @@
+{
+  "rank": 100286,
+  "sha": "325d7f33facbacf7cd593680dcd23c9ea9f86447",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The fix corrected the WebKit overlay and composer test fixtures so all twelve previously excepted assertions could run without expected-failure flags.",
+  "reasoning": "I checked the fix diff and confirmed that the changes are confined to test fixtures, test configuration, CI selection, and CI documentation. The blamed commit, #168269, added the WebKit CI lane with twelve already-observed assertion failures, and the fix addressed those failures through changes to test timing, browser setup, and assertions."
+}

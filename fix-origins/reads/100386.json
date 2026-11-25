@@ -1,0 +1,17 @@
+{
+  "rank": 100386,
+  "sha": "e0a092d59e13f9a975d8466d87b07573c5359d82",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Browser snapshots and page-text inspection could time out on a healthy tab when other tabs stalled or requests overlapped during reconnect.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix probes tab identities concurrently and evicts only the failed browser connection during recovery, preserving blocked-tab state.",
+  "reasoning": "At the shallow boundary, page selection already awaited tab probes serially, and stale recovery already closed the connection cached for the endpoint and cleared its blocked-tab state. The July changes bounded individual probes and reworked connection retirement, but their diffs left those behaviors in place. Missing older history prevented identifying when the defects first shipped or verifying that the affected scenarios previously worked."
+}

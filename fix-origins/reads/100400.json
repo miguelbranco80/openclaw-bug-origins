@@ -1,0 +1,17 @@
+{
+  "rank": 100400,
+  "sha": "a6b03733ccd964f22e8b9b4e2b2f8f8e5d2b4a60",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "59e95fe3fd8d62ff0ad560e931883a6d31703402",
+  "cause_pr": 98021,
+  "confidence": "high",
+  "cause_quote": "The new catalog-backed builder initialized its choices with `const supported = new Set<OpenAIThinkingLevelId>([\"off\"]);`, adding Off even when the catalog omitted it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The reasoning picker offered Off for Codex models that could not disable reasoning, and selecting it could leave the model using its default effort.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The OpenAI provider now builds catalog-backed reasoning choices from the advertised efforts and preserves Off when the catalog explicitly supports it.",
+  "reasoning": "The parent commit used static thinking levels, including Off, and had no catalog-backed policy. PR #98021 introduced the catalog-backed builder with the unconditional Off entry and added tests that expected Off even when the catalog listed only High or supplied an empty list."
+}

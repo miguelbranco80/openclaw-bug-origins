@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "65e12328aa20d2226b932ccb3bc0e2b2a719bf44",
+  "cause_pr": null,
+  "confidence": "medium",
+  "cause_quote": "The new chat page subscribed with `this.context.sessions.subscribe((state) => { this.applySessionsState(state); })`, and `applySessionsState` called `state.requestUpdate?.();` without checking whether the update changed the open conversation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An idle conversation could feel sluggish while other sessions updated or presence heartbeats arrived.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix keeps session and presence data current while redrawing the open chat only when those updates change something it displays.",
+  "reasoning": "The shared roster subscription already requested redraws for unrelated publications when it was introduced, and the later split-pane and animation-frame changes carried that behavior forward. The fix's browser evidence confirms the extra renders on the immediate parent, but I did not verify the same rename event end to end at the introducing commit. The heartbeat redraw came from a separate later change that assigned a fresh object to reactive chat-header presence state on each event.",
+  "rank": 100458,
+  "sha": "1c573c4802ff2b40af85f16e0a32bdc9f65ffb88",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "28d8ee4f096b5d4cd99489e12d7a495a97750599",
+  "cause_pr": 152641,
+  "confidence": "high",
+  "cause_quote": "The new managed sandbox preparation called `await synchronize(\"canonical\")`, which staged the guest checkout without excluding `.openclaw/tmp` and subjected scratch files to the existing 64 MiB result limit.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a sandbox tool downloaded a file larger than 64 MiB into `.openclaw/tmp`, every subsequent attempt to prepare the sandbox failed with a workspace result size error.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix excludes checkout-root `.openclaw/tmp` from workspace synchronization and recovery of pending results.",
+  "reasoning": "Agent guidance already recommended `.openclaw/tmp` for scratch files before #152641 introduced managed sandbox synchronization. I checked that the projection was absent from the parent and that the introducing commit captured guest files under an exclusion policy that admitted this scratch path, then retried pending results under the existing 64 MiB cap. The later blame candidate added exclusions for other generated files.",
+  "rank": 100107,
+  "sha": "8b99577d469991477dd7e8ce8ae9c4f9a00b048e",
+  "rubric": "v1.2"
+}

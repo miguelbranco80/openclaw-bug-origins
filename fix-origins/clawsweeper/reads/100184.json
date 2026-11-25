@@ -1,0 +1,8 @@
+{
+  "rank": 100184,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings concern owner revocation during the update handoff and routing of notices after restart. The review identifies no tool-profile restriction that prevents owners from starting an update in ordinary chat."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "7a82a475dc2338e6b5679c8c5795015d1ee8a0f1",
+  "cause_pr": 167875,
+  "confidence": "high",
+  "cause_quote": "The new `sessionChanges.emitBatch([...changes, ...committedTranscriptChanges])` installed a transcript fact whose callback `fact.kind === \"unchanged\" ? undefined : advanceSessionTranscriptUpdateVersion` advanced the counter before listeners could read the same write's entry projection.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Session-row refreshes reuse committed entry, participant, Board, and summary-watermark facts instead of rereading them from the worker.",
+  "reasoning": "I checked the parent of #167875 and confirmed that writes combining transcript appends with entry replacements already captured the resulting watermark and that the Gateway could reuse it. The new receipt installation advanced the process-wide counter before the existing projection recheck, so the publisher discarded its own current facts and forced another worker read. The fix's combined-write test checks that the row becomes stale as expected without an extra read.",
+  "rank": 100703,
+  "sha": "33a3fb23db7a2b9f6c58279613702423337b40ed",
+  "rubric": "v1.2"
+}

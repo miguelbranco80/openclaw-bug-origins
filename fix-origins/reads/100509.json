@@ -1,0 +1,17 @@
+{
+  "rank": 100509,
+  "sha": "1d6c385ae8f677716e3162533c5879daffcffa5f",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The default Mantis desktop browser smoke reserved a larger `beast` machine to capture a screenshot and a short recording.",
+  "impact": "slower-or-heavier",
+  "area": "other",
+  "summary": "The fix makes `desktop-browser-smoke` default to `tiny` while preserving explicit class overrides and the defaults for other Mantis tasks.",
+  "reasoning": "The prior docs specified `beast` as the default, and the earliest locally inspectable browser-smoke code already used that class with `--no-sync`. Both cited refactors preserved the effective default, and the PR describes reducing the machine size for a working capture workload."
+}

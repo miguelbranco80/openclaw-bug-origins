@@ -39,6 +39,35 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
   runner. The rubrics, the categories and their definitions are unchanged. Every stored answer was made with the
   earlier wording. `PROTOCOL.md`, "What differs from how the published answers were made", lists the differences.
 
+## The extension of 25 November 2026
+
+The study was first published with 300 November fixes read by Claude Opus 5.5 (tag `published-2026-11`). It was then
+extended to 1,202 fixes from 10 September to 22 November, all read by gpt-6.2-sol, with the Opus answers for the
+November fixes kept as the check. Finding 23 in the README sets the versions side by side. What changed:
+
+| Claim in the first version | What the extension found | What the report now says |
+|---|---|---|
+| A third of fixes repair no bug by the first readers; a tenth by a second model | With the readers' roles swapped the same gap appears: 8% by the main reader on 1,202, 33% by the other on the 300 | It depends on the reader; each reader is consistent with itself |
+| Never-worked bugs outnumber broken-later ones by about two to one | 443 against 389 by the main reader, in both periods | About as many; the other reader says double |
+| A broken thing stayed broken about three weeks | 11.8 days overall; 28.8 for November fixes and 8.6 for the earlier weeks, where causes could not be traced as far back | One to four weeks; the periods cannot be compared on this |
+| Straight-to-main commits show no sign of more bugs (5 cases) | 19 cases: 0.42 times the rate per commit (0.26 to 0.66) | Fewer per change; much of it is size |
+| No sign that anyone is overloaded | Individual workload: still nothing. Busiest third of days: 1.73 times the quietest (1.11 to 2.71) | Individual workload shows no effect; busy days are a tentative exception |
+| Occasional contributors did no worse; the middle group about double | Occasional contributors: 0.47 times (0.25 to 0.9). The middle group: no clear difference | Occasional contributors' changes carry about half the bugs |
+| A second person merging or reviewing: no clear difference | Merged by someone else: 0.42 times (0.26 to 0.68) | About half the bugs; mostly outside contributors' changes |
+| Files other people were editing: about two and a half times the bugs | 1.67 times, and only where two or more others were editing | Supported, weaker |
+| Code changes without tests: no clear difference | 0.32 times (0.18 to 0.57) | Fewer; they are a different, smaller kind of change |
+
+Method changes made with the extension:
+
+- Every comparison of bug rates now also holds equal when the change landed (the month for pull request
+  comparisons, the half-month for commit comparisons). An older change has had longer for its bugs to be found and
+  fixed: commits from September show about three times the rate of commits from November. Over three weeks of fixes
+  this mattered little; over ten it would have produced false differences, such as a much larger busy-day effect.
+- Bug rates per 100 commits are four to five times higher than in the first version, because fixes are now counted
+  over ten and a half weeks instead of three. The rates are for comparing kinds of change with each other.
+- The main reader ran without GitHub lookups, against a clone with history back to 1 July 2026.
+- The blind review (findings 7 to 9) and the first study (finding 10) were not repeated; they describe November.
+
 ## Not done
 
 - No project code was run and no test was written.

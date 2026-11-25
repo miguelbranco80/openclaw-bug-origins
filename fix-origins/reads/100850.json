@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "a17f8c2b5d19f5dd99fc33044f8e87fbf4fe0fc4",
+  "cause_pr": 140884,
+  "confidence": "high",
+  "cause_quote": "The new popup added `if (anchorBounds != geometry.anchor || admitted?.size != popupContentSize) owner.cancel(this)`, which closed the menu even when its measured size differed by just one pixel.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected Android phones, tapping Chat actions made the menu flash and immediately close.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The fix rounds each padding edge separately, tolerates one-pixel measurement differences, and recalculates placement when the measured size changes.",
+  "reasoning": "I checked that the parent used Material3\u2019s DropdownMenu for Chat actions and already had a test that opened it and selected Refresh chat. PR #140884 replaced that working menu with a fold-aware popup whose exact-size cancellation explains the reported dismissal when Compose measured the popup one pixel taller than expected.",
+  "rank": 100850,
+  "sha": "2f97cdbacace6e5db2bea3043d64b8797e338d62",
+  "rubric": "v1.2"
+}

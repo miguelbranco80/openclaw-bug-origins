@@ -1,0 +1,8 @@
+{
+  "rank": 100107,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items cover backend compatibility, host-file admission, and older-version recovery. Neither those items nor the earlier findings in Review history raise the risk that synchronization includes .openclaw/tmp and repeatedly fails when a scratch file exceeds 64 MiB."
+}

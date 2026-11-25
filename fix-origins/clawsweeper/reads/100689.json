@@ -1,0 +1,8 @@
+{
+  "rank": 100689,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The lookup deliberately includes closed PRs and this condition accepts any marker-bearing candidate as published. After a crash or lost response, a previously created draft may be closed before restart; the UI then offers Open PR for a closed item instead of creating or reporting a recoverable draft.",
+  "outcome": "dropped",
+  "note": "The earlier \u201cDo not report a closed marked PR as published\u201d item questioned the same recovery lookup and was no longer open at merge. It addressed accepting a closed draft with a matching marker, while the shipped bug came from missing a closed PR that had accepted an update and still carried the original request marker."
+}

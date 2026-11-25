@@ -1,0 +1,17 @@
+{
+  "rank": 100240,
+  "sha": "f50d4ce71e3eee4005f297f05caa402f8a571fca",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c8c03f90d73438a6e0caf292c5484564cc3cb657",
+  "cause_pr": 136329,
+  "confidence": "high",
+  "cause_quote": "The swap added `previousTree = await baseline.tree(targetSwapRoot);` before activation, and the new reader threw `new Error(\"Package rollback verification timed out\")` when its deadline expired.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a busy host or slow disk, `openclaw update` could abort before activation and incorrectly report that the retained package tree had changed.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix lets npm updates continue after a baseline fingerprint timeout, verifies directory identity, version, and launchers during rollback, and preserves the warnings in update history.",
+  "reasoning": "I checked the causing commit and its parent. The parent already supported staged npm updates and could reach activation without a full-tree fingerprint, while #136329 added the mandatory scan with a 30-second cap and routed a timeout through the swap failure handler. Its recovery check also treated a missing fingerprint as evidence that the retained tree had changed."
+}

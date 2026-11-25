@@ -1,0 +1,17 @@
+{
+  "rank": 100217,
+  "sha": "aceda1bdd357f7dc67b123720c45d2169f54258f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "07b7d6446ca14a706787111b6cf075eb34353af6",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `value = JSON.parse(new TextDecoder().decode(bytes));`, which replaces malformed UTF-8 with replacement characters before JSON parsing.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An interrupted Matrix send could replay a message containing replacement characters if its saved delivery plan had malformed UTF-8.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix makes Matrix reject malformed UTF-8 in persisted delivery plans before parsing their JSON.",
+  "reasoning": "The path history and introducing diff show that the same commit added persisted Matrix delivery-plan recovery and the permissive decoder, then used the decoded event content for replay. The fix PR reproduced acceptance of a malformed plan whose message body contained a replacement character, matching the behavior of the original decoder."
+}

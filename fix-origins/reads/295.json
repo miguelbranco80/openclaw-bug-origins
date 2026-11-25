@@ -1,17 +1,17 @@
 {
   "rank": 295,
   "sha": "649df9afd90875837fe78ade005180d6d7242d28",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c5a2220d37716ce9eb0c4372b0ea409a44f7291d",
+  "cause_pr": 113071,
+  "confidence": "high",
+  "cause_quote": "The retained-window rehoming code added `.selectFrom(\"session_nodes\").select([\"current_session_id\", \"entry_json\", \"session_key\"]).where(\"session_key\", \"!=\", sessionKey)` to the row deletion routine, scanning all surviving session nodes while the deletion transaction held the SQLite write lock.",
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Possibly brief stalls of other database writers while a session with retained transcript windows was deleted in a very large session database; no specific user report is cited.",
+  "user_visible": "yes",
+  "user_saw": "Other SQLite writes could wait while a session deletion scanned a large database for entries that still referenced retained transcript windows.",
   "impact": "slower-or-heavier",
   "area": "storage",
-  "summary": "Runs the surviving-reference scan for empty-transcript session deletions before BEGIN and reuses it in the write transaction only if the database revision is unchanged, cutting the SQLite writer hold from about 1 s to about 1 ms in a synthetic test.",
-  "reasoning": "The PR is a performance change that moves an unchanged read (same SQL and parser) out of the write transaction, backed by a synthetic benchmark rather than a reported failure, and claims no lower total latency. Nothing indicates a commit made deletion hold the lock longer than before, so it is a performance improvement of code that was not slower earlier, which the rubric classifies as not-a-defect."
+  "summary": "The fix prepares retained-window successor lookups before the SQLite write transaction for deletions with no transcript-removal plans and recomputes them inside the transaction if an intervening write invalidates the result.",
+  "reasoning": "I checked the schema change and its parent and confirmed that the retained-window rehoming scan ran inside the deletion transaction from the moment it was introduced. The November commit replaced that scan with a SQL reference projection in the same transaction, and the fix PR measured the lock hold with that projection running inside versus outside the transaction."
 }

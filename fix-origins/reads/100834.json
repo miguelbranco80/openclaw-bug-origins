@@ -1,0 +1,17 @@
+{
+  "rank": 100834,
+  "sha": "45630ed81200bfb64f973d73ea10c29425fc0358",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix removes unused exports and an uncalled test helper, and updates an approval test to import the adapter directly.",
+  "reasoning": "The commit message identifies the changes as cleanup for the full-tree dead-code check. The six-file diff confirms that the remaining runtime function bodies and test assertions are unchanged."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100574,
+  "sha": "d7f8fb798cba87e7aede7cb995528957e5aca067",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "plugins",
+  "summary": "The fix adds a typed aggregate error that exposes both provider-auth persistence and cleanup failures, uses the cleanup failure as the native cause, and preserves diagnostic order.",
+  "reasoning": "The prior code already retained both failures in AggregateError.errors, and an existing test explicitly required the initiating failure to be the native cause. The fix changes that internal convention and removes three lint suppressions while preserving operator-facing diagnostics. The evidence describes no user-facing failure attributable to the old convention."
+}

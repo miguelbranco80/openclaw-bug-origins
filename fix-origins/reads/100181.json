@@ -1,0 +1,17 @@
+{
+  "rank": 100181,
+  "sha": "47cf3f1d4d306efc01832f75523aa54b8a06f04d",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8a32b5a4b54396daf72e3006ebed581785a2ed85",
+  "cause_pr": 144454,
+  "confidence": "high",
+  "cause_quote": "The first Crabbox sandbox backend added `catch { return { running: false, actualConfigLabel: entry.image, configLabelMatch: false }; }` around lease inspection in `describeRuntime`, so any inspection failure made the runtime appear stopped.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators saw `openclaw sandbox list` report a runtime as stopped when lease inspection failed.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "The fix reports managed executable inspection errors and lease inspection failures while retaining the existing handling for missing executables and missing or released leases.",
+  "reasoning": "I checked the sandbox backend's introducing diff and confirmed that its listing handler already reported a stopped runtime when inspection threw for a nonzero exit, malformed JSON, or a mismatched lease ID. I used the sandbox listing defect for the single cause field and verified that the separate managed executable defect also shipped with its feature, in #143768 (`4af8616c62ae05f9eb47b436fd2c2e394c50c436`), which added `fs.lstat(binary).catch(() => undefined)`."
+}

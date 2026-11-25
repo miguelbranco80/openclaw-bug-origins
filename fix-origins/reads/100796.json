@@ -1,0 +1,17 @@
+{
+  "rank": 100796,
+  "sha": "869480df7a5e44dce56bd612695f3247090a14b7",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the log file changed, `openclaw logs --follow` skipped initial records when the new file was already larger than the previous file's byte cursor.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The fix tracks the file path alongside the byte cursor and rereads a different file without that cursor, preserving local fallback when configuration is unavailable.",
+  "reasoning": "At the shallow boundary, the CLI already sent a bare byte cursor, and the Gateway tail reader resolved the active daily log and used that cursor as its starting offset when it fit in the file. The history walk failed at the boundary on a missing commit, so I could not establish which older change first combined those behaviors or whether following across rollover had previously worked."
+}

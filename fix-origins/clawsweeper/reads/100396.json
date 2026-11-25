@@ -1,0 +1,8 @@
+{
+  "rank": 100396,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge item \u201cAllow rejected close attempts to retry retained cleanup\u201d concerns ownership release after a failed shutdown. The Verification section cites Docker namespace tests and raises no concern about the PID namespace probe failing during Gateway startup in PRoot."
+}

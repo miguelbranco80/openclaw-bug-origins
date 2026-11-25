@@ -1,0 +1,8 @@
+{
+  "rank": 100836,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cConfig and upgrade warning resolved\u201d section mentions reopening after inventory admission without identifying a risk from closing the database during a no-op Doctor check. The earlier inventory findings concern pairing updates, inference, and transfers during publication."
+}

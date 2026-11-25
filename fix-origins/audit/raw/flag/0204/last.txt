@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The earlier finding “Include rollback journals in both retry destination inventories” addressed missing declarations for journals that a failed import could create. The shipped failure came from declared sidecars of an existing SQLite database remaining as manifest roots after capture filtered out their entries."
-}

@@ -1,0 +1,8 @@
+{
+  "rank": 100130,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Warm schema admission entry in Provenance checked describes the validation change as intentional and raises no concern about cached reads after Doctor revokes schema admission. The Before merge item on data-model compatibility asks for general upgrade proof."
+}

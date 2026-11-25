@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "890f20be06cf703821cef078bc0846944a6f3337",
+  "cause_pr": 107634,
+  "confidence": "high",
+  "cause_quote": "The new macOS repair path used `guard response.success, reportedStatus != \"error\", reportedStatus != \"warning\" else {`, rejecting successful repairs that reported a nonfatal warning.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a repair completed with a warning, the macOS app ran it again on every launch and stopped the Gateway for about two minutes each time.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The CLI now reports whether core repair completed, and the macOS app uses that result to clear pending repair even when advisories are present.",
+  "reasoning": "The introducing diff added both the warning-rejecting guard and the launch repair flow, which cleared the pending receipt flag only after the guard accepted the result. In that same revision, the CLI already returned `status: \"warning\"` for nonfatal plugin advisories and exited with an error only for `status: \"error\"`, so the mismatch shipped with the macOS workflow.",
+  "rank": 100288,
+  "sha": "35008f6988895d9901e0a0166633236b7ba514b5",
+  "rubric": "v1.2"
+}

@@ -1,17 +1,17 @@
 {
   "rank": 228,
   "sha": "306bf7730b0108e863a6ecfc549bc8289d9bddc7",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e085c3fb261e6d2f72c9bcc1ae81c0c7205c2d70",
+  "cause_pr": 172440,
+  "confidence": "high",
+  "cause_quote": "The new fallback `findTrailingCallPrefix(candidate, matcher, resolveProtectedRanges, leading.end)?.start` parsed the same Markdown buffer again after the sequence scan had already resolved its protected ranges.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible beyond extra CPU and allocation while streaming replies containing inline code or literal call-like prose.",
+  "user_visible": "yes",
+  "user_saw": "Replies containing call-like text could take longer to stream.",
   "impact": "slower-or-heavier",
   "area": "agents",
-  "summary": "Shares lazy code-protection ownership across tool-call candidate classification and lets the carried fence scanner settle paragraphs and judge unfinished lines, avoiding redundant full Markdown parses during plain-text tool-call streaming.",
-  "reasoning": "The PR frames itself as bounded waste removal measured against a benchmark, with output byte-for-byte unchanged and no reported failure or earlier faster state; it names no commit that made streaming slower. Under the rubric this is a performance improvement of code that was never faster before, so not-a-defect."
+  "summary": "The fix shares Markdown protection results across candidate scans and avoids full parses when the incoming text settles paragraph ambiguity before the first candidate.",
+  "reasoning": "I checked #172440 and its parent: the leading-call branch previously used a grammar-only tail scan after the sequence scan, and #172440 routed that branch through a helper that eagerly resolved Markdown protection again. The fix's call-plus-unfinished-marker test covers that branch and reduces same-text resolver calls from three to two. The fix also improves a separate admission fallback that already existed in the original fence fast path."
 }

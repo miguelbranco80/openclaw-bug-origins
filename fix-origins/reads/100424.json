@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "698cac4c78b806d5db143008e4b83fd588a33583",
+  "cause_pr": 168942,
+  "confidence": "medium",
+  "cause_quote": "The migration added `if (!isSupported()) {` using `@openclaw/proc-safe/reaper` before the process-group scan, so the first cancellation could trigger a whole-process report even when there was no zombie to reap.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first cancellation of a Linux command with no child processes could briefly delay the Gateway.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix defers the native reaper support check until a fresh process-group scan finds an adopted direct-child zombie.",
+  "reasoning": "I checked the migration diff and its parent: Linux command cancellation already used this cleanup path, and its eager check loaded Koffi and bound `waitpid`. The fix PR's before-and-after measurements tie the whole-process report to the new proc-safe check, but they do not measure the older Koffi path.",
+  "rank": 100424,
+  "sha": "bbbaf48dca2021d3512da2c441e20be5f2a775f6",
+  "rubric": "v1.2"
+}

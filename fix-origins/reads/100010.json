@@ -1,0 +1,17 @@
+{
+  "rank": 100010,
+  "sha": "ae84baa0748bf6bfb23513343f2abf26e86f7b8b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a535fbc2d36f7cf0a2a645b4fd9a366a3063938e",
+  "cause_pr": 188891,
+  "confidence": "high",
+  "cause_quote": "The added `await measureGatewayCloseStep(\"shutdown.process-supervisor\", shutdownProcessSupervisor);` let a rejected supervisor join skip database admission, SQLite reader, and spawn broker cleanup.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an earlier child-process cleanup failure, stopping the Gateway hung until the shutdown watchdog forcibly killed it.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix joins the supervisor first, attempts all remaining shutdown steps even if the join fails, and reports that failure as retained resources so an external stop can exit promptly.",
+  "reasoning": "I checked the causing commit and its parent: the parent already rethrew stored supervisor cleanup failures, and the Gateway still ran its broker cleanup after a core close error. The new unguarded await put that existing rejection ahead of broker retirement, leaving the broker alive and reproducing the shutdown hang documented in the fix."
+}

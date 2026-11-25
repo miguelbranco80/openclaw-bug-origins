@@ -1,7 +1,17 @@
 {
-  "origin": "latent",
-  "cause_sha": null,
-  "trigger_sha": "aa0ad4c78044f389460de42caa798ad5f75c86a9",
-  "confidence": null,
-  "reasoning": "The original rehearsal snapshot copied SQLite databases and only transformed the shared database. I checked that the later cold-storage commit introduced rows with `storage: \"file\"` and `archive_blob: null`, so the existing snapshot began carrying references without their payloads. The bundle shows that Doctor could hit those missing files through either of two repair paths, and the report leaves the exact path unconfirmed."
+  "rank": 202,
+  "sha": "802e3f74d2c0ca580b62e008ff9f81d73b09cbac",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "aa0ad4c78044f389460de42caa798ad5f75c86a9",
+  "cause_pr": 145172,
+  "confidence": "medium",
+  "cause_quote": "The cold-archive feature added `resolveSessionColdArchivePath` storing payloads as files at `path.join(resolveSessionArtifactDirectory(storePath), \"cold\", archiveName)` beside the agent database and extended backups to embed them, but did not touch update-candidate-state.ts, so the rehearsal snapshot copied the file-backed rows without their payloads.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update (e.g. 2026.11.4 to the 2026.11.5 candidate) rolled back because rehearsal Doctor reported an intact cold transcript archive as missing.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The update candidate state snapshot now hard-links or copies file-backed cold transcript archive payloads (including chunks) into the rehearsal store and budgets their bytes in the inventory.",
+  "reasoning": "The candidate snapshot (d1a69c0b, 2026-09-06) predates file-backed cold archives (aa0ad4c, 2026-09-11); the cold-archive commit put session state in files outside SQLite and taught backups about them but never extended the update rehearsal copy, and it also wired cold restoration into canonical repair, so rehearsal Doctor could read missing payloads from the start. No later commit removed a working copy step (the fix PR confirms no cold-file copy ever ran), so this is never-worked for cold archives; medium because the exact Doctor phase that read the payload was not confirmed."
 }

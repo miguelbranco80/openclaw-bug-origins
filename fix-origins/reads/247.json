@@ -1,17 +1,17 @@
 {
   "rank": 247,
   "sha": "ea1c9d559bbff71dded98f46c53561ac1415b3fa",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
-  "cause_sha": "c66da3d764b0ba7996aa77c98a885298bb0dc2c4",
-  "cause_pr": 170046,
-  "confidence": "medium",
-  "cause_quote": "c66da3d added the remount-mapped `previousIdentity = identities?.currentIdentity(initial.descriptor.previous.identity) ?? ...` only after the automatic (`onlyStaleLease`) gate, which kept comparing the raw recorded `[initial.descriptor.previous.identity, initial.descriptor.candidate.identity]` and so declined after a device renumbering.",
+  "cause_sha": "0679b18b3d90ff101f260dcc597f24c2ae78e24b",
+  "cause_pr": 181307,
+  "confidence": "high",
+  "cause_quote": "The new `options?.automatic` path still returned early when `![initial.descriptor.previous.identity, initial.descriptor.candidate.identity].includes(replacementIdentity)`, so a device renumbering prevented settlement even when repair could verify the installation.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After a reboot renumbered the disk mid-update, every later `openclaw update` or Control UI update failed with update-recovery-pending ('device number changed only') until the user ran `openclaw update repair`.",
-  "impact": "failed-every-time",
+  "user_saw": "After an interrupted package update and a reboot that changed the filesystem device number, subsequent CLI and Control UI updates failed with `update-recovery-pending` until the user ran `openclaw update repair`.",
+  "impact": "sequence-or-timing",
   "area": "update",
-  "summary": "Computes the remount-mapped previous/candidate identities before the automatic settlement gate so the pre-admission settlement handles device-renumbered journals like `update repair` does.",
-  "reasoning": "The raw-identity automatic gate came from ff6f58a (#169038), before remount settlement existed; c66da3d (#170046) introduced the verified remount mapping for settlement but applied it only below that gate, so automatic settlement never handled a remounted journal (the PR's regression tests fail on base). 0679b18 (#181307) later widened automatic settlement to interrupted updates but kept the same gate; I attribute to c66da3d as the PR does, with medium confidence because c66da3d deliberately routed remount recovery through repair and which automatic path the reporter hit is not fully confirmed."
+  "summary": "The fix uses verified remount-mapped package identities at the automatic settlement gate so the next update can clear the interrupted publication and proceed.",
+  "reasoning": "I checked that #169038 introduced the raw identity gate for stale-lease recovery and that #170046 added remount-aware identity checks downstream for explicit repair. When #181307 broadened automatic settlement to untouched preparations and verified installed candidates, it retained that early gate, so those newly supported cases failed after a device renumbering from the outset."
 }

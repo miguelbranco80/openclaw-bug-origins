@@ -1,0 +1,17 @@
+{
+  "rank": 100742,
+  "sha": "749464ce0a56c75d8b2ef9b4fa2caf745a8bc549",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "15a304d6e1f50652624c85415705ab081796a0d7",
+  "cause_pr": 108024,
+  "confidence": "high",
+  "cause_quote": "The new queued media completion dispatch set `forceRestartSafeTools: true` and `disableMessageTool: true` even for failure notices, removing generation tools and the `message` tool from the turn.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The agent could report a failed generation or describe what was wrong with an image, but it could not retry or regenerate it in the completion turn.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix moves media delivery to the host and gives the agent one ordinary completion turn with the tools to inspect, correct, or retry generation.",
+  "reasoning": "Before #108024, successful and failed background media completions already reached the requesting agent through the announce path without the restart-safe tool restriction, and existing tests covered message-tool use on that path. I checked that #108024 routed those same completions through a durable dispatch that unconditionally applied both tool restrictions, matching the missing tools reported in the fix's live runs."
+}

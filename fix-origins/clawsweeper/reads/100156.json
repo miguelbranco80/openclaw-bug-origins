@@ -1,0 +1,8 @@
+{
+  "rank": 100156,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge loader warning concerns external plugin compatibility with module filenames, cache identities, and evaluation retries. The donor-release finding concerns prepared-publication holds and Gateway shutdown, a separate mechanism from the capability resolver keeping retired registries reachable across live reloads."
+}

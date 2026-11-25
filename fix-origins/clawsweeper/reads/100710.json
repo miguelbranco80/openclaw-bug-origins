@@ -1,0 +1,8 @@
+{
+  "rank": 100710,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cRetained wire coverage and completed cutover\u201d item discussed references to deleted helpers and modules, while the plugin activation wrapper remained exported after losing its production callers. The earlier \u201cAdd data-model compatibility proof\u201d item concerned migration and upgrade compatibility."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "07384e07238086c922ef3ed87b41f66b7b3c7f6d",
+  "cause_pr": 168779,
+  "confidence": "high",
+  "cause_quote": "The Solid port replaced `.checked=${live(options.checked)}` with `prop:checked={options.checked}`, so the checkbox stopped reconciling Web Awesome\u2019s own toggle when the effective value stayed false.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After clearing a stale session override, the Web search checkbox appeared checked even though web search was globally disabled.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix resets the Web search checkbox to the effective policy state before handling the selection.",
+  "reasoning": "PR #121557 added the live checkbox binding and a browser assertion that clearing a stale override leaves the checkbox unchecked. The Solid port removed that binding while retaining the stale-clear behavior, so Web Awesome could leave the checkbox checked because the effective value stayed false throughout the interaction.",
+  "rank": 100488,
+  "sha": "f74d65712bb5a7386ebbd746bae79d5618f05066",
+  "rubric": "v1.2"
+}

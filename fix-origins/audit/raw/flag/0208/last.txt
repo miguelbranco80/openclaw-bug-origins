@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The “Failure publication and regression coverage” item says model-runtime rollback runs after a failed replacement. The “Before merge” items focus on upgrade qualification and merge conflicts, leaving the failure to recover when rollback itself cannot republish the runtime unflagged."
-}

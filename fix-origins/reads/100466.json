@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "dd7d596ed3eafc51bffa326ceb4c686b6cdcc208",
+  "cause_pr": 153764,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `await retainRuntime({` to update preparation, so a rejection from the new runtime snapshot step aborted the update.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected installations, every `openclaw update` attempt stopped at runtime retention before installing the update.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix lets the update continue after a recoverable runtime snapshot failure once the native recovery helper is secured.",
+  "reasoning": "The introducing diff made snapshot preparation and copying mandatory, and its copy routine could already throw if a file changed after inventory. Path history shows that a later commit added a fallback for failed retained-tree verification, while other snapshot errors still aborted the update.",
+  "rank": 100466,
+  "sha": "2bddc783d2a8851321bb890f6b0f0f7ba48caabf",
+  "rubric": "v1.2"
+}

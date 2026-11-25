@@ -1,0 +1,17 @@
+{
+  "rank": 100591,
+  "sha": "dc0ef48154f58877a50b29d2f9bc575420fccbb7",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "320b0884c23e40c8765e5417c42b9636d7133a4b",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new `.chat-main__conversation--details` rule added `padding-top: calc(var(--chat-mobile-pane-header-height, 0px) + 50px);`, reducing the content height used to size the footer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The question footer was sized incorrectly in landscape chat when the Details control was enabled.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix moves the Details header spacing to a top margin on the transcript viewport, preserving the footer\u2019s sizing while keeping transcript actions clear of the header.",
+  "reasoning": "The causing commit\u2019s parent already had the Details control, landscape question-footer coverage, and footer sizing rules based on the unpadded `chat-conversation` container. The causing diff added padding to that container, shrinking the content box measured by the existing height query and `cqh` units."
+}

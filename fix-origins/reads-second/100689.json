@@ -1,0 +1,17 @@
+{
+  "rank": 100689,
+  "sha": "745e8f2121c2ec4d711f659265dbd355854f5097",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0606e31d0e623f010a96f0efe7d6434324cb6467",
+  "cause_pr": 126306,
+  "confidence": "high",
+  "cause_quote": "The original lookup returned a PR only through `if (open) { return open.url; }`, and the closed candidate was considered only if `candidate.body.includes(params.marker)`, so a closed PR carrying the first request\u2019s marker fell through to the executor\u2019s `if (!pullRequestUrl)` creation path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After GitHub accepted an update and the original PR closed, recovery could open a replacement PR or report a failure for the update that had already landed.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix verifies and records accepted updates against the original PR before retrying publication, preserving later local work and allowing explicitly new requests after closure.",
+  "reasoning": "The introducing diff already reused an open PR after pushing a new request\u2019s commit, leaving the original request marker in the PR body. After an interruption and closure, that same diff ignored the accepted update\u2019s closed PR and could create a replacement. I checked that the later repository backend carried forward the same lookup and creation fallback, while the guest-original-PR feature added a separate path for explicitly bound PRs."
+}

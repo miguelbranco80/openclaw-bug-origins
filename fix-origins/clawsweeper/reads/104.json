@@ -1,1 +1,8 @@
-{"rank": 104, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The findings cover approval revocation during queued launches and grep listener settlement. The merge-risk item about pipe-handoff compatibility across Node runtimes is generic and never mentions Unix socket path length under a long temp directory."}
+{
+  "rank": 104,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The closest Before merge items concern missed terminal events after a failed ripgrep launch and possible Node pipe-handoff incompatibility. Neither points to the Unix socket path limit that caused buffered commands to fail under a long temporary directory."
+}

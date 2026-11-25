@@ -1,0 +1,17 @@
+{
+  "rank": 100607,
+  "sha": "4e3996997c854bef8354ee5f2df156792090ed42",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "85f79a5c0fada45db33dca7dd22455f19100f471",
+  "cause_pr": 141175,
+  "confidence": "high",
+  "cause_quote": "The diff added `const pluginPaths = await projectUpdateCandidatePlugins(input);`, which recursively copied plugin dependency trees into the existing `os.tmpdir()` snapshot and could exhaust that filesystem.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a machine with a small temporary filesystem and a large active plugin installation, `openclaw update` failed during candidate validation and left the installed version unchanged.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The updater now measures plugin payloads, SQLite files, and scratch space together, selects a destination with sufficient capacity, and reports a capacity failure before copying if none fits.",
+  "reasoning": "I checked the parent of #141175 and confirmed that candidate validation already ran with a SQLite-only snapshot while plugin locators retained their existing paths, so plugin size did not consume snapshot space. #141175 added recursive plugin copying to that same temporary destination, and #144901 later added a capacity check that still measured only SQLite and scratch space. The fix bundle reproduced the published updater failing with a 1,200 MiB plugin payload on a 1 GiB temporary filesystem and recorded exit status 1."
+}

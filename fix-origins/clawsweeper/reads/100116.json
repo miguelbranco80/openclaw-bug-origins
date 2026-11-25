@@ -1,0 +1,8 @@
+{
+  "rank": 100116,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes the new caller-authority checks as intended behavior and focuses on revocation during validation and refusal before promotion. The earlier Before merge and Tests items address integration and test coverage without raising the risk that caller retirement could block acknowledgment of an already committed registration."
+}

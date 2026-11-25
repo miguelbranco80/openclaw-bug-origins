@@ -1,17 +1,17 @@
 {
-  "rank": 153,
-  "sha": "0e70bc443ec9a5e2921446e902a720a9e18cc52e",
-  "rubric": "v1.1",
   "origin": "never-worked",
   "cause_sha": "5cac93c15f2a2bc168ca2cb3aa994af65152e26f",
   "cause_pr": 190223,
   "confidence": "high",
-  "cause_quote": "The commit that added refresh_base for prepared PRs set the binding's `base: pendingBase ? previous.base : structuredClone(pullRequest.base)` from GitHub PR details and integrated `commit: binding.base.commit`, never reading the live branch ref.",
+  "cause_quote": "The new `base: pendingBase ? previous.base : structuredClone(pullRequest.base)` used the PR-details commit for a fresh refresh, and `integrationSource?.commit ??` made that commit take precedence over the live branch lookup.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A guest conversation continuing an existing PR reported its base as current after the target branch advanced, leaving the newer target files out of the workspace.",
-  "impact": "failed-every-time",
+  "user_saw": "After the PR\u2019s target branch advanced, refreshing a prepared workspace could report that it was current while leaving out the new target-branch files.",
+  "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Prepared-PR refresh_base (and preparation when the accepted base disagrees with PR metadata) now reads the live target branch SHA via readGitHubPublicationBaseSha instead of trusting lagging PR-detail base SHA.",
-  "reasoning": "Refreshing a prepared PR's target branch was introduced hours earlier by 5cac93c15f2 (#190223), whose title says prepared PRs could not refresh before; it took the base commit from inspectOwnGitHubPullRequest PR details, which lag the branch ref. No other commit touched the preparation file between that commit and the fix, so the stale-base defect shipped with the feature."
+  "summary": "Fresh prepared-PR refreshes now read the live target branch, repeated preparation preserves the integrated review base when GitHub metadata lags, and pending conflicts stay pinned to their accepted commit.",
+  "reasoning": "I checked the introducing diff and its parent, where the Gateway explicitly refused `refresh_base` for a workspace bound to an existing PR. The first implementation for those workspaces preferred the PR-details SHA over the live branch ref, so it could report `current` as soon as GitHub returned an older SHA already in the workspace\u2019s history.",
+  "rank": 153,
+  "sha": "0e70bc443ec9a5e2921446e902a720a9e18cc52e",
+  "rubric": "v1.2"
 }

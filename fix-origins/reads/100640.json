@@ -1,0 +1,17 @@
+{
+  "rank": 100640,
+  "sha": "b0503cca2e3afc171d4ecfe0e5171ce0e010940d",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "85feffec940b4778a2f038f114514265caed7210",
+  "cause_pr": 170819,
+  "confidence": "high",
+  "cause_quote": "The diff added `const dimensions = untrack(() => resolveChatImagePreviewSize(props.model.image));` and made `chat-image-frame--image` unconditional, locking the mounted frame to its initial 3:2 fallback when dimensions were missing.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A pasted image in chat stayed padded inside a 3:2 frame until the conversation was reopened or reloaded.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix updates mounted chat previews from decoded or uploaded image dimensions while keeping extreme ratios bounded and file actions reachable.",
+  "reasoning": "I checked the causing commit\u2019s parent, where the frame recalculated its ratio when dimensions changed and the stylesheet let loaded images without dimensions use their intrinsic ratio. PR #170819 replaced both paths with a frame sized once at mount, so an image that started at 3:2 kept that frame until remount."
+}

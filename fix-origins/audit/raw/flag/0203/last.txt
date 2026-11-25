@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Tests items ask for live browser proof of the initial transition to a restricted view, and the Denied-view cleanup item describes stale data removal. Neither raises the risk that unrelated session changes could reload an already-denied query and make the permission error flicker."
+  "outcome": null,
+  "note": "No findings at merge or in earlier versions, only a generic missing live guest-browser proof note; the FORBIDDEN cleanup is described approvingly and no item raises reloads on unrelated invalidations."
 }

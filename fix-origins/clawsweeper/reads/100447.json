@@ -1,0 +1,8 @@
+{
+  "rank": 100447,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Complete the planned native-runtime check before merge, covering existing parent bindings, older-history loading, and refreshes through tasks.history.",
+  "outcome": "answered",
+  "note": "The Merge-risk options called for testing native history with existing parent bindings but did not identify parent-thread replacement as a failure condition. The maintainer reported that the initial post-merge live test exposed that failure."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 102,
   "sha": "535cf43388e7d4b63e1c14754e1fa84a40889136",
-  "rubric": "v1.1",
-  "origin": "unclear",
+  "rubric": "v1.2",
+  "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
+  "trigger_sha": "1cc5d0c3420da1ae6938e3ac80514ee887aebdfd",
   "user_visible": "yes",
-  "user_saw": "Changing Visitor Access maxVisitors or defaultTtlDays while agent turns were active queued a full plugin replacement, so Gateway readiness failed and new runs were delayed for up to about a minute.",
+  "user_saw": "Changing Visitor Access limits during an active agent turn could leave the update pending, make the Gateway report itself unready, and delay new runs.",
   "impact": "sequence-or-timing",
-  "area": "plugins",
-  "summary": "Visitor Access now declares maxVisitors and defaultTtlDays as hot-reload prefixes and reads them live from committed runtime config, the loader only lends a retained Gateway plugin instance when the request's plugin config matches committed config, and config writes stop injecting managed-install unset paths.",
-  "reasoning": "The fix sidesteps the generic exclusive-replacement drain (which it keeps for Cloudflare settings and explicit reloads) by opting the plugin's numeric settings into the existing hot-reload contract; the plugin never declared hot prefixes, and its code predates the 2026-09-03 graft. Whether the stall reflects an original design gap in the plugin or a later change to the plugin-reload drain machinery (many commits from #151706 to #184243 reworked replacement waiting on admitted work) could not be pinned to a specific line, so no cause is named."
+  "area": "gateway",
+  "summary": "The fix applies Visitor Access limit changes in place from committed configuration and checks that newly prepared turns can safely borrow the running service.",
+  "reasoning": "The original Visitor Access plugin captured its limits at registration and documented a Gateway restart for configuration changes. I checked that the Gateway already drained retained work before exclusive replacement when #159410 made agent turns retain the Gateway-owned visitor tool instance, tying limit edits to the lifetime of those turns. The later instance-borrowing change preserved that drain behavior, and the fix lets numeric edits bypass replacement."
 }

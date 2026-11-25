@@ -1,0 +1,17 @@
+{
+  "rank": 100427,
+  "sha": "3258dd87649cfe03aec0d8fba9d2974edb0e98ac",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e63b5a01cf2609adaff2ed2017f95f15c666b0fc",
+  "cause_pr": 168992,
+  "confidence": "high",
+  "cause_quote": "The change to `const ownership = await readOwnership(admission.entry);` made the ownership check use a snapshot taken before the lane claimed the session writer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Every turn in an affected pinned native Codex session failed before dispatch with \u201cNative model ownership changed during run preparation.\u201d",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix rereads current ownership when the admission snapshot lacks the expected session writer.",
+  "reasoning": "The causing commit\u2019s parent already supported pinned native sessions and read the current session row before comparing its writer ID with the expected writer. The causing diff switched that check to the earlier admission snapshot, which lacked the writer ID claimed later by the lane. The fix PR reports that a bisect of the existing harness tests identified this commit as the first failure."
+}

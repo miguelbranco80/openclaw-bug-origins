@@ -1,0 +1,17 @@
+{
+  "rank": 100763,
+  "sha": "c0c6ca35fcecf2b82bb816d70e2d71ff7f64125c",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After automatic compaction timed out, each new message in the same conversation waited through another timeout and returned a warning instead of an answer.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "When automatic summary generation times out while the caller is still active, the fix saves a deterministic compaction and lets the turn continue.",
+  "reasoning": "At the July 1 history boundary, the native compaction path already returned a failure on summary timeout without saving a reduction, and required preflight compaction already failed the turn on that result. The later watchdog changes adjusted timeout handling for work that was already bounded, and the available offline history ends before the original failure path can be traced to an introducing commit."
+}

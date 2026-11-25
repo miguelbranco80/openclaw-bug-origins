@@ -1,0 +1,17 @@
+{
+  "rank": 100673,
+  "sha": "a7557f3f5db224717e5c33c9be32e2daef44703c",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "9596eab05dec527d555efccd35d4218403072394",
+  "user_visible": "yes",
+  "user_saw": "After a gateway restart, a resumed turn could give the user a temporary browser link in place of the intended dashboard widget.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix aligned widget guidance with the current turn\u2019s available presentation surface and directed agents to the dashboard tab for pinned results.",
+  "reasoning": "I checked that Dashboard already said to keep one-off visualizations inline before #139705 exposed pinned-only authoring to recovered Control UI turns without an inline client. That new use made the existing Dashboard guidance conflict with the recovered turn\u2019s widget schema, and the later Visualize skill repeated the inline directive."
+}

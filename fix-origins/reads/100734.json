@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "f703d803cc1b9db615774c6b28c58dda8cbb0e11",
+  "cause_pr": 113681,
+  "confidence": "medium",
+  "cause_quote": "The GMI manifest added `\"id\": \"openai/gpt-5.6-sol\"` with `\"reasoning\": true` under `\"api\": \"openai-completions\"` at `https://api.gmi-serving.com/v1`, which fell outside the transport's tool-turn reasoning guard.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Every agent turn using tools on GMI Cloud's GPT-5.6 Sol failed with an HTTP 400 about `reasoning_effort`.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix applies OpenAI's Chat Completions tool rules to GMI's OpenAI models, setting `reasoning_effort` to `none` for GPT-5.6 and omitting it for GPT-5.5 and GPT-5.4 Mini.",
+  "reasoning": "The parent catalog lacked the GPT-5.6 Sol entry, and #113681 added it as GMI's bundled default. At that revision, the transport already forced `none` for GPT-5.6 tool requests on recognized OpenAI endpoints, but the GMI route bypassed that guard and had no equivalent payload hook. Local history establishes the bundled introduction, while earlier availability through GMI's live catalog is unverified.",
+  "rank": 100734,
+  "sha": "678a8960e2f36cdbca90c66d898b2809f0bd1749",
+  "rubric": "v1.2"
+}

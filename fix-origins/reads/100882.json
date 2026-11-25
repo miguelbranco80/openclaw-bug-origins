@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "19c6ef8d9e0260471b798615e8a1eaf42b9aada3",
+  "cause_pr": 158848,
+  "confidence": "high",
+  "cause_quote": "The migration added static named imports of `acquireDebugProxyCaptureStoreAsync` in QA Lab capture and `createDebugProxyCaptureReaderAsync` in the Slack adapter, so both modules failed to link on hosts that lacked those exports.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On OpenClaw 2026.9.6, operators who reached the QA Lab capture or Slack adapter modules saw a missing-export error while the modules loaded.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix lets both modules load on older hosts and gives operators upgrade guidance when an operation requires async capture.",
+  "reasoning": "The migration diff shows that existing QA Lab capture and Slack readback used synchronous SDK functions before the change, and I verified that the 2026.9.6 release source exported both functions. The migration made both modules depend on new named exports at load time, and the fix PR reports reproducing both linking failures against the published 2026.9.6 SDK. The PR also reports a separate missing SDK subpath that still prevents the full QA CLI from loading on that release.",
+  "rank": 100882,
+  "sha": "26497820f8b96ae31b78dbe788bb85330f20c764",
+  "rubric": "v1.2"
+}

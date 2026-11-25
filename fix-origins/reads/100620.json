@@ -1,0 +1,17 @@
+{
+  "rank": 100620,
+  "sha": "405927298589487fac3a64c98e0a48208df53ec1",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Bedrock could miss the prompt cache when the same tools were registered in a different order.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix sorts Bedrock tool declarations by name before serialization so registration order no longer changes the request bytes.",
+  "reasoning": "The July 1 snapshot already configured prompt caching and serialized tools in the supplied order, and the later Nova caching change left that serialization intact. The fix demonstrated different wire bytes for reordered tools, but the available history could not establish when order-dependent cache misses first became possible because the older path history was incomplete."
+}

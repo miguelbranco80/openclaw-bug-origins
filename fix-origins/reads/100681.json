@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "2f25e9cba384acfc06cdf83640f236fdb7c1af33",
+  "cause_pr": 105718,
+  "confidence": "high",
+  "cause_quote": "The original verifier called `validateOwner(database, pathname)`, which routed shared and agent snapshots through their maintenance guards and required the current schema version.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a schema upgrade, operators could no longer verify or restore healthy snapshots taken before the upgrade.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix lets SQLite and Git snapshot verification and restore accept supported older schemas while keeping snapshot creation subject to current-schema validation.",
+  "reasoning": "I checked the original SQLite snapshot commit and confirmed that both verify and restore used maintenance guards that already rejected any schema version other than the current one. The later Git backup change moved that validation into a shared helper, so a schema bump exposed a compatibility defect that had shipped with the original feature.",
+  "rank": 100681,
+  "sha": "a5d9771df84b6e466e81e83ccd2f5657d94ad7aa",
+  "rubric": "v1.2"
+}

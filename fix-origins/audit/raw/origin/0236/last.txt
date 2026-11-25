@@ -1,0 +1,17 @@
+{
+  "rank": 236,
+  "sha": "09bef75c4ff2231fd37f731b93a5f587dc5ffd74",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "While a large retired worktree was being deleted on btrfs, chat transcript writes were delayed by seconds for several minutes.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Split Linux retired-worktree deletion into 30-second passes that also yield on fresh or ongoing 500 ms btrfs commits, with a serialized 30-second quiet interval between passes.",
+  "reasoning": "This is the third mitigation in two days (#202197 pacing, #202563 reservation watermark, now commit-latency and pass bounds) of the same host I/O load from background deletion; each step tightened the pacing, and none made deletion heavier than before. No earlier commit made cleanup interfere more, so there is no regression to cite: it is an iterative performance tuning of background cleanup (the PR calls it a mitigation, not a guarantee), closest to a performance improvement of code that was never better."
+}

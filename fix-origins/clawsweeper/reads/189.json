@@ -1,1 +1,8 @@
-{"rank": 189, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review describes deferring scheduler cancellation until after restart markers as an intended, correct change ('Scheduler shutdown timing') and raises no concern about scheduler-scoped consumers such as the scope-upgrade observers staying live; earlier items are generic proof and authority-lifetime requests."}
+{
+  "rank": 189,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section endorsed delaying scheduler cancellation until after restart markers were recorded and missed that a queued scope-upgrade observer could start another pairing-state read in that window. The earlier Before merge items focused on ingress grant revocation before provider or tool I/O."
+}

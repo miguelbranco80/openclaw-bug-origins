@@ -1,17 +1,17 @@
 {
   "rank": 268,
   "sha": "79847449a9e38ab603612c5a516bf3c33e3f7d12",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e210870acfe2fd7df6fcd464e4d775fac5a55710",
+  "cause_pr": 165399,
+  "confidence": "high",
+  "cause_quote": "The original validator checked the timestamp's format and `Number.isFinite(Date.parse(value))`, which accepted impossible dates that JavaScript rolled into the following month.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible reported; a remote MCP server sending an impossible date such as February 31 would have had it silently rolled over instead of rejected.",
+  "user_visible": "yes",
+  "user_saw": "An operator could see an MCP event with an impossible timestamp accepted or a subscription with an impossible expiry treated as valid.",
   "impact": "other",
   "area": "plugins",
-  "summary": "Tightens the mcp-events isoTimestamp check so calendar-impossible dates (for example 2026-02-31) are rejected instead of accepted after Date.parse rolls them over.",
-  "reasoning": "The lax check (regex plus `Number.isFinite(Date.parse(value))`) shipped unchanged with the plugin in e210870 (#165399); the fix adds stricter validation of untrusted remote input with no linked issue, reported failure or PR describing user impact. That is input-validation hardening rather than a defect anyone hit, so not-a-defect; if counted as a defect it would be never-worked in e210870."
+  "summary": "The fix validates the original calendar date in MCP event timestamps and subscription expiry values.",
+  "reasoning": "The feature-introducing diff added the shared validator and wired it into both the event callback and subscription response parsers. The fix's tests cover impossible dates such as February 29 in 2026 and April 31, which already passed the original format and finite-parse checks."
 }

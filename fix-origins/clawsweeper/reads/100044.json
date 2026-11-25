@@ -1,0 +1,8 @@
+{
+  "rank": 100044,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cAdd real behavior proof\u201d item asked for evidence that scoped loads preserve the root registry. The earlier \u201cResolve merge risk\u201d items warned about missing or stale registry handles, while this bug came from passing prepared config as the authored source for SecretRef validation."
+}

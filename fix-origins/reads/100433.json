@@ -1,0 +1,17 @@
+{
+  "rank": 100433,
+  "sha": "7b7db6fc191fbff99202e6f047ad72c8678d7676",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e982e7cd1ee885c391b8017ffce5ab916f2ebacf",
+  "cause_pr": 139250,
+  "confidence": "high",
+  "cause_quote": "The new branch `if (isControlUiSharePath(pathname, basePath) && pathname !== `${basePath}/share/card.png`)` sent only non-card requests to the document handler, where `X-Robots-Tag` was set after validation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway operators could see that the public preview image and rejected share responses lacked the header asking search engines to skip indexing.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The Gateway now sets `X-Robots-Tag: noindex, nofollow` before dispatching share requests, covering static cards and rejected responses.",
+  "reasoning": "I checked the original preview diff and the subsequent route history. The first preview implementation served the card through the static file path and returned validation errors before setting the header, so both gaps shipped with the feature."
+}

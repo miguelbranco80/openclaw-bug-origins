@@ -1,0 +1,17 @@
+{
+  "rank": 100152,
+  "sha": "2db54d773ea714947f3361e4668f983532807db0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c62c2d9db5e79065de9ed78feeeb8e43fd2f01ea",
+  "cause_pr": 150196,
+  "confidence": "high",
+  "cause_quote": "The cutover made sessions.list call `await projection.ensureMaterialized()`, whose drain ran `const next = await params.getModelCatalog?.();` whenever the catalog was dirty, even with a usable snapshot in memory.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Session lists sometimes took several seconds to load, and connected clients refetched model and chat metadata together after unchanged catalog renewals.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix serves warm session reads from the resident catalog during renewal and suppresses metadata refetches when the catalog and refresh status are unchanged.",
+  "reasoning": "Before #150196, the existing sessions.list RPC read already-published catalog snapshots without joining provider renewal. The cutover added a shared readiness drain that marked all rows dirty on catalog publications and made reads wait for the catalog read and row refresh, and #151290 filtered some publications while leaving that wait in place. The deferred-catalog test reproduced the wait, while production timings measured the whole drain, including row materialization."
+}

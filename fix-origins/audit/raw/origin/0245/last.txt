@@ -1,0 +1,17 @@
+{
+  "rank": 245,
+  "sha": "1a0a24dcd2cfc5129df223dbc8bca58135dc0ec5",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "adb2f7c4d4bc3b7479b180c24db943b9cc64923c",
+  "cause_pr": 203487,
+  "confidence": "high",
+  "cause_quote": "In captureGatewayToolCallerAssertion it removed the synchronous receipt check `if (!isCurrent || signals.some((signal) => signal.aborted)) { throw new Error(\"agent tool caller authority is no longer active\"); }`, keeping only `signal.throwIfAborted()` over `caller.approvalSignals`, which the MCP loopback caller never set.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Stop on a Claude CLI or other CLI-backed turn did not cancel a running MCP loopback tool call, so a message action (for example a reaction) still completed its write after Stop.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The MCP loopback grant now exposes the CLI turn's abort signal and the MCP caller passes it as approvalSignals, and the dead cronAuthorityCheck pass-through is removed.",
+  "reasoning": "The MCP loopback caller's only route for the turn's abort was the receiptAuthority boolean (isGrantAndLineageCurrent, which includes the grant's abort signal); adb2f7c (#203487) deliberately stopped calling that boolean synchronously, leaving only approvalSignals, which mcp-http.ts did not populate. The fix PR states the Stop test was red on main and passed before #203487 (with the generic authority text), and #203487's diff shows the removed check."
+}

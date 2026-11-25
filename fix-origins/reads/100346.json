@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "3b0297c17e8cf83e7e24f5063310bced0e68320c",
+  "cause_pr": 157954,
+  "confidence": "high",
+  "cause_quote": "The new guard `(process.arch !== \"arm64\" && process.arch !== \"x64\")` admitted x64 workers to `darwinNative.query(pid, 3, 0, bytes, bytes.length)`, the Koffi call that segfaulted under Rosetta.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Release operators saw the bundled x86_64 worker exit with SIGSEGV during startup validation, blocking Intel and universal macOS packages.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The fix restricts the native Darwin process identity query to arm64 and restores the bounded `ps` lookup on x64.",
+  "reasoning": "The causing diff shows that both Darwin process identity helpers previously used the bounded `ps` lookup and that #157954 put the Koffi query ahead of it. The fix PR reports that 2026.9.6 passed the same packaging check and that disabling only the native query let the affected worker reach ready under Rosetta. Physical Intel hardware was outside the reported verification.",
+  "rank": 100346,
+  "sha": "3894140ac88f5d623bf262069f843e5f796d3667",
+  "rubric": "v1.2"
+}

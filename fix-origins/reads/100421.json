@@ -1,0 +1,17 @@
+{
+  "rank": 100421,
+  "sha": "737042da6fa05d7a8c17bea676aab7177d6bc371",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e20b56c0b26eec6db2af373da4598c8f40bee626",
+  "cause_pr": 140294,
+  "confidence": "high",
+  "cause_quote": "The new `stored.maxSeq === priorMaxSeq` check, whose only exception requires the current CLI writer to have covered the transcript tip, rejected the watermark advanced by Gateway compaction and caused replay to return no history.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After Gateway compaction succeeded, the next fresh CLI turn forgot the previous conversation.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix carries verified CLI account provenance forward to the new transcript watermark after successful compaction of the same transcript, so fresh turns recover the saved summary and retained messages.",
+  "reasoning": "I checked the causing commit's parent, where fresh CLI preparation loaded compacted history and existing tests checked that the saved summary and retained messages reached the history prompt. PR #140294 added a coverage gate that treated compaction writes outside the CLI writer as unknown history and blocked the existing replay path. The evidence bundle reports the same post-compaction failure before and after PR #168244, which restored stateless replay before compaction."
+}

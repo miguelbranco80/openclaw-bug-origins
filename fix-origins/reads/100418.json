@@ -1,0 +1,17 @@
+{
+  "rank": 100418,
+  "sha": "7caee827c5be71496b5f3ab8dcc6eee559b7db83",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "64400ffa0503af72fc7cd089fedc8aa427342802",
+  "cause_pr": 169946,
+  "confidence": "high",
+  "cause_quote": "The refactor removed `if (!policy.deferredReceiptIds.includes(terminal.handle.receiptId))` and called `finishCronRunReceiptInDatabase` for every accepted outcome with a receipt, releasing the retry guard as soon as the timeout was recorded.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A cron job could start a retry while its timed-out execution was still running.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix records the timeout once, keeps the receipt active until the original execution settles, and then allows the scheduled retry to proceed.",
+  "reasoning": "The parent already supported timeout retries, and its finalizer deferred closing receipts while the underlying execution was pending. A test in the parent asserted that a timed-out run kept its receipt active and blocked a second execution until settlement. The refactor removed settlement tracking and closed the receipt when it recorded the timeout, removing the admission guard before the runner had settled."
+}

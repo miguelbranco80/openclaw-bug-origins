@@ -1,28 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="218" viewBox="0 0 760 218" role="img" aria-label="What each of the 300 sampled fixes repaired, by the first readers&#x27; rule">
-<title>What each of the 300 sampled fixes repaired, by the first readers&#x27; rule</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="218" viewBox="0 0 760 218" role="img" aria-label="What each of the 1,202 sampled fixes repaired, by the main reader">
+<title>What each of the 1,202 sampled fixes repaired, by the main reader</title>
 <text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">New code that never worked</text>
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">105</text>
-<text x="472.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 30–41% of all fixes</text>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">443</text>
+<text x="472.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 34–40% of all fixes</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Not a bug: redesign, speed-up, wording or tooling</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,66 H405.5 Q409.5,66 409.5,70 V72 Q409.5,76 405.5,76 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">100</text>
-<text x="472.6" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 28–39% of all fixes</text>
+<path d="M0,66 H88.2 Q92.2,66 92.2,70 V72 Q92.2,76 88.2,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">95</text>
+<text x="464.4" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 7–10% of all fixes</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">A working thing that a later change broke</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,108 H204.9 Q208.9,108 208.9,112 V114 Q208.9,118 204.9,118 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">51</text>
-<text x="464.4" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 13–22% of all fixes</text>
+<path d="M0,108 H373.6 Q377.6,108 377.6,112 V114 Q377.6,118 373.6,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">389</text>
+<text x="472.6" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 30–35% of all fixes</text>
 <text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Old code that broke because something outside changed</text>
 <rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,150 H114.8 Q118.8,150 118.8,154 V156 Q118.8,160 114.8,160 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">29</text>
-<text x="464.4" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 7–14% of all fixes</text>
+<path d="M0,150 H67.8 Q71.8,150 71.8,154 V156 Q71.8,160 67.8,160 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">74</text>
+<text x="464.4" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 5–8% of all fixes</text>
 <text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Could not tell</text>
 <rect x="0" y="192" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,192 H57.4 Q61.4,192 61.4,196 V198 Q61.4,202 57.4,202 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">15</text>
-<text x="464.4" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 3–8% of all fixes</text>
+<path d="M0,192 H191.1 Q195.1,192 195.1,196 V198 Q195.1,202 191.1,202 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">201</text>
+<text x="472.6" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">plausibly 15–19% of all fixes</text>
 </svg>

@@ -1,0 +1,17 @@
+{
+  "rank": 100367,
+  "sha": "24b285489674539ee337e60e2fcca00dc75bd206",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a95486cefc677fcc3905252f17813232c09b1d28",
+  "cause_pr": 113698,
+  "confidence": "high",
+  "cause_quote": "The commit that introduced the session companion rail rendered pending replies with `<div class=\"chat-session-rail__hint\">${t(\"chat.rail.askPending\")}</div>`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "While Side chat prepared a reply, users saw \u201cAnswering from this session\u2026\u201d in place of the working indicator and elapsed timer shown in the main chat.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix switches pending Side chat replies to the shared working indicator and records when each turn started so the elapsed timer survives panel remounts.",
+  "reasoning": "The introducing diff shows that the session companion rail shipped with a text-only pending state while the main transcript already had a working indicator. I checked the older Side chat panel, which also used a text hint, and confirmed that the later Solid migration preserved the rail\u2019s text-only behavior."
+}

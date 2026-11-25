@@ -1,1 +1,17 @@
-{"origin":"never-worked","cause_sha":"0d2bc80eee0c2bcec52fc01e3727844e4c823759","confidence":"high","reasoning":"The commit introduced managed Serve identity in operator hellos, but its resolver returned `undefined` when `!origin?.startsWith(\"https://\")`, and `sendGatewayHello` registered a renewal listener only inside `if (identity)`. I checked the introducing publication diff and confirmed that publishing Serve only called `previous?.abort()`, leaving hellos sent while no route was published without a signal to trigger reconnection."}
+{
+  "rank": 160,
+  "sha": "34e01b5133c5e7dfa26122c545e98614a8e7657b",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "0d2bc80eee0c2bcec52fc01e3727844e4c823759",
+  "cause_pr": 137933,
+  "confidence": "high",
+  "cause_quote": "resolveControlUiIdentity only set an origin and abort signal `if (published?.mode === \"serve\")`, otherwise returning undefined with no signal, so a hello sent while Serve was unpublished was never renewed when the route returned (only withdrawal aborted connections).",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a brief managed Tailscale Serve outage or a Gateway startup race, the macOS dashboard stayed on the shared token profile (default theme, no pins) until the app was relaunched.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "Made operator hellos sent while no managed Serve route is published subscribe to a next-Serve-publication signal so those connections are closed with 1012 and re-hello with the identity URL once Serve returns.",
+  "reasoning": "control-ui-identity.ts and tailscale-published-origin.ts were both created by 0d2bc80eee0 (#137933) and untouched since; that diff advertises the identity URL only while a Serve route is published and wires an abort signal only for withdrawal/replacement of a published route, with no signal for the unpublished case. The missing reverse renewal thus shipped with the feature."
+}

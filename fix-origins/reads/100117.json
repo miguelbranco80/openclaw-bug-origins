@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "5dcf668765dea9dfc8101e163804c77ca52bdb53",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The gateway replaced `throw error;` with a `UNAVAILABLE` response carrying `retryable: false` for every exception from `worker.transcript.commit`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A worker turn could fail with \u201cWorker transcript commit failed; check Gateway logs.\u201d after a temporary storage interruption.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix restores reconnect and exact-batch replay for transient transcript commit failures so the transcript ledger can reconcile an uncertain commit.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that a thrown dispatch error closed the socket with a retryable reason and that the worker retried the same batch after connection interruption. The causing commit converted those errors into a terminal response that the client cached. The fix\u2019s composed test covers transient failures and a lost commit receipt, checking that the turn completes without duplicate transcript messages.",
+  "rank": 100117,
+  "sha": "dfb27239f2b6265dad3d2059926f9cc86c34f2f3",
+  "rubric": "v1.2"
+}

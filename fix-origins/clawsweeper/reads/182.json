@@ -1,1 +1,8 @@
-{"rank": 182, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Review items cover CI failure attribution and a superseded catalog-header module; nothing raises the English-only greeting or locale handling."}
+{
+  "rank": 182,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "At merge, Before merge asked only for investigation of two CI failures, and Evidence discussed how the greeting was saved. The earlier items shown raised no concern about the greeting ignoring the selected language."
+}

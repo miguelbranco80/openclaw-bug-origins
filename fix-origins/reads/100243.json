@@ -1,0 +1,17 @@
+{
+  "rank": 100243,
+  "sha": "d4ce3b2f33d41e8322a38c31430c9ce0e97a44c2",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c77a055f08646bd1a5f59a845fa627b69003b40c",
+  "cause_pr": 162403,
+  "confidence": "high",
+  "cause_quote": "The new transfer path runs `fsSync.unlinkSync(options.sourcePath)` before `if (!sameFileStatFingerprint(moved.identity, identity))`, so it compares the receipt against a birth time that can change when the original hard-link name is removed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected Linux hosts, `openclaw doctor --fix` failed to save its required pre-migration SQLite backup and reported that the staging file changed during transfer.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix limits the staging fingerprint to device, inode, and size while retaining separate checks of the snapshot bytes.",
+  "reasoning": "The parent of #162403 already had Doctor call `createVerifiedSqliteSnapshot`, which copied the private image into publication staging and took a fresh stat after unlinking the final staging name. #162403 added an earlier hard-link transfer to that existing path and applied the birth-time comparison across an unlink. The fix PR reproduced the resulting failure when Node/libuv reported ctime as birth time even though the inode, size, and bytes stayed unchanged."
+}

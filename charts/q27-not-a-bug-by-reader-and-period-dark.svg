@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="134" viewBox="0 0 760 134" role="img" aria-label="Share of changes titled fix that repaired no bug, by who read them and when they merged">
+<title>Share of changes titled fix that repaired no bug, by who read them and when they merged</title>
+<text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">November fixes, as first published (read by Claude Opus 5.5)</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,24 H137.9 Q141.9,24 141.9,28 V30 Q141.9,34 137.9,34 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">33%</text>
+<text x="472.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">of 300 fixes</text>
+<text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Fixes from 2026-11-01 to 2026-11-23, read by gpt-6.2-sol</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,66 H43.3 Q47.3,66 47.3,70 V72 Q47.3,76 43.3,76 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">11%</text>
+<text x="472.6" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">of 300 fixes</text>
+<text x="0.0" y="100" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Fixes from 2026-09-10 to 2026-11-01, read by gpt-6.2-sol</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,108 H26.1 Q30.1,108 30.1,112 V114 Q30.1,118 26.1,118 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7%</text>
+<text x="464.4" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">of 902 fixes</text>
+</svg>

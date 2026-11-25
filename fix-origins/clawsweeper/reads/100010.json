@@ -1,0 +1,8 @@
+{
+  "rank": 100010,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review endorsed joining the supervisor before broker retirement to fix premature broker retirement. It missed the path where a rejected supervisor join skips broker retirement and leaves Gateway shutdown hung."
+}

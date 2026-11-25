@@ -1,0 +1,8 @@
+{
+  "rank": 100505,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Removing this prune leaves successful full rebuilds without retention enforcement when no embeddings are generated.",
+  "outcome": "answered",
+  "note": "The earlier cache-cap finding raised a related issue with pruning during full rebuilds, and the author addressed it by adding a prune after publication. That change enforced the cap on all-cache-hit rebuilds but left batch writes able to evict embeddings that later batches still needed."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100488,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings address stale translations in the permission picker and tests that still exercise the retired suggestion renderer. The earlier items and review history provide no evidence that ClawSweeper raised the Web search checkbox staying checked after a stale override was cleared under a disabled global policy."
+}

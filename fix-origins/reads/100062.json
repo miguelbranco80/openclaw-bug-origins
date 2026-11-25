@@ -1,0 +1,17 @@
+{
+  "rank": 100062,
+  "sha": "b47ba1021fff4432404195f893fbb6d6ed728c25",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "31172cf54466658927482960b4ca7f52f6819814",
+  "cause_pr": 149223,
+  "confidence": "high",
+  "cause_quote": "The new `child.execution.outcome === outcome` check invalidated a prepared announcement when an equivalent completion report replaced the outcome object.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The main chat could show \u201cThis turn ended before a reply: subagent source lifecycle changed before completion delivery\u201d after a subagent reported the same result twice or its queued notification became obsolete.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix preserves equivalent subagent outcomes and routes revoked notification delivery through Gateway cancellation.",
+  "reasoning": "I checked the causing commit and its parent: existing completion delivery did not depend on outcome object identity, and the registry already replaced outcomes on equivalent reports. PR #149223 made that identity part of the delivery guard, so a duplicate report could newly reject a valid queued announcement. The fix also addresses an older Gateway path that recorded genuine ownership revocation as a failed turn."
+}

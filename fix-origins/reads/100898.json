@@ -1,0 +1,17 @@
+{
+  "rank": 100898,
+  "sha": "d29ac12b1b5315861296cfb686a9871e93e6e29c",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "faaf4b0fbd3b909e3400b686e854793b0b6c5112",
+  "cause_pr": 140621,
+  "confidence": "medium",
+  "cause_quote": "The diff added `const retainRuntimeContext = bindsClaudeThinkingPrefix(model)` and used `if (msg.runtimeContextCarrier && !retainRuntimeContext)` to exclude carriers from cache checkpoints even when the plugin retained them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Provider plugin authors could see Anthropic requests put a cache checkpoint on transient runtime context or skip a checkpoint on retained context.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix records the provider's carrier-retention decision at the session boundary, preserves it through media projection, and uses it to place Anthropic cache checkpoints.",
+  "reasoning": "I checked that the parent of #140621 already accepted provider retention overrides and left retained carriers eligible for cache checkpoints. The new model-based filter made a retained carrier ineligible when a plugin opted into retention for a model the predicate rejected, a case covered by the fix's fixture. The transient Copilot case had an earlier history because #136990 made its carriers transient while they were still eligible for checkpoints."
+}

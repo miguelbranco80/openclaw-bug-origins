@@ -1,0 +1,17 @@
+{
+  "rank": 246,
+  "sha": "0eb1fa3f7471ec2466cfa503d6b5252d3c94b591",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "d74a4aeb7d62362234570f2e8245830f5edae49f",
+  "user_visible": "yes",
+  "user_saw": "After a trusted-proxy setting changed (for example an upgrade adding requiredHeaders), every automation created through proxy sign-in was refused and auto-disabled with 'Restart recovery authentication owner changed'.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "Restoring a saved operator source authenticated by the trusted proxy now skips the exact shared-auth generation comparison and relies on the saved grant fingerprint instead.",
+  "reasoning": "The exact restore-time compare `generationOwner.requiredGeneration !== snapshot.sharedGeneration` dates from 961f5c0b7099 (#166553), written for short-lived restart recovery of an in-flight turn, where refusing after a proxy policy change is a reasonable 'start a new user turn'; the trusted-proxy generation hash (proxy admission settings) predates the graft. d74a4aeb7d6 (#176422) began persisting that recovery source in long-lived cron jobs, which relied on the generation staying stable for weeks, and an external deployment change (Enterprise controller adding requiredHeaders) exposed it, so this reads as latent rather than a regression with a quotable breaking line."
+}

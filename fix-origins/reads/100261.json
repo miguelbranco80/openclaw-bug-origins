@@ -1,0 +1,17 @@
+{
+  "rank": 100261,
+  "sha": "36383b8ce1606562b994831b50965a1243b51e6a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "fe9bd7583ea65f81b384caecd3386ad8752d55d5",
+  "cause_pr": 87166,
+  "confidence": "high",
+  "cause_quote": "The original migration used `findMatchingProfileId(effectiveStore, credential, blockedStores) ?? allocateProfileId(effectiveStore, credential, blockedStores)` and wrote the result to `localStore.profiles[profileId]`, so a different catalog key could become a competing agent-local profile.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After running Doctor repair, inference could return HTTP 401 because the agent used a stale catalog key ahead of its working shared credential.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "Doctor now skips catalog key imports when an effective shared profile exists and warns about existing agent-local profiles that shadow shared credentials.",
+  "reasoning": "I checked the original migration diff and its auth selection code. The first implementation already imported a different key from a child agent's catalog into its local store, and the runtime already placed local profiles ahead of inherited profiles when otherwise equivalent API keys tied. The later SQLite relocation changed where shared profiles lived but preserved the faulty child-agent import."
+}

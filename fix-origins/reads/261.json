@@ -1,17 +1,17 @@
 {
   "rank": 261,
   "sha": "21f17afce911a364138fa29fb10e20bffe15a3eb",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "29503e14a2d3e5b30ba8407b5a1d1630f49d23b9",
   "cause_pr": 188497,
   "confidence": "high",
-  "cause_quote": "The new recoverInterruptedUpdater checked the stop intent only `if (updaterStopped)` once before recovery, and restoreRepairGateway threw \"Recovered update's Gateway service ownership could not be verified\" for a non-owned verdict.",
+  "cause_quote": "The new recovery code guarded stop-intent checks with `if (updaterStopped)`, assigned `terminalRuntimePath = params.recoveryModulePath` only after recovery returned, and used `throw new Error(...)` when `verdict.kind !== \"owned\"`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After an interrupted update, recovery could restart a Gateway the operator had since stopped, report a completed repair as failed when service ownership was unverifiable, or lose the terminal failure record after a schema-changing repair failed.",
+  "user_saw": "Operators could see a Gateway restart after they stopped it, a completed repair report failure, or a failed repair leave no terminal result in update status.",
   "impact": "sequence-or-timing",
   "area": "update",
-  "summary": "Checks durable Gateway stop intent before recovery and immediately before each native start, turns an unowned-service verdict into a manual-start warning, and switches terminal writes to the verified installed runtime before finalization.",
-  "reasoning": "All removed lines blame to 29503e14 (#188497, 2026-11-02), and its diff adds recoverInterruptedUpdater, the conditional stop-intent check, the terminalRuntimePath staged-runtime choice and the ownership throw as new code. The fix a week later corrects how that newly added interrupted-recovery feature behaves, so the defects shipped with it."
+  "summary": "The fix rechecks stop intent before recovery and native startup, returns manual-start guidance when ownership cannot be verified, and selects the verified installed runtime to record the outcome before post-core repair can change the schema.",
+  "reasoning": "The introducing diff added automatic recovery after an updater died without a result and the standalone repair path that restores a Gateway stopped by the interrupted update. Both paths shipped with the faulty checks and ordering, and the fix's added tests cover a superseded stop, unavailable or absent service ownership after finalization, and a repair that changes the schema before failing."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100423,
+  "sha": "2a41d1f58c8515355377422f5940bdd2f857c23b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "24c3201e57cb5a0036362557b4c26c2ddf9c3ea9",
+  "cause_pr": 167059,
+  "confidence": "high",
+  "cause_quote": "Doctor's new `ownerAllowFrom[position] = typed;` assignment could replace a working `discord:<id>` entry with `discord:user:<id>`, which Discord's owner selector discarded.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A configured Discord owner was denied `/vc` and could no longer approve exec requests through Discord's automatic owner fallback.",
+  "impact": "permissions",
+  "area": "channels",
+  "summary": "The Discord owner selector now keeps `discord:user:<id>` entries so voice access and exec approvals recognize the configured owner.",
+  "reasoning": "I checked the parent of #167059 and confirmed that Doctor rewrote `discord:user:<id>` to `discord:<id>`, a form the existing voice and exec approval tests accepted. #167059 began preserving typed entries and could restore them from backups over working entries, while the Discord selector still rejected the typed form."
+}

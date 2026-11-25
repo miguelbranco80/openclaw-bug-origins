@@ -1,0 +1,17 @@
+{
+  "rank": 145,
+  "sha": "7cb238ad89ab8054f177cf6c6038f11166bb08b6",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "47f78a32eb9ece6564aae5184113d29097a78c36",
+  "cause_pr": 120457,
+  "confidence": "medium",
+  "cause_quote": "The server-compaction replay match introduced in openai-responses-compaction-replay.ts included `state.model === context.model &&`, so a checkpoint written by one model was never replayed after a model switch.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Sessions that switched models (fallbacks, overrides, alternation) dropped their server compaction checkpoint, resent the full raw history and fell back to client summarization.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "Removed the model id from the provider replay fence so compaction checkpoints and replay items survive model switches within the same provider API, endpoint and session.",
+  "reasoning": "GraphQL blame puts the removed `state.model === context.model` line in #135727 (ef681015), a refactor that moved the fence; #200063's description says the fence was added in #120457, and that PR's diff (47f78a32) adds `state.model === context.model &&` to the original compaction replay match. Server compaction therefore never survived a model switch from the start, which the incident host saw on 357 of 800 dropped-checkpoint turns. The fence was a deliberate conservative choice, now relaxed after raw API checks showed providers accept cross-model items; that makes the not-a-defect reading arguable, so cause confidence is medium."
+}

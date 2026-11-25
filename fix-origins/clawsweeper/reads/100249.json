@@ -1,0 +1,8 @@
+{
+  "rank": 100249,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 \u201cPreserve stale-leaf fencing through owner handoff\u201d warns that a stale steer can run on a newer transcript branch after the active owner exits. Neither that finding nor the earlier review items address cancellation leaving a session admission reference held while dispatch is pending."
+}

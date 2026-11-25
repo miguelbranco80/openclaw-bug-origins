@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "5d1311c19e651833799f35395d82321722143162",
+  "cause_pr": 113337,
+  "confidence": "medium",
+  "cause_quote": "The diff passed `bundleURLs: Bundle.allBundles.map(\\.bundleURL) + [Bundle.main.bundleURL]` to the resolver, forcing it to read every bundle URL even when an earlier bundle already identified the test runner.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix caches macOS test-runner detection and checks process metadata before inspecting loaded bundles.",
+  "reasoning": "I checked that Quick Chat already called the getter during permission setup before #113337, when the getter could return on the first loaded XCTest bundle without reading subsequent URLs. The change made every URL read eager, which can terminate the native test process when a transient bundle loses its URL. The fix documents a missing-URL negative control against the eager getter, but the evidence does not establish the bundle order in the failing run.",
+  "rank": 100814,
+  "sha": "94940fb3e3017a6fdb3eccb81c809a929a74a056",
+  "rubric": "v1.2"
+}

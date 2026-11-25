@@ -1,0 +1,17 @@
+{
+  "rank": 100878,
+  "sha": "67ff90cfdbb696336dfb31ec0fc73d7510424bb9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "da5e443fe5bbc4070e41f177472ecc49623d3460",
+  "cause_pr": 151022,
+  "confidence": "high",
+  "cause_quote": "The commit added `...(models ? toCommandPaletteItems(getCommandPaletteModelItems(models)) : []),` inside the palette render path, rebuilding model choices whenever the user moved the active result.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Typing and moving through command palette results could feel sluggish when many models were available.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix caches palette model choices, filters catalog updates by scope, and writes to the native textarea only when its value changes.",
+  "reasoning": "In the causing commit\u2019s parent, the catalog loader built model rows once per load and keyboard navigation reused those rows from `this.catalogItems`. PR #151022 moved model choice construction into rendering, and the fix\u2019s browser reproduction counted 18,944 model-name reads on ArrowDown before the fix. The later Solid migration introduced a separate textarea binding issue that this fix also addressed."
+}

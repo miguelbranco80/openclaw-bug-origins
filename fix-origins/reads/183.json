@@ -1,17 +1,17 @@
 {
   "rank": 183,
   "sha": "5b0e4e8c0c934c3d75b92bdbf66bb815dbc1fd95",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Possibly brief Gateway unresponsiveness during filesystem operations on slow storage; no specific user report is cited.",
+  "user_visible": "yes",
+  "user_saw": "The Gateway could become temporarily unresponsive during filesystem operations on slow storage.",
   "impact": "slower-or-heavier",
   "area": "gateway",
-  "summary": "Bumped all direct @openclaw/fs-safe pins from 0.27.0 to 0.27.1, which moves staged writes and path traversal waits off the JavaScript thread, and realigned five tests to the new asynchronous boundaries.",
-  "reasoning": "This is a dependency upgrade for event-loop responsiveness; the related PR #190233 states that synchronous component lookup inside Promise-returning APIs existed in fs-safe 0.27.0 and earlier, so the previous bump b9320089b6d4 did not make anything slower than before. No reported failure or broken behavior is named, so it reads as a performance improvement rather than a regression."
+  "summary": "The fix upgrades fs-safe to 0.27.1, which moves native POSIX staged writes and awaited path traversal off the Gateway's JavaScript thread.",
+  "reasoning": "The manifest and lockfile diffs show that #188865 upgraded fs-safe from 0.26.15 to 0.27.0, and the fix PR identifies blocking filesystem calls in 0.27.0. The dependency implementation was unavailable in the checkout, and the local history did not establish whether the same operations already blocked in 0.26.15."
 }

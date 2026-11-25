@@ -1,0 +1,17 @@
+{
+  "rank": 100430,
+  "sha": "7a617ad187abe0bb0f9aff7ea2a6cde3491a3698",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e51f71d8987909ee55dddb64d249c1bfc5515adb",
+  "cause_pr": 178089,
+  "confidence": "medium",
+  "cause_quote": "Adding `data-tooltip-placement=\"right\"` to the sidebar rail moved the pointer-active New Session hint from above the plus button into the adjacent session-group header's click area.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After hovering over New Session, clicking the neighboring session-group header could leave the group expanded because the shortcut hint caught the click.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix lets pointer events pass through the read-only New Session tooltip to the sidebar controls beneath it.",
+  "reasoning": "The parent of #178089 already had the rail shortcut hint and adjacent group header, and its tooltip code placed the hint above the button by default. #178089 moved the hint to the right while preserving pointer capture for rich content, which matches the overlap documented in the fix PR. The earlier sidebar test moved directly to the group header but did not wait for the hint to open, so the earlier behavior with the hint fully open was inferred from placement."
+}

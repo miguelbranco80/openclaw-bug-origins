@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "317054d42739986ac5bbcf119554698ba0c3a1da",
+  "cause_pr": 156227,
+  "confidence": "medium",
+  "cause_quote": "The new `progress.onStepStart?.(retentionStep);` call immediately before `await retainRuntime(...)` made runtime preparation depend on a diagnostic history write that could throw when SQLite was busy.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could abort during runtime preparation if another process held the shared SQLite write lock while the updater tried to record progress.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix makes update history bookkeeping warn and continue on SQLite contention, gives required CLI writes more time to acquire the lock, and invalidates cached schema admission after Doctor runs.",
+  "reasoning": "The parent already retained the running updater runtime without writing a receipt at that point. The added progress callback wrote synchronously to the ledger and rethrew failures after the default SQLite lock wait, so the same failure path existed before the move to worker-backed writes. I checked that #168409 changed history retention and exposed a classification bug in the in-flight fix, while the original lock failure follows from the earlier callback and ledger code.",
+  "rank": 100336,
+  "sha": "b2e11a28fcdedcff22f5595941edee94ab4a4619",
+  "rubric": "v1.2"
+}

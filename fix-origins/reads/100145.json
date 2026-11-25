@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "8bec61bab1996c967468ff9be04645693a5f7375",
+  "cause_pr": 111571,
+  "confidence": "high",
+  "cause_quote": "The new CLI validator collected each agent\u2019s raw `model: (agent as { model?: unknown }).model,` and `config set` aborted with `throw new Error(firstModelError);` when native model resolution rejected the ACP primary.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator trying to set an ACP agent\u2019s harness model with `openclaw config set` got an unknown-model error and the setting was not saved.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix lets ACP harness primaries pass CLI config admission while validating native fallbacks, inherited defaults, and primaries that become native after a runtime switch.",
+  "reasoning": "In the parent of #111571, `config set` wrote the updated config without the native catalog check, and ACP spawn already forwarded the configured agent primary to the harness when no higher-priority override applied. #111571 introduced a blocking native resolver for raw agent primaries, and the fix PR reproduced the resulting CLI rejection while confirming that the Gateway accepted the same value from a directly authored config.",
+  "rank": 100145,
+  "sha": "74d5f2d8f1f76ac18bf0835fbf2b9c3e10a555da",
+  "rubric": "v1.2"
+}

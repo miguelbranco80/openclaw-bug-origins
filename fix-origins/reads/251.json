@@ -1,17 +1,17 @@
 {
-  "rank": 251,
-  "sha": "8253356c986427d888cbe24b2c3d6f3b702a2f79",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
+  "origin": "never-worked",
+  "cause_sha": "7aaf3023fcc57bee963e6f7959300b6ce7cfb74c",
   "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
-  "trigger_sha": "714129c06ea11d750fd9802a3dc7450cdb1de183",
+  "confidence": "high",
+  "cause_quote": "The new sourceOwnerChangedResult() returned `delivered: false` with `terminal: true`, which the announce flow counted as successful delivery.",
+  "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A background child finished but, after its source lifecycle changed, the requester never saw its answer or any failure notice.",
+  "user_saw": "When the source lifecycle changed before the completion turn could start, the requester saw neither the finished child\u2019s answer nor a failure notice.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Reclassifies the source_owner_changed subagent delivery refusal from intentional_non_delivery to permanent_failure so the registry posts the visible failure notice carrying the captured child answer.",
-  "reasoning": "The intentional_non_delivery disposition for source_owner_changed predates the 2026-09-03 graft (c61ba3ea5d26 only extracted it into sourceOwnerChangedResult) and was a deliberate choice under the older policy that dropped results when the source owner changed. It became wrong when the subsystem moved to 'finished results are always delivered or noticed' (#200760 removed the store-path and authority refusals but left this classification), so I treat it as latent with that policy change as trigger rather than a regression; it could also be read as a policy change, so this is a judgment call. I could not trace the pre-graft introducing commit."
+  "summary": "The fix classifies a source lifecycle refusal as a permanent delivery failure so the registry shows the saved public answer in its failure notice.",
+  "reasoning": "The introducing diff added the source lifecycle guard and its terminal refusal, while the existing announce flow treated any terminal result as success and the registry cleared pending delivery. I checked the parent\u2019s announce flow and the later commit that explicitly labeled this refusal `intentional_non_delivery`. The refusal path had suppressed the answer since it was introduced.",
+  "rank": 251,
+  "sha": "8253356c986427d888cbe24b2c3d6f3b702a2f79",
+  "rubric": "v1.2"
 }

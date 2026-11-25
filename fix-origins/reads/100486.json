@@ -1,0 +1,17 @@
+{
+  "rank": 100486,
+  "sha": "477250c066ecdaa3a9589b3b02d9764f57959498",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "20fb81f2489dd56d7cfef86a4eabc5164403a20b",
+  "cause_pr": 143858,
+  "confidence": "high",
+  "cause_quote": "The new refresh path calls `return options.ensureNodeWorkerBundle({` inside the awaited bootstrap and only afterward calls `const refreshed = store.refreshBootstrapReceipt({`, leaving retention with the old receipt after the new bundle is installed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first cloud-worker turn after a Gateway update could fail with an ENOENT error because the refreshed worker bundle was missing.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix keeps the current worker bundle on each cloud node until every live environment there records it, and continues workspace cleanup if bundle preparation fails.",
+  "reasoning": "The introducing diff shows that stale node-backed environments were previously torn down and that #143858 added in-place refresh with the install preceding the receipt write. I checked the retention coordinator at that commit and confirmed that it omitted the current-build pin for environment-owned nodes and acknowledged the generation returned by the previous retain pass, allowing a second pass to prune the newly installed bundle while the receipt was still stale."
+}

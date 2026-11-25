@@ -1,0 +1,17 @@
+{
+  "rank": 100324,
+  "sha": "1096d5ffc65ffef832a4d61156a194d327028c2b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "678cdf4246e730628c5779034c2d226d8246b325",
+  "cause_pr": 154792,
+  "confidence": "high",
+  "cause_quote": "The diff changed metadata preparation to `const nextMetadata = await withPluginCache(cache, () => resolveConfigWidePluginMetadataSnapshotAsync(...))` and added `assertCurrent()` immediately after it, letting a watcher echo invalidate the reload before the transaction could reconcile it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway could reject an explicit plugin reload during preparation when the config watcher reported an unchanged file.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The Gateway now runs a config reload checkpoint after asynchronous plugin metadata preparation and before checking whether the reload is still current.",
+  "reasoning": "I checked the causing commit's parent, where `plugins.reload` already existed, the integration test expected it to succeed after a config write, and synchronous metadata preparation prevented a watcher callback from interrupting that step. PR #154792 introduced the asynchronous gap and an immediate authority check, and the fix's test diff injects the unchanged watcher event inside that gap."
+}

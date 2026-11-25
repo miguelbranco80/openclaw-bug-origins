@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix gives the internal auth-patch normalizer a distinct name, removes or privatizes unused exports, and links the existing oMLX guide from the provider index.",
+  "reasoning": "Scheduled main CI reported wrapper-shadowing and unused exports, while the fix preserved the public SDK signature and runtime behavior. I verified that #173327 added the same-name SDK wrapper and that #174217 removed the transport redactor's call during the intentional logging change. The repair addresses internal architecture and dead-code checks.",
+  "rank": 100439,
+  "sha": "b460ee8d2ab41bf94bb8518e7330290787ea3465",
+  "rubric": "v1.2"
+}

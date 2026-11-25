@@ -1,0 +1,17 @@
+{
+  "rank": 100399,
+  "sha": "b05104a7bc52a535bc97eb47522b21f6249dc573",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "89fcceb655c193604bfef0f73e5c23871ea0c3dd",
+  "cause_pr": 142063,
+  "confidence": "medium",
+  "cause_quote": "In `models-list-result.ts`, #142063 removed `refreshFullCatalog: refresh ? true : \"stale\"` from ordinary browsing and gated catalog discovery behind `if (source.kind === \"gateway\" && refresh && !params.preloadedOnly)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, some hosted and native CLI models were missing from model lists and pickers until an explicit refresh.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix makes Gateway startup run full discovery in the background when provider inventory is empty and keeps later reloads scoped to changed providers.",
+  "reasoning": "Before #142063, the cold-start test and the parent code show that ordinary browsing could initialize empty inventory through an unscoped `worker.loadCatalog()` call and add native harness rows. #145190 added credential-scoped startup discovery, and the read-triggered renewal later removed by #167008 only renewed providers already in inventory. The earlier path is verified in source, while the exact production model rows were reported only for the current fix."
+}

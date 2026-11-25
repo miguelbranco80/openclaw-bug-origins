@@ -1,0 +1,17 @@
+{
+  "rank": 100795,
+  "sha": "b734148504ce8c8dabe3acebde10912ce8eefebd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "195e29343ba1d02f4ce09473737a8bb97811d97b",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new HTML-island parser ran `const children = unwrapUnclosed(node.children);` at every nesting level without a depth limit, and its `<details>` renderer also recursed through `const blocks = htmlNodesToBlocks(bodyNodes);`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Telegram users received a generic failure notice instead of the assistant's reply when it contained deeply nested details blocks.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix caps Telegram rich nesting at 15 container levels, flattens deeper content while preserving text and media URLs, and makes depth measurement iterative.",
+  "reasoning": "The preceding rich-block emitter sent gaps through paragraph rendering, and the HTML-island feature introduced typed details blocks with unbounded recursive parsing and rendering. I checked the later transport-limit and details-rendering changes, which addressed other behavior while leaving deeply nested details without a cutoff."
+}

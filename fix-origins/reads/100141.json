@@ -1,0 +1,17 @@
+{
+  "rank": 100141,
+  "sha": "36dbaf2bdc5dbb4adf4e41d6f6b44800abb2e6a9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8c2996e01303dee2e0602d0617fbebea436c5ebe",
+  "cause_pr": 141476,
+  "confidence": "high",
+  "cause_quote": "The roster introduced `.sidebar-agent-roster__header:is(:hover, :focus-within, :has(wa-dropdown[open])) .sidebar-agent-roster__signals { visibility: hidden; }`, which hid the collapsed group's attention icon when its header actions appeared.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The attention icon on a collapsed agent group disappeared when the user hovered over the header or moved keyboard focus into it.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix keeps collapsed-group attention icons accessible beside header actions and adds an oldest-request preview and a count of additional requests of the same kind to sidebar tooltips.",
+  "reasoning": "The introducing diff added both the collapsed roster header, which rendered attention inside `.sidebar-agent-roster__signals`, and the CSS that hid that container on hover or focus. The stylesheet history shows that rule was present from the roster's first commit through the fix's parent. The same fix expanded the existing generic tooltips with request details and counts."
+}

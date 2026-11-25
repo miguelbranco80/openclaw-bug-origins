@@ -1,0 +1,17 @@
+{
+  "rank": 100353,
+  "sha": "9d330a0a7fe0cc320abd5e70603a48c400398fc3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6124d47e046a8e11024b3027df0448febfd021be",
+  "cause_pr": 129423,
+  "confidence": "high",
+  "cause_quote": "The new fallback called `projectBranchEntries(entries.slice(0, firstKeptIndex))`, discarding the prior compaction marker whenever it followed the preparation cut.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A later compaction summary could bring back conversation that had already been compacted.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix preserves compaction and reset markers when projecting the prepared range for fallback summarization.",
+  "reasoning": "The diff for #129423 introduced the prepared-range fallback with the slice before projection, so it could lose the marker from its first release. The preceding fallback already read the raw branch across prior compactions, and the fix's test shows how a tool-only preparation with an earlier cut sent the already-compacted user message to the summarizer."
+}

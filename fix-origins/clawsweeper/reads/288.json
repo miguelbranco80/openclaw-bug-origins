@@ -1,1 +1,8 @@
-{"rank": 288, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Findings cover answer-shaped search responses and discarded model-policy errors; nothing mentions maxItems schema limits rejecting longer model replies or the prompt omitting those limits."}
+{
+  "rank": 288,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings cover answer-shaped web search responses and unauthorized model overrides. The reported bug occurs when extraction validation rejects a model reply containing more than 12 findings, a condition the review never raises."
+}

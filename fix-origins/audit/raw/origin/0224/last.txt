@@ -1,0 +1,17 @@
+{
+  "rank": 224,
+  "sha": "3587df70a233dc639b733b9169797d3abd138301",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Detailed session-usage dashboard reads on large databases took several seconds and unchanged polls repeated the full usage read every 30 seconds.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Split OR-combined partition range reads into indexed UNION ALL ranges with an index hint and made complete detailed sessions.usage snapshots reuse by revision like overview reports instead of expiring after 30 seconds.",
+  "reasoning": "This is a performance improvement measured on a synthetic 35 GiB database: the OR-combined read query (from the #171336 usage rework, d2ef45ce) and the 30-second TTL for detail reports were never faster, and no functional failure or reported incident with a prior faster state is cited. The sibling delete path had already been switched to per-range indexed probes in #199374, and this extends the same optimization to reads, so it fits the rubric's performance-improvement-of-code-never-slower case."
+}

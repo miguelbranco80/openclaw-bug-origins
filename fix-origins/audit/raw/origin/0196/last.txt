@@ -1,0 +1,17 @@
+{
+  "rank": 196,
+  "sha": "a9e6314da7ff4cd96d559ffdfc551837c1a90294",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "Dropped the export keyword from loadClawHubSecurityVerdicts in the Control UI skills module so it stays module-internal.",
+  "reasoning": "The product diff only removes an `export` from a function, a CI unused-export/lint cleanup titled fix(ci); no runtime behavior changes. That is a tooling change titled as a fix, so not-a-defect."
+}

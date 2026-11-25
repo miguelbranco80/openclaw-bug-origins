@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "d74277a7c3cc638cebdacb14331dcc9df88aa9a8",
+  "cause_pr": 148790,
+  "confidence": "high",
+  "cause_quote": "PR #148790 added `source: \"channel-owner\"` to the capability created by `createCronCreatorAuthorityCapability(authorityRunId, ...)`, binding the new management entitlement to the ingress run that settles before queued execution.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An authenticated channel owner saw only the current conversation\u2019s automations when their request waited in the followup queue.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix carries a source-bound capability factory through the followup queue and uses it to restore gateway-wide automation management for the queued run if the sender is still an owner.",
+  "reasoning": "The introducing diff extended gateway-wide automation management from Control UI administrators to configured channel owners and required a live entitlement tied to the executing run ID. I checked that the queue already existed in that revision and that it executed the saved followup under its own run ID without creating a fresh owner capability, so the queued path was broken when channel-owner management shipped.",
+  "rank": 100146,
+  "sha": "024d58f3543743418ef0f22c56555ffaf6d15148",
+  "rubric": "v1.2"
+}

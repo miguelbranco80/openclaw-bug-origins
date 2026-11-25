@@ -1,0 +1,17 @@
+{
+  "rank": 100883,
+  "sha": "dfaec136991a8189f7e0d300beec427c8a2ebf0c",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "46aa369b315196a0ec57f6e171e97defbe64e18e",
+  "user_visible": "yes",
+  "user_saw": "An operator could run a self-update on FreeBSD and have OpenClaw replace files or launchers managed by pkg.",
+  "impact": "other",
+  "area": "update",
+  "summary": "The fix checks FreeBSD pkg ownership at update admission and before filesystem changes, refusing updates when ownership is present or cannot be ruled out.",
+  "reasoning": "The existing updater already renamed the installation root and copied launchers as part of its package-manager update flow. I checked that the previous executor required a process-start identity and failed before staging on FreeBSD, and that #147415 added the FreeBSD identity reader that let this path reach the existing replacement logic. The fix PR reports reproducing the ownership failure on unpatched source with an unowned control."
+}

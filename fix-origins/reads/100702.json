@@ -1,0 +1,17 @@
+{
+  "rank": 100702,
+  "sha": "b9b5aaccb80a5666e037f966bbaf38b295b75fed",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "cfee851150c5603a6af8b04f748973b57e482af0",
+  "user_visible": "yes",
+  "user_saw": "When a background Workshop notice arrived during recovery, the interrupted message got no reply and the user had to resend it.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix retries replay admission once after a transcript change and preserves the Workshop notice marker through channel delivery so the notice cannot close the foreground turn.",
+  "reasoning": "I checked that replay already validated the selected transcript version once at admission before #161057 introduced background Workshop notices that could append to the same transcript. That new writer could invalidate admission or make the interrupted turn look complete. The fix's test diff covers the notice arriving at the admission boundary on both reader paths."
+}

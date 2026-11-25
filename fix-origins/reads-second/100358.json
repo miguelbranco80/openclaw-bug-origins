@@ -1,0 +1,17 @@
+{
+  "rank": 100358,
+  "sha": "552b54b86c133ad9773cade18b272dd0a081ee67",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "697f773c4a8fd883d1ce1d9732dfff41166d1e2d",
+  "cause_pr": 132073,
+  "confidence": "high",
+  "cause_quote": "The original plugin expired grants through an hourly `setInterval` that called `void sweep()`, and the sweep only removed expired emails from the Cloudflare allow policy with `return emails.filter((email) => !expired.has(email));`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An already admitted visitor could keep using an open Gateway connection or have accepted work continue after their invitation expired or was revoked.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix ties Gateway access and active or queued work to the original visitor grant so expiry, revocation, or identity loss ends that authority.",
+  "reasoning": "The introducing commit stored invitation deadlines but implemented expiry and revocation through Cloudflare policy cleanup, leaving open Gateway connections and accepted runs independent of the grant. The later invitation-validation change checked guest roles and administrator authority when managing invitations, and the fix's Gateway diff shows where grant checks and cancellation were first added to request dispatch."
+}

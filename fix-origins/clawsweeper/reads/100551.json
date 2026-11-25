@@ -1,0 +1,8 @@
+{
+  "rank": 100551,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The SQLite table change warning asks for general upgrade compatibility proof, and the Before merge item about the updater run concerns test coverage. Neither raises the risk that Doctor writes deferred plugin migrations before repairing the shared SQLite schema."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "aed4510bd0943d847031c20a7c0bb4f399b250bd",
+  "cause_pr": 123874,
+  "confidence": "high",
+  "cause_quote": "The new tab strip set `ariaControls: \"chat-side-panel-content\"` for every tab, and every pane rendered its side-panel body with `id=\"chat-side-panel-content\"`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Assistive technology could associate a tab with content in the wrong pane or miss the Chat content after a swap.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix gives Chat and tool content stable, pane-specific region IDs, points each tab at its own region, and keeps close-tab focus recovery within the correct tab group.",
+  "reasoning": "Split chat panes already existed when the unified side-panel tab strip introduced a shared target ID that each pane duplicated. I checked the introducing diff and the later swap diff, which added Chat to the side-tab flow while keeping its content outside the shared target.",
+  "rank": 100296,
+  "sha": "5da0ea9a8e36f08e1e9c1def0271059c6480dea7",
+  "rubric": "v1.2"
+}

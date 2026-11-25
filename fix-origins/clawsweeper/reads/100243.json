@@ -1,0 +1,8 @@
+{
+  "rank": 100243,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Resolve merge risk item asked for published-updater compatibility evidence, and the earlier race-hook finding concerned test hooks selecting final repository entries. Neither item questioned the staging fingerprint comparison after unlinking the source hard link."
+}

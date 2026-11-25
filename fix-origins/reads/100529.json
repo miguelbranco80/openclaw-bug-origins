@@ -1,0 +1,17 @@
+{
+  "rank": 100529,
+  "sha": "5ad0710eccd47d1a3d6e605a55504391d1c2d78a",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "a825abb1fae404fd186ab65cb427019f0f9b4d9c",
+  "user_visible": "yes",
+  "user_saw": "On a busy host, the first Codex turn could fail when model discovery timed out while the app-server was still starting.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix gives shared Codex app-server startup its own deadline so discovery can stop waiting while startup continues for subsequent requests.",
+  "reasoning": "The shared client already closed an initializing server when its last waiter abandoned the acquisition, which was consistent with tying the process lifetime to active claimants. The diff for #168387 moved native discovery from Gateway startup to first use, exposing that policy when a turn needed the same cold startup after discovery had stopped waiting. The September cleanup change retained the existing cancellation behavior and added a wait for cleanup."
+}

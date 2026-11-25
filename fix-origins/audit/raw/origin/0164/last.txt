@@ -1,0 +1,17 @@
+{
+  "rank": 164,
+  "sha": "32fff4b857b1e4df8c3b26b609218ca2a4c096a6",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "b581ff0be723060b5b03d3de5cebfd04db643006",
+  "cause_pr": 130598,
+  "confidence": "medium",
+  "cause_quote": "#130598 added `var effectiveAccentHex: String? { self.profileAccentHex ?? self.seamColorHex }` and cleared the profile accent on users.prefs.changed, falling back to seamColorHex, which Talk Mode fills from talk.config's already personally resolved ui.seamColor.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On the Mac app with Talk Mode loaded, clearing a personal accent left native chat on the old personal color (or theme default) instead of the Gateway accent.",
+  "impact": "presentation",
+  "area": "apps",
+  "summary": "Removed Talk Mode's write of talk.config's ui.seamColor into the app's Gateway-wide accent fallback (and the unused parser field), leaving ControlChannel as the sole writer.",
+  "reasoning": "talk.config has resolved the caller's profile accent into ui.seamColor since a4c01c1a77ac (#130340), and Talk wrote that value into AppState.seamColorHex (present at the graft); b581ff0be723 (#130598), a descendant of #130340, introduced the profile accent whose clearing falls back to seamColorHex, so clearing with Talk loaded never restored the Gateway accent. Medium because I read the #130598 macOS diff and graft-era Talk write but could not read Talk's code at exactly that commit; #185529 (79d467a82ca8, top blame) only reworked the parser and is not the origin."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100300,
+  "sha": "d4bfb4e130d9b0b7d6264292a5ac7fce2d0bca25",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "b5b1029990fdaae21c99fce2400dcfc9a5ddd2e1",
+  "cause_pr": 158091,
+  "confidence": "high",
+  "cause_quote": "The guard `if (!trimmed && !params.installedSkillSearch)` allowed the section to render with an empty directory when search was enabled, but every read branch still began with `Scan <available_skills>.`",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users could get responses from an agent that skipped a relevant installed skill after being told to scan a directory missing from its prompt.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix tells agents when to search for installed skills if the prompt omits the directory and explains how to read a skill by its known name in direct-tool and Code Mode sessions.",
+  "reasoning": "I checked the introducing diff, which shows that the previous prompt builder returned early when the directory was empty. The same commit introduced installed-skill search in that state and shipped the misleading scan instruction, so the defect was present from the start. The fix's test diff covers the empty-directory case in both tool modes."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 109,
   "sha": "e049242a54b97a651a009a6b96719f06c0310b7c",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a77bf0478040f85086629714f1a48bf9e7fd4e88",
+  "cause_pr": 169564,
+  "confidence": "high",
+  "cause_quote": "The initial Advisor catch fell through to `: \"fork_failed\"` for these Codex policy errors and emitted `deps.logger.warn(`advisor: review failed for session ${sessionKey}: ${reason}`);`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Gateway logs reported policy-blocked Advisor reviews on restricted Codex sessions as `fork_failed` instead of saying the review was skipped by policy.",
+  "user_saw": "Operators saw `advisor: review failed` with `fork_failed` in the Gateway logs when Codex policy prevented a review from running.",
   "impact": "presentation",
   "area": "plugins",
-  "summary": "Advisor now recognizes three Codex /btw policy refusal messages and logs `review skipped` with tool_policy, sandbox or exec_host_node reasons instead of `fork_failed`.",
-  "reasoning": "The review was correctly refused before and after the change; no review runs in either case and no behavior, authority or delivery changes. The fix only refines the log reason code for operators, which is a diagnostics/copy improvement rather than a defect with a broken behavior."
+  "summary": "Advisor now logs policy-blocked Codex reviews as skipped and identifies the tool policy, sandbox, or node execution restriction.",
+  "reasoning": "Advisor's introduction already routed reviews through the Codex side-question handler, whose tool-policy, sandbox, and node-execution guards threw ordinary errors. The initial Advisor catch classified those errors as `fork_failed`, so the misleading warning shipped with the plugin."
 }

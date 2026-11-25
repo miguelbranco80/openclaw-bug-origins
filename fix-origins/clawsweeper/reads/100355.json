@@ -1,0 +1,8 @@
+{
+  "rank": 100355,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item covered startup recovery of journals written by v2026.9.7. The forced-stop bug involved a different path, where cleanup could resume after an asynchronous read and fail a replacement turn."
+}

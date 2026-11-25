@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Before merge items concern chat bundle size and test-line allocation, and the Tests section asks for layout-shift measurements without identifying the off-panel layout defect. The Technical review describes the preexisting unknown-method error from Workshop reads, a separate path from the new panel’s raw enable/check errors, focus loss, and stalled enable flow."
+  "outcome": null,
+  "note": "The review (of an earlier head) only raises chat bundle growth and test-line allocation, plus a generic layout-shift measurement gap; nothing mentions the off panel's settings-group display override, the disabled busy button losing focus, raw Gateway error text, or a missing fallback when plugins.changed is dropped."
 }

@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge Evidence section describes synchronous identity reads on main as a performance issue. The earlier compatibility checklist asks for upgrade and startup proof, and no quoted review item raises the risk of capturing the registry snapshot while the first chat’s database is still being created."
+  "outcome": null,
+  "note": "The review at merge had no findings; earlier versions raised generic data-model compatibility proof and an unrelated plugin allowlist P1, nothing about capturing the registry snapshot before a cold first-use database is created."
 }

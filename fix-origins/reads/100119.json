@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "d023e9f5624bdaba3c4f8855fe458239868ef299",
+  "cause_pr": 161114,
+  "confidence": "high",
+  "cause_quote": "The commit initialized pause-only wakes with `batchRunIds: previous.requesterSettleWake?.batchRunIds ?? [entry.runId]` and remapped them with `{ ...resetRequesterSettleWakeRetry(wake), pauseNotice: undefined }`, leaving a pending completion wake on the adopted run.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The requester could receive two completion announcements for one subagent follow-up.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix drops pause-only wakes during follow-up adoption and preserves genuine requester completion cohorts with their frozen run identities.",
+  "reasoning": "I checked the original adoption change and the parent of #161114, where an adopted follow-up could announce normally and wake inheritance carried existing requester completion state. #161114 began creating settle state for child-only pause notices and kept that state after clearing the notice during adoption, allowing requester settlement to race the ordinary completion announcement.",
+  "rank": 100119,
+  "sha": "f71437a98f53bb0b6d993a1f54b02360cf3b4611",
+  "rubric": "v1.2"
+}

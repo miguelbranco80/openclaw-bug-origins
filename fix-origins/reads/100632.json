@@ -1,0 +1,17 @@
+{
+  "rank": 100632,
+  "sha": "782a1c0207b78d43b94bf87224daa7d352c509f0",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Model pickers and defaults offered unavailable models, so affected requests failed or, in some DeepInfra cases, were served by a different model.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix removes 35 unavailable models from bundled catalogs and switches affected onboarding and image-understanding defaults to available models.",
+  "reasoning": "The July Cerebras default change documents Gemma 4 31B as a then-current public preview recommended by Cerebras. The October provider probes found that endpoint archived and recorded explicit retirement or end-of-life responses from Ollama Cloud and NVIDIA, so provider-side availability changes explain the stale catalog entries."
+}

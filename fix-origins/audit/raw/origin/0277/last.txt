@@ -1,0 +1,17 @@
+{
+  "rank": 277,
+  "sha": "cf42eb81c8ce873d85185a542f8f9051b43c6cd0",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Session assessments and Activity recaps on Codex failed with 'model/list timed out' when Codex was refreshing its model catalog cold.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "Bounded Codex turns now give model/list discovery the enclosing turn budget instead of a fixed 5-second cap.",
+  "reasoning": "GraphQL blame and the full-history log show the 'timeoutMs: Math.min(params.timeoutMs, 5_000)' cap was present from the file's creation in 1e0062b44a51 (#93446, June 2026); 2409cd6489b4 only reformatted it. The failure comes from the external Codex app-server's own best-effort 5-second catalog refresh (codex-rs models-manager) racing that cap, a dependency behavior I could not date relative to June, so latent fits better than never-worked; with no in-repo trigger identified, trigger_sha is null and this is a judgment call between latent and never-worked."
+}

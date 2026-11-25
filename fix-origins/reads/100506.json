@@ -1,0 +1,17 @@
+{
+  "rank": 100506,
+  "sha": "725da12cc31cbb923ca9884beddb316e3ca4ac32",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8f364a7e80f6f4b9bb62f0cf6defca360fbb403a",
+  "cause_pr": 162614,
+  "confidence": "high",
+  "cause_quote": "The new Doctor custody code set `runId: process.env.OPENCLAW_UPDATE_RUN_ID ?? \"\"` and passed it as the lease owner in `store.acquire(`${root}/${child}`, options.runId, ...)`, which rejected the empty string.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When upgrading from an affected older release, post-install Doctor refused its subprocesses with \u201cmanaged handoff admission is invalid,\u201d leaving the Gateway stopped until Doctor timed out.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix uses Doctor\u2019s invocation identity for command lease reservation and settlement when the updater supplies no run ID.",
+  "reasoning": "I checked the parent\u2019s Doctor flow and legacy-updater tests, which show that Doctor already handled the result-path environment without requiring a run ID or a command lease. The causing diff put those same invocations behind lease admission and passed the empty run ID to an owner validator that required at least one character. The fix PR documents the same environment contract for v2026.8.2, whose tag was unavailable in the checkout."
+}

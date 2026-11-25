@@ -1,0 +1,17 @@
+{
+  "rank": 100234,
+  "sha": "01080c52372ed7adba27d4d3c22eb7206ed00197",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8da589121c6ec610f28d85042e7acce8b9048c4f",
+  "cause_pr": 183816,
+  "confidence": "high",
+  "cause_quote": "The new worker path used `block.visible = entries.at(-1)?.isIntersecting === true;` to decide whether to retain or cancel highlighting, without checking whether the browser tab was hidden.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A background tab could keep doing syntax-highlighting work after the user switched away from a long Markdown code block.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The shared Markdown owner now pauses highlighting and releases observers when the tab is hidden, then resumes unfinished work only for panes still presented when the tab returns.",
+  "reasoning": "I checked the introducing diff and its parent, where Markdown highlighted code inline. The first worker implementation tied cancellation to viewport intersection and pane lifecycle, leaving no path for tab hiding to release a pending worker. The owner and worker files were unchanged between that introduction and the fix."
+}

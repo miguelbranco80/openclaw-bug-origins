@@ -1,0 +1,8 @@
+{
+  "rank": 100694,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier findings concerned restoring the managed Gateway after package-to-Git failures and stamping configuration metadata after downgrade Doctor errors. The at-merge Evidence section discusses pre-mutation refusals only in terms of restart safety and raises no concern about target metadata preflight reporting a detected package manager as `mode: unknown`."
+}

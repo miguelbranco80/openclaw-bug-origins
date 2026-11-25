@@ -1,1 +1,7 @@
-{"flagged":"none","where":null,"quote":null,"note":"“Preserve actionable model-policy failures” concerns partial reports caused by denied model overrides, and “Accept citation URLs from answer-shaped search responses” concerns the web search parser. Neither addresses model replies rejected for exceeding schema list limits or the duplicate Deep Research controls."}
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Findings cover answer-shaped search responses and discarded model-policy errors; nothing mentions maxItems schema limits rejecting longer model replies or the prompt omitting those limits."
+}

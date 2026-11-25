@@ -1,0 +1,8 @@
+{
+  "rank": 100277,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cQualify interval reopening for anchors outside the current view\u201d finding addressed documentation for anchors still visible after a reset. The at-merge Evidence section described the canonical reader\u2019s fallback and missed that a bound Claude CLI import bypassed it, leaving pre-reset anchors with empty pages."
+}

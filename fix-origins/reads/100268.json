@@ -1,0 +1,17 @@
+{
+  "rank": 100268,
+  "sha": "48df899f6f1684d85dbab88077bd7efce224e904",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "aef29790c63466236103d1ae4886bbd438f3a810",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new helper required `rowsBeforeTail > readEnd`, so it skipped fetching the older page when a prior read had covered those offsets on a different transcript leaf.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After stopping a long chat turn, the opening prompt could disappear behind \u201cShow earlier.\u201d",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "After a history cursor reset, the chat UI fetches the bounded older page even when a prior read covered the same row offsets.",
+  "reasoning": "The original Stop repair introduced both the gap reader and its row-count shortcut. I checked its parent and confirmed that the existing transcript identity guard already prevented reuse of held rows when the leaf changed, so the new repair shipped with this case unhandled. The follow-up test demonstrates the combination with two missing rows, four previously read rows, and a changed leaf."
+}

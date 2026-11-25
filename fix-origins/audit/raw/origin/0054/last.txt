@@ -1,0 +1,17 @@
+{
+  "rank": 54,
+  "sha": "2f95bd3c3a527b6cd3b87339419cb135f67ab776",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "cc757839d5e2cd8303443e7fd2ab359c7e69b4f8",
+  "cause_pr": 97235,
+  "confidence": "high",
+  "cause_quote": "It wrapped the proxy SSE reader in `createSseByteGuard(reader, { maxBytes: PROXY_SSE_STREAM_MAX_BYTES, onOverflow: ... 'Proxy SSE stream exceeded ${maxBytes} bytes' })` with `PROXY_SSE_STREAM_MAX_BYTES = 16 * 1024 * 1024`, replacing the unbounded `reader.read()` with a lifetime byte budget.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Long healthy proxied model responses failed with 'Proxy SSE stream exceeded 16777216 bytes' after 16 MiB of cumulative SSE traffic even though every event line was small.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "streamProxy now charges only the outstanding SSE line against the 16 MiB cap before decoding and drops the cumulative stream byte guard.",
+  "reasoning": "GraphQL blame past the graft attributes the removed stream-guard lines to cc757839 (#97235, 2026-06-28); its diff shows the proxy previously read with plain `reader.read()` and no total cap, and that commit added the 16 MiB whole-stream guard alongside the pending-line check. Streams over 16 MiB worked before and fail after, so it is a regression caused by an over-broad bound in a hardening fix."
+}

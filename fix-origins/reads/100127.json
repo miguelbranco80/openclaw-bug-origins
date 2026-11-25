@@ -1,0 +1,17 @@
+{
+  "rank": 100127,
+  "sha": "5b4824b8c80bd250cc031a545799f93cad97b3bc",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators could not identify successful CLI or backend connections from normal Gateway logs.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The Gateway now writes one info-level record per admitted operator or node connection, with client metadata and authenticated user identity when available.",
+  "reasoning": "The pre-refactor handler already sent general connection metadata through a WebSocket logger that skipped inbound connect records in normal mode. Later logging changes preserved that omission, and the available history stops before its introduction. The production sample demonstrated the attribution gap but did not establish a change in callers or traffic that triggered it."
+}

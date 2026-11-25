@@ -1,17 +1,17 @@
 {
   "rank": 215,
   "sha": "cab71dc06f8133c28e948183ee26bef97404f75a",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c60db01a455dc9c5ab3fd75d32e00edbc3205594",
+  "cause_pr": 133683,
+  "confidence": "medium",
+  "cause_quote": "The writer replaced the synchronous append with a queued write and added `scheduledFlush ??= setImmediate(flush).unref()`, allowing a completed startup span to remain buffered when `/readyz` returned success.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible to users; startup performance collectors could stop at a green /readyz before the batched terminal timeline events were written, missing startup evidence.",
+  "user_visible": "yes",
+  "user_saw": "Operators collecting startup diagnostics could see a successful `/readyz` response while the timeline still lacked events for startup work that had finished.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Gateway startup now calls flushDiagnosticsTimeline() before dispatch readiness and after the post-attach span, so batched timeline events are on disk before /readyz can turn green.",
-  "reasoning": "The diagnostics timeline writer batches events and flushes on a later setImmediate turn, which is fine for its own contract; it only became wrong once benchmark/perf collectors (scripts/bench-*, scripts/perf/*) used /readyz as the end of their evidence window. The batching code is older than the history I could search (no in-repo commit found by path-limited search), the change is a forward-port from release/2026.10.10 whose own message names no cause, and the fix notes main's readiness ordering differs from the release branch, so I name no cause or trigger commit."
+  "summary": "The fix flushes buffered diagnostics before publishing request-dispatch readiness and after the post-attach span finishes, before that path can publish sidecar readiness.",
+  "reasoning": "The parent of #133683 already emitted startup span-end events, and the awaited HTTP-listen span was written synchronously before dispatch readiness. #133683 introduced the write delay, and #188873 later moved sidecar readiness after post-attach span completion while leaving the flush deferred. The local history establishes the ordering change, but I could not verify when the affected collector began taking its snapshot at `/readyz`."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100032,
+  "sha": "35086ae48aacf9b2460dcb5647d7b7b5d51eccf4",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running Matrix message read with --message-id returned recent room history instead of the requested message.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "Matrix reads now fetch the requested event after room authorization and return an error if it is unavailable, while reads without a message ID still return paginated history.",
+  "reasoning": "At the oldest available snapshot, the CLI already advertised --message-id and the Matrix read handler discarded it before requesting room history. The September parsing refactor preserved that behavior, and the offline history lookup could not go past the shallow boundary to establish whether exact reads ever worked."
+}

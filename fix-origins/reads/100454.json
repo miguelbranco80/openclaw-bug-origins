@@ -1,0 +1,17 @@
+{
+  "rank": 100454,
+  "sha": "21e23517dfa43571891021b086e4ee319b137861",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A local TTS command configured with an empty quoted option value dropped that value and passed the following flag in its place.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix makes the local TTS command parser preserve empty single- and double-quoted arguments.",
+  "reasoning": "The July 1 snapshot already contains both `if (current)` guards, which discard empty quoted arguments at whitespace and at the end of the command. The path history stopped at the shallow boundary because an older object was missing, so I could not establish whether the guards shipped with the feature or replaced a working parser."
+}

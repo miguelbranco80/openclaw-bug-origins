@@ -1,0 +1,8 @@
+{
+  "rank": 100613,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cRead and delivery authority\u201d section describes checks and coverage without raising a concern about metadata writes overlapping task completion. The earlier \u201cComplete next step\u201d item asks for merge-conflict validation with existing tests and does not identify the receipt supersession that caused the task-list failure."
+}

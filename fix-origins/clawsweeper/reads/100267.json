@@ -1,0 +1,8 @@
+{
+  "rank": 100267,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The mobile Layout helper finding concerns browser tests waiting for a View action that the session menu removes. The review raises no concern about Scroll to latest overlapping activity pills or collapsing an expanded composer when tapped."
+}

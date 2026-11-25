@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0ed2e0c7a18d00c190602343ecb851f21db1b522",
+  "cause_pr": 164558,
+  "confidence": "high",
+  "cause_quote": "The Codex release check used `state.currentTurnHadNonTerminalDynamicToolResult && !state.currentTurnHadToolAuthoredFinalReply`, so a finished reply could override a sibling result that required the model to continue.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plugin tool\u2019s finished answer could end the turn while another tool call had failed or still needed follow-up.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix evaluates tool-authored replies against the finalized batch, keeps sibling failures eligible for model follow-up, and suppresses only the originating turn\u2019s preamble.",
+  "reasoning": "The diff for #164558 introduced direct delivery of tool-authored replies and the completion rules that hid sibling failures. It also added an embedded-runtime hook that used `context.toolResults.some(...)` to complete the turn on one eligible reply, regardless of the other results. Both paths shipped with the defect in the feature\u2019s first commit.",
+  "rank": 100902,
+  "sha": "9c9b2bbc177b1902f66c8639661ecd02a47e4ce6",
+  "rubric": "v1.2"
+}

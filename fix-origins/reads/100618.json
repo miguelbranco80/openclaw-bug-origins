@@ -1,0 +1,17 @@
+{
+  "rank": 100618,
+  "sha": "1f74f3cf39b065f89a4b5bffc63e5d9dd53fcc92",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After rerunning QuickStart onboarding, an operator whose Gateway used trusted-proxy authentication was prompted for a token instead of being signed in through the proxy.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix preserves trusted-proxy authentication and its configured password across setup reruns and binds post-setup health checks to the selected local Gateway.",
+  "reasoning": "QuickStart carried forward only explicit token or password modes, so a trusted-proxy config without a stored secret fell through to token and onboarding persisted that mode. The July 5 refactor moved the same condition out of the classic wizard, and the older path history stopped at a missing parent, leaving the introducing commit and any earlier working behavior unverified."
+}

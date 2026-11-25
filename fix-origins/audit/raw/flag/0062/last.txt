@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The “Validate authority after asynchronous preparation” finding asked for proof that revoked or reassigned callers would be rejected. The reported bug involved a valid follow-up turn being rejected because a warm Claude CLI transport reused the first turn’s async context, a condition absent from the review."
+  "outcome": null,
+  "note": "The security item worries that retained scopes might still authorize after revocation (too permissive), not that a warm transport runs assertCurrent in the first turn's async context and spuriously refuses. Unsure between related and none; chose none because the stated failure is the opposite direction and names no async-context binding."
 }

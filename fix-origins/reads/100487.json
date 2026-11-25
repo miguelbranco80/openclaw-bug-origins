@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "dc342b615e1fc78ccf03197853fc9e1981bccf72",
+  "cause_pr": 163270,
+  "confidence": "high",
+  "cause_quote": "In src/daemon/program-args.ts, the commit inserted `...resolveRuntimeArgs(params.runtime),` before the service entrypoint, and the new helper returned `[\"--no-install\"]` for Bun.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The macOS app could not finish update or recovery verification even though its managed Bun Gateway was healthy.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix lets macOS service inspection skip the exact `--no-install` flag for Bun while preserving the full launch command.",
+  "reasoning": "The parent commit\u2019s packaged Bun fixture shows that the service already launched with the script immediately after the Bun executable, and the Swift parser accepted that single absolute entrypoint. PR #163270 inserted the flag into that same generated command, leaving the parser with two arguments where its `entry.count == 1` guard required one.",
+  "rank": 100487,
+  "sha": "7d0c0531888de48d6b9baee1e287da7a8a89433c",
+  "rubric": "v1.2"
+}

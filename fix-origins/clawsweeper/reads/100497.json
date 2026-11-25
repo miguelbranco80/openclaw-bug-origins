@@ -1,0 +1,8 @@
+{
+  "rank": 100497,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item in Before merge raised a general concern about vendor capability metadata across providers. Its recommended live checks focused on onboarding, configured model references, and Ollama IDs, leaving Groq Qwen 3.6 image support and default thinking behavior unaddressed."
+}

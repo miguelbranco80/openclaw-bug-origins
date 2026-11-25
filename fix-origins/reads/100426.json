@@ -1,0 +1,17 @@
+{
+  "rank": 100426,
+  "sha": "d5c4c19fe1863dc84badedec8cbbbec4906a4855",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "bff6c68fb0a3b0213d97d7b38441b41d0e7af0c0",
+  "cause_pr": 140648,
+  "confidence": "high",
+  "cause_quote": "The new phase recorder unconditionally called `defaultRuntime.error(`[update finalize] ${JSON.stringify(step)}`);` for every phase status, including `in_progress` and `completed`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators saw error entries in OpenClaw logs for update and repair phases that completed successfully.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The fix logs normal finalization progress at info, advisories at warning, and failures at error while keeping progress on stderr and JSON output on stdout.",
+  "reasoning": "The introducing diff replaced a helper that collected timings for the final result with a lifecycle that also emitted live phase records. The runtime and console capture code at that commit routed every new progress record through `console.error` to error-level file logging, so the severity defect shipped with live phase reporting."
+}

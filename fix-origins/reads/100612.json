@@ -1,0 +1,17 @@
+{
+  "rank": 100612,
+  "sha": "371306818eb6337d8554aa9be6bb1b799001eb44",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an operator supplied a quoted path with leading or trailing spaces to `mcp add`, the server could fail to launch or use the wrong working directory.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix preserves leading and trailing whitespace in nonblank `mcp add --command` and `--cwd` values.",
+  "reasoning": "The July 1 snapshot already passed both flags through a helper that trims strings. The later Docker cleanup commit moved the handler while preserving those calls, and the available path history ends at the July 1 boundary, leaving it unclear whether the flags shipped with trimming or an earlier change introduced it."
+}

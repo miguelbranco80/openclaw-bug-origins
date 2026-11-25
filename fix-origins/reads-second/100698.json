@@ -1,0 +1,17 @@
+{
+  "rank": 100698,
+  "sha": "5f7904f16f3c8815e896df1ee33d3afad6fc33ec",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "736dddb96a6e731ddc440e2dafd8f147a2dfe7d2",
+  "cause_pr": 110864,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `await durableIngress?.stop();` as the account's only shutdown wait, while its new replay path ran `replayClaims.map(async (claim) => claim.commit())` after transport adoption had already settled the promise tracked by ingress.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Feishu account could finish shutting down while work for an event it had already accepted was still pending.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix closes Feishu event admission during shutdown and waits for accepted handlers and their deferred message and broadcast replay writes before releasing account resources.",
+  "reasoning": "I checked the introducing diff and the later ingress refactor. PR #110864 introduced deferred replay settlement and ended ingress tracking at transport adoption, before the logical replay writes finished, and the refactor preserved that boundary. The five-minute queue timeout was already in place when durable ingress shipped, so a handler could also outlive its ordering slot from the start."
+}

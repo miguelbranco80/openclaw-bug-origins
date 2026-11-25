@@ -1,0 +1,8 @@
+{
+  "rank": 100339,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes the global maintenance lease, and the earlier \u201cSurface lease-inspection failures during preflight\u201d finding concerns errors being mistaken for active writers. Neither raises the risk that an idle agent\u2019s cursor bookkeeping could fail because another agent holds a valid writer lease."
+}

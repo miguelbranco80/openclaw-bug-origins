@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Node.js on Linux or Windows, edits to a skill could stay invisible until OpenClaw restarted if another watcher still held the directory that had been replaced.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix gives Skills its own native directory watches on Linux and Windows so it can detect directory replacements and refresh cached skills after later edits.",
+  "reasoning": "The fix\u2019s integration tests keep a peer watcher open through directory replacement and check that a later edit refreshes the primed Skills cache. I checked the ancestor watcher and overlapping rescan changes, but the available diffs do not establish that this sequence previously worked or that either change first exposed the failure. Skills already used Chokidar at the shallow boundary, and the original watcher implementation predates the available source history.",
+  "rank": 100369,
+  "sha": "64b746503109f6b73121db84769ff7177fe858d1",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Starting a suggested task in a new session or worktree switched to the new conversation and took the current draft out of view.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The Control UI now launches suggested tasks in new sessions or worktrees in the background, keeping the current conversation and draft open.",
+  "reasoning": "I checked the original follow-up feature in PR #102422, which added automatic navigation on worktree acceptance and documented that accepted suggestions open a fresh session. PR #145019 explicitly tested navigation for new-session and worktree launches, so this fix changes the established interaction to background launching.",
+  "rank": 100248,
+  "sha": "963550df3adf94af0ed55521c3e4ccdc660e45d9",
+  "rubric": "v1.2"
+}

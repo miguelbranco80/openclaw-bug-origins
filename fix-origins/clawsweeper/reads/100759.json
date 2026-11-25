@@ -1,0 +1,8 @@
+{
+  "rank": 100759,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Confirm that the changed transfer-retirement boundary prevents stale session or revoked source authority from reaching final composer publication.",
+  "outcome": "open-at-merge",
+  "note": "The Resolve merge risk item questioned the same checks that decide whether a pending transfer can reach the composer. Its requested verification covered stale sessions and revoked authority, leaving untested whether recreated callbacks on an equivalent pane refresh could cancel a valid transfer."
+}

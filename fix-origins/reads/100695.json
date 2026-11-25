@@ -1,0 +1,17 @@
+{
+  "rank": 100695,
+  "sha": "9b4fdb0829fdbba686799c09e463b972dde317f8",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "7fefc00241bf4acbff658ee2a2de135321f3a1fd",
+  "cause_pr": 175534,
+  "confidence": "high",
+  "cause_quote": "Changing the guard to `if (revisions.get(id) !== captured && facts?.transcriptAssistantMessage === \"unknown\")` let a superseded backfill publish when broad invalidation had cleared `facts`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A session preview could revert to older assistant text when a background read finished after broad invalidation.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The gateway now discards every superseded transcript backfill before it can overwrite the session preview.",
+  "reasoning": "I checked that broad invalidation already cleared retained facts and removed the backfill revision in the parent of #175534. The parent\u2019s `=== undefined` check discarded the stale result in that state, while the new `=== \"unknown\"` check let it fall through and publish the old text, matching the sequence in the fix\u2019s regression test."
+}

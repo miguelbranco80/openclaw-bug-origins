@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "f804e08cba8f5bcbabfac37b788879ceece581b0",
+  "user_visible": "yes",
+  "user_saw": "Slack native progress showed two task cards for each exec call, with the first marked complete before the command finished.",
+  "impact": "presentation",
+  "area": "channels",
+  "summary": "The fix preserves the first progress line ID across correlated updates and uses the same correlation keys to clear resolved failures in quiet mode.",
+  "reasoning": "The shared compositor already merged a command's events into one line while adopting the incoming event's ID, and an existing lifecycle test explicitly expected that behavior. The parent of #137342 used a stable Slack summary row for routine tools, while #137342 restored detailed native rows keyed by `return stableTaskIdPart(line.id)`, exposing the existing ID change as a second card. The compositor behavior predates the available local history, so its original introduction could not be verified.",
+  "rank": 100815,
+  "sha": "ce40be4769a369d6ed3fd4c84434411605fa67dc",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100388,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The only Before merge item flags a static import cycle between storage and the SDK host. The review does not raise the risk that inspecting unreadable nested tool-error metadata outside the diagnostics guard could stop the agent turn."
+}

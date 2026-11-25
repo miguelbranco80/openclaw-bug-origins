@@ -1,17 +1,17 @@
 {
   "rank": 298,
   "sha": "6655afcbfd14bff4cc016a489503bbc83b91e5ba",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a25b072d1684843a0649f755e4e65c2a40f5f5d1",
+  "cause_pr": 184581,
+  "confidence": "high",
+  "cause_quote": "The new snapshot query unconditionally added \"canonical_fingerprints\" and \"projection_fingerprints\" to its SELECT list, transferring both blobs for every action.",
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; workspace snapshot reads loaded fingerprint blobs they did not use, with no measured user-facing cost.",
+  "user_saw": "Nothing visible was reported.",
   "impact": "slower-or-heavier",
-  "area": "storage",
-  "summary": "The workspace manifest snapshot query now selects only the fingerprint column the scan, probe or archive action needs and returns null for the unused one.",
-  "reasoning": "This is a performance optimization: the reader has selected both fingerprint columns since it was written (blamed to #184581), and the PR reports no failure and no measured production cost. Nothing became slower than before, so it is not a defect."
+  "area": "gateway",
+  "summary": "The gateway now reads only the fingerprint blob each workspace manifest action uses, preserving hash reuse for unchanged files.",
+  "reasoning": "I checked the introducing diff and its parent. The parent stored file identities inline in manifest records, and the commit that introduced separate fingerprint blobs selected both unconditionally even though scans used only one and materialization used neither. The fix PR measured excess bytes returned by SQLite, with production latency and disk impact unmeasured."
 }

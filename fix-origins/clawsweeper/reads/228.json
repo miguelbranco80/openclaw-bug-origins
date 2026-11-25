@@ -1,0 +1,8 @@
+{
+  "rank": 228,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cAdd real behavior proof\u201d and \u201cMissing end-to-end proof\u201d items sought evidence that raw tool calls stayed hidden and prose was preserved during streaming. Neither raised duplicate Markdown parsing in the unfinished-tail fallback or its effect on streaming latency."
+}

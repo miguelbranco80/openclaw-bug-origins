@@ -1,0 +1,17 @@
+{
+  "rank": 100284,
+  "sha": "0a1e0278b266cec1a1e48757cb0def7ce1fd028c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "2bb79d10fd6510d1fe7e4574c4695ca90f01c7ac",
+  "cause_pr": 104636,
+  "confidence": "high",
+  "cause_quote": "The new ACP completion path called `recordSubagentTerminalState({`, whose writer immediately entered `const event = runOpenClawStateWriteTransaction(({ db }) => {`, putting the synchronous database wait on the Gateway event loop.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Unrelated Gateway requests stalled when a child run finished while another process held the shared state database lock.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix moves child terminal signal writes to the state worker and has completion and cancellation await settlement with ownership checks.",
+  "reasoning": "The introducing diff added both durable child terminal signals and the synchronous write on the ACP completion path. I checked the database implementation at that commit and confirmed it used a synchronous `BEGIN IMMEDIATE` with a 30-second SQLite busy timeout, so lock contention could stall the event loop from the feature's first version."
+}

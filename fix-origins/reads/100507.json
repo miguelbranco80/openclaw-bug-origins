@@ -1,0 +1,17 @@
+{
+  "rank": 100507,
+  "sha": "f7184826301de1a3ca5d70ebe82b0db974416eb1",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "3d2f7ca06b264f5fdcdf2a6f74c5a0bfdf7a2f09",
+  "cause_pr": 178764,
+  "confidence": "high",
+  "cause_quote": "The new shared-session runner used `requestedChat && !delivery.resolvedDelivery.ok ? delivery.resolvedDelivery.error.message : undefined`, treating a missing external route as a delivery error even for an announcement to the same conversation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The scheduled review appeared in its Control UI conversation, but the run history showed failed completion and \u201cNot delivered.\u201d",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "The fix counts a confirmed result write to the same conversation as successful delivery when no external route is required.",
+  "reasoning": "I checked the refactor\u2019s parent and confirmed that persistent-session jobs used the existing Cron dispatcher, which recognized the execution session\u2019s own transcript entry and called `record(\"delivered\")` for a bound conversation without an external route. The refactor moved those jobs to a runner that treated the missing route as an error and relied on outbound delivery evidence for its receipt. PR #182262 later added an explicit write for settled results while leaving that delivery accounting in place."
+}

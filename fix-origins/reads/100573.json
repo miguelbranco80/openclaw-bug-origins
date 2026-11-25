@@ -1,0 +1,17 @@
+{
+  "rank": 100573,
+  "sha": "2b5c0abe361a0d89e62d8f8a2b64eb78fbc1c7cd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "390f46d042f0fcd8def43fb2df112416a9c3acd0",
+  "cause_pr": 114360,
+  "confidence": "high",
+  "cause_quote": "The writer began setting `entry.modelOverrideRouteResolution = \"resolved\"`, but reply selection still passed only the provider and model to `normalizeStoredRuntimeModelRef`, allowing that helper to rewrite a resolved ID.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A reply could use a different model from the one saved for the session, and an allowlist could admit a provider or model the operator had not granted.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves authorized, resolved session model IDs during reply selection and checks model admission using separate provider and model fields.",
+  "reasoning": "The introducing diff added persisted route provenance and used it to gate alias lookup, yet still normalized saved IDs regardless of that provenance, so reply selection could rewrite them from the first version of the feature. PR #143975 later fixed the stored readers, while the reply path retained its own normalization step. The same fix also addresses a separate allowlist collision, whose earliest origin I could not verify from the available history."
+}

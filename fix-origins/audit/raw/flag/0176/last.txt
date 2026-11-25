@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The earlier item “Feed typing 429s into the shared flood gate” concerns how typing responses affect the limiter. The bug occurs when an already active flood wait skips a typing request and the logging wrapper records the synthetic 429 at ERROR."
+  "outcome": null,
+  "note": "Review items concern flood-gate rechecks in the group queue, writer authority, strike resets and docs; an earlier summary mentions feeding typing 429s into the flood gate. Nothing concerns the synthetic 429 for skipped typing being logged at ERROR."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100563,
+  "sha": "39bad21f1fad35b1f969e5635209f7b44adb7ef6",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "069361bc2f78e14d27aae9e9db2e15e4c49171d8",
+  "cause_pr": 171729,
+  "confidence": "high",
+  "cause_quote": "The commit set `CRABBOX_NONBLOCKING_CAPTURE_VERSION = \"0.78.0\"` and added `(captureEstablishedRequired && record.captureEstablished !== true)`, causing the parser to reject successful pending checkpoints from Crabbox 0.78.0.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With Crabbox 0.78.0, a project's first AWS warm-image capture was marked uncertain and worker enrollment was blocked until manual recovery.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix raises the nonblocking capture minimum to Crabbox 0.79.0 and waits for the exact checkpoint to become available before enrollment when the CLI cannot attest the capture point.",
+  "reasoning": "I checked the parent code and confirmed that first AWS captures already used `--wait`, accepted a successful response without an attestation, and published the image before enrollment. The diff for #171729 switched eligible captures to `--wait=false` and required an attestation that the fix PR confirms Crabbox 0.78.0 never returned, breaking the existing capture and enrollment flow on main."
+}

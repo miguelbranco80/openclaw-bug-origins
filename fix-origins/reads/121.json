@@ -1,17 +1,17 @@
 {
   "rank": 121,
   "sha": "c7a4976767a7218e4d8e3f74c8afd28058fcb871",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "98813c23905e68b41e5c58e72e3ee554986d7ab1",
+  "cause_pr": 168587,
+  "confidence": "high",
+  "cause_quote": "The shutdown change added `registerSignalExitGate(finished.promise, (signal) => {` and resolved it with `finished.resolve()` in the command's `finally` block, making signal shutdown wait for the pending list command.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Pressing Ctrl+C during `openclaw channels list` left the CLI waiting about two seconds (until the cleanup deadline killed it) or printed a late fallback account list after the interrupt.",
+  "user_saw": "Pressing Ctrl+C while `openclaw channels list` waited for the Gateway delayed exit and could still print the account list.",
   "impact": "sequence-or-timing",
   "area": "cli",
-  "summary": "Passed the CLI async-work abort signal into the channels.status Gateway read in `channels list` and rethrew the abort instead of falling back to the command-local account list.",
-  "reasoning": "GraphQL blame puts readGatewayChannelStatus and its signal-less callGateway call in b672be59ae46 (#82016, May 2026), while the CLI work-scope abort signal (src/shared/async-work-scope.ts, first seen 0d830e9e, Sept 2026) and the cooperative SIGINT barrier came later, so the read could not have honored a signal that did not exist when it was written. The fault became visible once the CLI began waiting for in-flight work on SIGINT and commands were expected to honor getAsyncWorkSignal; no single in-repo commit was confirmed as the exposing trigger, so trigger_sha is left null. The sibling fix for channels status (#196976) is the same class."
+  "summary": "The fix passes the CLI abort signal to the Gateway status request and propagates cancellation before the fallback account list can print.",
+  "reasoning": "I checked the shutdown commit and its parent. The parent already made the same Gateway request without an abort signal, and its signal handler could exit without waiting for the list command to finish. The new command-wide exit gate waited for that request, which ignored the cancellation signal and could keep the command alive until the request settled or the cleanup deadline expired."
 }

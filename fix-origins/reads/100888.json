@@ -1,0 +1,17 @@
+{
+  "rank": 100888,
+  "sha": "bc88ac2ea12b1ee977ba267b868fe91ac0ab1c2c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "57c5dc32ca9bb3de12af9abaedb36601ac9505a7",
+  "cause_pr": 148910,
+  "confidence": "high",
+  "cause_quote": "The new `if (signal && recentStops !== undefined && recentStops >= 3)` branch called `gatewayLifecycleLog.warn(formatGatewayRepeatedSignalHint(signal, recentStops, \"stopped after\"))` without checking who managed the Gateway.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Kubernetes operators saw a competing-supervisor warning after routine Pod replacements and could see a SIGTERM error during an in-process restart even when the Gateway stopped cleanly.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix logs routine stop counts at info level under declared platform supervision and treats a retired state owner during shutdown as an expected SIGTERM fallback.",
+  "reasoning": "I classified the repeated-stop warning because the fix addresses two distinct log messages and the output allows one cause. I checked the introducing diff and its parent: the parent recorded shutdown outcomes, and #148910 added the warning with no supervisor check. The separate mid-restart error followed #167572's switch to worker-backed restart-intent consumption, which propagated an error where the prior synchronous read caught failures and returned null."
+}

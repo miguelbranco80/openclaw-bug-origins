@@ -1,1 +1,8 @@
-{"rank": 256, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review has no items and its evidence asserts deferral is carried across SQLite, memory and file paths and that disposable-row cleanup is preserved. Earlier items concern the cron startup window and hot-reload pending protection, not the SQLite cap-candidate reader ignoring deferArchiving."}
+{
+  "rank": 256,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Recorded retention tradeoff says disposable-row cleanup is preserved during archiving deferral and gives no indication that ordinary sessions can fill the database scan\u2019s candidate list. The earlier startup and hot-reload items warn that automation parents could be archived too soon."
+}

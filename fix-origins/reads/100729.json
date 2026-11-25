@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A session could keep showing as busy after a Gateway-started run finished, until another message arrived.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix emits a runtime settlement event when a Gateway-started backend run releases session ownership, so subscribers receive an updated activity state.",
+  "reasoning": "The session-controller refactor added an ownership release path that updates internal state without publishing a settlement event. I checked the preceding Gateway publisher and activity projection, which could also count an unfinished reply operation in a terminal snapshot, so the available history does not establish when autonomous runs first began leaving subscribers with stale busy state.",
+  "rank": 100729,
+  "sha": "55ebf385dbb39eec7ca4da436a458c2323d742b8",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100001,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review called for checking who could assign an owner, and earlier findings concerned participant filtering. The Sessions UI's handling of rejected assignments and its current-owner menu state received no warning."
+}

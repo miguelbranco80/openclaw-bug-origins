@@ -1,0 +1,17 @@
+{
+  "rank": 100058,
+  "sha": "5807e3bbbe426789c66d7b23ba3b0c438fd485ff",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "2ea391a120c65292417bbd7195bd304f28af0a96",
+  "cause_pr": 155842,
+  "confidence": "high",
+  "cause_quote": "In `src/config/schema.help.automation.ts`, the diff replaced the existing `messages.inbound.debounceMs` help with text beginning \u201cQuiet window (ms) for batching rapid inbound messages from the same sender\u201d and left the translation catalogs at the old source key and hash.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible to end users was reported, and maintainers saw strict release preflight fail.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix regenerated translation memories and catalog metadata for 20 locales to match the updated inbound debounce help.",
+  "reasoning": "I checked that the causing commit\u2019s parent had a translation entry matching the old help text and a catalog with no recorded fallbacks. The Telegram commit changed the help text without updating the catalogs, and the fix\u2019s diff replaces the stale translation key and source hash that blocked strict release preflight."
+}

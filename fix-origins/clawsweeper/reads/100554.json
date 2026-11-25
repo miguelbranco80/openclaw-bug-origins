@@ -1,0 +1,8 @@
+{
+  "rank": 100554,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focused on Windows rename failures and updater compatibility. The Verification section reported live-owner preservation and raised no concern about Doctor inspecting scratch before acquiring the lifetime token, while a live backup could still remove its rollback journal."
+}

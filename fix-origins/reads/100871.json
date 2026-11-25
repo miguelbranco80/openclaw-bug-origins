@@ -1,0 +1,17 @@
+{
+  "rank": 100871,
+  "sha": "e1cd6e11ac78eb247131eb32d568d3f61c98ab33",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7aae49e8677b18ca992b72a49221e1b6de4b45e4",
+  "cause_pr": 169660,
+  "confidence": "medium",
+  "cause_quote": "The introducing diff calls `refreshAll();` when the usage sidecar starts and `await work.drain();` when it stops, so startup rollback can wait on a refresh whose database admission turn does not observe cancellation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After startup failed, the Gateway process took nearly three minutes to exit.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes usage discovery and scan admission cancellable and bounds startup rollback when the CLI process will exit.",
+  "reasoning": "I checked the introducing diff and the worker code at that revision: the new startup sidecar joined refresh work on shutdown, and cold SQLite admission already waited for its predecessor without observing the abort signal. A later change added a separate uncancellable roster read, and the production log identifies the usage sidecar but leaves the exact wait unconfirmed."
+}

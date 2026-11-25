@@ -1,0 +1,8 @@
+{
+  "rank": 100502,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cExisting isolation mechanism reused\u201d evidence describes SQLite snapshots as preserving source artifacts and raises no concern about repeated copies or temporary disk writes. The earlier skill-readiness finding concerns personal skills disappearing from discovery."
+}

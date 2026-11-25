@@ -1,0 +1,8 @@
+{
+  "rank": 100607,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve pnpm dependency links inside the private copy\u201d finding concerned broken transitive imports after symlink flattening. The at-merge \u201cResolve merge risk\u201d item asked for package qualification of the dependency topology follow-up, and no review item raised the risk of large plugin copies filling the temporary filesystem."
+}

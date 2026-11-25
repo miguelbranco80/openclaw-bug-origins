@@ -1,7 +1,7 @@
 {
   "rank": 184,
   "sha": "80e233cdf6e6a1d7ce81f9fdb276e5d4246943f6",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Browser-compatible QuickTime (MOV) attachments showed \"Preparing playback\u2026\" for several seconds while the server re-encoded the whole clip before inline playback started.",
+  "user_saw": "After pressing Play on a compatible MOV in chat, users could see \u201cPreparing playback\u2026\u201d while waiting for the clip to start.",
   "impact": "slower-or-heavier",
   "area": "ui",
-  "summary": "Tries a lossless stream copy (remux) to MP4 for codec-compatible MOV videos, waits up to 500 ms for it on the first playback check, shares the in-flight job across requests, falls back to a full encode, and only shows the preparing state once the server reports pending.",
-  "reasoning": "The PR describes a speedup: the existing pipeline always re-encoded MOV playback renditions and returned 'preparing' immediately by design, and nothing indicates it was ever faster before. This is a performance improvement of code that was never slower than before, so not-a-defect; blame points only at a UI refactor and pre-graft code with no breaking change."
+  "summary": "The fix tries copying compatible MOV streams into a streamable MP4 before falling back to re-encoding, gives the first readiness check up to 500 ms for the copy to finish, and shows the inline preparation message only when the server reports that playback is pending.",
+  "reasoning": "The original lazy playback implementation in #115987 already routed QuickTime files through the transcode path, encoded video with libx264, and returned a pending result while encoding ran. The original chat video player in #116115 already polled for readiness and displayed the preparation message during the first check. The patch optimizes that existing playback flow, and the reported speedup comes from a synthetic replay against the deployed baseline."
 }

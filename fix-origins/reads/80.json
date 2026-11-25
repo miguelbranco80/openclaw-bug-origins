@@ -1,17 +1,17 @@
 {
   "rank": 80,
   "sha": "e3502d33aa08f5477346ec034c93c1e75a673b02",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "99ba844a3cd592adea6dac7421f9d9f7a0f7161d",
+  "cause_pr": 193677,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `result.scratch = await cleanScratch({` inside the existing maintenance job, so automatic scratch reclaim inherited the job's one-hour startup delay.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a Gateway that restarted more often than hourly, expired worktree scratch was never reclaimed because each restart pushed the first cleanup pass out another hour.",
+  "user_saw": "Expired scratch clones stayed on disk when the Gateway restarted more often than once an hour.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Schedules the first worktree maintenance pass right after the post-ready startup barrier (delayMs 0) instead of one full GC interval after startup.",
-  "reasoning": "The one-hour first delay was a deliberate choice. The pre-#164758 code commented 'leave the first hour free for Gateway warmup', and 3b16db73c0b5 (#164758) carried it into startWorktreeMaintenance as delayMs: WORKTREE_GC_INTERVAL_MS. It was correct for hourly best-effort retention. It became a problem once the pass carried scratch reclaim, which the reliability work (#197772) relies on, and Gateways restarted frequently, so the pass could be starved indefinitely. No commit broke a working first-pass schedule; the startup barrier that makes an immediate pass safe is what lets the fix drop the delay. I treat the usage pattern as the outside change and name no trigger commit with confidence; #197772 (0b04511ee505) is the related reclaim work."
+  "summary": "The fix schedules the first worktree maintenance pass as soon as the post-ready startup barrier admits it and keeps later passes hourly.",
+  "reasoning": "Scratch expiry shipped in #193677 inside the existing hourly worktree maintenance job, whose first scheduled run was already delayed by a full interval. The path history confirms that the initial delay stayed in place until this fix, so frequent restarts could postpone automatic reclaim from the day scratch expiry shipped."
 }

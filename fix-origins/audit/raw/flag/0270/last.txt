@@ -3,5 +3,5 @@
   "where": null,
   "quote": null,
   "outcome": null,
-  "note": "The earlier Findings covered a branch-row height assertion and the CSS asset budget. The Findings section at merge was empty, and neither review raised the styling or sizing of stacked Subagents avatars."
+  "note": "At-merge review has no items; earlier items concerned branch-row geometry test and CSS budget, not the subagent avatar tint/size override."
 }

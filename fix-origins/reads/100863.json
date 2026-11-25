@@ -1,0 +1,17 @@
+{
+  "rank": 100863,
+  "sha": "27a0be4a75d94bcf1ee7b49448aa6d3d3d4864f0",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a provider reported context overflow, a conversation could compact without saving recent decisions to durable memory.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix runs the reply-owned memory flush before provider-overflow compaction when the turn has not already attempted one.",
+  "reasoning": "The oldest readable snapshot already had separate reply-side memory flushing and provider-overflow compaction, with no reply-owned flush in the overflow branch. The July 6 change moved the flush before preflight compaction and did not change provider-overflow recovery. The offline history stops at the July 1 graft, so I could not verify which commit introduced the gap or whether overflow recovery ever ran the flush."
+}

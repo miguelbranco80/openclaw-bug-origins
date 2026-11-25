@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge review described retries under Provenance checked and raised only PR-card CI failures under Before merge. The earlier review focused on authorization, documentation, and proof of HTML disclosure behavior, with no concern about chat events or remounts repeatedly fetching missing widgets."
+  "outcome": null,
+  "note": "The only open item at merge is CI attribution for PR-card E2E failures; earlier items concern proof, docs and disclosure boundary, and nothing raises event-driven re-requests of terminally failed widgets."
 }

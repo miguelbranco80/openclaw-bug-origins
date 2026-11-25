@@ -1,0 +1,17 @@
+{
+  "rank": 100565,
+  "sha": "7585dd88a3e7d1fd3f7a60757fd5a2a99afb7aeb",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d46497e0f67cba6ff8aaff9391a297e0133cc010",
+  "cause_pr": 168233,
+  "confidence": "high",
+  "cause_quote": "The initial relay wrapper used `const signal = method === \"agent.wait\" ? undefined : AbortSignal.timeout(15_000);` and passed that signal to `boundRequest`, leaving the deadline armed after acceptance.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An MCP client could get a run ID and see the reply making progress, only for the run to be cancelled around 15 seconds after submission.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix clears the MCP relay submission deadline when the Gateway RPC settles so accepted runs can continue.",
+  "reasoning": "The introducing commit added the relay submission paths and the fixed 15-second signal together. I checked that the Gateway ingress at that commit already combined the request signal with the principal signal and passed it into run authority, so the original relay could cancel accepted work when the submission deadline expired."
+}

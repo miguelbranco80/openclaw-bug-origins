@@ -1,0 +1,8 @@
+{
+  "rank": 100712,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d item only noted that post-fix Gateway load had not been measured. The at-merge \u201cTechnical review\u201d endorsed the refresh design and raised no concern about watcher refreshes synchronously rescanning unchanged skill directories."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100065,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Technical review describes the preexisting restart failure for ordinary authenticated automation turns, and the earlier finding asks for proof that revoked permissions block a recovered write. Neither addresses the recovery recorder skipping Goal Resume\u2019s hidden system input."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100548,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier wrapper inventory finding concerned missing modules during cold PR provisioning. The at-merge Tests section requested upgrade validation and raised no concern about native Workers resolving relative shared imports after plugin reload."
+}

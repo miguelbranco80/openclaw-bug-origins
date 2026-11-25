@@ -1,1 +1,17 @@
-{"origin":"regression","cause_sha":"8689fa8f6b8bd0089d6b60c6b9ae81d9f656e7b3","confidence":"high","reasoning":"I checked that the Systems phone viewer already offered Actual in an 88 px native selector with `padding: 0 6px`, which left room for the full label. The later commit changed the selector to `class=\"settings-select desktop-sizing\"`, applying the shared `padding-right: calc(26px + 0.5em)` and one-line clamp while keeping the 88 px width, leaving the 42 px text area where the fix reproduced `Act…`."}
+{
+  "rank": 76,
+  "sha": "a509a56e61be4ae0adf40a48bd476259b8a01423",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "8689fa8f6b8bd0089d6b60c6b9ae81d9f656e7b3",
+  "cause_pr": 190446,
+  "confidence": "medium",
+  "cause_quote": "It changed the sizing select to class=\"settings-select desktop-sizing\" and dropped its own `padding: 0 6px`, so the shared `select.settings-select:not([multiple]) { appearance: none; padding-right: 36px; }` rule left the 88px control only ~42px of text width.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a phone, the Systems desktop viewer's size selector read 'Act\u2026' instead of 'Actual' after choosing it.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Reserves a 28px chevron inset (instead of the shared 36px) for the desktop sizing select in the compact Systems toolbar so the 'Actual' label fits.",
+  "reasoning": "The 88px .desktop-sizing select had its own native styling with 6px padding until 8689fa8f6b8 moved it into the shared settings-select family, whose 36px right padding leaves 88-2-8-36=42px, the exact width the PR reports before the fix. I did not render the pre-8689fa8 state to confirm 'Actual' fit in the native select, so confidence is medium; 6a9965ad7731 (blame top) only added the compact toolbar layout rules, not the padding."
+}

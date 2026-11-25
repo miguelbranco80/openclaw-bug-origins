@@ -1,0 +1,8 @@
+{
+  "rank": 100071,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items address other CI failures, and the earlier finding in History concerns the trusted wrapper inventory. Neither identifies the pending-input helper\u2019s Gateway server import or the resulting worker build-graph failures."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100629,
+  "sha": "9b3bf2295c2d2b17b8330f459d3bc461577f17e7",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "be6d96ea57be70bdd55838eec901961f0482b685",
+  "cause_pr": 126883,
+  "confidence": "medium",
+  "cause_quote": "The same diff that began returning partial output on abort added `terminalInterruption !== undefined ||` to `cliSessionBindingCleared`, so `const persistedCliSessionId = cliSessionBindingCleared ? undefined : effectiveCliSessionId;` discarded the returned native session ID.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After stopping the first reply in a native-login Claude CLI chat, the next turn started a fresh session and forgot the conversation.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix saves a flushed native Claude session into an empty binding under the current chat turn's ownership checks before rethrowing the user's stop.",
+  "reasoning": "The parent of #126883 rejected interrupted live turns, and #126883 began returning partial output while explicitly suppressing the native binding. I checked that #147139 preserved only established bindings, so the later `params.assertCurrent?.()` check changed where the stopped first turn lost its session ID. The available diffs establish the native binding behavior but leave earlier history-reseed behavior for this exact sequence unverified."
+}

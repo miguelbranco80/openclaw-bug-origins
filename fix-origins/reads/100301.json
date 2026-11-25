@@ -1,0 +1,17 @@
+{
+  "rank": 100301,
+  "sha": "d9a52238b3813acc7a340dd47539c41ca1dffe2b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c62c2d9db5e79065de9ed78feeeb8e43fd2f01ea",
+  "cause_pr": 150196,
+  "confidence": "high",
+  "cause_quote": "The new Gateway session projection loads the roster with `includeIncognito: false` and skips entries matching `if (!entry || entry.incognito || isIncognitoSessionKey(key))`, removing Incognito parents from the list the header searches.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After sending a message in an Incognito fork or refreshing the conversation, the chat header lost the link back to its parent.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix fetches and observes the accessible parent session by key so the chat header can retain its link across roster refreshes.",
+  "reasoning": "I checked that the header already resolved parent links from the pane's session list before #150196 and that the pre-change Gateway test expected live Incognito sessions in the admin roster. The same commit reversed that expectation and switched `sessions.list` to a projection that excludes Incognito rows, so refreshing the roster removed the parent row the existing breadcrumb needed."
+}

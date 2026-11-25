@@ -1,1 +1,8 @@
-{"rank": 173, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review's items are real behavior proof for two accounts, CI attribution, a maintainer contract decision and generic data-model compatibility proof; earlier versions add webhook path guidance and approval-authority settlement. Nothing addresses config hot reload replacing startup-resolved allowFrom/groupAllowFrom/teams allowlists."}
+{
+  "rank": 173,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "At merge, \u201cAdd real behavior proof\u201d asked for callback and reply evidence across both Gateway routes, and \u201cAdd data-model compatibility proof\u201d focused on stored data after upgrade. Earlier findings concerned webhook configuration, and no review item raised the loss of startup-resolved allowlists after an unrelated config reload."
+}

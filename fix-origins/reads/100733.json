@@ -1,0 +1,17 @@
+{
+  "rank": 100733,
+  "sha": "a9c067b23cdb52d375e68a139e317d26f4fc0421",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Google Meet export silently wrote the bundle to a different directory when the requested path began or ended with a space.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix preserves leading and trailing whitespace in nonblank CLI and tool export paths while keeping the generated default for blank paths.",
+  "reasoning": "At the July 1 shallow boundary, the CLI already passed `options.output` to the writer, which used `params.outputDir?.trim()` before creating the directory. The later CLI split, writer refactor, and tool adapter refactor all preserved the relevant trimming behavior. The older path history stopped at a missing object, so I could not establish whether trimming shipped with export or was added later."
+}

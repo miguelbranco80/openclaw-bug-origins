@@ -1,0 +1,8 @@
+{
+  "rank": 100486,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier SSH startup-recovery finding concerned machine destruction after a failed installation. At merge, the receipt coverage discussed atomic store writes and the open item asked for migration proof. Neither raised the risk that retention could prune a successfully installed node bundle before its receipt was updated."
+}

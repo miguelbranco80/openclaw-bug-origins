@@ -1,17 +1,17 @@
 {
   "rank": 78,
   "sha": "2aca1a1c1595e25d3cdb0bc7ce098bdcc92efb87",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "4858422de239c123c6c6537a8857be622c2cb2fa",
+  "cause_pr": 169690,
+  "confidence": "medium",
+  "cause_quote": "The new background child ran `require(\"node:fs\").rmSync(process.argv[1], { recursive: true, force: true })`, so it could keep unlinking while btrfs metadata reservations climbed.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a btrfs host, background deletion of a retired worktree built up around 100 GiB of metadata reservations, which could stall other writers such as the Gateway's database.",
+  "user_saw": "An operator could see btrfs metadata reservations climb to about 100 GiB while a retired worktree was being deleted.",
   "impact": "slower-or-heavier",
   "area": "storage",
-  "summary": "The retired-worktree deletion worker now reads its filesystem's btrfs metadata bytes_may_use counter and pauses unlinking at 40 GiB of reservations, resuming below 20 GiB.",
-  "reasoning": "This is the third step in a series of pacing mitigations (#192909, #202197, now #202563). Each one bounds a different signal of btrfs metadata pressure from deleting very large trees. The prior worker's 128-entry/8 MiB batches with commit-time and PSI checks worked as designed, but the PR shows those signals do not bound btrfs delayed-reference reservations. That is filesystem behavior at large tree sizes, not a line that broke, so no in-repo commit can be quoted as the cause. One could argue #202197 (58dbe4055043) was an incomplete fix, but it never claimed to cap reservations ('not a calibrated btrfs transaction or latency limit'), so I don't name it as the cause."
+  "summary": "Retired-worktree cleanup now pauses when its btrfs filesystem reaches 40 GiB of metadata reservations and resumes below 20 GiB.",
+  "reasoning": "The introducing diff moved forced checkout deletion into a background child that recursively removed the tree without checking filesystem pressure. I checked that the standalone worker preserved that behavior and that #202197 added pacing based on batch size, I/O stalls, and commit latency while leaving reservation pressure unchecked. The reported incident occurred with the paced worker, so the original behavior is established by the diff and the size of its impact is inferred."
 }

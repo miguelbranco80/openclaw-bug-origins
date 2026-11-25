@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway reported a successful cron add or update while silently using a default stagger or keeping the previous value.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "The fix makes cron add and update requests return INVALID_REQUEST for an explicit invalid staggerMs before any job changes are saved.",
+  "reasoning": "The July 1 snapshot already showed the normalizer executing `delete next.staggerMs` when parsing failed, and both Gateway handlers validated the resulting payload after normalization. The later stream-schedule and own-field changes preserved that behavior. The offline history traversal stopped at a missing parent, so I could not verify whether the behavior shipped with stagger support or was introduced by an earlier change.",
+  "rank": 100779,
+  "sha": "f9494701bb700b46b2feae6cfc29fa5bcd564aa6",
+  "rubric": "v1.2"
+}

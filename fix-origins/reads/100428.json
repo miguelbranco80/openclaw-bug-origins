@@ -1,0 +1,17 @@
+{
+  "rank": 100428,
+  "sha": "3b3d16c78b5bd46d03c6f1f8f3e411e27f9a6303",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "567cb64369dd29f384b466c118de11b25e501ebe",
+  "cause_pr": 175349,
+  "confidence": "high",
+  "cause_quote": "The pagination commit added `const cards = entries.slice(0, 100).map(({ value }) => value.card);`, so the existing picker counted only the first 100 cards on initial load.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Workboard board picker showed totals that were too low, and boards with no cards on the first page appeared empty until all cards were loaded.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The Workboard picker now uses full-store board summaries while more card pages remain and recomputes totals locally once the full list is loaded.",
+  "reasoning": "I checked the pagination commit and its parent. The parent\u2019s default card request returned the full list, so the existing picker could correctly recompute totals from the cards it received. The pagination commit capped that same request at 100 cards while leaving the picker\u2019s counting logic in place."
+}

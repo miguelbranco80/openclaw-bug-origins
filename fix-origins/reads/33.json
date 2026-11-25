@@ -1,17 +1,17 @@
 {
   "rank": 33,
   "sha": "39d85007e9ba04ca502bf06da2ed51d35cbad491",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "054ac7af1d04e408b7d6f75cce7a13c507e32e45",
   "cause_pr": 178066,
   "confidence": "high",
-  "cause_quote": "The new sidebarPinnedSessionRows filtered pinned rows only by `row && row.archived !== true && !archiveVisibility?.(row.key)`, and isListedInPinnedSection only by `row.archived !== true`, with no snooze check.",
+  "cause_quote": "The new Pinned section selected rows with `return row && row.archived !== true && !archiveVisibility?.(row.key) ? [row] : [];`, which let a pin with a future wake time remain visible.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A snoozed session that was pinned kept showing in the Control UI sidebar's Pinned section instead of hiding until its wake time.",
-  "impact": "presentation",
+  "user_saw": "After snoozing a pinned session, its row stayed visible in Pinned on the Active sidebar.",
+  "impact": "failed-every-time",
   "area": "ui",
-  "summary": "Pinned-section row selection and the pinned-listing predicate now exclude sessions whose snoozedUntil is in the future, re-evaluating on a visible clock until they wake, and the sidebar snapshot carries snoozedUntil.",
-  "reasoning": "Before #178066, pinning only added a rail shortcut and ordinary list sections applied the status filter that hides snoozed rows (app-sidebar-session-archive-visibility.ts). #178066 introduced the separate Pinned section with its own row selector that handled archive but not snooze, so the Pinned feature shipped with this gap; the fix adds !isSessionSnoozed to exactly those lines."
+  "summary": "The fix hides snoozed pins from Pinned, keeps them discoverable through Snoozed and All, and restores them in saved order when they wake.",
+  "reasoning": "The parent already filtered snoozed rows out of the ordinary Active list and displayed personal pins as rail shortcuts. PR #178066 introduced a dedicated Pinned section with its own row selection, and its original archive-only predicate bypassed the existing snooze filter."
 }

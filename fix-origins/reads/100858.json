@@ -1,0 +1,17 @@
+{
+  "rank": 100858,
+  "sha": "e96caa5fff5da8d1f12b771783eb62e7cabc0055",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "552a5d7419c9c334db10b39b712dbfcd825797c6",
+  "cause_pr": 177926,
+  "confidence": "high",
+  "cause_quote": "The refactor replaced `(await verifyNpmRecovery(targetSwapRoot, false)) && messages.length === 0` with `await rootLink?.verifyRuntime?.()`, removing the restored-launcher check that reported `Package rollback verification failed: launcher ${shim.destination} changed`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When Doctor rejected an update and launcher restoration failed, the operator saw the I/O error and a global directory hint without the affected launcher or its exact backup path.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix adds the launcher path and any retained backup path to the rollback error while preserving the original exception as its cause.",
+  "reasoning": "The causing diff removed the post-restore check that identified the failed launcher by path. I checked that the parent\u2019s existing recovery test injected a launcher copy failure and asserted that the error contained the launcher path, and the fix PR reports that the test passed on that parent and failed after the refactor. The fix restores that diagnostic and adds the exact retained backup path."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see a sandboxed command replace a protected skill path with writable content.",
+  "impact": "permissions",
+  "area": "agents",
+  "summary": "The fix bind-mounts writable ancestors of protected skill mounts onto themselves so sandboxed processes cannot rename them.",
+  "reasoning": "The oldest available source already mounted nested skill directories read-only beneath a writable workspace and left their parent directories unpinned. The fix PR credits #85591 with introducing that layout, which suggests the protection gap shipped with the feature. The available history stops at a missing parent, so I could not verify the introducing commit or its diff.",
+  "rank": 100593,
+  "sha": "321d6c66d48b11d3d402b1240ef5de81ef017a55",
+  "rubric": "v1.2"
+}

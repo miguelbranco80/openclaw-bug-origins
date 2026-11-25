@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "5c906f9d7329e5d371e0fe5c77eaa9feb9b9a159",
+  "cause_pr": 151456,
+  "confidence": "high",
+  "cause_quote": "The new completion path passed `{ args: executedArgs }` to a projector that selected `args: execution ? execution.args : data.args`, discarding the saved request arguments when native Bash had no loopback execution arguments.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Telegram progress draft showed the Claude CLI Bash command while it ran, then showed only the Bash label when it finished.",
+  "impact": "presentation",
+  "area": "channels",
+  "summary": "The fix preserves native CLI command text on completion and requires confirmed execution arguments to show MCP command text.",
+  "reasoning": "Before #151456, the CLI runner attached the saved start arguments to the result event, and the channel bridge used them to build the completed command title. The earlier feature commit also documented live Claude CLI rows updating in place. I checked that #151456 moved Telegram to prepared activity items and made the completion projector use arguments supplied only by a correlated MCP loopback call.",
+  "rank": 100676,
+  "sha": "6e58f09860883469084f78f0bd8b3da6f5336c20",
+  "rubric": "v1.2"
+}

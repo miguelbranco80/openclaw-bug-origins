@@ -1,17 +1,17 @@
 {
-  "rank": 5,
-  "sha": "fad45014d2d4fe2b4baad982fc3e7624d0e1fc38",
-  "rubric": "v1.1",
   "origin": "regression",
   "cause_sha": "f8550bc11d4d7e002e219e5ea908a34721c24db2",
   "cause_pr": 122425,
-  "confidence": "medium",
-  "cause_quote": "In handleSelect it added `updateSlashMenu(target.value, state, slashMenuHost, requestUpdate);`, so every native textarea select event re-ran the args branch, which sets `state.slashMenuIndex = 0`.",
+  "confidence": "high",
+  "cause_quote": "The commit added `updateSlashMenu(target.value, state, slashMenuHost, requestUpdate);` to the textarea selection handler, causing it to rerun the argument-menu branch that sets `state.slashMenuIndex = 0`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After highlighting a slash-command argument such as `ultra` and selecting text with the keyboard, the highlight jumped back to the first entry and Tab completed `default` instead.",
-  "impact": "failed-every-time",
+  "user_saw": "After highlighting `ultra` for `/think` and selecting draft text with the keyboard, the user pressed Tab and got `default` instead.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "The slash argument menu now remembers the highlighted argument while the same argument draft stays active, instead of resetting to index 0 when a refresh reopens it.",
-  "reasoning": "The reset-to-0 in the args branch predates the graft (it is in chat-composer-slash-menu.ts at b14a2cae4bf6), but before 2026-08-26 the composer's select handler only refreshed the skill menu, so text selection never re-ran the slash args branch. GraphQL blame at the graft attributes the `updateSlashMenu` call in handleSelect to f8550bc11d4d (#122425), whose diff adds that line; from then on native select events reset the highlighted argument. Medium because I did not confirm the pre-August keyboard path end to end; the sibling command-mode fix #193758 the day before shows the same select-event reset."
+  "summary": "The fix preserves the highlighted slash-command argument by value when the same draft is refreshed and falls back to the first option if that value is gone.",
+  "reasoning": "The causing commit\u2019s parent already supported arrow-key navigation and Tab completion for slash-command arguments, and its textarea selection handler updated only the skill menu, leaving the highlighted argument intact. PR #122425 wired native selection events into the existing slash-menu refresh, which reset the argument index even when the draft text was unchanged.",
+  "rank": 5,
+  "sha": "fad45014d2d4fe2b4baad982fc3e7624d0e1fc38",
+  "rubric": "v1.2"
 }

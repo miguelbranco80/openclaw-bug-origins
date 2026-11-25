@@ -1,0 +1,8 @@
+{
+  "rank": 100610,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge executor-fence finding concerns package writes after the update helper exits. The earlier downtime warnings concern plugin downloads and convergence, a separate mechanism from the ownership check that fails after systemd collects the stopped unit."
+}

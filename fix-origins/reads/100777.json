@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ee679bb785be9aa9c4343f682cc142d314db6cef",
+  "cause_pr": 146563,
+  "confidence": "high",
+  "cause_quote": "The new shared admission accepted `timing?: StoreWriterTiming` and passed `timing` straight to `runQueuedStoreWrite`, so callers outside the session wrapper could hold the database reservation without a holder warning.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators could see session writes waiting in the queue without a warning about the slow database reservation holding it up.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix logs slow database reservations at settlement and preserves structured timing fields in session-write diagnostic events.",
+  "reasoning": "The introducing diff routed non-session database writes through shared admission while keeping slow-write warnings in the session wrapper, so the diagnostic gap existed from the first shared-admission implementation. The fix also corrects a separate issue introduced in #140478, where the new timing fields were passed after the warning message even though the diagnostic transport read structured fields from the first argument.",
+  "rank": 100777,
+  "sha": "1c8be7fb6e9a27194e81d84cf7eb1f806f8b7c82",
+  "rubric": "v1.2"
+}

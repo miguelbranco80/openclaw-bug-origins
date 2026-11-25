@@ -1,0 +1,17 @@
+{
+  "rank": 100321,
+  "sha": "7d38d582ce50b4c91359d08273dc6218e7817c92",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e738c1467779af8e455ef41e8081cf10fa3c164c",
+  "cause_pr": 176106,
+  "confidence": "high",
+  "cause_quote": "The new verifier skipped rows where `event.type !== \"message\"` and required `afterDelivery.has(parentId)` to recognize the reply, so an intervening metadata row broke the chain.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "The QA handoff scenario timed out even though the child completed and the requester's final reply was present.",
+  "impact": "sequence-or-timing",
+  "area": "other",
+  "summary": "The QA verifier now follows the canonical active transcript branch to match the visible reply to the child's settlement within the same turn.",
+  "reasoning": "PR #176106 introduced the settlement verifier with a message-only walk through raw parent IDs, even though the transcript tree already supported custom metadata and side appends. The later verbatim-result change left that walk intact, and the fix's SQLite-backed test covers both a valid reply after metadata and rejection of a reply from another turn."
+}

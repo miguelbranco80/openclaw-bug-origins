@@ -1,0 +1,8 @@
+{
+  "rank": 100441,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item warns that the publication guard can stop repair when the runtime is active or its offline state is uncertain. The Evidence section cites test coverage for shared physical outputs without raising a concern that the guard can miss a running sibling Gateway."
+}

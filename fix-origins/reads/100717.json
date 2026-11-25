@@ -1,0 +1,17 @@
+{
+  "rank": 100717,
+  "sha": "8b63cb2f71d3689c21c4252dfd3f14af1a575d82",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1adb2047bdf80406d07c72fd7af4d031c45768e9",
+  "cause_pr": 172559,
+  "confidence": "high",
+  "cause_quote": "The diff placed `<LightboxFooter originalUrl={props.originalUrl} resolvingOriginal={props.resolvingOriginal} />` after `{props.children}`, moving the pending link to the last position in the controls used for keyboard wrapping.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Shift+Tab from Close in a video gallery focused the unusable Open in new tab link while its destination was loading.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix excludes controls with a negative tab index from the lightbox\u2019s keyboard wrap boundaries.",
+  "reasoning": "I checked the causing commit and its parent: the pending link was previously before Close, so Shift+Tab from Close skipped the link through normal browser traversal. Moving the link to the footer made it the last action, and the existing focus trap called `last.focus()` on it despite its `tabindex=-1`. The later refactor preserved document order and carried the defect forward."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 188,
   "sha": "69b3f27bf3506463fb4abb658cc65084ade9a7bd",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "3d2f7ca06b264f5fdcdf2a6f74c5a0bfdf7a2f09",
   "cause_pr": 178764,
-  "confidence": "medium",
-  "cause_quote": "#178764 moved scheduled session agent turns off the cron isolated-agent runner onto session admission, whose onTerminal sets `failure ??= deliveryEvidence?.meta?.error?.message || ... || `Session event execution ${outcome}``, so a thrown failure with no delivery evidence records the generic text before the operation's real cause can.",
+  "confidence": "high",
+  "cause_quote": "The new `await executeSharedSessionCronJob(` branch sent existing named-session jobs through a handoff that fell back to `\\`Session event execution ${outcome}\\`` whenever terminal evidence had no error text, even when the reply operation held the exception.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A failed scheduled session-target cron job showed only 'Session event execution failed' in run history and lastError, with the real cause (for example a missing account binding and its repair command) only in the Gateway log.",
+  "user_saw": "Operators saw only \u201cSession event execution failed\u201d in run history and the job\u2019s last error, with no explanation of what went wrong.",
   "impact": "failed-every-time",
   "area": "cron",
-  "summary": "The generic 'Session event execution failed' text is now only a placeholder, and the failed operation's recorded cause wins for the run record and job lastError.",
-  "reasoning": "The generic-first fallback pattern came from 753a7a57be1 (#167113, immediate notifications), but scheduled session-target cron jobs only reached it when #178764 (3d2f7ca06b2) routed them through session admission and removed their isolated-agent run path, which records the real cause (the fix says isolated jobs 'already do'). I read the #178764 onTerminal diff and the fix-parent handoff code; I did not confirm that pre-#178764 session-target jobs recorded the cause for this exact thrown-refusal case, so medium rather than high."
+  "summary": "The fix records the reply operation\u2019s failure cause when terminal evidence has no error detail and uses the generic message only if no cause is available.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that named-session jobs went through the isolated runner, whose catch normalized the thrown exception into the error the cron service returned. The refactor routed those same jobs through session-event settlement, which published the fallback when the error handler had stored the cause on the reply operation without supplying usable terminal error text. The later settlement extraction preserved that fallback, and the stopped-turn fix used the operation cause for classification while leaving the recorded error unchanged."
 }

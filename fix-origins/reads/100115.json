@@ -1,0 +1,17 @@
+{
+  "rank": 100115,
+  "sha": "e3ace7355bfe8540a395b3a47f47c6db36a0f18e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "701687f6b7104dca7ba990a2557c840206af8ee8",
+  "cause_pr": 141098,
+  "confidence": "high",
+  "cause_quote": "The sidebar redesign replaced `const running = sessionHasRunningWork(session);` with `const running = session.hasActiveRun;`, dropping running descendants from the parent row\u2019s activity state.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the parent session yielded, its sidebar row looked idle while subagents were still working, with only the small child counter signaling activity.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix restores a visible activity indicator for delegated work with a \u201cSubagents working\u201d tooltip and preserves the paused \u201cQueued\u201d indicator for a subagent\u2019s own queued run.",
+  "reasoning": "Before #141098, the activity predicate included `session.runningChildCount > 0`, and the browser test expected an \u201cActive run\u201d spinner on an idle parent with a running child. I checked the redesign diff and its parent revision and confirmed that the redesign removed the parent-row spinner for that case and moved the signal to the child toggle."
+}

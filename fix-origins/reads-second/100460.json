@@ -1,0 +1,17 @@
+{
+  "rank": 100460,
+  "sha": "68313e2fab70c830425490cd7eecfcba128800b0",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Cleanup, exact-session search, and ACP replay appends could take longer on large session stores.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix skips SQLite work for protected transcripts, scopes exact-session searches to the selected session, removes an unused read, and counts replay events only when a session could exceed its cap.",
+  "reasoning": "The PR reports CPU savings on synthetic workloads and matching results for cleanup, search, and replay. The replay query already counted every session before #139982 moved it to a prepared query, and #147166 introduced exact-session search with the existing unscoped dirty-state lookup. The evidence supports a performance improvement to existing behavior."
+}

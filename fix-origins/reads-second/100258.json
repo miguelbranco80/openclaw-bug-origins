@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "1e2d50c663247a66934e2501481b964e3368c0d1",
+  "cause_pr": 173462,
+  "confidence": "high",
+  "cause_quote": "The port added `const database = { agentId, db: selected, path: pathname, walMaintenance };`, passing the selected PostgreSQL connection to archive code that still invoked the SQLite schema installer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Deleting a session with default transcript archival on PostgreSQL failed with a SQLite repair error.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The archive schema helper now uses the schema already loaded by PostgreSQL and installs it lazily on SQLite.",
+  "reasoning": "The introducing diff shows that agent databases and session transcripts used SQLite before #173462 first enabled PostgreSQL for them. At that commit, archive persistence still called `ensureSessionTranscriptArchiveSchema(database.db)`, whose installer explicitly rejected PostgreSQL, and the new PostgreSQL lifecycle test disabled archival.",
+  "rank": 100258,
+  "sha": "3e4a0214659d1ea2ef6c52c618b1dd75c5a40406",
+  "rubric": "v1.2"
+}

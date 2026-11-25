@@ -1,0 +1,17 @@
+{
+  "rank": 100053,
+  "sha": "8095304914588d01c552977744595ceed8da985f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gmail forwarding stayed down after a Gateway restart briefly found the watcher port in use, even after the port became free.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The Gmail watcher now retries port bind failures after 5, 10, and 20 seconds and logs recovery guidance if the port stays occupied.",
+  "reasoning": "The watcher already stopped respawning on a detected bind conflict before the July 1 history boundary, and the July bind-detection fix retained that policy while making it more reliable. The fix description links the policy to #65042, but the available offline history could not verify that commit's diff or establish whether transient conflicts recovered before it."
+}

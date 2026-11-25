@@ -1,0 +1,17 @@
+{
+  "rank": 100251,
+  "sha": "0e648d3411d254245844414b3b0f84b02ae812ec",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "670270edc060858b41a04589910002d4dcf97313",
+  "cause_pr": 171633,
+  "confidence": "high",
+  "cause_quote": "The refactor removed `{view.snapshot.guests.helpersAvailable ? (` and its alternate JSX branch from the X Control UI, changing the generated bundle hash while leaving the manifest untouched.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Anyone building the Docker package from affected main revisions saw package preparation halt because the X Control UI asset manifest was stale.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix updated the X plugin\u2019s Control UI entry and stylesheet paths to use the regenerated asset hash.",
+  "reasoning": "I checked the refactor\u2019s diff and its parent manifest, which already referenced the existing Control UI assets under `e57c147e\u2026`. The fix PR reports that the earlier source produced that hash and that the changed source produced `df3cf5b4\u2026`, explaining the validation and Docker package preparation failures."
+}

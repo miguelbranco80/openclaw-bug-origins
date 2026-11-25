@@ -1,0 +1,17 @@
+{
+  "rank": 100166,
+  "sha": "44dd89b76ce56ef532bb6868b5d39c0dbbed7714",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9df29068d92a068775e0807f292a3677c650bf1a",
+  "cause_pr": 172802,
+  "confidence": "high",
+  "cause_quote": "The new sidecar planner kept a file only under `if (category) { resources.set(name, { source: name, category }); }`, and its allowlist covered neither the loose `dist/worker` files nor the transfer archive.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A node could pair with a standalone gateway, but the gateway failed to deploy a worker to it.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix packages and retains the canonical worker archive, falls back to it when the loose worker entry is missing, and runs downloaded worker scripts through the standalone executable's generic runtime.",
+  "reasoning": "I checked the parent of #172802: the standalone builder copied all of `dist`, pruned only source maps and type declarations, and left the files that the gateway's existing bundle producer read from `dist/worker` to create the transfer archive. #172802 replaced that snapshot with an allowlisted sidecar, removing both sources the gateway could use to supply a worker bundle."
+}

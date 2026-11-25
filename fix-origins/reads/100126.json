@@ -1,0 +1,17 @@
+{
+  "rank": 100126,
+  "sha": "187464fffe60f5515a6bd9555c339ad5ba66d3b1",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The security audit reported that the gateway password or hooks token was stored in the config file even when it came from an environment variable.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The stored-secret audit now uses config loader provenance to exclude successfully substituted environment references while still flagging literal values and escaped placeholders.",
+  "reasoning": "At the oldest available checkout state, the CLI already passed resolved config to the audit, whose placeholder-shape check treated ordinary substituted values as plaintext. The August candidate replaced that check with an unresolved-path check that had the same behavior for successful substitutions. The available offline history stops before the original faulty interaction can be traced to a specific commit."
+}

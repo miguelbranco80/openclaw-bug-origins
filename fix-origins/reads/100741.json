@@ -1,0 +1,17 @@
+{
+  "rank": 100741,
+  "sha": "99c7f9736aa28918f8108184f6952bc9ec0eb0bf",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "798c21af7b964cd3a57c9ed3666ae6ade4a6cf02",
+  "cause_pr": 128356,
+  "confidence": "high",
+  "cause_quote": "The original palette catalog filter used `normalizeLowercaseStringOrEmpty` on the query and label before `label.includes(query)`, so precomposed and decomposed spellings of the same name failed to match.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Searches omitted matching command-palette entries, Signal aliases, and Codex CLI sessions when the query and stored text used different Unicode forms of the same characters.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix lowercases and NFC-normalizes both sides of local comparisons in the command palette, Signal alias directory, and Codex CLI session search.",
+  "reasoning": "The cited commit introduced command-palette catalog search with this comparison, and its lowercase helper only trimmed and lowercased the text. Signal alias search independently shipped with `!alias.includes(query)` in #95738. The Codex comparison already existed at the shallow boundary, and the available offline history could not verify its introducing commit."
+}

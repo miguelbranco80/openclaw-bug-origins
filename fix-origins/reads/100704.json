@@ -1,0 +1,17 @@
+{
+  "rank": 100704,
+  "sha": "a7777b3427026b2578665eba85f74081c2aa83a0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "66c7d720bd88f11cc82a9e5405e0fb8716c674bf",
+  "cause_pr": 126068,
+  "confidence": "high",
+  "cause_quote": "The new assignment `raw.compat === undefined && catalogModel?.compat !== undefined ? catalogModel.compat : undefined` copied compatibility from a provider-and-model ID match without checking the configured API or endpoint.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Tool Search could disappear when a custom model endpoint inherited the standard endpoint\u2019s Code Mode preference.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix binds catalog compatibility to the selected API and physical endpoint, recognizes equivalent Anthropic URLs, and preserves explicit compatibility settings on custom endpoints.",
+  "reasoning": "I checked #126068 and its parent: config defaults previously left omitted compatibility absent, and the route-aware resolver used only configured compatibility when the selected endpoint differed from the catalog endpoint. #126068 copied catalog flags into the configured model before resolution, so the resolver treated those flags as operator-authored on the custom route. The fix also addresses separate resolver cases involving Anthropic URL aliases and discovery returning a different route."
+}

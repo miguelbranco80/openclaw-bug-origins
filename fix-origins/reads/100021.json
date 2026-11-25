@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a cold Gateway, opening the plugin tool catalog could delay unrelated requests, including health checks, until plugin registration finished.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The Gateway now builds the plugin tool catalog through an asynchronous inspection path that yields between plugin registrations.",
+  "reasoning": "The July 1 snapshot already shows the catalog calling the synchronous standalone loader, and the October refactor moved that call without changing how it ran. The available history ends before the synchronous path was introduced, so I could not verify whether the catalog shipped with the stall or an earlier change introduced it.",
+  "rank": 100021,
+  "sha": "1a6f0c82edde4a6a6d30fb3c66b648c84f732a0f",
+  "rubric": "v1.2"
+}

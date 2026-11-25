@@ -1,17 +1,17 @@
 {
-  "rank": 91,
-  "sha": "f6abc882721d0facb24452469b77cf58b95d25a7",
-  "rubric": "v1.1",
   "origin": "regression",
   "cause_sha": "94d45c8d5144dacde3e76ef1bab8046e9523b66b",
   "cause_pr": 194885,
   "confidence": "high",
-  "cause_quote": "#194885 replaced the read-side checkpoint with `readLocalWorkspacePath(...)` and `readRoot = backing.root` under `if (params.worktreeId && params.root && !params.historical)` (no sandbox check), so reads came from the private checkout while saves still wrote only the canonical file after `checkpointLocalWorkspacePath`, never importing the saved bytes into that checkout.",
+  "cause_quote": "Under `if (params.worktreeId && params.root && !params.historical)`, the diff added `readRoot = backing.root;` and changed file resolution to `root: boundary.readRoot ?? boundary.root`, routing reads to retained private checkout bytes even after a canonical save or when the session ran on the host.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After saving a file in the Control UI, the next preview still showed the old contents, and host-only sessions with a leftover sandbox checkout previewed stale guest bytes.",
+  "user_saw": "The Control UI could show old file contents after a successful save or when a host-only session still had a retained sandbox checkout.",
   "impact": "sequence-or-timing",
-  "area": "ui",
-  "summary": "Saves now run the canonical CAS write and import the change into the private sandbox checkout under the same settled custody, private backing is used only for sandbox sessions, and the obsolete read-checkpoint adapter is removed.",
-  "reasoning": "Before #194885, every read checkpointed guest changes and then read the canonical file, so a save followed by a read returned the saved bytes and host sessions read canonical files. #194885 (merged about 1.5 hours before this fix, which names it) switched reads to the live private checkout for any worktree session without synchronizing saves into that checkout; I read both diffs in session-file-read.ts and sessions-files.ts."
+  "area": "gateway",
+  "summary": "The fix imports successful canonical saves into the private checkout before guest writers resume and limits private checkout reads to sandbox sessions.",
+  "reasoning": "I checked the causing commit and its parent: the existing save handler wrote to the canonical workspace, and the parent resolved file reads against that same workspace after checkpointing. PR #194885 switched reads to the retained private checkout without checking whether the session was sandboxed and left the canonical write outside the checkpoint with no import back into that checkout. The fix adds coverage for both save-then-reload and host-only reads with a retained checkout.",
+  "rank": 91,
+  "sha": "f6abc882721d0facb24452469b77cf58b95d25a7",
+  "rubric": "v1.2"
 }

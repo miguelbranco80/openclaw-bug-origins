@@ -1,0 +1,17 @@
+{
+  "rank": 100467,
+  "sha": "ef1592cf859461bf5a416a364bad202915321814",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "611b3f17533b0845b0c1b227aa3ddb1d6cc34de1",
+  "cause_pr": 127739,
+  "confidence": "high",
+  "cause_quote": "Adding `child.completion?.terminalReply ||` to `hasCapturedChildCompletionReply` made an `empty` snapshot satisfy the skip condition whenever the successful child resolved to no result text.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A parent agent waiting on six children received only five completion results when one child succeeded with an empty reply.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "The fix includes successful empty replies in the parent batch with the child's task identity, `ok` status, and `(no output)` while preserving intentional suppression.",
+  "reasoning": "I checked the causing commit and its parent: the requester-settle path already used the batch formatter, and an empty success with no retained text fell through to `(no output)` because the skip predicate only checked captured text. PR #127739 added the terminal snapshot to that predicate and switched to a resolver that returns undefined for an `empty` disposition, so the formatter skipped the entire child entry."
+}

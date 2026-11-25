@@ -1,0 +1,17 @@
+{
+  "rank": 100728,
+  "sha": "6453bcea9e731dd1f695fa73c0975e1f0c1ad358",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9aa4250c58ad466856b5f1d77250ad5fecf2b70e",
+  "cause_pr": 99653,
+  "confidence": "high",
+  "cause_quote": "The cron executor added `cliSessionBinding: guardedCliSessionBinding`, exposing the stored chat binding to the wake's message-policy check, and finalization added `setCliSessionBinding(prepared.cronSession.sessionEntry, providerUsed, cliSessionBinding)`, saving the wake's policy for the next turn.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A scheduled announcement reset the chat's native CLI conversation, and the next ordinary reply reset it again.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "Cron wakes into persistent chats now use the chat's stable CLI binding policy while still requiring explicit targets for announcement messages.",
+  "reasoning": "In the parent of #99653, cron already supported persistent chat targets and passed the stored CLI session ID through a reuse path that bypassed the policy comparison, so the wake itself could resume the chat. The new binding argument made CLI preparation compare the wake's explicit-target policy against the ordinary chat policy, and the new persistence call saved the mismatched wake fingerprint for the next reply. The prior finalizer saved only the session ID, so this establishes the regression at wake time without establishing that the full three-turn sequence previously preserved continuity."
+}

@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Windows isolation finding concerns whether Linux containers can use native Windows paths. Docker splitting comma-bearing paths while parsing `--mount` is a separate failure that neither the merge review nor the earlier items raised."
+  "outcome": null,
+  "note": "No item concerns comma-bearing paths in Docker --mount strings; the Windows finding is about native Windows paths as Linux mount targets, a different condition, and the rest cover daemon revalidation, cancellation capacity, and journal upgrade."
 }

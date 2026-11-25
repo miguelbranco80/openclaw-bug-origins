@@ -1,7 +1,17 @@
 {
-  "origin": "latent",
-  "cause_sha": null,
-  "trigger_sha": "82a38fb2fe944b76c0604bb8ee1e0697404e64cd",
-  "confidence": null,
-  "reasoning": "The extension manifest diff upgrades `@openai/codex` from `0.164.0` to `0.169.0`, while the earlier observer and its tests were designed for structured spawn errors and exit code 1. The fix PR reproduced the new launcher emitting a fatal `process.execve` header and terminating with `SIGABRT` on Node 24, a dependency behavior the existing exit-code check could not handle."
+  "rank": 225,
+  "sha": "e93a426be3297ed947f54b4e15c87827225b6c90",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "82a38fb2fe944b76c0604bb8ee1e0697404e64cd",
+  "cause_pr": 200784,
+  "confidence": "medium",
+  "cause_quote": "It bumped `\"@openai/codex\": \"0.164.0\"` to `\"0.169.0\"`, whose launcher uses process.execve, and taught the observer only the structured form (`/syscall: ['\"]execve['\"]/` plus a matching `path:` line), which Node 24 never prints because it aborts with SIGABRT and a bare `process.execve failed with error code ...` header.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Node 24, a bundled Codex executable that could not run produced a generic app-server startup failure instead of the actionable executable-permission/missing-binary error.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The managed Codex launcher observer now recognizes Node 24's fatal `process.execve failed with error code X` header together with a SIGABRT exit and records it as the native spawn failure.",
+  "reasoning": "Native launch-error attribution worked with the 0.164 launcher (spawn-style exit-1 diagnostics, #154489/#161419); the PR names #200784 as related, and that commit's diff bumps Codex to 0.169.0 (an execve-based launcher) while adding only the Node 26 structured execve branch, so on Node 24 the diagnostic was lost and the real-launcher tests failed in the hourly Codex shard right after. It could also be read as latent (upstream launcher change with #200784 as trigger), but the in-repo bump and its incomplete adaptation are one commit, so I call it a regression with medium confidence."
 }

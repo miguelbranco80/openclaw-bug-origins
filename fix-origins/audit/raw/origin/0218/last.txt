@@ -1,6 +1,17 @@
 {
-  "origin": "regression",
+  "rank": 218,
+  "sha": "57f8e4beb1214c517863d542e6fa4ea8bb0fa57e",
+  "rubric": "v1.1",
+  "origin": "never-worked",
   "cause_sha": "59834998f25bacb0fadee2028cf720cf8cdd3b97",
-  "confidence": "high",
-  "reasoning": "The causing diff wrapped the existing `maybeRestartService` call in `await forward(() => ...)` and added `for (const stop of admission.forward) { stop(); }` to the signal handler. I checked the removed lines and confirmed that verification previously ran outside this cancellable scope and the old signal handler exited after settlement, so it could not strand readiness polling with every native service check cancelled. The patch also fixes a separate admission timeout whose introducing diff was unavailable."
+  "cause_pr": 165863,
+  "confidence": "medium",
+  "cause_quote": "The commit made a signal during \"activating\", \"restarting\", \"verifying\" call `for (const stop of admission.forward) { stop(); }` and wrapped the Gateway restart/verification in `forward(() => ...)`, while waitForGatewayHealthyRestart kept polling with `const signal = params.deadline?.signal ?? params.signal;` and ignored the stopped scope.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update interrupted with Ctrl-C or SIGTERM while verifying the restarted Gateway appeared to hang for up to the update deadline printing service=unknown health=ready even though the Gateway was healthy (and, separately, large-state installs fell back from candidate admission after a fixed 120 s).",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "Makes restart readiness polling honor the enclosing command-process scope's cancellation and sizes candidate admission's timeout from measured state bytes capped by the step deadline.",
+  "reasoning": "The headline hang comes from the interrupted-update recovery path added in 59834998f25 (#165863): it stops forward command scopes on a signal during verifying and runs the restart/verification inside such a scope, but the readiness poller (its signal line dates from 2b125389c8b, Sept 22, before this commit) never read the scope signal, so every systemctl spawn died and polling continued until the deadline; that feature shipped with the bug. The second defect (admission using prepared.timeoutMs, unset by default, so a fixed 120 s) dates from acffa7681f0 (#155632) and is a separate never-worked sizing issue not traced further here."
 }

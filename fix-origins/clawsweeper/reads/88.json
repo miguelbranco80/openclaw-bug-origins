@@ -1,1 +1,8 @@
-{"rank": 88, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Findings cover recoveryIncomplete propagation, cron revision enforcement, plugin compatibility guidance and settlement authority; nothing mentions the clawhub_manifest_invalid error discarding the reader's diagnostics."}
+{
+  "rank": 88,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "\u201cAdd real behavior proof\u201d covers installation authorization, and the earlier official-package fixture item covers missing trust evidence in a test. Neither addresses the source resolver discarding diagnostics when a ClawHub manifest is invalid."
+}

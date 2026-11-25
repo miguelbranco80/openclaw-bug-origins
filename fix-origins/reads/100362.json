@@ -1,0 +1,17 @@
+{
+  "rank": 100362,
+  "sha": "9db0482ff890f9110aec942c22b04447ac50ac61",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "220578ba340863ac127d2076604e461fa693eb6e",
+  "cause_pr": 139517,
+  "confidence": "high",
+  "cause_quote": "The diff moved `await send({ type: \"closing\", reason });` below the `if (hardKill) { ... process.kill(0, \"SIGKILL\"); return; }` branch, so forced cleanup killed the anchor before it could send the required receipt.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Restarting the Gateway from the Control UI could leave the service offline when a supervised child process resisted SIGTERM.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes the POSIX anchor wait for a bounded receipt acknowledgement before killing its group and lets the host verify lineage EOF, relay exit, and process-group disappearance.",
+  "reasoning": "I checked the causing commit's parent and confirmed that Gateway restart already awaited supervisor shutdown, the forced cleanup path sent a closing receipt before killing the group, and the host accepted that receipt on channel close. The causing diff skipped the receipt on forced cleanup, and its test for a TERM-resistant group changed from successful completion to an expected `cleanup identity lost` rejection."
+}

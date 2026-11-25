@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "7e256f7302d401bcbfa41347bf3fe2b88a729090",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The commit removed `margin-top: calc(var(--chat-mobile-pane-header-height, 0px) + 50px);` from the transcript viewport in Details-enabled panes, letting the first message and its actions sit under the Details button.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On narrow chat layouts, the Details button could cover the first message and its action buttons.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix moved Details into the existing pane header, keeping the transcript clear without adding a 50px gap on desktop.",
+  "reasoning": "The first-parent diffs show that Details already shipped and that two follow-up commits reserved space above the transcript to keep its actions clear. I checked that 7e256f7302d removed that reservation while leaving Details in the gutter, which matches the overlap documented on main in the fix PR and covered by its new geometry assertions.",
+  "rank": 100630,
+  "sha": "bb7c69ddd04b01330e60489d1057d6e1e3319ad2",
+  "rubric": "v1.2"
+}

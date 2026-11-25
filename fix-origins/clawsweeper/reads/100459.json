@@ -1,0 +1,8 @@
+{
+  "rank": 100459,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Authority coverage section mentions cancellation and cleanup while describing test coverage. The Findings address lost activation replies, unhandled rejections, and caller revocation, leaving unexamined whether pending cleanup outlives the async work scope after cancellation."
+}

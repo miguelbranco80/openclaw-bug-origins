@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge Evidence section treated the earlier loss of configured MCP servers as resolved by the bridge. The earlier catalog invalidation finding concerned test timing during revocation and did not address the missing requester identity that kept per-requester tools off Claude CLI turns."
+  "outcome": null,
+  "note": "At-merge items concern private session links in the PR body and maintainer approval; the review never raises requester-scoped MCP servers being dropped (it says configured-server loss was addressed by the bridge)."
 }

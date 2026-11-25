@@ -1,0 +1,8 @@
+{
+  "rank": 100741,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Earlier findings concerned transcript search limits and how partial results were reported. The at-merge \u201cFocused regression coverage\u201d section mentions lazy catalog matching without raising the failure to match canonically equivalent Unicode text."
+}

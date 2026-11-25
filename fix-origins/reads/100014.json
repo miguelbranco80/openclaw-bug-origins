@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "aee12b63234c177afd53f353315fd2191e1d035c",
+  "cause_pr": 169752,
+  "confidence": "high",
+  "cause_quote": "The new migration command generated `runId: randomUUID()`, but its acceptance path only set `receipt.status = \"finished\"`, saved the receipt with `await saveReceipt(file, receipt)`, and attempted backup removal without writing an update history row.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On externally supervised installs, `openclaw update cleanup` kept older Doctor migration originals marked `awaiting-later-completed-update` even after the supervisor accepted later native updates.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "`update finish` now records supervisor-accepted native updates as succeeded in update history, using the migration receipt's run ID and start time.",
+  "reasoning": "The cleanup diff from #162771 shows that Doctor migration originals already required a succeeded update that started after the migration completed. The introducing diff for #169752 shows that the supervisor's new finish command saved its receipt and attempted backup removal without recording a succeeded run, so this path could never satisfy the existing cleanup rule.",
+  "rank": 100014,
+  "sha": "ddf2e9803fcf4b1d726f02f5716e4b84f44d93d6",
+  "rubric": "v1.2"
+}

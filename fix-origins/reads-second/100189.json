@@ -1,0 +1,17 @@
+{
+  "rank": 100189,
+  "sha": "6b13edf810259d6d204f40b1ef5be9170f132645",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "4e12d0556b106ceac3e8930311c0ed968c16d50a",
+  "cause_pr": 122194,
+  "confidence": "medium",
+  "cause_quote": "The new SSE continuation sent `previous_response_id: continuation.lastResponseId` with `input: currentInput.slice(baselineLength)`, so warm requests inherited terminal reasoning bytes that the transcript could not reproduce on reopen.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Reopening a long OpenAI session could lose prompt-cache hits and increase input-token charges.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix preserves empty reasoning content arrays, stores terminal ciphertext for replay, and defers async tool-call persistence until the terminal event or stream end.",
+  "reasoning": "The release gate uses SSE, and #122194 introduced stateful SSE continuation by reusing the provider\u2019s terminal output. Its parent already dropped `content: []` from the saved signature and kept ciphertext from the item-done event when present, so the mismatch was possible from the first stateful SSE version. The fix\u2019s fixture confirms the mechanism with synthetic payloads, and the provider\u2019s payloads at the time of introduction were unavailable."
+}

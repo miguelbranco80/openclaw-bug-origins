@@ -1,7 +1,7 @@
 {
   "rank": 174,
   "sha": "00ddcde27521ca792ec20faf21347c68ba233fa2",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; developers saw Control UI size-budget checks charge or hide bytes caused by asset hash renames.",
+  "user_saw": "Developers saw Control UI size-budget reports rise or fall when generated asset hashes changed.",
   "impact": "other",
   "area": "ui",
-  "summary": "The Control UI performance budget collector now normalizes generated asset hash suffixes before compressing, reports normalized and served bytes side by side, and shares the precompression eligibility rule with the Vite build.",
-  "reasoning": "The PR states the application and served assets are unchanged; the change corrects how a CI size-budget check measures compressed bytes. That is tooling/CI measurement work titled as a fix, not a product defect."
+  "summary": "The fix normalizes generated asset hashes before measuring compressed bytes for Control UI budgets and continues reporting actual served sizes.",
+  "reasoning": "I checked the original budget collector in #106367 and confirmed that it deliberately enforced limits using the measured sizes of the shipped gzip and Brotli sidecars. The fix changes the budget policy to isolate code growth from compression differences caused by generated names."
 }

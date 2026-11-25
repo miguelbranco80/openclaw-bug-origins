@@ -1,0 +1,17 @@
+{
+  "rank": 100177,
+  "sha": "28acdfc4504d43403ffa83c5090d260f27d636c1",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "dfd2e744caa31b1cac0364c17d2e9c376c674214",
+  "cause_pr": 134880,
+  "confidence": "high",
+  "cause_quote": "The new worker handled fatal renewal errors with `if (!isSqliteLockError(error)) { lose(); return; }`, and the host reported the exit with `worker.once(\"exit\", () => fail(new Error(\"state lease heartbeat exited\")));`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a fatal lease renewal error stopped the worker, Doctor or maintenance reported `state lease heartbeat exited` without the underlying error.",
+  "impact": "other",
+  "area": "storage",
+  "summary": "The fix preserves fatal state lease renewal errors and SQLite codes in the worker exit diagnostic, along with the exit code and renewal timing.",
+  "reasoning": "I checked the introducing diff and confirmed that the fatal renewal path discarded the caught error from the first version of the heartbeat worker. The fix sends that error to the host before teardown, and the PR reports that the original CI heartbeat failure remained unreproduced."
+}

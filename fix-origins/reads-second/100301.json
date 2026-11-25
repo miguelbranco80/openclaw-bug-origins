@@ -1,0 +1,17 @@
+{
+  "rank": 100301,
+  "sha": "d9a52238b3813acc7a340dd47539c41ca1dffe2b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c62c2d9db5e79065de9ed78feeeb8e43fd2f01ea",
+  "cause_pr": 150196,
+  "confidence": "high",
+  "cause_quote": "The new session-list projection loads the combined store with `includeIncognito: false`, excluding the parent row the chat header needs to render its link.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After sending a message or refreshing an Incognito fork, the link back to its parent disappeared from the chat header.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix observes the accessible parent through `sessions.describe` so the chat header can render its link independently of the session list.",
+  "reasoning": "The header introduced in #122335 used the pane\u2019s session list to resolve the child\u2019s parent key, and the Gateway tests immediately before #150196 asserted that authorized lists included Incognito sessions and that Incognito children retained their parent keys. #150196 switched `sessions.list` to a projection that excludes Incognito rows and reversed the list assertion, so a refresh left the header without the parent row even though the lineage still existed."
+}

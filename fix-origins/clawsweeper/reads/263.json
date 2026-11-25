@@ -1,0 +1,8 @@
+{
+  "rank": 263,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 finding covers cleanup being skipped for aliased macOS temp paths. The Technical review endorses the existing maintenance architecture without raising Gateway thread contention during recursive cleanup of large scratch clones."
+}

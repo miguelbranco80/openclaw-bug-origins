@@ -1,17 +1,17 @@
 {
   "rank": 104,
   "sha": "3b15438dc653b6552e61f7421941cd037ccd0bb6",
-  "rubric": "v1.1",
-  "origin": "never-worked",
+  "rubric": "v1.2",
+  "origin": "regression",
   "cause_sha": "67cedc32e9967d01586c65dc3b18073e9beb5551",
   "cause_pr": 150564,
   "confidence": "high",
-  "cause_quote": "The new execa-output.ts created the output socket with `const directory = await mkdtemp(path.join(tmpdir(), \"oc-spawn-\"));` and `server.listen(path.join(directory, \"out\"))` with no Unix-socket path length budget or short fallback.",
+  "cause_quote": "The broker introduced `const directory = await mkdtemp(path.join(tmpdir(), \"oc-spawn-\"));` and passed `path.join(directory, \"out\")` to `server.listen(socketPath)` without checking the Unix socket path length.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Under a long temporary directory, buffered commands run through the Gateway spawn broker failed with EINVAL and private Git history did not reach native child sessions.",
+  "user_saw": "With a sufficiently long temporary directory, buffered Gateway commands failed with EINVAL and affected native child sessions received files without private Git history.",
   "impact": "failed-every-time",
   "area": "gateway",
-  "summary": "Buffered command output sockets now share the native-resource broker's socket-path budget and fall back to a short /tmp directory when the temp-root path would exceed the platform limit.",
-  "reasoning": "The buffered-output Unix socket was introduced with the spawn broker in 67cedc32 (#150564), whose execa-output.ts placed it under tmpdir() with no length check; later commits only moved the function into execa-worker.ts (#175834) without changing that. The sibling resource-authority socket already had a 103-byte budget, so this path simply never had one."
+  "summary": "The fix applies the native-resource broker's socket path byte limit to buffered command output and uses a short private directory under `/tmp` when the configured path exceeds it.",
+  "reasoning": "The pre-change side of the command launcher diff shows that existing buffered commands ran through direct Execa, whose output path did not depend on a filesystem Unix socket under the temporary root. PR #150564 routed eligible commands through the broker and added that dependency before launch. The later refactor moved the same socket setup into the worker without changing the path construction."
 }

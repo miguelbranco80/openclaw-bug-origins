@@ -1,0 +1,17 @@
+{
+  "rank": 100785,
+  "sha": "ebbe13ef1cb81bce3df81bae4332668a3a4ce236",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An MCP server name containing terminal controls could change the formatting of CLI output or appear as an extra report line.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The fix escapes terminal controls in human-readable MCP reports, acknowledgements, and errors while preserving JSON output and saved definitions.",
+  "reasoning": "The oldest available source snapshot already shows `mcp list` logging stored names with `defaultRuntime.log(` followed by raw interpolation, and save acknowledgements also interpolate names directly. The path history stops at the shallow boundary because an older object is missing, so I could not verify whether the CLI shipped with the defect or an earlier change introduced it."
+}

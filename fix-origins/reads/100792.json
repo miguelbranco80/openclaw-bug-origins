@@ -1,0 +1,17 @@
+{
+  "rank": 100792,
+  "sha": "a967fa74c6a77f085c855947f406d46b8e1e56d0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e7f0546192744a786b60b607401e030b0f83940d",
+  "cause_pr": 183267,
+  "confidence": "high",
+  "cause_quote": "The diff added `const chunks = chunkContiguousWork(parts);` and emitted a `kind: \"work-group\"` for each work chunk in transcript order, so visible narration split the disclosure and post-answer work stayed below the answer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In completed dashboard chats, users saw multiple Worked disclosures between narration messages, with work recorded after the answer shown below it.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix restores one Worked disclosure above completed dashboard answers, keeps tool-result images with their tools, and preserves the single activity disclosure in bubble view.",
+  "reasoning": "I checked the parent of #183267 and confirmed it collected eligible activity from both sides of the final reply into one work group before emitting the answers. The #183267 diff replaced that rollup with order-preserving chunks separated by visible content and removed the bubble-mode bypass, producing the presentation failures described in the fix."
+}

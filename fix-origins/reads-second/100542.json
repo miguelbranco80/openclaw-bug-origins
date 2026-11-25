@@ -1,0 +1,17 @@
+{
+  "rank": 100542,
+  "sha": "05287aca6a6584f8f10c763c7b21947cc7f8089c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "561d92da3a286857c25d9ec508095d8ee4dc14da",
+  "cause_pr": 168206,
+  "confidence": "high",
+  "cause_quote": "The new snapshot rejected rosters over 200 rows via `sessions: row.array().max(200)` after capture filtered and mapped every row without truncating the list, and the Pages readiness check fell through to `Boolean(this.sessionData.sessionsResult)` after its dashboard catalog finished loading.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a warm reload, operators with large rosters saw session rows arrive late and shift the rail, while operators returning after a Pages visit could see the previous Sessions view restored.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix caps the cached routing roster and lets Pages settle from its own catalog while preserving the last good snapshot if the catalog read fails.",
+  "reasoning": "The introducing diff added both failure paths with the unified rail snapshot, after sidebar pagination and the owner-first window already existed. I checked the previous cache reader, which also rejected rosters above 200 rows, and confirmed that the later validation refactor carried the same cap into the new schema file."
+}

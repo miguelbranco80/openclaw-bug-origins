@@ -1,0 +1,8 @@
+{
+  "rank": 100085,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge and earlier Before merge items concern Windows updater completion and Scheduled Task state. The Fence boundary evidence describes how the build guard uses discovered services without raising the risk that systemd discovery could mistake `openclaw gateway install` for a running Gateway."
+}

@@ -1,7 +1,7 @@
 {
   "rank": 115,
   "sha": "847c6b8d6cacffdd70763cf95c1e2947feda87d1",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Notices above the chat composer (status lane, compaction/fallback pills, alerts, disabled banner) used different tinted fills and borders, so they looked inconsistent.",
+  "user_saw": "Notices above the chat composer used different background and border colors depending on the notice type.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Restyled the notices above the chat composer to share the composer's neutral surface and hairline border, moving tone color from the fill and border onto the icon only.",
-  "reasoning": "The diff is CSS-only and replaces deliberate tone-tinted backgrounds and borders (written that way on purpose in #152608 and earlier) with a unified neutral design; nothing was broken, it is a visual-consistency design decision titled as a fix. No functional failure or regression to trace."
+  "summary": "The fix gives composer notices a shared neutral background and border while retaining status colors on icons or text.",
+  "reasoning": "The original composer redesign explicitly tinted the status lane by tone, and the September footer refactor carried those rules forward. Compaction indicators and alert callouts had their own styles, and the fix bundle describes a visual consistency change without reporting a rendering or usability failure."
 }

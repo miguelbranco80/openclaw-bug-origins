@@ -1,0 +1,17 @@
+{
+  "rank": 100725,
+  "sha": "e42c52b7d83ede656c778337b46c0a25cb279625",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A saved background reply could be missing from WebChat or disappear after briefly appearing.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "WebChat now invalidates history reads that began before a transcript commit and queues one fresh read to recover the saved reply.",
+  "reasoning": "The September refresh-queue change preserved same-key request reuse, and the July handler for identity-only transcript updates already called the loader in a way that could reuse a stale read. The late-reply handler and history coalescing both predate the shallow cutoff, and the available history did not establish when the reported reply-loss behavior began or whether it had previously worked."
+}

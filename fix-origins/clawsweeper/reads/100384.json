@@ -1,0 +1,8 @@
+{
+  "rank": 100384,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve publication recovery details in the handoff result\u201d item addressed missing recovery fields in the continuation payload after a failed publication. The at-merge \u201cTests\u201d item raised a general end-to-end coverage gap, and neither item pointed to transcript receipt recognition or reply grouping after successful publication."
+}

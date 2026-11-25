@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "48447a63c6d12ba74f3d922e55815f045eb5fc5f",
+  "cause_pr": 151003,
+  "confidence": "medium",
+  "cause_quote": "The new parent-owned repair finalizer stopped at `await owned?.finish(cfg);` without collecting maintenance warnings, and its `if (!before?.stopped || !before.serviceEnv || !root) { return; }` branch left an already stopped Gateway offline without guidance.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Standalone `openclaw update repair` could report success while an already stopped Gateway stayed offline, without telling the operator how to start it.",
+  "impact": "other",
+  "area": "update",
+  "summary": "Repair now prints a profile-aware Gateway start command when appropriate and includes maintenance warnings in the final JSON outcome.",
+  "reasoning": "I checked #151003 and its parent: the earlier finalizer collected warnings from fresh Doctor children, while #151003 added parent-owned maintenance without forwarding that parent's warnings. The earlier Doctor path already left an owned, stopped Gateway offline without start guidance, so the new parent path shipped with the same silence. The later installation-drift change added a warning for that specific case while preserving the silent return for ordinary stopped services.",
+  "rank": 100754,
+  "sha": "af2ab181424bf114e31a103481152bc937e3f417",
+  "rubric": "v1.2"
+}

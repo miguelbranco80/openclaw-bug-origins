@@ -1,0 +1,17 @@
+{
+  "rank": 100440,
+  "sha": "cb25f00e247de2b74a4d95b890117b61b02ecc17",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Saving a stale configuration draft could overwrite a newer value in an included file without asking the user to reload.",
+  "impact": "data-loss-or-duplication",
+  "area": "gateway",
+  "summary": "The fix includes the contents and target identities of included files in the configuration revision and returns the saved configuration and revision from the same reread.",
+  "reasoning": "The July 1 checkout already had root-only revision checks and write-through for top-level includes, the layout used in the fix's Gateway tests. I checked the later diffs for opaque revision tokens and nested include writes, and the older history lookup stopped at a missing object, leaving the original introduction and any earlier working behavior unverified."
+}

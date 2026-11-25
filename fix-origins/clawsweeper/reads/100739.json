@@ -1,0 +1,8 @@
+{
+  "rank": 100739,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "\u201cScope observation cleanup to the closing state owner\u201d concerns a database-close callback that clears unrelated roots. The earlier \u201cBefore merge\u201d items concern auth migration and credential state, and no review version raises watch eviction during scans of more than 256 agent directories."
+}

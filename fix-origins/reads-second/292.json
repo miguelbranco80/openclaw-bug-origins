@@ -1,17 +1,17 @@
 {
   "rank": 292,
   "sha": "ac008ae0b850ff5082a247924e5b9e636edbb1ce",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "bfbb6560585b1b7241a44a5202d927d093e776a8",
   "cause_pr": 193548,
   "confidence": "high",
-  "cause_quote": "#193548 deleted the plaintext cache writer together with `sweepMaterializedArchiveCache(cacheDir)` and its age-based `fs.rmSync(entry.path, { force: true })` loop, leaving existing session-archive-read-cache files with no remaining code to remove them.",
+  "cause_quote": "The diff deleted `sweepMaterializedArchiveCache(cacheDir);` and the sweep\u2019s `fs.rmSync(entry.path, { force: true });` call for expired entries.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After upgrading, old plaintext session archive cache files stayed in the OpenClaw temp directory indefinitely, consuming disk space.",
+  "user_saw": "After upgrading, operators could see old plaintext session archive caches continue to occupy temporary disk space indefinitely.",
   "impact": "slower-or-heavier",
   "area": "storage",
-  "summary": "Adds a Doctor legacy-state check that reports leftover session archive read-cache bytes read-only on lint and removes recognized cache files (and the empty directory) on repair, including the update path.",
-  "reasoning": "Before #193548 the age-based sweep bounded and expired the plaintext archive cache; #193548 (an hour before this fix) removed the writer and the sweep without a migration, so caches already on disk were never reclaimed, which is exactly what the fix's PR states. I read the #193548 diff of archive-compression.ts and confirmed the removed sweep lines; the fix adds the missing one-time Doctor cleanup."
+  "summary": "Doctor now reports legacy archive cache usage and removes recognized cache files during repair, including when repair runs as part of an update.",
+  "reasoning": "The parent-side diff shows that compressed archive reads invoked an age-based sweep that deleted entries older than 24 hours. PR #193548 switched readers to streaming and removed the sweep, so existing cache files lost their automatic cleanup path. The fix PR reports that a real Doctor repair on the baseline left a seeded cache file in place."
 }

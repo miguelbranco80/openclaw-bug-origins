@@ -1,17 +1,17 @@
 {
   "rank": 244,
   "sha": "d902b29bce59a1e7817f8d086c1d551d42b3ab16",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible in normal use; a write-scoped operator client could have stamped its own agent input with the restart-recovery provenance mark.",
+  "trigger_sha": "82acfabb374991cdb9abeb8bb89984f0cb667733",
+  "user_visible": "yes",
+  "user_saw": "A write-scoped client could submit input as restart recovery and make its own request wait for a busy Codex thread for up to two minutes.",
   "impact": "permissions",
   "area": "gateway",
-  "summary": "The agent RPC preflight now rejects input provenance internal_system/sourceTool restart from non-backend callers, like the existing exec-completion and progress-refresh reserved marks.",
-  "reasoning": "The PR states no user impact for normal use and no bundled client sends the mark; the only effect was a self-inflicted abortable wait on the caller's own input, so this is hardening without a reported failure. No causing commit was traced since it is not classified as a defect."
+  "summary": "The gateway now rejects restart recovery provenance on agent RPC requests from non-backend callers.",
+  "reasoning": "The agent RPC already passed through caller-supplied provenance before #187157. That commit made the embedded runner use the restart marker to preserve an unanswered user message, so the existing pass-through let callers select recovery-specific behavior. I also checked #201761, which later used the same marker to let restart input wait for an active Codex turn."
 }

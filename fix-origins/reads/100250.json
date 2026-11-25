@@ -1,0 +1,17 @@
+{
+  "rank": 100250,
+  "sha": "fa0bde1229afc71bd5570bdc5a9da69a3c913db5",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "01b890d9c6409c5c4f5886f054a25f738a67574b",
+  "cause_pr": 179029,
+  "confidence": "high",
+  "cause_quote": "The new `const result = published() ? undefined : (work()?.branch ?? changes());` hid local counts after publication, and the new `retainedPublication(publication) && (publication?.result?.status !== \"published\" || publication.error)` fallback let a stale failure show Retry beside a live PR.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Local change counts disappeared from Environment after publishing a pull request, and an earlier failed attempt could leave a Retry button beside an existing pull request.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps local change counts linked to Uncommitted review after publication and suppresses duplicate Retry when the Gateway reports a live PR for the checkout.",
+  "reasoning": "I checked the parent of #179029, where Environment rendered the Uncommitted action under `<Show when={changes()}>` independently of the existing PR publication flow. The #179029 diff moved publication controls into Environment, gated both count-rendering paths on publication status, and let retained failures mount branch actions even when a live PR was already listed."
+}

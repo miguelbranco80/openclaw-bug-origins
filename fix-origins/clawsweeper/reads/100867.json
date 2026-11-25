@@ -1,0 +1,8 @@
+{
+  "rank": 100867,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Linux installed-package rerun in Before merge was about validating the latest integration changes. Neither that item nor the earlier review items raised the updater\u2019s npm dependency on Bun-only hosts."
+}

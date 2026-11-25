@@ -1,0 +1,17 @@
+{
+  "rank": 100667,
+  "sha": "2a7642919ecc445f59e39d636171ee39267f327e",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a Talk microphone sent digital silence after speech, Gemini 3.8 Live gave no reply and could merge the transcript into the next utterance.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The Google realtime voice bridge now keeps forwarding silent frames to both Gemini 3.8 Live variants and still sends audioStreamEnd for older models.",
+  "reasoning": "The bridge already accepted a configured model and stopped forwarding silent frames before #152413 added model-specific handling for Gemini 3.8 Live, and that commit left the audio path intact. The PR's raw API probes show that the existing cutoff completed turns on Gemini 3.1, while both 3.8 variants required continued trailing audio, so the newer provider behavior exposed the incompatibility. The silence policy predates the shallow history boundary, and the available offline history did not establish its original commit."
+}

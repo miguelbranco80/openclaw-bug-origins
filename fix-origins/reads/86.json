@@ -1,17 +1,17 @@
 {
   "rank": 86,
   "sha": "d5d4f6494db64790911a82f36dc40b29ae44e4ac",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a18708c5c12d93f14eb753b543a6747e8baa8c47",
   "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "confidence": "medium",
+  "cause_quote": "The original boot lifecycle counted open receipts with `eb(\"completed_at_ms\", \"is\", null)`, then `if (!crashLoopDecision.tripped) { return; }` let an ordinary restart proceed without reporting the crash.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After an automatic restart the Gateway looked healthy and nothing recorded that the previous process had crashed.",
-  "impact": "other",
+  "user_saw": "After a crash and automatic restart, operators could see a healthy Gateway with no product-visible record of the previous unexpected exit.",
+  "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Adds a bounded crash history recorded at boot from the existing boot receipt and surfaces it in logs, status, Doctor, health and readiness, plus bounded crash retries for Windows task children and macOS SIGILL exits.",
-  "reasoning": "The bulk of the change is new observability (persistent crash records and operator surfaces), which never existed rather than broke. The macOS part reverses a deliberate policy from f492d369d69b (#181123), which intentionally stopped retrying after SIGILL, and the Windows supervisor gains crash retries it never had; both are policy/behavior changes rather than a regression with a breaking line. Classified as a feature/behavior change titled as a fix."
+  "summary": "The fix records and reports the ten most recent Gateway crashes and adds bounded retries for unexpected Windows task exits and macOS SIGILL exits.",
+  "reasoning": "The original boot ledger retained evidence of unclean exits for crash-loop detection, but its startup path only surfaced those exits once the breaker tripped. Path history shows that deep status later added reporting for completed shutdowns, and the fix parent still lacked individual crash reporting. This classification follows the PR\u2019s primary reporting defect, which was present when the boot ledger shipped."
 }

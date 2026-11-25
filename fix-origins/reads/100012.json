@@ -1,0 +1,17 @@
+{
+  "rank": 100012,
+  "sha": "8f6e0119ddb62e0d51a90c9d3cd566a5939883ac",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6f88c26dcf823a6d5c99a6053316829edc1a6512",
+  "cause_pr": 182109,
+  "confidence": "high",
+  "cause_quote": "The refactor deleted `const MAX_PROTOCOL_VERSION: u32 = 4;` from `gateway_ws.rs` while three test fixtures still referenced it.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The fix switched three desktop companion test fixtures to the shared `PROTOCOL_VERSION` constant.",
+  "reasoning": "I checked that the three fixtures already existed before #182109 and that their `use super::*;` import resolved `MAX_PROTOCOL_VERSION` from `gateway_ws.rs`. The refactor removed that declaration and left the fixtures unchanged, causing Rust error E0425 when CI compiled the companion tests."
+}

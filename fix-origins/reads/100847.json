@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an update, a Control UI tab left open could no longer load routes it had yet to visit because their JavaScript chunks returned 404.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix stores only uncompressed assets in new retained generations and logs a warning when the previous generation cannot fit.",
+  "reasoning": "The original retention diff included precompressed sidecars in the 96 MiB budget, which could hold multiple generations at the reported 24.6 MB per build. The budget stayed fixed, and by the time of the fix two full generations totaled 106.2 MB, so pruning dropped the previous build. The build and retention history did not establish a single commit that pushed the pair over the limit.",
+  "rank": 100847,
+  "sha": "caff35cbbbad4d2c1ba3bc271fce6abc899d4743",
+  "rubric": "v1.2"
+}

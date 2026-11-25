@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "e905a682f7ad2c06daad5e30cffdf8d1a90ed662",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The introducing diff passed `model: resolvedModel` to `sessions.create`, turning the automatically selected child model into a user override that disabled configured fallbacks.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A visible child spawned without an explicit model choice failed when its primary model was rate-limited, even though a backup was configured.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves automatic model selection at visible child creation and uses the child's configured fallback policy on initial and later direct requests.",
+  "reasoning": "The path history shows this commit introduced visible spawning and passed the automatically resolved model through the explicit model field from the start. I checked the creation and fallback code at that commit and confirmed that a non-default model passed this way was stored with user provenance, causing the runner to use an empty fallback list.",
+  "rank": 100143,
+  "sha": "653e15a3296ae4238d30ba412dbd293f07e13ef6",
+  "rubric": "v1.2"
+}

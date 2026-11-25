@@ -1,0 +1,8 @@
+{
+  "rank": 100504,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence item \u201cProtected installation and lifecycle ownership\u201d describes writable aliases as already rejected and raises no concern about the original package directory being guest-writable. The earlier security items focused on model-authority revocation before provider I/O."
+}

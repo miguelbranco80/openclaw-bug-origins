@@ -1,0 +1,17 @@
+{
+  "rank": 100420,
+  "sha": "1cb21c2f7a5281220f33782543868fe0b45bc2e0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a77bf0478040f85086629714f1a48bf9e7fd4e88",
+  "cause_pr": 169564,
+  "confidence": "high",
+  "cause_quote": "The launch diff added `\"id\": \"advisor\"` in `extensions/advisor/openclaw.plugin.json` without adding the required `assets/icon.png` or `assets/activity.svg`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Advisor and MCP Events showed initials in the Plugins catalog and lacked their own chat activity icons.",
+  "impact": "presentation",
+  "area": "plugins",
+  "summary": "The fix ships identity PNGs and activity SVGs for Advisor and MCP Events and records them in the artwork inventories.",
+  "reasoning": "I checked the existing bundled artwork contract and both plugin introduction diffs, which each added a manifest without the required assets. Advisor was the first omission on main, and MCP Events independently shipped with the same omission in e210870acfe2fd7df6fcd464e4d775fac5a55710 (#165399)."
+}

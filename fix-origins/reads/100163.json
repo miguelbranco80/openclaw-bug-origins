@@ -1,0 +1,17 @@
+{
+  "rank": 100163,
+  "sha": "c78a9b7ee3318c2088fbc4730eac7e10f8b9bf82",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "05f8608fa78051d77f2bc504ce546e96c71f418d",
+  "cause_pr": 141065,
+  "confidence": "high",
+  "cause_quote": "The diff added `restoreRequest: () => restoreResponsesReasoningState(context, model, responsesOptions, params)` inside the continuation claim call, whose existing `if (previous?.kind === \"claimed\") { return undefined; }` exits before invoking it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When two OpenAI Responses requests overlapped in the same session, the second used only its current reasoning effort and dropped the conversation's saved effort changes.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix restores saved reasoning controls for overlapping OpenAI Responses SSE requests while leaving continuation cache ownership with the active request.",
+  "reasoning": "The earlier effort-update feature replayed controls from the continuation cache, and #141065 introduced restoring them from saved conversation state. The introducing diff and its parent show that a busy claim already returned early, so the new restoration path skipped overlapping requests from the start. The fix's request-capture test reproduces that branch and checks that the second request includes the original effort and both historical controls."
+}

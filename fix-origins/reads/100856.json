@@ -1,0 +1,17 @@
+{
+  "rank": 100856,
+  "sha": "a2affcf76e937a769550b576c67cb6934642766c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a92585248e47ee6ef121efde115aa2cc9c90f218",
+  "cause_pr": 147195,
+  "confidence": "high",
+  "cause_quote": "The new shared publication reader filtered worktrees with `.where(\"removed_at\", \"is\", null)` and, when no live row matched, ran `throw new Error(\"GitHub publication session worktree owner is unavailable.\");`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a PR was published and its idle checkout was cleaned up, the Control UI's Publish PR card kept showing a worktree owner error.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix treats a retired or replaced checkout as having no current publication and compacts the publication card into an expandable status line with a refresh icon where needed.",
+  "reasoning": "PR #147195 introduced shared receipt discovery in the publication options read, and its initial implementation threw when a receipt existed but the session's worktree had been retired. I checked that idle session worktree cleanup already existed in the introducing commit's parent and that the later worker refactor carried the same check forward."
+}

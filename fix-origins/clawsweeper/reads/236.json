@@ -1,0 +1,8 @@
+{
+  "rank": 236,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The cancellation and content-budget findings concerned test fixtures failing with ENOENT. The \u201cAccepted reclamation tradeoff\u201d covered directories left behind after crashes or failed deletion and did not raise the risk of active deletion delaying transcript writes on btrfs."
+}

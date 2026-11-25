@@ -1,0 +1,17 @@
+{
+  "rank": 126,
+  "sha": "8e2f635ecaedc211d0bf68dc6a495d010589e708",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "6fd646e86cd7c4decdaadd8901dd7f2846b837c2",
+  "cause_pr": 188978,
+  "confidence": "medium",
+  "cause_quote": "#188978 added the recovery-guard reads (assertUpdateCommandRecoveryObservation's withUpdateRunRead(..., { env: run.env, allowNativeRead: true }, openDoctorStateSchemaReadAdmission) and the pluginCohort path of assertNoPendingUpdateRecovery), and any read with schema admission fell into prepareSqliteReadOnlyLocationSync's whole-database copy.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Updates made about a dozen extra whole-state-database copies, writing gigabytes more to disk and stalling the update while each copy ran.",
+  "impact": "slower-or-heavier",
+  "area": "update",
+  "summary": "Lets reads with Doctor schema admission and allowNativeRead use a fresh native read-only reader on the live file instead of copying the whole state database.",
+  "reasoning": "The copying guard reads were new code in #188978 (diff of src/cli/update-cli/update-command-recovery.ts adds the admitted withUpdateRunRead call and the pluginCohort assertNoPendingUpdateRecovery call), and the readonly helper already forced a copy whenever admission was passed (`!openStateSchemaReadAdmission`, from 58c0073dff09). Before #188978 the guard only did a native loadUpdateRecovery read, so the heavy behavior shipped with the plugin-cohort guards rather than breaking a working version of them; medium because I did not trace the assertNoPendingUpdateRecovery admission path line by line."
+}

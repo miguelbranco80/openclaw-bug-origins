@@ -1,0 +1,17 @@
+{
+  "rank": 100071,
+  "sha": "e8d5b0f5163c260f2508bab51dbe9a84ee3286e6",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "5bd4f88535c66197b6d07442b82f7f68d94be6fa",
+  "cause_pr": 169124,
+  "confidence": "high",
+  "cause_quote": "The refactor added `import { MAX_PAYLOAD_BYTES } from \"../../gateway/server-constants.js\";` to `session-pending-input-value.ts`, making modules that used the shared pending-input helpers pull in a forbidden Gateway server dependency.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix moved the unchanged 25 MiB payload limit into a shared module outside the Gateway server graph and redirected its consumers.",
+  "reasoning": "The earlier worker-isolation fix recorded that all nine standalone entries passed the build-graph check, and #169124's parent still had the same rule excluding Gateway server modules. The #169124 diff added the forbidden import in the shared pending-input helper and wired existing session modules to it, matching the fix message's report that the state-read and read-only SQLite worker checks began failing after that merge."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100302,
+  "sha": "40d57f8dc8f5d97a019b89bba36457efa1678369",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see the Gateway stall while handling a shutdown signal, and a later signal could act on the same restart request again.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix moved restart-intent consumption and update-report receipt handling to database workers, made intent consumption atomic, and let accepted receipt work finish before shutdown.",
+  "reasoning": "The old SQLite consumer read the intent and then attempted a separate deletion, swallowing deletion errors and allowing it to return an intent that remained in the database. The July extraction preserved that logic, and the later signal-handler change still called the same synchronous consumer as its parent. The separate read and delete predate the July 1 history boundary, and the offline history search stopped at a missing parent, so I could not verify which commit introduced the defect."
+}

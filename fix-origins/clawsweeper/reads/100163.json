@@ -1,0 +1,8 @@
+{
+  "rank": 100163,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Before merge items focused on persistence and legacy reload compatibility, and the at-merge Technical review focused on recovery after transport cleanup. Neither raised the risk that an active continuation claim would skip restoration for a second request in the same session."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100269,
+  "sha": "143cb75deb7f75d9fa45d0b79c5cc91191c78777",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0acd851a3b3d6142f1e569a0e5616db62361969e",
+  "cause_pr": 100535,
+  "confidence": "high",
+  "cause_quote": "The new worktree service executed `return existing;` for a live checkout with the card-derived name before reaching `resolveBase(repository.repoRoot, params.baseRef)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After changing a Workboard card\u2019s base ref and dispatching it again, the operator saw a worker start without warning in the checkout at the old base.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "Workboard now refuses to start a worker when the requested base ref differs from the retained checkout\u2019s recorded base, preserving the checkout and its local files.",
+  "reasoning": "I checked the introducing diff and confirmed that the first managed Workboard dispatcher passed the requested base to the worktree service under a stable card-derived name. The same diff added the early reuse return, so a changed base could be ignored from the first version of managed Workboard dispatch. The fix PR documents the resulting worker launch at the old base through the shipped CLI and Gateway."
+}

@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Tests item asked for proof of nested-subvolume fallback and capture cleanup. The Evidence section recorded higher command latency and CPU, but raised no concern about snapshot creation or removal stalling Gateway SQLite or RPCs."
+  "outcome": null,
+  "note": "The at-merge review has no items or findings, only a request to complete native nested-subvolume proof; the earlier finding was an import cycle. Nothing raises per-checkpoint btrfs snapshot creation/removal causing filesystem-wide commits that stall Gateway SQLite."
 }

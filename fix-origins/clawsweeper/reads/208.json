@@ -1,1 +1,8 @@
-{"rank": 208, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Merge-time items only request upgrade qualification for configured channels; nothing raises the case where model/reply rollback publication itself fails and is merely logged without recovery."}
+{
+  "rank": 208,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section describes the pre-drain invalidation and guarded rollback without raising a concern about reply availability after rollback fails. The Before merge items in all three versions concern published-driver upgrade verification."
+}

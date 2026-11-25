@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "80725e3b4f4cd37dd2fae89f8fb58e71f965b98d",
+  "cause_pr": 164755,
+  "confidence": "high",
+  "cause_quote": "The upsert refactor removed `upserts.length === 0` from the worker gate and passed `maintenanceRunBasis: preparedPreservation?.subagentRunBasis` to a worker that called `assertSessionSubagentRunsCurrent(input, options.env ?? process.env)` after transferring the commit candidate.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A chat turn could fail before replying if subagent maintenance facts changed during session initialization.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix sends confirmed SQLite maintenance rollbacks through the existing bounded chat initialization retry and preserves the original user turn during model fallback.",
+  "reasoning": "I checked the causing diff and its parent. The parent already committed reply initialization upserts and ran maintenance inline without comparing a prepared maintenance digest at worker commit. The refactor introduced that late comparison for upserts, where concurrent changes could roll back the write and surface as a terminal error, matching the fix's test that inserts a subagent row at commit admission.",
+  "rank": 100473,
+  "sha": "22bca7d84ddcf1d784b08c22fc07e0b8210b4063",
+  "rubric": "v1.2"
+}

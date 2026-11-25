@@ -1,0 +1,17 @@
+{
+  "rank": 100049,
+  "sha": "92e81af8ba60aa49c560e066753d52dad2893b73",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6ee406b1bfbf25983cdc1ba3c6b75daa9cf7a77b",
+  "cause_pr": 118304,
+  "confidence": "high",
+  "cause_quote": "The new reconciliation loop skipped ClawHub records with `if (record.source !== \"npm\" || !record.installPath?.trim()) { continue; }`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After copying or upgrading a source-backed installation, a ClawHub plugin could still fail validation after `openclaw doctor --fix` because its host link pointed to the old checkout.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "Doctor now audits and repairs stale OpenClaw host links for registered ClawHub plugins using the same ownership checks as for npm plugins.",
+  "reasoning": "The parent commit already installed ClawHub packages through the shared archive path that creates host links, while Doctor's repair only scanned managed npm roots. PR #118304 introduced repair for plugins recorded in the install ledger, but its npm-only guard excluded ClawHub records from the first version of that repair."
+}

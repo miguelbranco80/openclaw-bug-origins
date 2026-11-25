@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "793669c8f6ddfad07b40009068f532832685b7d6",
+  "cause_pr": 125283,
+  "confidence": "high",
+  "cause_quote": "The CLI runner added `replyToMode: turn.followupRun.originatingReplyToMode ?? turn.sessionCtx.ReplyToMode`, passing Slack\u2019s raw `off` through the MCP grant and overriding the message tool\u2019s thread-aware default.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a CLI agent used the message tool without specifying a thread ID, its reply appeared at the Slack channel root instead of in the thread where the turn began.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix makes CLI message-tool sends use the channel adapter\u2019s thread target and reply mode when the adapter requires replies to stay in the originating thread.",
+  "reasoning": "In the causing commit\u2019s parent, the CLI path already carried the originating Slack thread ID through the MCP grant, and the message tool defaulted to `all` when it had a thread ID and no supplied reply mode. The causing diff forwarded the raw `off` value end to end, bypassing that fallback and causing Slack\u2019s same-channel auto-thread resolver to omit the thread ID.",
+  "rank": 100446,
+  "sha": "d47a0d4067ec0bab57f8c2e56c1cfb8a3bf110cb",
+  "rubric": "v1.2"
+}

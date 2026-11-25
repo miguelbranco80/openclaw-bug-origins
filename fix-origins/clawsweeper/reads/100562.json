@@ -1,0 +1,8 @@
+{
+  "rank": 100562,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Without a decisive earlier PEM marker, each nonempty tail can scan all preceding history.",
+  "outcome": "open-at-merge",
+  "note": "The open \u201cResolve merge risk (P1)\u201d item identified the missing PEM marker condition that made repeated Logs page polls scan the growing file. No human comment in the bundle addressed that item."
+}

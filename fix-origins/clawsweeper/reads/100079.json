@@ -1,0 +1,8 @@
+{
+  "rank": 100079,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "DYNAMIC_ROUTE_PATH_PARAMS contains plugin, so this filter emits /plugin/. A navigation to a registered standalone endpoint such as /plugin/secure/report during an outage consequently receives the Control UI shell.",
+  "outcome": "open-at-merge",
+  "note": "The open Before merge item \u201cExclude the singular plugin HTTP namespace from fallback\u201d identified the faulty /plugin/ prefix and the resulting shell substitution during an outage. No human comment in the bundle answered it."
+}

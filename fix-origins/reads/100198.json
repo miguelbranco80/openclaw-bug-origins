@@ -1,0 +1,17 @@
+{
+  "rank": 100198,
+  "sha": "96275066b9447cdb290758b278657915ac95e7a7",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Codex session sidebar could refresh slowly even when the session history had not changed.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix serves warm Codex sidebar queries from a resident index for each Codex home and uses bounded native reads when a query reaches beyond the retained rows.",
+  "reasoning": "The original Codex catalog in #104045 called native listing to build each page, and #115403 added stale-while-revalidate caching with a background native refresh on expiry. The fix's parent still deliberately refreshed expired pages, and the PR benchmark shows the resident index eliminating that recurring work without identifying a change that made the same polling path slower than it had been."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100877,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section confirms that checkpoints preserve receipt order and asks for upstream event-contract verification, leaving the final snapshot\u2019s ordering of terminal reasoning and checkpointed tool work unexamined. The earlier P1 finding concerns recovery retry exhaustion during teardown."
+}

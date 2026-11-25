@@ -1,6 +1,17 @@
 {
-  "origin": "unclear",
+  "rank": 92,
+  "sha": "b58996d69286d55d1bbbd9b5c03b4ad837baac45",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
   "cause_sha": null,
+  "cause_pr": null,
   "confidence": null,
-  "reasoning": "The September 12 diff shows that the prior global regex already rescanned the remaining text at each unmatched `@[`, so escaped-label support did not introduce the quadratic behavior. The October refactor moved the same parser into the activity builder, and the original mention-support diff was unavailable, so I could not verify which commit first introduced the defect."
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "unclear",
+  "user_saw": "Nothing reported; only synthetic long malformed outbound text with many unfinished `@[` markers could stall Teams formatting.",
+  "impact": "slower-or-heavier",
+  "area": "channels",
+  "summary": "Replaced the unanchored Teams mention regex in buildMSTeamsMessageActivity with a single forward scan so malformed `@[` text is parsed in linear time.",
+  "reasoning": "The quadratic behavior is inherent to the unanchored mention regex from before the graft (`/@\\[([^\\]]+)\\]\\(([^)]+)\\)/g`, also quadratic on unclosed `@[`), and a96e6b7b1ad4 / 567bc76209e0 only changed escaping and moved the code, so no commit made it slower. The PR cites synthetic 32,000-repeat hostile inputs and no user report or issue, so this is performance hardening against pathological input rather than a reported defect."
 }

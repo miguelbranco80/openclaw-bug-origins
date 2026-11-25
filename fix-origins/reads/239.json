@@ -1,17 +1,17 @@
 {
   "rank": 239,
   "sha": "b85de3162b1d92beefd2bbae220ff7a3599f88b6",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e9fcdb4002d1fc434cbe25ca4c4a50a534b56dc8",
+  "cause_pr": 151176,
+  "confidence": "high",
+  "cause_quote": "The original harness set `timeoutMs: params.timeoutMs`, then startup awaited `const chunk = await nextEvent;` with no separate first-event deadline.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "An Agents API continuation whose saved native session never produced an event stayed silent until the outer turn watchdog expired, and could repeat on every turn.",
+  "user_saw": "A turn resuming a stalled Agents API session could stay silent until the turn watchdog expired, and the same delay could recur on the next turn.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Added a 120-second first-native-event deadline to Agents API attempts that fails the turn with reset guidance and session-ID logging, instead of waiting for the outer watchdog.",
-  "reasoning": "The fix adds a liveness bound that the attempt never had; blame candidates are only context lines, and no earlier commit removed a startup deadline, so this is not a regression. The failure needs the hosted native service to stall without emitting events, an external service behavior the code relied on the outer watchdog to bound. It could also be read as never-worked (the attempt shipped without a first-event bound in the September 2026 Agents API work), but no single introducing line plainly causes it."
+  "summary": "The fix adds a 120-second first-event deadline and reports inspection and reset guidance while preserving the saved session binding.",
+  "reasoning": "The introducing diff already reused saved native sessions and waited for stream events under the overall attempt deadline. Path history shows that the reasoning update came later and added another place for startup to stall, while the silent-stream failure was possible from the first implementation."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "310cc29944396a6573ccfc44e955d75d6f4595b1",
+  "cause_pr": 179699,
+  "confidence": "high",
+  "cause_quote": "PR #179699 positioned `.chat-image-actions--overlay` at `right: 8px; bottom: 2px;` inside the preview and set `opacity: 1; pointer-events: auto;` under `@media (hover: none), (pointer: coarse)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On mobile, download and copy icons stayed visible over chat images.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix hides inline image controls on non-hover or coarse-pointer devices and preserves tap-to-open access to the lightbox.",
+  "reasoning": "I checked the parent stylesheet and the prior fix\u2019s mobile test, which asserted that the image-actions menu sat outside the preview. PR #179699 restored the overlay, removed the side gutter, and made the icons persist on touch devices, reintroducing the obstruction.",
+  "rank": 100622,
+  "sha": "3bf99238504ddc8079f9224743067b7ce7f0f1b8",
+  "rubric": "v1.2"
+}

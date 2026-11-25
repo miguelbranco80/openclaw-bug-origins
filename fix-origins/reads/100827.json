@@ -1,0 +1,17 @@
+{
+  "rank": 100827,
+  "sha": "e5c74ed21cb5702928376e920f334df3ccaa8d1e",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Appending to a long session caused memory sync to rewrite all its indexed chunks and, with the embedding cache disabled, send unchanged text to the embedding provider again.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "Incremental session sync now keeps unchanged indexed chunks and embeds only new or changed chunks.",
+  "reasoning": "The July 1 snapshot already routed changed sessions through `indexFile`, whose write path called `this.clearIndexedFileData(entry.path, source)` before rewriting all chunks. The September source-index refactor carried that behavior into the database kernel, and the fix PR measured the resulting write and embedding overhead. The available history could not establish when session sync first adopted whole-source replacement or whether an earlier implementation retained unchanged chunks."
+}

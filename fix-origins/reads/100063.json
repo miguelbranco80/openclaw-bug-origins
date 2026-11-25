@@ -1,0 +1,17 @@
+{
+  "rank": 100063,
+  "sha": "d472fc590701f84b200d44c3166b416b34b20a69",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Claude CLI announced a sub-agent\u2019s result, then said on the next turn that the sub-agent had yet to report back.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix carries recent completion exchanges from the saved transcript into the next authorized Claude CLI resume and includes those exchanges in the gap notice when their content is withheld.",
+  "reasoning": "I checked the binding history and confirmed that preserve-state turns could keep the requester\u2019s native Claude session binding before #168726 added a gap notice that treated any Claude CLI reply as a resume boundary. That explains why the notice missed separately recorded announcements. The older history stopped at the shallow boundary, leaving the origin of the underlying continuity failure unverified."
+}

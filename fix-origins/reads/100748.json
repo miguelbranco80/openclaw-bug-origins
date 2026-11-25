@@ -1,0 +1,17 @@
+{
+  "rank": 100748,
+  "sha": "09777da3faff406f82e456001b8798b1d563b0a7",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "bc8d0da0924d8d56d1950cfcec8aa48ede7b3bd8",
+  "cause_pr": 110632,
+  "confidence": "high",
+  "cause_quote": "The streaming code added `run_id: ack.run_id` to `ChatSendResult` but omitted `ack.status`, then called `startReply(result, sentIdentity, result.runId)` for every accepted send, including a retry the Gateway had already completed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a send acknowledgement was lost, retrying the same draft could leave Quick Chat stuck waiting for a reply the Gateway had already generated.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "Linux Quick Chat now recovers a completed reply from matching Gateway history using the original retry key and blocks queued sends from reaching a replacement Gateway.",
+  "reasoning": "I checked the streaming feature's introducing diff and confirmed that the Gateway already returned a cached `ok` for a completed run without dispatching it again. The first streaming implementation treated that response as the start of a live reply and waited for a final event that had already passed. Path history showed that reply recovery first appeared in this fix."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100723,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focused on plugin verification and managed Gateway health after rollback. The Evidence section discussed recovery checks inside the worker transaction and raised no concern about duplicate recovery snapshots during readiness polling when no startup warning was issued."
+}

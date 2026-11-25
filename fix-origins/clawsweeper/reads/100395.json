@@ -1,0 +1,8 @@
+{
+  "rank": 100395,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "An awaited tool hook can outlive a user\u2019s role downgrade while retaining the old `operator.admin` scope in a synthetic client; Gateway method routing trusts that stale scope before a privileged side effect.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item \u201cRevalidate role scopes before in-process tool dispatch\u201d points to how the dispatcher carries administrator authority into synthetic clients. Its proposed fix addresses stale scopes after a role downgrade and would leave the dispatcher free to add admin back after a native request explicitly narrowed its scopes."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100885,
+  "sha": "fe160eb18fb0e2dd6f80daa24c46720a53baa619",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "WhatsApp users could hit a delivery error in DMs, while Mattermost users could see a turn stall without receiving the question.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix limits the built-in ask_user tool to inbound surfaces with native question support and lets agents ask in ordinary text elsewhere.",
+  "reasoning": "The original ask_user registration checked session eligibility and tool policy and explicitly relied on a plain-text fallback across channels. I checked the later commits that added WhatsApp reaction handling and Mattermost buttons, but the local evidence does not establish whether the reported delivery failures existed at launch or began with a later code change."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100314,
+  "sha": "4a30a9d9c49b68058f1eb3a5418ded197cc7bd3c",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix clears main CI failures by removing unreachable Knowledge code and unused exports, updating Knip configuration, and allowlisting two reviewed fs-safe imports.",
+  "reasoning": "I checked the Knowledge bundling diff and confirmed that PR #180139 added both direct imports without entries in the existing boundary test's allowlist. The reported failures were confined to CI, and the fix addresses them through test and tooling configuration and dead-code cleanup."
+}

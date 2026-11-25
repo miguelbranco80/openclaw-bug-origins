@@ -1,0 +1,8 @@
+{
+  "rank": 100676,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "\u201cPreserve rendering for the shipped compositor methods\u201d concerned legacy plugin callbacks, and \u201cSeparate terminal activity from successful tool results\u201d concerned false success in web tool cards. The review did not raise the loss of saved Claude CLI Bash arguments when Telegram renders the completed row."
+}

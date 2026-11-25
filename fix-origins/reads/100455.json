@@ -1,0 +1,17 @@
+{
+  "rank": 100455,
+  "sha": "96e1b9bce19ceff8da3618c6a1f1fa766c784bd0",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Imported ChatGPT transcripts lost line breaks, blank lines, code indentation, and repeated spaces in serialized text parts.",
+  "impact": "presentation",
+  "area": "plugins",
+  "summary": "The Memory Wiki importer now trims only leading and trailing whitespace from decoded serialized ChatGPT text.",
+  "reasoning": "PR #182049 replaced regex extraction with JSON parsing and applied `normalizeWhitespace` to the decoded text. The previous extractor already applied the same whitespace-collapsing helper to captured text, so there is no verified working baseline before #182049. The older extractor predates the shallow boundary, and the offline history could not identify its introducing commit."
+}

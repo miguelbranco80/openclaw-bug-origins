@@ -1,0 +1,17 @@
+{
+  "rank": 100820,
+  "sha": "0a22d970507f2bd19e174ef84396d29384ceb5bf",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4fdbf994161856f05641b3f4ba4543b7c24cdc69",
+  "cause_pr": 174610,
+  "confidence": "high",
+  "cause_quote": "The new in-process worker branch bound `const assertWorkerCurrent = () => assertRequestTransportCurrent(captured);` as the worker commit check, bypassing the composed caller and Gateway resolver checks.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An in-process Web Push subscription could be saved after the caller lost authorization or its Gateway resolver retired.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix restores the full caller and Gateway resolver checks at worker commit while keeping preparation transport-only.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the existing in-process Web Push commit path reached `assertCurrent`, which ran the composed authority check. The parent already contained tests for caller revocation, resolver retirement, and transport retirement. PR #174610 switched eligible requests to worker authority, causing the existing Web Push writer to use the transport-only commit callback."
+}

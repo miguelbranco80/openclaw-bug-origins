@@ -1,0 +1,17 @@
+{
+  "rank": 100648,
+  "sha": "da80fb5d38356e42cee7825a6d4c73be7c4294bf",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4cf9af2cdea98ac6693145dc6c5c3ff450cb7a9d",
+  "cause_pr": 171326,
+  "confidence": "high",
+  "cause_quote": "The commit replaced `reader.readEntries(...)` with `reader.readExactEntries({ selection: { kind: \"session-id-or-key\", sessionIdOrKey: params.sessionId }, ... })`, routing the lookup through a reader that throws when the SQLite schema is missing.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw agent --session-id <id>` just after the local Gateway became ready could fail before the turn was sent.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The CLI delegates session ID resolution and abort targeting to the Gateway and checks that it supports creating a session for an unseen ID.",
+  "reasoning": "The causing commit's parent already supported local Gateway dispatch by session ID, and its worker listing returned an empty entry list for a schema-less database, allowing the CLI to derive a session key and dispatch. The replacement exact reader throws `SessionMetadataUnavailableError` on `schema-missing` before dispatch, matching the local failure reported in the fix PR."
+}

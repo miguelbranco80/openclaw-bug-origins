@@ -1,0 +1,8 @@
+{
+  "rank": 1,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Performance evidence and draft hold section notes that the benchmark excluded the Gateway and worker IPC, but raises no concern about the cost of launching cp for every batch from a large Gateway process. The P1 dispatch finding concerns caller authority after revocation."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100860,
+  "sha": "3c87432ea897c79d90b7e3effdcca1a341f5a0cf",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b4e27f8b3da207619aa47e25c80665d79779872a",
+  "cause_pr": 111669,
+  "confidence": "high",
+  "cause_quote": "The relocated plugin path calls `resolveModelHeaderSentinels` at construction and stream handoff, and its `const headers = resolveAiTransportHeaderSentinels(model.headers);` line limits model credential resolution to visible headers.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Plugin-backed title or summary generation could fail because the provider received an unresolved credential placeholder.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds a host hook that resolves visible model headers and attached request credentials before plugin stream construction and handoff.",
+  "reasoning": "In the causing commit's parent, simple completions called `registerProviderStreamForModel`, which invoked the full-model resolver at both plugin boundaries. I checked that the parent resolver handled symbol-attached request headers, bearer tokens, and custom auth-header values, and that the relocation replaced those calls with a helper that reads only `model.headers`."
+}

@@ -1,1 +1,8 @@
-{"rank": 103, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "All findings concern engine selection for interactive setup, remote-agent calls, restart exclusions, redirects and updater routes. None mentions that a config-read failure is now thrown unprinted so the root printer shows only the generic message and Doctor hint."}
+{
+  "rank": 103,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "With malformed config or a PostgreSQL DSN unavailable to the shell, eager selection throws before runServiceRestart reaches its existing configIssue recovery path.",
+  "outcome": "answered",
+  "note": "The installed-service restart finding identified the same early config failure bypassing command-level handling, but it did not identify the missing-include diagnostic lost by status or the misleading Doctor hint. The author later reported that the prior findings and restart/recovery fixtures were fixed."
+}

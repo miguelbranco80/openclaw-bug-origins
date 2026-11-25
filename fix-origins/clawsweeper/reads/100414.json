@@ -1,0 +1,8 @@
+{
+  "rank": 100414,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review discusses warnings triggered by legacy-directory collisions, and the earlier Resolve merge risk item concerns upgrade validation for deferred migration warnings. Neither addresses the directory resolver discarding the error when it rejects an existing config file."
+}

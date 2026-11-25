@@ -1,0 +1,17 @@
+{
+  "rank": 100554,
+  "sha": "ae9bc63bfe0462b22442bff40428d1724d95f50d",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0e4f556d052724f18558d507f84147ee45204d3a",
+  "cause_pr": 154199,
+  "confidence": "high",
+  "cause_quote": "The new repair path ran `await inspectScratchPayload(directory);` before `release = acquireSqliteStagingToken(directory, \"reclaim\");`, so inspection could try to stat a rollback journal that a live snapshot had just removed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw doctor --fix` during a live backup could produce a spurious scratch preservation warning when the snapshot removed its rollback journal.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The fix defers payload inspection for token-backed backup scratch in repair mode until repair acquires the exclusive lifetime token.",
+  "reasoning": "I checked the introducing diff, which added backup scratch reclamation and its Doctor integration together with the premature inspection. If a snapshot removed its journal between `readdir` and `lstat`, inspection raised `ENOENT` while the scratch directory still existed, sending Doctor down the preservation-warning path before it could check whether the backup still held the token."
+}

@@ -1,17 +1,17 @@
 {
-  "rank": 15,
-  "sha": "7d6f503c9cdc9a3960f4c0d5a56b17f703c9629d",
-  "rubric": "v1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "origin": "regression",
+  "cause_sha": "98813c23905e68b41e5c58e72e3ee554986d7ab1",
+  "cause_pr": 168587,
+  "confidence": "high",
+  "cause_quote": "The shutdown change added `registerSignalExitGate(finished.promise, ...)` and replaced `.finally(() => process.exit(signal === \"SIGINT\" ? 130 : 143))` with `process.exitCode = code`, leaving the CLI waiting for the cleanup command to finish.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Pressing Ctrl+C or sending SIGTERM during a Gateway-run `openclaw sessions cleanup` left the CLI waiting until the launcher force-killed it (exit 137 instead of 130/143).",
+  "user_saw": "Pressing Ctrl-C or sending SIGTERM during a long Gateway-backed `openclaw sessions cleanup` left the CLI waiting until it was forcibly killed.",
   "impact": "sequence-or-timing",
   "area": "cli",
-  "summary": "Passed the command's async-work abort signal into the Gateway sessions.cleanup call and rethrew the abort before the local-fallback decision.",
-  "reasoning": "Like the sibling cron fixes (#187726, #197315, #199955), this extends the newer CLI interrupt-cancellation contract to an older command; the Gateway delegation path (#159223 and earlier) never took a signal, and the process still terminated via the forced-cleanup kill. The added throwIfAborted guard only protects the newly passed signal, so no earlier commit broke working behavior."
+  "summary": "The fix passes the CLI abort signal to the Gateway cleanup request and preserves the interruption before considering local fallback.",
+  "reasoning": "I checked the parent of #168587 and confirmed that Gateway-backed cleanup already existed and that the signal handler could exit the process with status 130 or 143 while the RPC was pending. #168587 made signal shutdown wait for the command to finish, but the cleanup RPC received no abort signal. #170618 later added `timeoutMs: null`, removing the post-connect deadline that had bounded the wait.",
+  "rank": 15,
+  "sha": "7d6f503c9cdc9a3960f4c0d5a56b17f703c9629d",
+  "rubric": "v1.2"
 }

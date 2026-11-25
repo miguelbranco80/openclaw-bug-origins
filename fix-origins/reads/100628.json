@@ -1,0 +1,17 @@
+{
+  "rank": 100628,
+  "sha": "6603f7682fd8cfdc03f8b4c4c0dee823da0c3d43",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "ce38326114369bfb6f032c462d27bf37e0dfdf01",
+  "cause_pr": 161104,
+  "confidence": "high",
+  "cause_quote": "The diff replaced `recordUpdateRunStep(run.runId, step, { env: run.env });` with `await recordUpdateRunStepAsync(run.runId, step, {` and added `progressPending = Promise.all([progressPending, recording]).then(() => {});` after starting each callback, so it joined writes without limiting how many could enter the broker.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could abort during candidate snapshot validation with \u201cSQLite worker queue capacity reached.\u201d",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix keeps one snapshot progress write in flight, retains only the latest pending observation, and warns when the broker refuses an optional history write before dispatch.",
+  "reasoning": "I checked the causing diff and its parent: snapshot progress already persisted through a synchronous SQLite transaction, so it could not hit the worker queue limit. The migration started an asynchronous broker write for every progress event and treated overload as fatal, even though the broker already rejected requests under sustained saturation. The fix's reported controlled saturation reproduced that failure and showed validation could continue after an optional write was refused."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100687,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Interrupted fallback seals currently violate the recovery contract: discovery can hide healthy captures, and automatic retirement can delete incomplete evidence.",
+  "outcome": "open-at-merge",
+  "note": "The two P2 findings in Before merge identify the interruption between creating the final manifest and removing the partial one, and spell out both the hidden healthy captures and deletion after 30 days. Both findings remained open at merge, with no human response in the bundle."
+}

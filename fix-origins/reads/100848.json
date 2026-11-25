@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "2833eeece158fc29ba322ab07724bab2d24120fe",
+  "cause_pr": 104744,
+  "confidence": "medium",
+  "cause_quote": "The diff gave the wrapper `height: 0; flex: 0 0 0;` and added `position: absolute; bottom: 12px;` to the button, letting it appear over the transcript and intercept the context-menu event.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Right-clicking a chat message could leave its menu closed when the Scroll to latest button appeared under the pointer.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The transcript now captures the right-button pointer on the pressed element so the message menu still opens when a floating control moves under the pointer.",
+  "reasoning": "The parent commit rendered Scroll to latest in normal layout flow and already had a transcript Reply context menu with a test that checked it opened on a message bubble. The overlay introduced a way for the button to intercept that existing menu, and Copy as markdown later inherited the same event path. The fix PR reproduced native event retargeting on its base, while attribution to the earlier overlay commit rests on its CSS diff and parent source.",
+  "rank": 100848,
+  "sha": "b39e2d09329cc81b09cf55980a2506623236ea59",
+  "rubric": "v1.2"
+}

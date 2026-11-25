@@ -1,0 +1,8 @@
+{
+  "rank": 100015,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "[P2] Assert rejected unsubscribe frames at the wire boundary",
+  "outcome": "answered",
+  "note": "The earlier wire-boundary finding examined how revoked authority blocks an unsubscribe, and the maintainer responded with an assignment-rotation test. The finding called for blocking stale cleanup and missed that ordinary interruption also blocked a needed unsubscribe, causing the shared client to be retired."
+}

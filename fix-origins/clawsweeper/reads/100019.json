@@ -1,0 +1,8 @@
+{
+  "rank": 100019,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Both versions\u2019 \u201cResolve merge risk\u201d item concerns updater and Windows supervisor compatibility when an agent remains degraded because its database needs migration. \u201cPublication and final-write fencing\u201d describes credential revision checks without raising the risk that deferred secrets refresh could publish catalog defaults as authored configuration and make Codex unavailable."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ad1b598587318803d816fbb254cef92f8a9aa1e4",
+  "cause_pr": 184547,
+  "confidence": "medium",
+  "cause_quote": "The new additive-only update branch called `await prepareUpdateAgentAdditiveSchemas(params)`, which went straight to `await withAgentDatabaseMaintenanceLease(...)` without first completing shared-state repair.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An upgrade could stop in Doctor while preparing agent databases if the shared SQLite database still lacked a required column.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "Doctor now detects unfinished shared-state columns and completes their repair after backups and before acquiring an agent maintenance lease.",
+  "reasoning": "I compared #184547 with its parent and confirmed that it introduced the early additive-only agent preparation path, with lease acquisition already ahead of shared-state repair. The fix also covers the older version-migration path and repairs gaps in column detection, so the cited commit explains the additive-only upgrade failure while those other cases have separate history.",
+  "rank": 100326,
+  "sha": "9b44c957970781d08bc732cf77b584f053e02f75",
+  "rubric": "v1.2"
+}

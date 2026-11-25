@@ -1,0 +1,8 @@
+{
+  "rank": 209,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review describes how main rejected session-only grants during Gateway method authorization. The merge-time review and the listed earlier items never raise the separate connection-time scope requests that triggered upgrade prompts in the CLI and TUI."
+}

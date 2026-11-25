@@ -1,7 +1,7 @@
 {
   "rank": 226,
   "sha": "e76922592a733ed039b84d997d86ce1ca0e1fd34",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Update acknowledgments and progress from /update in WebUI or desktop showed up as English, emoji-prefixed assistant messages inside the conversation instead of a localized app notification.",
+  "user_saw": "When users requested an update from a WebUI or desktop conversation, update notices appeared as English assistant messages prefixed with emoji.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Routes in-app update lifecycle notices for WebUI/desktop callers through the durable update record and shows them as one persistent top-right toast instead of chat replies, recording the presentation surface from the admitted transport client id.",
-  "reasoning": "The PR describes a deliberate presentation redesign: the old chat-message acknowledgments worked as designed (from the update run/report features in #138690/#138737), and the fix adds a new noticeSurface field, toast UI and i18n strings rather than repairing broken behavior. No reported failure; the 'late immutable-install refusal' follow-up is part of making the new toast path complete, so this is a product/UX change."
+  "summary": "The fix moves WebUI and desktop update notices into a persistent, localized toast that follows the update through Gateway reconnection and displays the final outcome.",
+  "reasoning": "The diff for #138737 explicitly added assistant transcript delivery for internal sessions and documented it for Control UI and webchat. The fix revises that documented presentation for WebUI and desktop conversations, and its PR describes a change in where update notices appear."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100483,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings concern credential redaction in provider errors. The earlier Resolve merge risk item concerns conflicts in generated plugin inventory files and gives no indication that Kie shipped without the artwork used by the Control UI."
+}

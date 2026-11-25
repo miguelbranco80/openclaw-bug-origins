@@ -1,0 +1,17 @@
+{
+  "rank": 100122,
+  "sha": "aacb5e162cf1d5414c5a716bfefc2502ed75ce56",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An agent was prompted to use the diffs tool even in sessions where it could not call it.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix attaches diffs guidance to its tool registration and renders it only when the tool is callable.",
+  "reasoning": "The fix removes a before_prompt_build hook that unconditionally returned DIFFS_AGENT_GUIDANCE, and local blame puts that hook before the shallow boundary. The offline full-history path log stopped at a missing object, so I could not verify whether the hook shipped with the mismatch or whether a later usage exposed it."
+}

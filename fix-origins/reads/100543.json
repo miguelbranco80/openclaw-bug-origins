@@ -1,0 +1,17 @@
+{
+  "rank": 100543,
+  "sha": "4b6907d8bdb74ecf3b0206ca75610673ad42690f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The agent Skills panel showed \u201cNo skills found\u201d when the query and an existing skill name used different Unicode forms of the same spelling.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix applies NFC normalization to the lowercased query and skill search text before substring matching.",
+  "reasoning": "The July 1, 2026 snapshot already lowercased both sides and compared them with `.includes()` without Unicode normalization. The later UI refactors and filter caching preserved that comparison. The offline history lookup failed at the shallow boundary, so I could not verify whether the original filter shipped with the defect or an earlier change introduced it."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 20,
   "sha": "359e9c2e1e26140e08fb37ef35096bd53f1e6484",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
-  "cause_sha": "81ca7bc40b09dbb6386fc5c1cecf237c5f11004a",
-  "cause_pr": 69679,
-  "confidence": "medium",
-  "cause_quote": "When it added the 16-session warm-process cap, #69679 refused the turn with `throw new FailoverError(\"Too many Claude CLI live sessions are active.\", { reason: \"rate_limit\", ... status: resolveFailoverStatus(\"rate_limit\") })`, presenting a host limit as a provider 429.",
+  "cause_sha": "de07e007d3b030b4b9a005edc963b53180b102b1",
+  "cause_pr": 192534,
+  "confidence": "high",
+  "cause_quote": "The new low-memory branch threw `createCapacityError(context, \"Host memory is too low for another CLI live session.\", CLI_LIVE_SESSION_HOST_MEMORY_ERROR_CODE)`, whose helper passed `\"rate_limit\"` to `createCliFailoverError`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When the host had no room for another warm Claude CLI process, the reply blamed the AI service ('needs a short break') and the saved Claude login was put into a rate-limit cooldown that could refuse later messages.",
-  "impact": "failed-every-time",
+  "user_saw": "When all 16 Claude CLI session slots were busy, chat blamed the AI service, and either host limit could put the saved Claude login on cooldown even after capacity freed up.",
+  "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Host live-session refusals (16-session cap and low host memory) now raise overloaded FailoverErrors with no HTTP status and distinct codes, and they get host-authored reply copy instead of rate-limit copy and saved-login cooldown.",
-  "reasoning": "The rate_limit/429 classification of the session cap dates to its introduction in #69679 (2026-04-22; traced past the graft through 12d0fd2ef8af, which moved it from claude-live-registry.ts, using gh api diffs and GraphQL blame). #192534 (de07e007d3b0) deliberately reused that category for the host-memory refusal, so no later commit broke a working classification. Medium confidence because the saved-login cooldown side effect depends on settlement policy that may postdate the cap, but the wrong rate-limit fact and text shipped with it."
+  "summary": "The fix classifies both Claude CLI host-capacity refusals as overloads, shows the specific host limit, and keeps the saved login out of cooldown.",
+  "reasoning": "I checked the introducing diff and its parent: #192534 added the low-memory refusal with a rate-limit classification, and CLI settlement already used that reason to mark the saved login as failed. The 16-session cap was already misclassified in the predecessor Claude registry, and its original introducing diff could not be verified in the offline history."
 }

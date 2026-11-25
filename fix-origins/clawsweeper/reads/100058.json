@@ -1,0 +1,8 @@
+{
+  "rank": 100058,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The 'Review config compatibility' item concerned Telegram\u2019s default debounce timing and its upgrade impact. The review raised no concern that the revised debounce help left translation catalogs stale and caused strict release preflight to fail."
+}

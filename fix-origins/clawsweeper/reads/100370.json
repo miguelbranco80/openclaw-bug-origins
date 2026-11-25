@@ -1,0 +1,8 @@
+{
+  "rank": 100370,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Restart persistence and post-maintenance latch refresh lack recorded Gateway results, leaving repeated-compaction behavior unverified across process loss.",
+  "outcome": "answered",
+  "note": "The earlier P1 item connected latch handling to repeated compaction, and a maintainer responded with evidence that the latch survived restart without a repeat. The merge-time P1 focused on crash recovery before native dispatch, leaving open whether completed Codex native compaction could erase the host latch."
+}

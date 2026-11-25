@@ -1,0 +1,17 @@
+{
+  "rank": 100075,
+  "sha": "01fb6d1b9bf2f43a9daed291ad6c21dd9e7bde12",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "858993c1a41c180da5743c110b5d8cc38bc74007",
+  "user_visible": "yes",
+  "user_saw": "GPT-6.1 Sol was missing from the managed Codex model picker even for users with access to it.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix upgrades managed Codex to 0.159.1 so its catalog includes GPT-6.1 Sol, refreshes the protocol schemas so Guardian denials settle promptly, and switches timeout diagnostics to the registration SDK.",
+  "reasoning": "I checked that #160487 upgraded managed Codex from 0.155.1 to 0.158.0 before #161400 added GPT-6.1 Sol to OpenClaw\u2019s provider metadata. The PR\u2019s isolated `model/list` comparison found the new model only in 0.159.1, so the provider rollout exposed a gap in the older upstream catalog. The fix\u2019s test also shows that the older schema rejected a completion carrying the new `tooManyDenials` error."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100890,
+  "sha": "c9fc997e9af51142191e9737460b851badb89848",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e59f1326b74d73fe37db37827b3c296f6faf5a6b",
+  "cause_pr": 171298,
+  "confidence": "high",
+  "cause_quote": "PR #171298 added `scheduleOpenClawCompileCacheFlush();` to Gateway startup and handler prewarm completion, scheduling a callback that synchronously calls `module.flushCompileCache();` on the main thread.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a cold start, the Gateway could take several extra seconds to respond.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix disables Node compile caching on the Gateway main thread and removes both main-thread flush calls while preserving worker caching.",
+  "reasoning": "I checked the causing diff, its parent\u2019s startup code, and the history of the affected paths. The Gateway already started without these callbacks, and PR #171298 added synchronous bytecode persistence during startup and early serving. The fix PR measured a 3.455-second cold main-thread flush on its baseline and zero main-thread flushes after the fix."
+}

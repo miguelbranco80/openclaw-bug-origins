@@ -1,0 +1,17 @@
+{
+  "rank": 100465,
+  "sha": "4a5288077fb418c84d70c68367751672d853ebda",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "high",
+  "cause_quote": "The new admission guard called `assertNoPendingUpdateRecovery(options);` after asynchronous directory checks, allowing the database read to resolve a different path from the one used for those checks.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could proceed without warning about pending recovery in the originally selected database if the state selector changed during inspection.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix pins the database path for each recovery admission check and checks the run's current target separately only when its path differs.",
+  "reasoning": "The introducing diff added both the unpinned admission guard and duplicate checks during package finalization. The original SQLite reader resolved the path again from the caller's environment, and the fix's test changes that environment during the directory check to demonstrate how pending recovery could be missed. PR #143921 later added a duplicate check during settlement."
+}

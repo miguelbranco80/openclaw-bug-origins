@@ -1,0 +1,17 @@
+{
+  "rank": 100069,
+  "sha": "8d4dee3e0b78a3d4d77974cbd94a11543d242782",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1b3f38e7e4ffeee844ee7a3bbcdaf293c65eb2e1",
+  "cause_pr": 153063,
+  "confidence": "high",
+  "cause_quote": "The new readiness path returned `return { status: \"unknown\" };` when the native command was missing or belonged to another installation, so the wait could consume the full 60-second budget.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS with isolated state and a relocated HOME, piped `openclaw status` could produce no output before the caller\u2019s 30-second deadline.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "The fix limits native Gateway readiness checks to the selected installation so an unrelated LaunchAgent cannot delay the status report.",
+  "reasoning": "The causing diff replaced the existing status command\u2019s direct probe, which defaulted to 2.5 seconds, with a readiness wait that defaulted to 60 seconds. I checked that a missing plist under the relocated home yielded an unknown runtime and that the early exit required a stopped runtime. The later absent-Gateway fix introduced strict command inspection, and its inspection failure still left the runtime unknown in this setup."
+}

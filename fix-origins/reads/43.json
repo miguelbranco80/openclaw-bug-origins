@@ -1,7 +1,7 @@
 {
   "rank": 43,
   "sha": "89a8860851df1dbca550e8711d178391c9cdacce",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The Profile GitHub help paragraph said agents always use the shared account and that cloud work must be brought back to this computer before publishing with My GitHub.",
+  "user_saw": "Profile\u2019s GitHub help said agents always used the shared account and users had to bring cloud work back to the current computer before publishing with My GitHub.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Shortens one English help paragraph in the Control UI GitHub accounts panel so it no longer says agents always use the shared account or that all cloud work must return to this computer before personal publishing.",
-  "reasoning": "The fix changes only a single English locale string, with no change to credentials, permissions or publication logic, and the PR calls itself copy-only. The inaccurate wording was carried over from the earlier paragraph that #192283 rewrote (which already said workers keep the shared account and remote work must be reclaimed), so this is a help-text correction, which the rubric counts as a copy change, not a code defect."
+  "summary": "The fix updates Profile\u2019s GitHub help to describe the agent\u2019s effective account and removes the blanket instruction to bring cloud work back before publishing.",
+  "reasoning": "The rubric classifies copy changes as not-a-defect, and the fix changes only one English help paragraph. I traced the shared-account claim to the original Profile help in PR #133799 and verified that agent overrides already took precedence, while PR #138900 later added personal publication from repository checkpoints."
 }

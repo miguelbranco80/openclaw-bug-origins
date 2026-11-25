@@ -1,17 +1,17 @@
 {
-  "rank": 259,
-  "sha": "90ecba16b9c04d9dad06544e6ac42e4ed51ed8b7",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When a model called a Code Mode catalog tool such as write directly, it got a bare 'Tool write not found' and usually wasted a turn before using exec.",
-  "impact": "other",
+  "user_saw": "In the reported session, the agent\u2019s direct call to `write` returned \u201cTool not found\u201d even though the tool was available through Code Mode.",
+  "impact": "failed-every-time",
   "area": "agents",
-  "summary": "In Code Mode, a native call to a hidden catalog tool now returns an error telling the model to call it via exec/JavaScript instead of a generic not-found error.",
-  "reasoning": "The rejected call behaved as designed (the tool is not top-level and nothing executed); issue #179823 asks for recovery guidance in the error text, which this adds without changing permissions or the tool surface. That is a model-guidance/UX improvement rather than broken behavior, so not-a-defect; I did not trace the Code Mode introduction because no working state was lost."
+  "summary": "The fix tells the model how to retry through JavaScript in `exec` when it calls a tool from the current Code Mode catalog directly.",
+  "reasoning": "The July 1 snapshot already hid tools behind Code Mode and installed the deferred resolver only for Tool Search directory mode. The path history traced the current resolver through a later refactor, but the offline history lookup could not reach the older commits needed to verify whether Code Mode shipped with this behavior or lost earlier recovery guidance.",
+  "rank": 259,
+  "sha": "90ecba16b9c04d9dad06544e6ac42e4ed51ed8b7",
+  "rubric": "v1.2"
 }

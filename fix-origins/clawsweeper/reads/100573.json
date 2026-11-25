@@ -1,0 +1,8 @@
+{
+  "rank": 100573,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The broader invariant may be appropriate, but it increases the chance of a missed caller silently treating a canonical route as raw input or vice versa.",
+  "outcome": "dropped",
+  "note": "The earlier P2 merge-risk item warned that a caller could reinterpret an already resolved route, but it did not identify the reply path that normalized the saved model ID. The review at merge focused on proof for the original fallback collision and legacy-session upgrades."
+}

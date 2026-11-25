@@ -1,0 +1,17 @@
+{
+  "rank": 100227,
+  "sha": "4405469bf26133a5dac68b726a095fa70f7bf95e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "84c7d45f15cd2ba093797ac1c4c9fd198a7cf6e3",
+  "cause_pr": 107295,
+  "confidence": "high",
+  "cause_quote": "The replacement collector called `collectSecretInputAssignment({` with `value: channel[field.field]` and `value: account[field.field]` but omitted `owner` in both calls, so missing credentials could no longer be isolated by account.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A missing credential referenced by one enabled QQ Bot account could prevent the entire Gateway from starting, including healthy accounts.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix assigns QQ Bot SecretRefs to their default or named account and lets an unchanged account retain its last known good credential independently of its siblings.",
+  "reasoning": "I checked the parent of #107295 and confirmed that the bundled QQ Bot contract used `collectConditionalChannelFieldAssignments`, which attached account owners to active root and named SecretRefs. The Tencent package migration removed that contract and shipped a host fallback whose assignments defaulted to `ownerKind: \"unknown\"`. The existing resolver rethrew missing-secret errors for unknown owners even when account isolation was enabled."
+}

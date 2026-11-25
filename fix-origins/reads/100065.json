@@ -1,0 +1,17 @@
+{
+  "rank": 100065,
+  "sha": "784d9ce1b556c139d0a521e26c79977a2b428ef3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "961f5c0b709962bd1338edb4d71559583fbd4f2f",
+  "cause_pr": 166553,
+  "confidence": "high",
+  "cause_quote": "The new recovery recorder passed `inputProvenance: request.systemInputProvenance` to a helper that rejected `params.inputProvenance.kind !== \"external_user\"`, excluding Goal Resume\u2019s hidden system input.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, a Goal they had resumed could no longer carry out work that required their operator permissions.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix saves the authenticated operator\u2019s authority for Goal Resume while keeping its hidden transcript input marked as a system message.",
+  "reasoning": "Goal Resume already marked its hidden input as `internal_system` before #166553 introduced recovery under the original operator\u2019s authority. I checked the parent\u2019s system-principal recovery path and the introducing diff, which excluded Goal Resume from saving operator authority from the start. The fix\u2019s test diff checks that the operator source is saved before the Resume acknowledgment and that authorized work continues after process restarts."
+}

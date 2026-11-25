@@ -1,0 +1,17 @@
+{
+  "rank": 39,
+  "sha": "2b0a8fe8afc442843353e82158ff291e0099c0e6",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "36e277d76147ab839a5068f4d8bc0c5254f1d05a",
+  "cause_pr": 175837,
+  "confidence": "medium",
+  "cause_quote": "The new session controller made steering admission wait on `entry.injectionOrder.settled` for every older unclaimed mailbox entry, while `claimSessionControllerTask` only set `input.phase = \"waiting\"` and never settled that receipt for a native task committed to a separate turn.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A human correction sent mid-run stayed pending across model/tool boundaries while the agent kept working, because an older queued native turn blocked it.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "When a native task commits to its own separate turn, the controller now releases that source's injection-order receipt so later compatible human steering can reach the incumbent's next model request.",
+  "reasoning": "Both the injection-order receipt (only `git log -S injectionOrder` hit is #175837) and the predecessor wait in mailbox-source.ts, plus the unchanged claimSessionControllerTask waiting path, ship together in the session-controller rewrite #175837; nothing later changed mailbox-task.ts before the fix. I could not establish how steering behaved under the pre-controller owners, so this is classed as shipping with the new controller rather than a regression, with medium confidence."
+}

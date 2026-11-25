@@ -1,0 +1,17 @@
+{
+  "rank": 100577,
+  "sha": "d98459427de98ad4bbcb4a9b578b3aa51d83473f",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a38c3abf0c3ad4e367ebb374878ec4513274a198",
+  "cause_pr": 153420,
+  "confidence": "high",
+  "cause_quote": "The new scoped capture called `await markBackendDomRefsOnPage({ page, frame, send, refs: backendRefs })` inside `withTimeout(operation, timeoutMs ?? 0, \"Page CDP operation\")`, allowing a timed-out capture to keep clearing or writing shared element markers.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a snapshot timed out, an action using a ref from a newer snapshot could fail or target the wrong control.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix guards browser snapshot writes against cancellation and stale document identity, keeps refs tied to their captured controls, and repairs related browser lifecycle and timeout handling.",
+  "reasoning": "I checked the parent implementation and confirmed that scoped snapshots already worked through Playwright's `locator.ariaSnapshot()` and published refs without writing shared DOM markers. #153420 replaced that path with native marker binding inside a timeout that could return while the marker work was still pending. The fix's Chromium test covers the resulting sequence by letting an older scoped capture time out, publishing newer refs, and then releasing the older capture before acting on the newer ref."
+}

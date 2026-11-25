@@ -1,0 +1,17 @@
+{
+  "rank": 100494,
+  "sha": "5dcf668765dea9dfc8101e163804c77ca52bdb53",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6cd11338588e3dc520b9b38d34312948c84f1608",
+  "cause_pr": 105865,
+  "confidence": "high",
+  "cause_quote": "The new transcript client ran `continue;` whenever `error instanceof WorkerConnectionInterruptedError && !isTerminalConnection(this.connection)`, so it resent the same commit after the Gateway closed the socket on a persistence exception.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a transcript commit kept failing, a cloud worker repeatedly reconnected and the turn never reached inference.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The Gateway now logs unexpected transcript commit exceptions and returns a non-retryable UNAVAILABLE response that the worker retains to prevent cleanup from resubmitting the batch.",
+  "reasoning": "The Gateway already converted a thrown transcript commit into a retryable `gateway-unavailable` close when #105865 introduced the worker runtime. The introducing diff shows that the runtime rejected pending requests as interrupted on close, started each admission cycle with a fresh retry counter, and replayed the same transcript request after reconnecting. The later diagnostics commit preserved that behavior by rethrowing the exception into the existing socket-close path."
+}

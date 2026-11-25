@@ -1,0 +1,8 @@
+{
+  "rank": 242,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cUse payload-free preconditions for projection mutations\u201d item flagged a redundant full-row read inside the SQLite writer transaction. The reported stall came from cloning and serializing the rollback pack on the Gateway thread before dispatch, a path the review did not flag."
+}

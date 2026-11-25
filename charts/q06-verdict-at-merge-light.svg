@@ -3,17 +3,17 @@
 <text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Blocked</text>
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">51</text>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">321</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Needs changes</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,66 H147.8 Q151.8,66 151.8,70 V72 Q151.8,76 147.8,76 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">18</text>
+<path d="M0,66 H125.9 Q129.9,66 129.9,70 V72 Q129.9,76 125.9,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">97</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Needs maintainer review</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,108 H63.5 Q67.5,108 67.5,112 V114 Q67.5,118 63.5,118 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">8</text>
+<path d="M0,108 H88.4 Q92.4,108 92.4,112 V114 Q92.4,118 88.4,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">69</text>
 <text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Ready</text>
 <rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,150 H299.5 Q303.5,150 303.5,154 V156 Q303.5,160 299.5,160 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">36</text>
+<path d="M0,150 H198.3 Q202.3,150 202.3,154 V156 Q202.3,160 198.3,160 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">151</text>
 </svg>

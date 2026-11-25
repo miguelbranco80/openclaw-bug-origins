@@ -1,0 +1,8 @@
+{
+  "rank": 100901,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cPreserve grants when configuration is retargeted\u201d concerns a sweep deleting an expired grant after updating the wrong policy. The reported bug starts with a failed manual revoke that leaves the stored expiry unchanged, and the earlier review only raised sandbox permissions."
+}

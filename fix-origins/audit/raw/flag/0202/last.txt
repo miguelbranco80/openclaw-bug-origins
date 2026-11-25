@@ -1,7 +1,0 @@
-{
-  "flagged": "related",
-  "where": "at-merge",
-  "quote": "Once enabled, database-only replicas are incomplete without referenced cold files; operators must use supported self-contained backups or retain those files.",
-  "outcome": "open-at-merge",
-  "note": "The P1 merge-risk item identifies the missing-file mechanism that also affected update rehearsal. Its advice applies to operator-managed replicas and leaves the updater’s rehearsal snapshot unchanged."
-}

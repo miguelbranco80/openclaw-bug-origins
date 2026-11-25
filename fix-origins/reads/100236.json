@@ -1,0 +1,17 @@
+{
+  "rank": 100236,
+  "sha": "5f497e71d52c043277574351714ab3bde246f843",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users could see a conversation-shortening timeout while the model was still streaming the summary.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "Built-in compaction now refreshes its timeout on non-empty streamed output and caps the overall operation at ten timeout windows.",
+  "reasoning": "The July 1 snapshot already wrapped streaming compaction in a fixed-duration timeout, and the parent of #130993 still used that deadline. #130993 added resets at request boundaries, so it left the failure mode in place for a single long request. The local history stops before the original timeout was introduced, and the evidence does not establish a later workload or provider change that first exposed it."
+}

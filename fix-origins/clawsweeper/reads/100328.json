@@ -1,0 +1,8 @@
+{
+  "rank": 100328,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier findings addressed terminal provider exceptions, admission revocation, and CLI fallback ordering. No review version raised the use of the peer-scoped policy key to look up private children in a channel conversation."
+}

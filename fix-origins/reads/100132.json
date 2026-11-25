@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A dev-channel update could hang replaying stale local main commits when a shallow checkout hid their common history with upstream.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix skips replay when local main has no visible common history with the update target, caps optional replay steps at ten minutes, and preserves excluded commits before moving main.",
+  "reasoning": "The updater already rebased local main without checking for a visible merge base at the July history boundary, and #138839 moved that replay into preflight. #153036 removed the default deadline and could prolong the hang, but the earlier code could still replay disconnected history and I found no evidence that this setup previously updated correctly. The offline history could not reach the commit that introduced the original rebase.",
+  "rank": 100132,
+  "sha": "f833e07232949620053b687032f907e3b0dbbea8",
+  "rubric": "v1.2"
+}

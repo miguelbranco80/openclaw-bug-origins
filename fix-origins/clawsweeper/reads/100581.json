@@ -1,0 +1,8 @@
+{
+  "rank": 100581,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge section asks for an authenticated Astra trace to verify provider behavior. It raises no concern that a scheduled run without sessions_yield could deliver its summary while async tools were still running."
+}

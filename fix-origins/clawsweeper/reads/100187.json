@@ -1,0 +1,8 @@
+{
+  "rank": 100187,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The placement-dialog finding concerns a rejected import that blocks later placement attempts. The earlier WebKit item concerns an interrupted modal close, while the toast shifts because the open dialog sets its positioning boundary."
+}

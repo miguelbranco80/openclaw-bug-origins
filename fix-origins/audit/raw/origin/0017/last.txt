@@ -1,0 +1,17 @@
+{
+  "rank": 17,
+  "sha": "3f678742aaf7118bc96edcde6dff749093327b8b",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "79dd65e208894f2bc8bef8fc627aa43e2bd04488",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "It computed the overlap on `current.toLowerCase()`/`next.toLowerCase()` and then sliced the original text with `return `${current}${next.slice(overlap)}`.trim();`, so a lowercase form that expands (\u0130 to i plus a combining dot) shifts the slice by one character.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A realtime voice consultation could receive a garbled caller question, such as `Meet in \u0130stanbultomorrow` with the space after the overlap missing.",
+  "impact": "other",
+  "area": "channels",
+  "summary": "The transcript fragment merger now maps the case-folded overlap length back to an original code-point boundary before slicing the incoming fragment.",
+  "reasoning": "The removed line came from e5c50c9aa4a8 only by a file move; the same code was in realtime-handler.ts at the graft, and GraphQL blame there attributes the whole appendTranscriptText block to 79dd65e20889 ('feat(voice-call): improve realtime Meet voice agent', 2026-05-05), whose diff adds both the lowercased overlap and the original-string slice. The length mismatch between folded and original strings existed from introduction, so it never worked for case-expanding Unicode letters."
+}

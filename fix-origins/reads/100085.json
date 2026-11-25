@@ -1,0 +1,17 @@
+{
+  "rank": 100085,
+  "sha": "8e354275a38f61233a65e02bc961538ca1c43bae",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d09ffd222826fcd4545431f24056de42373f6e69",
+  "cause_pr": 152875,
+  "confidence": "high",
+  "cause_quote": "The new managed inventory set `managedGateway: marker === \"openclaw\"` for systemd services, promoting maintenance commands because the existing marker check accepted any OpenClaw command whose first command token was `gateway`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see a service running `openclaw gateway install` listed as an extra Gateway and have artifact preparation blocked.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix checks the OpenClaw entrypoint and child command to exclude recognized maintenance commands from Gateway discovery, using structured arguments for loaded systemd units.",
+  "reasoning": "I checked the introducing diff and its parent: the same commit added managed Gateway inventory and the build guard that consumed it, and the inventory accepted maintenance commands from the start. The later loaded-systemd scan introduced a second route for the same false positive, while the Windows launcher change moved the existing command matcher."
+}

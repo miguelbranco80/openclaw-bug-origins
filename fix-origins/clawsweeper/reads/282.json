@@ -1,1 +1,8 @@
-{"rank": 282, "flagged": "related", "where": "at-merge", "quote": "A macOS Primary dashboard using an accepted device grant without shared credentials can lose its page on a route, TLS, or URL refresh and show the reconnecting failure page.", "outcome": "open-at-merge", "note": "The P1 finding warns that DashboardManager replaces a valid native-auth dashboard on reconnect, but its condition is the route guards rejecting a tokenless binding. The bug instead comes from the Equatable auth comparison failing when socket-owned legacy credentials retire first. Related rather than exact, chosen as the lower level because the code path differs."}
+{
+  "rank": 282,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item \u201cAdmit tokenless native bindings on Primary route updates\u201d concerns guards that reject a valid device grant during route refresh. The queued input was lost because socket retirement cleared credentials used in the document comparison, causing the WebView to be replaced on a same-Gateway reconnect."
+}

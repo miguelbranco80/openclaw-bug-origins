@@ -1,1 +1,8 @@
-{"rank": 232, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Only generic config and data-model compatibility items remain; nothing mentions icon, color or appearance actions missing the own-session scope."}
+{
+  "rank": 232,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section verified scoped pin, rename, and archive controls, and the earlier Before merge items focused on reconnect, ownership denial, and broad staff controls. None raised a concern about session-only writers changing or resetting their own icons and colors."
+}

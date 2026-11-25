@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "07bf384a8b3fab7179ab3072288beed45cd4225e",
+  "cause_pr": 99935,
+  "confidence": "high",
+  "cause_quote": "The original reader used `path.split(\".\")` followed by `rawSegment.split(/[[\\]]/).filter(Boolean)`, so dots and brackets inside quoted keys were treated as path separators.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The setup agent reported \u201cnot set\u201d when asked to read an existing configuration key containing dots or brackets.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix makes setup-agent configuration reads use the shared path parser while preserving redaction and array lookup behavior.",
+  "reasoning": "The introducing diff added the `config_get` tool action, passed its path directly to the new read operation, and implemented that operation with a reader that split quoted keys into fragments. The original text command had a narrower path syntax, but the tool already accepted these paths, so reads through the tool failed from the feature\u2019s first release.",
+  "rank": 100403,
+  "sha": "f5c406ffbaded5d02aa645ecf121fdf0e1f6245e",
+  "rubric": "v1.2"
+}

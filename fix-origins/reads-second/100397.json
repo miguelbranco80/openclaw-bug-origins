@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "a11a431e380ff7272b8deee44f494e16a9de6692",
+  "cause_pr": 149287,
+  "confidence": "medium",
+  "cause_quote": "The commit added `filePreview.bundle` strings such as `binary: \"This binary file is included in the bundle but cannot be displayed as text.\"` to the eager English catalog, adding plugin-preview copy to the Control UI startup payload.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix moves Usage-only English strings out of the Control UI startup bundle and adds CI coverage for the PR wrapper's runtime dependencies.",
+  "reasoning": "The existing startup check had a recorded passing baseline of 362,012 gzip bytes under the 362,588-byte limit. I verified that #149287 added preview copy to the eager catalog and #150491 subsequently deferred it, but the offline evidence does not establish the exact startup size immediately before and after #149287. The separate cold-worktree fixture repair had already landed before this commit.",
+  "rank": 100397,
+  "sha": "8dd36a07c761d08229937f32c99a5456facfab4e",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100175,
+  "sha": "ae53cd4052c7ee422d3cecd4e624e05a7161188d",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Selecting a multiword model in the Usage menu left the option unchecked and showed no matching sessions and zero usage.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix quotes multiword values inserted by Usage filter menus and autocomplete so each value parses as a single term.",
+  "reasoning": "The oldest available checkout already interpolated raw menu values as `${key}:${value}` and split the resulting query on whitespace. The September filter fix and suggestion refactor both preserved that behavior. History before the shallow boundary was unavailable offline, so I could not verify whether the original menu shipped with the defect or an earlier change introduced it."
+}

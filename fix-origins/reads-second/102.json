@@ -1,17 +1,17 @@
 {
   "rank": 102,
   "sha": "535cf43388e7d4b63e1c14754e1fa84a40889136",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
+  "trigger_sha": "6c9809acf1bd5a606907783f05ed0b6ecf5b748d",
   "user_visible": "yes",
-  "user_saw": "Changing Visitor Access maxVisitors or defaultTtlDays while agent turns were running queued a full plugin replacement, so the config update timed out, readiness failed and new runs were delayed.",
+  "user_saw": "Changing the visitor cap or default expiry while agent turns were active caused Gateway readiness checks to fail and delayed new runs.",
   "impact": "sequence-or-timing",
-  "area": "plugins",
-  "summary": "Declared visitor limit settings as hot-reload prefixes read live from committed runtime config, and let the loader lend the retained Gateway plugin instance only when the run's plugin config matches committed config.",
-  "reasoning": "Visitor Access (older than the graft) always captured its config at registration, so any config edit required plugin replacement; that was fine until the reload machinery evolved to gate new agent work behind exclusive replacement that drains held turns (e.g. 88fff4ed5ae, 2d5c68187a3, 62e0b2b7fcf), turning a limit edit into a 60 s blocked window. No single commit broke a previously working path that I can quote, and the drain gating is deliberate design, so this is a long-standing plugin contract exposed by changes outside it rather than a regression; I could not pin one trigger commit."
+  "area": "gateway",
+  "summary": "The fix applies Visitor Access limit changes in place and lets prepared turns borrow the running service when their settings match the committed Gateway config.",
+  "reasoning": "The original Visitor Access diff passed registration-time settings to the service and documented a Gateway restart after config edits, so those settings were designed to stay fixed for the life of the service. The #161267 diff added borrowing of live Gateway plugin instances by prepared agent runtimes, and its commit message explicitly records that a held turn can make replacement wait for the existing drain. I checked that the fix's parent still routed exclusive replacement through that drain, which is the path numeric limit edits now bypass."
 }

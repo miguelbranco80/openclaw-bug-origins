@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "OpenClaw rejected Decisions V2 batches of 201 to 400 questions before sending them to the provider.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix raises the Decisions V2 host ceiling and the OpenAI and ClawRouter batch limits to 400 questions while retaining the 256-question legacy host ceiling.",
+  "reasoning": "PR #172748 introduced the 200-question local guard and described it as an API limit, and its parent forwarded all questions that passed host validation. The fix PR reports that the current API accepts 400, but the available evidence cannot establish whether the earlier 200-question limit matched the API or whether larger batches succeeded before the guard.",
+  "rank": 100891,
+  "sha": "bf28212f2c4fc3ced082728f9712932854c406f6",
+  "rubric": "v1.2"
+}

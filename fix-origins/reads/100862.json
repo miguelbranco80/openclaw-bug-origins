@@ -1,0 +1,17 @@
+{
+  "rank": 100862,
+  "sha": "d2374e88dca3559b00527fefb40cdc4f58411464",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "fada067277882744102587cd8bad063679e0c63d",
+  "cause_pr": 121586,
+  "confidence": "high",
+  "cause_quote": "The original code used `const manifestPath = await validateOwnedFile(params.manifestPath, false);` and later `const parsed: unknown = JSON.parse(await fs.readFile(manifestPath, \"utf8\"));`, so the read could consume a different file from the one whose ownership and mode were checked.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Chrome extension pairing could succeed with a replacement native-host manifest that had never passed the ownership and permission checks.",
+  "impact": "permissions",
+  "area": "plugins",
+  "summary": "The browser plugin now uses a shared reader that checks and reads native-host artifacts through the same open file descriptor during pairing and registration inspection.",
+  "reasoning": "The path history and introducing diff show that zero-click Chrome extension pairing shipped with separate manifest validation and read operations. The fix addresses that original gap by tying the ownership and mode checks to the file descriptor used to read the bytes."
+}

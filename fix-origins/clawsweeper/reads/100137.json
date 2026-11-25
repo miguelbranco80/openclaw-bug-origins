@@ -1,0 +1,8 @@
+{
+  "rank": 100137,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cHow this fits together\u201d section depicts the transcript-triggered refresh path without raising a concern about its cost during ordinary chat turns. The earlier \u201cHandle transcript replay failures at the report boundary\u201d item addresses stream errors during report reads."
+}

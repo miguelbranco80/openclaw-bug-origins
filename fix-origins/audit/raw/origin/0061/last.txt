@@ -1,6 +1,17 @@
 {
-  "origin": "never-worked",
-  "cause_sha": "f15f221a5333c9747f28179a7787814593a9c99f",
-  "confidence": "high",
-  "reasoning": "The original Files disclosure diff passed `() => ({ open: props.open, active: props.active, instant: props.instant })` to the measurement helper and checked `next === applied`, so equal reactive invalidations produced a fresh object, bypassed the guard, and briefly cleared then restored `hidden`. I checked that the original Review disclosure shipped with the same pattern and that the later consolidation carried it forward. The fix also removes redundant shell `inert` writes from separate changes."
+  "rank": 61,
+  "sha": "4af0013a2c5863c0aeaecaf0a1c51932dde6a228",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; layout and disclosure behavior were identical, only browser style-recalc counts during resize dropped.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Compares file-disclosure open/active/instant fields instead of object identity and memoizes two shell inert bindings so equal reactive invalidations during resize skip redundant DOM writes.",
+  "reasoning": "The PR itself calls this a work-count improvement with no frame-latency change, byte-identical before/after captures, and no reported failure; the redundant writes came with the original Solid shell and disclosure code rather than a later slowdown. That makes it a performance improvement of code that was never slower before, so not-a-defect."
 }

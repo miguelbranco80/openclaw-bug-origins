@@ -1,0 +1,8 @@
+{
+  "rank": 15,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings section was empty, and Before merge only asked for CI failure attribution. The earlier Unix signal finding concerned how respawn wrappers report termination, with no warning about shutdown waiting on an uncancelled Gateway cleanup request."
+}

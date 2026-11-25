@@ -1,0 +1,17 @@
+{
+  "rank": 100109,
+  "sha": "3748a9d0c31194c19e5190d2acbfd73e555d71a0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "64f2ce2ac296024e5f3c9d16829164dbaaec6682",
+  "cause_pr": 185597,
+  "confidence": "high",
+  "cause_quote": "The new preflight call `withOwnerNativeConsentModes(entry, params.senderIsOwner, runtime.sandboxed)` let an unset-mode child use remembered consent based on the owner flag captured at admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator removed a channel owner, but that owner's already-running subagent continued to use the native runtime.",
+  "impact": "permissions",
+  "area": "agents",
+  "summary": "The fix adds the spawner's live owner check to the child run's source assertion so the next native dispatch stops after revocation.",
+  "reasoning": "I checked the preflight diff in #185597: the previous gate required explicit full permissions and sandbox-off modes, so the affected unset-mode child could not use remembered consent. At that commit, the gateway already passed the child's admitted `senderIsOwner` flag into the run, while `assertSourceCurrent` carried only `params.executionSource`, leaving the newly permitted dispatch path without a spawner ownership recheck from the start."
+}

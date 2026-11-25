@@ -1,0 +1,17 @@
+{
+  "rank": 100352,
+  "sha": "4b0868363fab28d689ae7459d15c0aeaf893bd91",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "f2dff0dcf9cca6e11aba8cbdf35a3005027894d3",
+  "cause_pr": 152786,
+  "confidence": "high",
+  "cause_quote": "The commit deleted `(!params.allowEmptyStopContinuation && hasExplicitSilentAssistantReply(attempt)) ||` from the early return, allowing optional `NO_REPLY` turns to enter settled-tool finalization.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An optional Workshop review that returned `NO_REPLY` after a rejected tool call made five provider requests instead of three.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "The fix restores the early exit for optional authored silence while preserving required-reply recovery and tool-failure evidence.",
+  "reasoning": "I verified that #152786 removed the early exit that honored explicit silence before settled-tool finalization. The fix message reports that the same optional-reply probe passed on the commit's first parent, 9e9ea746f4b3, and failed on #152786, confirming that the behavior worked before the removal."
+}

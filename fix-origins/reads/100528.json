@@ -1,0 +1,17 @@
+{
+  "rank": 100528,
+  "sha": "0f56d2e3d9b806f6dd6ca6a7ddf1fe9482a1ffd0",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With the xAI plugin enabled, the model picker and `openclaw models list --all` showed the same models under both `xai` and `x-ai`.",
+  "impact": "presentation",
+  "area": "models/providers",
+  "summary": "The fix declares `x-ai` as a catalog alias of `xai` and canonicalizes static fallback rows before deduplication.",
+  "reasoning": "I checked PR #139649 and found that it began appending static fallback rows to the published catalog after failed discovery while preserving their original provider IDs. The reported live-discovery case follows a separate path, and the `x-ai` runtime alias predates the shallow boundary. The available offline history does not establish when live discovery first published both IDs or whether it previously listed each model once."
+}

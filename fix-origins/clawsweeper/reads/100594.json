@@ -1,0 +1,8 @@
+{
+  "rank": 100594,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests section asks for end-to-end coverage of reindexing and streamed publication. The Provenance checked section mentions batched chunk writes without raising the risk that repeated content could put duplicate chunk IDs in one PostgreSQL upsert."
+}

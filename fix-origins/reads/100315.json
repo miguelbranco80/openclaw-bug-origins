@@ -1,0 +1,17 @@
+{
+  "rank": 100315,
+  "sha": "7289f203fa1425ca384047c1ac58b09a5a482300",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Browser output could go through a symlinked parent or fail because directory creation removed trailing whitespace from the requested name.",
+  "impact": "failed-every-time",
+  "area": "other",
+  "summary": "The fix validates browser output paths from the filesystem root, preserves trailing whitespace in directory names, and moves Chrome MCP screenshots to the shared temporary workspace helper.",
+  "reasoning": "The old helper checked only the final component for existing directories and scoped creation to the nearest existing ancestor, leaving higher symlinks unchecked and passing names to a path helper that trims its input. The browser helper already had that implementation at the July 1 shallow boundary, and the older path history stopped at a missing object, so I could not verify when the defect first shipped or whether the behavior had worked before."
+}

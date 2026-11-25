@@ -1,0 +1,17 @@
+{
+  "rank": 100561,
+  "sha": "8a8734e5efde37e79ffcfba82c28b79ef5d57f97",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8b5fa242a2fa2f3c689f3125304a8000807d1ef0",
+  "cause_pr": 145305,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `warningNotes.push(\"Model retirement deferred until configured plugin installation converges.\");` and recorded completion separately through `recordUpdateModelRetirement(\"completed\", ctx.env ?? process.env);`, leaving finalization to carry forward the earlier warning.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After model retirement completed, operators could still see a warning in the update report or Doctor history saying it was deferred until plugin installation converged.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix clears the deferred model retirement warning from update results, indexed warnings, and Doctor reports when the selected run has a durable completion record.",
+  "reasoning": "Path history identifies #145305 as the first commit to emit this warning and record completion for deferred model retirement. Finalization at that commit merged warnings from both Doctor passes and reported the accumulated list without consulting the completion record, so the stale warning could survive a successful repair from the start."
+}

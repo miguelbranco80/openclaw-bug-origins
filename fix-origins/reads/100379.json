@@ -1,0 +1,17 @@
+{
+  "rank": 100379,
+  "sha": "d38c6e97938cb31670c81deed2cdb68f5dd096b9",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "282fc78eaf64208d6b6db70c56557ca24fc29097",
+  "user_visible": "yes",
+  "user_saw": "Guests with only session scopes could select a registered project in New Session, but the New worktree option never appeared.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "New Session now offers managed worktrees for registered projects whose host paths are withheld and lets the Gateway validate the checkout using the project ID.",
+  "reasoning": "The registered-project picker had long treated a selection without a repoRoot as idle, while project listings disclosed host paths to callers with broad write access. I checked that #155184 added projects.list to the session-read scope while retaining path redaction, exposing the existing picker assumption to guests whose session-write scope already admitted sessions.create. The fix PR confirmed that a guest could create the managed worktree by project ID through the Gateway even while the UI hid the option."
+}

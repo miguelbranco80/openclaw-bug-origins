@@ -1,0 +1,8 @@
+{
+  "rank": 100189,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section discusses replay normalization across HTTP and WebSocket, and the earlier full-history retry finding concerns cache write-back after a rejected response ID. Neither addresses the mismatch between terminal reasoning and the saved transcript that caused prompt-cache misses after reopening a session."
+}

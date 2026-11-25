@@ -1,0 +1,17 @@
+{
+  "rank": 100225,
+  "sha": "ad69564444c780ded9b43ee1a87592bce101e6ce",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "939f740219d9fbbd9060acfa483765442bc0a513",
+  "cause_pr": 168871,
+  "confidence": "high",
+  "cause_quote": "The Solid port passed `active={active()}` alongside `nearVisible={state().nearVisible}`, so reopening could trigger iframe teardown while the visibility snapshot still marked the app offscreen.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Reopening a minimized Dashboard panel reloaded the MCP app and erased unsaved input.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix makes the Dashboard MCP app renderer read activity and visibility from the same lifecycle snapshot.",
+  "reasoning": "Before the port, the Lit cell synchronously refreshed visibility in `willUpdate` before rendering the reactivated app, and the existing end-to-end test asserted that the draft survived minimize and reopen. The Solid port let the renderer see activity before the visibility snapshot caught up, so the transient active-and-offscreen state triggered teardown. The fix reports that the existing retention test reproduced the lost draft before the change and passed afterward."
+}

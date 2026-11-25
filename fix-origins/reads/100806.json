@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "f651a47ed73dd83ee25c227a7ff4adbdecdc8743",
+  "cause_pr": 159767,
+  "confidence": "high",
+  "cause_quote": "The new drag handler returned early on `if (event.pointerType !== \"touch\" || this.host.mode !== \"interact\")`, so pen input never entered the scroll gesture.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Dragging a stylus across the Control UI Browser panel clicked the remote page instead of scrolling it.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix routes pen input through the existing touch gesture handler so drags scroll and taps still click.",
+  "reasoning": "I checked the introducing diff and the earlier Browser panel history. The panel previously forwarded wheel events for scrolling, and the new pointer-drag feature shipped with a touch-only guard that prevented pen drags from scrolling or suppressing the subsequent click.",
+  "rank": 100806,
+  "sha": "7f9594b2338497adf41a3c92cc9c6aa49b85eb02",
+  "rubric": "v1.2"
+}

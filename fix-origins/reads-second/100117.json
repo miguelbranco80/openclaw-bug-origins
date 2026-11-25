@@ -1,0 +1,17 @@
+{
+  "rank": 100117,
+  "sha": "dfb27239f2b6265dad3d2059926f9cc86c34f2f3",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "5dcf668765dea9dfc8101e163804c77ca52bdb53",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The Gateway replaced `throw error` with an `UNAVAILABLE` response carrying `retryable: false` for every `worker.transcript.commit` exception, and the client cached that rejection with `this.terminalFailure = failure`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A worker turn failed with \u201cWorker transcript commit failed; check Gateway logs\u201d after a temporary storage interruption.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix restores reconnect and exact-batch replay for transient transcript commit errors and uses the transcript ledger to reconcile uncertain commit outcomes.",
+  "reasoning": "I checked the causing commit and its parent: previously, a thrown commit error closed the socket with a retryable reason, and the worker resubmitted the same request after reconnecting. The causing commit turned those interruptions into cached terminal rejections, and the fix adds a regression test covering transient errors and a lost SQLite commit receipt."
+}

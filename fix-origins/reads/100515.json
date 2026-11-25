@@ -1,0 +1,17 @@
+{
+  "rank": 100515,
+  "sha": "3183356530eba63691696970acf4b315c4e502ef",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "75bcd267f5e72086fa5361e263b0f6cb1248adc6",
+  "cause_pr": 134068,
+  "confidence": "high",
+  "cause_quote": "The original list formatter inserted `owner=${entry.ownerLabel}` directly into a display row and sent the formatted result to `defaultRuntime.writeStdout(format(result))` without escaping it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Terminal control sequences in skill library metadata could alter the display, and embedded line breaks could make fake rows appear.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The fix sanitizes human-readable skill library metadata and file headers while preserving raw JSON and requested file contents.",
+  "reasoning": "The feature commit added the `skills library` command with direct interpolation in the list, read, receipt, and activation formatters. The later CLI refactor changed file input handling, and the fix PR records a live Gateway demonstration in which an owner label reached the terminal as raw control bytes."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100479,
+  "sha": "d5b11b54afc049b6348b3788ff5e1e3278bc6995",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1fa6ad6971cf179be78bbb8d0e4eec1a9ab3fcda",
+  "cause_pr": 156926,
+  "confidence": "high",
+  "cause_quote": "`const label = duration ? t(\"chat.workRun.workedFor\", { duration }) : t(\"chat.workRun.worked\");` replaced the operation-count heading while the disclosure continued to render failure counts.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The collapsed work summary could show \u201c20 failed\u201d without showing that the run made 200 tool calls.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix adds a total tool-call count to the work summary alongside any failure or skipped counts.",
+  "reasoning": "I checked that the parent commit displayed per-category operation counts alongside the failure count and that those counts included failed calls. The causing diff replaced the operation counts with a duration heading while retaining failure badges, removing the context that the fix restores as a single total."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ecb556e44ca234bd898d00693115200985d6346c",
+  "cause_pr": 143174,
+  "confidence": "high",
+  "cause_quote": "The commit introduced the restart reminder but passed `restart: params.coreAlreadyCurrent ? params.opts.restart : undefined`, so the resolver received `undefined` after a core upgrade and its `params.restart === false` check failed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After `openclaw update --no-restart` changed both core and plugins, the update report showed cleanup advice instead of telling the operator to restart the Gateway to activate the changes.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix forwards the restart option for every update so the CLI, JSON output, and stored reports can show the Gateway restart reminder after plugin changes.",
+  "reasoning": "PR #143174 introduced the reminder and the condition that excluded core-changing runs. I checked the parent of #140339 and confirmed that core-changing runs already passed the plugin-convergence result to the same next-action resolver, so #140339 moved the existing condition into a shared helper after the defect had already shipped.",
+  "rank": 100516,
+  "sha": "6aab0059e0c1242ce61ed4244f0ecf054cce2c1d",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100265,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cMeaningful regression coverage\u201d item lists tests for partially failed writes and suspended RETURNING iterators without raising a concern about iterator cleanup after a constraint error. The earlier open items asked for landing validation and migration compatibility proof."
+}

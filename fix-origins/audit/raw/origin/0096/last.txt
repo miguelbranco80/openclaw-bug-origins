@@ -1,0 +1,17 @@
+{
+  "rank": 96,
+  "sha": "4f20ee5c397738d2376e87b72dc1782e2260e598",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "d0b48d63efb88ac4f9f5eb447a39ea95cb2b0542",
+  "cause_pr": 163381,
+  "confidence": "medium",
+  "cause_quote": "In formatCliFailureLines, non-debug generic errors now `return [`[openclaw] ${options.title}`, ... `For help, run openclaw doctor`]` before the old `[openclaw] Reason: ${formatCliOperatorError(...)}` line, so plain Errors lost their reason on stderr.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With --json, `openclaw capability inspect --name <typo>` printed only \"The CLI command failed.\" and a doctor hint on stderr, hiding \"Unknown capability: <name>\".",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Throws the unknown-capability error through throwExpectedCliError so the root renderer prints its message on stderr in --json mode.",
+  "reasoning": "The throw site has been a plain Error since the infer/capability CLI was added (pre-graft), and earlier root rendering (e.g. #124887's formatCliFailureLines) always printed a `Reason:` line for generic errors. #163381 (d0b48d63efb) replaced that with title plus doctor hint only in non-debug mode, which is the exact stderr the fix's BASE shows; the many later 'show the reason' fixes restore producers one by one. Medium because I did not confirm the --json stderr path invoked the root renderer identically before #163381, and the reason removal was a deliberate copy policy whose fallout this is."
+}

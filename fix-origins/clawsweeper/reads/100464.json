@@ -1,0 +1,8 @@
+{
+  "rank": 100464,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge review\u2019s \u201cStaged repair isolation and independent revalidation\u201d section describes config changes blocking promotion as expected behavior and raises no concern about Doctor\u2019s bookkeeping triggering that gate. The earlier \u201cKeep staged repair commands off live configuration and state\u201d finding concerns writes to the serving installation."
+}

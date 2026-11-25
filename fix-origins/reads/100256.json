@@ -1,0 +1,17 @@
+{
+  "rank": 100256,
+  "sha": "64f984f000e23caddde3a82aa99e61daf2cfb8ff",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "0229fe7a2a90341b73aa21c895b98e650b4bd4de",
+  "user_visible": "yes",
+  "user_saw": "Under Bun, a CLI diagnostic could print a bare \u201cError\u201d and a stack trace while omitting the message that explained what failed.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The fix preserves the error message in version-resolution and uncaught-error diagnostics when the stack omits it.",
+  "reasoning": "The July CLI rewrite preserved the existing stack-first fallback, which worked with Node\u2019s message-bearing stacks. The trigger commit documented Bun 1.4 as a CLI runtime and added a direct Bun invocation of `--version`, exposing the existing formatter to stacks that can omit the message depending on garbage-collection timing. The original formatter predates the available local history."
+}

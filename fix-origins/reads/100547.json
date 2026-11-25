@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "990e8d24b0d68ce4fe01cf42bb831eed945cbf9b",
+  "cause_pr": 108927,
+  "confidence": "high",
+  "cause_quote": "The hosted-widget change added `import { sendDiscordComponentMessage } from \"../send.components.js\";` at the top of `activities/tool.ts`, so loading Activities registration also loaded the component sender before any widget was requested.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Discord plugin inspection took longer even when Activities was disabled or no widget was requested.",
+  "impact": "slower-or-heavier",
+  "area": "channels",
+  "summary": "The fix defers loading the Discord Activity component sender until the presenter is ready to post a widget launch button.",
+  "reasoning": "I checked the introducing diff and its parent. The previous widget tool already loaded the plain-message sender eagerly, and the hosted-widget change introduced the component sender with the same eager loading pattern. The August presenter refactor carried that import forward, and the fix PR's isolated benchmark measured lower Discord registration time after deferring it.",
+  "rank": 100547,
+  "sha": "5157927e8b6d629ceb9c8b4286d669212106e7b8",
+  "rubric": "v1.2"
+}

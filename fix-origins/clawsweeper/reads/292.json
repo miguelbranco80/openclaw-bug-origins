@@ -1,1 +1,8 @@
-{"rank": 292, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review notes the removal of the TTL sweep only as part of a complete cutover and never warns that existing cache files would be orphaned. The earlier finding was about older-archive decode fallback, a different concern."}
+{
+  "rank": 292,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Complete reader cutover item mentions removal of the TTL sweep without raising a concern about caches left behind after an upgrade. The earlier finding concerns fallback after archive decode corruption."
+}

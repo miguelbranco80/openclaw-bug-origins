@@ -1,0 +1,8 @@
+{
+  "rank": 100668,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings section concerns Gateway permission enforcement, and the earlier task-popover finding concerns clipped rows on short mobile viewports. Neither addresses the desktop Incognito switch\u2019s height or its alignment with the sidebar controls."
+}

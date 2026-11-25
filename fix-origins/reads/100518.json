@@ -1,0 +1,17 @@
+{
+  "rank": 100518,
+  "sha": "ced7dcf24a5070e53f9bda10704df3fa483c2dab",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b10035faa9d3e0683bef2eb085a0c260e8e40cb5",
+  "cause_pr": 146700,
+  "confidence": "high",
+  "cause_quote": "The diff added `const exact = owners.filter((database) => path.resolve(database.sourcePath) === candidate)` and throws on `if (aliases.length > 1)`, so two registry rows for the same agent whose paths normalize to the same file are counted as conflicting owners.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw backup create --verify` with two registry paths for the same agent database could report an owner conflict and produce no backup.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Backup creation now deduplicates registrations for the same database owner and uses the journal-owning path to preserve committed rows across aliases.",
+  "reasoning": "I checked the causing commit\u2019s parent, where backup discovered the canonical agent database once from the filesystem and verification selected archive files by path, so a second registry spelling for that database had no effect. PR #146700 switched backup discovery to the captured registry and counted each matching row as an owner, causing the refusal reproduced by the fix\u2019s duplicate-path fixture. The reporter\u2019s exact registry rows were unavailable."
+}

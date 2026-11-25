@@ -1,0 +1,17 @@
+{
+  "rank": 100706,
+  "sha": "b7969ee4f9e0870cdb16b56a54394053681c8bcb",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "f31d9d8fa929ee23b4f01547434fab886dda00ac",
+  "cause_pr": 121069,
+  "confidence": "high",
+  "cause_quote": "The original offline preflight ran `assertSqliteIntegrity(database, resolvedPath)` before `foundVersion = readSqliteUserVersion(database)`, so an unreadable catalog could prevent it from identifying a newer schema.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator checking a copied database from a newer release could get an indeterminate integrity error with no advice to install a compatible build or restore a matching backup.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix makes Doctor, Gateway startup, offline preflight, and update status give consistent recovery guidance for newer databases and prevents update status from creating SQLite sidecar files.",
+  "reasoning": "I based the origin on offline preflight, whose introducing commit added both the CLI command and the integrity-first implementation. The fix's explicit-file test exercises that ordering failure with a newer schema and an unreadable catalog, while the status sidecar failure follows a separate Gateway device-identity lookup path."
+}

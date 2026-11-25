@@ -1,0 +1,17 @@
+{
+  "rank": 100760,
+  "sha": "eb978fd65e310c4a78f4c449dea13a5156217ebe",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d0b48d63efb88ac4f9f5eb447a39ea95cb2b0542",
+  "cause_pr": 163381,
+  "confidence": "high",
+  "cause_quote": "The new `if (!showDebugDetails && !showUpdateDiagnostics)` branch returned the headline and recovery hint before the existing `Reason: ${formatCliOperatorError(...)}` line could render the invalid-config diagnostic.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When browser extension installation encountered malformed configuration, the CLI showed a generic failure and a Doctor hint while omitting the config path and parse error.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix restores redacted invalid-config details in concise CLI output when the error producer has yet to print them.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that the tagged error already carried the config path and validation details in its message, and that the normal CLI formatter printed that message. The rewrite introduced an early return that skipped those details, and the fix\u2019s browser test now requires both the selected config path and the exact parse error."
+}

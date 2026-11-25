@@ -2,17 +2,17 @@
 <title>Median days from the causing change to the fix, for three kinds of bug</title>
 <text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Broken later, and the fix says what caused it</text>
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<rect x="0" y="24" width="4.7" height="10" fill="#3987e5"/>
+<path d="M0,24 H3.3 Q7.3,24 7.3,28 V30 Q7.3,34 3.3,34 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0.5 days</text>
-<text x="513.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">18 bugs</text>
+<text x="513.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">88 bugs</text>
 <text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Broken later, and the fix does not say</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,66 H224.2 Q228.2,66 228.2,70 V72 Q228.2,76 224.2,76 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">24.2 days</text>
-<text x="521.8" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">33 bugs</text>
+<path d="M0,66 H257.8 Q261.8,66 261.8,70 V72 Q261.8,76 257.8,76 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17.9 days</text>
+<text x="521.8" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">301 bugs</text>
 <text x="0.0" y="100" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">New code that never worked</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,108 H426.0 Q430.0,108 430.0,112 V114 Q430.0,118 426.0,118 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">45.6 days</text>
-<text x="521.8" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">105 bugs</text>
+<text x="440.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">29.4 days</text>
+<text x="521.8" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">443 bugs</text>
 </svg>

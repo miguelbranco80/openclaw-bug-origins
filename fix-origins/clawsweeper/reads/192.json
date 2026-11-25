@@ -1,1 +1,8 @@
-{"rank": 192, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Every version is about the native-plugin operator-authority model, fs-safe provenance, config and data-model compatibility, and review scope. Nothing mentions truncating the activation error with a raw UTF-16 slice or breaking surrogate pairs."}
+{
+  "rank": 192,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding concerns a missing success toast when session storage is unavailable. The earlier findings concern a missing progress callback and stale failure state on retry, leaving the 180-unit cutoff that could split an emoji unaddressed."
+}

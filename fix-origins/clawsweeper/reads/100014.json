@@ -1,0 +1,8 @@
+{
+  "rank": 100014,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cClassify the new always-JSON update commands\u201d item mentions `update finish` only for its output classification. The at-merge findings cover config admission and rollback, leaving the missing success-history entry that blocked cleanup unaddressed."
+}

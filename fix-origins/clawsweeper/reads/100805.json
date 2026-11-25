@@ -1,0 +1,8 @@
+{
+  "rank": 100805,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item asked for verification of captured updater diagnostics. The Evidence section mentioned the existing Reason line as context for the PR, and neither section raised the loss of the startup error reason when a foreground Gateway fails with debug mode off."
+}

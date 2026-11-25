@@ -1,17 +1,17 @@
 {
   "rank": 108,
   "sha": "8a456acf7136e5d3e90c2ac9d58066a5ee80c934",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "8a352c8f9dfd03b5afadb6c86421949141921110",
-  "cause_pr": 10072,
-  "confidence": "high",
-  "cause_quote": "The original usage dashboard built suggestion candidates as `const agents = unique(sessions.map((s) => s.agentId)).slice(0, 6);` (and the same for channels, providers, models, tools) before matching the typed value, so only the first six catalog entries could ever be suggested.",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Usage filter autocomplete offered no suggestion for a model, provider, agent, channel or tool that was not among the first six catalog entries.",
+  "user_saw": "Typing a Usage filter returned no autocomplete suggestion when the only matching value was beyond the first six catalog entries.",
   "impact": "failed-every-time",
   "area": "ui",
-  "summary": "Matched the typed value against the full categorical catalog and applied the six-result cap after filtering.",
-  "reasoning": "GraphQL blame of the fix parent puts the `options[key].slice(0, 6)` line on deslop refactor 8bfe139a13b, whose diff shows it replaced an equivalent `for (const val of values.slice(0, 6))` slice-then-filter loop; that came from split refactor 68dbbc7c5ff, which moved code from ui/src/ui/views/usage.ts where the cap-before-match lines blame to 8a352c8f9df, the commit that introduced the usage dashboard. The cap-before-match ordering was present from the start, so the bug shipped with the feature."
+  "summary": "Usage autocomplete now searches the full catalog for each categorical filter and displays up to six matches.",
+  "reasoning": "The July 1 snapshot already truncated candidate lists before matching, and the September inventory refactor preserved that order. The offline history lookup stopped at a missing parent, so I could not verify whether the cap shipped with autocomplete or was added later."
 }

@@ -1,1 +1,8 @@
-{"rank": 19, "flagged": "related", "where": "earlier-only", "quote": "The outer timeout aborts only its signal, while the unresolved `CDPSession.send` remains the page transition tail; later screenshots, resizes, and device changes then wait indefinitely after the caller received a timeout.", "outcome": "answered", "note": "The earlier P1 'Release the page queue after an owner-session screenshot timeout' concerns a hung capture holding the page queue, the same mechanism, but not the missing tab activation for background headless tabs that caused the hang; steipete's comment responds to 'the earlier screenshot-timeout finding'."}
+{
+  "rank": 19,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "A hung owner-session CDP screenshot can outlive the route timeout and indefinitely block the page's serialized screenshot, resize, and device-transition operations.",
+  "outcome": "dropped",
+  "note": "The earlier P1 owner-session screenshot finding identified the same queue stall after a caller timeout, but it attributed the stall to a CDP send. Fixing that send alone would still leave ordinary Playwright screenshots waiting for a frame on an inactive headless tab."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100651,
+  "sha": "39592b2567772ffed75e6d34d22b2236b639fbfd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6ae2babeb4c3a4c3d52dfaf394f84984f32da5d7",
+  "cause_pr": 154489,
+  "confidence": "high",
+  "cause_quote": "The diff removed `typeof process.versions.bun === \"string\" &&`, so managed JavaScript launches under Node also used `command: process.execPath`, which still pointed to the removed Homebrew executable.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "New managed Codex sessions failed to start with ENOENT after Homebrew removed the Node executable while the Gateway was still running.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix reuses the Homebrew-aware Node resolver for managed Codex launches and applies host Git settings through the spawn environment builder.",
+  "reasoning": "I checked the parent of #154489 and confirmed that managed launches already selected the official JavaScript entrypoint, which macOS launched directly under a Node Gateway so its shebang could find the current Node on PATH. Removing the Bun guard pinned those launches to the Gateway's versioned executable, making the same launch fail once Homebrew removed that file."
+}

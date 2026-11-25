@@ -1,0 +1,17 @@
+{
+  "rank": 100128,
+  "sha": "418940c3e23333160e3d5770b5cd3fc6aa33f68d",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "26d200c6a3032fbcf019c9579e592419231b288f",
+  "cause_pr": 103463,
+  "confidence": "high",
+  "cause_quote": "The introducing diff ran `const prepared = await preparedPromise;` before calling the helper that started `const timeout = setTimeout(() => controller.abort(), NARRATION_TIMEOUT_MS);`, giving generation a fresh ten seconds after preparation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A narrated progress update could appear in chat more than ten seconds after the narration request began.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix gives model preparation and text generation a shared ten-second deadline and discards narration that finishes after it.",
+  "reasoning": "I checked the feature\u2019s introducing diff and confirmed that its first version already awaited asynchronous model preparation before starting the generation timer. The path history and the fix\u2019s parent-side diff show that the same ordering persisted after the narration code was split and utility completion routing changed."
+}

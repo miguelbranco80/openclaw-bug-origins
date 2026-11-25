@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "d25a316fc7c3ea2c9685b2c287e2ab23637c52fe",
+  "cause_pr": 172590,
+  "confidence": "high",
+  "cause_quote": "Account capture used `const model = resolveSimpleCompletionSelectionForAgent({ cfg, agentId, modelRef: params.model });`, then execution preferred `profileId: input.job.inferenceBinding.profileId` over resolving auth for the scheduled model.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A scheduled job could use the account from the creator's interactive session even when the scheduled model configuration selected a different account.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "The fix uses cron model precedence to capture scheduled accounts and makes restart retries honor recurring backoff and preserve the authored interval.",
+  "reasoning": "I checked the parent of #172590 and confirmed that Gmail cron execution already passed the hook model's configured profile to auth selection. The #172590 diff introduced a saved binding that bypassed that selection and could pin the creator's account. The same fix also addresses a separate defect in restart recovery, which #177127 shipped with a fixed minimum retry gap regardless of recurring backoff.",
+  "rank": 100118,
+  "sha": "393a1ea66b4d29202aa92ceae9b489921460748c",
+  "rubric": "v1.2"
+}

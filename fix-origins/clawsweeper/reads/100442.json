@@ -1,0 +1,8 @@
+{
+  "rank": 100442,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The PR removes a persisted selection behavior and changes session/task ownership, so upgrade behavior needs exact-head source and migration proof before merge.",
+  "outcome": "open-at-merge",
+  "note": "The Before merge compatibility item and its supporting evidence identify the persisted default used when an agent ID is omitted. The review leaves unspecified whether agents bind and agents unbind can read the migrated default in a multi-agent setup."
+}

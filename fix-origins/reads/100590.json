@@ -1,0 +1,17 @@
+{
+  "rank": 100590,
+  "sha": "a16a27ea8682a1a25eeaddf047baf7f8611c1f19",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e4e230510c15e8d0ea4b2e08e1166589ee1d41fe",
+  "cause_pr": 134970,
+  "confidence": "high",
+  "cause_quote": "The connected-account change began storing `entry.authProfileOverrideSource = \"user-link\";`, which the existing fresh cron session sanitizer excluded with `if (source === \"user\")`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When migrating a cron job, Doctor could silently bind it to a different shared account instead of honoring the linked account or reporting that it was unavailable.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix preserves linked authentication profile overrides when preparing fresh cron sessions.",
+  "reasoning": "The connected-account commit introduced `user-link` as a distinct value returned by the provenance resolver, and I verified that the cron sanitizer at that commit preserved only `user`. Doctor later began reading explicit account selections from the prepared session, where a fresh session had already dropped the linked account."
+}

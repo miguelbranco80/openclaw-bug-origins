@@ -1,0 +1,17 @@
+{
+  "rank": 100711,
+  "sha": "368ec5c22d8cb1a3a5d106d305fee47eb3b08891",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a95486cefc677fcc3905252f17813232c09b1d28",
+  "cause_pr": 113698,
+  "confidence": "high",
+  "cause_quote": "The original Side chat input shipped with `?disabled=${!this.connected || this.companion.pendingQuestion !== null}`, which disabled typing whenever an answer was pending.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users could not type a follow-up question in Side chat while an answer was pending.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps the Side chat question box editable with its normal placeholder while an answer is pending and keeps sending blocked until the answer settles.",
+  "reasoning": "The introducing diff added the pending-answer guard directly to the Side chat question input. The path history shows that the guard survived the switch to a textarea and the later change from `pendingQuestion` to pending turn status."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100023,
+  "sha": "de2349923e273ff2639c86ae991eaea95605bb42",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "62ff6dabed532e4baec923ffce792b6215e7a8ed",
+  "cause_pr": 175157,
+  "confidence": "high",
+  "cause_quote": "The new exit handler called `this.fail(new Error(`Memory file worker exited unexpectedly (${code})`))`, which set `this.failure = error` and left the shared transport unable to accept subscriptions or commands.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the shared Memory watcher crashed, automatic observation of file edits stopped until the Gateway restarted, and watcher health no longer showed the failure.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix reports unavailable watcher health and uses bounded worker restarts to restore live subscriptions and pick up edits missed during downtime.",
+  "reasoning": "The introducing diff replaced the in-process watcher with a shared worker and shipped a permanent failure path that also cleared watcher health. Path history showed that the transport had no intervening changes before the fix, and the introducing commit explicitly recorded that an unexpected worker failure remained sticky until Gateway restart."
+}

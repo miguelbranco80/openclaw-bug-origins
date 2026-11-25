@@ -1,0 +1,8 @@
+{
+  "rank": 100287,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Installations retaining cron JSON or JSONL now require a bridge upgrade. Published-2026.9.7 proof has not yet established supported SQLite/quarantine upgrade success or retired-input refusal preserving source/config bytes, durable rows, the installed package, and the running Gateway.",
+  "outcome": "open-at-merge",
+  "note": "The P1 \u201cResolve merge risk\u201d item flagged the new bridge requirement for legacy cron files and asked for upgrade evidence. Its checks covered successful upgrades from supported state and safe refusal of retired inputs, leaving open whether operators with legacy cron files could complete repair on 2026.9.7."
+}

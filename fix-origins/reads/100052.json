@@ -1,0 +1,17 @@
+{
+  "rank": 100052,
+  "sha": "a023ff811043cbf8110009e218fa29dc7133eee1",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An embedded session could record a requested `max` as `high`, and Chat Completions could send `xhigh` even when the custom backend declared native `max`.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix makes the shared session clamp and request serialization honor declared reasoning tiers while preserving API-specific defaults.",
+  "reasoning": "The July 1 snapshot already accepted `supportedReasoningEfforts` in model configuration, required a separate mapping to retain `max` in embedded sessions, and rewrote any surviving `max` to `xhigh` in Chat Completions. The September 4 commit added a Responses-only bypass and left both affected paths untouched. The available history ends at the shallow boundary, so I could neither identify the introducing commit nor verify that the affected behavior ever worked."
+}

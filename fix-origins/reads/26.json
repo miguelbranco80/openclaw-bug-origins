@@ -1,7 +1,7 @@
 {
   "rank": 26,
   "sha": "c29085dbfeafa2414d943cf5e5ce51500fd33128",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A plugin's before_tool_call rewrite of a Codex-native tool call (Bash, apply_patch, MCP) made OpenClaw deny the call instead of running the rewritten input.",
-  "impact": "other",
+  "user_saw": "A Codex-native tool call was denied when a plugin tried to rewrite its input.",
+  "impact": "failed-every-time",
   "area": "plugins",
-  "summary": "Returns validated before_tool_call rewrites to Codex as updatedInput for the Bash/apply_patch command and MCP argument objects (with a guard against JSON.parse-altered numbers) instead of always denying rewritten native tool calls.",
-  "reasoning": "The removed code was a deliberate fail-closed policy ('Native execution must not retain custody of rewritten inputs it will not use' followed by a block response), present since the b14a2cae4bf bulk import; the linked issue #189886 is titled 'Support plugin input rewrites for Codex-native tools' and proposes a new capability with open design questions. Adding rewrite support is a feature/behavior change, not a repair of something that worked or was promised."
+  "summary": "The fix lets the Codex hook relay return validated Bash and apply_patch command rewrites and MCP argument rewrites as updatedInput.",
+  "reasoning": "The pre-fix Codex runtime support contract explicitly listed native tool argument mutation as unsupported, and the relay deliberately denied rewritten calls. I checked the July relay split, which preserved that denial, and the November patch, which expanded the documented support contract to cover selected rewrites."
 }

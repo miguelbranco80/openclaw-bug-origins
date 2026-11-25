@@ -1,0 +1,17 @@
+{
+  "rank": 100183,
+  "sha": "2b264148b226c2d417f762fa0d746a54747f12c4",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d2afbd05ad0f2873d12039c3c8c44f8e909b1a5d",
+  "cause_pr": 123036,
+  "confidence": "high",
+  "cause_quote": "The new CLI ran `await installRevisionDependencies(worktree, abortController.signal);` inside `for (const root of roots)`, even when both refs resolved to the same commit.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Release CI could fail with \u201cPlugin SDK revision install failed\u201d while comparing two refs that pointed to the same commit.",
+  "impact": "failed-every-time",
+  "area": "other",
+  "summary": "The fix returns a normal empty SDK API diff for identical commits and renders revisions only when a comparison spans distinct commits.",
+  "reasoning": "The introducing diff created worktrees and installed dependencies for both resolved refs without checking equality, so an install failure could block an unchanged comparison from the first version. The only intervening change deduplicated work by commit but still installed and rendered the shared commit. The fix PR reports that forcing the install to fail reproduced the error on the pre-fix code."
+}

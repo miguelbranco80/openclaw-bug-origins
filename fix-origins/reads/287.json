@@ -1,7 +1,7 @@
 {
   "rank": 287,
   "sha": "216b814ed38a57836d3adca028cb5bbff6b4f68b",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; developers running Codex live qualification tests lacked event evidence when a reply assertion failed.",
+  "user_saw": "Nothing visible.",
   "impact": "other",
-  "area": "plugins",
-  "summary": "Adds live-test-only, content-free Codex app-server notification and no-answer diagnostics and makes the live harness report a bounded evidence tail on failed reply assertions.",
-  "reasoning": "The PR explicitly says it does not establish or fix the cause of the missing-answer incident and leaves runtime behavior unchanged; it only adds diagnostics gated on OPENCLAW_LIVE_TEST=1 and test-harness reporting. That is observability/test tooling titled as a fix, so not-a-defect."
+  "area": "gateway",
+  "summary": "The fix adds a bounded, redacted log of native event ordering and terminal outcomes to failed Codex live qualification runs.",
+  "reasoning": "I checked the parent projector diagnostics, which warned about unknown statuses and event kinds, and the test diff, which adds failure logging around the existing reply assertions. This is a test observability improvement prompted by a missing reply whose cause remains undetermined."
 }

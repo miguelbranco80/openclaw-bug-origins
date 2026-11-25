@@ -1,17 +1,17 @@
 {
   "rank": 35,
   "sha": "0c662aa1ce08ddf86cb008b5b6671bbbf0f33492",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "4d14f298b0cc08aca7ae9c6f55cf0e32df38a508",
+  "cause_pr": 117932,
+  "confidence": "high",
+  "cause_quote": "The diff added `configGuard: \"skip\"` to the first three browse routes but still routed them through `getRuntimeConfig` with `{ skipPluginValidation: true }`, which continued to reject invalid root keys.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With an unrelated invalid key in openclaw.json, `openclaw skills`, `skills list`, `skills check` and `skills info` exited 1 with the invalid-config error instead of listing local skills.",
+  "user_saw": "An unrelated invalid configuration key made the skills browse commands exit with a configuration error before displaying any local skills.",
   "impact": "failed-every-time",
   "area": "cli",
-  "summary": "The four skills browse commands now read config with the best-effort reader (observe: false, skipPluginValidation) so they work with an invalid config, while installs and mutations keep the strict reader.",
-  "reasoning": "Browse commands never tolerated an invalid config: before 4d14f298b0cc (#117932, Aug 2 2026) they ran behind the default validating config guard, and that perf commit only set configGuard: \"skip\"/loadPlugins: \"never\" to keep them on cold paths while keeping strict getRuntimeConfig, so the user-visible refusal was the same before and after; 7e48efba1047 (#169714) only made the strict read async. Tracing the catalog past the graft (GraphQL blame and gh api diffs of 4d14f298b0c and 92c7400a54a) shows no commit ever promised invalid-config browsing, so this is a new tolerance policy (following the #111803 docs-search precedent) rather than a broken behavior; it could alternatively be read as never-worked against 4d14f298b0c."
+  "summary": "The fix switched skill browsing to the best-effort configuration reader while retaining strict reads for skill mutations.",
+  "reasoning": "I checked the parent startup path and the introducing diff: #117932 first exempted `skills`, `skills list`, and `skills check` from the startup guard, but the reader called by those commands still threw on invalid core configuration. #117957 gave `skills info` the same exemption through the shared browse path. The October async refactor carried forward the strict read, so the browse exemption had failed to tolerate invalid core configuration since it shipped."
 }

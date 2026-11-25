@@ -1,0 +1,17 @@
+{
+  "rank": 70,
+  "sha": "dbc1aa04e88f531910d70512009c74e355311c92",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After `openclaw update` on a pnpm global install, every `openclaw` command failed with Cannot find module .../.openclaw-update-native-XXXXXX/.../openclaw.mjs and the Gateway restart was refused, leaving it down.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Launcher relocation and verification now parse shell words so pnpm's quoted `\"$basedir_abs\"/'../...'` shim form is relocated, the swap refuses or fails on a launcher still naming the stage, Doctor and Gateway startup repair already-broken launchers, and service revalidation also matches the unchanged unit against its own install root.",
+  "reasoning": "The relocation regex from 51211ac26ca0 (#170131) matched `$basedir_abs/`, which is exactly the shim text pnpm 12.12.1 wrote in issue #169244 (`exec node \"$basedir_abs/../.openclaw-update-native-...`); the fix's own repair code says the unhandled form is pnpm 12.15+'s separately quoted `\"$basedir_abs\"/'...'`, so the breakage came from pnpm changing its shim quoting, not from an in-repo commit. The service-ownership refusal likewise depends on pnpm's versioned-store layout keeping the old store directory; with no in-repo change identified as the trigger, this is latent."
+}

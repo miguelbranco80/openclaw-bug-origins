@@ -1,7 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "outcome": null,
-  "note": "The at-merge Tests section recommended removing a redundant membership-role helper test. The Before merge items covered retained authority and protocol revocation, and no review item raised the use of a linked profile’s broader permissions during session creation or reset."
-}

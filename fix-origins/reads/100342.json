@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "d8d2f83cc1969968d95d105e7430a98b56dd4bbd",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The commit introduced `params.onOpenMenu(...)` below the adopted-row branch, whose `return params.renderLiveRow(adoptedRow, {` sent adopted sessions through the generic menu.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After continuing a native Codex or Claude session in OpenClaw, users saw generic OpenClaw session actions where they expected native viewer and terminal actions.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix routes button, right-click, and keyboard interactions on adopted native sidebar rows to the provider menu, with archive shown only when supported.",
+  "reasoning": "I checked the adoption change and the native menu's introducing diff. Adopted rows already used the regular session renderer before the native menu existed, and the introducing commit wired the native menu only in the branch reached when there was no adopted live row.",
+  "rank": 100342,
+  "sha": "b863885e6d7ebacc43a8200f45ce90bf55489988",
+  "rubric": "v1.2"
+}

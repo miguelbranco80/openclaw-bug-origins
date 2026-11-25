@@ -1,1 +1,7 @@
-{"flagged":"none","where":null,"quote":null,"note":"The at-merge Evidence section describes hover preview eligibility without raising the risk that a preview could suppress the Security audit tooltip. Before merge and the earlier review history list no findings."}
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The review in force at merge has no findings or before-merge items and does not mention title-hint tooltips nested inside external links being suppressed by the new page preview."
+}

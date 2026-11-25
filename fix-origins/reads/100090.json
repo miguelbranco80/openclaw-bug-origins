@@ -1,0 +1,17 @@
+{
+  "rank": 100090,
+  "sha": "660b69e8e3a52a5d24201bdffe1be8977650fa17",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9086389527b17e7e1ea5a2583f4a76948a4887c4",
+  "cause_pr": 106058,
+  "confidence": "high",
+  "cause_quote": "The original picker used `encoded.startsWith(\"data:image/webp\") ? encoded : canvas.toDataURL(\"image/png\")` at a single 96 px size and returned null when `value.length <= AVATAR_EDITOR_MAX_DATA_URL_CHARS` was false.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Safari rejected some avatar images well under 2 MB and told users to pick an image file up to 2 MB.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix adds a JPEG fallback for opaque avatars, tries smaller PNG encodings when needed, and gives a specific error when the encoded image exceeds the identity storage budget.",
+  "reasoning": "The introducing diff added the Control UI avatar picker with a single 96 px PNG fallback and routed every encoding rejection to the same 2 MB message. First-parent history shows the encoder stayed unchanged until this fix, and the fix PR documents that WebKit returned PNG for the WebP request and rejected a 635 KB transparent image."
+}

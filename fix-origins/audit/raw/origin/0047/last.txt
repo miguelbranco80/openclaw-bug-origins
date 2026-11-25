@@ -1,0 +1,17 @@
+{
+  "rank": 47,
+  "sha": "a6750f2a014afc9819736da3436ed1aa1bd915fa",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "055a2dc6ced54dbf0669e3d88fbb53593dfc66d0",
+  "cause_pr": 120893,
+  "confidence": "medium",
+  "cause_quote": "#120893 added unreachableTargetError with `const hostname = new URL(gatewayUrl).hostname;`, run on the explicit --url whenever classifyGatewayConnectFailure falls through to \"unreachable\", so a malformed URL throws TypeError: Invalid URL inside the error formatter.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw attach` (or other session-target commands) with a malformed --url printed \"TypeError: Invalid URL\" instead of the Gateway URL SECURITY ERROR.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "shapeTargetError now parses the Gateway URL with URL.parse and falls back to an empty hostname, so the existing SECURITY ERROR and unreachable hint surface for malformed --url values.",
+  "reasoning": "The full-history listing shows session-target.ts was created by 055a2dc6ced (#120893, Aug 2026), whose diff already contains unreachableTargetError calling `new URL(gatewayUrl).hostname` on the user-supplied URL; later commits (54d3ef1, dc7fe2a, 10481d6, 3d23498 #180585) only refactored or inlined it. The security error has no connect-detail code, so classifyGatewayConnectFailure falls back to \"unreachable\" (checked at the fix parent; assumed the same fallback existed in August, hence medium)."
+}

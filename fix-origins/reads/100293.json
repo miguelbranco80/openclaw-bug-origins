@@ -1,0 +1,17 @@
+{
+  "rank": 100293,
+  "sha": "34a4e118dc1d69e925c5b2574c5597f3ce09e38a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "2f330ca69ff45bbd62922bbb797a2987a2c23878",
+  "cause_pr": 155538,
+  "confidence": "high",
+  "cause_quote": "The snapshot reader added `const { pathProof } = captureConfigRootWriteTarget(context.configPath, context.deps.fs);`, which compared the fully resolved config file with a path that resolved only its parent directory.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw backup create` failed with a config target conflict when `openclaw.json` was a symlink.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix resolves the config file symlink for snapshot reads, retains alias identity checks, and continues to reject writes through the symlink.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the existing snapshot reader checked config selection and then used `readFileSync`, which follows file symlinks. The causing diff added a proof that compared the symlink's resolved destination with the publication path, so a stable symlink failed the comparison before the snapshot could be read."
+}

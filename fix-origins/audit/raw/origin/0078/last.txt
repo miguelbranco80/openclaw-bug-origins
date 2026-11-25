@@ -1,6 +1,17 @@
 {
-  "origin": "never-worked",
-  "cause_sha": "58dbe4055043f7c090a03b3c8a610a9e521e3452",
-  "confidence": "high",
-  "reasoning": "The introducing diff replaced recursive deletion with paced batches and added `const hasIoPressure = createHostIoPressureProbe();` as the gate for continuing. I checked the earlier worker and the probe implementation: the earlier worker had no pressure gate, and the new gate could let unlinking continue while btrfs metadata reservations were high because it checked I/O stalls and commit latency without reading the reservation counter."
+  "rank": 78,
+  "sha": "2aca1a1c1595e25d3cdb0bc7ce098bdcc92efb87",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a btrfs host, background deletion of a retired worktree built up around 100 GiB of metadata reservations, which could stall other writers such as the Gateway's database.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The retired-worktree deletion worker now reads its filesystem's btrfs metadata bytes_may_use counter and pauses unlinking at 40 GiB of reservations, resuming below 20 GiB.",
+  "reasoning": "This is the third step in a series of pacing mitigations (#192909, #202197, now #202563). Each one bounds a different signal of btrfs metadata pressure from deleting very large trees. The prior worker's 128-entry/8 MiB batches with commit-time and PSI checks worked as designed, but the PR shows those signals do not bound btrfs delayed-reference reservations. That is filesystem behavior at large tree sizes, not a line that broke, so no in-repo commit can be quoted as the cause. One could argue #202197 (58dbe4055043) was an incomplete fix, but it never claimed to cap reservations ('not a calibrated btrfs transaction or latency limit'), so I don't name it as the cause."
 }

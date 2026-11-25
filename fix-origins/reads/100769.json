@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "fc6b9dad0b13544f0f51597e479cf00cc1e002ca",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The original drain's `dispose()` immediately called `deregisterLiveIngressDrainInstance(ownerId)`, letting a peer reclaim the event while settlement was still awaiting `fn()`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a channel restart, a replacement monitor could replay an inbound message while the old monitor was still recording its outcome.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix keeps monitor-owned claims fenced until pending settlement writes finish, reports failed writes without releasing ownership, and makes idle waits join pending drain wakes.",
+  "reasoning": "The introducing drain diff already allowed peer recovery as soon as disposal deregistered the owner, even though completion, release, and failure writes could still be pending. The original Google Chat monitor and the first shared monitor both called `drain?.dispose()` before joining drain work, so the shutdown race existed from their first versions.",
+  "rank": 100769,
+  "sha": "75e416f1ac2f4b0e27f308f9182ba7b72285221b",
+  "rubric": "v1.2"
+}

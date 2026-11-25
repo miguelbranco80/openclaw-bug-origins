@@ -1,0 +1,8 @@
+{
+  "rank": 128,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier guided-sign-in finding addressed browser tests that timed out because they expected discovery after the redirect. The review at merge described the redirect as expected routing and raised no concern about New Session remounting or the picker opening late."
+}

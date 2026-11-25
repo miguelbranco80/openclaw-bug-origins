@@ -1,17 +1,17 @@
 {
   "rank": 143,
   "sha": "da3ac019109595089011558077bb5c1f620dada3",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "472cd0a2f542599eea763f013eba2d34033ca25f",
   "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "confidence": "medium",
+  "cause_quote": "The existing transcript worker gained `await import(\"./session-compaction-prepared.worker.js\")`, and that new handler's `import { SessionManagerCore }` pulled host hydration and Gateway code into the standalone bundle.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible; release qualification gates (deadcode, SDK surface budget, import-graph and package-size checks, test fixtures) were red.",
-  "impact": "other",
-  "area": "other",
-  "summary": "Repaired beta release-qualification gates by removing dead exports, reconciling the plugin SDK surface budget, fixing test fixtures and socket paths, and moving transcript navigation out of the host-logging import graph.",
-  "reasoning": "The PR describes itself as a CI/release-qualification repair 'without adding release features'; every change is dead-export cleanup, SDK export inventory, flaky or path-length test fixtures, or an import-boundary refactor to satisfy the runtime build-graph and package-size checks. No user-reported runtime failure is fixed, so this is tooling/CI work titled as a fix."
+  "user_visible": "yes",
+  "user_saw": "An operator trying to install the affected build with a shipped updater would hit the updater's installed-file limit.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix repaired beta qualification checks and moved transcript navigation into a shared module, keeping host lifecycle code and JSONL logging out of the standalone worker.",
+  "reasoning": "I checked the causing diff and its parent, where the existing standalone transcript worker had no compaction-preparation path into the host session manager. The companion fix in #200321 attributes roughly 5,800 extra chunks and the resulting updater limit failure to that import, and this PR reports 46,827 entries for the repaired candidate. The evidence comes from release qualification, and I could not independently verify the exact package count before the causing commit."
 }

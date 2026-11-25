@@ -1,0 +1,8 @@
+{
+  "rank": 100155,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cHow this fits together\u201d diagram shows Gateway history requests taking the snapshot path when no idle database handle is available, without raising a concern about synchronous preparation blocking other Gateway work. The earlier \u201cBefore merge\u201d items concerned Linux CLI/WAL verification and access to proof artifacts."
+}

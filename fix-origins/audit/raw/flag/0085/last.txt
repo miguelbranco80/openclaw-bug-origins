@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The Tests section questioned whether copier-level Btrfs I/O measurements demonstrated savings through the inspection path. The Evidence section described the switch to clone auto without raising the risk that reflinking a live database could stall concurrent writes."
-}

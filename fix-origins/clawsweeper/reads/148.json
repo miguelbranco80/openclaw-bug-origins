@@ -1,1 +1,8 @@
-{"rank": 148, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge merge-risk item says real Meet/Teams/Zoom capture is unverified and platform-specific capture failures could interrupt sessions, but it is a generic real-behavior gap and never mentions capture pull/stop running under the join request's expiring authority. Considered related but chose none because it names a different mechanism (platform capture) not the requester-authority context."}
+{
+  "rank": 148,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve scoped SDK dispatch when retaining operator authority\u201d finding addressed scope selection for authenticated nested calls. The meeting regression came from recurring audio calls with no explicit authority check inheriting the join request\u2019s check after that request ended."
+}

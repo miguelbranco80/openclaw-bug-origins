@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge Findings section was empty. The earlier Tests item asked for proof that finalization excluded old history, retained tool evidence, and avoided repeated effects, with no mention of missing timestamps or conversion failures."
+  "outcome": null,
+  "note": "The at-merge review lists no Before merge items and no findings; the earlier version only asked for real behavior proof, patch quality and a correctness assessment. Nothing addresses engine-selected messages lacking timestamps or the toISOString conversion."
 }

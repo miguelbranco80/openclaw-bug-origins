@@ -1,17 +1,17 @@
 {
   "rank": 246,
   "sha": "0eb1fa3f7471ec2466cfa503d6b5252d3c94b591",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
-  "trigger_sha": "d74a4aeb7d62362234570f2e8245830f5edae49f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "961f5c0b709962bd1338edb4d71559583fbd4f2f",
+  "cause_pr": 166553,
+  "confidence": "high",
+  "cause_quote": "The original restore code rejected a saved source when `generationOwner.requiredGeneration !== snapshot.sharedGeneration`, so changing a proxy admission header invalidated the source even when the operator's grant was still current.",
+  "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After a trusted-proxy setting changed (for example an upgrade adding requiredHeaders), every automation created through proxy sign-in was refused and auto-disabled with 'Restart recovery authentication owner changed'.",
-  "impact": "failed-every-time",
+  "user_saw": "After a trusted-proxy admission setting changed, affected automations failed on their next run and were automatically disabled.",
+  "impact": "sequence-or-timing",
   "area": "cron",
-  "summary": "Restoring a saved operator source authenticated by the trusted proxy now skips the exact shared-auth generation comparison and relies on the saved grant fingerprint instead.",
-  "reasoning": "The exact restore-time compare `generationOwner.requiredGeneration !== snapshot.sharedGeneration` dates from 961f5c0b7099 (#166553), written for short-lived restart recovery of an in-flight turn, where refusing after a proxy policy change is a reasonable 'start a new user turn'; the trusted-proxy generation hash (proxy admission settings) predates the graft. d74a4aeb7d6 (#176422) began persisting that recovery source in long-lived cron jobs, which relied on the generation staying stable for weeks, and an external deployment change (Enterprise controller adding requiredHeaders) exposed it, so this reads as latent rather than a regression with a quotable breaking line."
+  "summary": "The fix uses the saved operator grant to restore proxy-authenticated automations and retains exact generation checks for shared credentials and OpenClaw ID tunnel sources.",
+  "reasoning": "I checked the original recovery diff and verified that trusted-proxy sign-ins already carried a generation that included `requiredHeaders`, so an admission-only change could invalidate recovery from the start. PR #176422 later routed saved cron authority through that same restore check, so automations inherited the defect when that feature shipped."
 }

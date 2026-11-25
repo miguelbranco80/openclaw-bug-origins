@@ -1,1 +1,8 @@
-{"rank": 113, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Review items concern lease authority, completion hooks, the Zod lockfile entry and real-behavior proof; none mention importing existing OpenClaw transcript history when a session switches to the Agents API runtime."}
+{
+  "rank": 113,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier stale-owner isolation item concerned who could publish transcript entries. Neither that item nor the at-merge review raised the missing step of loading prior conversation history when switching to Agents API."
+}

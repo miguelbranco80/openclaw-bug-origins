@@ -15,6 +15,8 @@ DATASET = os.path.join(ROOT, "dataset")
 RESULTS = os.path.join(ROOT, "results")
 with open(os.path.join(DATASET, "frames.json")) as _handle:
     FRAMES = json.load(_handle)  # the periods studied: how many fixes each holds and how many were sampled
+with open(os.path.join(DATASET, "readers.json")) as _handle:
+    READERS = json.load(_handle)  # which model read what: the main reader and the other maker's, from study.json
 POPULATION = sum(frame["population"] for frame in FRAMES)  # changes titled "fix" that touch product code
 SAMPLE = sum(frame["sampled"] for frame in FRAMES)
 SCALE = POPULATION / SAMPLE
@@ -163,7 +165,8 @@ def stratified_ratio(tables, z=1.96):
 
 def compare(out, prefix, changes, level_of, levels, reference):
     """Add, for each level of a property: how common it is, how many sampled bugs it produced, the bug rate, and
-    the rate relative to the reference level, crude and adjusted for the size of the change.
+    the rate relative to the reference level: crude, and with the size of the change and the month it landed held
+    equal. The month matters because an older change has had longer for its bugs to be found and fixed.
 
     levels: list of (key, label). level_of(change) returns a key or None to leave the change out.
     """
@@ -187,21 +190,26 @@ def compare(out, prefix, changes, level_of, levels, reference):
         crude = odds_ratio(bugs[key], bugs[reference], seen[key], seen[reference])
         if crude:
             out.add(prefix + "_ratio", f"{prefix}_ratio_{key}", label, *crude)
-        tables = []
-        for name, _, _ in SIZE_GROUPS:
-            in_group = lambda c: size_group(c) == name
-            tables.append((
-                sum(c["sampled_bugs"] for c in causing if in_group(c) and level_of(c) == key),
-                sum(c["sampled_bugs"] for c in causing if in_group(c) and level_of(c) == reference),
-                sum(1 for c in sample if in_group(c) and level_of(c) == key),
-                sum(1 for c in sample if in_group(c) and level_of(c) == reference),
-            ))
+        stratum = lambda c: (size_group(c), c["committed_at"][:7])
+        cells = collections.Counter()
+        for c in causing:
+            cells[(stratum(c), "bugs", level_of(c))] += c["sampled_bugs"]
+        for c in sample:
+            cells[(stratum(c), "seen", level_of(c))] += 1
+        tables = [(cells[(name, "bugs", key)], cells[(name, "bugs", reference)],
+                   cells[(name, "seen", key)], cells[(name, "seen", reference)])
+                  for name in {stratum(c) for c in sample + causing}]
         adjusted = stratified_ratio(tables)
         if adjusted:
             out.add(prefix + "_adjusted", f"{prefix}_adjusted_{key}", label, *adjusted)
     out.add("size", prefix + "_sample", "Ordinary changes in the comparison sample with this property known", len(sample))
     out.add("size", prefix + "_causing_bugs", "Sampled bugs from changes with this property known",
             sum(c["sampled_bugs"] for c in causing))
+
+
+def landed(commit):
+    """The half-month a commit landed in, for example 2026-10a (1st to 15th) or 2026-10b."""
+    return commit["committed_at"][:7] + ("a" if commit["committed_at"][8:10] < "16" else "b")
 
 
 def kind(commit):
@@ -214,11 +222,20 @@ def compare_commits(out, prefix, commits, causes, level_of, levels, reference):
 
     commits: load_commits(). causes: the causing commit of each sampled bug (one entry per bug) that is in the list.
     Adds, per level: commits, share of all commits, sampled bugs, bugs per 100 commits, and the rate relative to the
-    reference level: crude, and with the size and the kind of the change (feat, fix, other) held equal.
+    reference level: crude, and with three things held equal: the size of the change, its kind (feat, fix, other),
+    and the half-month it landed in. The last matters because an older commit has had longer for its bugs to be
+    found and fixed, so anything that changed over the period would otherwise look like a cause.
     """
+    stratum = lambda c: (size_group(c), kind(c), landed(c))
+    cells = collections.Counter()
     known = {sha: level_of(commit) for sha, commit in commits.items()}
     count = collections.Counter(level for level in known.values() if level is not None)
     bugs = collections.Counter(known[sha] for sha in causes if known[sha] is not None)
+    for sha, commit in commits.items():
+        cells[(stratum(commit), "seen", known[sha])] += 1
+    for sha in causes:
+        cells[(stratum(commits[sha]), "bugs", known[sha])] += 1
+    strata = {name for name, _, _ in cells}
     for key, label in levels:
         out.add(prefix + "_commits", f"{prefix}_commits_{key}", label, count[key])
         out.add(prefix + "_share", f"{prefix}_share_{key}", label, round(100 * count[key] / len(commits), 1))
@@ -230,15 +247,8 @@ def compare_commits(out, prefix, commits, causes, level_of, levels, reference):
         crude = odds_ratio(bugs[key], bugs[reference], count[key], count[reference])
         if crude:
             out.add(prefix + "_ratio", f"{prefix}_ratio_{key}", label, *crude)
-        tables = []
-        for name, title in [(name, title) for name, _, _ in SIZE_GROUPS for title in ("feat", "fix", "other")]:
-            inside = lambda sha: size_group(commits[sha]) == name and kind(commits[sha]) == title
-            tables.append((
-                sum(1 for sha in causes if inside(sha) and known[sha] == key),
-                sum(1 for sha in causes if inside(sha) and known[sha] == reference),
-                sum(1 for sha in commits if inside(sha) and known[sha] == key),
-                sum(1 for sha in commits if inside(sha) and known[sha] == reference),
-            ))
+        tables = [(cells[(name, "bugs", key)], cells[(name, "bugs", reference)],
+                   cells[(name, "seen", key)], cells[(name, "seen", reference)]) for name in strata]
         adjusted = stratified_ratio(tables)
         if adjusted:
             out.add(prefix + "_adjusted", f"{prefix}_adjusted_{key}", label, *adjusted)

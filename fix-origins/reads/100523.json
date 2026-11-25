@@ -1,0 +1,17 @@
+{
+  "rank": 100523,
+  "sha": "6c6b03462404b36e68e269fcbceb678294a236a7",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a1f43b218a4ec6fe82d850ff63dc4e8d4d543e7e",
+  "cause_pr": 111772,
+  "confidence": "high",
+  "cause_quote": "The new protocol-mismatch button wired `@click=${refreshLoginGatePage}` to a handler that immediately called `window.location.reload()` without checking whether the Gateway was reachable.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Clicking Refresh page after a protocol mismatch could send the user to a browser error page if the Gateway was still restarting.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The login gate now waits for the Gateway before reloading, offers Retry if the wait expires, and cancels the attempt when the active failure or connection inputs change.",
+  "reasoning": "The introducing diff shows that the protocol-mismatch refresh action navigated immediately from its first release. I checked that an earlier stale-chunk recovery commit already documented the same Gateway restart window and that the later login gate guard checked for unsaved input while retaining the direct reload."
+}

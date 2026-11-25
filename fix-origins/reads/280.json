@@ -1,17 +1,17 @@
 {
   "rank": 280,
   "sha": "2516bca9fdb8544c7289fa6a451fbbe1c6cf0876",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e90a3baabc14ca1639b68514b76a90b090ee567e",
+  "cause_pr": 139306,
+  "confidence": "high",
+  "cause_quote": "The introducing diff registered `kind: \"session:report\"` and rendered it through `return staticHtml`<${tag} .widget=${widget} .session=${this.session} .active=${this.active}></${tag}>`;`, placing the new report inside the existing fixed-height, scrollable widget body.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a phone, dashboard reports and session progress cards showed only part of their content in a small inner scroller that captured swipes instead of scrolling the dashboard.",
-  "impact": "presentation",
+  "user_saw": "On a phone, tall reports and session progress cards showed only part of their content, and swiping over them scrolled the card instead of the dashboard.",
+  "impact": "failed-every-time",
   "area": "ui",
-  "summary": "In the phone layout, board grid rows grow with content so reports and session progress cards fit their content (never below saved size), while other widgets keep their saved height.",
-  "reasoning": "The narrow-board rule that stacks cards at their saved row span is older than the graft and is commented as deliberate ('Keep desktop sizes canonical; only placement changes on narrow boards'), and scrolling inside a user-sized card is the intended desktop behavior that the fix keeps. The fix is a phone-layout design change rather than a repair of broken code; a case could be made for latent, exposed when native DOM reports (e90a3baabc14, #139306) grew much taller when stacked at phone width."
+  "summary": "The fix lets native reports and session progress cards grow to fit their content on phones while preserving saved sizes as minimums and retaining desktop and embedded-widget sizing.",
+  "reasoning": "The mobile stacking change predates native reports and kept each card's saved row span on a grid with fixed 56 px rows. I checked the report introduction and its board styles and confirmed that reports entered the existing `overflow: auto` widget body on day one, so tall reports already scrolled inside their cards before later rendering changes."
 }

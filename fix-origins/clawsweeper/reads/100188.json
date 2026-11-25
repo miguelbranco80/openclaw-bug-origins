@@ -1,0 +1,8 @@
+{
+  "rank": 100188,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Resolve merge risk item and earlier reviews ask for restart and rollback validation. They give no indication that closing SQLite during Windows rollback could checkpoint the WAL and invalidate the snapshot fingerprint."
+}

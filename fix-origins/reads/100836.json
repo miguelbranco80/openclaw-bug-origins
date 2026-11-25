@@ -1,0 +1,17 @@
+{
+  "rank": 100836,
+  "sha": "cb8658d330b88076a768893a5694dafdf6a6268c",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c768bd125a14015bc48d7cf4002f3d84bd12226a",
+  "cause_pr": 154804,
+  "confidence": "high",
+  "cause_quote": "The new async resource handler calls `await close()` when the database identity matches, so the existing schema check's unconditional database close now shuts down the live worker inventory.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway could crash after a routine Doctor check with the error \u201cWorker environment inventory has closed.\u201d",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Schema preparation now retires the live inventory only after repair is admitted, and queued placement reconciliation no longer leaks an unhandled rejection.",
+  "reasoning": "I checked the parent of #154804 and confirmed that the automatic schema check already closed the database after a no-op, while the existing inventory reopened the database by path for reads and writes. #154804 made the existing inventory close permanently with that database generation. #155446 later routed early Doctor preflight through the same no-op path, and the fix's regression test covers both modes."
+}

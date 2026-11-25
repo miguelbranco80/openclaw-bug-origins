@@ -1,17 +1,17 @@
 {
   "rank": 92,
   "sha": "b58996d69286d55d1bbbd9b5c03b4ad837baac45",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Nothing reported; only synthetic long malformed outbound text with many unfinished `@[` markers could stall Teams formatting.",
+  "trigger_sha": "8f05dffe60a805a5b83be12ab3c587a923008bee",
+  "user_visible": "yes",
+  "user_saw": "Outbound Teams messages could stall before delivery when their text contained many unfinished mention markers.",
   "impact": "slower-or-heavier",
   "area": "channels",
-  "summary": "Replaced the unanchored Teams mention regex in buildMSTeamsMessageActivity with a single forward scan so malformed `@[` text is parsed in linear time.",
-  "reasoning": "The quadratic behavior is inherent to the unanchored mention regex from before the graft (`/@\\[([^\\]]+)\\]\\(([^)]+)\\)/g`, also quadratic on unclosed `@[`), and a96e6b7b1ad4 / 567bc76209e0 only changed escaping and moved the code, so no commit made it slower. The PR cites synthetic 32,000-repeat hostile inputs and no user report or issue, so this is performance hardening against pathological input rather than a reported defect."
+  "summary": "The fix replaced the Teams outbound mention regex with a linear scan that preserves mention syntax, escaping, and ID validation.",
+  "reasoning": "The earliest available parser already rescanned the remaining text for each unfinished mention opener, and the ordinary text-send path normally bounded that work by chunking messages before parsing. The September 7 diff routed whole edits, final stream replacements, and file captions through the existing parser, exposing its quadratic cost on long inputs. The later escaped-label change retained the repeated scanning, and the parser's original introduction predates the available history."
 }

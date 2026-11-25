@@ -1,1 +1,8 @@
-{"rank": 155, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review has no open items. The earlier version's findings concern setup-promotion receipts, the restore regression and credential rebinding proof; none mention the client-credentials Doctor path advancing schema without the daemon runtime-pin migration, leaving the old seeded Gateway against a too-new schema."}
+{
+  "rank": 155,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAdd data-model compatibility proof\u201d item asked broadly whether existing data would still load after an upgrade. Neither that item nor the review at merge raised the risk that Doctor could advance the SQLite schema while a pending runtime pin still selected the old Gateway."
+}

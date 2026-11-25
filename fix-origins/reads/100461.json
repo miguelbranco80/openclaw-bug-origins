@@ -1,0 +1,17 @@
+{
+  "rank": 100461,
+  "sha": "de4cb3de1cad16023ff2d9becb537e3b500239b2",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "979c0fc29e196000294a9ab5b5b5fc908a879d70",
+  "cause_pr": 144871,
+  "confidence": "high",
+  "cause_quote": "The initial worker sent `port!.postMessage(reply, []);` immediately after close handling without draining its output, so the broker could reach `await slot.worker.terminate();` while diagnostics were still buffered.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see the SQLite worker's open and execution diagnostics but miss its final close diagnostic.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix gives stdout and stderr up to five seconds to drain before the SQLite worker acknowledges a successful final backend close.",
+  "reasoning": "The introducing diff added both the undrained close reply and the broker's termination of an empty worker, so the race existed from the first SQLite worker implementation. I checked that the broker still terminated the worker at the fix's parent and that #150184 redirected diagnostics to stderr and added the logging fixture without changing the close handshake."
+}

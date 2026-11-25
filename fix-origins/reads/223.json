@@ -1,17 +1,17 @@
 {
   "rank": 223,
   "sha": "8e8d5b052457c221a973a2fe66b25f9f08e7302b",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "30469f450063ebd23e6a731fcc95019a785d28ed",
   "cause_pr": 168759,
-  "confidence": "medium",
-  "cause_quote": "The Solid port replaced the Lit template `html`${t(\"agents.skillsPanel.subtitle\")}\\n        ${...}`` (whose newline renders as a space) with JSX `{t(\"agents.skillsPanel.subtitle\")}` followed by the value on the next line, which JSX joins with no space.",
+  "confidence": "high",
+  "cause_quote": "The Agents port placed `{t(\"agentTools.subtitle\")}` directly above `<span class=\"mono\">` in JSX, leaving only a line break that JSX drops.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Settings pages showed run-together text such as \"permissions.65/65 enabled.\", \"Session:agent:main:main\" and \"UI budget.Telegram probe timed out\".",
+  "user_saw": "Settings labels and messages ran into the values that followed them, producing text such as \u201cpermissions.65/65 enabled.\u201d",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Added explicit spaces between a sentence and the following value at six Control UI JSX sites (Agents skills/tools/preview, channels partial-snapshot notice, plugin consent, session storage error).",
-  "reasoning": "The removed lines blame to the Lit-to-Solid ports of October 2026; I checked the pre-port Lit file at 30469f45^ and the subtitle and value sat on separate lines of an html template literal, so whitespace rendered, and the JSX port dropped it. Several sibling ports (f49b7cd0 channels #168811, 8304c4b6 plugins #168758, b8d31e96/b86675c7 config) caused the other sites the same way; I name the Agents port as the cause since it owns the agent-tool/skills sites in the headline examples, hence medium confidence."
+  "summary": "The fix restores spaces between adjacent labels, messages, and values at six Settings rendering sites.",
+  "reasoning": "The Agents migration diff shows that the previous Lit templates supplied collapsible whitespace before the skills count, enabled-tool count, and session key, while the replacement JSX omitted that separator. The later extraction of the session preview carried the omission forward, and separate Solid migration diffs show the same regression in Channels, plugin consent, and session storage."
 }

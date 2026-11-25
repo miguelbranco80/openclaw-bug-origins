@@ -1,0 +1,17 @@
+{
+  "rank": 100024,
+  "sha": "80401c1df67bed868711dde5dab2601958345f00",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "dda6e1ceda395dbcfb7d22eaf4b4364b18227cd7",
+  "cause_pr": 152521,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `classifyFailoverReason: classifyQwenFailoverReason` to the Qwen registration, whose runtime aliases covered only `modelstudio` and `qwencloud`, leaving `dashscope` and `modelstudio-native` unbound.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An exhausted-free-credit 429 on an affected DashScope route could be treated as a rate limit instead of a billing error.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds `dashscope` and `modelstudio-native` as runtime hook aliases so both routes can use Qwen\u2019s quota classifier when the plugin is registered.",
+  "reasoning": "I checked the introducing diff and confirmed that it created the Qwen-specific quota classifier and attached it to the Qwen runtime registration. The same revision\u2019s manifest already declared both route references, but the runtime selector matched registered IDs and aliases, so neither reference could select the new hook when it first shipped."
+}

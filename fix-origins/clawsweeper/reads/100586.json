@@ -1,0 +1,8 @@
+{
+  "rank": 100586,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Current-main transfer behavior raised an unjoined transfer promise after a scan error, and Transfer settlement at PR head described the new abort and wait as the fix. Neither item questioned whether the strict quota scan could fail when an rsync temporary file vanished."
+}

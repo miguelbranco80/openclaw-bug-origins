@@ -1,0 +1,8 @@
+{
+  "rank": 100152,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section discusses dirty state after readiness in the context of authorization. Neither that section nor the supplied earlier Before merge items raises warm session reads waiting on catalog renewal or unchanged renewals triggering metadata refetches."
+}

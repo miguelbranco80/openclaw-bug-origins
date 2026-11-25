@@ -1,0 +1,8 @@
+{
+  "rank": 100022,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge evidence on candidate isolation covers how the canary runs, and the earlier findings concern backup retention and recovery inventory. The available review text raises no concern about how the updater classifies or reports snapshot preparation failures."
+}

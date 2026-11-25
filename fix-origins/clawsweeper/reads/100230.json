@@ -1,0 +1,8 @@
+{
+  "rank": 100230,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk (P1)\u201d item asked for published-updater compatibility proof across service and plugin lifecycles without identifying the transcript sidecar\u2019s shutdown-time import after package replacement. The merge-time \u201cResolve merge risk (P1)\u201d item concerned HTTP authority during media delivery and run cancellation."
+}

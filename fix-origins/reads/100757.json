@@ -1,0 +1,17 @@
+{
+  "rank": 100757,
+  "sha": "45e2bcedec8f0561a409faeeff4034327f4dba71",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "45908445e13f8b910d3ffc192260fec9eee07e1f",
+  "cause_pr": 166703,
+  "confidence": "high",
+  "cause_quote": "The new retained-reader guard called `readerOperation.abortSignal.throwIfAborted()` and then threw `SessionWorkStartChangedError(\"Session reader operation is no longer current\")` on release, losing the restart reason when only the owning work signal had aborted.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a gateway restart, an interrupted reply could be recorded as a generic run failure.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix passes the owning work signal into database admission so late reader and handoff checks preserve the restart cancellation reason.",
+  "reasoning": "The earlier restart-release change already allowed the owning work signal to release admission while the reply signal stayed frozen. I checked the introducing diff and its parent: the parent had no retained reply reader or handoff guard, and PR #166703 introduced both with the generic release error. PR #168607 added the session-target lookup exercised by the fix's test and reused the same faulty check."
+}

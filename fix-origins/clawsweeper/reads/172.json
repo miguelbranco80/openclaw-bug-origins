@@ -1,1 +1,8 @@
-{"rank": 172, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review praises the canary's state isolation and raises backup/inventory and Windows concerns, but never mentions SecretRef/exec providers or missing credentials in the private state copy."}
+{
+  "rank": 172,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Candidate isolation and downgrade behavior section describes the canary\u2019s state redirection without raising the risk that exec SecretRefs could fail to resolve during startup. The Review config compatibility item is generic, and the earlier findings concern backup recovery and Windows support."
+}

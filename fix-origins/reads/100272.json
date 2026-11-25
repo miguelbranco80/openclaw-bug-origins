@@ -1,0 +1,17 @@
+{
+  "rank": 100272,
+  "sha": "1b4dbda4c95f14ca6cbd9739c42ca0551e59edb6",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c3b426f280a92bfe9db0701b61cf75461755bab7",
+  "cause_pr": 104528,
+  "confidence": "high",
+  "cause_quote": "The original macOS catalog resolved its projects root with `homeURL.appending(path: \".claude/projects\", directoryHint: .isDirectory)`, ignoring `CLAUDE_CONFIG_DIR`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Claude Code sessions stored under a custom configuration directory were missing from the paired Mac node, which could also omit the Claude session commands.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The macOS node now resolves the Claude projects root from a nonblank `CLAUDE_CONFIG_DIR` and uses it for advertisement, listing, transcript reads, and pagination leases.",
+  "reasoning": "I verified that PR #104528 added the native catalog and wired its advertisement, list, and read handlers into the Mac node. The initial implementation used the hardcoded root for both advertisement and session discovery, so sessions stored only under a custom root were missed from the first release of the feature."
+}

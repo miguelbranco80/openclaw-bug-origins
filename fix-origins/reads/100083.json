@@ -1,0 +1,17 @@
+{
+  "rank": 100083,
+  "sha": "d67967a3aae780b0673c6103588686438a204807",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "963550df3adf94af0ed55521c3e4ccdc660e45d9",
+  "cause_pr": 151611,
+  "confidence": "high",
+  "cause_quote": "The diff removed `if (acceptedKey && mode !== \"session\") { this.onPaneSessionChange?.(this.paneId, acceptedKey); }`, so a successful retry of a background launch left the source pane and its error banner visible.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI kept showing the launch error after the suggested task started successfully on retry.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "A confirmed suggested-task retry now clears its own stale error from both shared chat fields while preserving newer and unrelated errors.",
+  "reasoning": "I checked the parent of #151611 and verified that a successful retry in the default local mode switched the visible pane to the newly created session. The background-launch change removed that switch while retaining both error assignments, leaving the old banner visible after success. The earlier in-session mode already stayed in place, but the fix's retry tests exercise the default local launch path."
+}

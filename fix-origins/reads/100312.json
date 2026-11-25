@@ -1,0 +1,17 @@
+{
+  "rank": 100312,
+  "sha": "8e0cbce8e5a726cba4891bc6b09df1fedf3fcb64",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6052fffac2993079e81dba7de5bfdff89eebb08b",
+  "cause_pr": 188162,
+  "confidence": "high",
+  "cause_quote": "The diff added `display var(--motion-sheet) allow-discrete` and `transform: translateY(100%)` for `.chat-mobile-host[hidden]`, keeping the shell visible during an exit while the existing close handler hid the contents immediately.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On phones, closing Panels or Details with a tool or page open made the content vanish while an empty gray sheet slid offscreen.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix keeps panel and Details content visible until the dismissal animation ends and restores immediate focus when Side chat reopens.",
+  "reasoning": "I checked the parent of #188162 and confirmed that closing set `open = false` immediately and hid the entire sheet with `display: none`. The new slide-out shipped with that same close logic and preserved only the launcher through a CSS exception, so tool and Details content blanked from the first version of the animation. The related reopen focus issue came from #188810, which subsequently added `visibility var(--motion-sheet)`."
+}

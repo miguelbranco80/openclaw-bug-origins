@@ -1,1 +1,8 @@
-{"rank": 85, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review's evidence describes the switch to copyRootFileSync with clone auto but treats it as correct; no item raises writer stalls from reflinking the live database inode. Only generic items remain (failing-check attribution, missing end-to-end proof)."}
+{
+  "rank": 85,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cLatest acquisition correction\u201d item describes restoring online backup for ordinary acquisition and retaining raw copying for artifact preservation, without raising the risk of a live inspection reflink stalling writers. The earlier \u201cBefore merge\u201d items concern updater compatibility and rollback verification."
+}

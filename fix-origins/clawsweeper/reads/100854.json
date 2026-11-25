@@ -1,0 +1,8 @@
+{
+  "rank": 100854,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 item \u201cNormalize the agent ID before entering the read scope\u201d concerns a native reader left open when a mixed-case agent ID selects the wrong scope. The reported failure occurred when structured cloning rejected the Windows environment Proxy in the worker request."
+}

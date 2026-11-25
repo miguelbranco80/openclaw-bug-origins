@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Findings and Review history cover avatar exclusion, profile extension selection, and conflict-safe draft saves. None raises a concern about validating mixed-case ClawHub handles returned by /whoami."
+  "outcome": null,
+  "note": "The review's findings cover avatar exclusion and profile extension dependency choices in draft-choices.ts; nothing mentions the whoami handle check rejecting mixed-case ClawHub handles."
 }

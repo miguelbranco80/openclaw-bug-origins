@@ -1,0 +1,17 @@
+{
+  "rank": 100082,
+  "sha": "905d371ebfd561c2ccfe5310a2bd05600afeed01",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e765b0c079c7429b8d9d528becbd6031c06bea07",
+  "cause_pr": 147472,
+  "confidence": "high",
+  "cause_quote": "The diff added `markPreparedModelRuntimeSnapshotsStale(\"prepared model runtime owner is stale before plugin drain\", { waitForReplacement: true, ...modelRuntimeRefreshScope })`, so rollback's catalog read waited on a gate that could only settle after rollback returned.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway shutdown could hang after a plugin replacement failed during configuration publication.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix restores configured model context limits synchronously during rollback and keeps catalog loading on the committed refresh path.",
+  "reasoning": "I checked the causing commit's parent, where secret rollback already refreshed the context cache and plugin publication could fail before the replacement gate was set. The causing diff set that gate before draining the old plugin, so a publication failure left rollback waiting for a catalog read while the enclosing replacement waited for rollback to finish."
+}

@@ -1,6 +1,17 @@
 {
-  "origin": "unclear",
-  "cause_sha": null,
-  "confidence": null,
-  "reasoning": "The October blame candidate replaced an existing `access was revoked` branch with a lookup that returned the same message. The September 13 diff shows that allowed navigation already retired page reads while preserving tab authority, but the August diffs needed to establish when that rejection first produced the misleading message were unavailable."
+  "rank": 271,
+  "sha": "05776ab805872a949fc4a34919954678e4f3a191",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "cbdce43b58acd8ff3a6066885d386794a9cb0a4e",
+  "cause_pr": 132232,
+  "confidence": "medium",
+  "cause_quote": "#132232 added the document epoch check `epoch.documentRevision === (tabRevisions.get(tabId)?.document ?? 0)` to epochMatches (\"An allowed document change retires page reads/actions, not tab authority\") but left a failed epoch to return `reason: \"revoked\"`, which requireTab turns into `access was revoked`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an allowed navigation interrupted an in-flight browser read, the agent got 'tab N access was revoked' and asked the user for permission again even though access was still granted.",
+  "impact": "presentation",
+  "area": "plugins",
+  "summary": "In the Chrome extension tab-access policy, a rejection caused only by a document revision change on a still-authorized tab now reports 'document changed while the command was in flight' instead of 'access was revoked'.",
+  "reasoning": "GraphQL blame puts the documentRevision epoch lines in tab-access.js on cbdce43b58a (#132232), whose diff split document freshness from access revocation in state but kept routing a stale document epoch through the existing `reason: \"revoked\"` path, so the diagnostic was wrong from the moment document-only invalidation existed. Before that commit every navigation called invalidateTab (full revocation), so the 'revoked' message was arguably accurate then; the bb702615dbf blame candidate only refactored the message table. Medium confidence because this is a diagnostic-wording defect and an earlier version also reported navigation as revoked."
 }

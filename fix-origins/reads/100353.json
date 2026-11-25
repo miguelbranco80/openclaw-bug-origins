@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6124d47e046a8e11024b3027df0448febfd021be",
+  "cause_pr": 129423,
+  "confidence": "high",
+  "cause_quote": "The new fallback called `projectBranchEntries(entries.slice(0, firstKeptIndex))`, discarding the prior compaction marker whenever it came after the preparation cut.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Previously compacted conversation could reappear in later summaries of tool-heavy sessions.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix keeps reset and compaction markers available to the session projector while limiting fallback messages to the prepared range.",
+  "reasoning": "The introducing diff replaced a raw-branch fallback that already replayed older history with a fallback intended to respect the preparation range and replay boundary. The core code at that commit already allowed a new cut among entries retained before the previous marker, and the projector needed that marker to exclude older messages. The new fallback could therefore replay compacted history from its first version.",
+  "rank": 100353,
+  "sha": "9d330a0a7fe0cc320abd5e70603a48c400398fc3",
+  "rubric": "v1.2"
+}

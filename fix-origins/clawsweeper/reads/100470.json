@@ -1,0 +1,8 @@
+{
+  "rank": 100470,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section endorsed the cleanup order without identifying that timed-out plugin work could still be running when the database closed. The Before merge items asked for Windows Doctor shutdown verification and published-updater compatibility evidence."
+}

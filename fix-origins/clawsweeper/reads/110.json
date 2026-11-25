@@ -1,1 +1,8 @@
-{"rank": 110, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P1 findings cover clearing recording state before a failed stop, normal-completion disposal, harness cleanup forwarding and upload handles; none concerns the memoized resourcesPromise caching a rejected initialization. The failed-stop item is a different retry path, so not counted as related."}
+{
+  "rank": 110,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "\u201cRetain recording ownership until stop succeeds\u201d addresses lost recording state after a driver stop error, and \u201cDiscard unreachable resources on normal completion\u201d addresses files left on disk after a successful execution. The bug came from reusing a rejected resource initialization promise on retry or close, a mechanism neither item examines."
+}

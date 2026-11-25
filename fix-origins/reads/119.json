@@ -1,17 +1,17 @@
 {
   "rank": 119,
   "sha": "02169024a43a8ace42b4b7805176bcfd6ac859d7",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible; the managed installer kept selecting Crabbox 0.81.0, which lacked upstream fixes wanted for the upcoming Boat cutover.",
+  "user_visible": "yes",
+  "user_saw": "Before the change, operators who relied on OpenClaw\u2019s managed installer got Crabbox 0.81.0.",
   "impact": "other",
-  "area": "plugins",
-  "summary": "Raises CRABBOX_MIN_VERSION from 0.81.0 to 0.82.0 so the managed installer uses the release with registration-cancellation and portable-cleanup fixes, and updates fixtures and docs.",
-  "reasoning": "This is a routine dependency version bump (the previous bump c1739437a5b7 moved 0.80.0 to 0.81.0 the same way) to pick up fixes made in the external Crabbox project ahead of a planned cutover; the PR reports no failure in OpenClaw's own code. A dependency/tooling update titled as a fix is not-a-defect under the rubric."
+  "area": "gateway",
+  "summary": "OpenClaw raised the minimum and managed download version to Crabbox 0.82.0 for worker, sandbox, and remote-proof commands.",
+  "reasoning": "The installer diff and path history show that the preceding change raised the version from 0.80.0 to 0.81.0 through the same version constant. The PR describes adopting upstream registration-cancellation and cleanup fixes in preparation for the Boat cutover, with live verification still pending and no OpenClaw failure reported."
 }

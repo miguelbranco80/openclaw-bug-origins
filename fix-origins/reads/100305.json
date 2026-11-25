@@ -1,0 +1,17 @@
+{
+  "rank": 100305,
+  "sha": "2a541edb0d15a21f47bfe7cf8367c6bd45e518e9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "2829fe107c6768f7e70d8c880a45dc863922c79f",
+  "cause_pr": 104819,
+  "confidence": "high",
+  "cause_quote": "The commit introduced sidebar automation alerts with `loadCronJobsPage(cron).then(() => {`, which requested full job definitions for the background alert check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening a chat downloaded full automation definitions, including prompts and commands, to populate the sidebar alerts.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix switched sidebar Inbox alerts to compact automation records and reduced response data from 403,177 to 17,794 bytes in the 55-job browser fixture while preserving the same alerts and pagination.",
+  "reasoning": "The commit that added ambient sidebar alerts wired them to the full automation loader from the first release. I checked that the loader omitted the compact flag and that the Gateway already supported compact responses when explicitly requested. Later changes moved the same fetch into the Inbox store and extended it across pages."
+}

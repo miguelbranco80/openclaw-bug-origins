@@ -1,0 +1,17 @@
+{
+  "rank": 123,
+  "sha": "9dc0ef1b233b4af9d17cc8b5cbe2311b668b206d",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "bc6b97a037d01e488aed72433b7c0402953ad503",
+  "cause_pr": 172842,
+  "confidence": "low",
+  "cause_quote": "loadLogbookPortDescriptor was written to read the schema from disk via `fs.readFile(path.join(plugins, \"logbook/src/logbook-schema.postgres.sql\"))` after `resolveBundledPluginsDir()`, throwing \"Bundled logbook port descriptor is unavailable.\" when no bundled dir resolves.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In compiled installs, Doctor/database port work that needed the Logbook PostgreSQL descriptor could fail to load it, so Logbook schema diagnostics were missing or errored.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "Exposed the inlined Logbook PostgreSQL schema string through the plugin's database-port public artifact and had the core descriptor use it instead of reading the .sql file from the bundled plugins directory.",
+  "reasoning": "All removed lines (the resolveBundledPluginsDir + fs.readFile of logbook/src/logbook-schema.postgres.sql) were introduced by bc6b97a037d0 (#172842), while the sibling team-reports descriptor added the same day takes its schema string from the plugin's public artifact, and the .sql was only declared as a staticAssets copy later in a11893ec5fd; I found no later commit on the descriptor, logbook-port.ts or bundled-dir.ts (checked 51cf7e45b2b, b1ee9a7c0e2, 38753ff3b97) that plainly broke a working path. The fix has no PR body or test explaining what 'restore' refers to, so the never-worked reading and the compiled-worker mechanism are unconfirmed, hence low confidence."
+}

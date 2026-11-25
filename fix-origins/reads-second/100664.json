@@ -1,0 +1,17 @@
+{
+  "rank": 100664,
+  "sha": "51dfee34acc162606840e5b00a8eb62eba85f44f",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "00b00e25326f50962b8bb91500ad9d0b091b85e1",
+  "cause_pr": 167968,
+  "confidence": "high",
+  "cause_quote": "The diff removed `entry.refreshAt = Date.now() + AGENT_IDENTITY_CACHE_TTL_MS;` and replaced the roster freshness check with `return !cached?.result || identities.get(agentId) !== cached?.result?.identity;`, so a successful identity read no longer expired after a file save.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An open Control UI tab could keep showing an agent\u2019s old name or avatar after a successful Gateway save to IDENTITY.md.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "After a Gateway RPC commits an IDENTITY.md write, the Gateway notifies open Control UI tabs so they refresh the affected identity without restoring idle polling.",
+  "reasoning": "The parent of #167968 already had both file-write RPCs, and its identity cache fetched fresh data on the next refresh after the 60-second TTL expired. The prior test assertions covered avatar revalidation without an event, and #167968 changed them to require explicit invalidation while successful file writes still emitted no identity-change event."
+}

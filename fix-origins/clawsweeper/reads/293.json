@@ -1,1 +1,8 @@
-{"rank": 293, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "At-merge items concern private session links in the PR body and maintainer approval; the review never raises requester-scoped MCP servers being dropped (it says configured-server loss was addressed by the bridge)."}
+{
+  "rank": 293,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The review\u2019s \u201cDiscussion and accepted isolation direction\u201d section treated the earlier loss of configured MCP servers as fixed by the bridge. The earlier \u201cWait for catalog invalidation instead of sleeping\u201d finding concerned revocation test timing, so fixing it would still leave the verified sender missing during runtime acquisition."
+}

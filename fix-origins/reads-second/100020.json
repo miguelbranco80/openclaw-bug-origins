@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix bundled the reachable Mistral SDK code into @openclaw/ai, reducing the measured Linux npm 12 install from 47,898 to 41,793 entries.",
+  "reasoning": "I checked the commit that added the guard and confirmed that the 47,500-entry threshold deliberately leaves room below the 50,000-entry cap in shipped updaters. The PR measurements show that cumulative growth in runtime output, Control UI assets, and extensions pushed the package over the guard while it remained below the shipped cap. The measured commits were unavailable locally, so I could not verify a specific trigger commit.",
+  "rank": 100020,
+  "sha": "ae160c8261f4661b53121000ab5c6130a82924eb",
+  "rubric": "v1.2"
+}

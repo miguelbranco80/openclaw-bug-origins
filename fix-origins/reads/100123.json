@@ -1,0 +1,17 @@
+{
+  "rank": 100123,
+  "sha": "b049ba2433beb480edab8388c580a5784a4157b5",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "5fc9b20d2492d0ed5a5431c62adf9f8e170c7ada",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new writer called `await fs.writeFile(tempPath, ...)` followed by `await fs.rename(tempPath, filePath)` with no cleanup if the rename failed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When Gemini CLI failed to publish an OAuth update, a temporary file containing the replacement credentials remained in the profile directory.",
+  "impact": "data-loss-or-duplication",
+  "area": "models/providers",
+  "summary": "The fix uses the shared atomic file replacement helper to remove failed Gemini CLI credential writes while preserving the previous credentials.",
+  "reasoning": "I checked the introducing commit and its parent, which already wrote Gemini OAuth credentials directly to `oauth_creds.json`. The introducing commit added atomic publication through a sibling temporary file, and that path leaked the staged copy on rename failure from its first version."
+}

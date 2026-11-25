@@ -1,0 +1,17 @@
+{
+  "rank": 100687,
+  "sha": "a86dd383534f8b3b6d1ebdc7e4b7601db65c6ad3",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "bbc8ea2ebc90873a63505942b6766e22fe8f7394",
+  "cause_pr": 166425,
+  "confidence": "high",
+  "cause_quote": "The fallback added `const published = await publishFileExclusive({ ...params, strategy: \"link-or-copy\" });` before `await fs.unlink(params.sourcePath);`, so an interruption between those calls could leave both manifest names.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an interrupted Doctor capture, update status could hide healthy recovery captures, and a later Doctor run could delete the interrupted capture once it was more than 30 days old.",
+  "impact": "data-loss-or-duplication",
+  "area": "update",
+  "summary": "The fix uses fs-safe's publication fallback directly and treats any remaining partial manifest as incomplete evidence that discovery lists, recovery validation rejects, and Doctor retirement preserves.",
+  "reasoning": "I checked the prior publisher and consumers: the atomic no-replace rename left only the partial manifest if interrupted before publication, and discovery listed that state as incomplete while retirement skipped it. The adapter introduced a window with both names, sending a hard-linked final through discovery's hard-link rejection and allowing retirement to delete the directory after reading its final manifest. The later fs-safe upgrade supplied a replacement fallback after the adapter had already introduced the interrupted state."
+}

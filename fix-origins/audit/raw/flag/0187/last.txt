@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The P1 item “Admit tokenless native bindings on Primary route updates” concerns a route guard that replaces a valid dashboard with a failure page during refresh. The supplied review versions do not raise the issue of a hidden page repeatedly retrying native authorization after its window closes or is replaced."
+  "outcome": null,
+  "note": "The P1 finding concerns tokenless native bindings being replaced with a failure page on route/URL refresh, a different path from a closed window's unloaded-but-live document reconnecting after native auth refusal."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100156,
+  "sha": "36e07b8f00243891da8649812863c8cf3ba95349",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "05a2844d39c267707fac5257136c1f80e1ef9b46",
+  "cause_pr": 144252,
+  "confidence": "medium",
+  "cause_quote": "The diff added `previousRegistry?: PluginRegistry` and a `const loadCandidate = () =>` closure that captures `options`, making the predecessor reachable through the loader scope retained by the existing resolver.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway memory could grow as retired plugin registries accumulated across live reloads.",
+  "impact": "slower-or-heavier",
+  "area": "plugins",
+  "summary": "The fix creates the capability resolver in a separate function so live replacements can release retired plugin registries.",
+  "reasoning": "The parent already had the inline resolver and lacked the predecessor option. PR #144252 introduced predecessor-aware loading and the closure that captures its options in the same change, and PR #145484 later wired that path into Gateway live reload. The fix's reported collection test exercises the loader directly, so the origin is inferred from the historical diff and the reported retaining path."
+}

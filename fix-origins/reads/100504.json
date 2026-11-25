@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "24ed521600a94b943290f0810f0bfad4e7fe3eae",
+  "cause_pr": 173455,
+  "confidence": "high",
+  "cause_quote": "The introducing diff used `resolveProtectedSandboxDirectory(sandbox, path.dirname(usage.readPath))`, so admission checked the synchronized copy alone.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see Auto Review available even when the sandbox guest could modify the installed helper\u2019s original package.",
+  "impact": "permissions",
+  "area": "plugins",
+  "summary": "The fix withholds installed-helper bindings when the original package directory is writable by the sandbox guest.",
+  "reasoning": "PR #173455 introduced sandboxed Auto Review and its installed-helper admission check together. I checked the introducing diff and the intervening path history, which showed that admission checked the copied directory from the outset and that the only intervening change in those paths removed an unrelated export.",
+  "rank": 100504,
+  "sha": "fcbab18aafee77016dfe84d8be619ff3bcbcab86",
+  "rubric": "v1.2"
+}

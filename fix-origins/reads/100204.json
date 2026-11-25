@@ -1,0 +1,17 @@
+{
+  "rank": 100204,
+  "sha": "0372963434f6a0b79394dbe330abde2ae34f2a89",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "1bf4c1d18c5f9557da29ccba5893cf102700b37c",
+  "cause_pr": 125675,
+  "confidence": "medium",
+  "cause_quote": "The introducing diff added `bootstrapWorkspaceDir: canonicalWorkspace` to embedded dispatch and left CLI bootstrap loading pointed at `workspaceDir`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a CLI-backed session running from a spawned project folder, the agent could lose its configured instructions, identity, user profile, and memory or pick up the project's files in their place.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "CLI sessions now load bootstrap files from the configured or explicitly overridden workspace and append only the execution folder's AGENTS.md while keeping that folder as the working directory.",
+  "reasoning": "PR #125675 introduced and documented separate bootstrap and execution workspaces, and its runtime layering covered the embedded paths. The parent commit already passed the execution workspace to CLI bootstrap loading, and the later CLI override still fell back to that same directory when the reply path supplied no override. The CLI reply path therefore lacked the new behavior from the start."
+}

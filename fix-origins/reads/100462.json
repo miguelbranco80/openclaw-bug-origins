@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In `openclaw plugins list`, a long plugin name could wrap onto a second line even when the terminal had room for it.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The table renderer now sizes columns using the widest visible line in each header and cell.",
+  "reasoning": "The oldest available table code already rendered explicit line breaks while measuring each cell with a single whole-string `visibleWidth` call. The later row-reduction refactor kept that calculation, and the plugin error-display change kept the existing multiline source-and-description layout. The offline path history stopped at a missing object before the July graft, so I could not verify when multiline sizing first became incorrect.",
+  "rank": 100462,
+  "sha": "f74c98887b38ab1e5c368ad50a34fd95f86400a9",
+  "rubric": "v1.2"
+}

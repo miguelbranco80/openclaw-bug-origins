@@ -1,0 +1,17 @@
+{
+  "rank": 100870,
+  "sha": "6a55147646fb5b02872afb8112c2b135b2529e43",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "97c7b35933924ff6db0a58fba255fef9e71f1e96",
+  "cause_pr": 145335,
+  "confidence": "medium",
+  "cause_quote": "The new `canRebind ? { rootRedirect: null, serviceRoot } : ...` branch admitted writable Bun services into a rebind path that threw when `!before.serviceNodeRunner || !before.serviceEnv`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator updating an eligible Bun Gateway from a different CLI installation could see `original-service-unverified` while the Gateway kept running on the old version.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix updates split-root Bun Gateways in place with their pinned Bun executable and prevents Doctor from stopping them for cross-root repair.",
+  "reasoning": "I checked the parent of #145335 and confirmed that managed Bun Gateways were already supported and that the planner unconditionally redirected packaged split-root updates to the service root. #145335 diverted eligible services into a rebind path whose compensation check required a Node runner, and the runner lookup returned no value for Bun. The PR's live proof confirms that the retained in-place route works with compatible Bun on PATH, but it did not directly replay the same writable-service setup on the parent of #145335."
+}

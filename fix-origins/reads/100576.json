@@ -1,0 +1,17 @@
+{
+  "rank": 100576,
+  "sha": "df6046b4b854a2a436a6d9416c8de2b97f6bee37",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a706d49cdb2b309e40a504e9308839a4d8992249",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "Adding `request: { headers: buildCopilotRuntimeHeaders() }` to `prepareRuntimeAuth` sent `\"Openai-Organization\": \"github-copilot\"` through credential protection, which registered the public provider ID for redaction.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Usage and cost reports attributed affected historical token totals to a provider named `***`.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Doctor uses recorded session events to restore masked provider IDs when a transcript row's model identifies a single provider.",
+  "reasoning": "The causing commit's parent already built Copilot's identity header for outgoing requests, and Copilot's runtime auth hook returned only the API key and base URL. I checked that usage reporting already read the stored `message.provider` and that the existing auth protector registered values returned in runtime auth headers for redaction. Moving the identity header into that hook caused transcript storage to replace `github-copilot` with `***`, which usage reporting then displayed."
+}

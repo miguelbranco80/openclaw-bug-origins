@@ -1,0 +1,17 @@
+{
+  "rank": 100470,
+  "sha": "3d47be1602702cf743d632668d13d86a1f34ffbd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "685fdc1f57c499f394e9dd5adab4e70caf120c69",
+  "cause_pr": 164853,
+  "confidence": "medium",
+  "cause_quote": "The CLI cleanup added `await closeOpenClawStateDatabaseAsync()` after waiting for pending CLI disposers, which could close the database while timed-out plugin work was still settling.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Fresh macOS setup failed after onboarding because the exiting CLI still owned SQLite maintenance, and the packaged build logged that a plugin source receipt could not be recorded.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "One-shot CLI commands now wait for timed-out plugin work to settle before closing shared state.",
+  "reasoning": "Before #164853, native plugin receipts already used the shared-state worker and cache retirement could defer admission cleanup, while the CLI command wrapper left the database open. #164853 added the close that could race with that deferred work. The source establishes the ordering change, but the evidence does not show whether the exact macOS setup failed at that revision."
+}

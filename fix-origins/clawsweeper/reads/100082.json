@@ -1,0 +1,8 @@
+{
+  "rank": 100082,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cRollback ordering and failure settlement\u201d evidence item describes how the gate is rejected on failure and shutdown, but raises no concern about rollback\u2019s catalog read waiting on that gate. The open items in all versions concern published-driver upgrade verification."
+}

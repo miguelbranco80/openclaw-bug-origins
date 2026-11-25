@@ -1,0 +1,8 @@
+{
+  "rank": 100352,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve optional group silence on generic runner failures\u201d item concerned suppressing generic failure notices. The at-merge Evidence section reported that optional silence was preserved and raised no concern about optional NO_REPLY entering finalization after a rejected tool call."
+}

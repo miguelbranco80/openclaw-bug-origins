@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On large agent fleets, Gateway health and status requests stalled or timed out during startup and post-ready model preparation.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix shares immutable discovery data and configuration fingerprints across agents and yields to the event loop during model preparation so the Gateway can handle requests.",
+  "reasoning": "The diffs show that #145190 added per-agent hashing of the full roster and plugin config, and #147405 added repeated activation-config hashing to the existing batch. An earlier large-roster fix documented a health-probe recovery on a different fixture, while #150223 measured its own changes against a baseline that already contained both hashing changes. The evidence identifies several contributors to the stalls and leaves the first failing revision undetermined.",
+  "rank": 100786,
+  "sha": "75d29a7c637bb938440afb59669807bff749f0c0",
+  "rubric": "v1.2"
+}

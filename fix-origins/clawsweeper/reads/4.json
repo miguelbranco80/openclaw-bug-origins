@@ -1,1 +1,8 @@
-{"rank": 4, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review lists only the unmanaged-resource lifecycle risk and config compatibility; earlier versions concern failed-plugin replacement rejection and merge conflicts. Nothing addresses native-command channels keeping candidates from the retired registry."}
+{
+  "rank": 4,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item concerns unmanaged third-party resources surviving lifecycle hook replay, and the earlier finding concerns startup errors blocking a healthy plugin\u2019s reload. Neither addresses Telegram command handlers staying bound to the retired registry when hot reload reuses command entries."
+}

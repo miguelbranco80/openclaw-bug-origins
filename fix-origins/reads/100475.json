@@ -1,0 +1,17 @@
+{
+  "rank": 100475,
+  "sha": "7ca35034f9ec45d9cdbb67ef103bc1e7a25cdeb8",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A captionless Matrix upload appeared in the agent\u2019s input as though the sender had typed the filename.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The Matrix monitor now uses the resolved media placeholder when a recognized attachment\u2019s body matches its explicit filename, while preserving differing captions.",
+  "reasoning": "The July 24 refactor moved the existing `return params.rawBody || params.mediaPlaceholder` branch from the Matrix handler into a helper, and the July 1 snapshot already passed the event body into that branch after a successful download. The offline path history stopped at a missing object at the shallow boundary, so I could not verify when the behavior first shipped or whether it had previously worked."
+}

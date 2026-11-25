@@ -1,0 +1,8 @@
+{
+  "rank": 100422,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The final-close revalidation item asks to update test expectations and treats the skipped second integrity scan as intended. It raises no concern about a reopened writer skipping the foreign-key check that triggers orphan recovery."
+}

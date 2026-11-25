@@ -1,0 +1,17 @@
+{
+  "rank": 254,
+  "sha": "8150463153c26a61b771d4000cd6e5238686ccfe",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "ba6dce8d054d275d35fe24bfe0be87ddf7ff5f74",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new isHumanAddressedChatMessage returned true for any message with selected mentions whose remaining text did not name the agent (`if (!params.mentions?.length) return false;` then only an agent-name check), so `Please make poster previews. cc @Bob` skipped the agent turn.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A chat request that copied a teammate (for example ending in 'cc @Bob') got no agent reply at all.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "Treats a message as human-addressed only when it starts with a selected person, so incidental or cc mentions after a request still run the agent.",
+  "reasoning": "Before ba6dce8d054d, selected human mentions did not suppress the agent, so requests with a cc mention were answered. That commit added isHumanAddressedChatMessage and wired chat.send to skip the agent turn whenever any person was selected and the agent was not named; its diff and docs ('A message with selected people is addressed to them, not to the agent') show the over-broad rule that suppressed cc'd requests, and the fix narrows it to leading mentions. The fix landed the day after, and ba6dce has no PR number in its subject."
+}

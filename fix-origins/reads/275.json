@@ -1,17 +1,17 @@
 {
-  "rank": 275,
-  "sha": "52934fb347d00592b947ada9f4a9bfdd15dbcddf",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The first reply in a new chat could wait up to the 10-second MCP listing deadline when an already-known MCP server was slow or hung while re-listing its tools.",
+  "user_saw": "A new chat could wait about ten seconds before the first model request if a previously discovered MCP server stopped answering tool-list requests.",
   "impact": "slower-or-heavier",
   "area": "agents",
-  "summary": "The bundle-MCP manager now keeps the last successful tool catalog for each server identity, so new chats, subagents and Code Mode can use it immediately while a refresh runs in the background, and graceful stdio close now waits for startup cleanup.",
-  "reasoning": "This is a performance and design change by the perf-loop lead: the PR calls advertising the last known schema during refresh an intentional trade-off. Before the fix, each new session runtime listed its servers under the existing bounded deadline. The removed code shows the catalog was cached only per runtime (`let lastListedCatalog` inside the runtime), with no evidence that new chats ever reused catalogs across runtimes. The blame candidates are older MCP lifecycle fixes, none of which made new chats slower, so no commit regressed this."
+  "summary": "The fix retains successful MCP catalogs across chats and refreshes them in the background while keeping the bounded wait for first-time discovery.",
+  "reasoning": "The oldest locally readable code already awaited catalog discovery during tool preparation, and the diff for #157855 raised the default listing timeout from 1.5 to 10 seconds, increasing an existing delay. The older path history stopped at a missing commit, so I could not verify when repeat discovery began or establish that new chats had previously reused known catalogs without waiting.",
+  "rank": 275,
+  "sha": "52934fb347d00592b947ada9f4a9bfdd15dbcddf",
+  "rubric": "v1.2"
 }

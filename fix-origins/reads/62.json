@@ -1,17 +1,17 @@
 {
   "rank": 62,
   "sha": "8ccba17502be656770e594fdd38f9fb4e85c545c",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "bc60cd94b485211c4bcf0c775e83537ea23c8653",
   "cause_pr": 169646,
-  "confidence": "low",
-  "cause_quote": "It wrapped the plugin execute call in `runWithAgentToolSourceExecutionScope(assertCurrent, async () => { ... params.execute({ ... assertCurrent, ...})` while only `requestToolPermission` stayed `AsyncLocalStorage.bind`-ed, so a warm transport kept the first turn's session-source scope for its later assertCurrent calls.",
+  "confidence": "medium",
+  "cause_quote": "The refactor added `const started = await runWithAgentToolSourceExecutionScope(assertCurrent, async () => {` around plugin startup and the first iterator read, while still passing `assertCurrent,` unbound, so the warm transport retained the first turn\u2019s prepared source scope.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Follow-up turns on a warm Claude CLI process sometimes failed before answering with \"LLM request rejected: Native tool authority capture is no longer active\", and resending worked.",
+  "user_saw": "A follow-up sent through a warm Claude CLI process could return \u201cLLM request rejected: Native tool authority capture is no longer active\u201d before Claude answered.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Binds every host callback handed to the plugin-owned CLI execute (assertCurrent, credential, private-input, turn status/interrupt, message injection, user input) to the current turn's async context so reused warm transports do not run them in the first turn's context.",
-  "reasoning": "Warm transports and the single bound requestToolPermission predate bc60cd94b48; that commit first ran execute inside a per-turn AsyncLocalStorage session-source scope without binding assertCurrent, which is the stale-context ingredient the fix's regression test exercises. The rest of the chain (stale scope refusal retiring the run's delegated authority, then captureNativeTools failing) is, by the fix PR's own admission, inferred from code and not reproduced on a live test, and I could not confirm that follow-up warm turns failed right after bc60 rather than after a later authority change, so confidence is low."
+  "summary": "The fix binds CLI plugin host callbacks to the current turn\u2019s async context so reused Claude CLI processes check the correct source authority.",
+  "reasoning": "The parent already had a test covering two successful turns on one Claude CLI child, and the host started the plugin outside the prepared source scope added by #169646. The new wrapper let transport callbacks inherit the first turn\u2019s scope and use it when checking later turns. The fix\u2019s test reproduced the stale context on main, while the production authority failure was observed on an integration fork and the exact refusing assertion was unconfirmed."
 }

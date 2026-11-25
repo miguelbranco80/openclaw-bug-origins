@@ -1,0 +1,17 @@
+{
+  "rank": 100513,
+  "sha": "83129f42703ff36ee68708f8fc0fa88eb7562a25",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "da69daeb72cf47fb76afe55e5216319fd4245933",
+  "cause_pr": 109668,
+  "confidence": "high",
+  "cause_quote": "The original reader ran `plutil -convert json -o -` on the entire Info.plist with `maxBuffer: 1024 * 1024` and returned `undefined` if conversion or output capture failed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The macOS app inventory showed an app without its valid bundle identifier when its Info.plist contained a date or unrelated metadata that exceeded the output limit.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The fix makes macOS app discovery extract `CFBundleIdentifier` directly as a string with `plutil`.",
+  "reasoning": "The introducing diff added the scanner with whole-plist JSON conversion and a 1 MiB output limit, making identifier lookup depend on unrelated metadata from the first release. First-parent history shows no intervening changes to the scanner, and the fix PR reports reproducing the missing identifier with a native date fixture against the original reader."
+}

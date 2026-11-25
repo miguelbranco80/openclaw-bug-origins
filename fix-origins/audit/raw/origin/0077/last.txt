@@ -1,0 +1,17 @@
+{
+  "rank": 77,
+  "sha": "0d058429ecc8910be66931e29a989aa3026dbe53",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Selecting Install on a recommended plugin card in chat opened the plugin page instead of installing, so a second Install click was needed there.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "Official plugin cards in chat now start the install in place through the shared install owner and config queue, and show progress, warnings and the result on the card.",
+  "reasoning": "At the fix's parent, docs/web/control-ui/chat.md said a card's Install button 'opens the capability details', and the plugin page deliberately cleared the ?action=install link ('installation still requires an explicit button click'). So the old flow was documented design, and this fix is a product change to install inline, not a repair of broken code. I did not trace when the ignored-hint design was introduced because a path-limited -S search timed out."
+}

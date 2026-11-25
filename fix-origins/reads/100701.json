@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Discord bot and persona replies displayed known aliases such as `@alice.` as literal text, so the intended recipient was not mentioned.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix preserves sentence-ending periods by trying the longest known alias first and uses balanced URL boundaries to resolve mentions after Markdown links while preserving URL contents.",
+  "reasoning": "The pre-fix resolver captured trailing periods in `[a-z0-9_.-]{2,32}` and looked up the entire captured handle, so an alias configured as `alice` did not match `alice.`. The July 1 snapshot already had both behaviors, and the available path history ends at a missing object before that snapshot, so I could not verify whether the defect shipped with alias resolution or a later change.",
+  "rank": 100701,
+  "sha": "16b768e560ca48a0b1c272b6dfe7963295a64e34",
+  "rubric": "v1.2"
+}

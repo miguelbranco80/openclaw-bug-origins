@@ -2,5 +2,6 @@
   "flagged": "related",
   "where": "earlier-only",
   "quote": "The outer timeout aborts only its signal, while the unresolved `CDPSession.send` remains the page transition tail; later screenshots, resizes, and device changes then wait indefinitely after the caller received a timeout.",
-  "note": "The earlier P1 finding identified the same queue blockage after an owner-session CDP screenshot timed out, while the shipped bug was triggered by Playwright capturing an inactive headless tab. The finding was dropped from the open items by merge."
+  "outcome": "answered",
+  "note": "The earlier P1 'Release the page queue after an owner-session screenshot timeout' concerns a hung capture holding the page queue, the same mechanism, but not the missing tab activation for background headless tabs that caused the hang; steipete's comment responds to 'the earlier screenshot-timeout finding'."
 }

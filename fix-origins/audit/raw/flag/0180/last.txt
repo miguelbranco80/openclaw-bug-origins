@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "ClawSweeper’s Before merge items covered cloud cleanup evidence and approval of the public provider hook. The human review raised a surviving descendant of the Claude auth probe, while the later bug came from killing the probe during OAuth refresh and leaving the lock behind."
+  "outcome": null,
+  "note": "Review items concern the public prepareSyntheticAuth hook, cloud cleanup proof and skill-resource root binding; nothing flags that cancelling the Claude auth probe kills it mid-refresh (human comments actually requested the cancellable, process-tree-killing probe)."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100731,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Missing end-to-end proof: The supplied native fixture does not establish completed shared automatic inference, real systemd or Windows provisioning, or a latest-stable upgrade preserving configuration, profiles, and runtime.",
+  "outcome": "dropped",
+  "note": "The earlier Tests item called out missing proof of real Windows provisioning, which could have exposed the failure on a fresh install. It did not identify the installer\u2019s rejection of the Dev channel, and the review at merge only required upgrade compatibility proof."
+}

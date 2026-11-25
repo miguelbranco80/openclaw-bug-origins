@@ -1,0 +1,8 @@
+{
+  "rank": 100172,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review endorsed gating advertised OS choices, and the Shared version gate evidence described rejecting WSL2 provisioning on unsupported or unverified versions. The only Before merge item concerned data-model compatibility, with no warning that the picker hid Windows (WSL2) without upgrade instructions."
+}

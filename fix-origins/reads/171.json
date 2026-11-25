@@ -1,7 +1,4 @@
 {
-  "rank": 171,
-  "sha": "2874436966446987f2f72065ecea17a10dbaec87",
-  "rubric": "v1.1",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +6,12 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The static Control UI startup-failure page looked like a plain card disconnected from the app's design.",
+  "user_saw": "If the Control UI failed to start, users saw a standalone recovery card that looked different from the rest of the app.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Restyled the static Control UI mount fallback page with a placeholder app shell, animated mascot, and a Reload/Troubleshooting recovery state, removing the Keep waiting action.",
-  "reasoning": "The PR describes a design change (the fallback 'looks disconnected from the rest of the app') and says retry, retirement and reload behavior are preserved; the diff is CSS and static markup only. No failure is reported, so this is a presentation/product change, not a defect."
+  "summary": "The fix restyled the static startup fallback to match the Control UI shell and simplified its recovery controls while preserving automatic retries and late startup.",
+  "reasoning": "The PR describes a visual mismatch, and the diff replaces the recovery card with the approved shell and updates its copy and controls. I checked the preceding holding-screen commit (#191935), which updated the existing card\u2019s messages and action visibility. The startup failure is the condition that displays the fallback, and this change addresses its presentation.",
+  "rank": 171,
+  "sha": "2874436966446987f2f72065ecea17a10dbaec87",
+  "rubric": "v1.2"
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100720,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "A plugin whose native companion directory cannot be preserved without file symlinks now reports a load error; maintainers have not accepted that upgrade behavior or an operator recovery path.",
+  "outcome": "open-at-merge",
+  "note": "The Before merge item and Native companion fallback evidence point to the hardlink path and its companion checks. The warning covers rejection when companions cannot be preserved and leaves unaddressed the repeated synchronous checks that exhausted the catalog deadline and restarted capture."
+}

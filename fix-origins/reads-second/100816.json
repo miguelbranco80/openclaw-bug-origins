@@ -1,0 +1,17 @@
+{
+  "rank": 100816,
+  "sha": "d038d1dbbfcf3ed5010912301a7d6c406003d231",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "fdae00fe82e27dce6c7e55b3ea9b92ca44a1dd73",
+  "cause_pr": 156033,
+  "confidence": "high",
+  "cause_quote": "The adapter added `if (directMessageOnly && input.conversation.kind !== \"direct\")`, which rejected the runner's hard-coded group probe after a direct-message scenario.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "QA operators saw repeated Telegram latency checks fail or go to a different conversation after the selected scenario ran.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The Telegram QA runner now probes the selected attempt's observed conversation and topic as the primary participant, starts with a fresh message, and rejects replies from other topics.",
+  "reasoning": "In the causing commit's parent, the runner already supplied a synthetic group and sender, and the adapter used the chat opened for the scenario while accepting the supplied logical labels. The causing diff added participant and route validation while leaving that probe input in place, so a direct-message-only run rejected the group probe and other runs could reject its sender or logical conversation."
+}

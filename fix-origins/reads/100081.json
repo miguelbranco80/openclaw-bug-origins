@@ -1,0 +1,17 @@
+{
+  "rank": 100081,
+  "sha": "5ad2c6b4b44cbb07a7a1475e72699e962b2867b6",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "53dcaaedec195fdaf5af06357557c706d3c0caf5",
+  "cause_pr": 128548,
+  "confidence": "high",
+  "cause_quote": "The roles commit added `if (!role || role.agents === \"*\" || role.agents.includes(params.agentId))` inside `authorizeGatewaySessionCreation` while leaving `agents.list` to return the roster without applying the new allowlist.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators with restricted roles saw agents outside their allowlist in the Control UI picker and agent directory.",
+  "impact": "permissions",
+  "area": "ui",
+  "summary": "The Gateway filters the agent roster by the current operator role, and the Control UI reconciles its selection against live discovery after reloads and reconnects.",
+  "reasoning": "The roles launch introduced per-agent restrictions for session creation and runs while the existing Control UI already populated its picker through `agents.list`. I checked the handler before and at that launch and confirmed that it returned the same role-blind roster, so restricted operators could see excluded agents from the first release of named roles. Later roster batching and model-policy changes preserved that behavior."
+}

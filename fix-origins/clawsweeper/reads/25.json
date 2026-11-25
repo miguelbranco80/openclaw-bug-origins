@@ -1,1 +1,8 @@
-{"rank": 25, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The merge-time review lists only compatibility and config items, and earlier versions concern allocation authority and downgrade; nothing addresses the pending-device panel conflating status-read failures with startup failures."}
+{
+  "rank": 25,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item concerns host and provider compatibility, and the earlier \u201cAdd real behavior proof\u201d item cites Portal screenshots while asking for allocation-authority tests. The available reviews never address the Portal\u2019s startup-failure message for failed status checks or stopping or unavailable devices."
+}

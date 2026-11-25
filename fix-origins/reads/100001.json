@@ -1,0 +1,17 @@
+{
+  "rank": 100001,
+  "sha": "d88b6f8332a27dc36d92a473db4fd05af05e3f8f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "55ce95fac803ae9ef54438748a8c610825960729",
+  "cause_pr": 125057,
+  "confidence": "high",
+  "cause_quote": "The new Sessions assignment handler used `void this.context?.sessions.assignOwner(row.key, action.owner);`, discarding the outcome the page needed to display a rejected assignment.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A rejected assignment left the session unchanged without an alert, and the Assign to menu showed the current owner as unchecked and selectable.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix displays assignment errors on the active Sessions page and marks the current owner as checked and disabled.",
+  "reasoning": "The parent had no Sessions owner-assignment handler, and PR #125057 added the handler that discarded the result. PR #136978 later made owner choices visible through the shared menu, where Sessions still omitted the current owner binding. The cause fields identify the silent failure, which was present from the introduction of the Sessions handler."
+}

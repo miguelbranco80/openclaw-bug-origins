@@ -1,0 +1,17 @@
+{
+  "rank": 100088,
+  "sha": "36f471b55b8abb38f80d6f413e633f6f980e6cb3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a9f675839a0d7bdbcef9a4371513f2f8c91a1d88",
+  "cause_pr": 162176,
+  "confidence": "high",
+  "cause_quote": "The initial resolver rejected parent hops through `!isAgentSessionKey(sessionKey, agentId)` and denied roots without a stored chat type through `return deny(`root session ${sessionKey} has no durable chat type`);`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Owners saw \u201cno host memory authority\u201d when using memory tools in a dashboard session first run by sessions_send or cron, or in a subagent spawned into another agent.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix records new dashboard roots as direct chats, grants owner-private memory to eligible cross-agent subagents, makes audience denials visible in logs, and tightens operator memory reads.",
+  "reasoning": "PR #162176 introduced host-resolved memory audiences with both denials already in place. I checked its introducing diff and confirmed that dashboard session creation at that revision did not supply a chat type and that the later denial-classification change preserved both restrictions."
+}

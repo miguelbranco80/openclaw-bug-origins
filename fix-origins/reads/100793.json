@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "77c84de5109a42d5a53b5a0fa4c1d9b87ae12bbd",
+  "cause_pr": null,
+  "confidence": "medium",
+  "cause_quote": "Telegram polling changed `return ISOLATED_INGRESS_BACKLOG_STALL_MS;` to `return ISOLATED_INGRESS_ADOPTION_STALL_MS;`, cutting the default watchdog from 25 minutes to five while spool completion waited for turn adoption.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Telegram message was retried repeatedly without receiving a reply when its memory flush outlasted the ingress watchdog.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix starts the ingress adoption heartbeat when a runnable memory flush begins and stops it when the flush exits.",
+  "reasoning": "The parent revision already awaited memory flush before turn adoption, and its default polling watchdog allowed work lasting between five and 25 minutes to finish. The July 10 commit shortened that window, the core drain migration carried it forward, and #150040 added renewal for compaction after the flush. The historical comparison is based on source inspection, while the supplied runtime reproduction used a shorter watchdog on a later revision.",
+  "rank": 100793,
+  "sha": "30f5c44accdd0cb44990f10b5c5ec8781c40ea2e",
+  "rubric": "v1.2"
+}

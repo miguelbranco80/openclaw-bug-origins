@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Standalone `openclaw doctor --non-interactive` could print a plugin load error, then say \u201cDoctor complete\u201d and exit with status 0.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Doctor now retains plugin load failures through completion, reports the plugin, error and source path, and exits 1 in standalone non-interactive runs while preserving updater warnings.",
+  "reasoning": "The fix\u2019s tests show that both a syntax error and an ENOSPC error reached the loader\u2019s registry without changing Doctor\u2019s exit status. The metadata-based workspace report and successful completion path both predate the July 1 history boundary, and the later inspection cleanup diff provides no evidence that Doctor previously used those runtime errors to determine its exit status. The available offline history could not establish when that reporting gap began.",
+  "rank": 100073,
+  "sha": "2416fade55c5dc7cb8bd1627a7243ca64d8031df",
+  "rubric": "v1.2"
+}

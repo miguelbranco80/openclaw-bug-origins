@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "9c93bc347ceca939d4dfd8d934f15ecc94b7a45a",
+  "cause_pr": 160946,
+  "confidence": "medium",
+  "cause_quote": "The diff added `{ retainedTransport: true, nativeSource: state.nativeSource }` to the existing SQLite read pool, moving execution workers under a process-owned supervisor that the fixture's teardown guard counted as a leak.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "The grouped Codex tests failed at teardown because the guard reported the retained worker supervisor as a leaked thread.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The Codex fixture teardown guard now uses native lifecycle counters to verify that direct workers and retained execution children have exited, while allowing the process-owned supervisor to stay alive.",
+  "reasoning": "The parent revision created the existing pool's workers directly, so the fixture's `process.on(\"worker\")` guard could observe their native exit through `threadId`. The causing diff moved worker creation into a retained supervisor, leaving the guard able to see the supervisor but unable to see its children. The fix message records the grouped failure and repair, though the exact group has no verified passing run from before the causing commit.",
+  "rank": 100444,
+  "sha": "1b8d481271c110ad8ff738f9103580af3d1b5c2b",
+  "rubric": "v1.2"
+}

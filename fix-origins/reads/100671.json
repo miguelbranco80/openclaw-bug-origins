@@ -1,0 +1,17 @@
+{
+  "rank": 100671,
+  "sha": "d607801a534ef1711cb8b23e85bb456efba88477",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "1bcc4c5e7063e2614208e7408be181ade80e0335",
+  "user_visible": "yes",
+  "user_saw": "Queued web chat messages showed retry errors during suspension and could stay queued after the Gateway resumed on the same connection.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The web chat outbox now pauses during Gateway suspension or restart, quietly parks sends refused during the transition, and resumes when the Gateway accepts work again.",
+  "reasoning": "I checked that #102781 already queued web chat sends across reconnects and honored retryable Gateway errors with a timer. The cooperative suspension commit #103618 introduced a new condition for that existing outbox by returning retryable `gateway-suspending` errors on an open WebSocket. The later suspension event made admission changes visible to the UI, but the fix's parent still keyed outbox recovery to connection and credential readiness, so resuming on the same socket did not wake it."
+}

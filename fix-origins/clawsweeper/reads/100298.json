@@ -1,0 +1,8 @@
+{
+  "rank": 100298,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items raised Gateway preference scoping, reconnect behavior, and preserving stylesheet ownership during conflict resolution. The Evidence section described theme subscriptions without raising the risk that listeners could fire before a deferred palette was applied, leaving open MCP apps with stale colors."
+}

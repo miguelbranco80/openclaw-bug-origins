@@ -2,6 +2,6 @@
  {
   "stem": "q03-bugs-per-100-commits-by-title",
   "title": "Bugs per 100 commits, by how the change was titled",
-  "reading": "Each bar is a rate: bugs fixed in the three weeks that trace back to commits with that title, per 100 such commits made since 10 September. The three titles cover every commit."
+  "reading": "Each bar is a rate: bugs fixed in the period studied that trace back to commits with that title, per 100 such commits made since 10 September. The three titles cover every commit."
  }
 ]

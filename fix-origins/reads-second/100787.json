@@ -1,0 +1,17 @@
+{
+  "rank": 100787,
+  "sha": "9b5ac9968707ac3bd40eed60f82b8a04f34a637e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9c2335a2d07e397ac2e30aa73f9412b77479a9e9",
+  "cause_pr": 158703,
+  "confidence": "high",
+  "cause_quote": "The Ultrafast implementation passed `modelProvider` directly and returned the baseline tier when `params.modelProvider !== \"openai\" && params.modelProvider !== CODEX_RESPONSES_OAUTH_PROVIDER`, a condition that also matches an omitted provider.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With ChatGPT sign-in, Codex used Ultrafast on the first turn and dropped to Fast on follow-up turns.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix uses the run's provider when the thread omits it so resumed and warm turns can check the account catalog for Ultrafast support.",
+  "reasoning": "The parent of #158703 already omitted provider attribution from stored native-auth bindings, normalized it on resume, and reused the stored value on warm turns. #158703 introduced the Ultrafast check with a guard that rejected that omitted value, and #160352 later added explicit Ultrafast selection while retaining the same provider argument."
+}

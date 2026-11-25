@@ -1,0 +1,8 @@
+{
+  "rank": 246,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cProve revocation before a recovered automation commit\u201d item asked for proof that revoked callers were blocked. The at-merge \u201cReview config compatibility\u201d item was generic, and neither item raised the risk that changing a trusted-proxy header could invalidate a saved source whose operator grant was still valid."
+}

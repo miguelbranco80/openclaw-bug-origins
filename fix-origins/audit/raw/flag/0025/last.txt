@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge “Before merge” items concern compatibility, and the earlier Portal screenshot mention is part of a request for allocation-authority proof. No item in the supplied review material addresses the Portal panel displaying a startup failure after a failed status check or when a device is stopping or unavailable."
+  "outcome": null,
+  "note": "The merge-time review lists only compatibility and config items, and earlier versions concern allocation authority and downgrade; nothing addresses the pending-device panel conflating status-read failures with startup failures."
 }

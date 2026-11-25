@@ -1,0 +1,17 @@
+{
+  "rank": 100094,
+  "sha": "f36f0cc6fca969f191f2e9ce2d01ebb5efab7308",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "38dd3c28dd42f8c853f35b37ac688c4701bcf474",
+  "cause_pr": 161260,
+  "confidence": "high",
+  "cause_quote": "The diff added `turn.pendingBackgroundTaskIds.add(task.task_id)` for every `local_agent` or `local_workflow` in a background snapshot, so a nested task stayed pending after it disappeared from the list because its completion went to the launching agent.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Claude CLI reply could stay in progress after a background agent launched a nested agent or workflow, even after the parent produced its final answer.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix uses `parent_task_id` to exclude nested agents and workflows from the parent reply's completion accounting.",
+  "reasoning": "I traced the fix's stdio event sequence through the causing commit's parent, where the empty background snapshot cleared the agent and workflow hold and allowed the final result to complete. PR #161260 made the hold persist until a completion was consumed on the parent stream, which never happened for the nested task in that sequence. PR #170322 later preserved the bug by assigning nested tasks the parent task's input owner."
+}

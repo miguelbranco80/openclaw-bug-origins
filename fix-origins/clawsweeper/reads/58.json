@@ -1,1 +1,8 @@
-{"rank": 58, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review lists no Before merge items and no findings; the earlier version only asked for real behavior proof, patch quality and a correctness assessment. Nothing addresses engine-selected messages lacking timestamps or the toISOString conversion."}
+{
+  "rank": 58,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAdd real behavior proof\u201d item focused on excluded history reappearing during finalization. The at-merge Findings section was empty, and the review raised no concern about timestamp conversion or missing timestamps in context-engine messages."
+}

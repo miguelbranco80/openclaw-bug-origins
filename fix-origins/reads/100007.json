@@ -1,0 +1,17 @@
+{
+  "rank": 100007,
+  "sha": "c52cd70888065342438105abfde49e203a53d8e5",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On POSIX, `config patch --file` and `config set --batch-file` hung when given a named pipe with no writer.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix opens config mutation input files in nonblocking mode on POSIX so the regular-file check can promptly reject named pipes.",
+  "reasoning": "The July bounded-read change replaced `fs.readFileSync(path, \"utf8\")`, which already opened both inputs in blocking mode, with an explicit blocking open. The August change added the regular-file check after that open, where it could only run once a writer connected. The earlier blocking reads predate the shallow boundary, and the available offline history did not establish when they were introduced or whether either command had previously rejected named pipes promptly."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100683,
+  "sha": "7a830027e14100750cae6e8a47bf9e6a7fdf7bd8",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "bd8b3c806d4da76d0b21cbc3a8b5264eff3b1a2b",
+  "cause_pr": 138746,
+  "confidence": "high",
+  "cause_quote": "The new classifier ended with `else { reason = \"provenance-invalid\"; }`, so a consistent npm record for a package outside the official catalog fell into the invalid category.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Plugin inspection labeled a valid third-party npm install `provenance-invalid`, and the hook-turn refusal suggested reinstalling from an official source.",
+  "impact": "presentation",
+  "area": "plugins",
+  "summary": "The fix reports consistent non-catalog npm installs as `third-party-npm` and updates the associated diagnostics while preserving official trust requirements.",
+  "reasoning": "I checked the introducing diff, which replaced a Boolean official-trust check with named diagnostics and exposed them in plugin inspection. The official trust predicate already rejected non-catalog packages, so complete third-party records reached the invalid fallback from the first version of the diagnostic. The later extraction into the shared matcher preserved that fallback."
+}

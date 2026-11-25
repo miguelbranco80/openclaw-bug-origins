@@ -1,0 +1,8 @@
+{
+  "rank": 100028,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Resource lifecycle item describes releasing neighboring images on eviction or close. Neither the review at merge nor the recorded earlier items raised the risk of losing a decoded image while its gallery item was still cached and downloading it again on return."
+}

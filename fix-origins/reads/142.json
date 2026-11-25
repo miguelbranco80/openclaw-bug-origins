@@ -1,17 +1,17 @@
 {
   "rank": 142,
   "sha": "1bf2a85e6ab5918472f7df1b8cf2cb0c9f056a2e",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "f5c46de8ac504603ca0015cc30fcc1d6218b29fa",
   "cause_pr": 120496,
   "confidence": "medium",
-  "cause_quote": "compactNativeCliSession was added forwarding the raw session pin: `...(cliSessionBinding?.authProfileId ? { authProfileId: cliSessionBinding.authProfileId } : params.compactParams.authProfileId ? { authProfileId: params.compactParams.authProfileId } : {})`, bypassing resolveCliExecutionAuthProfileId.",
+  "cause_quote": "The newly introduced native compaction path passed `{ authProfileId: params.compactParams.authProfileId }` directly to `runCliAgent` whenever the native session binding had no auth profile.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Running /compact on a Claude CLI subscription session could run the CLI on the stored, metered Anthropic API key instead of the CLI login.",
-  "impact": "permissions",
+  "user_saw": "Running /compact on a Claude CLI subscription session could charge the stored Anthropic API key while normal replies used the CLI login.",
+  "impact": "failed-every-time",
   "area": "agents",
-  "summary": "Native CLI compaction now converts the session auth pin through the same CLI account selector as reply turns, dropping automatic model-provider pins and refusing with recovery guidance when an explicit selection is missing.",
-  "reasoning": "GraphQL blame shows the removed forwarding lines date to the native-compaction code introduced by #120496 (f5c46de8, 2026-08-14); its diff adds the raw-pin forwarding, while the CLI account selector (cli-execution-auth.ts, from July 2026 per full history) already existed for the reply path, so compaction skipped it from the start. Confidence is medium because the fix's author could not reach the precondition through current shipped flows and the selector's automatic-pin handling was later refined (b9b2f455), so the exact conditions under which the raw pin was billed varied over time."
+  "summary": "Manual native CLI compaction now uses the same account selector as reply turns and gives recovery guidance when an explicitly selected account is missing.",
+  "reasoning": "PR #120496 introduced native manual CLI compaction and forwarded the raw session auth pin from its first implementation, bypassing the existing Claude CLI account selector. The runner at that commit treated the forwarded pin as the requested credential, but the fix PR could reproduce the failure only at the dispatch boundary on current main, and I could not verify how often an automatic pin reached that boundary in the original release."
 }

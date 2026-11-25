@@ -1,17 +1,17 @@
 {
-  "rank": 149,
-  "sha": "0468e735508a5ceafca5e855479a7a870f99cbc8",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A `--provider-env`, MCP `--env` or MCP `--header` entry named `__proto__` was silently dropped from the saved config; now such reserved keys get an error.",
-  "impact": "other",
+  "user_saw": "The CLI accepted a `__proto__` assignment for a provider environment variable, MCP environment variable, or MCP header, then silently omitted it from the saved configuration.",
+  "impact": "failed-every-time",
   "area": "cli",
-  "summary": "Replaced two duplicate KEY=VALUE parsers with one shared parser that rejects __proto__, constructor and prototype keys using the existing isBlockedObjectKey guard.",
-  "reasoning": "This is input hardening against reserved prototype keys with no reported user failure; the PR itself states the baseline only silently drops string-valued `__proto__` keys and does not demonstrate prototype mutation, and no real user would name an env var or header `__proto__`. It also deduplicates parsers, a cleanup."
+  "summary": "The fix gives provider and MCP assignments a shared parser that rejects reserved keys before saving configuration.",
+  "reasoning": "Both parsers already assigned string values directly into ordinary objects at the July 1 shallow boundary, so assigning to `__proto__` silently dropped the value. The July config CLI split preserved the provider parser's assignment, and local path history could not reach older commits to establish when either parser first shipped with that behavior.",
+  "rank": 149,
+  "sha": "0468e735508a5ceafca5e855479a7a870f99cbc8",
+  "rubric": "v1.2"
 }

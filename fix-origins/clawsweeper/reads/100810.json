@@ -1,0 +1,8 @@
+{
+  "rank": 100810,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The retained SQLite handle and writer-exclusion changes need fresh-install and upgrade compatibility evidence, including contention and failed-close behavior.",
+  "outcome": "dropped",
+  "note": "The earlier Resolve merge risk item called for testing contention on the retained SQLite write path, which could have exposed the Gateway stall during task retention. It left the synchronous wait unspecified, and the review at merge dropped the contention check."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100363,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The new root filter only runs on `roots`, but normal sidebar selection removes subagent/spawned rows in `filterVisibleSessionRows` before calling this projector.",
+  "outcome": "answered",
+  "note": "The earlier \u201cPromote categorized children before tree projection\u201d finding identified the shared filter that excluded spawned rows, but its requested sidebar fix left the search and shared navigation exclusion in place. The maintainer confirmed the sidebar fix and said global child visibility remained unchanged."
+}

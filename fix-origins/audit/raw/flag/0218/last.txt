@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The P2 item “Propagate interruption into migrated candidate finalization” concerns a parent signal that never reaches the child process. The reported hang occurs when the Gateway readiness poller keeps running after its own command scope is canceled."
+  "outcome": null,
+  "note": "The only finding is that interruption does not propagate into migrated candidate finalization in a child process; the bug is the restart readiness poller ignoring the stopped forward scope in the local verifying path. Different code path, so not counted even as related (lower level chosen when unsure)."
 }

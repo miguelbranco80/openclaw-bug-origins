@@ -1,17 +1,17 @@
 {
   "rank": 187,
   "sha": "0181ef700d4aaaf75a5d72c9ac95092cd132996c",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "28e16eedc374234f8d71ac28ee204d99fa91504a",
   "cause_pr": 159860,
-  "confidence": "medium",
-  "cause_quote": "The commit added the native Gateway auth bridge, which refuses a document once `canUseNativeGatewayAuth` fails (\"Native gateway authentication is unavailable for this document.\"), while ui/src/api/gateway.ts marks that refusal `retryable: error instanceof NativeGatewayAuthUnavailableError` and closes with \"native authorization unavailable\" without stopping; a closed window's page, only stopped via `webView.stopLoading()`, keeps retrying.",
+  "confidence": "high",
+  "cause_quote": "The native challenge-auth change added `documentHost.isNativeAuthAvailable = { [weak self] in self?.hasRetainedWindow == true }` and `retry: this.nativeAuthError.retryable`, so a retained page could keep retrying after its closed window lost authority.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After closing or replacing a natively authenticated macOS Dashboard window, its hidden page kept reconnecting every 12-16 s and the Gateway log filled with thousands of 'closed before connect code=4008 reason=native authorization unavailable' warnings.",
+  "user_saw": "After a connection drop, operators could see repeated native authorization warnings in the Gateway logs even though the macOS Dashboard was closed.",
   "impact": "sequence-or-timing",
   "area": "apps",
-  "summary": "Retires and unloads the native Dashboard document when its window closes or is replaced (remembering a trusted route to reload on reopen), and rate-limits repeated pre-connect 4008 native-authorization-unavailable Gateway warnings.",
-  "reasoning": "Issue #168743 reports the 4008 refusal loop starting 2026-10-03, days after #159860 (28e16ee, 2026-09-28) created ControlUINativeGatewayAuthMessageHandler.swift and DashboardNativeGatewayAuth.swift (git log shows no earlier commits) and made the refusal retryable in the UI client; close handling already only called stopLoading, which never unloaded the committed page. So the refusal loop for closed windows shipped with the native auth bridge rather than being introduced later. Medium because I could not confirm exactly which bridge condition fails after close (likely hasCurrentBrowserSession after nativeBrowser.dispose)."
+  "summary": "The fix unloads natively authenticated Dashboard documents on close or replacement, preserves their trusted route and WebView storage for reopening, and aggregates repeated matching Gateway warnings.",
+  "reasoning": "The parent used injected startup credentials, and #159860 introduced the native challenge bridge, the window-lifetime authorization check, and retryable handling of WebKit bridge refusals together. I checked the controller at that commit and confirmed that close and replacement still only called `webView.stopLoading()`, which left the committed document alive to retry after a disconnect."
 }

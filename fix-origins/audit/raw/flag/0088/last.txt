@@ -1,1 +1,0 @@
-{"flagged":"none","where":null,"quote":null,"note":"The at-merge finding covered a lost recovery flag after a failed skill replacement, and the earlier compatibility findings covered missing upgrade guidance. No review item raised the loss of reader diagnostics when a downloaded template had an invalid CLAW.md."}

@@ -1,0 +1,17 @@
+{
+  "rank": 100685,
+  "sha": "82acfabb374991cdb9abeb8bb89984f0cb667733",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9344233e7a66fe36479d55b7f7ae8e10eb886586",
+  "cause_pr": 185730,
+  "confidence": "high",
+  "cause_quote": "The refactor replaced `preserveLeaf: attempt.skipPreparedUserTurnMessage === true || isMainSessionRestartRecoveryInputProvenance(attempt.inputProvenance)` with `preserveLeaf: attempt.skipPreparedUserTurnMessage === true`, allowing orphan repair to detach the original prompt when the new restart input arrived.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the Gateway restarted before the first reply, the Control UI could show the resume instruction and completed response while the original prompt disappeared from chat history.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps the unanswered user prompt in active chat history when Gateway recovery adds a separate system resume instruction.",
+  "reasoning": "I checked the refactor's parent, where restart recovery explicitly preserved the original user message and a persisted-history test asserted that the same message ID remained on the active branch after reopening. The refactor removed that protection while switching to a fresh input with source `restart`, which the remaining preservation guard did not recognize."
+}

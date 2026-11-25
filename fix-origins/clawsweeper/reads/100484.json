@@ -1,0 +1,8 @@
+{
+  "rank": 100484,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "The new fail-closed recovery path can prevent Codex stdio startup when process inspection or bounded cleanup is unavailable; that is intentional, but requires maintainer acceptance for existing POSIX deployments.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item under Before merge warns that unavailable process inspection blocks Codex stdio startup, and the earlier review identifies the required post-spawn `ps` snapshot that the macOS sandbox denied. The human comment addresses early child events, orphan cleanup, and Linux procfs, leaving the macOS startup failure unanswered."
+}

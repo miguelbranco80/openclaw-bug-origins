@@ -1,0 +1,17 @@
+{
+  "rank": 100690,
+  "sha": "61f3e9310ac0e73ca3785c1bff7ab11b0a6cfb49",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "aef29790c63466236103d1ae4886bbd438f3a810",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new `if (cursorReset && !isHistoryCursor(response) && !requests.windowReset?.isCurrent())` guard skipped prefix recovery on the superseding read because the first read had already cleared the rejected cursor.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After stopping a long chat turn, the opening prompt and earlier transcript rows disappeared when a refresh interrupted history recovery.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps the rejected history cursor until a replacement snapshot is accepted, so a superseding refresh can repeat the reset and restore the earlier rows.",
+  "reasoning": "The October 30 commit introduced Stop-specific prefix recovery and made it conditional on the current read receiving a cursor reset, while retaining the earlier behavior of clearing the cursor before the fallback finished. I checked its parent and the later leaf-advance fix: superseding refreshes already existed, and the leaf-advance fix widened recovery eligibility while leaving the reset guard in place. The new recovery path could therefore be bypassed by a superseding refresh from the start."
+}

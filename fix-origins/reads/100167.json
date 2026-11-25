@@ -1,0 +1,17 @@
+{
+  "rank": 100167,
+  "sha": "3bfd786bfd74b458ecc43678932ad3294dba546e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "961f5c0b709962bd1338edb4d71559583fbd4f2f",
+  "cause_pr": 166553,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `sourceIngress: isBrowserOperatorUiClient(client.connect.client) ? \"control-ui\" : \"internal\"`, so the new non-browser operator claims fell under the existing delegated-recovery guard after inter-session steering.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An authenticated CLI or API operator\u2019s interrupted task failed to resume after a Gateway restart if an inter-session steering message was the latest input.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets the Gateway restore tasks with a retained authenticated operator claim after inter-session steering while still rechecking current authorization.",
+  "reasoning": "Path history and the introducing diff show that #166553 added durable operator claims and Gateway restoration, including claims for non-browser operators. The recovery store at that commit refused every `inter_session` transcript tail before dispatch could restore the operator, and #170252 later exempted only Control UI and channel claims. The reproduced non-browser case was therefore blocked from the first version of operator-identity restoration."
+}

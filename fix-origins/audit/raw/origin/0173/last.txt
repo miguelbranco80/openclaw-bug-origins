@@ -1,0 +1,17 @@
+{
+  "rank": 173,
+  "sha": "bde2d30676c5048c8f1cd996a488b02f40cd28dd",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "19ac11902cdcdd23e91be0028aae1f2b7b7b13c8",
+  "cause_pr": 112811,
+  "confidence": "high",
+  "cause_quote": "The new createMSTeamsHandlerConfigReader reads from the raw `deps.accountPolicyCfg` and, for the default account, returns `(lastProjection = current)` on any reload, replacing the startup-resolved allowlists that the handler previously kept via `createRuntimeConfigReader(cfg)` on the resolved config.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an unrelated config hot reload, allowlisted Teams DM and group senders (and name-keyed team/channel entries) stopped getting replies until the Teams channel restarted.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The Teams handler config reader now keeps startup-resolved allowFrom, groupAllowFrom and teams across reloads while those raw allowlist inputs are unchanged.",
+  "reasoning": "Before 19ac11902cdc the message handler used `createRuntimeConfigReader(cfg)` on the startup-resolved config, which does not follow the runtime snapshot when it differs, so resolved allowlists lived for the channel's lifetime. 19ac11902cdc (multi-account support) switched to a reader over the raw accountPolicyCfg that returns raw `current` after a reload for the default account, dropping resolved identities; the PR's main-vs-2026.10.8 runs confirm the earlier release worked."
+}

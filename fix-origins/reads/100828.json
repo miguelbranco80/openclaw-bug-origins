@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "c06f21ddfad2ee1e65252e13d1f7a92b439269b4",
+  "cause_pr": 143905,
+  "confidence": "high",
+  "cause_quote": "The grantless finalizer replaced `await finalizeInput(input);` with a path that restores the original lease selectors and calls `const fence = await executor.enter(input.params.result.root ?? input.params.root);`, forcing the child to acquire the installation lease its parent still holds.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A managed Git or npm upgrade from 2026.9.3 could stop the Gateway, report \u201cAnother update executor owns this installation,\u201d and leave the Gateway stopped.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix lets a verified legacy finalizer use its live parent\u2019s lease for the same installation so it can verify the Gateway restart and publish the upgrade result.",
+  "reasoning": "I checked the earlier producer, which sent no executor grant and waited for `result.json`, and the worker immediately before #143905, which ran grantless finalization and wrote that result without acquiring a second installation lease. The #143905 diff routed that existing path through executor admission, where the worker\u2019s PID differed from the lease holder\u2019s PID and the fresh acquisition was refused. The fix bundle reports pre-fix failures and post-fix success for both Git and npm using the real worker and lease store with synthetic legacy input.",
+  "rank": 100828,
+  "sha": "18b6187e1085271d0aaaa20731a84bd041a38c6a",
+  "rubric": "v1.2"
+}

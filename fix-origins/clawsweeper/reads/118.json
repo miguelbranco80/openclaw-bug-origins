@@ -1,0 +1,8 @@
+{
+  "rank": 118,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review and P1 label justification endorse resetting everConnected to expose the login gate for an unreachable replacement Gateway. Neither raises a concern that a temporary refusal could replace the dashboard with sign-in while retries continue."
+}

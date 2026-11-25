@@ -1,0 +1,17 @@
+{
+  "rank": 100764,
+  "sha": "8a3d9912f05ee9e981852f43b2d9e6b09503f102",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "5b792cf8f396ddc4c11f54d8d370d64a6354b2b2",
+  "cause_pr": 146495,
+  "confidence": "high",
+  "cause_quote": "The new `tryCreateManaged` catch used `return null;` for ordinary persistence rejections, so `createManaged` replaced the rejection with `throw new Error(\"TaskFlow persistence failed.\");` and supplied no cause.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an ordinary persistence error occurred during async TaskFlow creation, plugin callers received only `TaskFlow persistence failed.` and could not inspect the original error.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix preserves the original persistence rejection as the strict async `createManaged` error's cause while keeping `tryCreateManaged` nullable.",
+  "reasoning": "The path history and introducing diff show that #146495 added async managed-flow creation to a binding that previously exposed only reads. The same diff shows that ordinary worker write rejections lost their cause from the first version of the async creation API."
+}

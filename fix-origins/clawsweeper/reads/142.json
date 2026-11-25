@@ -1,1 +1,8 @@
-{"rank": 142, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Items concern stale cross-provider harness bindings, native resume loss, skill env overrides and current-head proof; an earlier summary even asked to forward the session's selected auth profile. None warns that the raw auth pin bypasses the CLI account selector and can bill the stored API key."}
+{
+  "rank": 142,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Forward the session's selected auth profile",
+  "outcome": "dropped",
+  "note": "The earlier P1 item in Review history raised which auth profile native compaction forwards. It was absent from the open items at merge, and its available wording leaves out the fallback to a raw session pin that could charge the stored API key."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100258,
+  "sha": "3e4a0214659d1ea2ef6c52c618b1dd75c5a40406",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "1e2d50c663247a66934e2501481b964e3368c0d1",
+  "cause_pr": 173462,
+  "confidence": "high",
+  "cause_quote": "The agent database opener changed to `const database = { agentId, db: selected, path: pathname, walMaintenance };`, passing the newly supported PostgreSQL handle to an archive path that still invoked the SQLite-only schema installer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On PostgreSQL, deleting a session with default transcript archival failed with a SQLite repair error.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix uses the archive schema already admitted on PostgreSQL and keeps lazy schema installation for SQLite.",
+  "reasoning": "The commit that introduced PostgreSQL agent storage left `ensureSessionTranscriptArchiveSchema(database.db)` in the existing archive path, where the schema installer already rejected PostgreSQL handles. I checked the opener diff, the archive call, and the rejection guard, and confirmed that the introducing PostgreSQL lifecycle test explicitly disabled archival."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a quoted executable or working-directory path began or ended with whitespace, `mcp add` stripped it and could fail to find the executable or use a different directory.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "`mcp add` now preserves the exact values of nonblank stdio executable and working-directory flags.",
+  "reasoning": "Both flags already used the trimming helper at the July 1 shallow boundary, and the later Docker cleanup carried both calls forward unchanged. The offline history stops at that boundary because its parent object is missing, so I could not determine whether the flags shipped with trimming or acquired it later.",
+  "rank": 100612,
+  "sha": "371306818eb6337d8554aa9be6bb1b799001eb44",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100287,
+  "sha": "956dd5d98995089f2956781fa0d6b99689e5f663",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a8c1182c16eb7fb0dc374416c7b0024cc56a4feb",
+  "cause_pr": 163221,
+  "confidence": "high",
+  "cause_quote": "The cron retirement removed `loadLegacyCronStoreForMigration(storePath)` and added `assertNoRetiredStateFiles(\"Cron state\", await listRetiredCronStateFiles(storePath));`, turning a legacy cron store from an import source into an upgrade blocker.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators with pre-July JSON state saw the update refused and were sent to OpenClaw 2026.9.7, where they could not complete the repair.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Doctor now imports recoverable legacy state into SQLite, preserves original bytes in archives, and lets upgrades proceed after repair.",
+  "reasoning": "The parent implementation and its existing rehearsal test show that Doctor imported legacy cron jobs into SQLite and archived the source after live repair. The cited commit removed that path and introduced the refusal and 2026.9.7 guidance, while subsequent retirements extended the same pattern to other state formats. The fix report documents the failed intermediate upgrade, and the 2026.9.7 tag was unavailable in the local checkout."
+}

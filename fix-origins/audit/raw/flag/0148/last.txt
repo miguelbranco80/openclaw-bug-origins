@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The at-merge “Resolve merge risk” item raised platform-specific capture and audibility concerns. The earlier “Preserve explicitly configured meeting input commands” finding covered discarded custom input, and neither item identified a risk from the join request’s authority expiring while managed capture was still active."
-}

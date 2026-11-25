@@ -1,0 +1,17 @@
+{
+  "rank": 100855,
+  "sha": "c6765932e7d39bb16131d74bc3b6b39c33dd3669",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "While following logs, users could miss newly appended records if the log file was truncated during a read and regrew before the next poll.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The log-tail reader now advances its cursor to the byte after the last newline it actually read.",
+  "reasoning": "I checked the reader before July\u2019s short-read fix and found that it already sampled file size before opening the file and assigned `cursor = size` even when the read returned fewer bytes. The August blame candidate preserved that behavior for newline-terminated reads. The available path history stops at the July 1 shallow boundary because an older object is missing, so I could not verify when the defect was introduced."
+}

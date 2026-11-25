@@ -1,0 +1,17 @@
+{
+  "rank": 100540,
+  "sha": "12c6ec4d7d0e2568db391fcaf35a033737ce255f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "ae53570ea8f12928e0cbe4635fbe42aa88eea65a",
+  "cause_pr": 93307,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `actionCapture.lastEventAtMs = Date.now();` and computed `quietMs - (Date.now() - capture.lastEventAtMs)`, so a forward wall-clock step could make the quiet window expire early.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a forward clock correction, a browser action could omit a second download from its result.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The browser plugin now uses `performance.now()` to timestamp download events and measure the quiet window.",
+  "reasoning": "The #93307 diff added the action download capture and wired its 250 ms quiet window into browser actions using wall-clock time from the start. The subsequent refactors retained that calculation, and the fix bundle reports that a forward clock step reproduced the missing download while the no-step controls captured both files."
+}

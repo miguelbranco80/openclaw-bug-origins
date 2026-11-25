@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a subagent started its next turn quickly, the parent could receive the new result and miss the previous one.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix preserves each completed subagent turn\u2019s result and pending delivery when an ordinary follow-up starts.",
+  "reasoning": "The code at the shallow boundary already routed completed follow-ups through steer replacement, which deleted the previous run\u2019s registry row. I verified that deletion still occurred before the registry redesign in #163195, consistent with the PR\u2019s report of missing results on older builds. The offline history ends before I could verify when that replacement behavior was introduced or establish that overlapping delivery had worked before.",
+  "rank": 100334,
+  "sha": "a9442b7a6da45613c1c9b0c08986bee4fa9dbf5d",
+  "rubric": "v1.2"
+}

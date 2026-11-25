@@ -1,0 +1,17 @@
+{
+  "rank": 100459,
+  "sha": "9b331efb6ddac45f32d719515da014f530ff46b9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "0973bef32bcca95b7f744a317147bab3c4c8bc1d",
+  "cause_pr": 169364,
+  "confidence": "high",
+  "cause_quote": "The added `const running = runWithGatewayDetachedWorkContinuation(` wrapped `launchCronRun` in a scope that could drain as soon as the launch returned a cancellation result, while the untracked core-and-webhook promise was still pending.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see an `Async work scope is closed` warning after cancelling a cron run whose cleanup was still pending.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix registers the core-and-webhook promise with `trackAsyncWork` so delayed cleanup can finish after cancellation returns.",
+  "reasoning": "The parent already supported early cancellation, and its scheduled tick ran through `runInDetachedAsyncContext`, so returning from the run did not close a per-launch async-work scope beneath cleanup. I checked that the host-launcher diff placed that same cancellation race inside a fresh scope whose owner drains when tracked work finishes. The fix's inverse test reproduced the failure when delayed cleanup tried to register work after the scope closed."
+}

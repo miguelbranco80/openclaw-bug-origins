@@ -1,0 +1,17 @@
+{
+  "rank": 100499,
+  "sha": "a0921c0375d2809ce7387113e49b64b927dcefab",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Passing an empty or whitespace-only value to `nodes camera snap --facing` silently triggered a capture without a facing selection.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix rejects explicitly blank `--facing` values before node lookup and preserves the default capture behavior when the option is omitted.",
+  "reasoning": "The September refactor preserved the existing treatment of blanks, and the August change to default-camera capture changed the fallback from `both` to an unspecified facing while continuing to accept blanks. The July 1 snapshot already normalized blank values to `both`, and the available offline history could not establish when blank values first bypassed validation."
+}

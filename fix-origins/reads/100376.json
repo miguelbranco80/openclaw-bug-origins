@@ -1,0 +1,17 @@
+{
+  "rank": 100376,
+  "sha": "68cd29b7a3720ea96a9d24f8c39faadf1b84d363",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "282fc78eaf64208d6b6db70c56557ca24fc29097",
+  "user_visible": "yes",
+  "user_saw": "An eligible guest was missing from the mention picker even though they could read the conversation.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix lets session-scoped guests be selected as mention recipients, receive live Inbox updates, and list or dismiss their own accessible entries.",
+  "reasoning": "The original Inbox shipped with a documented broad-read requirement and enforced it in both recipient selection and the change event. The scoped session reading rollout in #155184 switched the documented guest role from broad grants to session-only grants, exposing the existing restriction for guests who could still read the conversation. I checked that #178038 enabled guest lookup and sending while explicitly retaining the broad-read requirement for Inbox methods."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100327,
+  "sha": "c0158ea63b8a0a1b8922d2e8e180890a2a6592f0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "80778e082de5b30c079b5d7e6f38a2f0c3fd9fd3",
+  "cause_pr": 181128,
+  "confidence": "high",
+  "cause_quote": "The new `linkPluginGenerationHostModule(sharedLink, shared)` call created a symlink at the destination later used for asset capture, while `additions.add(sharedLink)` left it untracked by the copy guard.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a fresh install, OpenAI setup could fail with \u201ccreation target already exists\u201d before sending its first provider request.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix tracks shared host-module symlink destinations and skips them during selective and recursive asset capture.",
+  "reasoning": "I checked the causing diff and its parent, where shared imports returned without creating a destination and the existing asset capture path could copy the file there. The new symlink occupied that same destination, so the later exclusive copy failed with EEXIST, matching the failure documented in the fix PR."
+}

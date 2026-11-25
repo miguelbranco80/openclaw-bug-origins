@@ -1,0 +1,17 @@
+{
+  "rank": 100155,
+  "sha": "f2ccf21b43288810a2a5f2dae5cb64c3709e3e9a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4ff90358328ddec5c1907131ad144614a826448f",
+  "cause_pr": 138917,
+  "confidence": "high",
+  "cause_quote": "The ledger diff switched both readers to `withExistingOpenClawStateDatabaseArtifactPreservingReadOnly`, which synchronously prepared a snapshot when the database was closed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Requesting update history or a run's details could pause other Gateway work when the shared-state database was closed.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The Gateway's history endpoints now await snapshot preparation asynchronously when the shared-state database is closed.",
+  "reasoning": "The original history RPCs used a direct read-only SQLite connection on a cold read, as confirmed in the parent of #138917. The ledger diff rerouted both RPCs through a synchronous snapshot, and the later state-reader refactor kept that preparation synchronous. The fix's authenticated CLI test checks that the Gateway event loop advances during snapshot preparation."
+}

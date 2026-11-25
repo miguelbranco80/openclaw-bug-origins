@@ -1,0 +1,8 @@
+{
+  "rank": 100317,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items cover compatibility and updater evidence. The earlier ACP replay findings concern preserving session closure, and the review never raises orphan transcripts being omitted from deferred migration receipts and skipped during archival."
+}

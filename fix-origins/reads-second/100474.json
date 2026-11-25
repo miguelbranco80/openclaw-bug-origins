@@ -1,0 +1,17 @@
+{
+  "rank": 100474,
+  "sha": "3e16525c4d672a0522e43dcf599fa4f5edb4850a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6c9809acf1bd5a606907783f05ed0b6ecf5b748d",
+  "cause_pr": 161267,
+  "confidence": "high",
+  "cause_quote": "The diff replaced `const activeRegistry = getActivePluginRegistry();` with a lookup rooted in `const requestRegistry = getPluginRuntimeGatewayRequestScope()?.pluginRegistry;`, leaving detached cron checks without a registry to reuse.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first scheduled condition check after a Gateway restart could time out while duplicate plugin registration delayed health checks and channel sockets.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix makes scheduled cron runs resolve and reuse their owning Gateway\u2019s current compatible plugin registry across startup and hot reload.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that Gateway cron already used the prepared inbound loader, which could reuse a compatible process-active registry without a request scope. PR #161267 made that lookup depend on a scoped registry, so detached condition checks fell back to loading plugins already registered at startup. The fix PR\u2019s restart evidence shows that duplicate registration exhausted the 30-second evaluation budget."
+}

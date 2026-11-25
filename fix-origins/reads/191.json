@@ -1,17 +1,17 @@
 {
   "rank": 191,
   "sha": "04572cc4f2ff61f354b351a864148b4b7c9181a5",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "cacbd460ccad99c1d583d0693553a1bd62b7d0af",
   "cause_pr": 200403,
   "confidence": "high",
-  "cause_quote": "The new readGeneratedPluginModelCatalogProviders returns `{ ...discovered, ...metadata, ... }`, so the hosted catalog row's `compat` replaced the live-listed model's discovered compat, including its supportedReasoningEfforts list.",
+  "cause_quote": "The new merge spreads `...discovered` followed by `...metadata`, letting the hosted catalog replace the account's entire `compat` object and its `supportedReasoningEfforts` list.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The reasoning-effort picker offered effort levels the account did not support, because the catalog's wider list overwrote the account's reported list.",
-  "impact": "other",
-  "area": "models/providers",
-  "summary": "When describing a live-listed model with hosted catalog metadata, the registry now keeps the account-reported supportedReasoningEfforts (including an empty list) and the discovered compat when the catalog has none.",
-  "reasoning": "Before #200403 generated (live-listed) provider rows were used as discovered, so the account's effort list reached the picker; cacbd460 added the catalog-description merge in which `...metadata` overwrites `compat` wholesale. The fix PR names #200403 as the source of the overwrite, the blame of the changed lines points only to it, and the same day the main real-Gateway UI test failed on it."
+  "user_saw": "The reasoning effort picker offered levels the connected account did not support.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The registry now preserves explicit account-reported reasoning effort lists, including empty lists, when enriching live-listed models with hosted catalog metadata.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the registry filtered generated providers for admission while passing their model rows through with the reported compatibility fields intact. The causing commit replaced that filter call with hosted enrichment, whose spread order overwrote those fields. The fix PR reports that narrow and empty effort lists failed before the fix and that the original Gateway UI scenario passed with it."
 }

@@ -1,17 +1,17 @@
 {
   "rank": 74,
   "sha": "3ead3dcb1b3a3755197cc7aaaa2fc248b6f0298f",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "46ab36a493ac63e83f4392d3a87ac8b0266934a8",
+  "cause_pr": 163461,
+  "confidence": "high",
+  "cause_quote": "The loop added `const update = await prepare(state.context);` after the steering checkpoint, moving permission-prompt refresh on Claude continuations into a window where newly accepted steers missed the next request.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A steer sent while the agent was preparing its next model request was applied one model response later instead of in the immediately following request.",
+  "user_saw": "A correction accepted while the agent prepared its next request had to wait through another model response before taking effect.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Moved the agent loop's steering checkpoint to after awaited request preparation (prepareContinuation, before-request hooks) and consolidated the duplicated input-commit loops into commitInputMessages in agent-loop-steering.ts.",
-  "reasoning": "Steering is applied at checkpoints by design; at the parent the checkpoint ran at loop start and after tool execution, so input arriving during the awaited preparation step was not lost but waited for the next checkpoint, costing one extra model response (~100 ms in the synthetic hold). Moving the checkpoint narrows that timing window, and the PR measures it as a latency/CPU improvement; no commit broke previously working delivery, so this reads as a latency/ordering improvement of the checkpoint design rather than a defect with a breaking line. The checkpoint placement predates the shallow graft; prepareContinuation (46ab36a4) and beforeRequest were added after it and widened the window, which is the strongest case for a latent reading."
+  "summary": "The fix checks for steering after request preparation and applies any accepted input to the upcoming model request when no steering batch has already been committed.",
+  "reasoning": "I checked the causing commit and its parent: the parent awaited permission-prompt refresh through `prepareNextTurn` before draining steering when no batch was pending. The causing commit moved that refresh into `prepareContinuation` after the drain, so an input accepted during the refresh missed dispatch. A later commit added the same ordering gap for background-result placement, which the failed Code Mode cell test exercises through `beforeRequest`."
 }

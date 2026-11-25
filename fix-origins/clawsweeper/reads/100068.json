@@ -1,0 +1,8 @@
+{
+  "rank": 100068,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAdd real behavior proof\u201d item requested a fresh hosted run for broker credential injection. The at-merge \u201cBefore merge\u201d items focused on broker approval, SDK compatibility, and release ownership, leaving the trimming of local --credential-file paths unaddressed."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100072,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings cover credentials that remain active after deletion, and the earlier History item about the Secrets page concerns Gateway method availability. No supplied review item raises the actions-column sizing or button clipping in narrow tables."
+}

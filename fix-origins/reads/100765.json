@@ -1,0 +1,17 @@
+{
+  "rank": 100765,
+  "sha": "e1238c2f989bed725368017e8579c687232114f9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a9e9dec42dfa7430c324cfe90f91214042c826c6",
+  "cause_pr": 139397,
+  "confidence": "high",
+  "cause_quote": "The new recovery gate called `failoverRetryController.maybeRetryTransient({ reason: failureReason, ... })`, so an HTTP 400 rejection classified as `rate_limit` could retry without evidence of a short retry window.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A prompt the provider rejected as too long could be sent to the same model ten times, delaying the error or fallback by nearly two minutes.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "The fix skips same-model retries when a generic inner code is the only transient signal in a non-transient HTTP 4xx response.",
+  "reasoning": "I checked the parent commit\u2019s assistant and prompt failure handlers, which required a short rate-limit window before retrying a `rate_limit` failure. The reported prompt-size HTTP 400 had no short-window evidence, but #139397 added an earlier recovery branch that accepted the existing code-derived `rate_limit` classification and rejected only known long windows. #139465 later increased the rate-limit budget to ten total attempts, accounting for the measured retry count."
+}

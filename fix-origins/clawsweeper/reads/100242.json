@@ -1,0 +1,8 @@
+{
+  "rank": 100242,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "ClawSweeper\u2019s Before merge section flagged duplicate live announcements and a readiness test locator that matched two buttons. The locator finding mentions Retry, but narrowing the selector would leave its plain-text styling and missing click feedback in place."
+}

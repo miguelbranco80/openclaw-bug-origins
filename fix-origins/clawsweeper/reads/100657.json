@@ -1,0 +1,8 @@
+{
+  "rank": 100657,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cResolve merge risk (P1)\u201d item asks for a live test with a node-local file to verify which host resolves the upload path. That test does not exercise the filename sanitization and truncation used for staged uploads."
+}

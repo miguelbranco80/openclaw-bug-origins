@@ -1,0 +1,17 @@
+{
+  "rank": 100005,
+  "sha": "efe9726d4dc3ff228ac285202914c8859e48e46f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "80e18aafb9e6e36ec6a721e5a0312f3df6cf0768",
+  "cause_pr": 168080,
+  "confidence": "high",
+  "cause_quote": "The new controller-less Stop branch used `sessionEmbeddedRun ? sessionEmbeddedRun.abort() : params.requiredSessionId === undefined && abortEmbeddedAgentRun(persistedSessionId)`, which could not reach an HTTP command whose admission was live before its embedded handle existed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator pressed Stop while the session showed as running, but the HTTP request continued to the provider and could return a normal response.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets authorized session Stop requests cancel controller-less HTTP runs through their exact session-work admission before the embedded runner registers its handle.",
+  "reasoning": "I checked that #168080 introduced controller-less cancellation in the shared Stop plan through the embedded run path, leaving the pre-runner window uncovered from the start. Its parent already used the same embedded fallback privately for sessions.abort, so moving that fallback into the shared plan preserved an existing gap on that endpoint."
+}

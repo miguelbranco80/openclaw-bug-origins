@@ -1,17 +1,17 @@
 {
   "rank": 179,
   "sha": "d8eca04bb34db90f0cc48baa7e37b65ab7b70cc8",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a memory-constrained host (768 MiB service cap) the Gateway ran out of memory during startup before its first agent reply.",
-  "impact": "slower-or-heavier",
+  "user_saw": "Under a 768 MiB service memory limit, the Gateway was killed before it could deliver its first agent reply.",
+  "impact": "failed-every-time",
   "area": "gateway",
-  "summary": "Deferred many optional runtimes (agent, CLI, cron readers, exec reviewer, skill status, secret providers, OpenAI SDK) to first use, skipped optional warmups under memory pressure, and compacted emitted runtime JavaScript to lower startup memory.",
-  "reasoning": "PR #197801 is an incremental startup-memory reduction toward a new constrained-device target (issue #192547), and states the 768 MiB service still OOMs; no specific commit is identified as having made startup heavier. This is a broad performance improvement rather than a fix of a behavior that previously worked, so not-a-defect."
+  "summary": "The patch reduces Gateway startup memory pressure by deferring optional imports and warmups, retiring idle workers earlier, and shrinking emitted JavaScript.",
+  "reasoning": "Path history shows that #120809 added eager reply-runtime prewarming to improve first-turn latency, and later commits had already reduced startup memory pressure. The available evidence establishes neither a working baseline at the 768 MiB cap nor a specific change that caused the Gateway to exceed it. The PR reports that the same out-of-memory failure persisted after this patch."
 }

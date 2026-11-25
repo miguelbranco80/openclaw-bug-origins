@@ -1,17 +1,17 @@
 {
   "rank": 189,
   "sha": "327800ef7d7e438a0fc45607888d19a80bd03991",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "73a0ce119fde4c99608ed39d8d2fa2edec352727",
   "cause_pr": 196923,
   "confidence": "high",
-  "cause_quote": "#196923 replaced `runtime.scheduler.beginClose();` with `runtime.scheduler.fence();` at close intake and moved `runtime.scheduler.beginClose()` into `cancelReceivedWork`, so the ScopeUpgradeCoordinator, which closes on its scheduler scope's abort signal, stayed live while restart markers were being saved.",
+  "cause_quote": "The shutdown path replaced `runtime.scheduler.beginClose()` with `runtime.scheduler.fence()` before `prepareGatewayClose` and moved the aborting `beginClose()` into `cancelReceivedWork`, letting a queued observer wake start another pairing-state read during restart preparation.",
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible reported; a scope-upgrade observer queued just before Gateway close could start another pairing-state read while restart markers were being persisted.",
+  "user_saw": "Nothing visible.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "ScopeUpgradeCoordinator gains a synchronous beginClose that Gateway close calls right after the scheduler fence, so scope-upgrade observers stop at close intake while the awaited drain stays with later cleanup.",
-  "reasoning": "0dc75157e1b had made the coordinator retire observers when its scheduler scope aborts, which happened at close intake via runtime.scheduler.beginClose(). Hours before this fix, #196923 (73a0ce119fd) swapped that call for scheduler.fence() and deferred beginClose to cancelReceivedWork after restart persistence, so the abort (and observer retirement) moved past the restart-marker save; the fix PR says it 'preserves the delayed received-work cancellation introduced for restart durability' and its regression fails on main."
+  "summary": "The fix retires scope-upgrade observers synchronously when Gateway shutdown closes intake and lets their cleanup drain separately while accepted input finishes restart preparation.",
+  "reasoning": "I checked the causing commit's parent and verified that the scheduler aborted synchronously at close intake, which fired the coordinator's existing abort listener and stopped its read loop. The causing diff deferred that abort until after restart preparation, and the fix PR reports that a queued observer wake started one extra pairing-state read while restart persistence was held."
 }

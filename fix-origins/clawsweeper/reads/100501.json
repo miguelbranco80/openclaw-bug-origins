@@ -1,0 +1,8 @@
+{
+  "rank": 100501,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cResolve merge risk\u201d item warns that broker-process loss can leave reads fenced until service recovery. The bug occurs when native cleanup misses a reader registered after a module reload and removes the snapshot while that reader still needs it."
+}

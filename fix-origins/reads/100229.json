@@ -1,0 +1,17 @@
+{
+  "rank": 100229,
+  "sha": "e4074cb2a7e48a73aa1325ac7a21cbb68223e6e6",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "6c66f48a7c1144eaa40b2927fe9823ae0f93151a",
+  "user_visible": "yes",
+  "user_saw": "Scripts parsing failed database commands in JSON mode received a string in `error` and could not read the documented `error.type` field.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix routes operational errors from JSON-mode database commands through the shared CLI failure formatter.",
+  "reasoning": "The introducing diff for PR #121069 shows that database ownership commands already emitted `{ error: message }` when they shipped. PR #124849 later added and documented the CLI-wide failure envelope, and I verified that the database command still used its original writer at that commit. The new contract made the existing response incompatible with scripts that relied on it."
+}

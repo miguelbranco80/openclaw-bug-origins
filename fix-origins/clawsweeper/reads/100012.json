@@ -1,0 +1,8 @@
+{
+  "rank": 100012,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Removing MAX_PROTOCOL_VERSION from gateway_ws.rs leaves this included test module referencing it here and at lines 337 and 406. The module imports super::*, but no definition remains, so cargo test --locked --all-targets cannot compile on either Linux or macOS.",
+  "outcome": "open-at-merge",
+  "note": "The P2 item \u201cMigrate the included native auth tests to the canonical constant\u201d identified all three stale references and prescribed the same replacement as the eventual fix. The item was open at merge, and no human comment in the bundle addressed it."
+}

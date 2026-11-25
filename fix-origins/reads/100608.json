@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "0a8e3604ba24de4791d3505b7a442e8017276dd0",
+  "user_visible": "yes",
+  "user_saw": "Gateway I/O could be delayed until a backlog of ready session writes finished.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets Gateway I/O run between batches of settled session writes after four completions or four milliseconds while preserving FIFO order.",
+  "reasoning": "The oldest available queue snapshot already looped over pending writers with `await task.fn()` and had no event-loop yield between ready callbacks. The SQLite migration reused that queue for synchronous database transactions, whereas the earlier file-backed write path awaited filesystem I/O. The migration exposed the existing scheduling limitation by allowing successive queued writes to finish entirely within microtasks.",
+  "rank": 100608,
+  "sha": "fe55a3a703b021203b7373661e9a3b662e535708",
+  "rubric": "v1.2"
+}

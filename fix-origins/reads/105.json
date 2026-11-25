@@ -1,17 +1,17 @@
 {
   "rank": 105,
   "sha": "3d76fcf775e83a28595368ccf36228c1a4f43c1c",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "28630a9a6501dd3835d1cf5660eb5dd9c337d3bc",
   "cause_pr": 114819,
   "confidence": "high",
-  "cause_quote": "The introducing commit matched intents only via whole-word tokens, `text.toLowerCase().match(/[\\p{L}\\p{N}_-]+/gu)` plus an FTS `match` join and `keywordTokens.every((token) => promptTokens.has(token))`, so a CJK term inside an unspaced run (one token) could never match.",
+  "cause_quote": "The original matcher used `text.toLowerCase().match(/[\\p{L}\\p{N}_-]+/gu)` and required `keywordTokens.every((token) => promptTokens.has(token))`, so an embedded CJK trigger could never equal the token for the entire unspaced sentence.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A standing intent armed with a Chinese, Japanese or Korean term (for example 会议) never fired when the term appeared inside an unspaced CJK sentence, so the reminder was not injected.",
+  "user_saw": "A standing reminder failed to fire when its trigger appeared inside an unspaced Chinese, Japanese, or Korean prompt.",
   "impact": "failed-every-time",
-  "area": "plugins",
-  "summary": "Standing-intent matching adds a second unindexed candidate pass for prompts containing CJK script and matches CJK trigger terms literally (with lowercase and NFC normalization), keeping whole-word matching for other terms.",
-  "reasoning": "The full-history listing shows standing intents were introduced in 28630a9a (#114819); its diff (read via gh api) already had the same tokenizeIntentText regex, FTS-gated candidate selection and whole-token comparison that this fix replaces, and later commits only moved or refactored that logic. Since the documented 'any trigger term appears' contract never held for unspaced CJK text, the defect shipped with the feature."
+  "area": "agents",
+  "summary": "The fix adds a bounded scan of eligible intents and matches CJK trigger terms within unspaced prompts.",
+  "reasoning": "I checked the introducing diff, which added standing intents and documented that trigger terms appearing in a turn could fire them. Its SQLite full-text prefilter and exact token check both missed terms embedded in an unspaced CJK sentence, the same failure reproduced in the fix's Gateway evidence."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100829,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Scripts reusing refs after condition waits or failed snapshot refreshes must capture fresh refs; this intentional compatibility correction is documented and accepted.",
+  "outcome": "answered",
+  "note": "The second P1 item under Before merge identifies the failure to reuse a snapshot reference after a condition wait. The maintainer explicitly accepted the fresh-reference requirement after condition waits."
+}

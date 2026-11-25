@@ -1,7 +1,7 @@
 {
-  "flagged": "related",
-  "where": "at-merge",
-  "quote": "Existing sessions whose newest required frame or boundary exceeds the limit will stop preparation and require /reset or /new, losing active conversation continuity",
-  "outcome": "answered",
-  "note": "The Before merge compatibility item identified a continuity risk from the same history cap, and the maintainer accepted explicit rejection with reset recovery. The shipped bug occurred on successful reads that silently dropped older turns before compaction."
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The merge-risk items concern sessions whose newest required frame exceeds the limit and must reset; that is a different failure from the budget x 8 byte cap silently dropping oldest turns and missing the prompt cache, which the review never raises. Chose none over related because the item addresses rejection, not trimming of history."
 }

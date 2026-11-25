@@ -1,0 +1,8 @@
+{
+  "rank": 100450,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding, \u201cGive unresolved captures a useful recovery action,\u201d addressed circular status guidance after a capture was sealed. The earlier review history discusses tracing, refusal history, and metadata assertions, with no concern about available disk space before copying inventoried files or the choice of scratch volume."
+}

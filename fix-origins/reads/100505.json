@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "cd9be2bbe7d89f4df2389cb633401d812fbd335a",
+  "cause_pr": 144404,
+  "confidence": "high",
+  "cause_quote": "The new `persistGeneratedEmbeddings` passed `maxEntries: this.cache.maxEntries` to `upsertMemoryEmbeddingCache`, causing it to evict older vectors before later rebuild batches could read them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A full memory rebuild at cache capacity could send every chunk to the embedding provider again, even when most chunks already had cached embeddings.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix defers embedding cache eviction until the full rebuild is published or discarded and keeps the existing capacity bound for incremental writes.",
+  "reasoning": "I checked the causing commit's parent and confirmed that full rebuilds copied cached vectors into the shadow database, read them there, and pruned only after indexing finished. PR #144404 switched rebuilds to reading and writing the same canonical cache and added capacity enforcement to each generated batch write, allowing early misses to evict vectors that later batches would have reused.",
+  "rank": 100505,
+  "sha": "355a5ae8bc8e33e1d6590c831b79d667cd0bc60b",
+  "rubric": "v1.2"
+}

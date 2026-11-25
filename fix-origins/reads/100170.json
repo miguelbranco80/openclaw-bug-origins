@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A recovered conversation still showed a sidebar failure warning because an earlier child run had failed.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix limits sidebar failure indicators to the session that failed and clears inherited failure markers when restoring cached sidebar state.",
+  "reasoning": "The original sidebar attention feature in #111035 deliberately propagated descendant failures, and #151470 explicitly kept that behavior when it removed subagent rows from the sidebar. The prior test expected a child failure warning even while its ancestors continued, and #188309 changes that display rule for both live and cached rows.",
+  "rank": 100170,
+  "sha": "db5d331f07c686187240075f7e798c9e89d3aaa5",
+  "rubric": "v1.2"
+}

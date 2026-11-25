@@ -1,1 +1,8 @@
-{"rank": 157, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review reports no findings and endorses the shared unreadable-state diagnostic. Its only open item is the generic data-model compatibility proof, and nothing mentions snapshot capacity errors (ENOSPC/EDQUOT) producing misleading restore advice."}
+{
+  "rank": 157,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section discussed the read-only snapshot path and recovery for unsupported workspace versions without raising any concern about restore advice when snapshot storage runs out. The earlier Before merge items addressed merge conflicts and data-model compatibility."
+}

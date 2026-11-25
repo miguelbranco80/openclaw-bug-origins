@@ -1,0 +1,17 @@
+{
+  "rank": 100679,
+  "sha": "4f001f643d0107219a6ffadb97720f3781a974ba",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c7cf69a11060c70f43c7a1fa63e818d73eb24848",
+  "cause_pr": 121030,
+  "confidence": "high",
+  "cause_quote": "The initial Zen Kimi K3 entry set `\"supportedReasoningEfforts\": [\"max\"]` and routed the model through `thinkingOff(model, context, options)`, which omitted `reasoning_effort` for Off.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "OpenCode Zen\u2019s Kimi K3 still produced reasoning with Thinking set to Off, and the picker offered no Low or High setting.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix makes Zen Kimi K3 send explicit `none` for Off and preserves the Off, Low, High, and Max choices across catalog refreshes.",
+  "reasoning": "The path history and introducing diff show that #121030 added Zen Kimi K3 with Max-only metadata and a wrapper whose new test expected Off to omit the effort field. The fix PR\u2019s live comparison found that Zen produced reasoning when the field was omitted and disabled reasoning when it received explicit `none`."
+}

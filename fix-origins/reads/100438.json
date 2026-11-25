@@ -1,0 +1,17 @@
+{
+  "rank": 100438,
+  "sha": "14886e46e823ba6289fe24b3d88fd3205b409652",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "0fbd28476e24b31a7f9e2851747d75bad1ca419f",
+  "cause_pr": 104802,
+  "confidence": "high",
+  "cause_quote": "The new `if (gatewaySuspension.status === \"busy\")` branch returned `deferred: true` with `reason: \"gateway_active_work\"` before the updater could stop the Gateway or rebuild.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The macOS live updater kept deferring the update while a Gateway conversation remained active.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix gives active Gateway work a bounded drain before committing shutdown and still defers when lifecycle writes are pending or the Gateway only supports idle-only suspension.",
+  "reasoning": "I checked the causing commit and its parent: the existing updater called `gateway stop` before rebuilding, and the loaded-service stop path invoked the native stop without checking for active work. PR #104802 added the early return on every busy response, so repeated updater runs could never reach the stop or build while the Gateway stayed busy."
+}

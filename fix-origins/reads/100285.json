@@ -1,0 +1,17 @@
+{
+  "rank": 100285,
+  "sha": "04789278f8b0cd4cac95386ef91a37ece34082c5",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "aeeb4e813c15827d53ccdbdba634aeb06efd89c0",
+  "cause_pr": 172543,
+  "confidence": "high",
+  "cause_quote": "The introducing effect tracked `return currentProps.composerPredictions` and deferred the eligibility read to `() => untrack(() => prediction.sync())`, so changing `options.active` on the same object could leave the suggestion visible.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A suggested reply stayed visible after the composer became ineligible for predictions.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix reads the full prediction source in the tracked effect so eligibility changes immediately clear the suggestion and remove its event subscription.",
+  "reasoning": "I checked the feature\u2019s introducing diff and found that it already read nested eligibility fields outside reactive tracking. The later lifecycle refactors preserved that gap, and the fix\u2019s test isolates it by changing `active` without replacing the prediction options object."
+}

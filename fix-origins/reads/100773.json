@@ -1,0 +1,17 @@
+{
+  "rank": 100773,
+  "sha": "ea9c7a32ce7d61af261332a55af9d5fd6791c743",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The Gateway now reuses the projected reply after a prose directive or marker settles and appends text directly when Markdown ownership can safely be reused.",
+  "reasoning": "I checked the original incremental projector in #158489 and its parent: the parent already parsed the full changed buffer, and the new projector retained that work after a prose marker. The fix PR measured substantially fewer transform calls with byte-identical streamed and final text, and its Gateway timings did not establish a user-visible slowdown."
+}

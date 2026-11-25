@@ -1,0 +1,8 @@
+{
+  "rank": 100179,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Forward a terminal cleanup owner into Codex, Copilot, and every other executable computer-tool harness.",
+  "outcome": "open-at-merge",
+  "note": "The \u201cForward terminal cleanup into every executable harness\u201d finding identified the missing cleanup callback in shared computer-tool construction, which gives a concrete lead for inspecting the MCP resolver. Its examples concerned missing recording and browser-file actions in Codex and Copilot, leaving the stale MCP execution ID and subsequent COMPUTER_HOST_BUSY failure unstated."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100220,
+  "sha": "74e61fb97c9f9e78113ec71321b72c3339aa3ec7",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A macOS approval panel could stay open or appear from the queue after another client had already resolved the request.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The macOS app now consumes Gateway approval events while panels are open and cancels matching active or queued prompts when another client resolves them.",
+  "reasoning": "The oldest readable snapshot already shows the macOS prompter accepting only requested events and waiting for each prompt inline, even though the Gateway published exec.approval.resolved. The later timeout and connection-ownership changes retained that behavior. The full-history path lookup stopped at a missing parent, so I could not verify the introducing diff or establish whether cross-client dismissal ever worked."
+}

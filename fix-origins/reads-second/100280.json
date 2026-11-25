@@ -1,0 +1,17 @@
+{
+  "rank": 100280,
+  "sha": "50eefaed0bcf3e446fece6926a1ec75511dd98f0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "64853b1a9d505dc3980e4bedfc39ee79c043ffbf",
+  "cause_pr": 124301,
+  "confidence": "high",
+  "cause_quote": "Adding `props.runStatus?.phase ?? \"\"` and `props.runStatus?.occurredAt ?? 0` to `trackTranscriptRenderDependencies` made status-only changes invalidate every guarded history row.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix removes run status from the transcript's shared render dependencies so settled history stays cached when status appears, refreshes, or clears.",
+  "reasoning": "The parent of #124301 already had composer run-status feedback and a transcript render guard whose dependencies excluded run status. #124301 added phase and timestamp to the shared guard, causing even a status change that left every message unchanged to rerender settled rows. #127823 moved the interruption row back to the composer and left both dependencies in place."
+}

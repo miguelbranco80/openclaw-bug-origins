@@ -1,0 +1,17 @@
+{
+  "rank": 100603,
+  "sha": "056f6278dd99abb57894ff272e236ece485d0cfa",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The background catalog logged a generic plugin-state database-open warning that omitted the underlying error and the identity of the reader.",
+  "impact": "other",
+  "area": "plugins",
+  "summary": "The fix adds bounded nested causes, native error codes, and reader process, thread, and version details to structured plugin-state logs and preserves those details across worker transport.",
+  "reasoning": "The plugin-state error wrapper already stored its nested cause through Error's constructor without a JSON serializer before #146557 introduced worker transport, and its constructor predates the accessible July 1 history. I checked the worker introduction and the fix's JSONL test, which show gaps in the original worker diagnostics but do not establish when structured logs first omitted the cause. The PR reproduced an older reader rejecting the migrated schema in isolation, but the reporter's failing process was never identified and the fix leaves schema admission unchanged."
+}

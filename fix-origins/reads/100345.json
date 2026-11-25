@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI offered an HTML export with an optional workspace path, but running the command downloaded Markdown in the browser and ignored the path.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix updates both export aliases to describe the browser Markdown download, rejects file paths without clearing the draft or attachments, and clears the error on a valid retry.",
+  "reasoning": "The Control UI already inherited the shared registry's HTML description and optional path while routing export to the browser Markdown downloader before the July 4 refactor. The July 14 change revised the existing HTML and path wording, so it did not introduce the mismatch. The available offline history stops before the mismatch first appeared, leaving it unclear whether it shipped with the feature or broke later.",
+  "rank": 100345,
+  "sha": "aaf561d8e027683b1a7b4c714af1c1907b9165ea",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100830,
+  "sha": "d0e8fc8a103b2c37e98809ee46370748bb965155",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With both target flags set, an approvals command could report success after reading or changing the gateway policy while ignoring the named node.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The approvals CLI now rejects simultaneous use of `--gateway` and `--node` before reading or writing policy.",
+  "reasoning": "The July 1 snapshot already registered both flags and returned a null node ID whenever `--gateway` was set, routing reads and writes to the gateway. The offline path history stopped at a missing parent object, so I could not verify whether the behavior shipped with the target flags or was introduced later."
+}

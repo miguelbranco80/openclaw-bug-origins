@@ -1,0 +1,8 @@
+{
+  "rank": 100696,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focus on whether the published helper can safely handle the new settlement receipt. The Root-cause cluster mentions a separate prepared-phase launcher-ownership issue and gives no indication that repair still refuses to settle an already-live candidate when the journal says prepared."
+}

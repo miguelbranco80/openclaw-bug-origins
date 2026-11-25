@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "349aef786a698ad68fc88909334e75ba33e6045a",
+  "cause_pr": 150354,
+  "confidence": "high",
+  "cause_quote": "The shared Gateway worker added each distinct registry to `retainedRegistries` and called `retainPreparedPluginGeneration(prepared.pluginGeneration)` without saving the release callback, keeping superseded registrations alive for the worker\u2019s lifetime.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway operators could see memory use keep rising as the shared model-catalog worker processed refreshes across plugin configuration revisions.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix moves generation release outside the request scope, removes successfully disposed plugin instances from their caches, and requests a 512 MiB old-generation limit for catalog workers.",
+  "reasoning": "I checked the introducing diff and its parent: the parent memoized one preparation per worker, while #150354 introduced a shared Gateway worker that accumulated distinct registries across requests. The later #153038 replaced that explicit retention with a current-generation slot, but its inline release closure kept predecessors reachable, and the plugin cache independently retained disposed instances.",
+  "rank": 100364,
+  "sha": "f5f0457314fb66c62df3a8ca8ec7b0f7155e43c1",
+  "rubric": "v1.2"
+}

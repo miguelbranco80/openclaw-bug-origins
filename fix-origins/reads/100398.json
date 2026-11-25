@@ -1,0 +1,17 @@
+{
+  "rank": 100398,
+  "sha": "ed5a99e0af5fbac18036187413f39afcd810b264",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8cedf203e34af009708af0ccfaaa43f2ff7c0987",
+  "cause_pr": 160089,
+  "confidence": "medium",
+  "cause_quote": "The first M3.1 wrapper added `const thinkingLevel = options?.reasoning ?? ctx.thinkingLevel;`, so a runtime value capped at `high` overrode the session\u2019s `xhigh` or `max` choice.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Selecting `xhigh` or `max` for MiniMax M3.1 could send `high` effort to the provider.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds the official M3.1 Flash ID and pricing, retains Preview compatibility, marks M3 and M3.1 as not supporting temperature, and preserves the selected `xhigh` or `max` effort.",
+  "reasoning": "PR #160089 introduced the five-level Preview profile and the wrapper that gave runtime reasoning precedence, while its parent already had generic clamping for models without extended effort metadata. The original catalog entry lacked that metadata, and the fix\u2019s test reproduces the overwrite by supplying `high` alongside a higher session setting, though I could not confirm the full runtime call path at the introducing commit. The GA ID and pay-as-you-go pricing address a separate provider rollout."
+}

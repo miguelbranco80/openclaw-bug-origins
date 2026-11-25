@@ -3,5 +3,5 @@
   "where": null,
   "quote": null,
   "outcome": null,
-  "note": "The “Resolve merge risk” items cover ACK latency targets and a merge conflict. The “Technical review” mentions bounded diagnostics but raises no concern about counting a steered reply’s execution time as preparation."
+  "note": "All review versions concern only the median ACK latency tradeoff and merge conflicts; nothing addresses how dispatch diagnostics attribute steered prepared-reply run time to the preparation phase."
 }

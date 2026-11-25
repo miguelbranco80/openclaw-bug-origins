@@ -1,0 +1,8 @@
+{
+  "rank": 100601,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cVerify shell-profile and generated-script escaping\u201d item concerned how paths, descriptions, and choices were quoted in generated scripts. The at-merge \u201cAdd real behavior proof\u201d item requested PowerShell testing in general and gave no indication that the matcher kept the opening quote from the user's input."
+}

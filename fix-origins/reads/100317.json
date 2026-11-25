@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "dac3cb6d47c2387442b3e50327fe6346af6d3232",
+  "cause_pr": 147711,
+  "confidence": "high",
+  "cause_quote": "The new receipt builder seeded `sources` with the index and populated it through `for (const record of records)`, omitting orphan JSONL files that settlement then skipped with `if (capturedSources && !capturedSources.has(source)) { continue; }`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a deferred plugin migration finished, orphan transcripts remained in the active sessions directory and Doctor kept reporting them as legacy files.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "Doctor now captures orphan transcript identities before plugin deferral and records each physical archive move for every receipt that captured the source.",
+  "reasoning": "The parent of #147711 archived orphan JSONL files during ordinary imports, and #147711 introduced deferred settlement with a receipt that excluded those files from its first implementation. I checked that #149308 allowed receipts when transcripts were missing while leaving the source inventory unchanged, and the fix's evidence reports the same omission without missing-transcript warnings.",
+  "rank": 100317,
+  "sha": "51b537c6b25c4bbccf999cc1d317f5e505796224",
+  "rubric": "v1.2"
+}

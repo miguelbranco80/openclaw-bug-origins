@@ -1,0 +1,17 @@
+{
+  "rank": 100653,
+  "sha": "8bdb746df7e7f77a6e8af96f563b22f26cd9adfd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e156194282350d75c2082d2c6d4dfabf40b6c25d",
+  "cause_pr": 143761,
+  "confidence": "high",
+  "cause_quote": "The new provider-policy notice used `formatUiExternalText(fallbackModel.slice(0, 256))`, which kept only the first half of an emoji when its surrogate pair straddled the cutoff.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI's \u201cProvider changed the model\u201d notice showed \ufffd at the end of a fallback model label when the cutoff split an emoji.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix truncates retry messages and provider-policy model labels at Unicode code-point boundaries within the existing 256 UTF-16 code-unit limit.",
+  "reasoning": "The path history and introducing diff show that #143761 added the provider-policy notice, its provider-supplied fallback label, and the unsafe slice together. The fix PR reproduced the malformed label in Chromium, so that browser-visible failure determines the cause attribution. The same fix covers the retry-message slice introduced separately in #139397, which the fix PR exercised through a test because existing retry messages were short."
+}

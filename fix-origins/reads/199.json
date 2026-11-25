@@ -1,17 +1,17 @@
 {
   "rank": 199,
   "sha": "f6d5e173601a3fed8ace2fd036215c92f61d5356",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "fa54950d2ee17bb03c95d6222e77b0db8f98926f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "low",
-  "cause_quote": "feat(browser): add MCP tool dispatch added `page.on(\"request\", (req: Request) => { ... state.requestMap.set(req, entry) ... })`, a permanent Playwright Request subscription for the network log.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Gateway memory grew steadily (about 8 MB/min of buffers in the measured workload) while an attached managed-browser page kept sending background POST requests.",
+  "user_saw": "Gateway memory grew while an attached managed browser tab kept sending background POST requests.",
   "impact": "slower-or-heavier",
-  "area": "plugins",
-  "summary": "Replaced the permanent Playwright request/response/requestfailed page listeners with a bounded network metadata log fed from CDP messages the transport already receives.",
-  "reasoning": "The leak comes from the page-level Playwright request listeners, which make Playwright materialize and retain Request dispatchers and POST buffers; GraphQL blame at the parent puts the current listener lines in refactor 425df19 (#149651), whose diff only moves the same pre-existing listeners, and full-history listing traces the listener design to fa54950 (2025-12-19), where `page.on(\"request\")` first appears in src/browser/pw-session.ts. I could not confirm the lineage was continuous through later prunes or whether Playwright's dispatcher retention changed with a dependency upgrade (which would make this latent), so confidence is low."
+  "area": "gateway",
+  "summary": "The fix replaces permanent Playwright network listeners with a 500-entry metadata log built from the existing CDP stream.",
+  "reasoning": "The fix's comparison runs tie the memory growth to Playwright retaining request objects and their POST buffers despite the browser log's 500-entry cap. I verified that the permanent listeners and cached browser connection were already present at the July 1 history boundary, before the session manager split. The available history does not show when the listeners were introduced or establish that a later Playwright update changed retention behavior."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "5f17f893af5853e4cbcb679b22b80b2ad7e6c613",
+  "cause_pr": 150128,
+  "confidence": "medium",
+  "cause_quote": "The new spawn selector called `const auth = decisions.evaluateNative(entry, host);` and immediately returned `unavailable` when `(profileId || auth.availabilityAuthoritative) && auth.availability === false`, before attempting to renew the observation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After another agent replaced the shared Codex client, a follow-up subagent spawn told the user to restore an account that was still signed in.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix renews the native model catalog once after a readiness rejection and rechecks the selected model against the renewed catalog.",
+  "reasoning": "I checked the parent of #150128: native subagent spawning and client-bound Codex readiness observations already existed, and a retired observation did not block spawn admission. #150128 wired both spawn paths through a new gate that treated the missing observation as authoritative unavailability. The fix PR verified the failure on a later baseline, while the pre-change behavior was checked through source inspection.",
+  "rank": 100616,
+  "sha": "cf91c614b29ce76dadabb35ebc0ea18a36b7f717",
+  "rubric": "v1.2"
+}

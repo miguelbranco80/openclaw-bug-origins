@@ -1,0 +1,8 @@
+{
+  "rank": 100820,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Unbound request objects can now become worker-classified from callback metadata. Existing custody tests stop at the changed family assertion, so they do not establish whether copied requests preserve profile restrictions and reject revoked authority at the final write.",
+  "outcome": "open-at-merge",
+  "note": "The fallback worker classification finding questioned whether revoked request authority was rejected at the final write. It focused on copied requests and left the transport-only commit check for in-process Web Push unidentified."
+}

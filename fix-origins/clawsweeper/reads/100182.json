@@ -1,0 +1,8 @@
+{
+  "rank": 100182,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings concern saved-progress visibility, responsive view wiring, and terminal outcome labels. The Tests section asks for proof of those behaviors and says nothing about icon alignment beside wrapped descriptions."
+}

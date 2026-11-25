@@ -1,0 +1,17 @@
+{
+  "rank": 100726,
+  "sha": "005788b8574a1b93633ad8922fe4d33388cf6943",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c182dda402b9f2e9aa737c58bc1706d16a7d4a32",
+  "cause_pr": 106758,
+  "confidence": "high",
+  "cause_quote": "The commit introduced profile selection with `await readText(path.join(root, \"active_profile\"))` and memory deduplication with `await fs.readFile(item.target, \"utf8\").catch(() => \"\")`, both of which can block on a named pipe with no writer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Hermes migration preview or import hung when a configuration file, the active profile selector, or an existing memory target was a named pipe with no writer.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Hermes migration now uses a regular-file reader for text inputs and memory deduplication so named pipes are rejected without blocking.",
+  "reasoning": "The introducing diff and its parent show that active profile discovery and memory deduplication shipped with blocking reads and no regular-file check. The configuration read already had the same flaw at the shallow boundary, and the available offline history did not establish its introducing commit."
+}

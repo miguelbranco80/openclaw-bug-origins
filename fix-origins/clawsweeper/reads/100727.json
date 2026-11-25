@@ -1,0 +1,8 @@
+{
+  "rank": 100727,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section describes moving the readiness exchange into the search worker task without raising a concern about its writer wait overlapping a progress-card save. The review history lists no earlier open items."
+}

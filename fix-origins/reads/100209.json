@@ -1,0 +1,17 @@
+{
+  "rank": 100209,
+  "sha": "11f74c7ddfef9867861867410ac04435e6ef0926",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "461772868da324d70be1d545f5951a628abbdc75",
+  "cause_pr": 103422,
+  "confidence": "high",
+  "cause_quote": "The new `return tool.catalogMode !== \"direct-only\";` kept direct-only tools out of the catalog, so the existing `tool_call` miss handler directed agents to search for tools that could never appear there.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an agent sent a visible direct-only tool through `tool_call`, it got an unknown-tool error and was told to search a catalog that excluded the tool.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix makes `tool_call` tell agents to invoke a direct-only tool by its declared name when that tool is visible on the current turn.",
+  "reasoning": "The introducing diff defined direct-only tools as visible to the model and absent from the structured catalog. Comparing it with its parent confirmed that `tool_call` already searched only catalog entries and sent misses to `tool_search`, so the misleading recovery path existed from the first commit that supported direct-only tools."
+}

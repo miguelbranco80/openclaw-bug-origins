@@ -1,0 +1,17 @@
+{
+  "rank": 100380,
+  "sha": "3f9623cf2594aff2e074df81fc899ab9edca2339",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0a868179e4c70d34dd5ae9968e2e86c650c7cd0a",
+  "cause_pr": 96230,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `admittedSessionEntry.mainRestartRecovery?.tombstone !== undefined` to the recovery-owner check and called `rejectLifecycleInvalidatedWork` when `ownerClaim.kind === \"invalidated\"`, sending the turn into the dispatcher's existing error path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After restart recovery exhausted its attempts, mentioning the agent in the affected room produced no reply or recovery guidance.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix logs visible restart-recovery rejections and sends eligible channel users one recovery reminder per session and recovery cycle while preserving the admission rejection.",
+  "reasoning": "PR #96230 introduced retry-budget tombstones and added a test asserting that subsequent visible turns were rejected, while the shared dispatcher rethrew the error without sending a reply. That commit also added a notice at the moment of tombstoning, a separate path from a later inbound message. PR #130196 changed admission to throw a typed tombstone error, and the shared dispatcher still propagated it without sending recovery guidance."
+}

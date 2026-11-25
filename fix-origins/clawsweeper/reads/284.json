@@ -1,1 +1,8 @@
-{"rank": 284, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Every version is about cross-Gateway transcript scoping, unavailable screenshots, data-model and config compatibility, and Incognito, roster-wait and short-link findings. Nothing mentions Gateway or agent publications re-arming the boot-record write debounce."}
+{
+  "rank": 284,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item concerned cross-Gateway transcript isolation, and the earlier \u201cRelease the roster wait when the Gateway becomes ready\u201d item concerned an IndexedDB read during startup. Neither addressed unrelated Gateway updates resetting the sidebar boot-cache write timer."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 252,
   "sha": "8ac4e19d206335540eba2711a71ba98e91221b78",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": "1edc42ce552bc802d78ccde77902b775cc46a46a",
+  "trigger_sha": "6b3617207ac19f95b960434c635fd902cc242d85",
   "user_visible": "yes",
-  "user_saw": "On a PostgreSQL-backed install, creating a managed Git worktree failed with 'column reference \"owner\" is ambiguous' (SQLSTATE 42702).",
+  "user_saw": "Creating a managed Git worktree with PostgreSQL-backed state failed with an ambiguous `owner` column error.",
   "impact": "failed-every-time",
   "area": "agents",
-  "summary": "Qualifies the owner predicate in the worktree capacity upsert's ON CONFLICT DO UPDATE WHERE as state_leases.owner so PostgreSQL accepts it.",
-  "reasoning": "The unqualified .where(\"owner\", \"=\", key) was written in 339c4da81f54 (#164938) against node:sqlite's DatabaseSync, where it resolves to the target row and works. It broke only once the worker ran on PostgreSQL, where the name is ambiguous with EXCLUDED; #171521 (1edc42ce552) switched this function to the engine-neutral EngineConnection handle without changing the SQL, exposing it to PostgreSQL. Since the SQL was correct for SQLite, its only engine at the time, I classify it as latent with the engine-neutral change as trigger, not a regression."
+  "summary": "The fix qualifies `state_leases.owner` in the capacity reservation upsert and adds PostgreSQL conformance coverage.",
+  "reasoning": "The worktree capacity worker introduced `.where(\"owner\", \"=\", key)` for SQLite, where the predicate worked, and subsequent worker changes retained it. The shared-state configuration change in #172266 passed the PostgreSQL selection to workers, exposing the existing upsert to PostgreSQL, where both the target row and the proposed row have an `owner` column. The fix PR reproduced SQLSTATE 42702 through the public worktree creation command and verified that qualifying the column let the checkout be created and registered."
 }

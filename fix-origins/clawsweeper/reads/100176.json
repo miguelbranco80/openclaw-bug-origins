@@ -1,0 +1,8 @@
+{
+  "rank": 100176,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Existing proxy configurations that rely on implicit native model inventory will lose those rows and require explicit model declarations",
+  "outcome": "open-at-merge",
+  "note": "The P1 Resolve merge risk item warned that endpoint filtering could remove built-in models from existing configurations. It addressed proxies and left unexamined whether the filter would recognize Z.AI\u2019s official China endpoint."
+}

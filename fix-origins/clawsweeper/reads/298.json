@@ -1,0 +1,8 @@
+{
+  "rank": 298,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests section called for completing the all-action performance comparison without identifying any concern about which fingerprint blobs the snapshot query read. The earlier incremental preparation concern was about which directory packs to prepare after an edit."
+}

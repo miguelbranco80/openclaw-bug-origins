@@ -1,0 +1,17 @@
+{
+  "rank": 100100,
+  "sha": "80b4a31273d5b8934749dc91897d6905573b79b9",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A channel account that recovered while another account was stopping briefly went offline again when the gateway restarted it.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The gateway now rechecks each account\u2019s live health before recovery and uses an account-lifetime guard when restarting a running account.",
+  "reasoning": "At the July 1 history boundary, the monitor already took one snapshot of copied account statuses and awaited stop and start operations inside the same loop, allowing later entries to go stale. The offline path history stops at that boundary, so I could not determine whether the original monitor shipped with this race or an earlier change introduced it."
+}

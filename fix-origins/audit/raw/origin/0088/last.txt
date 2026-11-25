@@ -1,0 +1,17 @@
+{
+  "rank": 88,
+  "sha": "3900bb2366e8b7aa785b8eafd7b25131b0fbeb2e",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "db0d3d00ce531d1685c8d37a4984107ccbe27227",
+  "cause_pr": 171622,
+  "confidence": "medium",
+  "cause_quote": "readVerifiedArtifactSource was added with `if (!loaded.ok) { throw new ClawHubSourceError(\"clawhub_manifest_invalid\", \"Downloaded Claw package manifest is invalid.\") }`, discarding loaded.diagnostics.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Adding a ClawHub Template with an invalid CLAW.md failed with only \"Downloaded Template package manifest is invalid.\" and no reason, in the CLI, Control UI and Gateway log.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Appends up to three sanitized reader diagnostics (code, path, message, with cache paths made package-relative) to the clawhub_manifest_invalid error and sanitizes the local CLI failure message.",
+  "reasoning": "The reason-free message was in the ClawHub download path from its introduction in db0d3d00ce53 (#171622), confirmed by git grep showing the line absent before and present at that commit and unchanged (apart from the Claw-to-Template rename d1c8d42588a4) until the fix. The add still correctly fails; the defect is that the reader's diagnostics were dropped since day one, and it became common after legacy formats were retired, so medium confidence that this counts as a defect rather than a copy improvement."
+}

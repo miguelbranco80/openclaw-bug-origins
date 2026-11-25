@@ -1,0 +1,17 @@
+{
+  "rank": 100036,
+  "sha": "9488ca1667a6ce6050c9cc8c2f159cd16ca13972",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "b99ccac1be8564a3219057909bec217d3fc72bbc",
+  "cause_pr": 148440,
+  "confidence": "high",
+  "cause_quote": "The new retry predicate accepted `details?.eventType === \"response.incomplete\" && details.incompleteReason === \"max_output_tokens\"` without checking the stop reason derived from the response status.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Responses session could send an unnecessary continuation request after an unfinished tool call even when the provider explicitly reported that the response had completed, failed, or been cancelled.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix preserves the canonical terminal stop reason before tool validation overwrites it and requires a `length` stop for output-limit recovery.",
+  "reasoning": "The introducing diff added the output-limit predicate as a new reason for the session to retry alongside its existing retry check. That predicate ignored the canonical stop reason, so an unfinished tool call followed by an incomplete event with `max_output_tokens` could trigger the new recovery path despite a conflicting explicit response status from the first version of the feature."
+}

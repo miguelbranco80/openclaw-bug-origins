@@ -1,0 +1,8 @@
+{
+  "rank": 100399,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "CLI JSON loses the shipped missing field, and ordinary browsing no longer acquires inventory or displays passive promotion notices. Acceptance and upgrade coverage for these intentional changes remain unresolved.",
+  "outcome": "dropped",
+  "note": "The earlier Resolve merge risk item flagged the loss of inventory acquisition during ordinary browsing and called for upgrade coverage. It did not identify missing models after a Gateway restart, and the final review described explicit-only discovery as expected behavior."
+}

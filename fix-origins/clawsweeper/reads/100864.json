@@ -1,0 +1,8 @@
+{
+  "rank": 100864,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The LaunchAgent finding and earlier systemd items asked for proof that the detached helper survived service shutdown and completed the update. The review raised no concern about the invoking CLI returning exit code 0 while the update was still running."
+}

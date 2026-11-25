@@ -1,17 +1,17 @@
 {
   "rank": 288,
   "sha": "4f84bfd25e78aa35f6eb5fb17c5332d271fdfb29",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "c50ff4fbe5410609d00066642c72213e4354ee23",
   "cause_pr": 173964,
-  "confidence": "medium",
-  "cause_quote": "The new portable.ts validated the extraction reply against `findings ... { maxItems: 12 }`, `gaps ... { maxItems: 8 }` and `queries ... { maxItems: 4 }` while the extraction prompt stated no limits, so a longer model reply failed validation as a whole.",
+  "confidence": "high",
+  "cause_quote": "The original engine capped the findings array at `{ maxItems: 12 }` and passed the entire model reply directly to `parseValue(extractionSchema, await model(...))`, so a thirteenth finding caused it to discard the whole reply.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Deep research questions that the model answered in detail ended as partial results with no findings, and idle Control UI sessions showed a Deep research header button plus a full-width bar.",
+  "user_saw": "A portable deep research run could end as partial with no findings when the model returned too many items in a list.",
   "impact": "failed-every-time",
-  "area": "plugins",
-  "summary": "Clamps model reply lists to the schema limits and states them in the prompt instead of rejecting the reply, bounds start/resume tool results, and removes the Deep research header controls so the side panel is the only UI entry point.",
-  "reasoning": "The defect half (detailed replies rejected, empty partial results) comes from the schema maxItems limits that shipped with the plugin in c50ff4fbe541 (#173964), which created portable.ts with these schemas and the unlimited extraction prompt (blame of the prompt and schema lines points there and the file history starts there). The UI half (removing the header button/bar and inline card) is a product decision layered on newer pane commits; I classed the fix by its defect part, with medium confidence because over-limit replies depend on model behavior."
+  "area": "agents",
+  "summary": "The fix trims selected model reply lists before validation, bounds start and resume results, and makes the side panel the sole Control UI entry point for deep research.",
+  "reasoning": "I checked the original portable engine diff and its subsequent path history: the first implementation already rejected whole replies when a list exceeded its schema limit and returned a partial result on validation failure. The fix PR reports a live run that recovered seven findings after the change, and its added test covers overlong planning, extraction, and audit lists. The side-panel-only change addresses a separate UI decision."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100451,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section confirms that the installer stores the exact resolved path and endorses direct root discovery. It raises no concern that discovery trims leading or trailing spaces and can load a hook from a sibling directory."
+}

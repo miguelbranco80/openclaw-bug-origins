@@ -1,0 +1,17 @@
+{
+  "rank": 219,
+  "sha": "9341d60e90b639160fc89366badaf7ce0af59cb3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "2bed3947937cf41eff809eb06153132158ce08b4",
+  "cause_pr": 100478,
+  "confidence": "medium",
+  "cause_quote": "The commit that added the system.info RPC returned `diskPath: stateDir` to every caller allowed to call system.info, with no admin-scope check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Read-only (operator.read) Gateway clients could see host filesystem paths such as the state directory in system.info responses.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "system.info now returns diskPath and per-mount disks only to admin-scoped callers and skips mounted-disk discovery for others, keeping only capacity totals.",
+  "reasoning": "The connect snapshot had restricted resolved paths (stateDir/configPath) to admin callers since 676b748056b (#58469, April 2026), and system.info was added later in 2bed3947937 (#100478, July 2026) with `diskPath: stateDir` exposed to read-only callers (GraphQL blame of the fix parent puts the diskPath line on that commit); e242a92f607 (#136079) later added the stateDir disks[] fallback with the same exposure. The defect shipped with the RPC, though it was found by audit rather than reported by a user, hence medium confidence."
+}

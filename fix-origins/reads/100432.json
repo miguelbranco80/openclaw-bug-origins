@@ -1,0 +1,17 @@
+{
+  "rank": 100432,
+  "sha": "ccc0020633ba98fc0e930a98df2c05d13d5b9dd8",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "cd9913f1b1105f9c4e7b96fde8c1431a77e5878d",
+  "cause_pr": 163471,
+  "confidence": "high",
+  "cause_quote": "The cutover replaced the reserved-type privacy check with `return isRuntimeContextCarrier(message);`, which rejects reserved entries without qualifying carrier metadata.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Private runtime details could appear in compaction summaries or saved CLI session notes.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix excludes all reserved runtime-context custom entries from compaction and saved CLI session notes while preserving the provider replay checks.",
+  "reasoning": "I checked the parent\u2019s compaction code and existing test, which confirm that compaction already filtered reserved custom entries even when they had no carrier metadata. The cutover diff replaced that filter\u2019s type check with a replay predicate that requires qualifying metadata, so legacy entries and entries opted out of replay could pass through to saved context."
+}

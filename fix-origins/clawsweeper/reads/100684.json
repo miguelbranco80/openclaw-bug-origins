@@ -1,0 +1,8 @@
+{
+  "rank": 100684,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Skip the lookup when active() is null while continuing to support an actually highlighted empty-string option.",
+  "outcome": "open-at-merge",
+  "note": "The Before merge item identifies a null-highlight scroll jump in the same retained-row lookup. Checking for null inside the scrolling callback would still read active() in an untracked context and leave the Solid warning in place."
+}

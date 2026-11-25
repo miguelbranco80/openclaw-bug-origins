@@ -1,0 +1,17 @@
+{
+  "rank": 128,
+  "sha": "c3b92c2597b3039a537878f159c79989c49c187d",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening a saved /settings/model-setup link from New Session briefly rebuilt the New Session page before landing on the same Models account picker, about 60 ms slower.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Canonicalizes legacy model-setup URLs to the Models page before route matching, so the router no longer remounts New Session on the way through the loader redirect.",
+  "reasoning": "The loader redirect from legacy model-setup links to Models was added in #147794 (11a42b73fe0a) and has always gone through the intermediate remount; the final destination and state were correct, and the PR shows only timing and remount-count improvements. This is a performance improvement of a redirect path that was never faster, matching the same pattern just applied to General settings in #194624, so not a defect under the rubric."
+}

@@ -1,17 +1,17 @@
 {
-  "rank": 251,
-  "sha": "8253356c986427d888cbe24b2c3d6f3b702a2f79",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
+  "origin": "never-worked",
+  "cause_sha": "7aaf3023fcc57bee963e6f7959300b6ce7cfb74c",
   "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "confidence": "high",
+  "cause_quote": "The introducing diff returned `sourceOwnerChangedResult()` when `sourceOwnerChanged()` was true, producing `delivered: false` with `terminal: true`, which the announce flow counted as success.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When a background child's source session lifecycle changed before its completion turn ran, the requester never saw the child's finished answer or any notice about it.",
-  "impact": "data-loss-or-duplication",
+  "user_saw": "When the source lifecycle changed after a background child finished, the requester saw neither the saved answer nor a delivery failure notice in chat.",
+  "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Reclassifies the source-lifecycle-changed completion refusal from intentional_non_delivery to permanent_failure so the registry's existing failure notice shows the saved answer to the requester.",
-  "reasoning": "The removed line `disposition: \"intentional_non_delivery\"` in sourceOwnerChangedResult predates the graft (GraphQL blame points only to the c61ba3ea extraction refactor, which moved the existing literal unchanged), and its name shows a deliberate design that source-lifecycle refusals are silent non-delivery. The fix reverses that policy, following the same direction as #200760 (714129c06), which two days earlier deleted other deliberate post-completion refusals; no commit broke a working behavior, so this is a product/policy change rather than a regression. A reader treating the original design as a defect could call it never-worked, but its introducing commit is older than the graft and was not found."
+  "summary": "The fix classifies a source lifecycle refusal as a permanent failure so the registry shows the saved public child result in a failure notice.",
+  "reasoning": "The introducing diff added the source-lifecycle guard and a test that expected the announcement to report success even though the gateway never ran and a frozen result was available. A later commit gave that same refusal the explicit `intentional_non_delivery` disposition, and the subsequent saved-result notice change left the refusal outside the failure path.",
+  "rank": 251,
+  "sha": "8253356c986427d888cbe24b2c3d6f3b702a2f79",
+  "rubric": "v1.2"
 }

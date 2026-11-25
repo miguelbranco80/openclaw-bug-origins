@@ -1,17 +1,17 @@
 {
   "rank": 81,
   "sha": "2420b7db04c71c0a30ed94f724763181a122fda8",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
-  "cause_sha": "bbf0d7380315f660bf79561223da1d34eadd4ac3",
-  "cause_pr": 195661,
+  "cause_sha": "e051130c6ae044289990bb1045773c89f0014a87",
+  "cause_pr": 188402,
   "confidence": "high",
-  "cause_quote": "restartResumeSkipReason changed to `if (isSubagentSessionKey(sessionKey) || entry?.createdVia === \"spawn\") { return \"subagent\"; }`, so a visible spawned coordinator's own restart marker was rejected while root resolution (narrowed to `while (isSubagentSessionKey(root.sessionKey))` by #188402) never walked past it to the real root.",
+  "cause_quote": "The diff replaced `for (;;)` with `while (isSubagentSessionKey(root.sessionKey))`, so the ancestry walk stopped at a visible dashboard child before reaching its root.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After a Gateway restart, a root chat whose work ran through a visible spawned coordinator and hidden workers stalled and did nothing until a human sent a message.",
+  "user_saw": "After a Gateway restart, work delegated through a visible spawned session stalled until someone sent a new message.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Root discovery for restart resume now follows recorded native spawn ownership (spawnedBy / createdVia spawn) through visible and hidden spawned children up to the ordinary root.",
-  "reasoning": "#185730 (9344233) walked requester links unconditionally, so visible children reached the root; #188402 (e051130) narrowed the walk to subagent-keyed sessions, but the visible coordinator then still got its own marker and resumed. #195661 (bbf0d73) added the createdVia === \"spawn\" skip ('keep spawned dashboard children with their requester') without extending the walk, so neither the visible child nor the real root was marked, which is exactly the failure the fix describes."
+  "summary": "The fix follows recorded spawn ownership through visible and hidden children so the Gateway resumes the root session after restart.",
+  "reasoning": "In the parent of #188402, visible spawns already registered requester links, and shutdown followed those links regardless of session key until it reached the ordinary root and wrote its resume marker. The #188402 diff added a hidden-subagent key check that stopped the walk at a visible child, leaving the root without a resume marker."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100019,
+  "sha": "57c59078d86321a51488a7bbfe9736cbe145d13a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "ec9de37818284d245fa65f16056676e335dc9d16",
+  "cause_pr": 150755,
+  "confidence": "high",
+  "cause_quote": "The new deferred recovery path passed `sourceConfig: previousSecrets.sourceConfig` as its only config input, so guarded activation published the catalog-enriched secrets input as the authored source.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an agent finished background database preparation, Codex showed as `unsupported-runtime` even though the configured OpenAI route supported it.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix carries the authored configuration through the deferred secrets refresh so catalog defaults no longer disqualify Codex.",
+  "reasoning": "The commit that introduced deferred agent recovery already refreshed secrets from the defaulted input, and its activation code fell back to publishing that input as the authored source. I checked that catalog defaults could fill model compatibility fields at that commit and that route resolution treated those fields as transport overrides when they appeared in the authored source. The later #165979 fix preserved the authored source during initial startup and left the deferred refresh call unchanged."
+}

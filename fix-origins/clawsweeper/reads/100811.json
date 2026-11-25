@@ -1,0 +1,8 @@
+{
+  "rank": 100811,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Before merge and Findings list no issues. The Technical review endorses the rail placement and mentions viewport clamping only for Inbox, with no concern about the gateway submenu clipping before it could flip upward."
+}

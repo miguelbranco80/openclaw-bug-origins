@@ -1,0 +1,8 @@
+{
+  "rank": 100430,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Product section describes overlap from the old top placement, and the P2 finding concerns viewport assumptions in the placement tests. The review raises no concern about the right-side New Session hint intercepting clicks on the session-group header."
+}

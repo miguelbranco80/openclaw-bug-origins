@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "2bf30bac7b5cc815b3d628fd90d6d5f951fd78fe",
+  "cause_pr": 138690,
+  "confidence": "high",
+  "cause_quote": "The new cleanup-start callback called `recordUpdateRunStep(run.runId, { step: step.name, status: \"in_progress\", startedAtMs: Date.now() }, { env: run.env })`, so a synchronous write failure escaped before Git could remove the worktree.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When update history could not record cleanup, the updater could show a reporting error in place of the original failure and leave the temporary Git worktree behind.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix lets temporary Git worktree cleanup proceed when progress writes fail and preserves the original update outcome and recovery classification alongside secondary errors.",
+  "reasoning": "The parent of #138690 already removed the temporary Git worktree in a finally block and used display-only progress callbacks. #138690 added synchronous ledger writes to those callbacks, and I verified that the existing command runner invoked the start callback before running Git, allowing a write failure to skip removal and replace the initiating error during unwinding. #162098 later awaited progress receipts and continued to propagate ordinary write failures.",
+  "rank": 100262,
+  "sha": "534d727b11e46886ec816b6e423b9c521a274b80",
+  "rubric": "v1.2"
+}

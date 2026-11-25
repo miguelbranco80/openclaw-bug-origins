@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "7753ffb4753f959bb7b80c40be879e0b67aa46b1",
+  "cause_pr": 145927,
+  "confidence": "high",
+  "cause_quote": "The saved-session scope added `isCurrent: () => readSessionsMutationVersion(context) === sessionsMutationVersion`, and the new `if (scope?.isCurrent?.() === false)` check threw a retry error after any session mutation in the same Gateway context.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Refreshing a saved session\u2019s model list could show a retry error if another session was renamed while the refresh was in progress.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The Gateway now retains the selected session row during catalog discovery and revalidates that row, its storage, access, and configuration before responding.",
+  "reasoning": "I checked the parent of #145927 and confirmed that the existing saved-session `models.list` refresh performed discovery and returned the catalog without consulting the session mutation counter. The #145927 diff added that check, and the counter advances for every session mutation in the Gateway context. The fix PR reports that changing only another session\u2019s label during held discovery reproduced the retry error.",
+  "rank": 100559,
+  "sha": "d99619cc4e68b6d0e84ed05f0c1276ef4eeaae18",
+  "rubric": "v1.2"
+}

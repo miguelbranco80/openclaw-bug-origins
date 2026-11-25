@@ -1,0 +1,8 @@
+{
+  "rank": 100616,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item concerns unlisted native model IDs losing endpoint-only support after an upgrade. The Shared admission and account preservation section describes freshness checks and test coverage without raising the risk that replacing the shared Codex client could make a follow-up spawn reject a still-signed-in account."
+}

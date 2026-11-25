@@ -1,0 +1,8 @@
+{
+  "rank": 100814,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Test-runner contract coverage item describes which inputs identify a test runner. It raises no concern about eagerly reading every bundle URL or the possibility that a missing URL could terminate the test process."
+}

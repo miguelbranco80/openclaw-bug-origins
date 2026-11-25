@@ -1,0 +1,8 @@
+{
+  "rank": 52,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge items concerned published-updater compatibility, and the earlier include-backup finding concerned permission changes through symlinks and hardlinks. Neither raised the risk of staging backups from decoded text and losing the original malformed UTF-8 bytes."
+}

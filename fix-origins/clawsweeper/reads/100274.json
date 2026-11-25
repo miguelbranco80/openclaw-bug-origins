@@ -1,0 +1,8 @@
+{
+  "rank": 100274,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Commit-state observation treated the callback timing as correct and missed that publication could fail after SQLite committed but before the callback ran. The earlier one-store Gateway finding concerned a dropped partial-error marker and a successful CLI exit."
+}

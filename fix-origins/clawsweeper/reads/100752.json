@@ -1,0 +1,8 @@
+{
+  "rank": 100752,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 finding concerns a completed queued manual run being recorded as an error when its job was removed and receipt settlement failed. The Evidence section describes receipt-based startup recovery without raising the risk of replay after a recipient accepted delivery but before the Gateway recorded the acknowledgment."
+}

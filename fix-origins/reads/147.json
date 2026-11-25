@@ -1,7 +1,7 @@
 {
   "rank": 147,
   "sha": "197872027df6c2fbc56f0318e305b6008429b5ad",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; operators get a new warning log for slow SQLite worker deliveries.",
+  "user_saw": "nothing visible",
   "impact": "other",
   "area": "storage",
-  "summary": "Added a parent-side event-loop utilization snapshot at worker dispatch and a 'slow SQLite worker delivery' warning for deliveries of one second or more.",
-  "reasoning": "The change is pure diagnostics: it adds logging to help investigate a slow-delivery incident but does not change or fix the delivery behavior itself, and the PR states no runtime user impact. The blamed commit 14ad84c38169 only added the threadId parameter being extended, not a defect."
+  "summary": "The fix adds a warning with worker event-loop activity and idle time when a timed SQLite request takes at least one second to reach the worker.",
+  "reasoning": "The incident delayed live messages, and this patch adds telemetry to help distinguish a busy worker loop from a delayed wakeup. The local history shows that #171082 exposed request phase timings and #189705 added thread IDs for wait attribution. The new warning leaves delivery behavior unchanged."
 }

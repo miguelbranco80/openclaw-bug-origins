@@ -1,0 +1,8 @@
+{
+  "rank": 100461,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cOwned drainage and failure handling\u201d evidence describes draining accepted database operations and handling worker failures. The open review items concern plugin publication and data-model compatibility, and no item raises the risk of terminating the worker before its final close diagnostic is flushed."
+}

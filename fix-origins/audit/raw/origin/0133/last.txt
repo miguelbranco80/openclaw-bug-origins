@@ -1,0 +1,17 @@
+{
+  "rank": 133,
+  "sha": "5b12461c7b3265ef81a3ba0594041e2510e865ba",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a new loopback-only Gateway, Connect a device showed a configuration error when creating a phone setup code, with no guidance on how to make the Gateway reachable.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Tagged the loopback-only setup-code refusal with a structured DEVICE_PAIR_GATEWAY_LOOPBACK_ONLY detail and made the Connect a device dialog show Set up secure access guidance (Tailscale Serve, trusted LAN, Retry) instead of the raw error.",
+  "reasoning": "The Gateway's refusal to make a setup code on a loopback-only bind is intended and unchanged; the fix adds a new guided UX and error detail code on top of it. Nothing that worked broke and the old error was accurate, so this is a product/UX improvement titled as a fix rather than a defect."
+}

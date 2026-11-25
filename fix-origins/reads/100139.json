@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could run a plugin update while the Gateway was running and see the changes applied after a local write.",
+  "impact": "other",
+  "area": "cli",
+  "summary": "The fix requires exclusive offline ownership for local plugin and hook writes while preserving existing Gateway RPC routes.",
+  "reasoning": "The earlier live plugin management commit explicitly documented and implemented local updates followed by a refresh of the running Gateway. This fix changes that policy to require offline ownership, and the reported negative control shows that the old registry command accepted the write without establishing a resulting failure or inconsistent state.",
+  "rank": 100139,
+  "sha": "31b1db6273053ad23e8fa6a0268bfe1e5fdac94a",
+  "rubric": "v1.2"
+}

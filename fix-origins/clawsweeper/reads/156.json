@@ -1,0 +1,8 @@
+{
+  "rank": 156,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Keep per-method diagnostics on public legacy adapters while supported host operations use the existing owners without misleading warnings.",
+  "outcome": "answered",
+  "note": "The host authority finding identified the same warning mechanism, but its requested fix covered sandbox and Talk authority reads and would have left the Matrix saved-auth probe used by `openclaw agents list` untouched. The author responded by acknowledging that host operations could surface deprecation warnings and deferring the remaining migrations."
+}

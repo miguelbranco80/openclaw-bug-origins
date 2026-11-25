@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "8631832048cfd5f08f33e1899a373914e515c579",
+  "cause_pr": 111244,
+  "confidence": "high",
+  "cause_quote": "The new conflict reporter called `resolveGatewaySessionStoreTargetWithStore({ cfg: getRuntimeConfig(), key: conflict.sessionKey, agentId: conflict.agentId, clone: false })` and wrote to `storePath: target.storePath`, so it could write to a different store from the one recovery started with.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After session routing changed during worker recovery, a workspace conflict could be reported in the wrong session store and be missing from the owning session\u2019s transcript.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix binds each worker workspace recovery attempt to one session store and rechecks the source and recovery authority before reporting conflicts or settling results.",
+  "reasoning": "The introducing diff shows that pending-result recovery resolved the workspace first and then called new conflict handlers with only the session ID, key, and agent ID. Those handlers independently resolved the store from live configuration, and the fix\u2019s two-store test fixture shows why matching the session ID alone cannot distinguish the original store from a replacement.",
+  "rank": 100744,
+  "sha": "eacbd1d92afb579876b28890e1b66bc23905fd62",
+  "rubric": "v1.2"
+}

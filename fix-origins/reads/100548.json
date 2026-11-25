@@ -1,0 +1,17 @@
+{
+  "rank": 100548,
+  "sha": "80778e082de5b30c079b5d7e6f38a2f0c3fd9fd3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "240045417cb00a0cef104836fb4c0a1cf6351a44",
+  "cause_pr": 180466,
+  "confidence": "high",
+  "cause_quote": "The new capture branch, `if (module && resolveBundledSharedModule(bundledReloadSource, rootDir, source, local)) { return undefined; }`, skipped shared modules without putting a link where native Workers could resolve them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After reloading a bundled plugin, memory searches and standing-intent maintenance failed with `ERR_MODULE_NOT_FOUND`.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix links relative shared imports in captured plugin packages to the canonical host modules so native Workers can resolve them after reload and recovery.",
+  "reasoning": "The introducing diff shows that loading edited bundled code previously required a Gateway restart and that #180466 introduced capture for explicit reload. That same diff skipped shared modules during capture and redirected imports through a parent resolver hook that native Workers do not inherit. The fix's Worker test exercises the missing relative import on initial load and verifies that it also resolves after recovery."
+}

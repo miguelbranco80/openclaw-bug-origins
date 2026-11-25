@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "32bff6b57b7903fb8ea5fc024ac69167fa0ba0ee",
+  "cause_pr": 188513,
+  "confidence": "high",
+  "cause_quote": "The new `params.evt.status === \"skipped\"` branch sent quiet condition skips to `commitCronConversationResult`, which wrote a \u201cdid not start\u201d notice.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a scheduled automation\u2019s condition returned false, its owner conversation received an unexpected \u201cdid not start\u201d message and moved up in the conversation list.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "The fix preserves `triggerFired: false` in finished cron events and suppresses conversation notices for those quiet skips before accessing the session database.",
+  "reasoning": "I checked the parent of #188513 and confirmed that false conditions already produced skipped events and that the Gateway\u2019s finished-event handler only dispatched completion webhooks. #188513 added a conversation write for every skipped event, including quiet condition skips. The producer already omitted the false flag, and the new notice branch checked only the skipped status.",
+  "rank": 100385,
+  "sha": "563ba501dced074d9d282fb3a4cb48cfc31bcf9e",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100013,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Merging intentionally changes isolated cron runs that set both a named-agent primary model and a global subagent model; those runs will switch to the documented child-model route and fallback chain.",
+  "outcome": "answered",
+  "note": "The P2 merge-risk item identified the precedence change that could route cron to a CLI-backed default but did not identify host execution outside the sandbox. RomneyDa responded with a selector and fallback trace using API-backed models."
+}

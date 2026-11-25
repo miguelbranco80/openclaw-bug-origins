@@ -1,0 +1,8 @@
+{
+  "rank": 100870,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 systemd metadata finding concerns services incorrectly sent to the in-place update path. The Bun regression occurs when an eligible service enters the rebind path and fails a Node-runner check, a condition absent from the review."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 131,
+  "sha": "aedc6d29da6514dbac4527f1ae26a9d18be17795",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "6feb40ee5b4222f1db11da80353acdcfe184d5e8",
+  "cause_pr": 189847,
+  "confidence": "high",
+  "cause_quote": "#189847 replaced the border-drawn spinners (e.g. `border: 1.5px solid color-mix(...)`; `border-top-color: currentColor`) with `background: currentColor; mask: var(--spinner-mask);` on the same element that runs `animation: btn-spinner-spin`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In WebKit browsers the Control UI used noticeably more CPU and GPU-process time on every frame while any spinner was visible (e.g. running sessions in the sidebar).",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Moved each spinner's SVG mask from the rotating element onto a static shared ::before child so WebKit no longer repaints a masked layer every frame.",
+  "reasoning": "The cause diff (6feb40ee5b4, #189847) swaps the border-drawn spinner art for a currentColor background masked on the rotating element across all spinner hosts, and the fix PR measured GPU-process time at 0 with the old border art versus 1.4-2.4% with the mask, so the cost was newly introduced by that commit. The spinners were cheap before, making this a performance regression rather than an optimization of code that was never faster; #194146 only removed an amplifying hidden animation."
+}

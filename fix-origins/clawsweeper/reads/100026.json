@@ -1,0 +1,8 @@
+{
+  "rank": 100026,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item concerns capability negotiation with an older Gateway, and the earlier \u201cAllow explicit refresh to complete within the acquisition lifetime\u201d finding concerns a Gateway request timeout. Neither addresses managed proxy startup for standalone provider discovery when no Gateway is running."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100615,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cStop rescheduling the popup when it cannot read\u201d item described a load loop when read prerequisites were missing. The \u201cAdd real behavior proof\u201d item focused on scheduled-job authority and final effects, leaving the checkbox reset and layout shift during a pending save unaddressed."
+}

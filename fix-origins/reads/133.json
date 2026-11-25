@@ -1,17 +1,17 @@
 {
   "rank": 133,
   "sha": "5b12461c7b3265ef81a3ba0594041e2510e865ba",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "129e0a8cf07cb158a09282c02612f96700fc4456",
+  "cause_pr": 94672,
+  "confidence": "high",
+  "cause_quote": "The original mobile pairing controller stored the loopback refusal with `state.devicePairSetupError = String(err);`, and the dialog rendered it directly as `<span>${props.devicePairSetupError}</span>`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a new loopback-only Gateway, Connect a device showed a configuration error when creating a phone setup code, with no guidance on how to make the Gateway reachable.",
-  "impact": "presentation",
+  "user_saw": "An owner trying to create a phone setup code on a default installation saw a loopback configuration error with no guided setup steps.",
+  "impact": "failed-every-time",
   "area": "ui",
-  "summary": "Tagged the loopback-only setup-code refusal with a structured DEVICE_PAIR_GATEWAY_LOOPBACK_ONLY detail and made the Connect a device dialog show Set up secure access guidance (Tailscale Serve, trusted LAN, Retry) instead of the raw error.",
-  "reasoning": "The Gateway's refusal to make a setup code on a loopback-only bind is intended and unchanged; the fix adds a new guided UX and error detail code on top of it. Nothing that worked broke and the old error was accurate, so this is a product/UX improvement titled as a fix rather than a defect."
+  "summary": "The Gateway now identifies loopback refusals with a structured error so the phone pairing dialog can show secure access instructions and let the owner retry.",
+  "reasoning": "I checked the commit that introduced Control UI phone pairing and verified that its existing resolver already refused to generate a code on a loopback-only Gateway without a reachable address. The first version of the dialog displayed that refusal as raw configuration text, so the gap in first-run guidance shipped with the feature."
 }

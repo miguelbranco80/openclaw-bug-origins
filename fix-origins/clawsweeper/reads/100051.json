@@ -1,0 +1,8 @@
+{
+  "rank": 100051,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Watch-skip finding concerned a runtime download during phone-only capture, and the open item at merge concerned iPad readiness. The Technical review described recovery after simulator creation failed, while the shipped bug stopped at runtime selection before recovery could run."
+}

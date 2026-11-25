@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, an authenticated peer requesting a previously completed A2A task received `-32001 Task not found`.",
+  "impact": "data-loss-or-duplication",
+  "area": "channels",
+  "summary": "The A2A channel now persists terminal tasks per account and restores them before accepting requests after a Gateway restart.",
+  "reasoning": "I checked the A2A introduction in #130008, which created an in-memory task store at startup and explicitly documented that a Gateway restart discards all tasks and task history. The documentation immediately before the fix still stated that limitation, and the fix extends the retention guarantee across restarts.",
+  "rank": 100252,
+  "sha": "709b1a1ca3fe8179409004502b0491b853580d5e",
+  "rubric": "v1.2"
+}

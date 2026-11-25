@@ -1,0 +1,17 @@
+{
+  "rank": 100609,
+  "sha": "ab8f3cdc115410055869c6ee4793883e4437f41e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The new canary set `auth: { mode: \"token\", token: randomUUID() }`, dropping the configured rate limit before running `doctor --lint --json --severity-min error`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The updater rejected the candidate for a missing Gateway auth rate limit even though the operator had configured one.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix preserves Gateway auth policy settings in the isolated rehearsal config while substituting a temporary token, clearing the password, and disabling Tailscale identity authentication.",
+  "reasoning": "The parent of #138839 already had a Policy check that treated a missing explicit rate limit as an error. #138839 introduced the candidate rehearsal with both the auth overwrite and the lint gate, so the affected setup failed from the first implementation. #139495 moved the same overwrite into the shared rehearsal helper."
+}

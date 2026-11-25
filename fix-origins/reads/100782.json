@@ -1,0 +1,17 @@
+{
+  "rank": 100782,
+  "sha": "2a9daef3c39f0a7a2e465c1dd8ddfbba62c4cdac",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "08c80feb35fda8ecd79b7f448de53595574200c2",
+  "cause_pr": 136952,
+  "confidence": "medium",
+  "cause_quote": "The diff added `captureGatewayToolCallerAssertion()` to `callAgentToolGatewayRequest`, which throws `agent tool caller authority is no longer active` when a detached call inherits the finished requester's authority.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The target agent finished its turn, but its reply never reached the requesting agent after a configuration reload.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix clears the completed caller's Gateway context and prepared-runtime generation so detached cross-agent replies can run on the current runtime.",
+  "reasoning": "I checked the parent of #136952 and confirmed that the detached reply already had an independent Gateway work root, the tool dispatcher checked the Gateway binding alone, and new agent turns loaded the published runtime. The added caller-authority check made those detached calls depend on the originating turn remaining active, even after it had finished. The fix also clears an inherited runtime generation, and the supplied end-to-end test does not isolate which check rejected the reply."
+}

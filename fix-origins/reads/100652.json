@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator-created scheduled job trying to edit a Discord channel received an error requiring a trusted Discord sender identity.",
+  "impact": "permissions",
+  "area": "channels",
+  "summary": "The fix lets Discord channel edits use a live operator job grant, checks that grant during lookups and retries, and preserves accepted edit results after cancellation.",
+  "reasoning": "The pre-fix Discord handler rejected guild administration without a Discord sender or qualifying owner context, and that guard predates the shallow history boundary. I checked the scheduled-authority changes and found that #150166 carried the live job grant into message dispatch for reads, but the available history did not establish when scheduled edits first failed or whether they had previously worked.",
+  "rank": 100652,
+  "sha": "23a09df37030342f364a99c6d8491da0c370e1ab",
+  "rubric": "v1.2"
+}

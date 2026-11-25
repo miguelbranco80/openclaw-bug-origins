@@ -1,0 +1,17 @@
+{
+  "rank": 100892,
+  "sha": "f6fee2040aac64c1445b28d30f69c1c30a67bf03",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "e3de98a451b480d1e52cd96c62ba850ab2042660",
+  "user_visible": "yes",
+  "user_saw": "On a fresh SHA-only Dev checkout, an update check could download gigabytes of unrelated Git history and still show no ahead or behind count on the first check.",
+  "impact": "slower-or-heavier",
+  "area": "update",
+  "summary": "Git update checks now select and fetch only the intended upstream, then verify the fetched commit before reporting ahead or behind counts.",
+  "reasoning": "The pre-July checker already used an unscoped `git fetch --quiet --prune` when callers explicitly requested a refresh, and the available offline history did not establish where that behavior originated. PR #120506 changed the Gateway's status probe from `fetchGit: false` to `resolveStartupInstallStatus(configuredChannel === \"dev\")`, bringing that existing fetch into automatic Dev checks. PR #124611 later added a scoped detached fetch when a local upstream resolved, but a fresh checkout without that ref still fell through to the old broad fetch."
+}

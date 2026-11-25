@@ -1,17 +1,17 @@
 {
   "rank": 213,
   "sha": "b4068cb5ca0b5c83dc2f428f7036b1c7dccff762",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "69eb76e6347b37573f91b01240e6b1d6c12871d2",
+  "cause_pr": 201407,
+  "confidence": "high",
+  "cause_quote": "The avatar rollout added `sessionKey={props.launch.kind === \"subagent\" ? props.launch.childKey : undefined}` to the launch row\u2019s `<SubagentName>` and left completion rows rendering the generic robot.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A subagent's completion row in the chat transcript showed a generic robot icon instead of the colored avatar its launch row used.",
+  "user_saw": "A named subagent appeared with a colored avatar at launch and a generic robot icon when it finished.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Named subagent completion rows now render the session-keyed SubagentName avatar/name and drop the generic bot icon, keeping it only for anonymous completions.",
-  "reasoning": "The completion component was created in 18136c960eaf (#198133) deliberately rendering `<Icon name=\"bot\" />` and the plain label; nothing broke or misbehaved, and the fix is a visual-consistency polish of that design rather than a repair of a failure. I read the introducing file's diff and the one-file fix; I classify it as a presentation/product change, though one could argue it as a never-worked inconsistency in 18136c960eaf."
+  "summary": "Named completion rows now reuse the session-keyed avatar from launch rows, while anonymous completions keep the generic robot.",
+  "reasoning": "I checked the completion renderer\u2019s introduction in #198133 and the transcript avatar rollout in #201407. The completion renderer already used a generic robot, and the rollout added colored avatars to launch rows while leaving the completion renderer untouched, so avatar continuity was missing from the first version of transcript avatars."
 }

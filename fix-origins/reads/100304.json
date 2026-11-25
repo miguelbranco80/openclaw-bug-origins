@@ -1,0 +1,17 @@
+{
+  "rank": 100304,
+  "sha": "801434585d73a84be278db465d92ee750893f510",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8a5b4af660748aef0c95c47e21be52375b00482c",
+  "cause_pr": 111678,
+  "confidence": "high",
+  "cause_quote": "The commit added `if (snapshotJournal.join(\"\\n\") !== currentJournal.join(\"\\n\"))`, which threw `Agent deletion journal changed while preparing a database claim.` before checking whether the deletion overlapped the claim.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An agent's database registration could fail when a different agent was being deleted.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix checks current deletion ownership in the claim transaction so unrelated journal changes no longer block database registration.",
+  "reasoning": "The causing commit's parent already registered agent databases by upserting the registry row in a write transaction, and the gateway already supported agent deletion. The causing diff added the whole-journal comparison to that existing registration path, so a deletion that started or advanced between claim preparation and registration could now reject a claim for an unrelated agent."
+}

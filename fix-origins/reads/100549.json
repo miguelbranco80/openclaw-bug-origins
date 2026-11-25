@@ -1,0 +1,17 @@
+{
+  "rank": 100549,
+  "sha": "5be0e7764b3ac14b2d08bddacf80108effed5a75",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "09a64f7ab00fc87794df66117f045a539f8cd365",
+  "cause_pr": 110888,
+  "confidence": "medium",
+  "cause_quote": "The policy parser replaced `const rawModels = Object.keys(params.cfg?.agents?.defaults?.models ?? {});` with `const configured = resolveConfiguredModelPolicyAllow(params);`, allowing fresh onboarding configs without an explicit allowlist to show the catalog's authenticated `claude-cli/*` rows alongside the pinned `anthropic/*` rows.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After Claude CLI onboarding, users saw two entries for the same Claude model on the same route in the Control UI picker and in standalone `openclaw models list`.",
+  "impact": "presentation",
+  "area": "models/providers",
+  "summary": "The fix hides the explicit Claude CLI alias when its canonical model row is pinned to the same runtime and selection policies permit using the canonical row.",
+  "reasoning": "In the parent of #110888, onboarding already pinned canonical Anthropic refs to Claude CLI and the bundled catalog already published matching CLI refs, but the seeded model map restricted the picker to the canonical refs. The #110888 diff preserves legacy restrictions while making fresh model maps metadata-only, which opens the existing picker to authenticated catalog rows from both providers. The historical transition is inferred from the onboarding, config-write, and catalog code, while the fix bundle reproduces the duplicates on later main."
+}

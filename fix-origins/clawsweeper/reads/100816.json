@@ -1,0 +1,8 @@
+{
+  "rank": 100816,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Every review version flagged the private-app forum guard for allowing channel requests with mismatched or missing topics to produce passing receipts. That finding concerns the operator handoff, while the regression came from latency probes using a hard-coded conversation after the scenario had established its route."
+}

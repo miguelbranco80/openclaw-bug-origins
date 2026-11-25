@@ -1,0 +1,8 @@
+{
+  "rank": 100432,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier replay and steering findings concerned provider request bytes and carrier placement. The at-merge config compatibility item was generic, and no review item raised the risk that reserved entries lacking replay metadata could reach compaction summaries or saved CLI session notes."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "acffa7681f09ddda8698aa22a907a51b84c65f30",
+  "cause_pr": 155632,
+  "confidence": "high",
+  "cause_quote": "The new preflight called the maintenance guard with `phase: \"inspect\"` and `handoffFromGateway: params.handoffFromGateway` while omitting `updateRun`, so the guard could not verify the helper's live lease.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On systemd, a Gateway-initiated update reported that its authorized helper was inside the Gateway process tree and stopped before replacing the package.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix uses the inherited update run ID during candidate inspection when explicit run context is absent, allowing the existing live lease check to verify the helper.",
+  "reasoning": "The candidate-admission change introduced a preflight that invoked the ancestry guard without a run ID, even though the existing lease verifier required one. I checked that the older execution path passed `updateRun: opts.run` and that #158314 retained the same run ID lookup, so the affected candidate inspection shipped with the defect.",
+  "rank": 100625,
+  "sha": "a026d5423313cdb58fa496e222aeaee0ce7a1789",
+  "rubric": "v1.2"
+}

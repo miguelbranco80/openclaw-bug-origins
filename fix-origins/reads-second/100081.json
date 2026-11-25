@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "53dcaaedec195fdaf5af06357557c706d3c0caf5",
+  "cause_pr": 128548,
+  "confidence": "high",
+  "cause_quote": "The role launch added `if (!role || role.agents === \"*\" || role.agents.includes(params.agentId))` to session creation and run-start authorization while the existing `agents.list` handler still returned the unfiltered roster.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A user with a restricted operator role saw agents they could not use in the Control UI picker and agent directory.",
+  "impact": "permissions",
+  "area": "ui",
+  "summary": "The fix filters Gateway agent discovery by the caller\u2019s current role and makes the Control UI reconcile its selection against the live roster.",
+  "reasoning": "The operator-role launch created the mismatch by restricting session creation and runs while the existing picker continued to consume an unfiltered `agents.list` response. I checked the roster handler before and at the role launch and verified that the later catalog refactor and model-policy changes carried the unfiltered roster forward.",
+  "rank": 100081,
+  "sha": "5ad2c6b4b44cbb07a7a1475e72699e962b2867b6",
+  "rubric": "v1.2"
+}

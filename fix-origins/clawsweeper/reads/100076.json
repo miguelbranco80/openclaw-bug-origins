@@ -1,0 +1,8 @@
+{
+  "rank": 100076,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge review\u2019s Evidence section describes public filtering without raising a concern about startup causes being redacted or nested config paths losing the failing field. The earlier Before merge items address integration conflicts, rollback and restoration qualification, and data-model compatibility."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100316,
+  "sha": "e06a8122736643bf10f43d7cf4d84fb6741c8d1e",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Cron history showed a reminder as successful, but the reminder never appeared after the Gateway restarted.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "Cron now waits for the session to adopt the queued reminder and records a restart before adoption as an interruption.",
+  "reasoning": "The oldest readable timer code already returned `ok` after handing a reminder to an in-memory queue, and #125198 changed the destination from a per-run child session to the main session while preserving that early success. The behavior predates the shallow boundary, and the offline history could not establish which commit introduced it or whether an earlier implementation handled restarts correctly."
+}

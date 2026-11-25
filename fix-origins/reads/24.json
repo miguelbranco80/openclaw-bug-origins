@@ -1,17 +1,17 @@
 {
   "rank": 24,
   "sha": "852f25b33359715ed0a950b39aaec336b7f0c2f1",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "c83dcc2bc089ca22db9ba19bb602694a66e19337",
   "cause_pr": 118984,
-  "confidence": "medium",
-  "cause_quote": "In formatToolSearchControlResult it replaced `const text = wrapExternalContent(content.text, ...)` with `truncateSanitizedExternalContent(content.text, 20_000)` plus a `19_988`-char prefix and `[truncated]`, so large network pages reached the model cut short with their continuation cursor intact.",
+  "confidence": "high",
+  "cause_quote": "The commit added `const bounded = truncateSanitizedExternalContent(content.text, 20_000)` and returned the first 19,988 characters on overflow, which could retain a continuation cursor while cutting off the page it belonged to.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When an agent paged through a large network-backed result via Tool Search, it saw a truncated page that still carried a next-page cursor, so it advanced and silently skipped the omitted content.",
+  "user_saw": "An agent reading a long result through Tool Search could skip part of a page when it followed the continuation cursor.",
   "impact": "data-loss-or-duplication",
   "area": "agents",
-  "summary": "Replaces Tool Search's fixed 20,000-character prefix truncation of network results with the model's tool-result budget, omitting an over-budget execution result entirely (with a request-a-smaller-page notice) instead of showing a partial page with a cursor, while discovery metadata may still keep a prefix.",
-  "reasoning": "The local clone is shallow (blamed b14a2cae4bf6 is the grafted root, and c447d53491e3 only reshaped the same 20_000/19_988 logic); GitHub history shows the logic moved from tool-search-runtime.ts in #132945 and was first added there by c83dcc2bc089 (#118984), whose patch shows the network result previously wrapped whole and then cut to a 20,000-char prefix. Confidence is medium because I could not confirm how large network pages fared under the generic context guard before that commit, only that the separate ceiling the fix removes was introduced there."
+  "summary": "The fix delivers complete Tool Search network pages within the active model's result budget and withholds oversized pages and their cursors.",
+  "reasoning": "The causing commit's parent already routed network results through Tool Search and wrapped the full serialized response, so pages above 20,000 characters could reach models whose existing result budgets allowed them. The causing diff imposed a fixed cutoff before wrapping, and the August 29 refactor carried that cutoff into the shared renderer."
 }

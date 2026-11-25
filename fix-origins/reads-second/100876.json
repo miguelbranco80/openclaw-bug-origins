@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0a8e3604ba24de4791d3505b7a442e8017276dd0",
+  "cause_pr": 98236,
+  "confidence": "high",
+  "cause_quote": "The initial migration awaited `await importLegacySessionRecord(params.target, record, report);` before updating the journal, so a rejected import skipped the write and left recovery without the original error.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a failed session SQLite import, Doctor could generate a support draft that gave no explanation for the failure.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "Doctor records import errors and timestamps before rethrowing, preserves recorded failures and recovery work in support reports, and explicitly reports when there is nothing to recover.",
+  "reasoning": "The SQLite rollout introduced both the unguarded import and unconditional recovery report generation for an incomplete journal. I checked that batching preserved the exception path and that the later zero-issue guard separately suppressed reports for failures that had been recorded.",
+  "rank": 100876,
+  "sha": "caa6096b1eb645519f3af83c467b7768d97c048a",
+  "rubric": "v1.2"
+}

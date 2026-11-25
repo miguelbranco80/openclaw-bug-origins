@@ -1,0 +1,8 @@
+{
+  "rank": 57,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge review's Artifact integrity and compatibility section covers packaging and installation checks without raising how the worker build resolves dependency paths in nested checkouts. The earlier Before merge items concern separate worker state-boundary and database-fixture repairs."
+}

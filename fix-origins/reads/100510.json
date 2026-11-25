@@ -1,0 +1,17 @@
+{
+  "rank": 100510,
+  "sha": "3ba0a0b23761ef8209827f7f3dd0f82713c33bbe",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7170a6231a4a831a91881fead4e799e816dabb2d",
+  "cause_pr": 125125,
+  "confidence": "high",
+  "cause_quote": "The new tool called `await gatewayCall<ProgressCardPutResult>(\"progressCard.put\", \u2026)` and returned a receipt without passing the saved steps' completion state to the agent's finalization path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The agent could finish its reply and leave the session idle while the progress card still listed unfinished work the user had authorized.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The built-in agent now gets one chance to continue the same run, reconcile its plan, or explain a blocker before finalizing after it saves an unfinished plan.",
+  "reasoning": "The introducing diff shows that durable progress cards could save pending steps from day one, while the embedded runner's pre-finalization check was gated on a plugin hook and did not inspect the saved plan. The predecessor `update_plan` only returned plan details for display, and the scoped history showed no intervening plan-completion check that a later commit removed."
+}

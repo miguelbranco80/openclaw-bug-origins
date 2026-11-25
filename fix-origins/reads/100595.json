@@ -1,0 +1,17 @@
+{
+  "rank": 100595,
+  "sha": "151643ac6021f0dfa27985f74473ffdf03908637",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "84d71bf32329485a3e0b796c86130f2fc3190353",
+  "cause_pr": 158732,
+  "confidence": "high",
+  "cause_quote": "The refactor removed `listenHttpServer({ server, port, host })`, delegated the legacy port to `registerPluginHttpRoute({ ... legacyListener: ... })`, and added a named import of `getWebhookLegacyListener` that the 2026.9.6 host did not export.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After updating the separately installed Telegram plugin on OpenClaw 2026.9.6, operators stopped receiving Telegram messages through their existing webhook endpoint.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix restores Telegram\u2019s per-account webhook listener on 2026.9.6, packages the helpers needed on that host, and preserves Gateway-owned listeners on newer hosts.",
+  "reasoning": "I checked the 2026.9.6 release code and the refactor\u2019s parent, where Telegram bound its own HTTP listener and acknowledged callbacks after durable admission. The refactor removed that listener and relied on Gateway listener support and an SDK export absent from the 2026.9.6 host, breaking an existing webhook setup."
+}

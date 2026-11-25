@@ -1,17 +1,17 @@
 {
   "rank": 276,
   "sha": "5b994c03c93aa0e680670a64e3fcd7d53dc51a1a",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d77b58673e7f5070c4d9a35021b3256e3d907601",
+  "cause_pr": 201656,
+  "confidence": "medium",
+  "cause_quote": "The redesign set `.agents-home__template-identity` to `display: flex`, added `white-space: nowrap` to the title, and capped the publisher at `max-width: 40%`, so both labels could be ellipsized while sharing the space beside Add.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Long featured template names and publisher handles were shortened with an ellipsis beside the Add button, especially at larger text sizes.",
+  "user_saw": "On narrow screens or at larger text sizes, users could see shortened template names and publishers beside Add, making similar templates hard to distinguish.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Let template row names and publishers wrap below each other instead of ellipsis-truncating beside Add, with line height following the text scale.",
-  "reasoning": "The ellipsis truncation was deliberate styling: the h3 nowrap/ellipsis rule dates from c1ecbca6ca50/d66f296eae1e, the shared Plugins row style (plugins.css .plugin-card-author and .plugin-catalog-results--rows h3) also ellipsizes, and the pre-rows card (before b8a06aa16af0) already capped the publisher at max-width 40%. The fix is a readability design change to wrap instead of truncate, not a repair of broken behavior."
+  "summary": "The fix lets the template name and publisher wrap at the configured text size while keeping Add visible.",
+  "reasoning": "The parent CSS let the name wrap to two lines and gave the publisher its own line, with a full-width identity block on narrow cards. The redesign made the labels compete for a single line, and the later conversion to shared catalog rows retained that constraint. The fix PR measured clipping in the later row layout, so the earlier onset is supported by the CSS diffs and remains unverified against the same fixture."
 }

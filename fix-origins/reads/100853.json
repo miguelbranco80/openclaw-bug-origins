@@ -1,0 +1,17 @@
+{
+  "rank": 100853,
+  "sha": "a339211296bca56476a5455e9901b44f13d88580",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Scripts reading stdout received no JSON error when `policy check`, `policy compare`, or `policy watch` failed after option parsing.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The three policy commands now emit a single `cli_error` JSON record on stdout for command-owned failures when `--json` is set or stdout is piped, while preserving the stderr diagnostic and exit code 2.",
+  "reasoning": "The earliest readable implementation already offered `--json` for all three commands and sent caught errors only to stderr. The July change preserved stderr routing, and the September and October refactors preserved the same failure behavior. The available history stops before the commands were introduced, so I could verify the longstanding behavior but could not establish its origin."
+}

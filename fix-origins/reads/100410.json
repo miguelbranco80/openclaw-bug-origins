@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "11867abe45c8efc9cf37e8bd998a922f68647f0c",
+  "user_visible": "yes",
+  "user_saw": "After a plugin reload retired an agent\u2019s private plugin registry, session and health requests could return a plugin-unavailable error until the replacement model catalog was published.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix tracks the registry that supplied each captured thinking policy and falls back to the active Gateway policy or the provider\u2019s public policy when that registry retires.",
+  "reasoning": "PR #132431 captured provider callbacks to preserve the thinking policy of the prepared runtime that supplied each catalog row. Comparing PR #156339 with its parent shows that it added an early return that deliberately keeps serving the completed catalog throughout a pending replacement, exposing those callbacks to reads after their registry retires. The earlier projection already served cached rows during asynchronous refresh, so the evidence identifies the new lifetime assumption without establishing that the reload sequence always worked before.",
+  "rank": 100410,
+  "sha": "6a2e32b4178cf695ee0b7508e57e56747a02e8d6",
+  "rubric": "v1.2"
+}

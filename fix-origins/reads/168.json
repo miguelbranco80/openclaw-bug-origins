@@ -1,17 +1,17 @@
 {
   "rank": 168,
   "sha": "65c8e20d2674c15f62ff00d813488156fa62838e",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6b4ebc043bc85cf28fdfcdc2bc1eb8157f61e659",
+  "cause_pr": 156346,
+  "confidence": "high",
+  "cause_quote": "The role-policy feature added an execution-time rejection for `!isBuiltInOpenClawAgentHarness(harness) && authority?.modelPolicy && harness.nativeModelPolicySupport !== \"exact\"`, while its selection validator only called `assertOperatorModelAllowed(params.operatorAuthority, selected)`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Operators with role restrictions could pick a runtime that then failed at run time with 'cannot enforce your operator role's model policy', and shared-chat typing previews stopped reaching connected viewers whose presence beacon had been evicted.",
-  "impact": "other",
+  "user_saw": "An operator could select a runtime that then refused to run, and a connected shared-chat viewer could stop seeing typing previews after their presence entry expired.",
+  "impact": "failed-every-time",
   "area": "gateway",
-  "summary": "Bundles two fixes: catalogs, /model, session create and sessions.patch now reject or mark runtimes that cannot enforce operator role policy as unsupported-runtime, and shared typing drafts count viewers from the live client-registry presence snapshot instead of the bounded listSystemPresence beacon cache.",
-  "reasoning": "The runtime part adds selection-time checks for a rule that execution admission already enforced (assertHarnessModelPolicySupport, widened in ad9b7aec3fa6 #184930), so selection never knew about it from when cross-harness choices arrived (b46c38cfa732 #147994); that half is a never-worked selection gap or a UX hardening. The draft part depends on when connected viewers began falling out of the TTL/200-row system-presence cache; liveViewerIdentities' use of listSystemPresence predates or sits near the graft, and my -S searches timed out, so I could not pin one cause for either half."
+  "summary": "The fix checks runtime compatibility when presenting and accepting model choices and uses the live connection registry to count viewers for shared typing previews.",
+  "reasoning": "The causing diff introduced role-based model limits with a selection-to-execution mismatch, so the single cause field tracks the runtime-selection defect. I checked that #184930 later extended the same execution check to Access grants. The separate draft-delivery defect traces to #113173, whose original typing broadcast gate counted viewers through `listSystemPresence()`, which already evicted expired entries."
 }

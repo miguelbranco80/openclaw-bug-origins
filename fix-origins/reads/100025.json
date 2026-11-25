@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix removed the retired Nextcloud Talk export from the CI guardrail and made three unused type exports private.",
+  "reasoning": "The diff for #174306 removes the re-export and moves inbound delivery to deliverNextcloudTalkReply. The guardrail in the fix's parent still required an exact export list containing the retired helper, so the reported failure was a stale CI expectation. The remaining changes only remove export modifiers from unused types.",
+  "rank": 100025,
+  "sha": "db2d951fd047a9e6a03b73d41c8e5757506dedf9",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100108,
+  "sha": "4b952ced9a7e521ae6ff5db8d5e2326ffddf3465",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a session was replaced, a client had no way to tell the gateway to reject Stop based on the session ID it had originally observed.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets clients pass an optional sessionId to exact-run chat.abort and rejects the request if that ID differs from either the current session or the selected local or worker run.",
+  "reasoning": "I checked the September Stop authorization change and the handler before the October session-controller refactor. The older code bound narrowly scoped callers to the admitted session ID and explicitly allowed broad Stop to target a run in another session. The fix adds an opt-in safeguard, and its documentation and tests confirm that requests omitting sessionId retain the earlier behavior."
+}

@@ -1,1 +1,8 @@
-{"rank": 130, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge review has no items or findings. The earlier P2 finding 'Keep Review available after a same-session reset' concerns the lifecycle-revision check in the same reader rejecting a reset session, a different condition from a removed or missing worktree producing the misleading owner-changed error; it would not have led to the restore guidance fix."}
+{
+  "rank": 130,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cKeep Review available after a same-session reset\u201d finding addressed a stale lifecycle revision while the worktree still existed. The merge-time Findings section was empty, and neither version raised how Review handles a removed or missing worktree."
+}

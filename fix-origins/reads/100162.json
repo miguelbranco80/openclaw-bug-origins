@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "1ca60fbc3a3f85c7072a9029346b5d31402ac0e4",
+  "cause_pr": 114388,
+  "confidence": "high",
+  "cause_quote": "The commit replaced the first-agent fallback with `return tryResolveRawLegacyDefaultAgentId(cfg) ?? resolveSoleAgentId(cfg, context);`, and `resolveSoleAgentId` now executes `throw new AgentSelectionRequiredError(agentIds, context);` when multiple agents remain.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An inbound iMessage received no reply from its bound agent when ordinary routing could not choose among multiple agents.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "iMessage now checks for an authoritative runtime conversation binding before attempting ordinary agent selection.",
+  "reasoning": "I checked the causing commit's parent and found an existing iMessage test that expected a runtime binding to select Codex from a two-agent roster with no default marker or ordinary binding. The parent router picked the first agent provisionally and then applied the runtime binding. PR #114388 made that initial lookup throw on an ambiguous roster, so iMessage never reached the binding lookup.",
+  "rank": 100162,
+  "sha": "c935d7184ea21f720d3a4c88df88ff4bc439fb08",
+  "rubric": "v1.2"
+}

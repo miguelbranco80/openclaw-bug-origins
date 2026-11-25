@@ -1,0 +1,17 @@
+{
+  "rank": 100468,
+  "sha": "b0af131c916a7473c56d82bb8b5cdd22ca016b6e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "f7d2fa7402bbb8f955665151f5bdad259c87abe2",
+  "cause_pr": 142302,
+  "confidence": "high",
+  "cause_quote": "The new deferred-catalog predicate, `this.authStorage.hasAuth(normalizeProviderId(providerId)) || hasUsableCustomProviderApiKey(this.config, providerId)`, excluded providers whose only credential was a resolved non-environment SecretRef.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With a working file-backed API key, LM Studio discovery reported ready but the model list was empty.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The model registry now accepts an already-resolved provider SecretRef as evidence of current authentication when admitting discovered models.",
+  "reasoning": "I checked the parent of #142302 and confirmed that LM Studio already supported deferred discovery and that the registry admitted eligible generated rows based on plugin ownership and endpoint checks. The new gate discarded those rows because its configured-key helper rejected non-environment refs, even though the managed runtime auth resolver already supported their resolved credentials."
+}

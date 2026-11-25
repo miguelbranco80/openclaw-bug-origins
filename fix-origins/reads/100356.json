@@ -1,0 +1,17 @@
+{
+  "rank": 100356,
+  "sha": "6c5dded48fabcfec4f768db4ca29d735d9776296",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0407ac0db68f7aea2a1614da863d7a8b0ce4bdc0",
+  "cause_pr": 156050,
+  "confidence": "high",
+  "cause_quote": "The new inline validation span used `class=\"cfg-field__error settings-control__sr-label\"`, which clipped the explanation to a 1\u00d71 pixel box.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An invalid scalar setting turned red without showing why the value was rejected.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix removes the screen-reader-only class so Settings displays the validation reason beside the field on desktop and below it on narrow screens.",
+  "reasoning": "The parent commit set custom validity and `aria-invalid`, and #156050 introduced the inline error span and clipped it from the start. The Solid migration carried over the same class."
+}

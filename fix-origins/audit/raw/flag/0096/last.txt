@@ -3,5 +3,5 @@
   "where": null,
   "quote": null,
   "outcome": null,
-  "note": "The P1 merge-risk item asked for verification that the terminal formatter preserved captured updater diagnostics. The at-merge review and earlier open items did not raise the loss of error text on stderr for `capability inspect --json`."
+  "note": "The only formatter concern (P1 merge risk) asks for published-updater-to-candidate proof that captured updater recovery reasons survive the concise formatter, a different path; the review treats dropping the generic Reason line as the intended change. Borderline with related, chose the lower level."
 }

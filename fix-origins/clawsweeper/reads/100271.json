@@ -1,0 +1,8 @@
+{
+  "rank": 100271,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cInclude ordinary failed finalizations in the recovery decision\u201d concerns repair reporting success while finalization work remains unfinished. Neither that finding nor the earlier open items raise the stale CLI and Control UI warnings that persist after successful repair acknowledges an abandoned run."
+}

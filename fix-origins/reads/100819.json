@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An opted-in stateless CLI backend forgot earlier turns before the conversation was compacted.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix gives stateless CLI turns a recovery reason so opted-in backends replay uncompacted history when the transcript belongs to the same account.",
+  "reasoning": "The July 1 snapshot already required a recovery reason for uncompacted replay, and the code before both #96841 and #140294 supplied no reason on ordinary turns without a native session candidate. Those commits changed how native candidates and recovery reasons were handled, but the available history did not establish a previously working path for the reported setup or identify the commit that first shipped the omission.",
+  "rank": 100819,
+  "sha": "53cfc947f0c6d8c9e2fd8b0a50fb1a5aec89fd17",
+  "rubric": "v1.2"
+}

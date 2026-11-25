@@ -1,0 +1,17 @@
+{
+  "rank": 100825,
+  "sha": "72c9a55d4e5d8c98b447c5e0e7c2a5aa5a37cfa2",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Long Claude CLI turns hit the 20,000-line limit and ended without a final answer.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix preserves the output-budget discount for Claude CLI delta frames carrying bounded `api_message_id` metadata and permits bounded `thinking_display` metadata on thinking deltas.",
+  "reasoning": "The original discount in #153545 covered long streams with the earlier frame shape, and the intervening OpenClaw diffs preserved its metadata check. Captures from Claude Code 2.1.296 and 2.1.310 show `api_message_id` on every stream event, which makes those deltas count as ordinary lines under the existing allowlist."
+}

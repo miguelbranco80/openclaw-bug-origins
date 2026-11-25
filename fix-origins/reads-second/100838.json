@@ -1,0 +1,17 @@
+{
+  "rank": 100838,
+  "sha": "0beab7c755e0313ce771e1ce3e3fce30b9e70aff",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "7a9a6a981abaa516e2e614f5e735ef963b9de917",
+  "cause_pr": 182306,
+  "confidence": "high",
+  "cause_quote": "The subreaper switched to `if (runtimeHasSourceLoader())`, and the new detector called `hasNodeStartupHooks(process.execArgv, process.env.NODE_OPTIONS)`, so an inherited instrumentation `--import` made a built Node helper fail admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On instrumented Linux Gateways, agents saw every supervised non-PTY exec fail with a child cleanup identity error.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix strips inherited Node startup hooks from the relay and anchor launches while explicitly passing the original environment to the supervised command.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the relay already passed its environment to the anchor, which already acquired Linux subreaper ownership. The previous guard checked the module filename for a TypeScript extension, so a built JavaScript helper passed even with an empty instrumentation preload. The new guard rejected that same helper before it could acquire kernel ownership."
+}

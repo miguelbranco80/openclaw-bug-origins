@@ -1,0 +1,17 @@
+{
+  "rank": 100275,
+  "sha": "8f1ea228c1dda047535443d08d17a78b9f673c4e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d6fc3d34e2010997d4f67807b30c336347808f31",
+  "cause_pr": 107458,
+  "confidence": "high",
+  "cause_quote": "The new Discard handler ran `await drainWritesForDiscard();` and then called `loadConfig(state, { discardPendingChanges: true })` without checking whether the user had edited the draft while it waited.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If you clicked Discard while a Settings autosave was pending and then kept editing, the saved value could overwrite your newer edits.",
+  "impact": "data-loss-or-duplication",
+  "area": "ui",
+  "summary": "The fix tracks draft revisions so newer edits cancel a pending Discard, stale reloads cannot overwrite them, and Form autosave resumes.",
+  "reasoning": "The parent used explicit saves and a synchronous draft reset. The introducing commit added Form autosave, kept editors interactive during autosave, and wired Discard to an asynchronous drain followed by a reload that overwrote the current draft. The later extraction into a dedicated discard module carried forward that same sequence."
+}

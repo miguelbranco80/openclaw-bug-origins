@@ -1,17 +1,17 @@
 {
   "rank": 248,
   "sha": "e4c17c5dd441ea017b2c6cd9314e5b4b6e6a850a",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
-  "trigger_sha": null,
+  "trigger_sha": "7d1d7d035ce611b0d99f52f218ccd7b80297dac5",
   "user_visible": "yes",
-  "user_saw": "On beta, dev or source builds, a newly launched ChatGPT subscription model could appear in the model list but its turns could be rejected with HTTP 400 because the version header carried a placeholder or prerelease value.",
+  "user_saw": "A ChatGPT subscription model could appear in the picker and then be rejected when used on a prerelease or development build.",
   "impact": "failed-every-time",
   "area": "models/providers",
-  "summary": "Provider attribution now sends the numeric OpenClaw release (or 99.0.0) as the OpenAI `version` header, and the ChatGPT model-list URL reuses that value instead of normalizing it separately.",
-  "reasoning": "The raw runtime version in the OpenAI attribution `version` header is long-standing and was harmless until ChatGPT began gating new subscription models (gpt-6.2) on minimal client version, an external backend change; #202380 (7d1d7d035ce6) only normalized the listing side and explicitly left the turn header unchanged, so it did not break turns that previously worked. Evidence is thin: the failure for beta/dev values is inferred from a live 0.164.0 probe and unit tests, not a reported user failure, so this is a low-certainty latent call."
+  "summary": "OpenClaw now sends the same numeric release or 99.0.0 fallback for ChatGPT model listing and Responses turns while preserving the full build version in User-Agent.",
+  "reasoning": "I checked the attribution code before #202380 and confirmed that Responses already sent the raw runtime version. An earlier listing change already warned that development placeholders could get HTTP 400, and #202380 exposed the mismatch in the current listing path by normalizing the version only for discovery. The fix reports a live rejection for an older numeric version, while the prerelease and development cases were verified at the header level."
 }

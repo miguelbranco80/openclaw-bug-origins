@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "3b88500581f6e9bf28f4e6ef91f2deb5483c16c7",
+  "cause_pr": 145390,
+  "confidence": "high",
+  "cause_quote": "The new failure-fact handler special-cased `DoctorStateMigrationRefusalError` and sent the existing agent lease refusal through the fallback `code: \"doctor-failed\"`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an active agent database lease blocked an update, the public report showed a generic Doctor failure without explaining how to retry.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "Doctor now reports an active agent database lease with a public-safe failure code and retry instructions, including when an externally managed Gateway would mask the lease refusal.",
+  "reasoning": "I checked the earlier maintenance diff that added the lease refusal and the reporting diff that introduced structured Doctor failure facts. Before #145390, the public report showed the failed phase and exit status. The new reporting path mapped the existing lease refusal to `doctor-failed` from its first version, and its public redactor stripped the lease explanation.",
+  "rank": 100412,
+  "sha": "341a1e460384af8f18ca802d550a6cf50c9207b8",
+  "rubric": "v1.2"
+}

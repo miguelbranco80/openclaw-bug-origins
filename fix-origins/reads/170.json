@@ -1,17 +1,17 @@
 {
-  "rank": 170,
-  "sha": "426c1d69d314ebc6195299d4812fff2b99c48870",
-  "rubric": "v1.1",
   "origin": "never-worked",
   "cause_sha": "832bbf926fc55ec102bde3fb1a1b5e4341b848b6",
   "cause_pr": null,
   "confidence": "high",
-  "cause_quote": "AuthorName computed `const index = query ? fold(props.name).indexOf(fold(query)) : -1` on the NFD-folded name, then sliced the original with `props.name.slice(index, index + query.length)`, so the offsets went wrong whenever folding changed the string length.",
+  "cause_quote": "The introducing diff computed the match with `fold(props.name).indexOf(fold(query))` and used that offset in `props.name.slice(index, index + query.length)`, which misplaces the highlight when folding changes the string length.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "In the Dashboards author filter search, Korean or decomposed-accent names had nothing bolded or the wrong letters bolded (e.g. no bold for 민 in 김민수, final 'a' plain in García).",
+  "user_saw": "When searching for Korean or decomposed accented author names in Dashboards, users saw the wrong letters bolded or no bolding at all.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Added matchFoldedQuery to map a match found in the folded name back to the original name's span, and used it for the author-name highlight, sharing one foldSearchText with the filter.",
-  "reasoning": "dashboard-tools.tsx was created by 832bbf926fc5 (its diff shows a new file) together with the AuthorName highlight that used folded-string indices and the raw query length to slice the unfolded name, so the highlight was wrong for length-changing folds from the start. The subject of 832bbf926fc5 has no PR number, so cause_pr is null."
+  "summary": "The fix maps each folded search match back to the corresponding span in the original author name while preserving which authors match.",
+  "reasoning": "The introducing diff replaced the previous author picker, which displayed plain labels without an author search field, with a searchable picker that bolded matches. Its first implementation used offsets from the folded name to slice the original string, so the highlighting defect shipped with the feature.",
+  "rank": 170,
+  "sha": "426c1d69d314ebc6195299d4812fff2b99c48870",
+  "rubric": "v1.2"
 }

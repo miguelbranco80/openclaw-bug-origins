@@ -1,0 +1,17 @@
+{
+  "rank": 107,
+  "sha": "6db64bc16648e5e457c9b77244646b632aeeb91d",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "939f740219d9fbbd9060acfa483765442bc0a513",
+  "cause_pr": 168871,
+  "confidence": "low",
+  "cause_quote": "The Solid port wrapped the lazy BoardDocument in createErrorBoundary whose fallback always rendered t(\"dashboardDocument.loadFailed\", { error: formatUiError(error()) }), with no stale-chunk branch.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the dashboard preview renderer file could not be downloaded, gallery cards showed a technical file URL with advice to check the Gateway, and at large text sizes the message was cut off.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Shows the existing localized stale-chunk reload message in dashboard preview cards when the lazy renderer import fails, instead of the raw error text.",
+  "reasoning": "The preview's lazy-load error boundary was created in the Solid port 939f740219d9 and has always printed the generic loadFailed text with the raw error; other shells already used isStaleChunkImportError, but this preview never did (the earlier Lit preview from af54ce545a71 also only printed loadFailed). It is close to a copy/UX improvement for a rare error path, so the classification and cause are low confidence."
+}

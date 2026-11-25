@@ -1,0 +1,8 @@
+{
+  "rank": 127,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Missing end-to-end proof: Provide redacted output from authenticated Gateway discovery with npm blocked, showing acceptance of the calendar-version, versioned-prerelease, and fallback requests and publication of the returned models",
+  "outcome": "answered",
+  "note": "The earlier Tests item asked for live proof that discovery accepted the calendar version and published the returned models. Daniel answered with a successful calendar-version request, and the item left catalog correctness unexamined."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Scripts capturing stdout from a refused `openclaw path --json` command received an empty stream because the JSON error went to stderr.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix sends handled path refusals as standard CLI error JSON on stdout while preserving their error codes, messages, and exit status.",
+  "reasoning": "The September refactor replaced `runtime.error(JSON.stringify(...))` with a direct `process.stderr.write(...)`, and the prior `runtime.error` already wrote to stderr. The path history shows that the earlier implementation predates the July 1 shallow boundary, and offline history could not establish when that routing first shipped or whether it replaced working stdout behavior.",
+  "rank": 100552,
+  "sha": "f3a6e06de5e32acb538a82f3f1bb8be31739e706",
+  "rubric": "v1.2"
+}

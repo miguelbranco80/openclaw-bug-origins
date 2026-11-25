@@ -1,0 +1,17 @@
+{
+  "rank": 100208,
+  "sha": "9c057a3916bd584fb5eb8ff1d436533b67771575",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "fd1467d466924a42f64cd00618e0f8e332b8e16f",
+  "cause_pr": 160203,
+  "confidence": "high",
+  "cause_quote": "Adding `const stateContext = captureOpenClawStateWorkerContext();` made each wait capture database admission before its `try` block, while the existing timer still started a new wait without checking the original admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could see an unhandled `STATE_DATABASE_READ_ADMISSION_INVALIDATED` rejection when a subagent completion wait retried during database shutdown.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix checks that the original database admission is still valid before a delayed subagent completion retry starts another wait.",
+  "reasoning": "The causing commit\u2019s parent already had the delayed retry, and that path did not capture database admission when starting a wait. PR #160203 added the capture before the error handler but left the timer guarded only by lifecycle and run state. The fix\u2019s integration test closes read admission while those guards still pass, exposing the new capture as the source of the unhandled rejection."
+}

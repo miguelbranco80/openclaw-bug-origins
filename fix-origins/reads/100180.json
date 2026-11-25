@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "167a8ef20a2a60594cd3fae1e96e3e95ffad9e4c",
+  "cause_pr": 108764,
+  "confidence": "high",
+  "cause_quote": "After the six-second probe window, the new repair path saved the still-running PID as failed with `self.setLaunchAgentReadinessState(candidate: nil, failure: failure)`, allowing the next enable request to force-reinstall it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After reboot, the macOS app repeatedly killed and restarted the slow-starting gateway before it could become ready.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix gives a reused launchd gateway up to 300 seconds to become ready and rechecks the PID and port ownership at each deadline before extending the wait.",
+  "reasoning": "The parent already had a six-second readiness timeout, and its persistence check skipped loaded jobs. PR #108764 introduced PID-based repair and made the persistence check run after startup, so a slow but live PID could be replaced as soon as its first readiness window expired. The later grace period covered fresh installs, and the readiness refactor retained that restriction for gateways whose health probes timed out.",
+  "rank": 100180,
+  "sha": "418f22b9a1e299254db6d0c0c040617c21a35371",
+  "rubric": "v1.2"
+}

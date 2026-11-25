@@ -1,0 +1,17 @@
+{
+  "rank": 100076,
+  "sha": "f6427568d96deb91f6501d48bdb3f1709089aaea",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "3b88500581f6e9bf28f4e6ef91f2deb5483c16c7",
+  "cause_pr": 145390,
+  "confidence": "high",
+  "cause_quote": "The first public failure-fact renderer used `join(\"; \") || \"[redacted-diagnostic]\"` for messages outside its recognized set and `value === anchor ? anchor : `${anchor}.*`` for nested config paths.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators saw update failure reports that replaced startup causes with `[redacted-diagnostic]` and showed broad config paths such as `agents.*` instead of the failing field.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The fix adds fixed startup-cause messages and preserves schema-defined config path segments while masking private keys and values.",
+  "reasoning": "I checked the parent of #145390 and found that public reports listed failed phases and exit codes without rendering structured failure facts. #145390 introduced that rendering with both redaction limits already in place, and #158455 carried forward the same wildcard rule for nested config paths."
+}

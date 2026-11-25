@@ -1,0 +1,17 @@
+{
+  "rank": 100179,
+  "sha": "5d91eff61f278980bb87d0c50e992b4dfbbca1e1",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "079bb34196138313265790e6223ca8fbf4c56c74",
+  "cause_pr": 124035,
+  "confidence": "high",
+  "cause_quote": "The diff added `const executionId = crypto.randomUUID();` for each tool instance and `if (execution && execution.id !== executionId)` to reject a new ID while the previous execution still owned the computer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an initial MCP computer call succeeded, later calls could fail with `COMPUTER_HOST_BUSY` until the node disconnected.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix gives MCP computer calls a stable execution ID across catalog rebuilds and releases the provider execution when the admitted run ends.",
+  "reasoning": "In the parent of #124035, MCP already exposed the Gateway computer tool, and the provider reused one cached execution across calls. The commit began sending a new ID for each tool instance and made cleanup depend on `options?.registerRunCleanup?.(dispose)`, but the MCP resolver supplied no cleanup hook. That left the old ID holding the provider when a catalog rebuild or later run created another tool instance."
+}

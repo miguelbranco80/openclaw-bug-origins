@@ -1,0 +1,17 @@
+{
+  "rank": 100688,
+  "sha": "922d98926bb27143c812be35f9a918c1e48b045a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "bee3c6fe97bf4e643db9cff3d6dd8b3b3242709e",
+  "cause_pr": 162521,
+  "confidence": "high",
+  "cause_quote": "The refactor added `source(target.path, target.path)` before the worker metadata read and `if (!source.isCurrent())` afterward, so a database created by another writer during that read was rejected as a changed source.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When two transcript writes raced to create a new session store, one could fail with an error saying the store changed and asking for a retry.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix checks synchronously for a missing transcript database, skips cold restoration when it is absent, and lets the normal writer create it.",
+  "reasoning": "I checked the causing commit's parent and found that write preflight read metadata synchronously and returned when there was no archive, and the SDK already had a test asserting that concurrent locked appends finished in order and stored one message. The refactor introduced an asynchronous worker read between capturing and rechecking file identity, and the matcher treats the appearance of a previously absent file as an identity change."
+}

@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The “Use reactive translations throughout the ported board renderers” finding concerns text staying in the previous language after a locale switch. The supplied reviews do not raise the dashboard preview’s raw error message when the renderer download fails."
-}

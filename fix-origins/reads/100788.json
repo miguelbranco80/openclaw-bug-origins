@@ -1,0 +1,17 @@
+{
+  "rank": 100788,
+  "sha": "0f08bb02f0b7f46056ff6a1167b52d984e374fa7",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A system clock adjustment during ComfyUI media generation could cause a premature timeout or keep the workflow polling past its configured timeout.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix uses performance.now() to set the ComfyUI polling deadline and calculate the remaining timeout budget.",
+  "reasoning": "The July 1 snapshot already used Date.now() to set deadlines and calculate the remaining budget for both local and cloud polling, and the September polling refactor preserved that behavior. The offline history stops before the introduction of those lines, so I could not determine whether the defect shipped with polling or was introduced by a later change."
+}

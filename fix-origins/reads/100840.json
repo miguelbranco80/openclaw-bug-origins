@@ -1,0 +1,17 @@
+{
+  "rank": 100840,
+  "sha": "1ad95ee6b6dd9fefe0b77ad6647e690b7b530f6c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "fe2486247b6f10b493fb667790c37eb2a3663a2e",
+  "cause_pr": 103138,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `outline: none` on `.settings-sidebar__search-input` and used `box-shadow: var(--focus-ring)` for its focus ring, which forced-colors mode suppresses.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In forced-colors mode, tabbing into the Settings search field showed no visible focus indicator.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix adds a 2px system-color outline when Settings search receives keyboard focus in forced-colors mode.",
+  "reasoning": "I checked the introducing diff and the input selector's first-parent history. The Settings sidebar search shipped with its outline disabled and its focus ring implemented as a shadow, and the intervening mobile styling change only affected input sizing. The fix PR reports that Chromium gave the focused input neither an outline nor a shadow in forced-colors mode."
+}

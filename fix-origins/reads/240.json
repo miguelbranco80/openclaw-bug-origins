@@ -1,17 +1,17 @@
 {
   "rank": 240,
   "sha": "f121a7f70da43b14cd66151b2adf4211cf5fedd7",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "12d6388d3ebb6c5e3b6ef314a6655ee762bbd06e",
+  "cause_pr": 137069,
+  "confidence": "high",
+  "cause_quote": "The dashboard gallery introduced `.some((value) => value.toLocaleLowerCase().includes(query))`, which leaves composed and decomposed Unicode unequal.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Searching the config editor, Usage conversation, or dashboard gallery for an accented word found nothing when the stored text used the other Unicode normalization form (for example NFD text from macOS).",
-  "impact": "other",
+  "user_saw": "Searching Settings, Usage conversations, or the dashboard gallery could hide a matching result when the query and stored text used different Unicode forms of the same characters.",
+  "impact": "failed-every-time",
   "area": "ui",
-  "summary": "NFC-normalized both query and candidate in three Control UI local searches (config form fields and tags, Usage conversation filter, dashboard gallery).",
-  "reasoning": "None of the three comparisons ever normalized Unicode, so the gap is effectively never-worked, but it spans three independent surfaces each written separately, and blame failed on missing objects, so no single introducing commit can be named. Nothing suggests a regression: the removed lines only lowercased."
+  "summary": "The fix applies NFC normalization to both sides of local text and tag comparisons in Settings, Usage conversations, and the dashboard gallery.",
+  "reasoning": "The cited commit introduced dashboard gallery search with the faulty comparison, and the Settings search introduction in f69219f7682308822f30cfb1f4f5f20b3660d50d independently shipped the same omission in its text and tag matching. The Usage comparison already had the omission before the July UI architecture refactor, but the available offline history could not establish its introducing commit."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100797,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 finding concerned offline messages jumping ahead of a paused first turn after a disconnect. The reported bug came from the chat queue requiring `initialTurn` before the startup runtime supplied it, a rendering path the review did not address."
+}

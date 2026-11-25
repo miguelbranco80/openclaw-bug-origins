@@ -1,0 +1,17 @@
+{
+  "rank": 100387,
+  "sha": "ddaec524b19f7283a38c208f8646060005c78388",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "03e4bc05af6695095c9b8e7b3cc562d067d3e56e",
+  "user_visible": "yes",
+  "user_saw": "When the Codex receiver's execution budget expired during startup, the user saw only `turn/start aborted`.",
+  "impact": "presentation",
+  "area": "agents",
+  "summary": "The fix preserves the abort reason as the cancellation error's cause and includes Error or string reasons in its message.",
+  "reasoning": "The July cancellation refactor replaced `new Error(`${method} aborted`)` with a typed wrapper that still omitted the signal reason, and the earlier startup request had its own timeout that could report `turn/start timed out`. PR #134755 added an execution deadline that could expire while `turn/start` was pending and called `runAbortController.abort(error)`, exposing the existing wrapper's loss of the deadline explanation."
+}

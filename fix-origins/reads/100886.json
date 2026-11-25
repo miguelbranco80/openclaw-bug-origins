@@ -1,0 +1,17 @@
+{
+  "rank": 100886,
+  "sha": "25221bbb571187b3a01dab6070e8785310729362",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7bded09b6175dc9a276821fc244f6d75d89075b1",
+  "cause_pr": 109329,
+  "confidence": "high",
+  "cause_quote": "The original controller set `_state.value = ChatDictationState.Listening` before `recognizer.start` and ignored the platform readiness callback with `ChatDictationRecognitionEvent.Ready -> Unit`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Android chat composer could show the stop control before the microphone was ready and give little feedback while speech was transcribed or photos were prepared.",
+  "impact": "presentation",
+  "area": "apps",
+  "summary": "The Android composer now shows dictation readiness, cancellable transcription with an interim transcript, attachment preparation, and message queuing.",
+  "reasoning": "The commit that introduced inline dictation also marked it as listening before the recognizer was ready and discarded end-of-speech and partial-result callbacks. I checked the introducing diff and the fix's parent and found the same behavior in both. The fix also surfaces the composer's existing attachment-preparation state."
+}

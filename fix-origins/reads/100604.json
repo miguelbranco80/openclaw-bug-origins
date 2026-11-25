@@ -1,0 +1,17 @@
+{
+  "rank": 100604,
+  "sha": "063f8a1cc4a015351e4b2d3aecf15d8483df930a",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `backup verify --json` on an otherwise valid archive with malformed UTF-8 in its manifest reported `ok: true` and showed replacement characters in the affected metadata.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The verifier now rejects malformed UTF-8 in an archive manifest before decoding it and validating its JSON.",
+  "reasoning": "The July 14 tar refactor replaced `Buffer.concat(chunks, totalBytes).toString(\"utf8\")` with `content.toString(\"utf8\")`, preserving the lossy decoding already present at the July 1 history boundary. The offline path history stopped at a missing parent object, so I could not establish whether the original verifier shipped with the defect or acquired it in an earlier change."
+}

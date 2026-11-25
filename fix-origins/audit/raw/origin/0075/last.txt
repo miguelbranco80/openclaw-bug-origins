@@ -1,0 +1,17 @@
+{
+  "rank": 75,
+  "sha": "f593ed11afc532add463ad030d70ed37d699b3e6",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Discord cron announce jobs without an accountId failed with 'Discord bot token missing for account \"default\"' and left a discord|default conversation row that made later heartbeat replies fail with SessionBindingError.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "Cron delivery-target resolution now falls back to the channel's configured default account (via resolveChannelDefaultAccountId, keeping an unnamed default implicit) after explicit, session and binding account sources.",
+  "reasoning": "The cron account fallback chain (explicit, session lastAccountId, bound account) predates the shallow graft (originally from 2ed43fd7 in Feb 2026) and was not changed before the fix; issue #186043 reports the failure appeared only after upgrading to 2026.10.7, so something outside the resolver began materializing an undefined account as `default` (delivery/conversation recording), exposing the missing channel-default step. I checked the in-window history of delivery-target.ts (dca06c94, d8e0e88a, e63e209e, ec5d369a, 319e5e5e) and found no commit that changed the account fallback, and could not pin the downstream trigger, so no trigger_sha is given; `unclear` would also be defensible."
+}

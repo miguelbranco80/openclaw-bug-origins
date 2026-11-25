@@ -31,7 +31,7 @@ def main(quiet=False):
         [{"label": label, "value": out.value("open_rate_" + key),
           "note": f"{out.value('open_bugs_' + key)} sampled bugs; {out.value('open_share_' + key)}% of changes"}
          for key, label in OPEN]),
-        "Each bar is a rate: bugs fixed in the three weeks that trace back to pull requests open that long, per 100 "
+        "Each bar is a rate: bugs fixed in the period studied that trace back to pull requests open that long, per 100 "
         "such pull requests. The three groups cover every pull request.")
     out.save(quiet)
     return out

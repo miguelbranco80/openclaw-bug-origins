@@ -1,0 +1,17 @@
+{
+  "rank": 100434,
+  "sha": "5a1cd1abf119a7393a3004acaafd6b18299ecf81",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "56d559212a0903a128d750c5ac458ba34417d4ee",
+  "cause_pr": 169237,
+  "confidence": "high",
+  "cause_quote": "The added condition `|| (params.recorder?.captureModelPromptProjection && !firstText?.startsWith(INTER_SESSION_PROMPT_PREFIX_BASE))` allowed an ordinary foreground turn to persist a projection even when its text matched the stored prompt, triggering a transcript generation rotation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Workshop could fail to save and announce a learned skill when another turn ran in the same session during its background review.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix persists the first prompt snapshot without rotating the transcript generation when replay content and the rest of the event are unchanged.",
+  "reasoning": "The parent already had a Gateway test that expected Workshop learning to finish after a later foreground turn, and its prompt capture code skipped identical text on the first capture. PR #169237 made that capture write to SQLite, where the existing rewrite rule rotated the generation and invalidated the earlier completed turn\u2019s anchor."
+}

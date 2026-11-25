@@ -1,17 +1,17 @@
 {
   "rank": 18,
   "sha": "3e33b957df33fefc8a6a35d0eb6d21c469c9a010",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
-  "cause_sha": "6df0fb818d67032c71eb885ac36febd540fbd10f",
-  "cause_pr": 98510,
-  "confidence": "low",
-  "cause_quote": "The session-thread commit added `throw new Error(`Session \"${sessionKey ?? sessionId}\" changed while starting work. Retry.`)` in agentCommandInternal, a retryable conflict that the OpenAI-compatible error mapper never recognized, so it fell through to the generic 500 api_error.",
+  "cause_sha": "b49119b44f41b16a4bde85acc5ace2d4969023e6",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `readonly code = SESSION_WORK_START_CHANGED_ERROR_CODE;` and made the shared agent command throw the new error with `throw createSessionWorkStartChangedError(sessionKey ?? sessionId);` without adding an HTTP mapping.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A second /v1/responses request on the same session key, racing the first, failed with HTTP 500 or response.failed 'internal error' instead of a retryable conflict.",
+  "user_saw": "When a request lost a session-start race, API clients received an HTTP 500 or a generic streaming failure with no indication that the session had changed.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Maps the existing SESSION_WORK_START_CHANGED error to a 409 invalid_request_error with its code and message on the OpenAI-compatible and OpenResponses JSON and SSE paths, and keeps mapped codes in Responses failures.",
-  "reasoning": "resolveOpenAiCompatError never had a branch for this conflict: it was a plain Error when introduced (absent from agent-command.ts at the parent of 6df0fb818d67, present after; checked via contents API and GraphQL blame past the graft), was typed as SessionWorkStartChangedError by b49119b44f41 without changing HTTP handling, and only the archived case got a 409 in #170299. No commit removed a working mapping, so it is never-worked; the cause is low confidence because the gap is arguably in the HTTP mapper rather than the throw, and the 6df0fb8 patch is too large for the API to show."
+  "summary": "The fix maps session-start conflicts to HTTP 409 for JSON requests and preserves the existing conflict code and message in JSON and streaming error responses.",
+  "reasoning": "I checked the introducing diff and the gateway code at that revision. The commit replaced generic throws with the new typed conflict on the shared agent path, while the HTTP mapper still handled provider failover errors and sent unrecognized errors through the internal-error fallback. The typed conflict therefore shipped without HTTP support."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100774,
+  "sha": "14c91595bef21de60a55db45d503dbb38d730ac0",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a706d49cdb2b309e40a504e9308839a4d8992249",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The refactor added `request: { headers: buildCopilotRuntimeHeaders() }` to `prepareRuntimeAuth`, sending the public header `\"Openai-Organization\": \"github-copilot\"` through secret registration.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Copilot run, operators saw `***` in place of `github-copilot` in gateway logs, diagnostic bundles, and OpenTelemetry exports.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix moves Copilot\u2019s public identity headers into the provider stream wrappers and keeps configured headers in the protected runtime auth output.",
+  "reasoning": "I checked that the parent supplied Copilot\u2019s public identity through request defaults and the stream wrapper, while its runtime auth hook returned only the API key and base URL. The refactor routed those public values through a protector that already registered returned header values for exact-value redaction, so a Copilot run caused subsequent log and diagnostic output to mask the provider name."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 248,
+  "sha": "e4c17c5dd441ea017b2c6cd9314e5b4b6e6a850a",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On beta, dev or source builds, a newly launched ChatGPT subscription model could appear in the model list but its turns could be rejected with HTTP 400 because the version header carried a placeholder or prerelease value.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "Provider attribution now sends the numeric OpenClaw release (or 99.0.0) as the OpenAI `version` header, and the ChatGPT model-list URL reuses that value instead of normalizing it separately.",
+  "reasoning": "The raw runtime version in the OpenAI attribution `version` header is long-standing and was harmless until ChatGPT began gating new subscription models (gpt-6.2) on minimal client version, an external backend change; #202380 (7d1d7d035ce6) only normalized the listing side and explicitly left the turn header unchanged, so it did not break turns that previously worked. Evidence is thin: the failure for beta/dev values is inferred from a live 0.164.0 probe and unit tests, not a reported user failure, so this is a low-certainty latent call."
+}

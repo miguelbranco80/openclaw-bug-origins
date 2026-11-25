@@ -1,0 +1,17 @@
+{
+  "rank": 100198,
+  "sha": "96275066b9447cdb290758b278657915ac95e7a7",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Codex session sidebar could refresh slowly even when session history had not changed.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix serves warm Codex sidebar queries from a resident per-home index maintained by events and background reconciliation.",
+  "reasoning": "The first federated Codex catalog already paired 30-second UI polling with native thread/list discovery, and the fix's parent still called native discovery when its page cache needed refreshing. The PR's benchmark measures the benefit of bypassing that recurring work, and the checked history does not establish a previously faster baseline for the recurring polling behavior this change targets."
+}

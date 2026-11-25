@@ -1,0 +1,17 @@
+{
+  "rank": 100396,
+  "sha": "705d1b2b59d3ee59819dbe3891d0c1c259ccbe48",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "99fccf43358c798fd32255e9c13f34a5d6233f05",
+  "cause_pr": 164236,
+  "confidence": "high",
+  "cause_quote": "The added `pidNsInode: fs.statSync(\"/proc/self/ns/pid\", { bigint: true }).ino.toString()` made namespace identity unavailable when PRoot returned `ENOENT` while following the link.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway startup in a PRoot Ubuntu container failed with `GatewayLockNamespaceError` because the Gateway could not verify its own state ownership.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix reads the PID namespace inode from the procfs link text and continues to refuse ownership when the link is unreadable or malformed.",
+  "reasoning": "The causing commit\u2019s parent admitted an existing Gateway owner using PID and process start time without requiring a namespace probe. The causing diff placed namespace verification ahead of those checks, so PRoot\u2019s `stat` failure turned the Gateway\u2019s own fresh owner into an unknown owner and caused admission to throw, matching the fix PR\u2019s live reproduction."
+}

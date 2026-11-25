@@ -1,0 +1,8 @@
+{
+  "rank": 100765,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes retry limits and recovery exclusions without raising the risk that an HTTP 400 could be classified as a rate limit and retried without evidence of a short retry window. The earlier Before merge items address merge conflicts, access to review evidence, and data compatibility."
+}

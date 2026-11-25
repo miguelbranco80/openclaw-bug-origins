@@ -1,1 +1,8 @@
-{"rank": 146, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The ClawSweeper review covers real-behavior proof, final-effect authority proof, SDK and compatibility risks; it never mentions the fixed 8080 callback port. A human review mentions port 8080 only regarding listener cleanup after a timeout, not the bot."}
+{
+  "rank": 146,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "ClawSweeper\u2019s P1 sign-in item points to the unset production client ID, and its callback evidence covers messages shown under signed fixtures. The only port 8080 concern came from a human reviewer and dealt with cleanup after a timeout."
+}

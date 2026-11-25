@@ -1,1 +1,17 @@
-{"origin":"regression","cause_sha":"c80f434ab35b9561ee5dd92384283f287b2bf6d1","confidence":"high","reasoning":"I checked the original settings diff and confirmed that the permissions view returned the inspection error and Retry before checking whether inspection data was missing. The tab-unification commit removed `if (props.inspectionError) { return renderRetryError(props.inspectionError, props.onRetryInspection); }` from `renderAccess`, leaving the missing-data branch to show a skeleton after a failed request. The grouped settings and Solid rewrites preserved that behavior."}
+{
+  "rank": 13,
+  "sha": "2840df5fa7bc91bb1d8b358b50c893eeba3970ad",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "c80f434ab35b9561ee5dd92384283f287b2bf6d1",
+  "cause_pr": 142713,
+  "confidence": "medium",
+  "cause_quote": "In renderAccess it removed `if (props.inspectionError) { return renderRetryError(props.inspectionError, props.onRetryInspection); }`, leaving `if (!props.inspection) { return renderSettingsLoadingSkeleton({ rows: 3, carapace: true }); }`, so a failed inspection showed a permanent loading skeleton under the moved panel-level error banner.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the Control UI plugin settings, the Permissions section kept showing a loading skeleton after the inspection request had failed, next to the error and Try again button.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Derived the permissions loading flag from the inspection read's pending state and added a `known` flag so a failed inspection shows neither a loading skeleton nor a false empty-settings message.",
+  "reasoning": "The original plugin settings view (#135840) checked inspectionError before falling back to the skeleton, so failed inspection rendered a retry error instead of loading; #142713 moved the error to a panel-level banner and dropped that check, and the bare `!inspection -> loading` condition then survived through #149246, #150234 (`{ fields: [], details: skeleton }`), #150235 (`loading: true`) and the Solid port #168758 until this fix. Medium because the Permissions section was reshaped several times after #142713, though the defective condition carried through unchanged."
+}

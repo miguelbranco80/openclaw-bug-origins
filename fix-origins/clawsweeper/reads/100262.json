@@ -1,0 +1,8 @@
+{
+  "rank": 100262,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The writable-state merge risk concerns dry-run previews, and the interrupted-run finding concerns stale status after process death. Neither item points to a cleanup progress write skipping Git worktree removal and masking the original update failure."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100841,
+  "sha": "069fb882bbff1c907c88886aa64f2f18b194228f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "38a45c2220dd65d36b2174ad13cbcc03e6b7fd2e",
+  "cause_pr": 126394,
+  "confidence": "medium",
+  "cause_quote": "The new `onHelloOk` callback captured auth and `server = hello.server;`, leaving the event-loop health snapshot out of the read probe\u2019s diagnostics.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a busy Gateway accepted the connection but the status RPC timed out, the CLI showed a generic read-probe failure and omitted the event-loop metrics.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix distinguishes timeouts before and after reaching the Gateway and displays event-loop metrics from the handshake when available.",
+  "reasoning": "I checked the single-connection probe\u2019s introducing diff and its parent, where the separate metadata probe ran only after a successful status RPC. The Gateway already included cached health in its hello response, but the new read probe omitted event-loop evidence from its first version. The later readiness change preserved proof that the Gateway was reached and still left timeout classification and event-loop evidence out of the failure result."
+}

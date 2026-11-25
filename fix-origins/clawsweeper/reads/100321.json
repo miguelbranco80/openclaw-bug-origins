@@ -1,0 +1,8 @@
+{
+  "rank": 100321,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests section in both versions asks for end-to-end proof without identifying a risk in the transcript walk. The at-merge Evidence section describes the ancestry check without flagging that an intervening metadata row could cause it to miss a valid reply."
+}

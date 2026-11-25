@@ -1,0 +1,17 @@
+{
+  "rank": 100673,
+  "sha": "a7557f3f5db224717e5c33c9be32e2daef44703c",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "9596eab05dec527d555efccd35d4218403072394",
+  "user_visible": "yes",
+  "user_saw": "After a gateway restart, the agent could send a temporary browser link instead of showing the widget on the session dashboard.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix aligns widget instructions with the presentation surface available on the current turn and tells the agent how to open a pinned widget\u2019s dashboard tab.",
+  "reasoning": "The dashboard\u2019s instruction to keep one-off visuals inline predated pinned-only authoring for recovered Control UI turns. The parent of #139705 limited the pinned-only exception to scheduled turns, and #139705 added `options?.pinnedWidgetAuthoring === true` to expose it to recovered turns without a live renderer. That new usage exposed the conflict with existing dashboard guidance, and the later Visualize skill repeated the inline instruction."
+}

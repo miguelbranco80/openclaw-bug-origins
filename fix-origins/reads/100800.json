@@ -1,0 +1,17 @@
+{
+  "rank": 100800,
+  "sha": "244862edb0104b06e7701b49ec7f110b59e1552c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "28630a9a6501dd3835d1cf5660eb5dd9c337d3bc",
+  "cause_pr": 114819,
+  "confidence": "high",
+  "cause_quote": "The introducing diff gated deep recall on `return !params.hasStrongLaneOneHit && hasRecallIntent(params.message);`, and its intent matcher contained only English and Spanish patterns.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a user asked in French about an earlier conversation and the initial lookup found no strong match, Active Memory skipped deep recall.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix adds French recall-intent patterns that let questions about past conversations trigger deep recall while filtering out ordinary statements and future reminders.",
+  "reasoning": "I checked the introducing diff and confirmed that escalate mode required a regex match from its first version, so French questions such as \u201cTu te souviens de ce qu\u2019on a d\u00e9cid\u00e9 pour le serveur ?\u201d failed that gate from the start. The first-parent history of the matcher shows the fix as the first commit to add French recall patterns."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100518,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Ownership and archive handling section describes registry-based ownership without raising a concern about duplicate entries for the same database. The earlier cyclic-symlink finding concerns a backup failure triggered by an unmanaged link loop."
+}

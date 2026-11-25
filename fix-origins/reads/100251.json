@@ -1,0 +1,17 @@
+{
+  "rank": 100251,
+  "sha": "0e648d3411d254245844414b3b0f84b02ae812ec",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "670270edc060858b41a04589910002d4dcf97313",
+  "cause_pr": 171633,
+  "confidence": "high",
+  "cause_quote": "The diff replaced `{view.snapshot.guests.helpersAvailable ? (` and its two JSX branches with unconditional guest-help text, changing the generated bundle without updating `extensions/x/openclaw.plugin.json`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator building the Docker package from source saw preparation stop because the X plugin's Control UI asset manifest was stale.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix refreshed the X plugin manifest's Control UI JavaScript and stylesheet paths to match the generated assets.",
+  "reasoning": "The first-parent history shows that the manifest had already been regenerated for the previous browser bundle, and the fix PR reports that the earlier producer still generated the recorded hash. I checked that #171633 changed the Control UI source without touching the manifest, and the fix PR records that CI then generated a different hash and halted package preparation."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100221,
+  "sha": "aa42103a719b2d432ff2513159e65a652be4c451",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway stayed unavailable while Doctor ran optional checks during an update.",
+  "impact": "slower-or-heavier",
+  "area": "update",
+  "summary": "The updater moves 12 read-only Doctor inspections until after verified Gateway readiness and preserves their findings in the update result.",
+  "reasoning": "The baseline update completed and restored readiness, and the fix shortened the outage by moving optional work. I checked that live update Doctor already ran the inspections before #153147 and that #159443 deferred them only in copied-state rehearsals."
+}

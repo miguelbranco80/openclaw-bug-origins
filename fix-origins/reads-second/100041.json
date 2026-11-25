@@ -1,0 +1,17 @@
+{
+  "rank": 100041,
+  "sha": "09b2a8618de64a5c82a527592228f39affbdd860",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After canceling an agent turn during cleanup, the user could wait up to 30 extra seconds for the turn to finish.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix rereads cancellation after transcript writes drain and makes the optional idle wait interruptible while still awaiting required writes and runtime disposal.",
+  "reasoning": "Before #121113, cleanup already captured cancellation before awaiting cleanup lock acquisition, which itself drained transcript work, and the idle helper raced only agent idle against a timeout. #121113 replaced lock acquisition with the transcript drain at the same point, and #146842 changed how pending writes were flushed while preserving the idle race. The idle helper predates the shallow boundary, and the available offline history could not establish its introducing diff or an earlier working cancellation path."
+}

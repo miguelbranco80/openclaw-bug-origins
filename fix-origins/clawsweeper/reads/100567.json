@@ -1,0 +1,8 @@
+{
+  "rank": 100567,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "After `config.schema` fails, the configuration error's retry action calls this handler, which reloads only `config.get`. It never invokes `ensureSchemaLoaded` or `refreshSchema`; a successful config reload can clear the error while leaving the schema unavailable and the editor absent.",
+  "outcome": "dropped",
+  "note": "The earlier P2 item identified a missing schema retry in the configuration error\u2019s Try again action, which pointed toward the Advanced tab\u2019s Reload bug. The merge review covered a Try again callback that already called refreshSchema, while the Advanced Reload handler and Gateway connection path went unmentioned."
+}

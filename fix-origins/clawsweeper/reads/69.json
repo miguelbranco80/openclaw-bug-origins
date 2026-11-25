@@ -1,1 +1,8 @@
-{"rank": 69, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No Before-merge items or findings; the Evidence section only notes an unattributed CI annotation (typing-growth follow test scrollTop 904 vs 804), which is a CI observation about a different scenario, not a concern about auto-follow stopping during end preparation, so it is not counted even as related."}
+{
+  "rank": 69,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "When appended history changes the native extent while an end command remains active, this branch calls scrollToEnd immediately and bypasses prepareEnd's rowsMeasured check.",
+  "outcome": "open-at-merge",
+  "note": "The destination-measurements item flagged premature retargeting as the transcript grew during an active end command. The reported bug involved retargeting being blocked after the scroll journey expired."
+}

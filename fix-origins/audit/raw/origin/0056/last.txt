@@ -1,0 +1,17 @@
+{
+  "rank": 56,
+  "sha": "3481cbc81435a8703da96f54aaa8161a2f0fbd31",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pages such as Usage and Knowledge showed a sidebar beside them, the rail's More item looked current, and Automations briefly showed its list page when opened.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Moved the decision of which sidebar (if any) stands beside a page to the page's route and shell, removed the More item's current-item fill, and made choosing Automations again close its open panel.",
+  "reasoning": "This is part 10 of a 16-PR stacked side-rail redesign; it landed minutes after its own predecessors #199825 (7701d7e) and #199827 (a749c7f), which it continues rather than repairs. The removed 'More carries the current-item fill while the open page has no item of its own' memo and the shared-sidebar behavior were deliberate design choices, so the change is an in-flight product/design evolution of unreleased navigation work, not a fix of shipped behavior. The Automations flash sub-item may trace to a749c7f, but it was never on main in a working state outside this series."
+}

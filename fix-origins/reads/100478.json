@@ -1,0 +1,17 @@
+{
+  "rank": 100478,
+  "sha": "8b006fb77f017fca27f0ac8e475f8231d4120c96",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "4c2d8d8adb3944747298939b64e4dd5786f8f4a2",
+  "cause_pr": 120906,
+  "confidence": "medium",
+  "cause_quote": "The diff replaced `for (const entry of registered)` with `for (const entry of targets)` and called `migrateAgentDatabase({ agentId: entry.agentId, ... })` for newly discovered stores, so the existing owner check rejected a copy whose metadata named another agent.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After upgrading, operators with a database copied into another agent\u2019s directory saw repeated `doctor --fix` failures and could not start the Gateway.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Doctor now preserves verified duplicate databases under recovery filenames, allows the affected agent to open a fresh store, and continues independent repairs when a conflicting database must be preserved.",
+  "reasoning": "I checked that the parent migrated only registered stores and that #120906 added configured and on-disk discovery while keeping the owner assertion and the early return on migration warnings. The new discovery path could therefore block Doctor on a misplaced copy from its first version, and the later refusal-receipt change formalized that stop. The fix\u2019s fixture shows the failure on an unregistered copy, while the original reported installation\u2019s registry state is unverified."
+}

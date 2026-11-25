@@ -1,0 +1,8 @@
+{
+  "rank": 100629,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The interrupted result clears native CLI session continuity and suppresses successful auth settlement; real Claude CLI proof must confirm those projections after an actual abort.",
+  "outcome": "open-at-merge",
+  "note": "The P1 merge-risk item called for testing the continuity-clearing behavior after a real abort. It treated clearing continuity as expected and missed that stopping the first native-login turn loses the new session ID, causing the next turn to start fresh."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100253,
+  "sha": "f8a97fe87ce21a95b08ace2343c302b75c696962",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "9d3389008d1a312cf41b290b81411a024d22922f",
+  "cause_pr": 109694,
+  "confidence": "high",
+  "cause_quote": "The diff added `overflow-y: auto` and `margin-right: calc(-1 * var(--sidebar-pad-x))` to `.sidebar-shell__body`, moving the scrollbar into the existing resize target at the sidebar edge.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Dragging the sidebar scrollbar where it overlapped the resize handle left the session list stuck in place.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix moves the sidebar resize target to the content side and gives navigation and panel dividers consistent theme-specific thickness.",
+  "reasoning": "The causing commit's parent kept the session list's scrollbar inside the sidebar's 10px padding, clear of the edge-mounted resize handle. The scroll unification placed the scrollbar against that edge, where the divider's existing `left: -4px` hit area already extended into the sidebar. The later resize-handle refactor widened the overlap."
+}

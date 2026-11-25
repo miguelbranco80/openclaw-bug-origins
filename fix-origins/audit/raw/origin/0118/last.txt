@@ -1,6 +1,17 @@
 {
-  "origin": "unclear",
+  "rank": 118,
+  "sha": "dd11a9c2da9850f7dc091b5f011b66071b98ed4d",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
   "cause_sha": null,
+  "cause_pr": null,
   "confidence": null,
-  "reasoning": "The Solid migration carried forward the Lit root’s cold-start splash and reconnect routing, and the fix changes tests that explicitly expected the splash or sign-in during a retry. I checked the earlier draft-retention change and the commit that added the HTTP startup wait, but neither establishes when an already-open chat first lost its shell or draft during a Gateway restart."
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a Gateway restart or update the Control UI showed only a small connection indicator, which made planned downtime look like a broken page.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Adds a Control UI connection/holding view during Gateway startup and reconnection that keeps the shell and drafts, a self-retrying asset-free recovery page when the app document is unavailable, and manual recovery actions after automatic recovery stops.",
+  "reasoning": "The linked issue #191925 is a feature/improvement request ('Improve Gateway downtime holding and retry guidance') that states current source already retains the loaded Control UI and reconnects; the problem it names is presentation that makes downtime look broken, not a failure introduced by a commit. The PR is a large new presentation and availability surface (new control-ui-availability.ts, new connection view, branding assets), so it is a product/UX improvement titled as a fix; blame candidates are Solid migrations that merely last touched the replaced shell code."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An affected Gateway runtime could accept a TLS certificate chain that used a compromised eMudhra key.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "The fix requires Node 24.22.1 or 26.12.1 on the supported release lines even when SQLite checks pass, and updates the native pnpm tooling to 12.15.0.",
+  "reasoning": "I checked the September SQLite admission change and the October fix diff, which documents the eMudhra key compromise. The earlier check addressed SQLite compatibility, while the external compromise made previously trusted keys unsafe in the admitted Node runtimes and the native pnpm TLS runtime.",
+  "rank": 100199,
+  "sha": "6c00e67f5703c85f2aea88cf79f7ff702821fbb5",
+  "rubric": "v1.2"
+}

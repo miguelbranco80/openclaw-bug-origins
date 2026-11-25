@@ -2,6 +2,6 @@
  {
   "stem": "q14-bugs-by-time-open",
   "title": "Bugs per 100 changes, by how long the pull request was open",
-  "reading": "Each bar is a rate: bugs fixed in the three weeks that trace back to pull requests open that long, per 100 such pull requests. The three groups cover every pull request."
+  "reading": "Each bar is a rate: bugs fixed in the period studied that trace back to pull requests open that long, per 100 such pull requests. The three groups cover every pull request."
  }
 ]

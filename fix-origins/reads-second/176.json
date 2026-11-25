@@ -1,17 +1,17 @@
 {
   "rank": 176,
   "sha": "01e1612c3992054fbdb03cc8b40827f1dab2cb49",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "bb6bb777af315388046052d8142a152517bf382a",
   "cause_pr": 157349,
   "confidence": "high",
-  "cause_quote": "It made sendChatAction replaceable (`const replaceable = method === \"sendChatAction\" || callerScope?.replaceable === true`) and answered held-back replaceable calls with a synthetic 429 via `skippedFloodResponse(waitMs, \"flood wait active\")`, which the existing withTelegramApiErrorLogging wrapper around typing logs at ERROR.",
+  "cause_quote": "The new flood gate classified `sendChatAction` as replaceable and used `return flooded ?? skippedFloodResponse(waitMs, \"flood wait active\");` to return a synthetic 429 that the existing wrapper logged at ERROR.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "During a Telegram flood wait, the Gateway log filled with ERROR lines 'telegram sendChatAction failed: ... (flood wait active; request not sent)' for typing actions OpenClaw deliberately skipped.",
-  "impact": "other",
+  "user_saw": "Gateway operators saw repeated Telegram typing errors in the logs whenever the limiter deliberately skipped typing updates during a flood wait.",
+  "impact": "sequence-or-timing",
   "area": "channels",
-  "summary": "Synthetic 429s for deliberately skipped replaceable Telegram updates now carry a distinct suffix, and withTelegramApiErrorLogging no longer logs them at ERROR.",
-  "reasoning": "Blame of the removed lines points to bb6bb777af31 (#157349), whose diff adds skippedFloodResponse with the '; request not sent)' description and routes sendChatAction through the replaceable skip path; the typing call sites in bot-message-context.ts were already wrapped in withTelegramApiErrorLogging(operation: \"sendChatAction\"), so every skipped typing logged an ERROR from the day the hold-back feature shipped. The same PR intended a single WARN per flood, so the per-request ERROR is a defect of that introduction, not a later regression."
+  "summary": "The fix marks deliberately skipped typing and preview updates so the Telegram API wrapper suppresses their ERROR logs while still logging genuine API failures and undelivered final replies.",
+  "reasoning": "The causing diff introduced the account-wide flood gate and its synthetic 429 for typing attempts made during an active wait. The parent revision already wrapped typing calls in an error logger with no filter at that call site, so the misleading ERROR shipped with the new skip behavior."
 }

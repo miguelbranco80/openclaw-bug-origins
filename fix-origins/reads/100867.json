@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "3c4c111b0f71d00f7f94a9f31d5030436370aa4f",
+  "cause_pr": 151545,
+  "confidence": "high",
+  "cause_quote": "The original preparation code unconditionally called `resolveNpmSpecMetadata({ spec, signal: params.signal })` and selected `manager: \"npm\"` for the private install, requiring npm on a Bun-only host.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A headless node on Bun-only macOS or Linux could find a new release, but logged a preparation failure each hour and stayed on its current version.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix lets Bun-only macOS and Linux node hosts fetch and verify the release archive in-process and stage it with Bun in the private runtime directory.",
+  "reasoning": "The parent of #151545 already documented Bun as a managed node-host runtime, and the introducing diff for automatic updates required npm for metadata, packing, and installation from day one. I checked #160154, which moved Bun discovery in-process and left the existing npm requirement in update preparation.",
+  "rank": 100867,
+  "sha": "0a5ef7d9e0c696163e367aade4bef24befbfa2a2",
+  "rubric": "v1.2"
+}

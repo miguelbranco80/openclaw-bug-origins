@@ -1,0 +1,17 @@
+{
+  "rank": 100315,
+  "sha": "7289f203fa1425ca384047c1ac58b09a5a482300",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Browser output preparation could create a directory with trailing whitespace removed from its name or accept an output path through a symlinked parent.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The browser extension now validates output paths from the filesystem root, preserves literal directory names, and uses the shared temporary workspace helper for Chrome MCP screenshots.",
+  "reasoning": "The old helper checked only the final component for an existing directory and scoped creation to the nearest existing ancestor, which could leave a symlinked parent outside validation. The fix also documents that pathScope trims its input, explaining the changed directory name. The helper predates the shallow boundary, and the older path history hit a missing object, so I could not verify when either failure began."
+}

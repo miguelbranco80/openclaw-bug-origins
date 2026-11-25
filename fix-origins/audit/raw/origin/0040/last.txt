@@ -1,0 +1,17 @@
+{
+  "rank": 40,
+  "sha": "0f548caee9b81f60673d13efe2311fcf046a542a",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "975e68cf820a536e068a3c04fdc511ac28005693",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The owner-management feature changed each retained row to `canManage={props.canManageJob?.(row.job) ?? canManage()}` and `canCreate={props.canCreate}`, with `canManageJob: page.canManageJob` and `canCreate: page.canCreateCron()` supplied through the page-wide view props that every search publication rebuilds.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Typing in the Automations search box became noticeably slower with many jobs (about 14 ms to 48 ms of script time per search in a 500-job list).",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Derived the cron page's permission facts in a separate memo keyed on Gateway auth/identity/profile-directory changes and memoized per-row permission results, so search updates no longer re-run retained rows' permission bindings.",
+  "reasoning": "Search typing was fast before and the PR measures the jump to the feature commit 975e68cf820 (PR #189749 per the fix description; its squash subject has no PR number). Its diff routed per-row permission callbacks through the aggregate cron view props, so each search publication re-entered every retained row's permission branch; the fix restores the parent's timings by separating those bindings."
+}

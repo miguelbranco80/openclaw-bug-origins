@@ -1,0 +1,17 @@
+{
+  "rank": 100087,
+  "sha": "26a353028889f22f817e0b2dea2c9b1b32d86d5f",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "storage",
+  "summary": "The fix moved active-event iteration and bounded-tail selection into a read-only module so history snapshot readers no longer import the writer-facing accessor.",
+  "reasoning": "I checked #163045 and its parent and confirmed that the worker refactor added a runtime import from the read-only history reader into the active-events module, which imports projection acquisition and reconciliation. The fix removes that dependency while preserving snapshot admission, queries, byte limits, and error precedence, and the available evidence identifies no resulting read failure or write."
+}

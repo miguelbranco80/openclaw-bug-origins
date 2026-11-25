@@ -1,0 +1,17 @@
+{
+  "rank": 100533,
+  "sha": "d64380014da560af58eabed1f5329c97687c22af",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "47d039cb7045ca05c93f0fe8eee99771300daffa",
+  "cause_pr": 144531,
+  "confidence": "high",
+  "cause_quote": "The new `sessionLog.warn(\"slow session list\", ...)` call hard-coded `operation: \"sessions.list\"`, so it labeled subscription snapshots as list requests.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway operators saw slow subscription snapshots logged as `sessions.list` requests.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix uses the original request operation from the shared diagnostic record in slow session warnings.",
+  "reasoning": "I checked that `sessions.subscribe` already delegated snapshot reads to `sessionsListHandler` before #144531, which wrapped that handler with a warning that always logged `sessions.list`. The warning therefore mislabeled subscription snapshots from its introduction. #147911 later added the correct operation to the diagnostic event while preserving the warning's hard-coded value."
+}

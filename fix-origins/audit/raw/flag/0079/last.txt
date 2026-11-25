@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The earlier “Await catalog publication instead of polling model-list responses” finding addressed test timing. The at-merge “Scoped refresh and lifecycle checks” section raised no concern about publication after the request scope closed or the missing recheck on channel surfaces."
+  "outcome": null,
+  "note": "The merge-time review has no open items and earlier versions only asked to replace expect.poll waits in tests; nothing concerns the recheck publishing from a closed plugin invocation scope or channel surfaces not triggering it."
 }

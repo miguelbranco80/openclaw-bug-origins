@@ -1,0 +1,8 @@
+{
+  "rank": 100865,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier P1 item about the public-artifact execution boundary asked for proof that disabled or denied owners could not run the artifact. The merge-time P1 items concerned login account selection, and the review never raised the skipped registration that left the managed plugin root unset during direct Codex migrations."
+}

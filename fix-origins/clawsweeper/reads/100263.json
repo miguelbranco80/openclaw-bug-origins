@@ -1,0 +1,8 @@
+{
+  "rank": 100263,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cResolve merge risk\u201d items asked for Linux early-stop verification of worker teardown and staging cleanup. Those checks would not exercise the reported Windows Bun failure, where a busy snapshot directory makes cleanup fatal after a successful preflight read."
+}

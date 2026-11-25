@@ -1,0 +1,8 @@
+{
+  "rank": 100833,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item called for broad browser validation of drawer focus and nested overlays without identifying the risk of refocusing an open drawer when swipe support loads. The earlier \u201cRemove the capturing keydown listener on teardown\u201d finding concerned shortcuts intercepted by a detached shell."
+}

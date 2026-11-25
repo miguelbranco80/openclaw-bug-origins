@@ -1,0 +1,17 @@
+{
+  "rank": 10,
+  "sha": "d98ec68ceded4bcd37784a3c5912d8df16a26b9a",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "98742bc2c7f222a05d9c3a7d1622c49e21dec56f",
+  "cause_pr": 112387,
+  "confidence": "high",
+  "cause_quote": "It added the edit branch `if (streamPatchRequested && !normalized.streamCommand) { ... return { kind: \"patch-existing-stream\", ... } }` ahead of `resolveDirectSchedule`, which is where the existing `--on-exit-cwd requires --on-exit.` check lives, so stream metadata edits never reached it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw cron edit <id> --stream-cwd /x --on-exit-cwd /y` succeeded, changed the stream working directory and silently ignored --on-exit-cwd.",
+  "impact": "other",
+  "area": "cli",
+  "summary": "The --on-exit-cwd-without---on-exit check moved into schedule option normalization so it also runs before the stream metadata edit branch returns.",
+  "reasoning": "GraphQL blame at the graft shows the on-exit-cwd check came from 68bfa42b9bfc (on-exit schedules, 2026-07-01) inside resolveDirectSchedule, and the early-returning patch-existing-stream edit branch came from 98742bc2c7f2 (#112387, 2026-07-21); its gh api diff adds that branch before resolveDirectSchedule is called. The stream metadata edit path therefore skipped the check from the day it shipped, and later commits only reworded messages."
+}

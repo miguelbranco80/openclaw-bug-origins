@@ -1,1 +1,8 @@
-{"rank": 112, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review in force at merge has no findings or before-merge items and does not mention title-hint tooltips nested inside external links being suppressed by the new page preview."}
+{
+  "rank": 112,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Eligibility and lifecycle item describes which links get previews without raising the risk that a preview could suppress the nested audit icon\u2019s hint. Before merge and the earlier review history list no findings."
+}

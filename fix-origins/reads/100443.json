@@ -1,0 +1,17 @@
+{
+  "rank": 100443,
+  "sha": "585312d8ba73fb53ee870012066274917f411ede",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0acd851a3b3d6142f1e569a0e5616db62361969e",
+  "cause_pr": 100535,
+  "confidence": "high",
+  "cause_quote": "The original GC caught idle cleanup failures with `log.warn(`idle cleanup failed for ${record.id}: ${String(error)}`)` and still returned `{ removed, orphansDeleted, snapshotsPruned }`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The `openclaw worktrees gc --json` command exited successfully and printed only cleanup counts even when a worktree could not be removed.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix reports partial and deferred cleanup outcomes across the CLI, Gateway, and scheduled maintenance, and prevents the limits pass from retrying worktrees already handled by idle cleanup.",
+  "reasoning": "The original managed worktree commit added the warning-only catch and a CLI that printed the returned counts without signaling failure, so incomplete cleanup could appear successful from the first release. I also checked #106224, which introduced duplicate attempts by running a second pass over live records after the idle pass, while preserving the original result shape."
+}

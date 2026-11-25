@@ -1,0 +1,17 @@
+{
+  "rank": 100425,
+  "sha": "574927f256fa1a5355985b3d657d357abdd3fffb",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6c66f48a7c1144eaa40b2927fe9823ae0f93151a",
+  "cause_pr": 124849,
+  "confidence": "high",
+  "cause_quote": "The new JSON failure contract said a failing command in JSON output mode \u201cexits nonzero and writes one JSON document to stdout with this envelope,\u201d but the implementation formatted only errors that reached the new JSON writers.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `config patch` or `config unset` with `--json` but without `--dry-run` exited with status 1 and left stdout empty.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix makes invalid `--json` invocations of `config patch` and `config unset` emit the standard JSON failure envelope on stdout.",
+  "reasoning": "The shared JSON failure contract shipped in #124849 with this gap. I checked that commit's diff and source: both commands already caught their own flag errors, and the shared mutation handler wrote JSON only when `params.options.dryRun && params.options.json` was true, so these errors never reached the new top-level JSON formatter."
+}

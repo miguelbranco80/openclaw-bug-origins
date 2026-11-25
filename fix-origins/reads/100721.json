@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "663c4fba10536a7148749f2b35fb5af6d54d3cb7",
+  "cause_pr": 113390,
+  "confidence": "high",
+  "cause_quote": "The new pre-open pass called `repairCanonicalSqliteIndexes(database, pathname, OPENCLAW_STATE_SCHEMA_SQL, { allowMissingColumns: true })`, which ran `.get(index.tableName)` and `collectSqliteNamedIndexContract(db, index.name)` as separate reads before opening its repair savepoint.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway startup could detect index drift based on a mix of old and new metadata if another connection changed the SQLite schema during inspection.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix pins schema comparison and canonical-index inspection to one SQLite read snapshot and releases it before repair writes.",
+  "reasoning": "The introducing diff shows that the pre-open canonical-index pass shipped with separate metadata reads and no enclosing transaction, so a concurrent commit could become visible partway through its first shipped implementation. The original maintenance schema validator likewise read tables independently, and the fix's WAL tests cover both paths by committing a schema change between reads. The cached SQLITE_BUSY retry problem arose during review of the fix itself.",
+  "rank": 100721,
+  "sha": "27df0fd38b31e79f35ffce2c834e7ce442b2d4f7",
+  "rubric": "v1.2"
+}

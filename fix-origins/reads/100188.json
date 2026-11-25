@@ -1,0 +1,17 @@
+{
+  "rank": 100188,
+  "sha": "0ac1c241fba8cb0e255a907e5f23e523ec579a43",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8b16e5328ecde96f7fe48aa637fec18cfde3fd47",
+  "cause_pr": 157413,
+  "confidence": "medium",
+  "cause_quote": "The diff added `await prepareOpenClawStateDatabaseRemoval(databasePath, assertCurrent)` before the generation check, and that probe's Windows branch calls `close()`, which can checkpoint the WAL and invalidate the physical fingerprint.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an interrupted Windows update, OpenClaw could report \u201cDatabases changed after snapshot capture\u201d and refuse both database and package rollback even though no newer data had been committed.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix compares committed SQLite pages and retained WAL commit evidence so checkpoint-only changes no longer block rollback.",
+  "reasoning": "I checked the original rollback implementation and the coordination change: the earlier path used separate coordinator databases, so a pending WAL that stayed stable through admission passed the existing generation check. The later diff made Windows rollback open and close the live database before that check, and the fix PR identifies that close as the checkpoint in the failing sequence. The original comparison was already sensitive to ordinary checkpoints, and the earlier Windows behavior was verified by source inspection only."
+}

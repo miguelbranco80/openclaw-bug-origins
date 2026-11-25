@@ -1,17 +1,17 @@
 {
   "rank": 23,
   "sha": "24f5183313d8a64f899a67068eaa26861f0eeee2",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "3fa3276381dcb9365cd69e0092caf218d46416bb",
   "cause_pr": 128447,
   "confidence": "high",
-  "cause_quote": "The new container engine built mounts by plain interpolation, `type=bind,source=${params.workspaceDir},target=${params.workspaceDir}`, which Docker's CSV --mount parser splits at any comma in the path.",
+  "cause_quote": "The introducing diff built the mounts as `type=bind,source=${bundleDir},target=${bundleDir},readonly` and `type=bind,source=${params.workspaceDir},target=${params.workspaceDir}`, leaving commas in either path exposed as field separators.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With container isolation on, node worker sessions failed to start with Docker's \"invalid field ... must be a key=value pair\" whenever the workspace, HOME or bundle path contained a comma.",
+  "user_saw": "A container-isolated session failed to start when its workspace, HOME, or worker bundle path contained a comma.",
   "impact": "failed-every-time",
-  "area": "gateway",
-  "summary": "Quotes --mount source/target fields (doubling interior quotes) when the path contains a comma so docker create accepts comma-bearing workspace, HOME and bundle paths.",
-  "reasoning": "The local clone is shallow and the blamed b14a2cae4bf6 is the grafted history root; GitHub's commit history for the file shows it was added by 3fa3276381dc (#128447), whose patch contains the same unquoted `type=bind,source=${...}` mount strings that the fix replaces. The homeDir mount added later by 2c87e3339901 copied the same pattern, so the defect shipped with the feature rather than being introduced by a later change."
+  "area": "agents",
+  "summary": "The fix quotes bind-mount fields whose paths contain commas and doubles any quotes inside those fields.",
+  "reasoning": "I checked the introducing commit's engine and launch transport diffs, which show that container isolation passed the assigned workspace and bundle paths into unquoted mount fields from its first implementation. The later existing-folder feature added a separate HOME mount with the same interpolation, extending a failure already present in the original mounts."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100154,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier canonical transcript target and admission release findings concerned a recorder bound to the wrong session key and persistence attempted after admission ended. The FIFO settlement finding concerned callback ordering for unbound callers, leaving unaddressed the stale input version caused by an intervening metadata write in a warmed ACP session."
+}

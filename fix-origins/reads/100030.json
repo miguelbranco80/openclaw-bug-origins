@@ -1,0 +1,17 @@
+{
+  "rank": 100030,
+  "sha": "c5be6441d3a1e4a562cafd9eedd8d0f774e17a64",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7dfff5aef282fc12d586c4cb33a04e5c7e61ed53",
+  "cause_pr": 153849,
+  "confidence": "high",
+  "cause_quote": "The diff added a focusable `<button>` labeled `${t(\"chat.questions.answer\")}` inside `<div class=\"chat-question-summary\" role=\"status\">`, whose status role is implicitly a polite live region.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Screen-reader users could hear the Answer or Retry button announced again when the async question card updated.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix gives the question summary, delivery status, and delivery error their own live regions and puts Answer and Retry outside them.",
+  "reasoning": "I checked #153849 and its parent: the summary previously contained only text, and the new Answer action shipped inside its live region. #154486 later put the new Retry action inside the same region, and the Solid port preserved both placements. The fix evidence confirms the live-region ancestry in Chromium\u2019s accessibility tree without a recording of screen-reader speech."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 11,
   "sha": "f8de201a3cae55d84b961d4a5a58b4a40d598a63",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "21db4e956ed4affe1d3d5966eee44804681f645d",
   "cause_pr": 145688,
-  "confidence": "medium",
-  "cause_quote": "The new resolver's probe accepted any non-Bun node: `process.stdout.write(!process.versions.bun&&(!requiredFlag||process.allowedNodeEnvironmentFlags.has(requiredFlag))?process.execPath:\"\")`, with no supported-version check, so the first Node on PATH won even if unsupported.",
+  "confidence": "high",
+  "cause_quote": "The original probe used `!process.versions.bun&&(!requiredFlag||process.allowedNodeEnvironmentFlags.has(requiredFlag))?process.execPath:\"\"`, so with no required flag it accepted the first real Node executable regardless of version.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When OpenClaw ran under Bun with an old Node (e.g. 20) earlier on PATH than a supported one, Node helper subprocesses such as Gateway post-ready maintenance crashed with a syntax error on `using` declarations.",
+  "user_saw": "With OpenClaw running under Bun and Node 20 first on PATH, a Node helper could exit with a syntax error even when a supported Node was also installed.",
   "impact": "failed-every-time",
   "area": "gateway",
-  "summary": "The Node helper-runtime resolver (fast path and standalone probe) now also requires the candidate Node to satisfy the canonical supported-version predicate.",
-  "reasoning": "resolveNodeRuntimeExecutable was introduced in #145688 to find a real Node under Bun, and both its fast path and probe only excluded Bun and checked a flag, never the Node version; later commits (#183120, #183493) moved the probe into a generated asset without changing the predicate. The defect therefore shipped with the resolver; medium confidence because it only bites once helper code uses syntax the stray old Node lacks, which could be read as latent."
+  "summary": "The fix applies OpenClaw\u2019s Node version check both when reusing the current executable and when probing candidates for helper processes.",
+  "reasoning": "OpenClaw already excluded Node 20 when #145688 introduced the shared resolver, but the resolver immediately served an existing subprocess launcher without checking the version floor. I checked that the later standalone probe retained the same acceptance rule and that the reported Gateway CI reproduction exercised it by placing Node 20 ahead of supported Node 24."
 }

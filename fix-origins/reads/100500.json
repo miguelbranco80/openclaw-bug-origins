@@ -1,0 +1,17 @@
+{
+  "rank": 100500,
+  "sha": "25dde259d84a365859b4ceceb63feb9cfbac3e0e",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On an Ubuntu or Debian install with group-writable plugin files, model requests failed when their API keys came from 1Password SecretRefs.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix allows group-writable plugin resolver paths while continuing to reject world-writable paths.",
+  "reasoning": "The `0o022` check predates the July 1 history boundary, and the available offline history ends before its introduction, so I could not establish whether an earlier version accepted group-writable paths. The 1Password integration used the existing check from its first commit, and the Vault plugin already declared the same kind of resolver, so the 1Password addition alone does not establish what first exposed the defect."
+}

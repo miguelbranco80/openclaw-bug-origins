@@ -1,0 +1,17 @@
+{
+  "rank": 100555,
+  "sha": "e8d136f4fecd05d24a418dcdacd52e0f888e0ba4",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "963021c521d787b046589aef204b50524fcee852",
+  "cause_pr": 162257,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `const published = await prOwner.read(target, assertReadCurrent, \"publication\");`, routing options recovery through a branch loader that awaited PR diff statistics and check rollups before returning state-only candidates.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening GitHub publication options could be slow or show a retryable timeout while unrelated PR details loaded.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix lets publication recovery read branch facts without waiting for display metadata, reuses successful commit and tree coverage proofs, and binds pending display metadata to the observed PR head.",
+  "reasoning": "I checked the introducing diff and its branch loader: #162257 added options reconciliation and made it wait for display enrichment from its first version. The same commit introduced a fresh GitHub request for each coverage proof, and the fix's parent still awaited the shared loader within the five-second options budget."
+}

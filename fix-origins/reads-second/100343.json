@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During the fs-safe 0.13 adoption, an operator could see a file operation such as Memory Wiki rollback fail with `helper-unavailable` when the native helper was disabled.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix adopts fs-safe 0.13.1, lets supported installations select the native helper automatically, and preserves existing filename behavior.",
+  "reasoning": "The prior main commit pinned fs-safe 0.12.0 and documented that guarded JavaScript paths supported normal filesystem operations with the native helper off on macOS and Linux. The 0.13 adoption exposed that longstanding default because atomic no-clobber moves now require the native helper, and the fix's compiled-package tests verify the refusal with native mode off. The dependency upgrade and the compatibility changes landed together.",
+  "rank": 100343,
+  "sha": "6dbf1873f98a1154b06d1a3c39efc26b41dbcce9",
+  "rubric": "v1.2"
+}

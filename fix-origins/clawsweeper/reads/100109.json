@@ -1,0 +1,8 @@
+{
+  "rank": 100109,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The PR author must establish that consuming the persisted spawn-owner bit cannot authorize a later non-owner follow-up or work whose parent authority has expired before native dispatch.",
+  "outcome": "answered",
+  "note": "The first review\u2019s \u201cResolve merge risk\u201d item questioned stale parent authority before native dispatch, and the author responded by removing the stored spawn-owner bit. The shipped bug used the senderIsOwner flag captured at admission, which let an already-running subagent retain native access after its spawner lost ownership."
+}

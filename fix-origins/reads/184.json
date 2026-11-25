@@ -1,7 +1,7 @@
 {
   "rank": 184,
   "sha": "80e233cdf6e6a1d7ce81f9fdb276e5d4246943f6",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Pressing Play on a browser-compatible QuickTime MOV in chat showed 'Preparing playback…' for several seconds while the whole clip was re-encoded.",
+  "user_saw": "After pressing Play on a compatible MOV attachment in chat, users could see \u201cPreparing playback\u2026\u201d while waiting for the clip to start.",
   "impact": "slower-or-heavier",
   "area": "ui",
-  "summary": "Playback preparation now remuxes browser-compatible MOV streams into MP4 without re-encoding, waits up to 500 ms for that result on the first check, reuses the in-flight job, falls back to a full encode on failure, and the player shows preparation only once the server reports pending.",
-  "reasoning": "The prior path always did a full ffmpeg encode for MOV, as designed; the fix adds a faster lossless remux path and adjusts the pending indicator. Playback worked before and was never faster, so this is a performance improvement rather than a regression or broken feature."
+  "summary": "The fix tries to copy compatible MOV streams into an MP4 before falling back to re-encoding and gives the first playback check up to 500 ms to return the result.",
+  "reasoning": "The original lazy playback implementation in #115987 already routed QuickTime files through a full encode, and the original chat implementation in #116115 already polled for pending renditions. The reported replay played successfully on the baseline, and the patch adds a faster path for compatible files."
 }

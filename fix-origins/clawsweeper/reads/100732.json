@@ -1,0 +1,8 @@
+{
+  "rank": 100732,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "With a commentary record before a final record, a cursor page can contain only the unsequenced fallback, set `hasMore`, and omit `nextCursor`, making older history unreachable.",
+  "outcome": "answered",
+  "note": "The P1 item \u201cPreserve transcript sequence metadata on commentary fallbacks\u201d flagged a missing cursor in paged commentary history, and the author confirmed the metadata fix. The tail page limit could still split fragments from one transcript row and leave commentary unreachable on numeric-offset reads."
+}

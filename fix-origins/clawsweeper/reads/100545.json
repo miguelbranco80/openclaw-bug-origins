@@ -1,0 +1,8 @@
+{
+  "rank": 100545,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes how attachment failures reach WebChat cards without raising a concern about retry guidance for oversized files. The earlier findings concern announcements for attachment-only replies and SDK compatibility for host-read errors."
+}

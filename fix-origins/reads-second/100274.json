@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "641434b6f2edee99097cea13a847e9ec981f02c1",
+  "cause_pr": 128905,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `params.onLifecycleCommitted?.();` after awaiting `runPreparedSqliteSessionWrite`, so an error after the database commit could skip the notification.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a post-commit error, the cleanup report said the changes had not committed even though the session was already deleted.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix registers the cleanup notification on the outer SQLite transaction's commit hook so it runs before lifecycle publication and owner cleanup.",
+  "reasoning": "PR #128905 introduced commit-status reporting and placed the notification after the prepared write returned. I checked the deletion wrapper and harness owner code at that commit and confirmed that the owner path could still throw after the database write committed, so the reporting defect was present when the feature shipped.",
+  "rank": 100274,
+  "sha": "9b9cba43e33c50ff91e92793b700b720eb55bfee",
+  "rubric": "v1.2"
+}

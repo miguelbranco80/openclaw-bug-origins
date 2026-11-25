@@ -1,0 +1,17 @@
+{
+  "rank": 100472,
+  "sha": "7bd7a3afd2c27e2c4a2955b3a88d24c32591e0a5",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw gateway probe --timeout` could run past the requested timeout when discovery was slow or found many gateways.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes discovery, SSH setup, connections, and read checks share one deadline and starts checks of known gateways while discovery runs.",
+  "reasoning": "At the oldest readable snapshot, the CLI already advertised an overall budget, but the probe pass waited for discovery and tunnel setup before giving connection probes a fresh budget, and DNS-SD applied its timeout separately to each resolution. The relevant code predates the shallow boundary, and the older path history stops at a missing object, so I could not verify whether the defect shipped with the timeout option or broke an earlier working implementation."
+}

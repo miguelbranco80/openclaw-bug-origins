@@ -1,0 +1,17 @@
+{
+  "rank": 100790,
+  "sha": "7cad7a227e5321b216d04f378e3fc82854d70c79",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With newline chunking enabled, formatted Signal replies could combine paragraphs in one message and split later paragraphs by length.",
+  "impact": "presentation",
+  "area": "channels",
+  "summary": "The fix applies the effective chunk mode to formatted Signal sends and groups paragraphs before splitting by rendered length.",
+  "reasoning": "At the oldest available checkout snapshot, outbound delivery already routed formatted Signal replies around the plain-text chunker, and the Signal formatter accepted only the length limit and table mode. The older path history stopped at a missing object, so I could not verify when the bypass first shipped or whether formatted replies had previously honored newline mode."
+}

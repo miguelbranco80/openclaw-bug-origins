@@ -1,0 +1,17 @@
+{
+  "rank": 100605,
+  "sha": "b9fc4fe10cfc4e3402c1d184abfb06f6f8946807",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "f8b194a5beda90905849c2ded0164012c6fee918",
+  "user_visible": "yes",
+  "user_saw": "Managed Codex startup failed artifact validation when OpenClaw ran under Bun and Node was absent from the child PATH.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix makes artifact validation use the actual Codex spawn invocation and corrects TOML parsing, CLI argument handling, socket permission translation, and orphan cleanup.",
+  "reasoning": "I classified the reproduced Bun startup failure and checked the trigger diff and its parent. Before #147421, the POSIX launcher ran directly and artifact validation resolved its shebang interpreter, which matched how the launcher ran. The new `command: runtime.execPath` branch let Bun run the managed launcher without Node, exposing the validator's shebang assumption, while the separate requirements parser was already present at the shallow boundary and its introduction could not be verified offline."
+}

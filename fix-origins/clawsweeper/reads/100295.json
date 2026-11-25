@@ -1,0 +1,8 @@
+{
+  "rank": 100295,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge section lists configuration and stored-data compatibility checks. The earlier findings concern Stop persistence and dashboard ownership during batch actions or navigation, and none addresses the browser tool guidance that could turn a side-panel request into dashboard creation."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100902,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "When another call returns an ordinary result, `run-attempt-server-requests.ts` sets `currentTurnHadNonTerminalDynamicToolResult` and clears the pending release; the lifecycle predicate also rejects release when that flag is set.",
+  "outcome": "dropped",
+  "note": "The earlier \u201cPreserve Codex completion across ordinary sibling results\u201d finding identified the same Codex release logic and warned that it could continue the model unnecessarily. The merge review marked that concern resolved, and the shipped bug was premature completion when a sibling needed follow-up."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 270,
+  "sha": "cb9d2c2df6e672c10dafa3a5068dfe2982a9365f",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "1655625f23cf25fdb8ba84837893c3657f4483d3",
+  "cause_pr": 189537,
+  "confidence": "high",
+  "cause_quote": "#189537 added `.chat-details .chat-details-desktop-body .chat-details-subagents__avatar { background: transparent; color: var(--muted); }` and put `.chat-details-subagents__avatar` (and its svg) on the 16px row-icon slot, so stacked Subagents avatars lost their tint and crowded together.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The desktop Details panel's Subagents summary showed overlapping gray robot glyphs instead of each subagent's colored avatar.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Removes the desktop muting override on subagent avatars and limits row-icon slot sizing to row avatars so stacked summary avatars keep their native tinted 20px chip.",
+  "reasoning": "Blame of the removed override and selector lines points to 1655625f (#189537), whose diff adds exactly the transparent/muted override and adds the subagent avatar to the row-icon slot selectors; before it the avatars used the hue tint from chat-details-subagents.css. The fix's regression test fails on the base with all four stacked avatars transparent, and #189537 was a layout-tightening pass whose own comment expects the native Subagents avatar size, so the tint loss was an unintended side effect."
+}

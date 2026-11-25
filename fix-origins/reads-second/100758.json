@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Historical messages with no recorded author could show the signed-in viewer\u2019s name and avatar in chat, use the viewer\u2019s name in reply previews, and appear under \u201cYou\u201d in Markdown exports.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix labels unattributed inputs \u201cMessage\u201d in chat, reply previews, and Markdown exports and suppresses their avatars without changing stored messages.",
+  "reasoning": "The grouped renderer already fell back to `userLabel ?? resolvedUserName` before the Control UI architecture refactor, and Markdown export already used \u201cYou\u201d before the export commits in the blame candidates. The chat fallback was present at the July 1 history boundary, and the offline history lookup could not recover its introduction. The available diffs also did not establish a later change that first exposed the false attribution.",
+  "rank": 100758,
+  "sha": "c8a045a4f35e063f951130619e5e1cf4bb0de349",
+  "rubric": "v1.2"
+}

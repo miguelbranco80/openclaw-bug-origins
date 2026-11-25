@@ -1,0 +1,8 @@
+{
+  "rank": 100201,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cWhat this changes\u201d example calculates the 6.8 MiB/s cap, and the \u201cProduct\u201d section treats slower command I/O as an accepted tradeoff. The \u201cTests\u201d section asks for comparative Gateway measurements without raising excessive throttling on SSDs."
+}

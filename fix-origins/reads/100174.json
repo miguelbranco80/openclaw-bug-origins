@@ -1,0 +1,17 @@
+{
+  "rank": 100174,
+  "sha": "fe265106c397a1409cd18f7502c4aa38919e337d",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7924f12c75f5e5208a52432583000ed772616b22",
+  "cause_pr": 168453,
+  "confidence": "high",
+  "cause_quote": "The new warning helper used `const key = JSON.stringify([pluginId ?? null, params.family]);`, so the first deprecated method called by a plugin suppressed warnings for other methods in the same family.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plugin author could see migration guidance for the first deprecated SQLite SDK method their plugin called and miss the guidance for later calls to other methods in the same family.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix gives each deprecated SQLite SDK method its own once-per-plugin-per-process warning, adds missing warnings, and corrects migration guidance.",
+  "reasoning": "The introducing diff added the shared warning helper and gave `patchSessionEntry` and `updateSessionStoreEntry` distinct method names under the same `session-store` key, so the warnings collided from the start. The parent-side diff shows those two warning calls were new, and the later structured-notice commit kept the same family-only key for emitted warnings."
+}

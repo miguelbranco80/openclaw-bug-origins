@@ -1,17 +1,17 @@
 {
-  "rank": 201,
-  "sha": "aa401d8fbdd5ac7eb2755022744f33e996fae85b",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "1fbd84da39ec370e1685286a420036e2fdd6e5bb",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "medium",
-  "cause_quote": "The original mac node runtime decoded camera params as `let params = (try? Self.decodeParams(ClawdisCameraClipParams.self, from: req.paramsJSON)) ??` with a default-params fallback, so a malformed payload silently became an all-defaults request.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A raw node.invoke caller sending a mistyped field (e.g. includeAudio:\"no\") got a default capture reported as ok, including microphone recording it tried to opt out of, instead of an INVALID_REQUEST error.",
-  "impact": "other",
+  "user_saw": "Malformed macOS node commands used default settings, so a clip request with audio disabled could still ask for microphone access or record audio.",
+  "impact": "failed-every-time",
   "area": "apps",
-  "summary": "MacNodeRuntime now decodes camera.snap/clip, screen.record, location.get and canvas.present params once before permission checks and returns INVALID_REQUEST when supplied params do not decode, instead of falling back to defaults.",
-  "reasoning": "The `(try? decodeParams(...)) ?? Params()` fallback was present in the first version of the mac node runtime (1fbd84da, Clawdis path, camera snap/clip) and carried through the clawdbot/openclaw renames and fd95ededaab refactor unchanged; location/screen.record handlers copied the same pattern later. No commit broke a working strict decode, so it is never-worked; confidence medium because the cause commit predates the graft and was checked only via the GitHub commit patch, and several handlers were added in sibling commits with the same pattern."
+  "summary": "The macOS node now returns INVALID_REQUEST for malformed parameters on five commands before checking permissions or taking action, while omitted parameters still use defaults.",
+  "reasoning": "I verified that all five handlers already swallowed decoding errors in the oldest available macOS source and that camera clips already defaulted to audio. The history stops at the shallow boundary, and the rename commit cited in the PR is unavailable offline, so I could not verify when the fallback first shipped.",
+  "rank": 201,
+  "sha": "aa401d8fbdd5ac7eb2755022744f33e996fae85b",
+  "rubric": "v1.2"
 }

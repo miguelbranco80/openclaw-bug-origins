@@ -1,17 +1,17 @@
 {
   "rank": 146,
   "sha": "d46a50ff8bc764deb5aaf78a1267a29a4f6b65cc",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "67fd7e910b89bac2d2e238ec700c7bc263b1afb1",
   "cause_pr": 148567,
-  "confidence": "medium",
-  "cause_quote": "The Sign in with ChatGPT feature commit added `export const TOKEN_SHARING_REDIRECT_URI = \"http://localhost:8080/auth/callback\";`, a fixed callback port whose bind fails with EADDRINUSE whenever another app holds 8080.",
+  "confidence": "high",
+  "cause_quote": "The initial implementation called `server.listen(8080, \"127.0.0.1\", resolve);`, so the sign-in callback could not start if another app already held that address and port.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Sign in with ChatGPT (Beta) failed with an address-in-use error whenever another app was listening on port 8080.",
+  "user_saw": "Sign in with ChatGPT failed before opening the browser when another app was already using port 8080 on IPv4 loopback.",
   "impact": "failed-every-time",
   "area": "models/providers",
-  "summary": "SIWC now binds the loopback callback on an OS-chosen free port and uses that bound redirect in both the authorization URL and token exchange; the shared callback server accepts port 0.",
-  "reasoning": "The fixed 8080 redirect was present from the commit that introduced Sign in with ChatGPT (67fd7e910b89, the first commit touching token-sharing.ts) and never changed until this fix, so the failure on an occupied port shipped with the feature. Medium rather than high because the fixed port may have been a deliberate registration choice at the time, but the PR treats it as a defect with a reported issue (#191507)."
+  "summary": "The fix binds the OAuth callback to an available loopback port and uses the resulting redirect URI for both authorization and token exchange.",
+  "reasoning": "The introducing diff added both the fixed port 8080 redirect URI and a listener that required that same port, so the failure was present at launch on setups where the port was occupied. The later move to the shared callback server kept the same redirect URI and IPv4 bind, preserving the collision."
 }

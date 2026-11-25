@@ -3,5 +3,5 @@
   "where": null,
   "quote": null,
   "outcome": null,
-  "note": "The Findings and Before merge sections were empty. The Evidence section described the mobile desktop sizing control’s styling as corrected and raised no concern about the shared chevron padding clipping the selected label."
+  "note": "The review in force at merge has no findings or before-merge items; nothing mentions the shared select's 36px chevron padding leaving too little text width for the desktop-sizing select."
 }

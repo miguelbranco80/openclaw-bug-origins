@@ -1,0 +1,17 @@
+{
+  "rank": 100371,
+  "sha": "f6974fb3550fe089663bc56ce89d8e1ec79170de",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "90ab8619b3ec616db61c916dd850d5876d9f42c9",
+  "cause_pr": 150734,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `const setupCode = opts.pair ?? opts.pairIfNeeded;` and `pair = setupCode ? resolveNodePairGatewayOptions(setupCode) : undefined;`, sending the fallback code through expiry validation before the node could use its saved device token.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Restarting an already paired node with the same `--pair-if-needed` command failed with \u201cPairing setup code has expired\u201d once the fallback code expired.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The fix lets `--pair-if-needed` reconnect to the saved Gateway using only the saved device token after the fallback code expires, while explicit pairing and fresh enrollment still reject expired codes.",
+  "reasoning": "Path history identifies #150734 as the commit that introduced `--pair-if-needed` and documented restarting with the same command. I checked the resolver and decoder at that commit and confirmed that expiry threw before the node could reach saved-token authentication, so the post-expiry restart failed from the feature\u2019s first release."
+}

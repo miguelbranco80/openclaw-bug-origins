@@ -1,0 +1,17 @@
+{
+  "rank": 100124,
+  "sha": "982fbde1258983aa7325c39c2295cda6cab6b78f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "90e465833b308d2333564f2d5c89902eff9a582c",
+  "cause_pr": 104401,
+  "confidence": "high",
+  "cause_quote": "The original worker service added `await callProvider(() => provider.destroy(leaseId));` without a shutdown signal, and its shutdown handler added `await reconcileInFlight;`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When shutdown overlapped a slow cloud worker teardown, the Gateway could hang for minutes until the service supervisor killed it.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix propagates Gateway shutdown and provider deadlines to worker teardown so Crabbox cleanup can stop and resume after restart.",
+  "reasoning": "The introducing diff registered the worker service as a Gateway shutdown dependency and made reconciliation await provider destruction under a five-minute default timeout without shutdown cancellation. I checked the later inspection cancellation and cleanup acceptance diffs, which left reconciliation teardown without a shutdown signal."
+}

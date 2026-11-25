@@ -71,7 +71,7 @@ def main(quiet=False):
         rows.append({"label": rate_names[key], "value": out.value("rate_" + key),
                      "note": f"{bugs_here} sampled bugs from {len(made):,} commits"})
     out.chart(charts.bars("q03-bugs-per-100-commits-by-title", "Bugs per 100 commits, by how the change was titled", rows),
-              "Each bar is a rate: bugs fixed in the three weeks that trace back to commits with that title, per 100 "
+              "Each bar is a rate: bugs fixed in the period studied that trace back to commits with that title, per 100 "
               "such commits made since 10 September. The three titles cover every commit.")
     out.save(quiet)
     return out

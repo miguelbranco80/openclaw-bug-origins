@@ -1,1 +1,8 @@
-{"rank": 45, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The earlier finding concerns a caret inside an inline argument truncating the dispatched command, a different path; the at-merge items are CI and helper limits. Nothing addresses the leading-command argMatch branch returning before inline completion."}
+{
+  "rank": 45,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cConsume the complete inline argument token\u201d finding addressed truncation during dispatch of an already-detected command. At merge, \u201cCurrent-main gap\u201d described the pre-PR behavior, and \u201cLive Verification\u201d recorded a timeout without evidence that leading-command arguments blocked completion of a later slash token."
+}

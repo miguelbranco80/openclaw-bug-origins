@@ -1,0 +1,17 @@
+{
+  "rank": 100295,
+  "sha": "524749712152a481052cdad6c7ffb0a792626349",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "49c3d463e19f589d4669d628a402fac3cad07ffe",
+  "cause_pr": 146702,
+  "confidence": "medium",
+  "cause_quote": "The browser tool description added \u201cCreate an agent-controllable HTTP(S) dashboard in this order: first call tool dashboard with action=\"widget_put\"\u201d without limiting that recipe to dashboard requests.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Asking the agent to open the Browser side panel could create a Browser dashboard instead.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The fix teaches agents to open the existing Browser side panel with screen(action=\"browser_show\") and reserves Browser dashboard creation for explicit requests.",
+  "reasoning": "The parent commit already advertised browser_show in the screen tool description, and its tests asserted that the action sent an open command for the Browser panel. The dashboard-sharing diff added the competing creation recipe to the browser tool description. The prior command path is verified in source and tests, while live model routing before and after that change remains unverified."
+}

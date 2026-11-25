@@ -1,0 +1,17 @@
+{
+  "rank": 100596,
+  "sha": "acaaa6088a1c90500c08425fdfc88714070b9bbb",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "5ce9e68132b5e4ad9009d60ce62859aa822f0c4d",
+  "cause_pr": 173901,
+  "confidence": "high",
+  "cause_quote": "The diff replaced `for await (const event of response)` with `for await (const event of coalesceStreamDeltas(response, executionSignal, () => {` and added `timer = setTimeout(wake, 32);`, introducing the batching that increased downstream chat traffic.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Connected chat clients received about 38% more WebSocket chat frames per turn in the full Gateway fixture.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix removes the 32 ms stream coalescer and restores direct consumption of provider events.",
+  "reasoning": "The causing diff shows that main already streamed provider events directly before #173901 added timed batching, and the same full Gateway fixture measured median chat frames rising from 28.9 to 39.8 per turn per subscriber. I verified that the fixed stream implementation is identical to the version before #173901. A native crash blocked a fresh Gateway benchmark of the rollback."
+}

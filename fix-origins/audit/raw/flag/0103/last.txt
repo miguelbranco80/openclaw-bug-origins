@@ -1,6 +1,7 @@
 {
-  "flagged": "related",
-  "where": "earlier-only",
-  "quote": "With malformed config or a PostgreSQL DSN unavailable to the shell, eager selection throws before runServiceRestart reaches its existing configIssue recovery path.",
-  "note": "The earlier installed-service restart finding identified that eager engine selection could throw before existing config handling ran. The finding was dropped by merge, and its proposed restart exemption would have left status and Doctor printing the generic error."
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "All findings concern engine selection for interactive setup, remote-agent calls, restart exclusions, redirects and updater routes. None mentions that a config-read failure is now thrown unprinted so the root printer shows only the generic message and Doctor hint."
 }

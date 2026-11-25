@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The “Before merge” items focus on merge conflicts and global-session ownership. “Canonical target parsing and resolution” describes credential-bearing URL rejection but raises no concern about the error formatter crashing on a malformed --url."
+  "outcome": null,
+  "note": "The at-merge review has no findings and its Before merge items are generic merge-risk/reconciliation items about session selection and global-agent ownership; nothing mentions malformed --url handling or new URL() throwing in the error formatter. Earlier versions are likewise merge-risk only."
 }

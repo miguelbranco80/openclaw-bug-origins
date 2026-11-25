@@ -1,0 +1,17 @@
+{
+  "rank": 166,
+  "sha": "b297656646ba253776330bad39710a78dda8aa66",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; only the macOS SwiftFormat CI gate failed.",
+  "impact": "other",
+  "area": "apps",
+  "summary": "Removed a redundant `String` type annotation on the Talk status text declaration so SwiftFormat's redundantType rule passes.",
+  "reasoning": "This is a lint/formatting fix titled fix(ci) with no behavior change, which the rubric classes as not-a-defect. The annotated line came from 1a02ffed5ffd (#198088), which moved the status text into a static function; it only tripped the formatter, not product behavior."
+}

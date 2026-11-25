@@ -1,0 +1,8 @@
+{
+  "rank": 99,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The shared trusted-domain note visibility finding concerns who can read transcripts through the Gateway, and the data bounds evidence describes a cap on returned utterances. Neither review version raises the agent tool\u2019s unbounded scan when most or all meetings are inaccessible."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100898,
+  "sha": "d29ac12b1b5315861296cfb686a9871e93e6e29c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "faaf4b0fbd3b909e3400b686e854793b0b6c5112",
+  "cause_pr": 140621,
+  "confidence": "high",
+  "cause_quote": "The new cache eligibility check set `const retainRuntimeContext = bindsClaudeThinkingPrefix(model)` and excluded carriers only when `msg.runtimeContextCarrier && !retainRuntimeContext`, ignoring the provider's replay decision.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A provider plugin author could see Anthropic requests put a cache breakpoint on transient runtime context or skip a retained cache boundary, reducing cache reuse.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix records the provider's carrier-retention decision at the session boundary, preserves it through image hydration, and uses it to place Anthropic cache breakpoints.",
+  "reasoning": "GitHub Copilot already used transient carriers for Claude Fable 5.1, whose model identity makes the new predicate return true. Both request builders previously allowed transient carriers to anchor the cache, and the model-based eligibility check introduced in #140621 still allowed them for this setup from its first version."
+}

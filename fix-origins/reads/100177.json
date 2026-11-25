@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "dfd2e744caa31b1cac0364c17d2e9c376c674214",
+  "cause_pr": 134880,
+  "confidence": "high",
+  "cause_quote": "The original worker handled fatal renewal errors with `if (!isSqliteLockError(error)) { lose(); return; }`, discarding the error, and the host reported only `state lease heartbeat exited`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a fatal lease renewal error stopped Doctor or maintenance, the operator saw `state lease heartbeat exited` without the underlying error.",
+  "impact": "other",
+  "area": "cli",
+  "summary": "The fix carries fatal renewal errors, SQLite codes, and timing into the reported lease failure and isolates the backup warning test\u2019s temporary directory.",
+  "reasoning": "I checked the commit that introduced the heartbeat worker and confirmed that it discarded fatal renewal errors from the start. The path history and fix diff show that the fix adds error reporting to that same teardown path. The cause of the intermittent CI failure that prompted the change remains unknown.",
+  "rank": 100177,
+  "sha": "28acdfc4504d43403ffa83c5090d260f27d636c1",
+  "rubric": "v1.2"
+}

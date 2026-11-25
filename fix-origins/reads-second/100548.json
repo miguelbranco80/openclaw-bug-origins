@@ -1,0 +1,17 @@
+{
+  "rank": 100548,
+  "sha": "80778e082de5b30c079b5d7e6f38a2f0c3fd9fd3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "240045417cb00a0cef104836fb4c0a1cf6351a44",
+  "cause_pr": 180466,
+  "confidence": "high",
+  "cause_quote": "The new capture branch `if (module && resolveBundledSharedModule(bundledReloadSource, rootDir, source, local)) { return undefined; }` skipped shared modules without leaving a file or link that native Workers could resolve.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Memory searches and standing-intent maintenance failed with `ERR_MODULE_NOT_FOUND` after a bundled plugin reload.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix adds links in captured plugin generations so native Workers can resolve relative imports to canonical host modules after reload and recovery.",
+  "reasoning": "I checked #180466's loader and documentation diff, which shows that edited bundled code previously required a Gateway restart and that the same commit introduced live reload and the capture early return. The parent loader could redirect shared imports, but native Workers did not inherit its hooks, so the new reload path shipped with missing relative module targets. The fix's Worker test exercises that path through reload and recovery."
+}

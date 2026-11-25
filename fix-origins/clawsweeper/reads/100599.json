@@ -1,0 +1,8 @@
+{
+  "rank": 100599,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "With workspaceOnly enabled and cliToolAvailability set to { native: [\"AskUserQuestion\"], openClaw: [] }, the Anthropic authority mapper returns no replacement, and the assignment below clears the native list.",
+  "outcome": "dropped",
+  "note": "The earlier P2 finding flagged loss of AskUserQuestion under workspaceOnly and suggested translating its capability. The merge review treated the new mapping as resolving that finding and missed that capture rejected ask_user before Claude could reply."
+}

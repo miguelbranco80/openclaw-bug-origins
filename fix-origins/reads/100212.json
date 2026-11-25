@@ -1,0 +1,17 @@
+{
+  "rank": 100212,
+  "sha": "21a3a66b503da52f1384f124a4f309b91d818b8a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9cca9afa702d9d213139ca5ac37cb2945db88280",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `if (explicitBootstrapToken)` with `canFallbackToShared: false` and placed `connection = { ...connection, bootstrapToken: \"\" };` in `onHello`, so a rejected bootstrap token stayed selected on manual retry.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After opening a used or expired dashboard pairing link, the user saw \u201cGateway secret rejected\u201d and still could not connect after entering the correct token.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix explains how to get a fresh pairing link and clears the rejected bootstrap token and profile so manual sign-in can proceed.",
+  "reasoning": "The introducing diff and its close handler show that the store retained the bootstrap token on rejection and passed it to the next client, where it took precedence over the manually entered token. A later commit, #136977, explicitly routed invalid bootstrap tokens to generic failed-credential guidance, which accounts for the misleading diagnosis while the retry failure dates to the original implementation."
+}

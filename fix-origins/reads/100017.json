@@ -1,0 +1,17 @@
+{
+  "rank": 100017,
+  "sha": "de06c59320bdc80c51a2e98cc0d83bf4580163a2",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a4c84661baad572d277d65478c89bc202f812384",
+  "cause_pr": 148709,
+  "confidence": "medium",
+  "cause_quote": "#148709 added `await prepareModelPricingContext(config);` to the pricing fingerprint helper and made the existing refresh await it while holding its lock, without observing the refresh's abort signal.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Stopping the Gateway could hang while usage backfill was waiting for catalog pricing.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets shutdown interrupt the pricing wait so the usage refresh releases its lock before dispatching a worker scan.",
+  "reasoning": "Before #148709, Gateway shutdown already joined scoped usage refreshes, and their pricing fingerprint was computed synchronously, so this phase could not leave a pending pricing promise. The worker refactors preserved the new await, and #169660 reused it for startup backfill in the usage sidecar. The fix's test isolates that wait on the later sidecar path, while attribution to the earlier refresh path rests on source inspection."
+}

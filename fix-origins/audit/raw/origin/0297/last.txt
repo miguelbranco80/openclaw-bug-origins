@@ -1,0 +1,17 @@
+{
+  "rank": 297,
+  "sha": "d979dba0245742be4a9c6e7c392de4015f9f8dd3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "5a1c9b58767f360a5823c0c8c5be9057bd987b71",
+  "cause_pr": 198245,
+  "confidence": "medium",
+  "cause_quote": "It made policy outages non-terminal only inside the authority owners (`if (!isOperatorAuthorityUnavailable(error)) { revoked = true; ... }` while still `throw error`), leaving the queue readers that treat any `assertCurrent()` throw as lost authority unchanged.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With an access-policy plugin, a message queued during a brief policy outage was dropped as withheld (earlier silently cancelled) and never ran after the policy recovered.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Authority owners now abort their signal when assertCurrent finds a real revocation, and queue/mailbox/steer readers end custody only on recorded abort, retirement, cancellation or consumption instead of on any failed check, deleting isFollowupOperatorAuthorityCurrent.",
+  "reasoning": "The followup runner's catch-all (`try { assertCurrent() } catch { operatorAuthorityLost = true }`, present since at least the Oct 18 controller refactor) was correct while every assertCurrent failure meant revocation; #198245 introduced the non-revoking 'policy unavailable' error and taught only the owners about it, so outage survival for queued input never worked from that commit (#198729 later patched some steer/mailbox readers but not the followup runner or drain). It could also be read as latent with #198245 as trigger, hence medium confidence."
+}

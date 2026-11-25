@@ -1,0 +1,8 @@
+{
+  "rank": 100354,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier recovery-guidance finding and the at-merge compatibility item concerned released in-directory journals. Neither addressed the copied control directory whose journal identity mismatch blocked later updates after an external install."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100553,
+  "sha": "4d65e382a834c07502ca1db62b027c69f74fbbdc",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "65ad1800528623f4148039b547a5550d0b89cf9e",
+  "cause_pr": 180139,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `facets.append(loadingPlaceholder(\"rows\", \"Loading types\u2026\", 4));` to the same facet container that the mobile stylesheet made a flex row.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On phones, the Knowledge Browse tab stretched the Everything chip into a tall green oval beside four stacked placeholder bars while page types loaded.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix displays type-loading placeholders as pills in the mobile chip row and keeps the loading status available to screen readers.",
+  "reasoning": "The Knowledge plugin landed on main with both the mobile flex row and the four-row loading placeholder. The introducing diff styles the placeholder blocks as a grid with a 44px minimum height per row, so the stack sets the flex row's height and stretches the Everything chip. The only intervening change across the stylesheet and Browse renderer converted an import to a type-only import."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100485,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Catalog isolation and retirement section describes shutdown coverage. The earlier Before merge items focus on upgrade continuity and fleet measurements, and neither section raises missing crash warnings or failure counts lost when the catalog worker pool is replaced."
+}

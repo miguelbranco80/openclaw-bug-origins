@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "1ca60fbc3a3f85c7072a9029346b5d31402ac0e4",
+  "cause_pr": 114388,
+  "confidence": "high",
+  "cause_quote": "The refactor changed `resolveDefaultAgentId` to `return tryResolveRawLegacyDefaultAgentId(cfg) ?? resolveSoleAgentId(cfg, context);`, so implicit bind and unbind threw for a multi-agent roster whose default had been migrated to `systemAgent.agentId`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The CLI asked for an explicit agent when binding or unbinding even though the installation had a configured default.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix makes bind and unbind honor the configured default, matches account IDs the same way runtime routing does, and returns exit status 1 when a noninteractive add encounters binding conflicts.",
+  "reasoning": "I classified the fix by its default-agent failure: before #114388, bind and unbind called a resolver that honored the roster's `default: true` marker. That commit moved the marker to `systemAgent.agentId` during migration and left both commands using a resolver that ignores the new field, while #146246 restored default selection elsewhere. The account-casing mismatch and partial-add success status were already present in the oldest local snapshot, and their introducing diffs were unavailable offline.",
+  "rank": 100442,
+  "sha": "30d563e262aa5639f69d3880e9ab8d853c190e82",
+  "rubric": "v1.2"
+}

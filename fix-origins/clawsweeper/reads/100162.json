@@ -1,0 +1,8 @@
+{
+  "rank": 100162,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cVerify upgrade ownership\u201d item asked for migration proof and actionable errors on ambiguous requests without addressing whether iMessage checks runtime bindings before agent selection. The earlier \u201cPropagate agent identity into bound task runtimes\u201d finding concerned authorization for plugin task operations."
+}

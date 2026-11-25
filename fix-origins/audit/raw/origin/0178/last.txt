@@ -1,0 +1,17 @@
+{
+  "rank": 178,
+  "sha": "066c7ecdeccf3f958d356cfdadac7a7146133021",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "Removed the unused sharedThemeProjection export from shared-application-projections.ts and dropped 'theme' from the reactive README table.",
+  "reasoning": "A dead-export cleanup titled fix(ci): the export added in f27b11a7 (#183544) became orphaned and tripped an unused-export check; no runtime behavior changes. Tooling/cleanup is not-a-defect under the rubric."
+}

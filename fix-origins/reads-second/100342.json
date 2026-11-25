@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "d8d2f83cc1969968d95d105e7430a98b56dd4bbd",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The commit added `params.onOpenMenu({ key: catalogKey, search, canOpenTerminal: session.canOpenTerminal === true }, ...)` below the adopted-row branch, which already returned through `params.renderLiveRow(adoptedRow, ...)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After continuing a native Codex or Claude session, users opened its sidebar menu and saw generic OpenClaw actions in place of the native viewer, terminal, and supported archive actions.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix routes button, right-click, and keyboard menu requests from adopted sidebar rows to the native catalog menu with the provider\u2019s capabilities.",
+  "reasoning": "I checked the first-parent sidebar history and the introducing diff. Adopted rows already used the regular session renderer when the native catalog menu was added, and the new menu handlers were reachable only on rows without a matching live session. The native menu therefore never worked on adopted rows.",
+  "rank": 100342,
+  "sha": "b863885e6d7ebacc43a8200f45ce90bf55489988",
+  "rubric": "v1.2"
+}

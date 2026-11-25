@@ -1,0 +1,17 @@
+{
+  "rank": 100278,
+  "sha": "98c200e21defd37049d5dd6f6c5a5c61eccaeb51",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "failed-every-time",
+  "area": "other",
+  "summary": "The fix captures completion-reporting errors inside the catch block and handles them afterward, removing the lint suppression while preserving both original errors.",
+  "reasoning": "The #165340 diff added an `oxlint-disable-next-line preserve-caught-error` directive, and the existing inventory test rejected it because its allowlist had no entry for the update runner file. Both versions of the updater retained the command failure as the primary cause and included both failures in the aggregate, so the reported failure was confined to the CI lint inventory."
+}

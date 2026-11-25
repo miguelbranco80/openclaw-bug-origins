@@ -1,0 +1,8 @@
+{
+  "rank": 46,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The only Before merge item asked for data-model compatibility proof. The Credential lifecycle and compatibility section discussed credential writes and removals and raised no concern about the relay hanging when it opens a named pipe with no writer."
+}

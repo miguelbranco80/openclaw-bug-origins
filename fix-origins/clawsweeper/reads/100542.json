@@ -1,0 +1,8 @@
+{
+  "rank": 100542,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The snapshot therefore never releases, retaining stale navigation and disabling sidebar creation and mutation controls after live loading finishes. Derive readiness from the live presence/count owner and cover this transition through the actual sidebar lifecycle.",
+  "outcome": "open-at-merge",
+  "note": "The \u201cDetermine count readiness from live presence\u201d finding identifies the same snapshot handoff problem of waiting on an inactive data source. Its proposed fix addresses profileless reconnects, leaving the Pages fallback to Sessions readiness and the 200-row roster limit unaddressed."
+}

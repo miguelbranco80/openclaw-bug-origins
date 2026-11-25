@@ -1,17 +1,17 @@
 {
   "rank": 210,
   "sha": "9312f263af4a3095d11f059e8637acf427701a96",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Possibly extra layout work and sluggish typing at the end of a long, height-capped draft in browsers without native textarea content sizing; no visible misbehavior was reported.",
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
   "impact": "slower-or-heavier",
   "area": "ui",
-  "summary": "The composer autosizer now remembers the draft that proved it exceeds the height cap and skips scrollHeight and overflow measurements while text is only appended, invalidating on replacement, shrink, resize or scheduled layout changes, and drops the old geometry-based max-height shortcut.",
-  "reasoning": "This is a performance improvement of measured autosizing that was never faster: the repeated layout reads were the long-standing behavior (related issue #154271 and superseded PR #154272 predate it, and the PR says the cost remained 'even after #186874'), and no commit is shown to have made appending slower. The PR states it changes measurement work, not appearance."
+  "summary": "The composer reuses a previously measured overflowing draft prefix to skip synchronous textarea measurements when the user appends text past the height cap.",
+  "reasoning": "The measured path already read scrollHeight during sizing and overflow handling before #156210, and the shortcut added by that PR still read scrollHeight to verify the cap. I checked #186874 and confirmed that its larger desktop cap retained those reads. The fix's tests show that four reads dropped to zero at both tested caps, and the PR reports no measured typing slowdown or visible failure."
 }

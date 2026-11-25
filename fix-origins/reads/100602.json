@@ -1,0 +1,17 @@
+{
+  "rank": 100602,
+  "sha": "690c46084d507ce38502d401ef5d0d6a2fb9733a",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Telegram hot reload failed and requested a Gateway recovery restart when a disabled account had an unresolved SecretRef.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix skips credential preparation for disabled idle accounts during channel teardown and preserves cleanup for previously admitted work.",
+  "reasoning": "The July 1 snapshot already shows hot reload calling whole-channel stop, which enumerates configured accounts and resolves credentials for each account when a stop hook exists, and Telegram already had a stop hook and strict resolution for non-environment SecretRefs. I checked that the September plugin-reload change carried forward the idle credential lookup and that the later async resolver change preserved it. The available history ends before I could identify when the failing path was introduced or establish that it previously worked."
+}

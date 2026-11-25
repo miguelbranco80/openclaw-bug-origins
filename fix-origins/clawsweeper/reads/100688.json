@@ -1,0 +1,8 @@
+{
+  "rank": 100688,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cTarget and commit authority preserved\u201d item describes the post-await source check as a safeguard and raises no concern about a concurrent first write creating the database during that check. The review history lists no earlier findings."
+}

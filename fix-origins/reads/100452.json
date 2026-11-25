@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A quiet foreground command could abort the entire agent turn after about 15 minutes, even with a longer command timeout.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix passes the process supervisor\u2019s accepted deadline to recovery, which gives the command time to return a normal timeout result and rechecks the deadline before aborting the turn.",
+  "reasoning": "The earliest available code already allowed stalled-tool recovery to abort a turn based on tool age and time since progress, without consulting the command timeout. The July change raised that threshold to 15 minutes, and the September CLI recovery change preserved the separate active-tool policy. The offline history did not reach the introducing diff, so I could not verify whether foreground execution ever worked before this recovery rule.",
+  "rank": 100452,
+  "sha": "7df9f83f6205e504dc01b0b67ffb03eabf759035",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100804,
+  "sha": "3c5562b308bbb1626671402fa9dbee5be57fca03",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8b16e5328ecde96f7fe48aa637fec18cfde3fd47",
+  "cause_pr": 157413,
+  "confidence": "high",
+  "cause_quote": "The replacement stored the live lease with `inherited.set(pathname, entry)` and retrieved it with `schemaOwners.getStore()?.get(resolveGatewayStateOwnerPath(databasePath))`, so a change in the Windows lock-directory spelling could hide the active lease.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected fresh Windows installs, onboarding, Doctor, and Gateway startup failed with an \u201cundergoing offline maintenance\u201d error.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix keys in-process ownership and schema scopes by a normalized database identity and reports missing local authority as a typed internal error.",
+  "reasoning": "I checked the causing diff against its parent, where the existing schema fence held its SQLite coordinator through the operation without looking up a sidecar pathname again to recover local authority. The replacement introduced that lookup, and the fix's lease test shows how a different spelling of the same lock directory could make the process reject its own lease. The later worker-path optimization retained the pathname-keyed schema lookup."
+}

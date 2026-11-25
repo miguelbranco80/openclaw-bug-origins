@@ -1,0 +1,8 @@
+{
+  "rank": 100780,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item at merge concerns shutdown reporting a cleanup failure after forced termination. The earlier exported-helper item concerns deliberately escaped descendants, and neither item raises how extension exec handles an uncertain settlement after cancellation."
+}

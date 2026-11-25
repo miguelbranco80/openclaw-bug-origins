@@ -1,6 +1,17 @@
 {
+  "rank": 138,
+  "sha": "34c5e91f21f1d200b58d7c572e9e71b0278b46c1",
+  "rubric": "v1.1",
   "origin": "regression",
   "cause_sha": "f84a3aafa3b704bef77c57645396688c29d082c8",
+  "cause_pr": 171678,
   "confidence": "high",
-  "reasoning": "The parent diff shows that the existing CLI maintenance-lock contention path previously returned a retry message without reading the lease. This commit added `captureStalledGatewayStartup(env)?.description` to that path, and its new helper called `readGatewayOwnerLease({ env, current: true })` for owners past five minutes. I checked the SQLite reader diff and confirmed that without `allowNativeRead`, this lookup takes the full snapshot path."
+  "cause_quote": "f84a3aafa3b added `captureStalledGatewayStartup(env)` to acquireGatewayLock's contention error, whose `isListening` calls `readGatewayOwnerLease({ env, current: true })` without allowNativeRead, so the current read goes through `prepareSqliteReadOnlyLocationSync` (a full database copy).",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Every openclaw CLI command on a host whose Gateway had been up over five minutes copied the whole state database at startup, taking over a minute on a large btrfs database and stalling the Gateway's own writes.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "The Gateway owner-lease current read uses the native read path when the database has a verified live SQLite owner, instead of a full snapshot copy.",
+  "reasoning": "Before f84a3aafa3b the Doctor maintenance-lock contention path (hit by startup plugin-capture cleanup, which dates to September) only built an error string; f84a3aafa3b made it call captureStalledGatewayStartup, which for any same-namespace Gateway older than five minutes reads the owner lease. At f84a3aafa3b, readGatewayOwnerLease passed only `{ env: params.env }` and withExistingOpenClawStateDatabaseCurrentReadOnly falls back to prepareSqliteReadOnlyLocationSync without allowNativeRead, so CLI startup gained a full database copy; the fix adds exactly that allowNativeRead."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 239,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge section listed no open items. The earlier findings covered lease authority, cancellation, completion hooks, and the lockfile, with no concern about waiting for the first stream event when resuming a stalled session."
+}

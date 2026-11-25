@@ -1,0 +1,8 @@
+{
+  "rank": 100411,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cGateway contract additions\u201d entry notes the new RPC without raising a concern about its missing request and response schemas. The \u201cBefore merge\u201d findings concern credential removal and recovery."
+}

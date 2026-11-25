@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "789513231d7d6ee412c1304677f17a2525d82bc6",
+  "user_visible": "yes",
+  "user_saw": "A standing-intent tool call or prompt hook could attempt a database update while transcript or cleanup work still held the writer reservation.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix routes standing-intent schema and row changes through the per-agent database writer queue and preserves the prompt hook\u2019s expiry checks.",
+  "reasoning": "The original standing-intent code opened the database and ran its mutations synchronously, and #144832 changed how it awaited the open without adding writer admission. The #126035 diff moved the final reclamation transaction from the gateway thread to a worker awaited under the session writer reservation, allowing it to overlap standing-intent writes. #146563 later added the shared admission helper and wired session and reclamation writers into it, while standing intents still used the database opener.",
+  "rank": 100802,
+  "sha": "2c967b37892460cbc855993b0c3811fb3eeb00b8",
+  "rubric": "v1.2"
+}

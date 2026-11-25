@@ -1,0 +1,17 @@
+{
+  "rank": 100366,
+  "sha": "387da5edaa9d6c6cfcfc15e167fe2e46d8647d86",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Chat refused to pin the model runtime before asking for approval and suggested a model-selection shortcut that could not set the pin.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The system agent now submits previously blocked config paths for approval, uses the existing config writer, and surfaces validation or write errors so it can propose one correction for fresh approval.",
+  "reasoning": "The diff for #110445 explicitly kept default-route fields outside approved chat writes, and its removed code shows that the preceding implementation already blocked the same runtime and model paths. The main change in #149870 replaces that policy with approval and validation through the existing writer, while also improving how chat reports and handles failed writes."
+}

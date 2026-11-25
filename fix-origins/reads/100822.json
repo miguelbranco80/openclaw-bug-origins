@@ -1,0 +1,17 @@
+{
+  "rank": 100822,
+  "sha": "b43e3fa5f64b242195f05851f99939ec0e71c992",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "64853b1a9d505dc3980e4bedfc39ee79c043ffbf",
+  "cause_pr": 124301,
+  "confidence": "medium",
+  "cause_quote": "The multiline composer redesign added `align-items: center;` to the fixed-size `.chat-controls__permission-icon, .chat-controls__permission-lock` flex wrappers, removing the SVG's default cross-axis stretch while giving it `width: 100%` and `height: 100%` only inside `@container chat-composer (max-width: 480px)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Desktop WebKit users saw a blank space beside the selected permission label in the chat composer.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix applies explicit SVG dimensions to the permission trigger and lock icons in all composer layouts.",
+  "reasoning": "I checked the introducing commit and the multiline redesign's parent, which both rendered the permission icon in a fixed-height inline-flex wrapper whose default alignment stretched the SVG. The redesign removed that stretch and supplied explicit SVG dimensions only in narrow layouts, which matches the fix PR's desktop WebKit reproduction of a 0\u00d70 SVG. The earlier rendering is inferred from the source because the supplied browser evidence covers only the later baseline."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100332,
+  "sha": "0ce7a497352d59d466f1aa812e1d84728002518b",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "aa0ad4c78044f389460de42caa798ad5f75c86a9",
+  "cause_pr": 145172,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `new PollController(` with a `2_000` ms interval whose callback called `void this.statusTask.run();` whenever the Gateway was connected and no status request was pending, regardless of tab visibility.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Storage settings tab kept sending maintenance status requests to the Gateway every two seconds while hidden.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix pauses automatic maintenance status polling while the tab is hidden and refreshes the status when the tab becomes visible again.",
+  "reasoning": "The original Storage settings feature used a PollController whose timer called its callback regardless of tab visibility. I checked that the later visibility-aware controller defaulted to always polling and that Storage settings still used that default immediately before the Solid migration carried the same behavior forward with a raw interval."
+}

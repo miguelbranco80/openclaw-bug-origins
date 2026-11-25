@@ -1,0 +1,8 @@
+{
+  "rank": 100101,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings section was empty. The earlier findings addressed history limits, refresh input, and retained seed authority, and none pointed to a compaction observer throwing or rejecting and aborting fresh-thread seeding."
+}

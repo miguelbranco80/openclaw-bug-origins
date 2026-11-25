@@ -1,17 +1,17 @@
 {
   "rank": 267,
   "sha": "bb28b72b14429557b4f87ab02453d76e2ec753bf",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d023e9f5624bdaba3c4f8855fe458239868ef299",
+  "cause_pr": 161114,
+  "confidence": "medium",
+  "cause_quote": "The commit preserved the paused child's completion wake with `entry.requesterSettleWake = resetRequesterSettleWakeRetry(completionWake)` and added `entry.pauseReason === \"sessions_yield\" ||` to the condition that blocks delivery for the entire frozen batch.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Finished subagent results could stay pending forever and never reach the requester when the same batch also held a child paused waiting for a message, notably after a Gateway restart.",
+  "user_saw": "After a restart, the requester could wait indefinitely for finished subagent results while a sibling was paused for a message.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Lets a frozen requester-settle batch deliver its ready members when the only non-ready members are ended message waits, and excludes those waits from the lifecycle failure fallback.",
-  "reasoning": "The frozen-batch gate requiring every member to be ready blames to d7381633 (#184022), but that commit only swapped an equivalent local `hasSettled` (which already rejected `sessions_yield`) for the shared `isRequesterSettleMemberReady`, so it is not the cause. The gate predates 4bf041c0 (#164154) and message waits date from d023e9f (#161114, 2026-09-29), with heavy churn of restart/owed-batch recovery since; I could not pin which commit first let a message wait sit in a frozen batch alongside ready siblings, so neither regression nor never-worked can be named with a cited line."
+  "summary": "The fix lets a yielded batch deliver ready child results while preserving the future completion wakes of siblings waiting for messages.",
+  "reasoning": "I checked the parent and the introducing diff: #161114 added durable pause notices with a separate delivery path and left the paused child in its original completion batch. The same diff made that paused row block the batch, and later revisions preserved the exclusion. The fix PR reports a failing restart case, and the history I checked did not establish an earlier working version of the mixed-batch pause-notice workflow."
 }

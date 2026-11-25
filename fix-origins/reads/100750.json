@@ -1,0 +1,17 @@
+{
+  "rank": 100750,
+  "sha": "8cf7e492c5e1585e71c43f53d9e0e80b49592e46",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When run from the home directory, Doctor could flag an official Codex plugin as unverified and recommend an unnecessary reinstall or repair.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix skips workspace discovery when the workspace and global extension roots resolve to the same directory, preserving the official installation's global provenance.",
+  "reasoning": "The July snapshot already scanned workspace extensions before global extensions, kept the first candidate for the same source path, and excluded workspace candidates from official-install trust. The later cache refactor preserved workspace precedence for this overlap. The older history was unavailable locally, and I could not verify either the introducing diff or a later change that first exposed the behavior in Doctor."
+}

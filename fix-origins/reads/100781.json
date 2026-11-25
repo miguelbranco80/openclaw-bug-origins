@@ -1,0 +1,17 @@
+{
+  "rank": 100781,
+  "sha": "894643fca608c0539341d683754802e4ac8fb859",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible was reported while the idle Gateway retained expired recipient records in memory.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The Gateway\u2019s minute maintenance sweep now prunes expired tool-event recipients while preserving the existing expiration windows and registered run state.",
+  "reasoning": "The oldest available registry code already pruned only inside add, get, and markFinal, so it retained expired records when idle. The September scan optimization preserved those call sites, and the earlier lookup fix changed only which audience was returned after pruning. The full-history path search stopped at a missing parent, so I could not verify whether the registry shipped with this behavior."
+}

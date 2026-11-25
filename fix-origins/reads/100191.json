@@ -1,0 +1,17 @@
+{
+  "rank": 100191,
+  "sha": "6033079d601caea507c2c13c46bd548908d7981e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "69bde3225e80127361d2ee634dd8d869edaef30f",
+  "cause_pr": 145019,
+  "confidence": "high",
+  "cause_quote": "The restored launch menu set `placement=\"top-end\"`, making it open upward over the suggestion card when space allowed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The suggested-task menu opened over the card, and the launch label and chevron could appear dark against the accent background.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix makes the suggested-task menu open downward by default and keeps the off-white launch label and chevron readable by limiting accent background lightness.",
+  "reasoning": "I verified that the earlier launch menu on main requested `bottom-end` before #139731 temporarily removed it. When #145019 restored the menu, it requested `top-end`, reversing the earlier placement; the fix PR reports that the pre-fix geometry assertion failed. The foreground styling already existed in #145019's parent, so the cited commit accounts for the menu regression."
+}

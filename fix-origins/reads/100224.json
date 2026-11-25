@@ -1,0 +1,17 @@
+{
+  "rank": 100224,
+  "sha": "1f9022d2af0336ede45b249f259e820e25f0d91b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "af210e1f3fbfc4033ad787eaa76198994c8ebefa",
+  "cause_pr": 167054,
+  "confidence": "high",
+  "cause_quote": "The diff put `(handler) => handler.retireTranscript(evt)` before `.then(getTranscriptUpdateHandler)`, and `retireTranscript` immediately called `flushBufferedChatDeltaIfNeeded(...)` after removing the committed text, allowing an empty replacement to reach the client before `session.message`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An assistant reply could briefly disappear in the Control UI and make the reader's scroll position jump before the reply reappeared in the transcript.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The gateway still retires committed text immediately but holds outgoing live and terminal updates until the corresponding transcript publication settles.",
+  "reasoning": "I checked the causing commit's parent and confirmed that live reply streaming and transcript publication already existed, and the transcript callback dispatched directly to `getTranscriptUpdateHandler` without clearing the live reply. The causing diff added an immediate buffer retirement and flush ahead of asynchronous publication, creating the gap when the transcript read was delayed."
+}

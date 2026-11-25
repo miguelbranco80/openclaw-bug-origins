@@ -1,0 +1,8 @@
+{
+  "rank": 100807,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier worktree-config finding concerned a Git preflight failure, and the at-merge Decision needed section asked for end-to-end GitHub write proof. Neither addresses the eligible child losing the publisher from its inherited allowlist when the parent\u2019s worktree is ineligible."
+}

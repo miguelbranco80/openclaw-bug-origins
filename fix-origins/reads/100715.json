@@ -1,0 +1,17 @@
+{
+  "rank": 100715,
+  "sha": "11091f0bf62f93465c03aae211a3ae185cde88ae",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c6f14b27a938f7a3f5b4960bcc45fe29dd6daccc",
+  "cause_pr": 178767,
+  "confidence": "high",
+  "cause_quote": "The new reporter called `process.stderr.write(`Doctor: ${label}${suffix}\\n`)` inside the Doctor child without adding a forwarding path to the updater.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators saw no live Doctor phase messages during managed update maintenance, including when running with `--json`.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The updater now forwards recognized core Doctor phase messages to stderr while activation and pre- and post-plugin Doctor processes run.",
+  "reasoning": "I checked the introducing diff and its parent and confirmed that this commit added the phase messages and elapsed-time heartbeats. At that same revision, activation and fresh Doctor already ran through a stderr observer that collected timings without displaying phase lines, and the fresh Doctor output callback only buffered diagnostic text. Live phase reporting for managed updates was therefore missing from the first version of the feature."
+}

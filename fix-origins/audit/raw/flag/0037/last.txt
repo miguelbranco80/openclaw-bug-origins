@@ -3,5 +3,5 @@
   "where": null,
   "quote": null,
   "outcome": null,
-  "note": "The at-merge Evidence section describes retained readers without raising a concern about their lifetime during Doctor’s btrfs repair. The Tests items in both versions concern recall and replacement freshness."
+  "note": "No findings at merge or earlier; the only item is a generic missing end-to-end proof note, and the retained-reader evidence never mentions Doctor's NOCOW repair or open descriptors in Doctor's own process."
 }

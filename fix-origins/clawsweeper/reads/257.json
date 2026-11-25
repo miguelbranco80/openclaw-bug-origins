@@ -1,0 +1,8 @@
+{
+  "rank": 257,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes the deferred recovery handoff without raising a concern about the startup scope retaining prepared session rows after recovery settles. The earlier Tests item asks for proof of continuation, input ordering, ready-sibling progress, and upgrade behavior."
+}

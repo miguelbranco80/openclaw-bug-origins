@@ -1,0 +1,8 @@
+{
+  "rank": 100240,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "The accepted admission policy can stop updates for existing linked, unreadable, unsupported, oversized, or sufficiently slow npm installations before service preparation; affected operators may need a supported package layout or the documented manual update path.",
+  "outcome": "answered",
+  "note": "The first P1 item under Before merge identifies the update abort when the pre-activation fingerprint scan is too slow. The maintainer explicitly accepted failing closed on slow reads, and the review leaves the misleading retained-tree message unmentioned."
+}

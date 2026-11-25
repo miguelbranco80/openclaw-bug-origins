@@ -1,0 +1,17 @@
+{
+  "rank": 100391,
+  "sha": "0b234fc7f6cd81bdec6bd69e1f9bcc95488a6e35",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an operator selected Disabled in Twitch setup, the bot could still respond to chat messages that mentioned it if the account had no user ID allowlist.",
+  "impact": "permissions",
+  "area": "channels",
+  "summary": "Twitch setup now writes an explicit empty user ID allowlist for Disabled and uses the runtime's policy precedence when displaying and validating the setting.",
+  "reasoning": "At the July 1 shallow boundary, the setup setter already wrote empty roles for Disabled, and the runtime already treated empty roles with no user ID allowlist as open. The local history search could not reach the introducing diff, so I could not determine whether Disabled shipped broken or an earlier change broke a working setting."
+}

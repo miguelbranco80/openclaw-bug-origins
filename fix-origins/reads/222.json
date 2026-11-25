@@ -1,17 +1,17 @@
 {
   "rank": 222,
   "sha": "2a8e0b3c6ed6afeef33331871c5822024f19f986",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "An agent waiting on CI kept one turn alive for many minutes, polling a background command every 30 s and starting overlapping sleep-and-check waiters, costing extra model round trips.",
+  "user_saw": "A dashboard turn stayed open for about 20 minutes while the agent repeatedly polled and started overlapping commands for the same result.",
   "impact": "slower-or-heavier",
   "area": "agents",
-  "summary": "Reworded exec/process running results, idle-poll text, the exec description, yieldMs schema and system prompt so agents end the turn when a background command's exit will wake them, list other running waiters, note the yieldMs cap, and stop promising a wake to hidden subagents.",
-  "reasoning": "The fix changes model-facing guidance text to steer agent behavior (fewer polls, one waiter per result); the exec/process machinery itself behaved as coded, and the incident is a model choosing to poll under the old wording. The one factual mismatch (a wake promise for hidden subagents with no wake target, and wait guidance that ignored the 120 s yieldMs cap) is a small part of a prompt-tuning change, so I classify the whole as a guidance/behavior change rather than tracing a causing commit."
+  "summary": "The fix bases exec and process guidance on the captured wake target, tells agents when they can end the turn, and reports capped waits and other running commands.",
+  "reasoning": "The long-wait prompt, silent yield cap, and generic process follow-up were already present at the July 1 history boundary, and the offline history could not establish where they originated. PR #161780 added explicit instructions to end the turn only for sessions that wake on silent success, but its parent already lacked that guidance for dashboard sessions, so the diff does not establish that the reported polling was a regression."
 }

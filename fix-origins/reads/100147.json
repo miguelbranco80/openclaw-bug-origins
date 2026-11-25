@@ -1,0 +1,17 @@
+{
+  "rank": 100147,
+  "sha": "d2af38cb258982dcd598e49f31616c7f9450f39a",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Tlon silently missed incoming events with CRLF or CR line endings or multiple data lines while the connection stayed open.",
+  "impact": "data-loss-or-duplication",
+  "area": "channels",
+  "summary": "The Tlon SSE parser now accepts LF, CRLF, and CR line endings and joins multiple data lines with a newline before parsing the payload.",
+  "reasoning": "The parser before the July buffering rewrite already searched for `\\n\\n` and overwrote the payload with `data = line.slice(6)` on each data line, so both limitations predate that rewrite. The available history stops at the July 1 shallow boundary, so I could not verify when either limitation first shipped or whether an earlier implementation handled those events."
+}

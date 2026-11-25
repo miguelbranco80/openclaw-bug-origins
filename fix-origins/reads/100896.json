@@ -1,0 +1,17 @@
+{
+  "rank": 100896,
+  "sha": "7f7f668ce5cafc8877d6046341b62479e05f4b77",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `OPENCLAW_STATE_DIR: tempDir` for candidate Doctor and populated that directory from `const files = await collectStateDatabasePaths(input);`, which omitted the legacy approval file and left any copied receipt keyed to the original path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update passed rehearsal, then failed after swapping in the candidate because activation Doctor detected a conflicting legacy exec-approval file.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The updater now copies legacy exec-approval files and interrupted Doctor claims into the private rehearsal state and rebases the matching migration receipt there.",
+  "reasoning": "The introducing diff added candidate Doctor rehearsal and a SQLite-only snapshot in the same commit, so rehearsal missed legacy approval files from its first implementation. I checked the parent\u2019s migration code and confirmed that Doctor already detected legacy files and interrupted claims and looked up receipts by source path."
+}

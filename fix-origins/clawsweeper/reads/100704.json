@@ -1,0 +1,8 @@
+{
+  "rank": 100704,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cSeed metadata before config defaults erase field presence\u201d finding concerned generic defaults blocking catalog inheritance, and the at-merge finding concerned missing tiered pricing. Neither raised the risk of copying catalog compatibility to a custom API or endpoint and hiding Tool Search."
+}

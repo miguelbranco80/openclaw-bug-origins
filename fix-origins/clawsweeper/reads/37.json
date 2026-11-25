@@ -1,1 +1,8 @@
-{"rank": 37, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No findings at merge or earlier; the only item is a generic missing end-to-end proof note, and the retained-reader evidence never mentions Doctor's NOCOW repair or open descriptors in Doctor's own process."}
+{
+  "rank": 37,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section describes retained readers and idle connection expiry without raising a cleanup concern. The Tests items in both versions address recall and note replacement coverage and give no warning that idle readers could block Doctor\u2019s btrfs repair."
+}

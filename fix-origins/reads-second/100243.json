@@ -1,0 +1,17 @@
+{
+  "rank": 100243,
+  "sha": "d4ce3b2f33d41e8322a38c31430c9ce0e97a44c2",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c77a055f08646bd1a5f59a845fa627b69003b40c",
+  "cause_pr": 162403,
+  "confidence": "high",
+  "cause_quote": "The new transfer path called `fsSync.unlinkSync(options.sourcePath)` before `if (!sameFileStatFingerprint(moved.identity, identity))`, so it compared the receipt's birth time with a stat taken after unlinking changed ctime.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected Linux filesystems without statx, `openclaw doctor --fix` reported that the SQLite staging file had changed and failed to save the required pre-migration backup.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix compares device, inode, and size during SQLite snapshot transfer while retaining separate checks of the database bytes.",
+  "reasoning": "I checked the causing commit's parent and confirmed that Doctor already used verified snapshots, whose publisher copied the image into staging and checked its fingerprint before hard-link publication. PR #162403 replaced that copy for owned snapshot images with a transfer that checks the fingerprint after unlinking a name, which rejects an unchanged inode when Node reports ctime as birth time."
+}

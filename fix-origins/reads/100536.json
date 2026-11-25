@@ -1,0 +1,17 @@
+{
+  "rank": 100536,
+  "sha": "5004720024fe7b78200a882666c44b1986141eff",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Git status inside the sandbox listed generated skill packages as untracked project files, inflating the changes captured for review.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The skill materializer now writes and preserves a self-ignoring .gitignore in the generated skills directory across initial sync, cached reuse, and refresh.",
+  "reasoning": "The oldest readable sandbox code already copied skills without an ignore rule and mounted them under the guest workspace. The later snapshot cache added the manifest, and private managed checkouts reused the existing skill mount. The available history stops before the mount was introduced, so I could not verify the introducing diff or establish that Git discovery previously worked."
+}

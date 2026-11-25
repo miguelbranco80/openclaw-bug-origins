@@ -1,0 +1,17 @@
+{
+  "rank": 182,
+  "sha": "f03cea11e22279aff7be580296b1fc025537614c",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "413d2fc66983d396ff1e9281f568954ef3c83de6",
+  "cause_pr": 175291,
+  "confidence": "medium",
+  "cause_quote": "The new src/shared/agent-onboarding.ts hard-coded `return name ? `Hi, I\u2019m ${name}. Happy to help.` : \"Hi! Happy to help.\";` with no locale input.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Control UI user with a non-English language selected got an English saved greeting and English role question when creating a new agent.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Passed the UI's selected locale through agents.create so the Gateway saves a localized greeting and asks the model to write the onboarding role question in that language.",
+  "reasoning": "The greeting and onboarding opening were introduced English-only by 413d2fc6698 (#175291), the only prior commit touching agent-onboarding.ts, in an already-localized Control UI; nothing later changed them. It is arguably a localization gap rather than a breakage, so confidence is medium and a not-a-defect reading (feature extension adding a protocol field) is plausible."
+}

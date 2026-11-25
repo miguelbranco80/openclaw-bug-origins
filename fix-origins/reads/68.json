@@ -1,17 +1,17 @@
 {
   "rank": 68,
   "sha": "34bc6434914728a8d13e8e2dcf6dd98bce6d1d88",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "c16858baa256a33134f35970df04519f48d3d7ed",
   "cause_pr": 192368,
   "confidence": "high",
-  "cause_quote": "c16858baa256 added `const installation = createHash(\"sha256\").update(resolveStateDir(env))...` and `path.join(admittedRoot, `sqlite-${installation}`)`, so snapshots taken while Doctor points OPENCLAW_STATE_DIR at its throwaway private copy land in a fresh per-run namespace the Gateway sweep never visits.",
+  "cause_quote": "The new staging code used `createHash(\"sha256\").update(resolveStateDir(env))` to create a different namespace for each disposable state directory, while the Gateway sweep opened only `const root = resolvePrivateSqliteSnapshotStagingRoot();`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Leftover SQLite snapshot copies from Doctor and triage piled up in new ~/Library/Caches/openclaw/sqlite-<hash>/ directories (49 GB on one host) and were never reclaimed.",
-  "impact": "other",
+  "user_saw": "Doctor and triage runs left a fresh cache directory each time, and abandoned SQLite copies could keep consuming gigabytes of disk space.",
+  "impact": "slower-or-heavier",
   "area": "storage",
-  "summary": "resolveSnapshotStagingRoot reuses the enclosing sqlite-<24 hex> namespace when the resolved state directory lies inside one, so Doctor/triage snapshot copies stay in the installation's swept namespace.",
-  "reasoning": "Per-installation namespaces and their automatic reclamation were introduced together in c16858baa256 (#192368, two days before the fix); before it no namespace existed and staging was operator-owned. That commit hashed resolveStateDir(env), which in the Doctor lint context is the private copy's path, so the reclamation feature never covered snapshots taken there and each run created a new namespace; the defect shipped with the feature."
+  "summary": "The fix makes SQLite snapshots taken inside a private state copy reuse the installation namespace that the Gateway sweeps.",
+  "reasoning": "The parent already redirected Doctor to a disposable state directory and used a shared SQLite staging root. An earlier shared-cache sweep had been removed before #192368, whose diff introduced both the per-state-directory hash and the installation-scoped sweep, so the new sweep missed Doctor and triage's per-run namespaces from its first revision."
 }

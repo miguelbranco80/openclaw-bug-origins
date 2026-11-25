@@ -1,0 +1,17 @@
+{
+  "rank": 100413,
+  "sha": "5c894c71b889408c0bf583ae4aa08e36129ab3a4",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "The fix extracted a shared command-failure check and moved test helpers into a sibling module so the worker bootstrap files fit within existing lint limits.",
+  "reasoning": "The PR describes a lint cap that blocked repository validation. I checked the full fix diff and confirmed that all three call sites retained the same exit-code and output checks and that the test helpers moved without changing their logic."
+}

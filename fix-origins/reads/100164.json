@@ -1,0 +1,17 @@
+{
+  "rank": 100164,
+  "sha": "f1bd0471f270699aa04bb176e8688542ecfc2576",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "38ecc4173b2e2b23bb3fa4aa618de56696505ece",
+  "cause_pr": null,
+  "confidence": "medium",
+  "cause_quote": "The new `if (!detected)` branch throws `Update refused: package manager owner is unknown` before the CLI can reach its existing npm fallback.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "OpenClaw refused to update a custom-prefix npm installation because it could not identify the package manager that owned it.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix recognizes custom-prefix npm installs through npm\u2019s configured prefix or the installed OpenClaw launcher and shares that ownership check with update status.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that when root detection found no owner and presence checks found no competing install, `return byPresence ?? \"npm\"` let the CLI proceed with npm and target the running package\u2019s prefix. The causing commit turned that same detection result into a refusal. The exact reason the reporter\u2019s npm probe disagreed and whether a full update completed on that exact setup before the change remain unverified."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100825,
+  "sha": "72c9a55d4e5d8c98b447c5e0e7c2a5aa5a37cfa2",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Long Claude CLI turns stopped at the 20,000-line limit without returning a final answer.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix recognizes bounded Claude Code metadata on eligible stream frames so those frames qualify for the existing output-budget discount.",
+  "reasoning": "I checked #153545 and the subsequent history of the stream limits code. The original discount covered the frame shape documented in its tests, and later edits preserved its allowlist. The fix documents newer Claude Code output carrying api_message_id and thinking_display, which made eligible deltas fall back to ordinary line accounting."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 140,
   "sha": "93fdc3d9ada2d1f34957aeacde112f74c594adfe",
-  "rubric": "v1.1",
-  "origin": "latent",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Selecting medium thinking for Gemini 3.1 Pro was refused, and provider payloads asking for MEDIUM were silently upgraded to HIGH (slower and costlier).",
+  "user_saw": "OpenClaw refused `--thinking medium` for Gemini 3.1 Pro, and requests that bypassed that check could silently run at `HIGH`.",
   "impact": "failed-every-time",
   "area": "models/providers",
-  "summary": "Gemini 3.x Pro now offers and sends MEDIUM thinking; Pro differs from other thinking-level models only by lacking MINIMAL.",
-  "reasoning": "The Pro-specific LOW/HIGH-only rule predates the 2026-09-03 graft and matched the retired Gemini 3 Pro preview's API, so it was correct when written. It became wrong when Google shipped Gemini 3.1 Pro with LOW/MEDIUM/HIGH and old 3-pro ids normalized to it, an external provider change; the Oct 14 Gemini 4 commit (5e9b5749d71) only touched adjacent lines."
+  "summary": "The fix exposes `medium` for Gemini 3.1 Pro and preserves `MEDIUM` in both Google request paths.",
+  "reasoning": "The July snapshot already omitted `medium` from the Pro profile and routed the retired Gemini 3 Pro IDs to Gemini 3.1 Pro. The October Gemini 4 diff preserved the existing Pro mapping that sent medium effort as `HIGH`. The available history could not establish whether Gemini 3.1 Pro shipped with the mismatch or gained `MEDIUM` support after OpenClaw added it."
 }

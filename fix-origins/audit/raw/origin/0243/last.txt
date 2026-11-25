@@ -1,0 +1,17 @@
+{
+  "rank": 243,
+  "sha": "8e5ae5b37c5d1f3a93600a9fe87b81509bb57064",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After #196602, singleton model-fallback notices were collapsed, completed tool-only continuations lost their assistant wrapper, and Read aloud behaved differently; a maintainer asked for the earlier presentation back.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Rolled back the Control UI chat presentation and Read aloud changes from 685f18a (#196602) while keeping its background-media security repair.",
+  "reasoning": "PR #196942 describes itself as a requested UI/Read aloud rollback of #196602 ('Requested by' a maintainer), not a fix for a reported malfunction; the diff is the exact inverse of 685f18a's UI hunks. Reverting a presentation choice is a product decision, so not-a-defect."
+}

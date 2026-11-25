@@ -1,0 +1,8 @@
+{
+  "rank": 100196,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve probe health while certificate renewal is deferred\u201d finding concerned a mismatch between the configured pin and the certificate still being served. The at-merge \u201cResolve merge risk\u201d item concerned remote clients with stale pins, and neither item addressed HTTPS agent selection for local probes under a managed proxy."
+}

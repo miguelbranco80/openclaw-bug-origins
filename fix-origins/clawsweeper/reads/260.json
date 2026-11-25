@@ -1,0 +1,8 @@
+{
+  "rank": 260,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cIntroduced publication boundary\u201d item describes validation inside the staging directory without raising a concern about native dependency checks failing under macOS Seatbelt. The \u201cBefore merge\u201d section lists no items."
+}

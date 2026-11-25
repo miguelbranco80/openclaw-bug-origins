@@ -1,0 +1,17 @@
+{
+  "rank": 100190,
+  "sha": "ec4420b7888278296b579b0c93ba43abc6d50cdd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "b5d7e07e80df1ea94da4c5365197d27c98b9566d",
+  "cause_pr": 177659,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `const limit = 32 * 1024;` and threw only when `count >= limit`, allowing the observed stream to run for about 325 seconds before aborting.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A sub-agent stalled for about five minutes while the model streamed whitespace in a tool call.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix lowers the consecutive whitespace limit for Responses tool-call arguments from 32 KiB to 4 KiB, so the observed runaway stream would reach the existing retry path in about 40 seconds.",
+  "reasoning": "The introducing diff added both the whitespace guard and its 32 KiB threshold, and wired the guard into streamed argument handling before appending each delta. The reported rate of about 100 whitespace characters per second accounts for the observed 325-second stall, so the delay was present from the guard's first release."
+}

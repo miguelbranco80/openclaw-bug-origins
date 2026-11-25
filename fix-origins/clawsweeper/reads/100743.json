@@ -1,0 +1,8 @@
+{
+  "rank": 100743,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPrepare placement reads off the Gateway thread\u201d finding concerned synchronous placement reads. The \u201cMissing end-to-end proof\u201d item described a coverage gap, and the review raised no concern about the new workspace bind opening a transaction on the retained canonical session reader\u2019s database handle."
+}

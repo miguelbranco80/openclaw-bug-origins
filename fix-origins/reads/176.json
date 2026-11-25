@@ -1,17 +1,17 @@
 {
   "rank": 176,
   "sha": "01e1612c3992054fbdb03cc8b40827f1dab2cb49",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "bb6bb777af315388046052d8142a152517bf382a",
   "cause_pr": 157349,
   "confidence": "high",
-  "cause_quote": "#157349 added skippedFloodResponse returning a synthetic GrammyError-shaped 429 \"(${reason}; request not sent)\" for typing and previews skipped during a flood wait, which the existing withTelegramApiErrorLogging wrapper around sendChatAction logs at ERROR like any API failure.",
+  "cause_quote": "The new replaceable-request branch returned `flooded ?? skippedFloodResponse(waitMs, \"flood wait active\")`, handing the existing API logger a synthetic 429 when the limiter deliberately skipped a typing update.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "During a Telegram flood wait the Gateway log filled with ERROR lines 'telegram sendChatAction failed: ... (flood wait active; request not sent)' for typing that was deliberately never sent.",
-  "impact": "presentation",
+  "user_saw": "Gateway operators saw an ERROR for each Telegram typing update the account limiter deliberately skipped during an active flood wait.",
+  "impact": "sequence-or-timing",
   "area": "channels",
-  "summary": "The account limiter now marks skipped replaceable updates with a distinct '; replaceable update not sent)' suffix and the Telegram API logging wrapper no longer logs those at ERROR.",
-  "reasoning": "The synthetic 429 for held-back replaceable requests (and the 'request not sent' text) was introduced by bb6bb777 (#157349); git grep at that commit shows the three sendChatAction call sites already wrapped in withTelegramApiErrorLogging, so the spurious ERROR appeared from the moment the limiter shipped. Later commits to account-throttler.ts/api-logging.ts (e2bdc7a2, 756b2650, #190006) did not change this path."
+  "summary": "The fix marks deliberately skipped Telegram typing and preview updates so the API logger suppresses those errors while still logging real API failures and undeliverable final replies.",
+  "reasoning": "The introducing diff added both the account-wide flood gate and the synthetic 429 for updates it held back. I checked the parent\u2019s typing path and API logger, which already logged thrown errors, so the misleading ERROR was present from the introduction of the new skip path."
 }

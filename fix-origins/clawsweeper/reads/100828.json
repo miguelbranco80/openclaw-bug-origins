@@ -1,0 +1,8 @@
+{
+  "rank": 100828,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "It therefore acquires a fresh scratch-local lease instead of checking the database used by another updater for the same installation, allowing both to authorize native mutations. Resolve admission in the stable installation lease domain before finalization.",
+  "outcome": "answered",
+  "note": "Revision 11\u2019s grantless ownership finding flagged the worker\u2019s lease acquisition in the wrong database, without identifying that the live parent would block acquisition in the correct database. The author responded by documenting and testing the lease selector fix."
+}

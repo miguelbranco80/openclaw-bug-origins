@@ -1,0 +1,17 @@
+{
+  "rank": 100378,
+  "sha": "7249a939db2c8d644a554ca286034df9a4b30c20",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b83447756582c38bde2c899fc621eaa3e581e4eb",
+  "cause_pr": 125253,
+  "confidence": "high",
+  "cause_quote": "The commit put `stateLifecycle = acquireGatewayLifecycleCoordinator({ ... busyTimeoutMs: opts.timeoutMs })` before the existing lock retry loop and immediately threw `new GatewayLockError(\"failed to acquire gateway state ownership\", error)` on contention.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A supervised Gateway restart could fail repeatedly while another OpenClaw process held lifecycle ownership, leaving the Gateway down after systemd hit its start limit.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix gives Gateway startup a shared five-minute deadline to wait for lifecycle ownership and raises the start limit in generated systemd units.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that the existing restart path acquired its locks through a polling loop that could tolerate a briefly held lock. The causing commit added a coordinator ahead of that loop with a zero default SQLite busy timeout, making the same startup path fail immediately on temporary contention. The fix PR reproduced the failure with a separate process holding the coordinator, while the holder in the original WSL2 incident remains unidentified."
+}

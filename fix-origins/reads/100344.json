@@ -1,0 +1,17 @@
+{
+  "rank": 100344,
+  "sha": "d24375e476842d03b89d0c1ffa794323a88e566e",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Under QuickJS heap pressure, a Code Mode script received an injected array as a string and continued running tools without reporting an error.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "The fix uses the normalized namespace value already in the guest, eliminating a second JSON copy that could turn an array into text when allocation failed.",
+  "reasoning": "The worker already called `safe(value.value)` before #114945 moved the controller into its own file. The July 1 checkout boundary already contains the JSON copy, its `String(value)` fallback, and a configurable QuickJS heap limit. The available offline history did not establish when that code first shipped or whether a later change first exposed silent array conversion."
+}

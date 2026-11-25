@@ -1,17 +1,17 @@
 {
   "rank": 266,
   "sha": "d73c57a7a86f5525bf797f1ccc4e995b20ced981",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "b77c6de91e547626d4ae1bfb38c5b03a84319273",
   "cause_pr": 181021,
-  "confidence": "low",
-  "cause_quote": "b77c6de added `pointerOrigin.focus({ preventScroll: true });` in the composer's pointerdown handler so the keyboard opens mid-tap, but guarded only the later click (from #176498), not Chrome's compatibility mousedown that lands on the moved composer and blurs the editor.",
+  "confidence": "medium",
+  "cause_quote": "The commit added `pointerOrigin.focus({ preventScroll: true });` inside `pointerdown`, allowing the keyboard to move the composer before release while the existing guard still waited for `click`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On mobile web chat, tapping the message box opened the keyboard and immediately dismissed it, so it took several taps to start typing.",
-  "impact": "failed-every-time",
+  "user_saw": "On mobile Chrome, the keyboard could open and immediately close on the first tap in the chat box, so the user had to tap again to type.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "Adds a capture-phase mousedown guard that prevents the default focus transfer when a tap that started on the editor is retargeted to another element after the keyboard moves the composer.",
-  "reasoning": "The click-only retarget guard was introduced with the mobile composer gesture handling in 1bc029e (#176498), and b77c6de (#181021) began focusing the editor during pointerdown so the keyboard opens before touchend, which is what moves the composer under the finger before Chrome's compatibility mousedown. Before b77c6de the first tap did not open the keyboard at all (that PR's own report), so the one-tap flow never worked end to end on this path; I could not verify Chrome Android behavior at each step, hence low confidence. ee465500 only generalized the textarea checks to the new editor and did not change the mechanism."
+  "summary": "The fix cancels the focus-stealing mousedown when a tap that began in the mobile editor ends outside it.",
+  "reasoning": "The parent code did not focus an unfocused editor on pointerdown, and #181021 added that early focus while retaining the click-only guard. Its first-touch test used a plain tap, while the fix's Chromium test inserted a simulated keyboard resize before release, when the retargeted mousedown could blur the editor. The resize case was demonstrated on a later revision, so its presence in #181021 is inferred from the event order in the diff."
 }

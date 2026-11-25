@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Codex-backed chat could fail to continue after compaction because the previous app-server process still held the thread\u2019s writer lock.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix makes compaction reuse the recorded writer when possible and blocks replacement writers until the retiring process exits.",
+  "reasoning": "The July 1 snapshot already shows compaction acquiring a generic shared client and releasing its lease without waiting for process exit. I checked the later client-acquisition and thread-queue changes, but found no verified transition from a working handoff to a broken one, and the offline path history stopped at the shallow boundary before I could identify the introducing commit.",
+  "rank": 100537,
+  "sha": "b4d60fa5edfc2713a5cb3643fa1c936fec3c3cd0",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100373,
+  "sha": "42f68fade98da4f30f56a182a3392700f62ef2d5",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The fix removed the retired relative-time quota reset formatter and its dedicated tests to clear an unused-export finding.",
+  "reasoning": "I checked PR #179225's diff and confirmed that the composer dropped its import and call to formatQuotaReset when it switched to its own formatter. The fix removes the obsolete export and its tests in response to a scheduled CI finding."
+}

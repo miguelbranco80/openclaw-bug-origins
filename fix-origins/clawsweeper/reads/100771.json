@@ -1,0 +1,8 @@
+{
+  "rank": 100771,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge 'Resolve merge risk' item concerns cross-Gateway transcript isolation, and the earlier 'Release the roster wait when the Gateway becomes ready' item concerns an IndexedDB wait after a successful connection. Neither addresses cached chat disappearing behind sign-in when the first Gateway connection fails and retries."
+}

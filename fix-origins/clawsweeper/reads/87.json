@@ -1,1 +1,8 @@
-{"rank": 87, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review in force at merge has no findings; its evidence says hydration 'reuses native statement observation' without questioning whether the read-only agent connection is observed, and the only test item asks generically for a Gateway cron run."}
+{
+  "rank": 87,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests section asks for a Gateway cron run to demonstrate the changed warning and latency. The Evidence section describes reuse of native statement observation without raising a concern about whether the production read-only connection emits statement events."
+}

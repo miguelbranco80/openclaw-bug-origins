@@ -1,0 +1,8 @@
+{
+  "rank": 100578,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cDiscard rejected credential edits when Cancel is pressed\u201d finding warned that a later sibling save could persist the canceled credential. The at-merge review marked that concern addressed and did not flag that polling could supersede a failed Cancel reload and leave the previous save error visible."
+}

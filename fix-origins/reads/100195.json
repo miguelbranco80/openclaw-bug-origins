@@ -1,0 +1,17 @@
+{
+  "rank": 100195,
+  "sha": "dd628a54504f8b72125ca92a7b158015e2ea4f07",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "WhatsApp media uploads failed before reaching the configured HTTP or HTTPS proxy.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix supplies Baileys with a Node HTTP(S) agent that selects the proxy and applies NO_PROXY for each upload and redirect destination.",
+  "reasoning": "The fix reproduced the failure with Baileys rc14, whose Node uploader rejected the Undici dispatcher supplied by OpenClaw. The dispatcher wiring predates the shallow history boundary, and the older path history stopped at a missing object. The dependency diff shows an upgrade from rc13 to rc14, but the earlier tests mocked the upload transport, leaving it unverified whether proxied uploads worked before the upgrade."
+}

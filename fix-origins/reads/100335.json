@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An agent hook with a sub-second timeout override could run for about 40 seconds despite a configured five-second timeout.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes sub-second agent hook timeout overrides inherit the configured timeout while still rounding down overrides of at least one second.",
+  "reasoning": "The hook accepted positive fractions and rounded them down to zero, which the shared agent timeout resolver treated as an unlimited run budget. I checked the hook dispatch and timeout resolver at the shallow boundary and found that both already had this behavior. The older path history stopped at a missing object, so I could not verify whether the bug shipped with hook timeout overrides or arose from a later change.",
+  "rank": 100335,
+  "sha": "24e37a12ddcc50c399bd3effe8be94a148587add",
+  "rubric": "v1.2"
+}

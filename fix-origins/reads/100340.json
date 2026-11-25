@@ -1,0 +1,17 @@
+{
+  "rank": 100340,
+  "sha": "a538efeba9c1652a65f6003d1c29077d50c16e4d",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Private model reasoning could appear in a streamed chat reply even with reasoning turned off.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix uses the shared reasoning-tag parser for streamed replies and tracks nesting depth across chunks so reasoning stays hidden until the outer block closes.",
+  "reasoning": "The July 1 snapshot already had the narrow raw-stream tag list and the boolean that cleared on an inner closing tag. I checked that later commits added aliases to the shared Markdown parser while the raw stream kept its separate grammar, and that the October refactor preserved the narrow list. The offline history stopped at the shallow boundary, so I could not verify when the raw-stream behavior first shipped or establish that it had worked earlier."
+}

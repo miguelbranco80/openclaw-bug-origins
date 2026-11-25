@@ -1,0 +1,8 @@
+{
+  "rank": 100193,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding concerns rollback mutations after executor authority is lost. The earlier admission and Gateway downtime items do not address preflight lookup of a stopped systemd unit that has been collected."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100233,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding \u201cAuthorize session visibility before loading metadata\u201d concerns access to foreign draft metadata, and the earlier merge-risk item concerns capability negotiation and stale writers. The supplied review versions contain no concern about routine auth bookkeeping triggering metadata broadcasts and redundant Control UI refetches."
+}

@@ -1,0 +1,4338 @@
+{
+"q01": {
+"adds_test": {
+"high": null,
+"label": "Sampled fixes that add or change a test",
+"low": null,
+"value": 279
+},
+"gpt_decided_n": {
+"high": null,
+"label": "Fixes where neither reader said unclear",
+"low": null,
+"value": 43
+},
+"gpt_decided_same": {
+"high": null,
+"label": "Of those, same category",
+"low": null,
+"value": 26
+},
+"gpt_first_latent": {
+"high": null,
+"label": "Old code that broke because something outside changed",
+"low": null,
+"value": 5
+},
+"gpt_first_never-worked": {
+"high": null,
+"label": "New code that never worked",
+"low": null,
+"value": 17
+},
+"gpt_first_not-a-defect": {
+"high": null,
+"label": "Not a bug: redesign, speed-up, wording or tooling",
+"low": null,
+"value": 22
+},
+"gpt_first_regression": {
+"high": null,
+"label": "A working thing that a later change broke",
+"low": null,
+"value": 15
+},
+"gpt_first_unclear": {
+"high": null,
+"label": "Could not tell",
+"low": null,
+"value": 1
+},
+"gpt_n": {
+"high": null,
+"label": "Fixes re-read by a GPT reader",
+"low": null,
+"value": 60
+},
+"gpt_notbug_pct": {
+"high": 18,
+"label": "Share the GPT reader called not a bug",
+"low": 4,
+"value": 8
+},
+"gpt_real_same": {
+"high": null,
+"label": "GPT reader agreed on bug or not a bug",
+"low": null,
+"value": 42
+},
+"gpt_same": {
+"high": null,
+"label": "GPT reader chose the same category",
+"low": null,
+"value": 26
+},
+"gpt_second_latent": {
+"high": null,
+"label": "Old code that broke because something outside changed",
+"low": null,
+"value": 6
+},
+"gpt_second_never-worked": {
+"high": null,
+"label": "New code that never worked",
+"low": null,
+"value": 16
+},
+"gpt_second_not-a-defect": {
+"high": null,
+"label": "Not a bug: redesign, speed-up, wording or tooling",
+"low": null,
+"value": 5
+},
+"gpt_second_regression": {
+"high": null,
+"label": "A working thing that a later change broke",
+"low": null,
+"value": 17
+},
+"gpt_second_unclear": {
+"high": null,
+"label": "Could not tell",
+"low": null,
+"value": 16
+},
+"gpt_unclear": {
+"high": null,
+"label": "GPT reader could not tell",
+"low": null,
+"value": 16
+},
+"not_bug_pct": {
+"high": 39,
+"label": "Share of sampled fixes that fixed no bug",
+"low": 28,
+"value": 33
+},
+"origin_latent": {
+"high": 14,
+"label": "Old code that broke because something outside changed",
+"low": 7,
+"value": 29
+},
+"origin_never-worked": {
+"high": 41,
+"label": "New code that never worked",
+"low": 30,
+"value": 105
+},
+"origin_not-a-defect": {
+"high": 39,
+"label": "Not a bug: redesign, speed-up, wording or tooling",
+"low": 28,
+"value": 100
+},
+"origin_regression": {
+"high": 22,
+"label": "A working thing that a later change broke",
+"low": 13,
+"value": 51
+},
+"origin_unclear": {
+"high": 8,
+"label": "Could not tell",
+"low": 3,
+"value": 15
+},
+"population": {
+"high": null,
+"label": "Changes titled fix that touch product code, 1 to 22 Nov 2026",
+"low": null,
+"value": 3996
+},
+"real_bugs": {
+"high": null,
+"label": "Sampled fixes that repaired a real bug",
+"low": null,
+"value": 185
+},
+"sample": {
+"high": null,
+"label": "Fixes sampled at random",
+"low": null,
+"value": 300
+},
+"second_n": {
+"high": null,
+"label": "Fixes read by a second reader",
+"low": null,
+"value": 47
+},
+"second_real_same": {
+"high": null,
+"label": "Second reader agreed on bug or not a bug",
+"low": null,
+"value": 41
+},
+"second_same": {
+"high": null,
+"label": "Second reader chose the same category",
+"low": null,
+"value": 39
+}
+},
+"q02": {
+"gpt_cause_n": {
+"high": null,
+"label": "Fixes where both readers named a causing change",
+"low": null,
+"value": 20
+},
+"gpt_cause_same": {
+"high": null,
+"label": "Of those, the same change",
+"low": null,
+"value": 18
+},
+"gpt_pair_n": {
+"high": null,
+"label": "Both readers said never-worked or broken-later",
+"low": null,
+"value": 20
+},
+"gpt_pair_same": {
+"high": null,
+"label": "Of those, same choice",
+"low": null,
+"value": 19
+},
+"gpt_ratio": {
+"high": null,
+"label": "Never-worked to broken-later, by the second model",
+"low": null,
+"value": 0.94
+},
+"never_share_all": {
+"high": null,
+"label": "Every traced bug",
+"low": null,
+"value": 67
+},
+"never_share_first60": {
+"high": null,
+"label": "First readers, on the fixes that were re-read",
+"low": null,
+"value": 53
+},
+"never_share_gpt60": {
+"high": null,
+"label": "Second model, on the same fixes",
+"low": null,
+"value": 48
+},
+"never_share_high": {
+"high": null,
+"label": "Reader was confident of the cause",
+"low": null,
+"value": 56
+},
+"never_share_hm": {
+"high": null,
+"label": "Reader was confident or fairly confident of the cause",
+"low": null,
+"value": 66
+},
+"never_share_recent": {
+"high": null,
+"label": "Cause is a commit since 10 Sep 2026, readable in full",
+"low": null,
+"value": 60
+},
+"ratio_high": {
+"high": null,
+"label": "Highest never-worked to broken-later ratio",
+"low": null,
+"value": 2.06
+},
+"ratio_low": {
+"high": null,
+"label": "Lowest never-worked to broken-later ratio among the first readers' cuts",
+"low": null,
+"value": 1.25
+},
+"second_pair_n": {
+"high": null,
+"label": "Both readers said never-worked or broken-later",
+"low": null,
+"value": 27
+},
+"second_pair_same": {
+"high": null,
+"label": "Of those, same choice",
+"low": null,
+"value": 25
+},
+"sens_broke_all": {
+"high": null,
+"label": "Every traced bug",
+"low": null,
+"value": 51
+},
+"sens_broke_first60": {
+"high": null,
+"label": "First readers, on the fixes that were re-read",
+"low": null,
+"value": 15
+},
+"sens_broke_gpt60": {
+"high": null,
+"label": "Second model, on the same fixes",
+"low": null,
+"value": 17
+},
+"sens_broke_high": {
+"high": null,
+"label": "Reader was confident of the cause",
+"low": null,
+"value": 24
+},
+"sens_broke_hm": {
+"high": null,
+"label": "Reader was confident or fairly confident of the cause",
+"low": null,
+"value": 48
+},
+"sens_broke_recent": {
+"high": null,
+"label": "Cause is a commit since 10 Sep 2026, readable in full",
+"low": null,
+"value": 43
+},
+"sens_never_all": {
+"high": null,
+"label": "Every traced bug",
+"low": null,
+"value": 105
+},
+"sens_never_first60": {
+"high": null,
+"label": "First readers, on the fixes that were re-read",
+"low": null,
+"value": 17
+},
+"sens_never_gpt60": {
+"high": null,
+"label": "Second model, on the same fixes",
+"low": null,
+"value": 16
+},
+"sens_never_high": {
+"high": null,
+"label": "Reader was confident of the cause",
+"low": null,
+"value": 30
+},
+"sens_never_hm": {
+"high": null,
+"label": "Reader was confident or fairly confident of the cause",
+"low": null,
+"value": 92
+},
+"sens_never_recent": {
+"high": null,
+"label": "Cause is a commit since 10 Sep 2026, readable in full",
+"low": null,
+"value": 65
+},
+"traced": {
+"high": null,
+"label": "Bugs traced to the change that introduced them",
+"low": null,
+"value": 156
+}
+},
+"q03": {
+"base_commits": {
+"high": null,
+"label": "All commits on main since 10 Sep 2026",
+"low": null,
+"value": 39210
+},
+"base_median_files": {
+"high": null,
+"label": "Median files changed by any commit",
+"low": null,
+"value": 4
+},
+"cause_median_files": {
+"high": null,
+"label": "Median files changed by a causing change",
+"low": null,
+"value": 28.5
+},
+"cmp_base_feat": {
+"high": null,
+"label": "Titled feat",
+"low": null,
+"value": 3.4
+},
+"cmp_base_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 50.9
+},
+"cmp_base_over100": {
+"high": null,
+"label": "Changed more than 100 files",
+"low": null,
+"value": 1.5
+},
+"cmp_base_over30": {
+"high": null,
+"label": "Changed more than 30 files",
+"low": null,
+"value": 10.7
+},
+"cmp_cause_feat": {
+"high": null,
+"label": "Titled feat",
+"low": null,
+"value": 26
+},
+"cmp_cause_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 55
+},
+"cmp_cause_over100": {
+"high": null,
+"label": "Changed more than 100 files",
+"low": null,
+"value": 25
+},
+"cmp_cause_over30": {
+"high": null,
+"label": "Changed more than 30 files",
+"low": null,
+"value": 48
+},
+"rate_bugs_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 28
+},
+"rate_bugs_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 59
+},
+"rate_bugs_other": {
+"high": null,
+"label": "Any other title (refactor, perf, test, chore, ...)",
+"low": null,
+"value": 21
+},
+"rate_commits_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 1325
+},
+"rate_commits_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 19951
+},
+"rate_commits_other": {
+"high": null,
+"label": "Any other title (refactor, perf, test, chore, ...)",
+"low": null,
+"value": 17934
+},
+"rate_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 28.1
+},
+"rate_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 3.9
+},
+"rate_median_files_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 19
+},
+"rate_median_files_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 4
+},
+"rate_median_files_other": {
+"high": null,
+"label": "Any other title (refactor, perf, test, chore, ...)",
+"low": null,
+"value": 4
+},
+"rate_other": {
+"high": null,
+"label": "Any other title (refactor, perf, test, chore, ...)",
+"low": null,
+"value": 1.6
+},
+"recent_causes": {
+"high": null,
+"label": "Sampled bugs whose causing change is a commit since 10 Sep 2026",
+"low": null,
+"value": 108
+},
+"title_broke_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 6
+},
+"title_broke_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 31
+},
+"title_broke_other": {
+"high": null,
+"label": "Another title",
+"low": null,
+"value": 14
+},
+"title_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 48
+},
+"title_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 84
+},
+"title_never_feat": {
+"high": null,
+"label": "Titled feat (a new feature)",
+"low": null,
+"value": 42
+},
+"title_never_fix": {
+"high": null,
+"label": "Titled fix",
+"low": null,
+"value": 53
+},
+"title_never_other": {
+"high": null,
+"label": "Another title",
+"low": null,
+"value": 10
+},
+"title_other": {
+"high": null,
+"label": "Another title",
+"low": null,
+"value": 24
+}
+},
+"q04": {
+"bugs": {
+"high": null,
+"label": "Sampled bugs with a causing commit since 10 Sep 2026",
+"low": null,
+"value": 108
+},
+"bugs_1to5": {
+"high": null,
+"label": "1 to 5 files",
+"low": null,
+"value": 10
+},
+"bugs_31to100": {
+"high": null,
+"label": "31 to 100 files",
+"low": null,
+"value": 25
+},
+"bugs_6to30": {
+"high": null,
+"label": "6 to 30 files",
+"low": null,
+"value": 46
+},
+"bugs_over100": {
+"high": null,
+"label": "Over 100 files",
+"low": null,
+"value": 27
+},
+"commits_1to5": {
+"high": null,
+"label": "1 to 5 files",
+"low": null,
+"value": 22130
+},
+"commits_31to100": {
+"high": null,
+"label": "31 to 100 files",
+"low": null,
+"value": 3623
+},
+"commits_6to30": {
+"high": null,
+"label": "6 to 30 files",
+"low": null,
+"value": 12883
+},
+"commits_over100": {
+"high": null,
+"label": "Over 100 files",
+"low": null,
+"value": 574
+},
+"per_commit_1to5": {
+"high": null,
+"label": "1 to 5 files",
+"low": null,
+"value": 0.6
+},
+"per_commit_31to100": {
+"high": null,
+"label": "31 to 100 files",
+"low": null,
+"value": 9.19
+},
+"per_commit_6to30": {
+"high": null,
+"label": "6 to 30 files",
+"low": null,
+"value": 4.76
+},
+"per_commit_over100": {
+"high": null,
+"label": "Over 100 files",
+"low": null,
+"value": 62.66
+},
+"per_commit_ratio": {
+"high": null,
+"label": "Bugs per commit, over 100 files against 1 to 5 files",
+"low": null,
+"value": 104
+},
+"per_file_1to5": {
+"high": null,
+"label": "1 to 5 files",
+"low": null,
+"value": 2.34
+},
+"per_file_31to100": {
+"high": null,
+"label": "31 to 100 files",
+"low": null,
+"value": 1.76
+},
+"per_file_6to30": {
+"high": null,
+"label": "6 to 30 files",
+"low": null,
+"value": 3.8
+},
+"per_file_high": {
+"high": null,
+"label": "Highest bugs per 1,000 files changed across size groups",
+"low": null,
+"value": 3.8
+},
+"per_file_low": {
+"high": null,
+"label": "Lowest bugs per 1,000 files changed across size groups",
+"low": null,
+"value": 1.76
+},
+"per_file_over100": {
+"high": null,
+"label": "Over 100 files",
+"low": null,
+"value": 3.1
+}
+},
+"q05": {
+"age_day": {
+"high": null,
+"label": "Under a day",
+"low": null,
+"value": 12
+},
+"age_month": {
+"high": null,
+"label": "7 to 30 days",
+"low": null,
+"value": 17
+},
+"age_more": {
+"high": null,
+"label": "Over 30 days",
+"low": null,
+"value": 17
+},
+"age_week": {
+"high": null,
+"label": "1 to 7 days",
+"low": null,
+"value": 5
+},
+"broke_count": {
+"high": null,
+"label": "Broken-later bugs in the sample",
+"low": null,
+"value": 51
+},
+"broke_scaled": {
+"high": 880,
+"label": "Broken-later bugs fixed in the three weeks, scaled from the sample",
+"low": 520,
+"value": 680
+},
+"first_study_median_days": {
+"high": null,
+"label": "Median days in the first, wording-based study",
+"low": null,
+"value": 1.7
+},
+"median_broke": {
+"high": null,
+"label": "Working things broken later, all",
+"low": null,
+"value": 20.4
+},
+"median_named": {
+"high": null,
+"label": "Broken later, fix says what caused it",
+"low": null,
+"value": 0.5
+},
+"median_never": {
+"high": null,
+"label": "New code that never worked",
+"low": null,
+"value": 45.6
+},
+"median_unnamed": {
+"high": null,
+"label": "Broken later, fix does not say",
+"low": null,
+"value": 24.2
+},
+"named_count": {
+"high": null,
+"label": "Broken-later fixes that say what caused the bug",
+"low": null,
+"value": 18
+}
+},
+"q06": {
+"exact_pct": {
+"high": 6,
+"label": "Share where the bot named the bug",
+"low": 0,
+"value": 2
+},
+"flag_exact": {
+"high": null,
+"label": "Named this bug",
+"low": null,
+"value": 2
+},
+"flag_none": {
+"high": null,
+"label": "Said nothing about this bug",
+"low": null,
+"value": 100
+},
+"flag_related": {
+"high": null,
+"label": "Raised a related concern, not this failure",
+"low": null,
+"value": 11
+},
+"gpt_exact_same": {
+"high": null,
+"label": "Same answer on whether the bot named the bug",
+"low": null,
+"value": 113
+},
+"gpt_flag_exact": {
+"high": null,
+"label": "Named this bug",
+"low": null,
+"value": 2
+},
+"gpt_flag_none": {
+"high": null,
+"label": "Said nothing about this bug",
+"low": null,
+"value": 94
+},
+"gpt_flag_related": {
+"high": null,
+"label": "Raised a related concern, not this failure",
+"low": null,
+"value": 17
+},
+"gpt_n": {
+"high": null,
+"label": "Reviews re-read by a GPT reader",
+"low": null,
+"value": 113
+},
+"gpt_same": {
+"high": null,
+"label": "Same answer from the GPT reader",
+"low": null,
+"value": 103
+},
+"median_minutes": {
+"high": null,
+"label": "Median minutes from the review in force to the merge",
+"low": null,
+"value": 28
+},
+"merged_against": {
+"high": null,
+"label": "Merged while the bot said blocked or needs changes",
+"low": null,
+"value": 69
+},
+"merged_against_unrelated": {
+"high": null,
+"label": "Of those, the open items were about something else",
+"low": null,
+"value": 59
+},
+"open_unanswered": {
+"high": null,
+"label": "Flags touching the bug that were open and unanswered at merge",
+"low": null,
+"value": 7
+},
+"reviewed": {
+"high": null,
+"label": "Causing changes the bot reviewed before merge",
+"low": null,
+"value": 113
+},
+"status_earlier": {
+"high": null,
+"label": "Reviewed only an earlier revision",
+"low": null,
+"value": 33
+},
+"status_head": {
+"high": null,
+"label": "Reviewed the revision that merged",
+"low": null,
+"value": 80
+},
+"status_none": {
+"high": null,
+"label": "A pull request, but no review before merge",
+"low": null,
+"value": 27
+},
+"status_nopr": {
+"high": null,
+"label": "No pull request: committed straight to main",
+"low": null,
+"value": 16
+},
+"traced": {
+"high": null,
+"label": "Bugs traced to the change that introduced them",
+"low": null,
+"value": 156
+},
+"unreviewed_large": {
+"high": null,
+"label": "Unreviewed cases from pull requests of 500 files or more",
+"low": null,
+"value": 4
+},
+"verdict_blocked": {
+"high": null,
+"label": "Blocked",
+"low": null,
+"value": 51
+},
+"verdict_needs-changes": {
+"high": null,
+"label": "Needs changes",
+"low": null,
+"value": 18
+},
+"verdict_needs-maintainer": {
+"high": null,
+"label": "Needs maintainer review",
+"low": null,
+"value": 8
+},
+"verdict_ready": {
+"high": null,
+"label": "Ready",
+"low": null,
+"value": 36
+}
+},
+"q07": {
+"cases": {
+"high": null,
+"label": "Bug-causing changes reviewed blind",
+"low": null,
+"value": 30
+},
+"findings_gpt56": {
+"high": null,
+"label": "gpt-5.6-sol",
+"low": null,
+"value": 32
+},
+"findings_gpt6": {
+"high": null,
+"label": "gpt-6-astra",
+"low": null,
+"value": 13
+},
+"findings_gpt61": {
+"high": null,
+"label": "gpt-6.1-sol (the model the bot's README names)",
+"low": null,
+"value": 15
+},
+"findings_gpt61pf": {
+"high": null,
+"label": "gpt-6.1-sol, three files at a time",
+"low": null,
+"value": 33
+},
+"findings_gpt62": {
+"high": null,
+"label": "gpt-6.2-sol",
+"low": null,
+"value": 98
+},
+"findings_opus": {
+"high": null,
+"label": "Claude Opus 5.5",
+"low": null,
+"value": 50
+},
+"grade_cells": {
+"high": null,
+"label": "Reviewer and case pairs graded twice",
+"low": null,
+"value": 180
+},
+"grade_same": {
+"high": null,
+"label": "Second grader agreed on named or not",
+"low": null,
+"value": 178
+},
+"named_any": {
+"high": null,
+"label": "Bugs named by at least one reviewer",
+"low": null,
+"value": 10
+},
+"named_any_old": {
+"high": null,
+"label": "Of those, live more than 10 days before the fix",
+"low": null,
+"value": 7
+},
+"named_bot": {
+"high": 21,
+"label": "The review bot's actual reviews at the time",
+"low": 2,
+"value": 2
+},
+"named_both_top": {
+"high": null,
+"label": "Named by both",
+"low": null,
+"value": 4
+},
+"named_either_top": {
+"high": 51,
+"label": "Named by gpt-6.2 or Opus 5.5",
+"low": 19,
+"value": 10
+},
+"named_gpt56": {
+"high": 26,
+"label": "gpt-5.6-sol",
+"low": 3,
+"value": 3
+},
+"named_gpt6": {
+"high": 17,
+"label": "gpt-6-astra",
+"low": 1,
+"value": 1
+},
+"named_gpt61": {
+"high": 11,
+"label": "gpt-6.1-sol (the model the bot's README names)",
+"low": 0,
+"value": 0
+},
+"named_gpt61pf": {
+"high": 21,
+"label": "gpt-6.1-sol, three files at a time",
+"low": 2,
+"value": 2
+},
+"named_gpt62": {
+"high": 41,
+"label": "gpt-6.2-sol",
+"low": 12,
+"value": 7
+},
+"named_opus": {
+"high": 41,
+"label": "Claude Opus 5.5",
+"low": 12,
+"value": 7
+},
+"named_second_gpt56": {
+"high": null,
+"label": "gpt-5.6-sol",
+"low": null,
+"value": 2
+},
+"named_second_gpt6": {
+"high": null,
+"label": "gpt-6-astra",
+"low": null,
+"value": 1
+},
+"named_second_gpt61": {
+"high": null,
+"label": "gpt-6.1-sol (the model the bot's README names)",
+"low": null,
+"value": 0
+},
+"named_second_gpt61pf": {
+"high": null,
+"label": "gpt-6.1-sol, three files at a time",
+"low": null,
+"value": 2
+},
+"named_second_gpt62": {
+"high": null,
+"label": "gpt-6.2-sol",
+"low": null,
+"value": 8
+},
+"named_second_opus": {
+"high": null,
+"label": "Claude Opus 5.5",
+"low": null,
+"value": 7
+},
+"p_one_vs_bot": {
+"high": null,
+"label": "One top model, against the bot",
+"low": null,
+"value": 0.125
+},
+"p_perfile": {
+"high": null,
+"label": "Three files at a time, against the whole change",
+"low": null,
+"value": 0.5
+},
+"p_top_vs_gpt61": {
+"high": null,
+"label": "One top model, against gpt-6.1 on the same instruction",
+"low": null,
+"value": 0.016
+},
+"p_two_vs_bot": {
+"high": null,
+"label": "The two top models together, against the bot",
+"low": null,
+"value": 0.021
+}
+},
+"q08": {
+"both_confirmed": {
+"high": null,
+"label": "Confirmed by both checkers",
+"low": null,
+"value": 134
+},
+"confirmed_fixed_gpt": {
+"high": null,
+"label": "gpt-6.2 checker",
+"low": null,
+"value": 5
+},
+"confirmed_fixed_opus": {
+"high": null,
+"label": "Opus 5.5 checker",
+"low": null,
+"value": 3
+},
+"confirmed_original_gpt": {
+"high": null,
+"label": "gpt-6.2 checker",
+"low": null,
+"value": 14
+},
+"confirmed_original_opus": {
+"high": null,
+"label": "Opus 5.5 checker",
+"low": null,
+"value": 14
+},
+"control_both_still": {
+"high": null,
+"label": "Still confirmed by both checkers after the fix",
+"low": null,
+"value": 3
+},
+"control_cases": {
+"high": null,
+"label": "Known-real reports used as the control",
+"low": null,
+"value": 14
+},
+"dismissed_gpt": {
+"high": null,
+"label": "gpt-6.2 checker",
+"low": null,
+"value": 0
+},
+"dismissed_opus": {
+"high": null,
+"label": "Opus 5.5 checker",
+"low": null,
+"value": 0
+},
+"findings": {
+"high": null,
+"label": "Problems reported by gpt-6.2 and Opus 5.5",
+"low": null,
+"value": 148
+},
+"flipped_gpt": {
+"high": null,
+"label": "gpt-6.2 checker",
+"low": null,
+"value": 9
+},
+"flipped_opus": {
+"high": null,
+"label": "Opus 5.5 checker",
+"low": null,
+"value": 11
+},
+"known": {
+"high": null,
+"label": "Reports that are the known bug",
+"low": null,
+"value": 14
+},
+"later_found_known": {
+"high": null,
+"label": "Known-real reports for which the later-fix check found the fix",
+"low": null,
+"value": 8
+},
+"later_no": {
+"high": null,
+"label": "No later fix found",
+"low": null,
+"value": 111
+},
+"later_other": {
+"high": null,
+"label": "Later-fixed reports that are not the known bug",
+"low": null,
+"value": 17
+},
+"later_partly": {
+"high": null,
+"label": "Partly fixed later",
+"low": null,
+"value": 12
+},
+"later_yes": {
+"high": null,
+"label": "Later fixed on main",
+"low": null,
+"value": 25
+},
+"q_minor": {
+"high": null,
+"label": "Both checkers: real, but minor",
+"low": null,
+"value": 40
+},
+"q_proven": {
+"high": null,
+"label": "Proven: the known bug, or fixed later on main",
+"low": null,
+"value": 31
+},
+"q_unconfirmed": {
+"high": null,
+"label": "Refuted or unclear to at least one checker",
+"low": null,
+"value": 13
+},
+"q_visible": {
+"high": null,
+"label": "Both checkers: real, and a user would notice",
+"low": null,
+"value": 64
+},
+"refuted_any": {
+"high": null,
+"label": "Refuted by at least one checker",
+"low": null,
+"value": 7
+}
+},
+"q09": {
+"large_cases": {
+"high": null,
+"label": "Changes of more than 7 files",
+"low": null,
+"value": 18
+},
+"large_named": {
+"high": null,
+"label": "Of those, bug named by a reviewer",
+"low": null,
+"value": 4
+},
+"needs_diff": {
+"high": null,
+"label": "The changed lines alone",
+"low": null,
+"value": 4
+},
+"needs_named_diff": {
+"high": null,
+"label": "The changed lines alone",
+"low": null,
+"value": 2
+},
+"needs_named_outside": {
+"high": null,
+"label": "Knowledge from outside the repository",
+"low": null,
+"value": 0
+},
+"needs_named_repo": {
+"high": null,
+"label": "Other code in the repository",
+"low": null,
+"value": 8
+},
+"needs_outside": {
+"high": null,
+"label": "Knowledge from outside the repository",
+"low": null,
+"value": 9
+},
+"needs_repo": {
+"high": null,
+"label": "Other code in the repository",
+"low": null,
+"value": 17
+},
+"small_cases": {
+"high": null,
+"label": "Changes of 7 files or fewer",
+"low": null,
+"value": 12
+},
+"small_named": {
+"high": null,
+"label": "Of those, bug named by a reviewer",
+"low": null,
+"value": 6
+}
+},
+"q10": {
+"candidates": {
+"high": null,
+"label": "Fix commits whose wording blames an earlier change",
+"low": null,
+"value": 355
+},
+"confirmed": {
+"high": null,
+"label": "Confirmed bugs a user could hit",
+"low": null,
+"value": 29
+},
+"median_days": {
+"high": null,
+"label": "Median days from cause to fix",
+"low": null,
+"value": 1.7
+},
+"no_rule": {
+"high": null,
+"label": "No written rule covered it",
+"low": null,
+"value": 24
+},
+"pairs": {
+"high": null,
+"label": "Cause and fix pairs kept after reading",
+"low": null,
+"value": 41
+},
+"rule_later": {
+"high": null,
+"label": "No rule then; one was added afterwards",
+"low": null,
+"value": 1
+},
+"rule_missed": {
+"high": null,
+"label": "A rule the bot loads covered it, and review missed it",
+"low": null,
+"value": 3
+},
+"rule_unloaded": {
+"high": null,
+"label": "A rule covered it, in a guide the bot does not load",
+"low": null,
+"value": 1
+},
+"rules_checkable": {
+"high": null,
+"label": "Existing rules that could be checked from the changed lines alone",
+"low": null,
+"value": 0
+},
+"rules_existing": {
+"high": null,
+"label": "Cases where a rule existed when the change was written",
+"low": null,
+"value": 4
+}
+},
+"q11": {
+"bugs_direct": {
+"high": null,
+"label": "Straight to main",
+"low": null,
+"value": 5
+},
+"bugs_pr": {
+"high": null,
+"label": "Through a pull request",
+"low": null,
+"value": 103
+},
+"commits_direct": {
+"high": null,
+"label": "Straight to main",
+"low": null,
+"value": 3374
+},
+"commits_pr": {
+"high": null,
+"label": "Through a pull request",
+"low": null,
+"value": 35836
+},
+"direct_ratio": {
+"high": 1.26,
+"label": "Bugs per commit, straight to main against through a pull request",
+"low": 0.21,
+"value": 0.52
+},
+"direct_share_pct": {
+"high": null,
+"label": "Share of commits made straight to main",
+"low": null,
+"value": 8.6
+},
+"median_files_direct": {
+"high": null,
+"label": "Median files changed, straight to main",
+"low": null,
+"value": 2
+},
+"median_files_pr": {
+"high": null,
+"label": "Median files changed, through a pull request",
+"low": null,
+"value": 5
+},
+"per_commit_direct": {
+"high": null,
+"label": "Straight to main",
+"low": null,
+"value": 1.97
+},
+"per_commit_pr": {
+"high": null,
+"label": "Through a pull request",
+"low": null,
+"value": 3.83
+},
+"strat_bugs_direct_larger": {
+"high": null,
+"label": "Changes of 6 files or more: sampled bugs from direct commits",
+"low": null,
+"value": 5
+},
+"strat_bugs_direct_small": {
+"high": null,
+"label": "Changes of 1 to 5 files: sampled bugs from direct commits",
+"low": null,
+"value": 0
+},
+"strat_direct_larger": {
+"high": null,
+"label": "Changes of 6 files or more",
+"low": null,
+"value": 10.36
+},
+"strat_direct_small": {
+"high": null,
+"label": "Changes of 1 to 5 files",
+"low": null,
+"value": 0.0
+},
+"strat_pr_larger": {
+"high": null,
+"label": "Changes of 6 files or more",
+"low": null,
+"value": 7.54
+},
+"strat_pr_small": {
+"high": null,
+"label": "Changes of 1 to 5 files",
+"low": null,
+"value": 0.69
+}
+},
+"q12": {
+"verdict_adjusted_none": {
+"high": 2.6,
+"label": "No bot review before merge",
+"low": 0.54,
+"value": 1.18
+},
+"verdict_adjusted_objected": {
+"high": 4.44,
+"label": "Bot said blocked or needs changes",
+"low": 1.5,
+"value": 2.58
+},
+"verdict_bugs_maintainer": {
+"high": null,
+"label": "Bot said needs maintainer review",
+"low": null,
+"value": 0
+},
+"verdict_bugs_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 11
+},
+"verdict_bugs_objected": {
+"high": null,
+"label": "Bot said blocked or needs changes",
+"low": null,
+"value": 56
+},
+"verdict_bugs_ready": {
+"high": null,
+"label": "Bot said ready",
+"low": null,
+"value": 36
+},
+"verdict_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"verdict_rate_maintainer": {
+"high": null,
+"label": "Bot said needs maintainer review",
+"low": null,
+"value": 0.0
+},
+"verdict_rate_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 2.73
+},
+"verdict_rate_objected": {
+"high": null,
+"label": "Bot said blocked or needs changes",
+"low": null,
+"value": 10.03
+},
+"verdict_rate_ready": {
+"high": null,
+"label": "Bot said ready",
+"low": null,
+"value": 2.09
+},
+"verdict_ratio_none": {
+"high": 2.71,
+"label": "No bot review before merge",
+"low": 0.63,
+"value": 1.3
+},
+"verdict_ratio_objected": {
+"high": 7.8,
+"label": "Bot said blocked or needs changes",
+"low": 2.95,
+"value": 4.8
+},
+"verdict_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"verdict_seen_maintainer": {
+"high": null,
+"label": "Bot said needs maintainer review",
+"low": null,
+"value": 1
+},
+"verdict_seen_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 60
+},
+"verdict_seen_objected": {
+"high": null,
+"label": "Bot said blocked or needs changes",
+"low": null,
+"value": 83
+},
+"verdict_seen_ready": {
+"high": null,
+"label": "Bot said ready",
+"low": null,
+"value": 256
+},
+"verdict_share_maintainer": {
+"high": null,
+"label": "Bot said needs maintainer review",
+"low": null,
+"value": 0.2
+},
+"verdict_share_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 15
+},
+"verdict_share_objected": {
+"high": null,
+"label": "Bot said blocked or needs changes",
+"low": null,
+"value": 20.8
+},
+"verdict_share_ready": {
+"high": null,
+"label": "Bot said ready",
+"low": null,
+"value": 64
+}
+},
+"q13": {
+"coverage_adjusted_earlier": {
+"high": 2.49,
+"label": "Bot reviewed only an earlier revision",
+"low": 0.78,
+"value": 1.39
+},
+"coverage_adjusted_none": {
+"high": 1.6,
+"label": "No bot review before merge",
+"low": 0.35,
+"value": 0.75
+},
+"coverage_bugs_earlier": {
+"high": null,
+"label": "Bot reviewed only an earlier revision",
+"low": null,
+"value": 29
+},
+"coverage_bugs_merged": {
+"high": null,
+"label": "Bot reviewed the revision that merged",
+"low": null,
+"value": 63
+},
+"coverage_bugs_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 11
+},
+"coverage_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"coverage_rate_earlier": {
+"high": null,
+"label": "Bot reviewed only an earlier revision",
+"low": null,
+"value": 7.43
+},
+"coverage_rate_merged": {
+"high": null,
+"label": "Bot reviewed the revision that merged",
+"low": null,
+"value": 3.32
+},
+"coverage_rate_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 2.73
+},
+"coverage_ratio_earlier": {
+"high": 3.78,
+"label": "Bot reviewed only an earlier revision",
+"low": 1.33,
+"value": 2.24
+},
+"coverage_ratio_none": {
+"high": 1.65,
+"label": "No bot review before merge",
+"low": 0.41,
+"value": 0.82
+},
+"coverage_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"coverage_seen_earlier": {
+"high": null,
+"label": "Bot reviewed only an earlier revision",
+"low": null,
+"value": 58
+},
+"coverage_seen_merged": {
+"high": null,
+"label": "Bot reviewed the revision that merged",
+"low": null,
+"value": 282
+},
+"coverage_seen_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 60
+},
+"coverage_share_earlier": {
+"high": null,
+"label": "Bot reviewed only an earlier revision",
+"low": null,
+"value": 14.5
+},
+"coverage_share_merged": {
+"high": null,
+"label": "Bot reviewed the revision that merged",
+"low": null,
+"value": 70.5
+},
+"coverage_share_none": {
+"high": null,
+"label": "No bot review before merge",
+"low": null,
+"value": 15
+},
+"speed_adjusted_fast": {
+"high": 1.32,
+"label": "Merged within 10 minutes of it",
+"low": 0.33,
+"value": 0.66
+},
+"speed_adjusted_hour": {
+"high": 1.14,
+"label": "Merged 10 to 60 minutes after it",
+"low": 0.32,
+"value": 0.61
+},
+"speed_bugs_fast": {
+"high": null,
+"label": "Merged within 10 minutes of it",
+"low": null,
+"value": 20
+},
+"speed_bugs_hour": {
+"high": null,
+"label": "Merged 10 to 60 minutes after it",
+"low": null,
+"value": 43
+},
+"speed_bugs_later": {
+"high": null,
+"label": "Merged an hour or more after the bot's review",
+"low": null,
+"value": 29
+},
+"speed_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 92
+},
+"speed_rate_fast": {
+"high": null,
+"label": "Merged within 10 minutes of it",
+"low": null,
+"value": 2.83
+},
+"speed_rate_hour": {
+"high": null,
+"label": "Merged 10 to 60 minutes after it",
+"low": null,
+"value": 4.12
+},
+"speed_rate_later": {
+"high": null,
+"label": "Merged an hour or more after the bot's review",
+"low": null,
+"value": 5.39
+},
+"speed_ratio_fast": {
+"high": 1.0,
+"label": "Merged within 10 minutes of it",
+"low": 0.28,
+"value": 0.53
+},
+"speed_ratio_hour": {
+"high": 1.32,
+"label": "Merged 10 to 60 minutes after it",
+"low": 0.44,
+"value": 0.77
+},
+"speed_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 340
+},
+"speed_seen_fast": {
+"high": null,
+"label": "Merged within 10 minutes of it",
+"low": null,
+"value": 105
+},
+"speed_seen_hour": {
+"high": null,
+"label": "Merged 10 to 60 minutes after it",
+"low": null,
+"value": 155
+},
+"speed_seen_later": {
+"high": null,
+"label": "Merged an hour or more after the bot's review",
+"low": null,
+"value": 80
+},
+"speed_share_fast": {
+"high": null,
+"label": "Merged within 10 minutes of it",
+"low": null,
+"value": 26.2
+},
+"speed_share_hour": {
+"high": null,
+"label": "Merged 10 to 60 minutes after it",
+"low": null,
+"value": 38.8
+},
+"speed_share_later": {
+"high": null,
+"label": "Merged an hour or more after the bot's review",
+"low": null,
+"value": 20
+}
+},
+"q14": {
+"author_adjusted_automation": {
+"high": 3.82,
+"label": "Opened by an automation account",
+"low": 0.36,
+"value": 1.18
+},
+"author_adjusted_maintainer": {
+"high": 1.75,
+"label": "Opened by a maintainer",
+"low": 0.19,
+"value": 0.58
+},
+"author_bugs_automation": {
+"high": null,
+"label": "Opened by an automation account",
+"low": null,
+"value": 15
+},
+"author_bugs_maintainer": {
+"high": null,
+"label": "Opened by a maintainer",
+"low": null,
+"value": 82
+},
+"author_bugs_outside contributor": {
+"high": null,
+"label": "Opened by an outside contributor",
+"low": null,
+"value": 6
+},
+"author_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"author_rate_automation": {
+"high": null,
+"label": "Opened by an automation account",
+"low": null,
+"value": 5.58
+},
+"author_rate_maintainer": {
+"high": null,
+"label": "Opened by a maintainer",
+"low": null,
+"value": 3.77
+},
+"author_rate_outside contributor": {
+"high": null,
+"label": "Opened by an outside contributor",
+"low": null,
+"value": 2.41
+},
+"author_ratio_automation": {
+"high": 6.59,
+"label": "Opened by an automation account",
+"low": 0.81,
+"value": 2.31
+},
+"author_ratio_maintainer": {
+"high": 3.84,
+"label": "Opened by a maintainer",
+"low": 0.64,
+"value": 1.57
+},
+"author_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"author_seen_automation": {
+"high": null,
+"label": "Opened by an automation account",
+"low": null,
+"value": 40
+},
+"author_seen_maintainer": {
+"high": null,
+"label": "Opened by a maintainer",
+"low": null,
+"value": 323
+},
+"author_seen_outside contributor": {
+"high": null,
+"label": "Opened by an outside contributor",
+"low": null,
+"value": 37
+},
+"author_share_automation": {
+"high": null,
+"label": "Opened by an automation account",
+"low": null,
+"value": 10
+},
+"author_share_maintainer": {
+"high": null,
+"label": "Opened by a maintainer",
+"low": null,
+"value": 80.8
+},
+"author_share_outside contributor": {
+"high": null,
+"label": "Opened by an outside contributor",
+"low": null,
+"value": 9.2
+},
+"human_adjusted_no": {
+"high": 6.26,
+"label": "No person's review before merge",
+"low": 0.1,
+"value": 0.78
+},
+"human_bugs_no": {
+"high": null,
+"label": "No person's review before merge",
+"low": null,
+"value": 101
+},
+"human_bugs_yes": {
+"high": null,
+"label": "A person reviewed it before merge",
+"low": null,
+"value": 2
+},
+"human_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"human_rate_no": {
+"high": null,
+"label": "No person's review before merge",
+"low": null,
+"value": 3.83
+},
+"human_rate_yes": {
+"high": null,
+"label": "A person reviewed it before merge",
+"low": null,
+"value": 3.72
+},
+"human_ratio_no": {
+"high": 4.93,
+"label": "No person's review before merge",
+"low": 0.22,
+"value": 1.03
+},
+"human_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"human_seen_no": {
+"high": null,
+"label": "No person's review before merge",
+"low": null,
+"value": 392
+},
+"human_seen_yes": {
+"high": null,
+"label": "A person reviewed it before merge",
+"low": null,
+"value": 8
+},
+"human_share_no": {
+"high": null,
+"label": "No person's review before merge",
+"low": null,
+"value": 98
+},
+"human_share_yes": {
+"high": null,
+"label": "A person reviewed it before merge",
+"low": null,
+"value": 2.0
+},
+"merge_adjusted_self": {
+"high": 1.33,
+"label": "Merged by its own author",
+"low": 0.24,
+"value": 0.56
+},
+"merge_bugs_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 10
+},
+"merge_bugs_self": {
+"high": null,
+"label": "Merged by its own author",
+"low": null,
+"value": 93
+},
+"merge_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"merge_rate_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 3.3
+},
+"merge_rate_self": {
+"high": null,
+"label": "Merged by its own author",
+"low": null,
+"value": 3.89
+},
+"merge_ratio_self": {
+"high": 2.43,
+"label": "Merged by its own author",
+"low": 0.57,
+"value": 1.18
+},
+"merge_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"merge_seen_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 45
+},
+"merge_seen_self": {
+"high": null,
+"label": "Merged by its own author",
+"low": null,
+"value": 355
+},
+"merge_share_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 11.2
+},
+"merge_share_self": {
+"high": null,
+"label": "Merged by its own author",
+"low": null,
+"value": 88.8
+},
+"open_adjusted_hour": {
+"high": 0.39,
+"label": "Open under an hour",
+"low": 0.09,
+"value": 0.19
+},
+"open_adjusted_hours": {
+"high": 0.84,
+"label": "Open 1 to 24 hours",
+"low": 0.23,
+"value": 0.44
+},
+"open_bugs_day": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 30
+},
+"open_bugs_hour": {
+"high": null,
+"label": "Open under an hour",
+"low": null,
+"value": 15
+},
+"open_bugs_hours": {
+"high": null,
+"label": "Open 1 to 24 hours",
+"low": null,
+"value": 58
+},
+"open_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"open_rate_day": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 10.88
+},
+"open_rate_hour": {
+"high": null,
+"label": "Open under an hour",
+"low": null,
+"value": 1.21
+},
+"open_rate_hours": {
+"high": null,
+"label": "Open 1 to 24 hours",
+"low": null,
+"value": 4.96
+},
+"open_ratio_hour": {
+"high": 0.22,
+"label": "Open under an hour",
+"low": 0.05,
+"value": 0.11
+},
+"open_ratio_hours": {
+"high": 0.8,
+"label": "Open 1 to 24 hours",
+"low": 0.26,
+"value": 0.46
+},
+"open_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"open_seen_day": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 41
+},
+"open_seen_hour": {
+"high": null,
+"label": "Open under an hour",
+"low": null,
+"value": 185
+},
+"open_seen_hours": {
+"high": null,
+"label": "Open 1 to 24 hours",
+"low": null,
+"value": 174
+},
+"open_share_day": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 10.2
+},
+"open_share_hour": {
+"high": null,
+"label": "Open under an hour",
+"low": null,
+"value": 46.2
+},
+"open_share_hours": {
+"high": null,
+"label": "Open 1 to 24 hours",
+"low": null,
+"value": 43.5
+}
+},
+"q15": {
+"all_second_review": {
+"high": null,
+"label": "Pull requests another person reviewed before the merge",
+"low": null,
+"value": 344
+},
+"all_second_review_pct": {
+"high": null,
+"label": "Of all pull requests, share another person reviewed before the merge",
+"low": null,
+"value": 1.0
+},
+"all_self_merged_pct": {
+"high": null,
+"label": "Of all pull requests opened by a person, share merged by that person",
+"low": null,
+"value": 87.4
+},
+"authors_automation": {
+"high": null,
+"label": "Opened by an automation account",
+"low": null,
+"value": 10
+},
+"authors_maintainer": {
+"high": null,
+"label": "Opened by a maintainer",
+"low": null,
+"value": 80.8
+},
+"authors_outside_contributor": {
+"high": null,
+"label": "Opened by an outside contributor",
+"low": null,
+"value": 9.2
+},
+"automation_pct": {
+"high": null,
+"label": "Share of all pull requests opened by an automation account",
+"low": null,
+"value": 11
+},
+"bot_objected_pct": {
+"high": null,
+"label": "Merged while the bot said blocked or needs changes",
+"low": null,
+"value": 20.8
+},
+"bot_reviewed_pct": {
+"high": null,
+"label": "Reviewed by the bot before merge",
+"low": null,
+"value": 85
+},
+"commits": {
+"high": null,
+"label": "Commits on main, 10 Sep to 22 Nov 2026",
+"low": null,
+"value": 39210
+},
+"commits_per_day": {
+"high": null,
+"label": "Commits per day",
+"low": null,
+"value": 531
+},
+"fix_title_pct": {
+"high": null,
+"label": "Share of commits titled fix",
+"low": null,
+"value": 50.9
+},
+"human_review_pct": {
+"high": null,
+"label": "Share of the sample with a review by another person before merge",
+"low": null,
+"value": 2.0
+},
+"mean_files": {
+"high": null,
+"label": "Mean files changed per commit",
+"low": null,
+"value": 13.4
+},
+"median_files": {
+"high": null,
+"label": "Median files changed per commit",
+"low": null,
+"value": 4
+},
+"median_minutes_after_bot": {
+"high": null,
+"label": "Median minutes from the bot's review to the merge",
+"low": null,
+"value": 19
+},
+"median_minutes_open": {
+"high": null,
+"label": "Median minutes from opening a pull request to merging it",
+"low": null,
+"value": 70
+},
+"mergers": {
+"high": null,
+"label": "Distinct accounts that merged at least one",
+"low": null,
+"value": 40
+},
+"no_human_review_pct": {
+"high": null,
+"label": "Merged with no review by another person",
+"low": null,
+"value": 98
+},
+"over_100_files_pct": {
+"high": null,
+"label": "Share of commits changing more than 100 files",
+"low": null,
+"value": 1.5
+},
+"pulls": {
+"high": null,
+"label": "Merged pull requests since 10 Sep 2026",
+"low": null,
+"value": 35826
+},
+"sample": {
+"high": null,
+"label": "Pull requests in the random comparison sample",
+"low": null,
+"value": 400
+},
+"self_merged_pct": {
+"high": null,
+"label": "Merged by its own author",
+"low": null,
+"value": 88.8
+},
+"top_author_pct": {
+"high": null,
+"label": "Share of all pull requests opened by the most active account",
+"low": null,
+"value": 52.1
+},
+"top_merger_pct": {
+"high": null,
+"label": "Share of all pull requests merged by the most active account",
+"low": null,
+"value": 54.3
+},
+"under_10_files_pct": {
+"high": null,
+"label": "Share of commits changing fewer than 10 files",
+"low": null,
+"value": 70.8
+},
+"under_hour_pct": {
+"high": null,
+"label": "Merged within an hour of being opened",
+"low": null,
+"value": 46.2
+}
+},
+"q16": {
+"any_adjusted_yes": {
+"high": 4.93,
+"label": "A screenshot or video in the description",
+"low": 1.63,
+"value": 2.84
+},
+"any_bugs_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 65
+},
+"any_bugs_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 38
+},
+"any_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"any_rate_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 2.76
+},
+"any_rate_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 11.3
+},
+"any_ratio_yes": {
+"high": 6.73,
+"label": "A screenshot or video in the description",
+"low": 2.49,
+"value": 4.09
+},
+"any_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"any_seen_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 350
+},
+"any_seen_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 50
+},
+"any_share_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 87.5
+},
+"any_share_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 12.5
+},
+"interface_adjusted_yes": {
+"high": 12.94,
+"label": "A screenshot or video in the description",
+"low": 2.17,
+"value": 5.3
+},
+"interface_bugs_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 11
+},
+"interface_bugs_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 35
+},
+"interface_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 46
+},
+"interface_rate_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 2.68
+},
+"interface_rate_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 12.39
+},
+"interface_ratio_yes": {
+"high": 10.11,
+"label": "A screenshot or video in the description",
+"low": 2.11,
+"value": 4.62
+},
+"interface_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 103
+},
+"interface_seen_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 61
+},
+"interface_seen_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 42
+},
+"interface_share_no": {
+"high": null,
+"label": "No screenshot or video in the description",
+"low": null,
+"value": 15.2
+},
+"interface_share_yes": {
+"high": null,
+"label": "A screenshot or video in the description",
+"low": null,
+"value": 10.5
+},
+"kind_adjusted_ui": {
+"high": 2.49,
+"label": "Touches the interface",
+"low": 0.89,
+"value": 1.49
+},
+"kind_bugs_other": {
+"high": null,
+"label": "Does not touch the interface",
+"low": null,
+"value": 57
+},
+"kind_bugs_ui": {
+"high": null,
+"label": "Touches the interface",
+"low": null,
+"value": 46
+},
+"kind_causing_bugs": {
+"high": null,
+"label": "Sampled bugs from changes with this property known",
+"low": null,
+"value": 103
+},
+"kind_rate_other": {
+"high": null,
+"label": "Does not touch the interface",
+"low": null,
+"value": 2.85
+},
+"kind_rate_ui": {
+"high": null,
+"label": "Touches the interface",
+"low": null,
+"value": 6.64
+},
+"kind_ratio_ui": {
+"high": 3.64,
+"label": "Touches the interface",
+"low": 1.49,
+"value": 2.33
+},
+"kind_sample": {
+"high": null,
+"label": "Ordinary changes in the comparison sample with this property known",
+"low": null,
+"value": 400
+},
+"kind_seen_other": {
+"high": null,
+"label": "Does not touch the interface",
+"low": null,
+"value": 297
+},
+"kind_seen_ui": {
+"high": null,
+"label": "Touches the interface",
+"low": null,
+"value": 103
+},
+"kind_share_other": {
+"high": null,
+"label": "Does not touch the interface",
+"low": null,
+"value": 74.2
+},
+"kind_share_ui": {
+"high": null,
+"label": "Touches the interface",
+"low": null,
+"value": 25.8
+}
+},
+"q17": {
+"bugs": {
+"high": null,
+"label": "Sampled bugs traced to a fetched pull request",
+"low": null,
+"value": 103
+},
+"bugs_any": {
+"high": null,
+"label": "At least one of the three signs",
+"low": null,
+"value": 72
+},
+"bugs_big": {
+"high": null,
+"label": "More than 30 files",
+"low": null,
+"value": 50
+},
+"bugs_long": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 30
+},
+"bugs_none": {
+"high": null,
+"label": "None of the three signs",
+"low": null,
+"value": 31
+},
+"bugs_objected": {
+"high": null,
+"label": "The bot objected",
+"low": null,
+"value": 56
+},
+"bugs_pct_any": {
+"high": null,
+"label": "At least one of the three signs",
+"low": null,
+"value": 70
+},
+"bugs_pct_big": {
+"high": null,
+"label": "More than 30 files",
+"low": null,
+"value": 49
+},
+"bugs_pct_long": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 29
+},
+"bugs_pct_none": {
+"high": null,
+"label": "None of the three signs",
+"low": null,
+"value": 30
+},
+"bugs_pct_objected": {
+"high": null,
+"label": "The bot objected",
+"low": null,
+"value": 54
+},
+"bugs_pct_two": {
+"high": null,
+"label": "At least two of the three signs",
+"low": null,
+"value": 47
+},
+"bugs_two": {
+"high": null,
+"label": "At least two of the three signs",
+"low": null,
+"value": 48
+},
+"changes_pct_any": {
+"high": null,
+"label": "At least one of the three signs",
+"low": null,
+"value": 37
+},
+"changes_pct_big": {
+"high": null,
+"label": "More than 30 files",
+"low": null,
+"value": 12.8
+},
+"changes_pct_long": {
+"high": null,
+"label": "Open a day or more",
+"low": null,
+"value": 10.2
+},
+"changes_pct_none": {
+"high": null,
+"label": "None of the three signs",
+"low": null,
+"value": 63
+},
+"changes_pct_objected": {
+"high": null,
+"label": "The bot objected",
+"low": null,
+"value": 20.8
+},
+"changes_pct_two": {
+"high": null,
+"label": "At least two of the three signs",
+"low": null,
+"value": 6.8
+},
+"sample": {
+"high": null,
+"label": "Ordinary pull requests in the comparison sample",
+"low": null,
+"value": 400
+}
+},
+"q18": {
+"authors": {
+"high": null,
+"label": "Distinct commit authors",
+"low": null,
+"value": 737
+},
+"bugs": {
+"high": null,
+"label": "Sampled bugs whose causing commit is among them",
+"low": null,
+"value": 108
+},
+"commits": {
+"high": null,
+"label": "Commits on main since 10 Sep 2026",
+"low": null,
+"value": 39210
+},
+"gap_adjusted_fast": {
+"high": 1.15,
+"label": "Under 10 minutes after it",
+"low": 0.44,
+"value": 0.71
+},
+"gap_adjusted_tens": {
+"high": 1.53,
+"label": "10 to 60 minutes after it",
+"low": 0.51,
+"value": 0.88
+},
+"gap_bugs_fast": {
+"high": null,
+"label": "Under 10 minutes after it",
+"low": null,
+"value": 55
+},
+"gap_bugs_hour": {
+"high": null,
+"label": "An hour or more after the author's previous change",
+"low": null,
+"value": 26
+},
+"gap_bugs_tens": {
+"high": null,
+"label": "10 to 60 minutes after it",
+"low": null,
+"value": 26
+},
+"gap_commits_fast": {
+"high": null,
+"label": "Under 10 minutes after it",
+"low": null,
+"value": 24829
+},
+"gap_commits_hour": {
+"high": null,
+"label": "An hour or more after the author's previous change",
+"low": null,
+"value": 5876
+},
+"gap_commits_tens": {
+"high": null,
+"label": "10 to 60 minutes after it",
+"low": null,
+"value": 7768
+},
+"gap_rate_fast": {
+"high": null,
+"label": "Under 10 minutes after it",
+"low": null,
+"value": 2.95
+},
+"gap_rate_hour": {
+"high": null,
+"label": "An hour or more after the author's previous change",
+"low": null,
+"value": 5.89
+},
+"gap_rate_tens": {
+"high": null,
+"label": "10 to 60 minutes after it",
+"low": null,
+"value": 4.46
+},
+"gap_ratio_fast": {
+"high": 0.8,
+"label": "Under 10 minutes after it",
+"low": 0.31,
+"value": 0.5
+},
+"gap_ratio_tens": {
+"high": 1.3,
+"label": "10 to 60 minutes after it",
+"low": 0.44,
+"value": 0.76
+},
+"gap_share_fast": {
+"high": null,
+"label": "Under 10 minutes after it",
+"low": null,
+"value": 63.3
+},
+"gap_share_hour": {
+"high": null,
+"label": "An hour or more after the author's previous change",
+"low": null,
+"value": 15
+},
+"gap_share_tens": {
+"high": null,
+"label": "10 to 60 minutes after it",
+"low": null,
+"value": 19.8
+},
+"load_adjusted_21to50": {
+"high": 2.37,
+"label": "21 to 50 that day",
+"low": 0.52,
+"value": 1.11
+},
+"load_adjusted_51to150": {
+"high": 3.01,
+"label": "51 to 150 that day",
+"low": 0.72,
+"value": 1.47
+},
+"load_adjusted_6to20": {
+"high": 3.04,
+"label": "6 to 20 that day",
+"low": 0.74,
+"value": 1.5
+},
+"load_adjusted_over150": {
+"high": 1.39,
+"label": "Over 150 that day",
+"low": 0.37,
+"value": 0.72
+},
+"load_bugs_1to5": {
+"high": null,
+"label": "Author landed 1 to 5 changes that day",
+"low": null,
+"value": 13
+},
+"load_bugs_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 15
+},
+"load_bugs_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 21
+},
+"load_bugs_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 23
+},
+"load_bugs_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 36
+},
+"load_commits_1to5": {
+"high": null,
+"label": "Author landed 1 to 5 changes that day",
+"low": null,
+"value": 4137
+},
+"load_commits_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 3913
+},
+"load_commits_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 6471
+},
+"load_commits_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 4028
+},
+"load_commits_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 20661
+},
+"load_rate_1to5": {
+"high": null,
+"label": "Author landed 1 to 5 changes that day",
+"low": null,
+"value": 4.19
+},
+"load_rate_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 5.11
+},
+"load_rate_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 4.32
+},
+"load_rate_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 7.61
+},
+"load_rate_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 2.32
+},
+"load_ratio_21to50": {
+"high": 2.57,
+"label": "21 to 50 that day",
+"low": 0.58,
+"value": 1.22
+},
+"load_ratio_51to150": {
+"high": 2.06,
+"label": "51 to 150 that day",
+"low": 0.52,
+"value": 1.03
+},
+"load_ratio_6to20": {
+"high": 3.59,
+"label": "6 to 20 that day",
+"low": 0.92,
+"value": 1.82
+},
+"load_ratio_over150": {
+"high": 1.05,
+"label": "Over 150 that day",
+"low": 0.29,
+"value": 0.55
+},
+"load_share_1to5": {
+"high": null,
+"label": "Author landed 1 to 5 changes that day",
+"low": null,
+"value": 10.6
+},
+"load_share_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 10
+},
+"load_share_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 16.5
+},
+"load_share_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 10.3
+},
+"load_share_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 52.7
+},
+"median_author_load": {
+"high": null,
+"label": "For the median commit, changes its author landed that day",
+"low": null,
+"value": 175
+},
+"median_gap": {
+"high": null,
+"label": "Median minutes since the same author's previous change",
+"low": null,
+"value": 4.7
+},
+"over50_pct": {
+"high": null,
+"label": "Share of commits whose author landed over 50 that day, %",
+"low": null,
+"value": 69
+},
+"own_adjusted_heavy": {
+"high": 1.09,
+"label": "A heavy day (over one and a half times their usual)",
+"low": 0.39,
+"value": 0.65
+},
+"own_adjusted_usual": {
+"high": 0.79,
+"label": "A usual day for that author",
+"low": 0.26,
+"value": 0.46
+},
+"own_bugs_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 52
+},
+"own_bugs_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 22
+},
+"own_bugs_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 31
+},
+"own_commits_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 18570
+},
+"own_commits_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 4314
+},
+"own_commits_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 14507
+},
+"own_rate_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 3.73
+},
+"own_rate_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 6.79
+},
+"own_rate_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 2.85
+},
+"own_ratio_heavy": {
+"high": 0.9,
+"label": "A heavy day (over one and a half times their usual)",
+"low": 0.33,
+"value": 0.55
+},
+"own_ratio_usual": {
+"high": 0.72,
+"label": "A usual day for that author",
+"low": 0.24,
+"value": 0.42
+},
+"own_share_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 47.4
+},
+"own_share_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 11
+},
+"own_share_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 37
+},
+"ownrest_adjusted_heavy": {
+"high": 3.18,
+"label": "A heavy day (over one and a half times their usual)",
+"low": 0.6,
+"value": 1.38
+},
+"ownrest_adjusted_usual": {
+"high": 3.04,
+"label": "A usual day for that author",
+"low": 0.52,
+"value": 1.25
+},
+"ownrest_bugs_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 36
+},
+"ownrest_bugs_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 7
+},
+"ownrest_bugs_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 20
+},
+"ownrest_commits_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 9071
+},
+"ownrest_commits_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 1833
+},
+"ownrest_commits_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 5322
+},
+"ownrest_rate_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 5.29
+},
+"ownrest_rate_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 5.09
+},
+"ownrest_rate_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 5.01
+},
+"ownrest_ratio_heavy": {
+"high": 2.34,
+"label": "A heavy day (over one and a half times their usual)",
+"low": 0.46,
+"value": 1.04
+},
+"ownrest_ratio_usual": {
+"high": 2.33,
+"label": "A usual day for that author",
+"low": 0.42,
+"value": 0.98
+},
+"ownrest_share_heavy": {
+"high": null,
+"label": "A heavy day (over one and a half times their usual)",
+"low": null,
+"value": 23.1
+},
+"ownrest_share_light": {
+"high": null,
+"label": "A light day for that author (under three quarters of their usual)",
+"low": null,
+"value": 4.7
+},
+"ownrest_share_usual": {
+"high": null,
+"label": "A usual day for that author",
+"low": null,
+"value": 13.6
+},
+"steady_authors": {
+"high": null,
+"label": "Authors active on ten or more days",
+"low": null,
+"value": 70
+}
+},
+"q19": {
+"busy_adjusted_busy": {
+"high": 1.34,
+"label": "Busy days (592 or more)",
+"low": 0.52,
+"value": 0.83
+},
+"busy_adjusted_middle": {
+"high": 1.17,
+"label": "Middle days (410 to 591)",
+"low": 0.41,
+"value": 0.69
+},
+"busy_bugs_busy": {
+"high": null,
+"label": "Busy days (592 or more)",
+"low": null,
+"value": 50
+},
+"busy_bugs_middle": {
+"high": null,
+"label": "Middle days (410 to 591)",
+"low": null,
+"value": 31
+},
+"busy_bugs_quiet": {
+"high": null,
+"label": "Quiet days for the project (under 410 commits)",
+"low": null,
+"value": 27
+},
+"busy_commits_busy": {
+"high": null,
+"label": "Busy days (592 or more)",
+"low": null,
+"value": 18889
+},
+"busy_commits_middle": {
+"high": null,
+"label": "Middle days (410 to 591)",
+"low": null,
+"value": 12550
+},
+"busy_commits_quiet": {
+"high": null,
+"label": "Quiet days for the project (under 410 commits)",
+"low": null,
+"value": 7771
+},
+"busy_rate_busy": {
+"high": null,
+"label": "Busy days (592 or more)",
+"low": null,
+"value": 3.53
+},
+"busy_rate_middle": {
+"high": null,
+"label": "Middle days (410 to 591)",
+"low": null,
+"value": 3.29
+},
+"busy_rate_quiet": {
+"high": null,
+"label": "Quiet days for the project (under 410 commits)",
+"low": null,
+"value": 4.63
+},
+"busy_ratio_busy": {
+"high": 1.22,
+"label": "Busy days (592 or more)",
+"low": 0.48,
+"value": 0.76
+},
+"busy_ratio_middle": {
+"high": 1.19,
+"label": "Middle days (410 to 591)",
+"low": 0.42,
+"value": 0.71
+},
+"busy_share_busy": {
+"high": null,
+"label": "Busy days (592 or more)",
+"low": null,
+"value": 48.2
+},
+"busy_share_middle": {
+"high": null,
+"label": "Middle days (410 to 591)",
+"low": null,
+"value": 32
+},
+"busy_share_quiet": {
+"high": null,
+"label": "Quiet days for the project (under 410 commits)",
+"low": null,
+"value": 19.8
+},
+"days": {
+"high": null,
+"label": "Days covered",
+"low": null,
+"value": 74
+},
+"max_day": {
+"high": null,
+"label": "Most commits on main in one day",
+"low": null,
+"value": 1057
+},
+"median_day": {
+"high": null,
+"label": "Median commits on main per day",
+"low": null,
+"value": 503
+},
+"week_adjusted_weekend": {
+"high": 1.32,
+"label": "Landed Saturday or Sunday",
+"low": 0.56,
+"value": 0.86
+},
+"week_bugs_weekday": {
+"high": null,
+"label": "Landed Monday to Friday",
+"low": null,
+"value": 79
+},
+"week_bugs_weekend": {
+"high": null,
+"label": "Landed Saturday or Sunday",
+"low": null,
+"value": 29
+},
+"week_commits_weekday": {
+"high": null,
+"label": "Landed Monday to Friday",
+"low": null,
+"value": 27876
+},
+"week_commits_weekend": {
+"high": null,
+"label": "Landed Saturday or Sunday",
+"low": null,
+"value": 11334
+},
+"week_rate_weekday": {
+"high": null,
+"label": "Landed Monday to Friday",
+"low": null,
+"value": 3.77
+},
+"week_rate_weekend": {
+"high": null,
+"label": "Landed Saturday or Sunday",
+"low": null,
+"value": 3.41
+},
+"week_ratio_weekend": {
+"high": 1.38,
+"label": "Landed Saturday or Sunday",
+"low": 0.59,
+"value": 0.9
+},
+"week_share_weekday": {
+"high": null,
+"label": "Landed Monday to Friday",
+"low": null,
+"value": 71.1
+},
+"week_share_weekend": {
+"high": null,
+"label": "Landed Saturday or Sunday",
+"low": null,
+"value": 28.9
+}
+},
+"q20": {
+"load_adjusted_21to50": {
+"high": 1.56,
+"label": "21 to 50 that day",
+"low": 0.29,
+"value": 0.67
+},
+"load_adjusted_51to150": {
+"high": 1.71,
+"label": "51 to 150 that day",
+"low": 0.32,
+"value": 0.74
+},
+"load_adjusted_6to20": {
+"high": 1.98,
+"label": "6 to 20 that day",
+"low": 0.36,
+"value": 0.85
+},
+"load_adjusted_over150": {
+"high": 1.03,
+"label": "Over 150 that day",
+"low": 0.21,
+"value": 0.46
+},
+"load_bugs_1to5": {
+"high": null,
+"label": "The merger merged 1 to 5 pull requests that day",
+"low": null,
+"value": 8
+},
+"load_bugs_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 19
+},
+"load_bugs_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 25
+},
+"load_bugs_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 17
+},
+"load_bugs_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 34
+},
+"load_commits_1to5": {
+"high": null,
+"label": "The merger merged 1 to 5 pull requests that day",
+"low": null,
+"value": 950
+},
+"load_commits_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 5079
+},
+"load_commits_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 8078
+},
+"load_commits_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 3404
+},
+"load_commits_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 18316
+},
+"load_rate_1to5": {
+"high": null,
+"label": "The merger merged 1 to 5 pull requests that day",
+"low": null,
+"value": 11.22
+},
+"load_rate_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 4.98
+},
+"load_rate_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 4.12
+},
+"load_rate_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 6.65
+},
+"load_rate_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 2.47
+},
+"load_ratio_21to50": {
+"high": 1.02,
+"label": "21 to 50 that day",
+"low": 0.19,
+"value": 0.44
+},
+"load_ratio_51to150": {
+"high": 0.82,
+"label": "51 to 150 that day",
+"low": 0.17,
+"value": 0.37
+},
+"load_ratio_6to20": {
+"high": 1.38,
+"label": "6 to 20 that day",
+"low": 0.26,
+"value": 0.59
+},
+"load_ratio_over150": {
+"high": 0.48,
+"label": "Over 150 that day",
+"low": 0.1,
+"value": 0.22
+},
+"load_share_1to5": {
+"high": null,
+"label": "The merger merged 1 to 5 pull requests that day",
+"low": null,
+"value": 2.4
+},
+"load_share_21to50": {
+"high": null,
+"label": "21 to 50 that day",
+"low": null,
+"value": 13
+},
+"load_share_51to150": {
+"high": null,
+"label": "51 to 150 that day",
+"low": null,
+"value": 20.6
+},
+"load_share_6to20": {
+"high": null,
+"label": "6 to 20 that day",
+"low": null,
+"value": 8.7
+},
+"load_share_over150": {
+"high": null,
+"label": "Over 150 that day",
+"low": null,
+"value": 46.7
+},
+"mergers": {
+"high": null,
+"label": "Distinct people who merged at least one",
+"low": null,
+"value": 40
+},
+"people_per_day": {
+"high": null,
+"label": "Median number of people merging on a day",
+"low": null,
+"value": 14
+},
+"pulls": {
+"high": null,
+"label": "Merged pull requests with a known merger",
+"low": null,
+"value": 35826
+},
+"top3_pct": {
+"high": null,
+"label": "Share merged by the three most active, %",
+"low": null,
+"value": 73.6
+},
+"top_pct": {
+"high": null,
+"label": "Share merged by the most active merger, %",
+"low": null,
+"value": 54.3
+}
+},
+"q21": {
+"merge_adjusted_other": {
+"high": 1.32,
+"label": "Merged by someone else",
+"low": 0.24,
+"value": 0.56
+},
+"merge_bugs_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 6
+},
+"merge_bugs_self": {
+"high": null,
+"label": "Merged by the person who opened it",
+"low": null,
+"value": 82
+},
+"merge_commits_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 4007
+},
+"merge_commits_self": {
+"high": null,
+"label": "Merged by the person who opened it",
+"low": null,
+"value": 27892
+},
+"merge_rate_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 1.99
+},
+"merge_rate_self": {
+"high": null,
+"label": "Merged by the person who opened it",
+"low": null,
+"value": 3.92
+},
+"merge_ratio_other": {
+"high": 1.17,
+"label": "Merged by someone else",
+"low": 0.22,
+"value": 0.51
+},
+"merge_share_other": {
+"high": null,
+"label": "Merged by someone else",
+"low": null,
+"value": 10.2
+},
+"merge_share_self": {
+"high": null,
+"label": "Merged by the person who opened it",
+"low": null,
+"value": 71.1
+},
+"pulls": {
+"high": null,
+"label": "Merged pull requests opened by a person",
+"low": null,
+"value": 31898
+},
+"review_adjusted_reviewed": {
+"high": 8.18,
+"label": "Another person reviewed it before the merge",
+"low": 0.45,
+"value": 1.91
+},
+"review_bugs_none": {
+"high": null,
+"label": "No other person reviewed it before the merge",
+"low": null,
+"value": 86
+},
+"review_bugs_reviewed": {
+"high": null,
+"label": "Another person reviewed it before the merge",
+"low": null,
+"value": 2
+},
+"review_commits_none": {
+"high": null,
+"label": "No other person reviewed it before the merge",
+"low": null,
+"value": 31677
+},
+"review_commits_reviewed": {
+"high": null,
+"label": "Another person reviewed it before the merge",
+"low": null,
+"value": 222
+},
+"review_rate_none": {
+"high": null,
+"label": "No other person reviewed it before the merge",
+"low": null,
+"value": 3.62
+},
+"review_rate_reviewed": {
+"high": null,
+"label": "Another person reviewed it before the merge",
+"low": null,
+"value": 12
+},
+"review_ratio_reviewed": {
+"high": 13.57,
+"label": "Another person reviewed it before the merge",
+"low": 0.81,
+"value": 3.32
+},
+"review_share_none": {
+"high": null,
+"label": "No other person reviewed it before the merge",
+"low": null,
+"value": 80.8
+},
+"review_share_reviewed": {
+"high": null,
+"label": "Another person reviewed it before the merge",
+"low": null,
+"value": 0.6
+},
+"second_adjusted_second": {
+"high": 1.58,
+"label": "A second person merged or reviewed it",
+"low": 0.36,
+"value": 0.75
+},
+"second_bugs_none": {
+"high": null,
+"label": "No second person: self-merged and unreviewed",
+"low": null,
+"value": 80
+},
+"second_bugs_second": {
+"high": null,
+"label": "A second person merged or reviewed it",
+"low": null,
+"value": 8
+},
+"second_commits_none": {
+"high": null,
+"label": "No second person: self-merged and unreviewed",
+"low": null,
+"value": 27836
+},
+"second_commits_second": {
+"high": null,
+"label": "A second person merged or reviewed it",
+"low": null,
+"value": 4063
+},
+"second_rate_none": {
+"high": null,
+"label": "No second person: self-merged and unreviewed",
+"low": null,
+"value": 3.83
+},
+"second_rate_second": {
+"high": null,
+"label": "A second person merged or reviewed it",
+"low": null,
+"value": 2.62
+},
+"second_ratio_second": {
+"high": 1.42,
+"label": "A second person merged or reviewed it",
+"low": 0.33,
+"value": 0.69
+},
+"second_share_none": {
+"high": null,
+"label": "No second person: self-merged and unreviewed",
+"low": null,
+"value": 71
+},
+"second_share_second": {
+"high": null,
+"label": "A second person merged or reviewed it",
+"low": null,
+"value": 10.4
+}
+},
+"q22": {
+"authors_core": {
+"high": null,
+"label": "Other authors with over 500 commits",
+"low": null,
+"value": 7
+},
+"authors_occasional": {
+"high": null,
+"label": "Authors with 20 commits or fewer",
+"low": null,
+"value": 676
+},
+"authors_regular": {
+"high": null,
+"label": "Authors with 21 to 500 commits",
+"low": null,
+"value": 53
+},
+"authors_top": {
+"high": null,
+"label": "The single most active author",
+"low": null,
+"value": 1
+},
+"who_adjusted_core": {
+"high": 2.34,
+"label": "Other authors with over 500 commits",
+"low": 0.96,
+"value": 1.49
+},
+"who_adjusted_occasional": {
+"high": 2.6,
+"label": "Authors with 20 commits or fewer",
+"low": 0.23,
+"value": 0.78
+},
+"who_adjusted_regular": {
+"high": 3.33,
+"label": "Authors with 21 to 500 commits",
+"low": 1.1,
+"value": 1.91
+},
+"who_bugs_core": {
+"high": null,
+"label": "Other authors with over 500 commits",
+"low": null,
+"value": 39
+},
+"who_bugs_occasional": {
+"high": null,
+"label": "Authors with 20 commits or fewer",
+"low": null,
+"value": 3
+},
+"who_bugs_regular": {
+"high": null,
+"label": "Authors with 21 to 500 commits",
+"low": null,
+"value": 24
+},
+"who_bugs_top": {
+"high": null,
+"label": "The single most active author",
+"low": null,
+"value": 42
+},
+"who_commits_core": {
+"high": null,
+"label": "Other authors with over 500 commits",
+"low": null,
+"value": 12230
+},
+"who_commits_occasional": {
+"high": null,
+"label": "Authors with 20 commits or fewer",
+"low": null,
+"value": 1849
+},
+"who_commits_regular": {
+"high": null,
+"label": "Authors with 21 to 500 commits",
+"low": null,
+"value": 3966
+},
+"who_commits_top": {
+"high": null,
+"label": "The single most active author",
+"low": null,
+"value": 21165
+},
+"who_rate_core": {
+"high": null,
+"label": "Other authors with over 500 commits",
+"low": null,
+"value": 4.25
+},
+"who_rate_occasional": {
+"high": null,
+"label": "Authors with 20 commits or fewer",
+"low": null,
+"value": 2.16
+},
+"who_rate_regular": {
+"high": null,
+"label": "Authors with 21 to 500 commits",
+"low": null,
+"value": 8.06
+},
+"who_rate_top": {
+"high": null,
+"label": "The single most active author",
+"low": null,
+"value": 2.64
+},
+"who_ratio_core": {
+"high": 2.49,
+"label": "Other authors with over 500 commits",
+"low": 1.04,
+"value": 1.61
+},
+"who_ratio_occasional": {
+"high": 2.64,
+"label": "Authors with 20 commits or fewer",
+"low": 0.25,
+"value": 0.82
+},
+"who_ratio_regular": {
+"high": 5.04,
+"label": "Authors with 21 to 500 commits",
+"low": 1.84,
+"value": 3.05
+},
+"who_share_core": {
+"high": null,
+"label": "Other authors with over 500 commits",
+"low": null,
+"value": 31.2
+},
+"who_share_occasional": {
+"high": null,
+"label": "Authors with 20 commits or fewer",
+"low": null,
+"value": 4.7
+},
+"who_share_regular": {
+"high": null,
+"label": "Authors with 21 to 500 commits",
+"low": null,
+"value": 10.1
+},
+"who_share_top": {
+"high": null,
+"label": "The single most active author",
+"low": null,
+"value": 54
+}
+},
+"q23": {
+"familiar_adjusted_none": {
+"high": 2.07,
+"label": "None of them",
+"low": 0.47,
+"value": 0.99
+},
+"familiar_adjusted_some": {
+"high": 3.98,
+"label": "Some of them",
+"low": 1.33,
+"value": 2.3
+},
+"familiar_bugs_all": {
+"high": null,
+"label": "The author had changed every edited file before",
+"low": null,
+"value": 25
+},
+"familiar_bugs_none": {
+"high": null,
+"label": "None of them",
+"low": null,
+"value": 10
+},
+"familiar_bugs_some": {
+"high": null,
+"label": "Some of them",
+"low": null,
+"value": 51
+},
+"familiar_commits_all": {
+"high": null,
+"label": "The author had changed every edited file before",
+"low": null,
+"value": 11295
+},
+"familiar_commits_none": {
+"high": null,
+"label": "None of them",
+"low": null,
+"value": 4654
+},
+"familiar_commits_some": {
+"high": null,
+"label": "Some of them",
+"low": null,
+"value": 4300
+},
+"familiar_rate_all": {
+"high": null,
+"label": "The author had changed every edited file before",
+"low": null,
+"value": 2.95
+},
+"familiar_rate_none": {
+"high": null,
+"label": "None of them",
+"low": null,
+"value": 2.86
+},
+"familiar_rate_some": {
+"high": null,
+"label": "Some of them",
+"low": null,
+"value": 15.8
+},
+"familiar_ratio_none": {
+"high": 2.02,
+"label": "None of them",
+"low": 0.47,
+"value": 0.97
+},
+"familiar_ratio_some": {
+"high": 8.66,
+"label": "Some of them",
+"low": 3.32,
+"value": 5.36
+},
+"familiar_share_all": {
+"high": null,
+"label": "The author had changed every edited file before",
+"low": null,
+"value": 28.8
+},
+"familiar_share_none": {
+"high": null,
+"label": "None of them",
+"low": null,
+"value": 11.9
+},
+"familiar_share_some": {
+"high": null,
+"label": "Some of them",
+"low": null,
+"value": 11
+},
+"shared_adjusted_high": {
+"high": 5.03,
+"label": "2 or more other people per file",
+"low": 1.44,
+"value": 2.69
+},
+"shared_adjusted_mid": {
+"high": 4.36,
+"label": "1 to 2 other people per file",
+"low": 1.41,
+"value": 2.48
+},
+"shared_bugs_high": {
+"high": null,
+"label": "2 or more other people per file",
+"low": null,
+"value": 32
+},
+"shared_bugs_low": {
+"high": null,
+"label": "Fewer than 1 other person per file in the last 14 days",
+"low": null,
+"value": 17
+},
+"shared_bugs_mid": {
+"high": null,
+"label": "1 to 2 other people per file",
+"low": null,
+"value": 43
+},
+"shared_commits_high": {
+"high": null,
+"label": "2 or more other people per file",
+"low": null,
+"value": 5684
+},
+"shared_commits_low": {
+"high": null,
+"label": "Fewer than 1 other person per file in the last 14 days",
+"low": null,
+"value": 8972
+},
+"shared_commits_mid": {
+"high": null,
+"label": "1 to 2 other people per file",
+"low": null,
+"value": 8021
+},
+"shared_rate_high": {
+"high": null,
+"label": "2 or more other people per file",
+"low": null,
+"value": 7.5
+},
+"shared_rate_low": {
+"high": null,
+"label": "Fewer than 1 other person per file in the last 14 days",
+"low": null,
+"value": 2.52
+},
+"shared_rate_mid": {
+"high": null,
+"label": "1 to 2 other people per file",
+"low": null,
+"value": 7.14
+},
+"shared_ratio_high": {
+"high": 5.36,
+"label": "2 or more other people per file",
+"low": 1.65,
+"value": 2.97
+},
+"shared_ratio_mid": {
+"high": 4.96,
+"label": "1 to 2 other people per file",
+"low": 1.61,
+"value": 2.83
+},
+"shared_share_high": {
+"high": null,
+"label": "2 or more other people per file",
+"low": null,
+"value": 14.5
+},
+"shared_share_low": {
+"high": null,
+"label": "Fewer than 1 other person per file in the last 14 days",
+"low": null,
+"value": 22.9
+},
+"shared_share_mid": {
+"high": null,
+"label": "1 to 2 other people per file",
+"low": null,
+"value": 20.5
+}
+},
+"q24": {
+"bugs_pct_adds": {
+"high": null,
+"label": "Share of the sampled bugs from changes that add a code file, %",
+"low": null,
+"value": 66
+},
+"new_adjusted_adds": {
+"high": 5.39,
+"label": "Adds at least one new code file",
+"low": 1.98,
+"value": 3.27
+},
+"new_bugs_adds": {
+"high": null,
+"label": "Adds at least one new code file",
+"low": null,
+"value": 71
+},
+"new_bugs_edits": {
+"high": null,
+"label": "Only edits existing code files",
+"low": null,
+"value": 37
+},
+"new_commits_adds": {
+"high": null,
+"label": "Adds at least one new code file",
+"low": null,
+"value": 5360
+},
+"new_commits_edits": {
+"high": null,
+"label": "Only edits existing code files",
+"low": null,
+"value": 23252
+},
+"new_rate_adds": {
+"high": null,
+"label": "Adds at least one new code file",
+"low": null,
+"value": 17.64
+},
+"new_rate_edits": {
+"high": null,
+"label": "Only edits existing code files",
+"low": null,
+"value": 2.12
+},
+"new_ratio_adds": {
+"high": 12.4,
+"label": "Adds at least one new code file",
+"low": 5.59,
+"value": 8.32
+},
+"new_share_adds": {
+"high": null,
+"label": "Adds at least one new code file",
+"low": null,
+"value": 13.7
+},
+"new_share_edits": {
+"high": null,
+"label": "Only edits existing code files",
+"low": null,
+"value": 59.3
+}
+},
+"q25": {
+"bugs": {
+"high": null,
+"label": "Sampled bugs whose causing commit is in the list",
+"low": null,
+"value": 108
+},
+"tests_adjusted_without": {
+"high": 1.13,
+"label": "Changes code and no test file",
+"low": 0.07,
+"value": 0.29
+},
+"tests_bugs_with": {
+"high": null,
+"label": "Changes code and tests together",
+"low": null,
+"value": 106
+},
+"tests_bugs_without": {
+"high": null,
+"label": "Changes code and no test file",
+"low": null,
+"value": 2
+},
+"tests_commits_with": {
+"high": null,
+"label": "Changes code and tests together",
+"low": null,
+"value": 24833
+},
+"tests_commits_without": {
+"high": null,
+"label": "Changes code and no test file",
+"low": null,
+"value": 3779
+},
+"tests_rate_with": {
+"high": null,
+"label": "Changes code and tests together",
+"low": null,
+"value": 5.69
+},
+"tests_rate_without": {
+"high": null,
+"label": "Changes code and no test file",
+"low": null,
+"value": 0.7
+},
+"tests_ratio_without": {
+"high": 0.5,
+"label": "Changes code and no test file",
+"low": 0.03,
+"value": 0.12
+},
+"tests_share_with": {
+"high": null,
+"label": "Changes code and tests together",
+"low": null,
+"value": 63.3
+},
+"tests_share_without": {
+"high": null,
+"label": "Changes code and no test file",
+"low": null,
+"value": 9.6
+}
+},
+"q26": {
+"part_adjusted_interface": {
+"high": 1.84,
+"label": "Interface (ui/ or apps/)",
+"low": 0.75,
+"value": 1.18
+},
+"part_adjusted_plugins": {
+"high": 1.3,
+"label": "Plugins (extensions/), no interface",
+"low": 0.4,
+"value": 0.72
+},
+"part_bugs_core": {
+"high": null,
+"label": "Core code (src/, packages/), no interface or plugins",
+"low": null,
+"value": 43
+},
+"part_bugs_interface": {
+"high": null,
+"label": "Interface (ui/ or apps/)",
+"low": null,
+"value": 50
+},
+"part_bugs_plugins": {
+"high": null,
+"label": "Plugins (extensions/), no interface",
+"low": null,
+"value": 15
+},
+"part_bugs_support": {
+"high": null,
+"label": "Only docs, scripts, tests or config",
+"low": null,
+"value": 0
+},
+"part_commits_core": {
+"high": null,
+"label": "Core code (src/, packages/), no interface or plugins",
+"low": null,
+"value": 17856
+},
+"part_commits_interface": {
+"high": null,
+"label": "Interface (ui/ or apps/)",
+"low": null,
+"value": 10179
+},
+"part_commits_plugins": {
+"high": null,
+"label": "Plugins (extensions/), no interface",
+"low": null,
+"value": 6137
+},
+"part_commits_support": {
+"high": null,
+"label": "Only docs, scripts, tests or config",
+"low": null,
+"value": 5038
+},
+"part_rate_core": {
+"high": null,
+"label": "Core code (src/, packages/), no interface or plugins",
+"low": null,
+"value": 3.21
+},
+"part_rate_interface": {
+"high": null,
+"label": "Interface (ui/ or apps/)",
+"low": null,
+"value": 6.54
+},
+"part_rate_plugins": {
+"high": null,
+"label": "Plugins (extensions/), no interface",
+"low": null,
+"value": 3.26
+},
+"part_rate_support": {
+"high": null,
+"label": "Only docs, scripts, tests or config",
+"low": null,
+"value": 0.0
+},
+"part_ratio_interface": {
+"high": 3.07,
+"label": "Interface (ui/ or apps/)",
+"low": 1.36,
+"value": 2.04
+},
+"part_ratio_plugins": {
+"high": 1.83,
+"label": "Plugins (extensions/), no interface",
+"low": 0.56,
+"value": 1.01
+},
+"part_share_core": {
+"high": null,
+"label": "Core code (src/, packages/), no interface or plugins",
+"low": null,
+"value": 45.5
+},
+"part_share_interface": {
+"high": null,
+"label": "Interface (ui/ or apps/)",
+"low": null,
+"value": 26
+},
+"part_share_plugins": {
+"high": null,
+"label": "Plugins (extensions/), no interface",
+"low": null,
+"value": 15.7
+},
+"part_share_support": {
+"high": null,
+"label": "Only docs, scripts, tests or config",
+"low": null,
+"value": 12.8
+}
+}
+}

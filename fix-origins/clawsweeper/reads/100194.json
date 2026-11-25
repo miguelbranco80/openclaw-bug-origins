@@ -1,0 +1,8 @@
+{
+  "rank": 100194,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d item asked for proof that admitted callbacks settle before registry and database retirement. The at-merge \u201cVerification\u201d section reported successful late-admission rejection, and neither section raised the risk that late Discord startup could throw and leave its gateway socket open."
+}

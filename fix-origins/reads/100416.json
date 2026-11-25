@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "461772868da324d70be1d545f5951a628abbdc75",
+  "cause_pr": 103422,
+  "confidence": "high",
+  "cause_quote": "The desktop action key began hashing `.update(JSON.stringify([stableScope, stableCallId, COMPUTER_ACT_COMMAND]))`, so distinct assistant responses in the same run produced the same key when the provider reused a call ID.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Later Code Mode calls or computer actions could fail with idempotency conflicts when the provider reused a tool call ID across assistant responses.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix includes assistant response identity in nested Code Mode call IDs and desktop and mobile action keys while keeping replays of the same call stable.",
+  "reasoning": "I verified that the parent already dispatched desktop actions with a fresh `crypto.randomUUID()` per invocation, so repeated provider IDs could not cause this conflict. PR #103422 replaced those random keys with a run-scoped hash and added node receipts that rejected the same key with different parameters. The fix also covers independent origins in the same failure pattern: PR #132457 added the attempt-scoped transcript key that made reused nested IDs collide, and PR #112255 introduced mobile actions with a run-and-call-scoped key.",
+  "rank": 100416,
+  "sha": "ff1c79a1f101a8fb7d576337b6f74d7cf59a7a10",
+  "rubric": "v1.2"
+}

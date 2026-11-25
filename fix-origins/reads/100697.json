@@ -1,0 +1,17 @@
+{
+  "rank": 100697,
+  "sha": "e56b5dda18c918a45695373253c8b28a7feda0d9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "98101871f29fcb29d65cb8d916089aa2f14ad64b",
+  "cause_pr": 146475,
+  "confidence": "high",
+  "cause_quote": "The new `savedLayout.dashboardPresentationOverride === undefined` guard restricted direct restoration to legacy layouts and sent other saved layouts through `this.showDashboard(...)`, whose split path calls `openSlot(next, \"conversation\")` when Dashboard is the main panel.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Reloading a split dashboard switched the selected side tab from Side chat or Files to Chat.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix restores the saved panel arrangement when it already matches the effective dashboard presentation.",
+  "reasoning": "Before #146475, passive activation only called `showDashboard` for an explicit expanded route or when there was no saved layout, and the parent already had browser coverage for preserving a saved side selection across a dashboard reload. The shared-defaults commit made passive activation reopen the split view for layouts with presentation metadata, and I verified that `openSlot` selects the conversation panel by setting `activePanelId`."
+}

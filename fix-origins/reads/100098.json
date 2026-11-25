@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0d4037eea541d3c0ab93aec7d10611f0606cad0d",
+  "cause_pr": 171717,
+  "confidence": "high",
+  "cause_quote": "The original recovery code used `if (!matches(result, endpoint) || result.entry?.archivedAt)` to throw `SessionSendEndpointChangedError(\"Session delivery endpoint was replaced\")` even when the archived endpoint still matched.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, an archived session with a pending peer update could trigger a misleading replacement warning and a blocked-delivery notice.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix quietly cancels pending peer deliveries when either matching endpoint is archived, retaining the receipt and preserving blocked-delivery notices for actual resets or replacements.",
+  "reasoning": "The first-parent history and introducing diff show that restart recovery treated archive as replacement from its first version and routed the error into a visible transcript notice. The later retry and settlement changes kept that classification while adding more specific warnings and durable cancellation.",
+  "rank": 100098,
+  "sha": "0f6f06339f28164aceece0651c837a0f0fd7d6c0",
+  "rubric": "v1.2"
+}

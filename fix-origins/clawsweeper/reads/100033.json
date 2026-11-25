@@ -1,0 +1,8 @@
+{
+  "rank": 100033,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Existing Doctor runs can now stop after a required migration refusal or descriptor mismatch; operators must resolve the reported failure before later repairs proceed.",
+  "outcome": "answered",
+  "note": "The P1 merge-risk item flagged that refusals could block later Doctor repairs, but it did not identify that a leftover allowlist for a removed account would be treated as a required refusal. The author\u2019s 06:12 comment confirmed that stopping after required refusals was intentional and that optional warnings should remain nonfatal."
+}

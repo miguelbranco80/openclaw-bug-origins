@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "53dcaaedec195fdaf5af06357557c706d3c0caf5",
+  "cause_pr": 128548,
+  "confidence": "high",
+  "cause_quote": "The dispatcher added `if (operatorScopes?.includes(ADMIN_SCOPE) && !syntheticScopes?.includes(ADMIN_SCOPE)) { syntheticScopes?.push(ADMIN_SCOPE); }`, restoring administrator authority even when a native request explicitly supplied a narrower scope array.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could explicitly narrow a native Gateway request and still have it run with administrator permissions.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix distinguishes implicit method minimums from explicit scope ceilings and carries the effective ceiling through nested calls, agent launches, and delayed continuations.",
+  "reasoning": "I checked the parent of #128548: native requests forced a synthetic client, and its constructor kept the supplied scope array, including an empty array. #128548 added the administrator grant after filtering the requested scopes, breaking that existing ceiling. The later session-scope projection and continuation changes retained or reused this behavior.",
+  "rank": 100395,
+  "sha": "4311a4ecdf96add7ae6d20b1b059ae72c875cde3",
+  "rubric": "v1.2"
+}

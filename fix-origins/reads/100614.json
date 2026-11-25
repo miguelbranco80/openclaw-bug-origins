@@ -1,0 +1,17 @@
+{
+  "rank": 100614,
+  "sha": "24e58b3e7271c48ef02e8716e0d30ac72526bb84",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Refreshing an unchanged base took longer because the sandbox received another full source snapshot, and small base advances consumed extra disk space.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Guest base refresh now reuses source objects from host-approved snapshots and falls back to a full transfer when it cannot reuse them.",
+  "reasoning": "The path history and introducing diff show that #174532 shipped base refresh with a full source pack on every completed refresh, even though the pack helper already supported retained snapshots. The PR reports successful refreshes with redundant transfer and storage costs, so this is a performance improvement to the original implementation."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 29,
+  "sha": "175a23f7f5baa5745ac990b5f0d176964af8a6a3",
+  "rubric": "v1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On iPhone Safari, tapping the chat composer while a reply mentioned words like 'name' or 'address' showed an 'AutoFill Contact' bar offering the user's own contact card.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Adds a visually hidden, aria-hidden <label for> to the chat composer textarea so Safari AutoFill stops guessing a contact field type from nearby reply text.",
+  "reasoning": "The composer textarea has been named only by aria-label since before the Solid port (the Lit chat-composer-view.ts at 07384e07238^ has the same unlabeled textarea), which is valid accessible markup; the failure comes from Safari's AutoFill heuristic reading surrounding page text, a platform behavior outside the repo. No in-repo commit removed a label or introduced the misbehavior, so there is no regression or pinnable introducing line; the blame candidates are only context lines of a pure addition."
+}

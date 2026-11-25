@@ -1,0 +1,17 @@
+{
+  "rank": 100078,
+  "sha": "e7f3353926a5ddc77c916665f48510a9a7ac7d20",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "2d7d89fce202d9d02bd1bcf9c7d4f5a546fa2bc7",
+  "cause_pr": 174046,
+  "confidence": "high",
+  "cause_quote": "The reconnect change added `requestOwner<T>(binding, method, params, signal)` for runtime bridge calls, so `requestSignal.throwIfAborted()` rejected the cleanup save after teardown aborted setup.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An embedded MCP App closed before it could save its state.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix gives runtime MCP App requests a frame-owned cancellation signal that stays active through graceful teardown and is aborted before frame removal.",
+  "reasoning": "I checked that the parent already awaited graceful teardown before removing the frame, forwarded runtime tool calls without the setup signal, and had conformance coverage requiring the cleanup save to reach the server. The reconnect diff passed the setup signal to runtime calls and checked it before forwarding, so the existing setup abort blocked the save. The fix PR reports that repairing the test fixture alone let the app initialize but still recorded frame detachment without a cleanup-save request."
+}

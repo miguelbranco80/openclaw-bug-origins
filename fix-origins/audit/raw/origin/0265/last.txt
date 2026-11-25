@@ -1,0 +1,17 @@
+{
+  "rank": 265,
+  "sha": "b2f57063e7319c1df79abcc281895d1bc09c372b",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "59b8a114bf6dede71999976ddc87fd3edf382c85",
+  "cause_pr": 192345,
+  "confidence": "medium",
+  "cause_quote": "It added the membership cap only to the client-based resolveOperatorRolePolicy (\"An OpenClaw ID member's membership role caps its connection, independently of named roles\" returning openclawIdTunnelRolePolicy(principal)), while session creation kept resolving the role from the actor's profileId.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An OpenClaw ID member whose membership role excluded an agent could still create, or reset into existence, a session for that agent when linked to a local profile with broader permissions.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "Passes the captured operator run authority into session creation, reset and catalog import so authorizeGatewaySessionCreation uses the membership role policy instead of the linked profile's named role.",
+  "reasoning": "59b8a114 (#192345) introduced OpenClaw ID membership roles and applied them in resolveOperatorRolePolicy(client) and the run-authority capture, but authorizeGatewaySessionCreation's actor/profileId branch (resolveOperatorRolePolicyForProfile) used by session create/reset never consulted the membership policy, so the cap was missing from creation from the start. Later commits (07c8e14 linking, 4fc7acf member-role definitions) extended the feature without closing this path; confidence is medium because I did not confirm that the member-to-profile link path was reachable exactly as of 59b8a114."
+}

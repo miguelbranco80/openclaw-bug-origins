@@ -1,0 +1,17 @@
+{
+  "rank": 100197,
+  "sha": "c5cddb2da341b05219d8c7b880fe239a255af337",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "88eed4c710ca153e2ea0a78ac372bfe23bb0a1ac",
+  "cause_pr": 153537,
+  "confidence": "high",
+  "cause_quote": "The feature added `if (matchesShortcutCombo(KEYBOARD_SHORTCUT_COMBOS.newSession, event))` below the shell's modal early return and added a second `document.openClawModalLayers?.size` check inside the shortcut action.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Cmd/Ctrl+Shift+O did nothing while keyboard help was open, and reopening an already loaded New Session draft could move focus from the composer to the page.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix lets keyboard help close before opening a New Session draft and restores drawer focus only when the drawer was open.",
+  "reasoning": "The introducing diff added and advertised the New Session chord while the existing keyboard-help modal prevented it from reaching the new handler. The same diff added explicit composer focus, and its parent already scheduled drawer focus restoration even when the drawer was closed, which could override that focus on a warm reopen."
+}

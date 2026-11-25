@@ -1,0 +1,17 @@
+{
+  "rank": 100409,
+  "sha": "d7acde6ae97e3e95c3ce4b07fb86cd6eb92db7fb",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A workspace file appeared in the browser tree but was missing from search results when the query used a different Unicode representation of the same name.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The Gateway now normalizes the query and candidate paths to NFC for workspace file search and returns the original paths.",
+  "reasoning": "The July 1 checkout snapshot already used lowercase substring matching in sessions.files.list, which misses canonically equivalent filenames in different Unicode forms. The September extraction into workspace-files.ts and the later refactors preserved that comparison. Offline history stops at the shallow boundary, so I could not verify whether the first implementation shipped with this defect or an older change introduced it."
+}

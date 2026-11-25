@@ -1,0 +1,17 @@
+{
+  "rank": 100484,
+  "sha": "4959773fa7fb0db1cc1a36172ee278be32d25519",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "10ee252b56d7112e253a5faea2a51dd5f17cc0e5",
+  "cause_pr": 132610,
+  "confidence": "high",
+  "cause_quote": "The diff added `await register(child);` before returning the Codex transport, and registration now required a snapshot that called `execFile(\"ps\", ...)` on macOS.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Codex turns failed on macOS when the sandbox denied execution of `/bin/ps`, and automatic setup could select Ollama after a Codex detection or inspection error.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix uses native process inspection for Codex on macOS under Bun and surfaces Codex detection and inspection failures during automatic setup.",
+  "reasoning": "I checked the causing commit's parent, where the existing Codex stdio transport started the app server directly and process inspection was confined to cleanup. PR #132610 made a successful `ps` snapshot a startup requirement, and the fix's parent still required that snapshot. The automatic setup fallback was a separate defect that shipped with PR #169628, which treated auth-file stat errors as absence and continued to other candidates after Codex activation errors."
+}

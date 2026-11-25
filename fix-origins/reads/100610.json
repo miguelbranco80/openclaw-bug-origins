@@ -1,0 +1,17 @@
+{
+  "rank": 100610,
+  "sha": "96110f898a3aa343112708c88950d02d6bf6462e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "high",
+  "cause_quote": "The commit added `requireLoadedCommand: true` to update restart and failure-recovery reads, selecting `opts?.requireLoaded && !inspection ? \"GetUnit\" : \"LoadUnit\"` without supplying inspection authority, so systemd could no longer reload a collected unit for those reads.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After systemd collected a stopped Gateway unit, an update could reject service ownership and leave the Gateway offline.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix uses retained systemd manager authority to reload unit metadata during update and rollback, and lets standalone Doctor start and verify an owned Gateway after successful repair.",
+  "reasoning": "I based the classification on the updater failure: the parent already had restart preparation and failed-update recovery, and both could inspect a collected unit through the systemd reader's unconditional `LoadUnit` call. The causing diff switched those reads to `GetUnit` and explicitly refused a missing loaded unit when its installed definition still existed. The standalone Doctor change addresses a separate early return that also appears in the parent of the later warning-only commit."
+}

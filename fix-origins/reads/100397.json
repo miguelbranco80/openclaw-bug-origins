@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix loads Usage-only English strings on demand to reduce Control UI startup JavaScript and adds CI coverage for PR wrapper dependencies.",
+  "reasoning": "The PR reports a startup asset-budget failure in CI and unchanged Usage labels and interactions. I checked the squash diff and immediate history: the preceding UI fix had already deferred the newly added plugin-preview strings, and this commit saves more startup bytes by deferring existing Usage copy. The wrapper inventory repair was already on main, and this commit adds test selection and import-closure coverage.",
+  "rank": 100397,
+  "sha": "8dd36a07c761d08229937f32c99a5456facfab4e",
+  "rubric": "v1.2"
+}

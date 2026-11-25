@@ -1,0 +1,17 @@
+{
+  "rank": 100155,
+  "sha": "f2ccf21b43288810a2a5f2dae5cb64c3709e3e9a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4ff90358328ddec5c1907131ad144614a826448f",
+  "cause_pr": 138917,
+  "confidence": "high",
+  "cause_quote": "The ledger switched both history readers to `withExistingOpenClawStateDatabaseArtifactPreservingReadOnly`, which synchronously prepared a snapshot on cold reads and blocked the Gateway event loop.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening update history or a run\u2019s details could pause other Gateway requests when the shared-state database was closed.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes the Gateway\u2019s update history RPCs await artifact-preserving snapshot preparation so other requests can continue during a cold read.",
+  "reasoning": "The history RPCs already existed before #138917, and I checked that their cold reads opened the existing database directly without preparing a snapshot. The #138917 diff routed both RPCs through synchronous snapshot preparation, adding the blocking work that the fix\u2019s authenticated RPC test targets."
+}

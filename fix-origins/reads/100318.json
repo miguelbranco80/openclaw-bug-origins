@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "979a8beefb34ca6c776c41ff05439c471ba104f9",
+  "cause_pr": 158317,
+  "confidence": "high",
+  "cause_quote": "The commit enabled `streamProgress: true` and added `diagnostics.failure(diagnostics.stderr() || result.stderr, termination).message` below the existing `signal.throwIfAborted()` check, so watchdog cancellation skipped the formatter that held the new progress details.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the snapshot watchdog stopped an update, the operator saw a generic timeout with a misleading SQLite size and no saved stderr showing where the snapshot stalled.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix preserves redacted snapshot progress in cancellation errors, durable receipts, and update status, corrects the size label, and skips native directory watchers during Doctor maintenance.",
+  "reasoning": "The parent commit already had the watchdog and early abort check, and its snapshot and inventory workers did not stream progress. The introducing diff added that stream and parsed it into the formatter, but cancellation bypassed the formatter from the first release of snapshot progress diagnostics. The Raspberry Pi stall itself remains unexplained by the available evidence.",
+  "rank": 100318,
+  "sha": "aea75db8e4cf3397749cc51011dea696777de02d",
+  "rubric": "v1.2"
+}

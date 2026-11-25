@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With inbound debouncing enabled, Telegram could process a long paste and its continuation before an earlier short message, and native /stop could leave a buffered fragment pending.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix queues Telegram text fragments through the existing inbound debouncer and makes authorized native /stop cancel pending inbound text.",
+  "reasoning": "The July 1 snapshot already shows a fragment buffer that bypasses the ordinary debouncer and native command handlers registered before the inbound message handler. The later queue refactor preserved that separation, and offline history stopped at the shallow boundary, so I could not verify when either behavior began or whether either had worked earlier.",
+  "rank": 100709,
+  "sha": "62258ae6e27cef829e22aa7aeafffb981088107c",
+  "rubric": "v1.2"
+}

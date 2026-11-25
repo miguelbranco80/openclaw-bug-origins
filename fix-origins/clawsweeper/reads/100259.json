@@ -1,0 +1,8 @@
+{
+  "rank": 100259,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Mantis proof suggestion checks for a visible checkpoint and one final reply after a continuation. It does not test an approval stop where the original answer already reports the blocker, and the Reply lifecycle item describes delivery without raising that risk."
+}

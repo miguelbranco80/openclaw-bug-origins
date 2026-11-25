@@ -1,0 +1,17 @@
+{
+  "rank": 100149,
+  "sha": "fdc62b9bbade33efcbbc7203cb9cace15584ca4f",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "d8c3d94fb1b8e385a625cf16d6cd53d9aba89afb",
+  "user_visible": "yes",
+  "user_saw": "The CLI showed a bare Gateway timeout even though the agent had already been deleted.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Human-facing Gateway timeouts after dispatch now explain that the outcome is unknown and advise checking state before retrying.",
+  "reasoning": "The generic Gateway timeout formatter predates the July 1 history boundary and described the client deadline without addressing the write outcome. PR #126743 narrowed offline fallback to pre-connect failures and missing credentials, so the agent deletion command began surfacing the existing timeout directly when a dispatched write went unconfirmed. The fix report reproduced that path by withholding the successful reply and confirming that the agent was gone."
+}

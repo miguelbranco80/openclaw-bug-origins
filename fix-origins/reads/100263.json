@@ -1,0 +1,17 @@
+{
+  "rank": 100263,
+  "sha": "c953758254f67bba142378d41b20000bf47a048d",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d46c7ee046a998be83e1d14b5f6a762b3db1fa2a",
+  "cause_pr": 138986,
+  "confidence": "medium",
+  "cause_quote": "The new startup path passed `signal: options.signal` into snapshot preparation, which allocated an owned staging root and made removal failure throw via `else if (ownedRoot) { throw new Error(...) }`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On native Windows with stock Bun, the Gateway stopped at schema preflight with an EBUSY cleanup error, and `gateway status --deep` failed with a snapshot lease cleanup error.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix defers EBUSY snapshot cleanup after successful reads on runtimes without reliable native SQLite close and makes deep status preserve the underlying removal error.",
+  "reasoning": "I checked the parent of #138986 and confirmed that Gateway schema preflight already read private snapshots and ignored the cleanup return value, so a busy removal could leave the directory pending without aborting preflight. #138986 made that same startup cleanup fatal by passing a signal, while #156265 later made a false cleanup result fatal as well. The history establishes the change in error handling, but I could not verify a successful Windows Bun startup on the earlier revision."
+}

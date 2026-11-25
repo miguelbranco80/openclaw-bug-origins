@@ -1,0 +1,17 @@
+{
+  "rank": 100456,
+  "sha": "8af8744f74df1696b763b37381386f18f733a877",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "3f761a822ad90fa6d609f4ee1950bd66cf45f2ab",
+  "cause_pr": 163195,
+  "confidence": "high",
+  "cause_quote": "The diff replaced the wait-and-recheck loop with `entry = await commitSubagentLifecycleMutation(context, {`, letting `throw new Error(\"Subagent browser cleanup lost its original owner\");` escape when a newer completion took ownership ahead of the queued claim.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A finished subagent could report a cleanup failure when its completion overlapped with another callback or a newer run.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix lets superseded callbacks exit cleanly when their browser cleanup claim is rejected before commit, while preserving genuine persistence and authority errors.",
+  "reasoning": "I checked the causing diff and its parent: the earlier cleanup path waited for pending writes and rechecked ownership before claiming cleanup, so the queued overlap skipped the stale claim. PR #163195 moved that check inside FIFO mutation planning, where a newer terminal publication could make the stale claim throw and reject completion. The older persistence path already had a separate pre-commit ownership check that could also throw, so this attribution is specific to the FIFO regression."
+}

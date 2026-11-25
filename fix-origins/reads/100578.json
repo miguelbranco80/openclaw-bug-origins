@@ -1,0 +1,17 @@
+{
+  "rank": 100578,
+  "sha": "dbeaf101e9938d35ad5b42fd9636300da052c575",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "04ce8678363227c819ddca56373bacc3baeb093c",
+  "cause_pr": 149286,
+  "confidence": "high",
+  "cause_quote": "The new Cancel path used `if (!current() || !(await loadConfig(state)) || !current()) {`, calling the reader outside the shared load registry and allowing polling to supersede it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When applied-config polling overlapped a failed Cancel reload, the plugin credential editor kept the draft and showed the previous save error instead of the reload error.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix registers credential Cancel reads with the shared config loader and lets explicit reads replace transient errors while preserving unresolved draft conflicts.",
+  "reasoning": "The introducing diff added the credential editor, wired Cancel to the new field-discard handler, and called `loadConfig` directly from that handler. I checked that applied-config polling already used the shared load registry before the feature landed and that the reader ignores errors from superseded requests, so the race shipped with the credential Cancel feature."
+}

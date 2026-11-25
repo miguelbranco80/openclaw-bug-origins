@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix made unused internal exports private and deleted an unreferenced sandbox test helper.",
+  "reasoning": "The commit message says the exports were retired after their consumers were removed. The bundle and the diffs for the dependency-evidence script and snapshot fixture confirm that the changes are limited to export visibility and deletion of an unused test helper.",
+  "rank": 100735,
+  "sha": "45d8782918d5b458b0dead5820e6efde87687bf0",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100445,
+  "sha": "29ea5b9a5c09c012a7bfaee99783df9eaa10763f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Plain-text Telegram replies silently dropped placeholders and generic type arguments, leaving commands like `/model <provider/model> -s` with missing arguments.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The shared plain-text sanitizer now preserves bare angle-bracket names when they are neither standard HTML elements nor paired with a closing tag.",
+  "reasoning": "The sanitizer already deleted these placeholders at the July 1 shallow boundary through `current.replace(HTML_TAG_RE, \"\")`, and the comparison fix in #152671 retained that behavior. The older path history stopped at a missing object, so I could not verify when the stripping was introduced or whether plain-text delivery had previously preserved those placeholders."
+}

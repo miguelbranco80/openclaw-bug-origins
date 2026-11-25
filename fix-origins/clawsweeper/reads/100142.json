@@ -1,0 +1,8 @@
+{
+  "rank": 100142,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cEmit the followup start notice when execution starts\u201d finding concerns an idle session whose followup had already started. The at-merge \u201cLive Telegram authorization\u201d section records Telegram behavior, leaving Feishu and Lark\u2019s missing command metadata and busy-turn admission path unaddressed."
+}

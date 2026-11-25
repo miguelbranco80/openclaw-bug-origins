@@ -1,17 +1,17 @@
 {
   "rank": 101,
   "sha": "4199080dadf6ef55eeb2089ee6dc6e569ae8d396",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "29884f8d6f2c5f7b7f7764dc2effe30a754af255",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "high",
-  "cause_quote": "The new note wrapper split content with `const words = content.split(/\\s+/).filter(Boolean);` and rejoined words with `const candidate = `${current} ${word}`;`, collapsing any run of spaces to one.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "In `openclaw configure`, a workspace path containing two consecutive spaces was shown with only one space in the summary note.",
+  "user_saw": "The `openclaw configure` summary displayed a workspace path with two consecutive spaces as if it contained only one.",
   "impact": "presentation",
   "area": "cli",
-  "summary": "The shared terminal note wrapper now keeps runs of ordinary spaces between words that fit on one line instead of rejoining words with a single space.",
-  "reasoning": "The split-on-whitespace/rejoin-with-one-space logic was present verbatim in the commit that created the note wrapper (29884f8d, 'fix: wrap clack notes for cleaner boxes', read via gh api), and every later commit touching the file (perf, refactor, deslop) carried it forward unchanged. The wrapper never preserved repeated spaces, so the defect shipped with it; one could frame it as a regression of pre-wrapper clack note display, but the faulty code is the wrapper's original design."
+  "summary": "The terminal note wrapper now preserves consecutive ordinary spaces between words that fit on the same line.",
+  "reasoning": "The July 1 snapshot already shows the configure wizard sending the workspace summary through a wrapper that splits on whitespace and rejoins words with a single space. The September wrapping optimization retained that behavior, and the available history stops at the shallow boundary, so the introducing diff and any earlier working behavior could not be verified."
 }

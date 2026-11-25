@@ -1,0 +1,8 @@
+{
+  "rank": 100336,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Technical review discusses cross-filesystem retention and stale progress display. The earlier Before merge item asks for test timings, and neither section raises the risk that a locked SQLite progress write could abort runtime preparation."
+}

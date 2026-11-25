@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "9d982698026a2239a1b6d5d02b3616fbe39f720d",
+  "cause_pr": 136533,
+  "confidence": "high",
+  "cause_quote": "The diff removed `!isCodexRuntime &&` from the host byte-latch check and carried forward `transcriptByteCompactionLatch: params.transcriptByteCompactionLatch`, so native accounting that omitted the latch could erase it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After Codex compacted its native context, the next turn in an oversized session could show another compaction-start notice and wait for an unnecessary model request.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "Compaction accounting now preserves the host transcript byte latch when Codex compacts only its native context and explicitly clears or refreshes it when host transcript accounting calls for it.",
+  "reasoning": "The original byte latch explicitly excluded Codex, and #136533 first enabled it for Codex host-transcript preflight. At that commit, native compaction already called the shared accounting path without a latch, and the session patch merged the resulting undefined value over the stored latch. The defect therefore shipped with Codex latch support.",
+  "rank": 100370,
+  "sha": "9cd23e6067c84433439d14166b15c132ddcc1983",
+  "rubric": "v1.2"
+}

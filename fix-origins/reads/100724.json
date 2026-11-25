@@ -1,0 +1,17 @@
+{
+  "rank": 100724,
+  "sha": "2fd1e7545b65c8623419ece9d57472210a8e34ad",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "fd018170c94387e843076b259ee54d8998ba935f",
+  "cause_pr": 168325,
+  "confidence": "high",
+  "cause_quote": "The new rail fell back to `session?.label || plugin?.value.label || tab?.label || t(\"presence.sessions.unavailable\")`, and the new session opener used the same translation key for both missing sessions and failed lookups.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Unloaded session pins and unavailable plugin pins showed \u201cSession counts unavailable,\u201d and opening a session pin showed the same message if the session was missing or the lookup failed.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix gives unloaded pins fallback labels based on their type and shows distinct messages for missing sessions and failed lookups.",
+  "reasoning": "I checked the introducing commit\u2019s diff and confirmed that it added both the personal sidebar rail and its on-demand session opener with the unrelated Online session-count message already in place. The bundle documents the misleading label during ordinary navigation and shows the fix replacing all three uses of that message."
+}

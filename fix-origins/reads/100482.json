@@ -1,0 +1,17 @@
+{
+  "rank": 100482,
+  "sha": "520fc324c1059a97ffcc06f7fd66ddf0d70bf080",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "af05f64f01b0b026a9a96547d2c4abea065e42da",
+  "cause_pr": 108401,
+  "confidence": "high",
+  "cause_quote": "The diff added `addSnapshotPath(trackedPath)` for entries from `ls-files -v -z` and passed those paths to `update-index --add --remove -z --stdin`, which rejects the conflicted directory because the HEAD-seeded index has no entry for that path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Idle cleanup repeatedly warned that the snapshot failed and left the managed worktree in place after a conflicted file was replaced by a directory.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "Snapshot inventory now skips indexed paths that are directories on disk and absent from HEAD, while still capturing their untracked children.",
+  "reasoning": "The parent of #108401 used `git add -A` in a private index seeded from HEAD, so Git discovered and staged the directory\u2019s children without receiving the conflicted path as an explicit index entry. #108401 switched to enumerating paths from the live index, which sent the directory itself to `update-index` and aborted the snapshot. The September worker refactor carried that behavior forward, and the fix PR reports that the failure also reproduced before the bounded untracked-listing change."
+}

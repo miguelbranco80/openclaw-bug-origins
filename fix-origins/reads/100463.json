@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "9b1d9c29ec2d9537a51c903a925054707162ffac",
+  "cause_pr": 138737,
+  "confidence": "high",
+  "cause_quote": "The new `dispose: () => { flush(); ... }` called a `flush()` that ran `refresh();` before `stop();`, so a thrown ledger read skipped spinner cleanup.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The update CLI spinner could keep running after the final run-history read failed.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix guarantees CLI spinner cleanup after a failed history read, shows unavailable version evidence as Not verified, and waits for Gateway confirmation when saving model API keys.",
+  "reasoning": "I classified the CLI spinner defect because the bundled key-save repair has a separate cause. The parent had direct spinner cleanup, and #138737 introduced ledger-backed disposal with a read before the stop call. I checked that #143965 retained the same failure path through `flush(read())`.",
+  "rank": 100463,
+  "sha": "4a54a573d56a2c20ae9e3816150baafc6408ea53",
+  "rubric": "v1.2"
+}

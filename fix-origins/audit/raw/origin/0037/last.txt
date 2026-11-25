@@ -1,0 +1,17 @@
+{
+  "rank": 37,
+  "sha": "5e3fee9d0a56fede07b7066ce00be7aab15ce351",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "3c9ece47b31c70f7d2abf4e4a2ed85f8fa5da57b",
+  "cause_pr": 170183,
+  "confidence": "high",
+  "cause_quote": "The memory search worker switched from `opened.database.close()` after each request to `retainOpenClawAgentDatabaseReadOnly(target)` with `opened.claim.release()` ('the database owner retains the idle reader'), leaving agent-store descriptors open in Doctor's process.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On btrfs, `openclaw doctor --fix` refused to rewrite agent stores with 'store files are open (pids: <Doctor's own PID>)', and rerunning hit the same refusal.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Doctor's NOCOW repair now asks every worker pool to close retained agent-store readers for the stores it is about to rewrite, reporting a close failure as a warning.",
+  "reasoning": "The offline NOCOW repair for agent stores worked after #161501 (ed25898341c), when the memory search worker opened and closed its read-only connection per request. #170183 (3c9ece47b31) changed the worker to retain an idle reader per agent store and only release the borrow, so Doctor's own memory-status checks left descriptors that fuser attributes to Doctor and the main-thread drain cannot close; the fix's native trace names exactly those retained readers."
+}

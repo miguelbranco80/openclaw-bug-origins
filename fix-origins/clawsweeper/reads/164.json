@@ -1,1 +1,8 @@
-{"rank": 164, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The finding is about an unbound macOS refresh racing a Gateway switch and overwriting profileAccentHex; the bug is the fallback to seamColorHex that Talk Mode fills with an already personally resolved color. Different condition."}
+{
+  "rank": 164,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The native branding finding concerns iOS and Android failing to consume the profile accent from talk.config. The fallback finding concerns a Control UI identity change, while the reported bug occurs when macOS Talk Mode writes a personal accent into the shared Gateway fallback."
+}

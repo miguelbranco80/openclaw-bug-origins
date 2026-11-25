@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "ed684fc775159cb4a3294667789c4e9e86e9293e",
+  "cause_pr": 169246,
+  "confidence": "high",
+  "cause_quote": "The Solid port added `<For each={options()}>`, which keyed the buttons by option object identity and replaced the focused button when a refresh supplied fresh objects.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A routine Gateway update moved keyboard focus off the selected Ask OpenClaw answer, so pressing Enter no longer submitted it.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keys answer buttons by their stable answer values so they retain keyboard focus across background updates.",
+  "reasoning": "I checked the parent of the Solid port and confirmed that the Custodian page already created fresh option objects on each render, while Lit reused the existing button nodes by position. The port changed only the option-card import at that call site, and the fix's mounted-page test reproduced focus loss after a Gateway health event.",
+  "rank": 100693,
+  "sha": "5b5515f3bd90ebe9253f2df1561a3d56db93c0d3",
+  "rubric": "v1.2"
+}

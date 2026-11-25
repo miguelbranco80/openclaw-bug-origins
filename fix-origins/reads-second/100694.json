@@ -1,0 +1,17 @@
+{
+  "rank": 100694,
+  "sha": "dc425bdacf552ba75d8681e40d0edac517d71815",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9db31719fec102cd4c6b13f983e9488c9fced455",
+  "cause_pr": 134397,
+  "confidence": "high",
+  "cause_quote": "The diff added `await refuseUpdate(\"target-metadata-preflight\", ...)`, routing the refusal to a reporter that used `mode: params.installKind === \"git\" ? \"git\" : \"unknown\"` even after the package manager had been detected.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When target metadata preflight refused an update, the operator saw `mode: unknown` despite having a detected package manager and lacked a specific recovery command.",
+  "impact": "other",
+  "area": "update",
+  "summary": "The fix validates installation identity before target lookup and preserves the detected update mode, specific metadata failure, and recovery guidance in update reports.",
+  "reasoning": "I checked the introducing diff and its parent: the parent detected the package manager before the metadata check and printed the refusal directly to stderr. The structured metadata refusal reported known package installs as `unknown` from its first version, and the same mapping was still present immediately before the fix. The underlying metadata failure in the original report remains unidentified."
+}

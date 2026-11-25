@@ -1,0 +1,8 @@
+{
+  "rank": 100378,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The new coordinator participates in Gateway lifecycle admission and can block startup or cleanup when ownership is held.",
+  "outcome": "unclear",
+  "note": "The availability label identifies startup contention, but it leaves out the immediate failure on temporary contention during a supervised restart. The label justification appears outside the open items, and the human comment addresses reset and uninstall validation."
+}

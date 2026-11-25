@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the coverage report output pointed to the same file as the completed suite summary, the command overwrote the summary.",
+  "impact": "data-loss-or-duplication",
+  "area": "cli",
+  "summary": "The QA coverage command now rejects an output path that identifies the same file as its suite summary, including through a hardlink or symlink.",
+  "reasoning": "The oldest readable implementation already read the summary and then called `fs.writeFile(outputPath, body, \"utf8\")` without checking whether the paths identified the same file, so the defect predates the later evidence-report feature. The available path history could not reach the introducing diff before the July 1 shallow boundary, leaving it unclear whether the defect shipped with summary reporting or appeared in an earlier regression.",
+  "rank": 100530,
+  "sha": "7cbbb2548c8b900b211356ca9bd53e42008eede0",
+  "rubric": "v1.2"
+}

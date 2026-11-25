@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "1663c8801d2c75407376ccca26057ebc82418731",
+  "cause_pr": 105728,
+  "confidence": "high",
+  "cause_quote": "The new `const referrer = new URL(document.referrer);` throws on WebKit\u2019s empty referrer and aborts initialization before the sandbox can signal readiness.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "MCP Apps showed a blank panel and timed out in Safari and macOS WebKit.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The sandbox now uses the browser-reported parent origin and falls back to the document referrer when the ancestor origin is unavailable.",
+  "reasoning": "I checked the parent revision and confirmed that the Control UI already attached the iframe before navigating it, while the sandbox signaled readiness without a referrer and learned the parent origin from the first message sent by `window.parent`. PR #105728 made a valid referrer mandatory before signaling readiness, and PR #111687 carried that requirement into the shared sandbox.",
+  "rank": 100691,
+  "sha": "9eefa914a8317704ec2040d000669960523c2c2d",
+  "rubric": "v1.2"
+}

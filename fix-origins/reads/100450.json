@@ -1,0 +1,17 @@
+{
+  "rank": 100450,
+  "sha": "37b1bc4a99923205ca79959104d5a3a77864671a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e47d0ce424bcb800dec2112ec57192026724eea0",
+  "cause_pr": 161044,
+  "confidence": "high",
+  "cause_quote": "The initial original-state capture ran `await copyFileHandle(handle, output, { assertBeforeMutation: assertCurrent });` for inventoried non-database files without checking whether their payload would fit on the capture volume.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could fail with ENOSPC while writing recovery data to a nearly full state volume even when TMPDIR had plenty of space.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix honors explicit TMPDIR for update scratch storage and checks available space before writing original-state captures.",
+  "reasoning": "I traced the reproduced original-state capture failure to #161044, which introduced direct-update capture and inventoried plugin files before copying them while checking capacity only for database backups. I checked the introducing diff and the later capture changes, which show that the unchecked file copy shipped with the feature. The same fix also addresses scratch placement in three components."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100131,
+  "sha": "446d17b6432bdf1e8748863fc197977bcda49c2d",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Editing an automation with an empty or whitespace-only command reported success and kept the old command scheduled, even when a simultaneous name change took effect.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "The fix rejects explicitly blank command replacements before contacting the Gateway or applying any edits.",
+  "reasoning": "At the July 1 history boundary, cron edit already normalized blank commands away and only added replacement arguments to the patch when the normalized command was truthy. I checked the later whitespace-preservation change, whose diff and reported baseline confirm that it preserved the blank-command behavior. The older path history was blocked by a missing object, so I could not verify whether the defect shipped with command editing or appeared in an earlier regression."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100381,
+  "sha": "192ff574a21cc36b9654adcd1475273e809e499e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1b3f38e7e4ffeee844ee7a3bbcdaf293c65eb2e1",
+  "cause_pr": 153063,
+  "confidence": "high",
+  "cause_quote": "The commit inserted `const remainingMs = await waitForGatewayDiagnostic({ ...opts, config: cfg }, runtime);` before the health RPC and passed `probeHosts: LOOPBACK_PORT_PROBE_HOSTS` to restart readiness, letting a successful loopback bind block the RPC even while the Gateway was serving.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS, `openclaw health` timed out even though the local Gateway was running and accepting connections on a wildcard listener.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix confirms endpoint availability with a bounded TCP connection after a successful scoped bind and reuses that probe for SSH readiness.",
+  "reasoning": "I checked the parent of #153063 and confirmed that `openclaw health` queried the Gateway directly over loopback, which the serving IPv4 wildcard listener accepted. The new readiness check made that existing RPC depend on a loopback-only bind probe that could report the port free on macOS. The fix reports reproducing that false-free result on native macOS."
+}

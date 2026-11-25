@@ -1,0 +1,8 @@
+{
+  "rank": 100871,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge item covered a merge conflict, and the earlier transcript replay finding covered stream errors during report reads. Neither raised the risk that failed Gateway startup would wait for a usage refresh that could not be canceled."
+}

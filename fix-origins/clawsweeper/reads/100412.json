@@ -1,0 +1,8 @@
+{
+  "rank": 100412,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review describes diagnostic loss on main that the PR was intended to fix. The at-merge review and the earlier Before merge items raise no concern about the active agent database lease refusal falling back to a generic Doctor failure without retry guidance."
+}

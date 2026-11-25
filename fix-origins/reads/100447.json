@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "5da05f85e49740d48dc984a39e8b4b65e8881a28",
+  "cause_pr": 143747,
+  "confidence": "high",
+  "cause_quote": "The new history reader stopped walking the child\u2019s ancestry only at `if (parentId === binding.threadId)`, so it rejected the transcript when the current binding pointed to a replacement parent.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Codex subagent finished and its completion announcement replaced the parent thread, opening its transcript in the task sidebar showed \u201cUnable to load this task\u2019s transcript.\u201d",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix records the original parent thread when a native subagent task is created and uses it to validate transcript ancestry while rechecking current session access and connection identity.",
+  "reasoning": "First-parent history and the introducing diff show that #143747 added both the native transcript reader and the sidebar\u2019s full-history path. The reader used the current parent binding from its first version, and the fix PR reports reproducing the resulting ancestry rejection on merged main after completion delivery replaced the parent thread.",
+  "rank": 100447,
+  "sha": "e53fab421a53038aa3294c06855bc8e9c393f830",
+  "rubric": "v1.2"
+}

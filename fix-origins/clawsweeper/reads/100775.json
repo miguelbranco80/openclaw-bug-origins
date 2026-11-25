@@ -1,0 +1,8 @@
+{
+  "rank": 100775,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "A failure after native mutation but before metadata persistence can leave the service definition and saved pin binding inconsistent; acceptance and real recovery evidence for that contract are not recorded.",
+  "outcome": "dropped",
+  "note": "The earlier P1 merge-risk item flagged the gap between updating the native service and saving its pin. Investigating failures in that gap could have exposed the readback mismatch when systemd supplied a home directory for an omitted WorkingDirectory."
+}

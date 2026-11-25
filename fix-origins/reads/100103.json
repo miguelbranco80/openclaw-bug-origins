@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "bdc9c6070d3ea4e2b0c1a92dc83f49c3ad62fbd2",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new journal wrapper ran `requestCursors.set(recorded.id, nextRequestCursor++);` for every entry, so a journaled image request advanced the chat cursor.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A QA Lab operator could see the chat debug cursor advance after an image request even though no new chat request occurred.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix limits chat debug snapshots and cursors to chat-completion entries while preserving non-chat entries in the shared AIMock journal.",
+  "reasoning": "The cursor-introducing commit's parent already read image entries from the same request collection and had no cursor endpoint. The introducing diff assigned cursors to every journal entry, and the later snapshot refactor retained that assignment. The fix's test covers the resulting sequence by posting a chat request followed by an image request and checking that the chat cursor stays at 1.",
+  "rank": 100103,
+  "sha": "d5dd44f4f27841ab597a8d1631f7eb4039cb3fee",
+  "rubric": "v1.2"
+}

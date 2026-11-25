@@ -1,0 +1,8 @@
+{
+  "rank": 59,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge timeout item concerns blocking opens of FIFOs. The Evidence section discusses Unicode-equivalent filename lookup after a failed exact lookup, but raises no concern about the cost of scoring similar filenames in large directories."
+}

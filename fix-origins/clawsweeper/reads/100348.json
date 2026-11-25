@@ -1,0 +1,8 @@
+{
+  "rank": 100348,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The data-model compatibility item asked for proof that stored data survived an upgrade. The Historical safeguards section mentioned stale-update-owner recovery, but neither it nor the earlier items raised the race where a lock holder releases normally during the reclaim callback."
+}

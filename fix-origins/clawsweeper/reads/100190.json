@@ -1,0 +1,8 @@
+{
+  "rank": 100190,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Product section treated the 32 KiB guard as a complete fix and raised no concern about how long it would take to trigger. The Tests section asked for a trace from the reported Gateway soak without identifying abort latency as a risk."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 93,
   "sha": "486a0bddbb95bb5d00ff1ddf47d6cbc00403400b",
-  "rubric": "v1.1",
-  "origin": "regression",
-  "cause_sha": "455e84f77694553a01ca431e733dd51c55c937c9",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "medium",
-  "cause_quote": "The Telnyx greeting fix added `shouldStartListeningAfterInitialMessage`, whose `if (!ctx.config.streaming.enabled) { return true; }` branch made speakInitialMessage call `ctx.provider.startListening(...)` for Twilio non-streaming calls, sending a bare Gather TwiML update that replaces the Say greeting just sent by playTts.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On Twilio conversation calls without media streams the caller heard silence instead of the greeting, and the call hung up about five seconds after a reply if the caller did not speak right away.",
-  "impact": "failed-every-time",
+  "user_saw": "On Twilio conversation calls without media streams, callers could miss the greeting and get disconnected after about five seconds of silence following a reply.",
+  "impact": "sequence-or-timing",
   "area": "plugins",
-  "summary": "Twilio fallback playback now sends Say followed by a 120-second Gather with a signed silence redirect in one TwiML update, skipping the separate startListening update that cut playback, and renews listening on silence.",
-  "reasoning": "At 455e84f77694's tree Twilio playTts already sent Say followed by Gather, and speakInitialMessage did not call startListening afterward; that commit (aimed at Telnyx) added the conversation-mode startListening for every non-streaming provider including Twilio, which is the greeting loss reported in #158262. The second symptom (5-second Gather default timeout and continueCall's speak-then-startListening) is older code that never handled silence, so the fix mixes a regression with a never-worked part; medium confidence because I did not exhaustively rule out other pre-April startListening callers."
+  "summary": "The fix sends Twilio fallback speech and listening in a single live update and uses signed webhook redirects to renew listening after silence while preserving turn tokens.",
+  "reasoning": "The code before July 5 already sent a second live TwiML update after the greeting and used Gather without a timeout override or silence redirect. PR #100255 added automatic replies to webhook transcripts, which exposed the existing Gather behavior after those replies, while the September persistence refactor retained the separate listening update. Local history stops before the greeting sequence and Gather behavior were introduced, so I could not establish whether either had previously worked."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100066,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cAdd data-model compatibility proof\u201d item concerned database migration and upgrades. The earlier \u201cResolve merge risk\u201d items concerned plugin loading on older hosts, and no review item raised the worker transport limit that rejected reads larger than 64 MiB."
+}

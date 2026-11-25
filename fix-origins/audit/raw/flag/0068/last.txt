@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Evidence section’s prior finding concerned fixed entry limits that could skip eligible copies during a sweep. The review raised no concern that Doctor and triage snapshots could land in per-run namespaces outside the Gateway sweep."
+  "outcome": null,
+  "note": "The review at merge lists no findings; nothing mentions Doctor or triage pointing OPENCLAW_STATE_DIR at a private copy and so hashing to a namespace the sweep never visits. The only prior finding mentioned (fixed-prefix starvation) is a different issue."
 }

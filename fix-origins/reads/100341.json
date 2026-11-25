@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "4261a4ccaad0e9fac3719c09322c98df478ba3b9",
+  "cause_pr": 181506,
+  "confidence": "high",
+  "cause_quote": "The producer changed `policy: \"wait\"` to `policy: \"allow-live\"`, letting an automation result enter the persisted transcript before the running turn finished while leaving it out of the live request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After reopening a chat, the assistant could receive a background result earlier in the conversation than it had appeared during the original run.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix persists background results immediately and records their placement at the next model request boundary so live requests and replay use the same order.",
+  "reasoning": "I checked the introducing diff and its parent, where the producer waited for the active turn to finish. The introducing commit's own tool-execution test shows that the live request omitted the result while the reopened transcript placed it before the tool output, so the mismatch shipped with live commits.",
+  "rank": 100341,
+  "sha": "074b316e9ec8a4f9330f1ca3619bc8a53c1799c4",
+  "rubric": "v1.2"
+}

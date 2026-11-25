@@ -1,1 +1,8 @@
-{"rank": 24, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The only finding concerns exporting the sanitizer from the deprecated security-runtime SDK barrel; nothing addresses Tool Search network pages being truncated to 20,000 characters while keeping a next-page cursor."}
+{
+  "rank": 24,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 finding concerns where the sanitizer is exported. The Evidence section describes bounded sanitization but raises no concern about truncating a Tool Search page while leaving its continuation cursor intact."
+}

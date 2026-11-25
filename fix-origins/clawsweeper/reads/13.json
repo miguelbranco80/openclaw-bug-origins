@@ -1,1 +1,8 @@
-{"rank": 13, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review's findings cover ClawHub identity, catalog reads delaying inspection, and the icon discovery marker; none mention the removed inspectionError check in renderAccess or a permanent loading skeleton after a failed inspection."}
+{
+  "rank": 13,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The closest finding, \u201cKeep optional catalog reads off the inspection response,\u201d concerns slow ClawHub requests delaying a successful local inspection. Neither the merge review nor the supplied earlier items address the Permissions skeleton persisting after inspection fails."
+}

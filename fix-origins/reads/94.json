@@ -1,17 +1,17 @@
 {
   "rank": 94,
   "sha": "35b544cc5cb596d2f0cd6c0213a3784c1290f449",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9e952061f551106f71e9064179b2f6d70f15fcdb",
+  "cause_pr": 159678,
+  "confidence": "medium",
+  "cause_quote": "The new `options.askUserAvailable && !hasNativeQuestionOptIn(baseConfig, options.nativeQuestionConfig) ? { \"tools.experimental_request_user_input.enabled\": false } : undefined` branch disabled native questions while leaving Codex\u2019s Default guidance in place.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible; managed Codex sessions' hidden developer instructions carried Default-mode boilerplate and guidance for a disabled native question tool.",
+  "user_visible": "yes",
+  "user_saw": "An operator inspecting a managed Codex session could see Default-mode guidance mention a native question tool that the session could not call.",
   "impact": "other",
   "area": "agents",
-  "summary": "Suppressed Codex's catalogue-owned Default collaboration block for managed sessions and replaced it with concise, capability-aware guidance on the developer-instruction carrier, withdrawn on resume.",
-  "reasoning": "The linked issue #187061 is filed as a [Feature] and states \"This is a prompt-quality improvement request\", and the PR says it is a prompt-quality change with no measured latency, cost or answer-quality improvement. The conditional native guidance (\"only when it is listed\") never instructed calling a missing tool, so no failure was reported; this is a product/prompt policy change."
+  "summary": "The fix replaces Codex\u2019s built-in Default boilerplate in ordinary managed sessions with guidance that reflects whether the native question tool is callable.",
+  "reasoning": "I checked #159678\u2019s diff and its parent, whose native fixture already expected catalogue-owned Default guidance to reach the model. The new automatic preference for OpenClaw\u2019s Ask User shipped with the tool disabled and the old guidance still in place, and the fix\u2019s native boundary tests confirm that mismatch. The earlier fixture uses synthetic catalogue text, so it cannot establish when upstream first mentioned the native question tool."
 }

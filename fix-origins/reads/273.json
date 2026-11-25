@@ -1,17 +1,17 @@
 {
   "rank": 273,
   "sha": "bfe47f1ccbf8e04408eb11bec502cce34b555c58",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "10d67445fbecbc3c25f9bb5a5020766e3513b64b",
   "cause_pr": 196662,
-  "confidence": "medium",
-  "cause_quote": "#196662 replaced 'Changed checkpoints still pause through capture and publication' with btrfs checkpoints that 'take a filesystem snapshot, then resume', adding `prepareLocalWorkspaceCheckpointCapture`/`removeLocalWorkspaceCheckpointCapture` to every changed command checkpoint in runLocalWorkspaceProjection.",
+  "confidence": "high",
+  "cause_quote": "For eligible btrfs workspaces, the new command-checkpoint path called `await nativeWorktreeFilesystem.copy(projectionPath, root, options)` to create a snapshot and then removed the capture after checkpoint completion.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a btrfs host running sandboxed agents in large workspaces, the Gateway stalled: SQLite waits of 9 to 19.6 seconds and RPC p99 of about 52 seconds while command checkpoints created and deleted filesystem snapshots.",
+  "user_saw": "Operators saw Gateway requests stall after commands changed files in large btrfs sandbox workspaces.",
   "impact": "slower-or-heavier",
   "area": "gateway",
-  "summary": "Changed sandbox command checkpoints now pause the guest and capture directly into an immutable Git result, removing the per-checkpoint btrfs snapshot creation and retirement and the size/duration snapshot selector.",
-  "reasoning": "Before 10d67445fbe, changed checkpoints paused and captured directly, which is the state this fix restores. That commit introduced a btrfs snapshot plus recursive removal for every changed checkpoint, and per the fix PR each snapshot forces a filesystem-wide btrfs transaction commit that stalled Gateway SQLite in production. d7f90ec35cf (#196727, retire captures, select snapshots only for large or slow trees) and 8ff37a6828b (#198128, skip the freeze) tuned the same path but kept snapshots for exactly the large workspaces that stalled. Medium confidence: the stall mechanism depends on btrfs kernel behavior and production timings I could not verify, and the fix is framed as an owner-accepted trade-off (about 290 ms of extra guest pause) rather than a pure bug fix."
+  "summary": "Changed command checkpoints now save an immutable Git result while the guest is paused, with filesystem snapshots reserved for reconciliation.",
+  "reasoning": "I checked the introducing diff against its parent, where command checkpoints already published changes through `state.synchronize(\"canonical\", { captureRejected: true })` without creating a per-command filesystem snapshot. PR #196662 added snapshot creation and removal to that working path, introducing filesystem-wide transaction work and cleanup contention on btrfs. PR #196727 later narrowed snapshot selection but kept it for large workspaces, the case covered by this fix."
 }

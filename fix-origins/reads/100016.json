@@ -1,0 +1,17 @@
+{
+  "rank": 100016,
+  "sha": "4659b6f9b56dbdea56eaf9e490bc2452bc15ad33",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When every automatic web-search provider failed, Gateway logs showed the last fallback provider\u2019s error and hid the first provider\u2019s failure.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix preserves and reports the first web-search failure, including a null or undefined rejection, if all eligible providers fail.",
+  "reasoning": "The July 14 refactor moved the existing `lastError = error` assignment and final throw out of `runWebSearch`, preserving the behavior that overwrote the first failure. The assignment predates the shallow boundary, and the offline path history stopped at a missing object before I could verify when it was introduced."
+}

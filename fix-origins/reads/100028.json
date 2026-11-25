@@ -1,0 +1,17 @@
+{
+  "rank": 100028,
+  "sha": "83c72975d9e49849447fc8deae736813bf441ad8",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "1def359971d0d45129db27c73b5c5a970daf623b",
+  "cause_pr": 152027,
+  "confidence": "high",
+  "cause_quote": "The original gallery ran `await image.decode();` and then `return item;`, so the promise cached by `this.images.set(index, pending);` kept the URL but released its reference to the decoded `Image`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Going back to a recently viewed image in a chat lightbox could make it download again.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps each decoded image alive as long as its gallery item stays cached.",
+  "reasoning": "The gallery\u2019s first implementation cached the item and swapped the displayed image\u2019s URL on navigation, leaving the previous image resource eligible for garbage collection. I checked that the Gateway already served those attachment URLs with `no-cache` and without validators, so a return visit could require a full download from the start. The later rendition change preserved that cache constraint."
+}

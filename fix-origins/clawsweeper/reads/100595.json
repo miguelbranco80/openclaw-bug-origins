@@ -1,0 +1,8 @@
+{
+  "rank": 100595,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The Gateway rehearsal uses synthetic callbacks; the scoped Telegram transport policy still requires Test Server userbot delivery through the changed route and retained legacy path.",
+  "outcome": "open-at-merge",
+  "note": "The P1 delivery item in Before merge called for testing the legacy webhook path, and the adjacent P1 upgrade item called for verifying old-port delivery after an update. Those checks could have exposed the regression, but the review did not identify the missing Gateway listener support or SDK export on 2026.9.6."
+}

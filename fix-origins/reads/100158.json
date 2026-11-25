@@ -1,0 +1,17 @@
+{
+  "rank": 100158,
+  "sha": "ec56c5956825a14ba253a463eb2efd0a19dfad82",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8f622108e0003e722801b420187b6011e0a4536e",
+  "cause_pr": 174599,
+  "confidence": "high",
+  "cause_quote": "The cutover added `db.insertInto(\"device_identities\").values(rows.identities)` as a single unbounded insert and rejected receipts when `previous.ino !== sharedFile.ino` without transferring the binding during Doctor\u2019s verified rewrite.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Doctor failed with \u201ctoo many SQL variables\u201d on large credential stores, and Gateway startup could fail after Doctor successfully rewrote the database on btrfs.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix batches credential inserts and rebinds the credential receipt to the replacement database after Doctor verifies a btrfs NOCOW rewrite.",
+  "reasoning": "The schema-29 cutover diff introduced both the whole-table inserts and the inode check for the new credential receipt. The parent already exchanged SQLite files during NOCOW repair, and the relevant path history shows no intervening change between the cutover and the fix."
+}

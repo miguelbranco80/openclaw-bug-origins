@@ -1,0 +1,17 @@
+{
+  "rank": 100102,
+  "sha": "682ade7ff0c6e03dbf0f709e799787304055cd5a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "3d7b4c47e9c8eab5c10dc98e9d9c6d316dc9c7c2",
+  "cause_pr": 188372,
+  "confidence": "high",
+  "cause_quote": "The new `const hasMore = historyPage.anchor ? Boolean(cursors.olderCursor) : ...` branch populated `hasMore` on anchored pages even when numeric pagination was absent.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway API clients received an unexpected `hasMore` field in centered and retained chat history responses.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix limits `hasMore` to pages that support numeric pagination and preserves source-bound cursors.",
+  "reasoning": "I checked the parent implementation, which left `hasMore` undefined without numeric pagination, and its existing Gateway test, which expected the field to be omitted on a centered read. PR #188372 introduced the cursor-based branch that bypassed that guard, and the two subsequent pagination fixes preserved the branch."
+}

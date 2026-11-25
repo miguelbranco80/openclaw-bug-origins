@@ -1,0 +1,17 @@
+{
+  "rank": 100383,
+  "sha": "fe597325322e121a3ff25e9a90f628a9ce6ac576",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "failed-every-time",
+  "area": "other",
+  "summary": "The fix restores strict lint by moving the maintenance task descriptor builder into the maintenance work module and reusing shared state-worker write options for native hook relay mutations.",
+  "reasoning": "The PR identifies a strict local lint failure caused by the maintenance module exceeding its line limit. The patch moves the descriptor builder with its existing defaults and passes the same database, path, and environment values to relay mutations through shared write options, which makes this a tooling-only fix."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 260,
   "sha": "e3e615b7115d2b1ee0744f1f40e6819cfe8a6005",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4e0aa5627112c776aa5e16ff422d6e2ef37c671b",
+  "cause_pr": 140145,
+  "confidence": "medium",
+  "cause_quote": "The new `staged.result = await runManagedNpmInstall(stageDir);` call moved native dependency verification into the install stage, where Seatbelt could make the existing `X_OK` probe return `EPERM` for a complete binary.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Running openclaw plugins update for the Codex plugin under a macOS Seatbelt profile that denies exec in ~/.openclaw failed with 'Failed to verify platform-specific npm dependencies ... EPERM: operation not permitted, access .../bin/codex'.",
+  "user_saw": "On macOS, plugin installation failed even with a complete native dependency when Seatbelt denied execution in the temporary install directory.",
   "impact": "failed-every-time",
   "area": "plugins",
-  "summary": "Platform-package completeness now checks the vendored binary with fs.stat (regular file plus Unix exec bits) instead of fs.access(X_OK), so a sandbox that denies exec no longer aborts install.",
-  "reasoning": "GraphQL blame puts the fs.access(X_OK) probe (EPERM not tolerated) in b68c13660904 (#128370, 2026-08-25), where it is equivalent to a mode-bit check on an ordinary host and worked for its intended use. It fails only when the user runs OpenClaw under a custom Seatbelt profile denying process-exec, which macOS evaluates for X_OK probes; that external sandbox usage was never promised, so latent with no in-repo trigger."
+  "summary": "The fix verifies native dependencies using file metadata and executable mode bits in place of an execution permission probe.",
+  "reasoning": "I checked that the parent already installed and verified native dependencies in the final managed npm root, which is outside the stage-only denial, and that #140145 moved the same verification into a `.openclaw-install-stage-` directory. The reported `EPERM` explains the failure after that move, and the before-and-after comparison is based on source inspection."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Mac could start recording after the user released right Option or keep recording if left Option was still held.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix tracks physical right Option, cancels pending capture when the hold ends, and ties cleanup to the voice session that acquired the resources.",
+  "reasoning": "The earliest available source already checks the combined Option flag and lets release return while startup is awaiting permissions, allowing startup to resume after the hold ends. Both behaviors predate the July 1 shallow boundary, and the offline path history stopped at a missing commit, so I could not establish whether they shipped with push-to-talk or were introduced later.",
+  "rank": 100140,
+  "sha": "9bf17b16a87818674a80dcbbc53949995c2014c7",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100008,
+  "sha": "02d716ba5b738a91878af0b748067e29d4b161ff",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A direct reply could arrive successfully while OpenClaw reported a turn error because the reply's channel data contained a circular reference or a BigInt.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix records successful terminal direct replies on their delivery receipts and removes the bookkeeping key that serialized the reply payload.",
+  "reasoning": "The oldest available checkout snapshot already generated a content key after the transport callback succeeded, and that key serialized channelData with JSON.stringify. The September delivery refactor retained the same serialization, and the offline history ends at the July 1 shallow boundary, so I could not verify which change introduced the failure or whether the affected replies had ever worked."
+}

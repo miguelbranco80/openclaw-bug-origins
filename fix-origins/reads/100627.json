@@ -1,0 +1,17 @@
+{
+  "rank": 100627,
+  "sha": "41589bb857cf5fa9b6d5155e260ae156864bb894",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "7d18cafe121a373f81c4de2380e29a1aa84037e7",
+  "cause_pr": 167514,
+  "confidence": "high",
+  "cause_quote": "In src/gateway/server-start.ts, `opts.startupOperation ? opts.startupOperation(start) : start()` moved HTTP listener creation into the startup scope that the CLI closes after successful boot.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Workspace icons failed to load after the Gateway started because their requests returned HTTP 500.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix gives Gateway HTTP requests a live, disconnect-aware work scope and joins request cleanup before releasing Gateway resources.",
+  "reasoning": "The parent of #167514 already served workspace icons through prepared session reads, with existing tests asserting HTTP 200, and created the listener outside the startup scope. The new wrapper let listeners inherit an abort signal that the CLI trips after boot, matching the reported AbortError and four HTTP 500 responses. An intervening public-chat fix already moved listener creation back outside that scope, so the reproduction establishes the original regression while this fix adds explicit request lifetime ownership."
+}

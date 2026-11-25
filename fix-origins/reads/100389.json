@@ -1,0 +1,17 @@
+{
+  "rank": 100389,
+  "sha": "d6ec4c7de8919a1711d0a87798776e1fd5264d97",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6b5fb4b23509eef35aead816d03052efe60684e5",
+  "cause_pr": 150702,
+  "confidence": "medium",
+  "cause_quote": "The new `source === \"inter_session\"` branch called `tombstoneMainRestartRecoveryWithNotice` and immediately continued, leaving a recovery tombstone even when no other work was owed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart interrupted a delegated turn whose sender authority could not be restored, new authenticated messages could not continue in the same conversation.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix retires interrupted delegated inputs when no other work is owed, clears stale processing diagnostics when reply ownership ends, and keeps started cron occurrences out of generic restart replay.",
+  "reasoning": "I checked the parent of #150702 and confirmed that eligible interrupted delegated turns could use the existing resume and settlement path. #150702 redirected those turns to a tombstone that blocked fresh input, and the fix replaces that outcome with settlement when no work remains owed. The earlier behavior is supported by code inspection, and the incident logs leave the original admission source unresolved."
+}

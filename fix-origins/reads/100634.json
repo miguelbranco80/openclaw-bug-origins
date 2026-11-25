@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "8cd38b03ceb822718ab2e5e1693340f15df22b14",
+  "cause_pr": 150224,
+  "confidence": "high",
+  "cause_quote": "The new reset hook called `retire()`, which ran `const runtime = await runtimeFor();` without a workspace directory, so ACPX attempted to create `state` under the process working directory.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a read-only installation, ACP harness resets failed with an `EACCES` warning.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix moves default ACPX storage under the Gateway state directory, migrates existing sessions, and limits reset warnings to one per harness per process.",
+  "reasoning": "I checked the introducing commit and its parent: the parent registered the ACPX service, and #150224 added the native harness reset hooks and their runtime initialization path. From the first version, a reset that initialized the runtime without a workspace fell back to `process.cwd()/state`, which failed when the process was running from a read-only package directory.",
+  "rank": 100634,
+  "sha": "ccaeab16862972704b8e66f989ee39ac0103d132",
+  "rubric": "v1.2"
+}

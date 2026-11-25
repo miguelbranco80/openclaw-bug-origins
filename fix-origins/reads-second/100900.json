@@ -1,0 +1,17 @@
+{
+  "rank": 100900,
+  "sha": "8e5abec30544aacefc56c8d2ee0673e9296710e6",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "ca77256127e6ba13c00d68bca42194d1b9e2a780",
+  "cause_pr": 163889,
+  "confidence": "medium",
+  "cause_quote": "The new worker loader ran `await predicates.prepareSessionTurnPredicates();`, which imported Gateway routing modules even for turns without a Goal routing predicate.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator monitoring memory could see native SQLite session workers using extra heap during ordinary session turns.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix moves shared session operations into lightweight modules and loads Gateway routing dependencies only for commands that need them.",
+  "reasoning": "I checked the worker migration against its parent and confirmed that compound turns gained both worker execution and unconditional host imports in the same commit. The fix removes several additional import paths, and the reported heap measurements do not isolate the cost of the original loader."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 121,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge item and the earlier open items asked for CI triage. The Evidence section described how shutdown waits for cleanup, but raised no concern about Ctrl+C waiting on the Gateway status request in channels list."
+}

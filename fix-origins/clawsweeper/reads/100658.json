@@ -1,0 +1,8 @@
+{
+  "rank": 100658,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items ask for proof of protected-path write rejection, custody enforcement, and upgrade compatibility. Those checks would leave the fresh guest PR import path untested, where sandbox setup creates skill directories after the workspace baseline is captured and triggers the unsaved-work error."
+}

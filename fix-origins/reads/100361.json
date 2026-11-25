@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "dc60a9442d5cd1755a81c6a0a0208c9b7a4025f5",
+  "cause_pr": 115831,
+  "confidence": "high",
+  "cause_quote": "The relay launched with `this.mediaTimer = setInterval(() => this.sendNextAudioFrame(), OPUS_FRAME_DURATION_MS);` and advanced RTP time by exactly one frame per send with `this.timestamp = (this.timestamp + OPUS_FRAME_SAMPLES) >>> 0;`, so delayed callbacks left RTP time behind real time.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During longer GPT-Live calls over the Gateway relay, later spoken requests could go unheard.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix anchors outgoing audio to monotonic 20 ms deadlines and advances RTP timestamps past missed slots after a scheduler pause while retaining queued audio.",
+  "reasoning": "The introducing commit created the relay audio peer with both the interval scheduler and the fixed per-packet RTP timestamp increment. I checked the introducing diff and the file history through the fix's parent, which showed no intervening change to either line. The fix's reported timing test reproduced accumulated drift under repeated callback lateness.",
+  "rank": 100361,
+  "sha": "1fcc3bd3caeb6c8a5f1dcfffe8f6625537072f6a",
+  "rubric": "v1.2"
+}

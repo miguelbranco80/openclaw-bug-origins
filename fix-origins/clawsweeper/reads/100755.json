@@ -1,0 +1,8 @@
+{
+  "rank": 100755,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier bare-key task access findings concerned caller authorization, and the at-merge checklist requested general ownership migration proof. Neither addressed the synchronous config load triggered when a restored media task lacked a recorded requester."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100530,
+  "sha": "7cbbb2548c8b900b211356ca9bd53e42008eede0",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the report output pointed to the same file as the completed suite summary, the CLI replaced the summary with the report.",
+  "impact": "data-loss-or-duplication",
+  "area": "cli",
+  "summary": "The coverage CLI now rejects JSON and Markdown output paths that identify the input summary, including hardlink and symlink aliases.",
+  "reasoning": "The oldest available snapshot already reads the summary and then calls `await fs.writeFile(outputPath, body, \"utf8\")` without checking for a collision. The October reporting split carried that behavior forward, and the evidence-gap change added a guard only for evidence inputs. The older path history was unavailable locally, so I could not verify whether the collision shipped with summary support or was introduced later."
+}

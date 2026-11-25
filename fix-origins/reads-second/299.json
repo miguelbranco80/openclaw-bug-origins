@@ -1,17 +1,17 @@
 {
-  "rank": 299,
-  "sha": "82210a2bbdb0fca4c7103871a6e5c39eeda6a64d",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "origin": "never-worked",
+  "cause_sha": "715077a3befb5bb1239a8b0ebb52980e957ad316",
+  "cause_pr": 153989,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `throw new Error(\"operator execution authority is no longer active\")` and `throw new Error(\"operator source authority is no longer active\")` without recovery instructions.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A chat turn rejected for inactive operator authority showed 'operator execution/source authority is no longer active' with no instruction on how to recover.",
+  "user_saw": "A rejected chat turn said its operator authority was no longer active and gave no instructions for recovering.",
   "impact": "presentation",
   "area": "gateway",
-  "summary": "Appends a reconnect-and-resend / ask-an-administrator hint to the inactive operator execution and source authority error messages.",
-  "reasoning": "The production diff only changes error text; all revocation checks are unchanged, and the PR itself states the investigation found no stale-authority defect and that the triggering revocation remains unattributed. That is a copy/guidance change, so not-a-defect; no cause was sought."
+  "summary": "The Gateway\u2019s inactive-authority errors now tell users to reconnect and resend their message, or ask an administrator to restore access if reconnecting is denied.",
+  "reasoning": "I checked the commit that introduced operator run authority and confirmed that both errors lacked recovery guidance from the start. The fix changes the error text, and the PR reports that fresh authenticated requests already succeeded after revocation on the baseline. The revocation that triggered the reported incident remains unattributed.",
+  "rank": 299,
+  "sha": "82210a2bbdb0fca4c7103871a6e5c39eeda6a64d",
+  "rubric": "v1.2"
 }

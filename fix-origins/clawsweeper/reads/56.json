@@ -1,0 +1,8 @@
+{
+  "rank": 56,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The route synchronization item flags the number of effects, and the Customize item flags a test helper that closes an already open sidebar. Neither points to routes without a section retaining the previous sidebar or to the closed More menu appearing active."
+}

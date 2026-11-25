@@ -1,0 +1,8 @@
+{
+  "rank": 100084,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items in both versions asked for live validation of the rendered Slack card. The regression occurred upstream of rendering, when the mock rejected the revised fixture command and returned only a final reply."
+}

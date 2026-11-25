@@ -1,17 +1,17 @@
 {
   "rank": 6,
   "sha": "6a4638c30ec168b3d52221159d86a1dfcc7ffa29",
-  "rubric": "v1.1",
-  "origin": "regression",
-  "cause_sha": "68e68bfb57fa77893fd631d59b8c52f23087b2bf",
-  "cause_pr": 33720,
-  "confidence": "medium",
-  "cause_quote": "It deleted the local merge that returned early when `streamText.endsWith(nextText)` and made block payloads plain appends: `mode === \"delta\" ? `${streamText}${nextText}` : mergeStreamingText(streamText, nextText)` with `queueStreamingUpdate(text, { mode: \"delta\" })`.",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With Feishu preview streaming and block streaming both on, the finished streaming card ended with its last paragraph repeated.",
+  "user_saw": "The completed Feishu reply card repeated its final paragraph when both streaming previews and completed-block streaming were enabled.",
   "impact": "data-loss-or-duplication",
   "area": "channels",
-  "summary": "Completed blocks are now matched against the cumulative preview at a consumed offset (exact, then whitespace-gap tolerant) and skipped when the preview already shows them, instead of being appended again.",
-  "reasoning": "The block-to-stream mirroring is older than the graft; tracing with the full-history listing and gh api shows e6f34b25aad (#30663) added it through a merge that skipped a block already at the end of streamText, and 68e68bfb57fa (#33720, squashed with the 'harden streaming merge semantics' work) replaced that with an unconditional delta append, which yields exactly the reported duplicate tail when a cumulative preview precedes the final block. Medium because block streaming was then forced off by 024af2b738d (#38422) and only re-enabled per config by 03e35b1d839 (honor block streaming config), so the working window before the break was short and one could instead read this as the re-enabled opt-in combination never working."
+  "summary": "The fix matches completed blocks against the cumulative preview in order and appends only blocks the preview has yet to cover.",
+  "reasoning": "The oldest available dispatcher already accepted both streams and appended completed blocks unless the block exactly matched the last update, so a tail already present in a longer preview could be appended again. The October refactor preserved that append behavior, and the later tool-call fix changed snapshot handling while retaining the same block path. The available path history stopped at the shallow boundary, so I could not verify when the defect first became reachable or whether the combined mode had previously handled it correctly."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100104,
+  "sha": "f87ea7da95325fad5cdfe572076dbc8b426c6e95",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Authorized operators saw a disabled Run Now button for paused automations in the Agents panel.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix enables Run Now for paused automations when the operator has permission to run them.",
+  "reasoning": "The August permission change kept the existing `!job.enabled` check, and before the July UI refactor the Agents panel already disabled the button for paused jobs while its handler requested a forced run. The check predates the July 1 shallow boundary, and the offline history lookup could not read the older parent needed to establish when it first appeared."
+}

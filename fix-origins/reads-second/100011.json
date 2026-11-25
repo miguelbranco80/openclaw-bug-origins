@@ -1,0 +1,17 @@
+{
+  "rank": 100011,
+  "sha": "b68da67ec7594e50734cb3333b2f3cf9707b8659",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4944a6df77080f328fed59ee22384e3ee45d522f",
+  "cause_pr": 169773,
+  "confidence": "high",
+  "cause_quote": "The new recovery guard passed `buildModelCatalogRef(agentMeta.provider, agentMeta.model)` to `areRuntimeModelRefsEquivalent`, blocking fallback clearance when the finalizer reported a different model from the admitted session model.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A fallback notice could remain active after the selected model had successfully resumed.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix checks the admitted session model when deciding whether a successful turn clears a fallback notice.",
+  "reasoning": "The parent of #169773 already computed fallback recovery from the admitted session model and cleared the saved notice, and its existing tests expected a recovery notice in direct chats. I checked the introducing diff and confirmed that its new guard canceled the existing state transition when the response model differed from the selected model, which can happen when a separate finalizer writes the reply."
+}

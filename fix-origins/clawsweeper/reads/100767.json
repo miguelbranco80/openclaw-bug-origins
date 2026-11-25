@@ -1,0 +1,8 @@
+{
+  "rank": 100767,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "When the v2026.9.5 Mac app loads this dashboard from an updated Gateway, its native bridge rejects `chrome-extension-status`. The result stays null, so this condition removes the previously working setup button permanently.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item \u201cPreserve Chrome setup for shipped Mac app versions\u201d identifies both the rejected status request that hides Setup and the older installation reply that lacks `installedProfiles`. It remained open at merge, and no human responded in the bundle."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "d25a316fc7c3ea2c9685b2c287e2ab23637c52fe",
+  "cause_pr": 172590,
+  "confidence": "high",
+  "cause_quote": "The new binding saved `provider: model.provider` and `authRequirement` without a runtime, while the executor added `if (binding && (providerOverride !== binding.provider || cliExecution))`, rejecting a bound job whenever its session selected CLI execution.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An automation created from a claude-cli conversation failed with an account-and-route incompatibility error, and after CLI account forwarding was fixed, its runtime could still change with the session override.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix records and reuses the runtime alongside the account for new bindings and makes account errors more specific.",
+  "reasoning": "The parent of #172590 already resolved the runtime from the session at execution time, and the first account-binding implementation left that lookup in place without recording a runtime. The runtime guarantee was therefore missing from the start of account binding. I checked that #180492 allowed CLI candidates that forwarded the recorded account but still left runtime selection to the session.",
+  "rank": 100157,
+  "sha": "f31b33fdeee7ed5a604f51df173aa102976ecd69",
+  "rubric": "v1.2"
+}

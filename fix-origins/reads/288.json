@@ -1,17 +1,17 @@
 {
   "rank": 288,
   "sha": "4f84bfd25e78aa35f6eb5fb17c5332d271fdfb29",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "c50ff4fbe5410609d00066642c72213e4354ee23",
   "cause_pr": 173964,
-  "confidence": "medium",
-  "cause_quote": "The new portable.ts validated model replies against schemas with `{ maxItems: 12 }` findings, `gaps ... { maxItems: 8 }` and `queries ... { maxItems: 4 }` while the extraction prompt stated no list limits, so a longer detailed reply was rejected whole.",
+  "confidence": "high",
+  "cause_quote": "The initial portable research implementation passed extraction replies directly to `parseValue(extractionSchema, await model(...))`, so the schema's `{ maxItems: 12 }` findings limit caused the entire reply to be rejected when it contained a thirteenth finding.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Deep research runs ended as partial with no findings when the model returned longer lists than the schema allowed, and idle Control UI sessions showed both a Deep research header button and a full-width research bar.",
+  "user_saw": "A deep research run could return a partial report with no findings when the model supplied more items than the schema allowed.",
   "impact": "failed-every-time",
-  "area": "plugins",
-  "summary": "Clamps model reply lists to the schema limits (and states them in the prompt), bounds start/resume tool results, and removes the header action and session-header accessory so the side panel is the only Deep research UI entry point.",
-  "reasoning": "The PR names two problems. The functional one, detailed model replies rejected for exceeding list limits, dates to the file's creation in c50ff4fbe54, which added the maxItems schemas without telling the model the limits or tolerating overflow, so it never worked. The UI duplication came from 9d4d6c62c06 (#177232), which registered both a header action and a session-header accessory a day earlier; removing them is partly a product direction (side panel only), so I cited the findings defect as the cause."
+  "area": "agents",
+  "summary": "The fix trims oversized model reply lists before validation, caps start and resume results, and moves all Control UI access to the Deep Research side panel.",
+  "reasoning": "The commit that introduced the portable engine also introduced the list limits, the validator that throws on overflow, and the catch that returns a partial result. I checked that this path persisted through the fix's parent and that the fix added a test for preserving verified findings when a reply exceeds the limits. A separate commit introduced both header controls with the native research pane, and the fix adopts a side-panel-only design."
 }

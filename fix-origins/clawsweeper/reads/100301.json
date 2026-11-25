@@ -1,0 +1,8 @@
+{
+  "rank": 100301,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review endorsed transient Incognito reads without raising a concern about parent sessions disappearing from the roster. The Before merge items covered compatibility, merge conflicts, and screenshot verification without identifying the fork header\u2019s dependence on that roster."
+}

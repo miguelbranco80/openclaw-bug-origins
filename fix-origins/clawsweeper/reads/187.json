@@ -1,1 +1,8 @@
-{"rank": 187, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P1 finding concerns tokenless native bindings being replaced with a failure page on route/URL refresh, a different path from a closed window's unloaded-but-live document reconnecting after native auth refusal."}
+{
+  "rank": 187,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item about tokenless native bindings flags an open Dashboard being replaced during a route update. The earlier review items also miss the failure where a closed Dashboard stays loaded and repeatedly retries native authorization after its connection drops."
+}

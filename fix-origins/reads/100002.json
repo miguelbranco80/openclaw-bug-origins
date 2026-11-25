@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "b0ae8314dc0c5932891b83cfdb9487a5a64cc439",
+  "cause_pr": 156064,
+  "confidence": "high",
+  "cause_quote": "The diff added `lineage.close = retainTaskAgentEventLineage(...)` during running-task creation and then returned `createTaskRunReceipt(creation, lineage)` without closing the listener when creation reused a terminal task.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Follow-ups for already finished tasks were rejected, but repeated attempts could make the Gateway retain more memory.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix closes the task event listener before returning a creation receipt for an already terminal task.",
+  "reasoning": "I checked the parent of #156064 and confirmed that Gateway already rejected terminal creation receipts and that the creation path registered no receipt listener. #156064 added the listener but left cleanup to receipt settlement, owner release, or a creation exception, so the existing Gateway rejection discarded the receipt without releasing its listener. The fix's SQLite tests cover this path for all four terminal statuses and check that the persisted task stays intact.",
+  "rank": 100002,
+  "sha": "0816797602ea2067769d897fc268a5a96bd1d140",
+  "rubric": "v1.2"
+}

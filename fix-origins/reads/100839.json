@@ -1,0 +1,17 @@
+{
+  "rank": 100839,
+  "sha": "ee54e47ac0815028d475557f6ab82377414782f1",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "980b07f4a2908b007254ac3b5b9902efa412850a",
+  "cause_pr": 126542,
+  "confidence": "medium",
+  "cause_quote": "The new `recordSuccess(toolName)` clears `lastToolError` only when `normalizeLowercaseStringOrEmpty(lastToolError.toolName) === normalizeLowercaseStringOrEmpty(toolName)`, so a successful tool call under a different name can leave a stale error for the yield reply.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The agent displayed an earlier \u201cExec failed\u201d warning as it paused to wait for child work.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix omits retained tool errors from reply generation on successful yields while preserving them for diagnostics.",
+  "reasoning": "I checked that yielding already existed before #126542 and that the previous error tracker cleared a non-mutating failure after a different tool succeeded when no mutation failure remained. The new tracker retained that error and the reply builder could surface it on an otherwise silent pause. The fix's test starts with an already-retained error, so it does not establish which tool events retained the error in the reported session."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100264,
+  "sha": "cb5c760d943e21ee0f5281d1bee8b22d43879a00",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "645c0ac609abe4d566c5f460a9420727d147a6fa",
+  "cause_pr": 136283,
+  "confidence": "high",
+  "cause_quote": "The diff removed the `if (!shouldMaintainStore)` early return and added `const keyProjection = readSessionMaintenanceKeyProjection(database);` before candidate selection, making no-work passes synchronously read every session's protection metadata.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Other Gateway requests could respond more slowly after routine session writes on a large store with nothing to clean up.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix loads session protection keys once, only when an age or cap cleanup phase has candidates.",
+  "reasoning": "I checked the parent of #136283 and confirmed that automatic SQLite maintenance already existed and returned before loading the store to compute protection when there were no age candidates and the count was below the cap. #136283 replaced that gated path with an unconditional synchronous protection scan, and the later shared-planner refactor kept it. The fix's test recorded 96 unnecessary projected rows across three no-work passes before the fix and zero afterward."
+}

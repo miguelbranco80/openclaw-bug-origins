@@ -1,0 +1,8 @@
+{
+  "rank": 100296,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge items concerned persisted layout migration and final-head verification, and the earlier findings concerned dock visibility migration and documentation. None identified duplicate tab target IDs across panes or raised an accessibility concern about how tabs point to their content."
+}

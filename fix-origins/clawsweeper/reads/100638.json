@@ -1,0 +1,8 @@
+{
+  "rank": 100638,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Unsupported retained recovery records intentionally block mutable updates and require compatible recovery or an independent verified backup; fresh-install and upgrade acceptance for this reduced contract remains pending.",
+  "outcome": "open-at-merge",
+  "note": "The P1 \u201cResolve merge risk\u201d item identified the update admission gate for retained recovery records. It left unexamined whether that gate wrongly rejected completed older-format receipts or treated pending obsolete-package cleanup as unfinished recovery."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0fa2ffd8124fef14cd49fa2290a6e8750551ec64",
+  "cause_pr": 156278,
+  "confidence": "high",
+  "cause_quote": "The diff added `outcomes.some((outcome) => outcome.status !== \"ready\")` to compute `nativeFailed` and added `nativeFailed ||` to the `refreshFailed` getter, so the newly introduced native `auth-rejected` outcome set the refresh-failure flag.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With Qwen CLI installed but signed out, the Control UI showed a model refresh warning on every visit, and retrying did not clear it.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Catalog publication now reserves refresh warnings for unavailable providers and acquisition errors, preserves sign-in guidance, and gives the CLI the same refresh status as the UI.",
+  "reasoning": "I checked the ACP harness and catalog publisher in #156278 and its parent. The parent handled native inspection errors generically, and #156278 introduced a distinct native sign-in outcome while counting it as a refresh failure from its first publication.",
+  "rank": 100813,
+  "sha": "3685f7a7fb2220690a7ed524237a2f6e52a8475a",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100120,
+  "sha": "9c600c374499842505bcb991b8894d730e3076d3",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Some messages in a long Discord reply sent with Windows-style line endings ended with a stray carriage return.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The Discord chunker now drops the whole CRLF separator at a message boundary and preserves the pair inside inline code.",
+  "reasoning": "The July 1 snapshot already split on LF alone and emitted the accumulated text verbatim, so a flush at a CRLF line boundary could leave a bare CR. The September Unicode patch explicitly preserved that cut. Offline path history stopped at the shallow boundary, so I could not establish which earlier commit introduced the behavior."
+}

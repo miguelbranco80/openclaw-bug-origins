@@ -1,0 +1,17 @@
+{
+  "rank": 100216,
+  "sha": "915c6f7ac2c7c1c018e353f2769ecd26995bfd2b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "7cc40d9e46bd2a5ff681f6d5f9e8ab246d13b5c1",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new `if (session.outstandingBackgroundTaskIds.size > 0)` branch returns before `finishTurn(session, output)`, delaying delivery of an already completed answer.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A completed Claude CLI answer stayed out of the chat until the background research finished.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix sends completed Claude CLI answers through the normal reply pipeline while background work continues and prevents final settlement from sending them again.",
+  "reasoning": "I checked the causing commit\u2019s parent, where the first successful result called `finishTurn(session, output)` and resolved the output used for the reply. The causing commit deferred that resolution while native subagents or workflows were outstanding, and the later Anthropic SDK and direct transport rewrites carried forward that wait."
+}

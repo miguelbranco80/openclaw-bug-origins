@@ -1,0 +1,17 @@
+{
+  "rank": 100257,
+  "sha": "749909f8a399182feb6fd0ccd0c22f302d6284da",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "deddeb3dacc874c7af25e8025c6174cae8a71b6f",
+  "cause_pr": 110453,
+  "confidence": "high",
+  "cause_quote": "The new quarantine reader returned a validated row through `finally { database.close(); }`, so a close exception replaced the return value before admission could enforce it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the quarantine reader failed to close after finding a valid record, OpenClaw could proceed to open a database already marked as damaged.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix preserves validated quarantine refusals when reader cleanup fails and carries the cleanup error as the refusal's cause.",
+  "reasoning": "The introducing diff for the dedicated quarantine store showed that both state and agent admission caught reader exceptions as best-effort metadata failures, so a close exception could bypass an otherwise valid refusal from the first release of that store. I also checked #151929, which replaced the `finally` block with a typed cleanup error but still discarded the validated row."
+}

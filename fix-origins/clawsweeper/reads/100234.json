@@ -1,0 +1,8 @@
+{
+  "rank": 100234,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 finding about literal hljs text concerns plaintext being deleted in the unsupported-language fallback. The Evidence section mentions worker retirement as a measured behavior and raises no concern about highlighting continuing after the browser tab is hidden."
+}

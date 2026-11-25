@@ -1,0 +1,17 @@
+{
+  "rank": 100679,
+  "sha": "4f001f643d0107219a6ffadb97720f3781a974ba",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c7cf69a11060c70f43c7a1fa63e818d73eb24848",
+  "cause_pr": 121030,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `\"supportedReasoningEfforts\": [\"max\"]` for Kimi K3 and routed it through `thinkingOff(model, context, options)`, which omitted `reasoning_effort` for Off with that catalog.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "OpenCode Zen's Kimi K3 kept reasoning with Thinking set to Off, and the picker offered only Off and Max.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix preserves Off, Low, High, and Max across Zen catalog refreshes and lets the shared request policy send explicit `none` for Off.",
+  "reasoning": "The Zen path history and introducing diff show that #121030 added Kimi K3 with Max-only metadata and a test that expected Off to omit `reasoning_effort`. The fix PR's live comparison found that omission produced reasoning and explicit `none` disabled it, matching the payload behavior in the original implementation."
+}

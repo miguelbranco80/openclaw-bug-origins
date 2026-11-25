@@ -1,0 +1,17 @@
+{
+  "rank": 100299,
+  "sha": "4db463bd62b3ab83eaf818211bb27a8ce73c3743",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "dd5b9c8c042b183c96e705a1c4a8b1d224a2a2d1",
+  "cause_pr": 115528,
+  "confidence": "high",
+  "cause_quote": "The new `if (!channelType)` branch called `logVerbose(...)` and then executed `return;` before the existing `slackInboundLog.info(...)` call.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator saw no INFO log explaining why a Slack mention was skipped when the channel lookup failed on a cold cache.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The Slack monitor now logs a redacted INFO diagnostic with a categorized lookup failure when it skips a mention whose channel type it cannot resolve.",
+  "reasoning": "I checked the causing commit and its parent: previously, a failed lookup on a cold cache returned empty metadata, and a typeless C-prefixed mention still reached the INFO receipt through channel-prefix inference. The new unresolved-type branch bypassed that receipt and left only a verbose log. The fix restores INFO-level visibility while preserving the intentional skip."
+}

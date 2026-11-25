@@ -1,0 +1,17 @@
+{
+  "rank": 100719,
+  "sha": "98ab09cae274cfec456709cfafc0e7999602e6ca",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The ClawHub plugin installed successfully, but its install record lacked the advertised artifact size and failed lifecycle validation.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix preserves the size returned by ClawHub\u2019s npm-pack resolver and restores the published kitchen-sink package as the live Docker sweep default.",
+  "reasoning": "The pre-fix adapter discarded the resolver\u2019s top-level size even though the install metadata normalizer could already record it as clawpackSize. The adapter and the lifecycle check both predate the shallow history boundary, so the available history cannot establish when the size was first dropped or when the resolver began supplying it. The diff for #148074 confirms a separate regression in the Docker sweep\u2019s default package selection."
+}

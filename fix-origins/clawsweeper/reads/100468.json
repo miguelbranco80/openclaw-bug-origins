@@ -1,0 +1,8 @@
+{
+  "rank": 100468,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence item \u201cMembership filtering stays inside the catalog boundary\u201d described the deferred authentication check without raising a concern about resolved file-backed SecretRefs. The Before merge section listed no findings."
+}

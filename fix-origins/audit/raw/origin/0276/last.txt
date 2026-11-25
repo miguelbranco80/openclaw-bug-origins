@@ -1,0 +1,17 @@
+{
+  "rank": 276,
+  "sha": "5b994c03c93aa0e680670a64e3fcd7d53dc51a1a",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Long featured template names and publisher handles were shortened with an ellipsis beside the Add button, especially at larger text sizes.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Let template row names and publishers wrap below each other instead of ellipsis-truncating beside Add, with line height following the text scale.",
+  "reasoning": "The ellipsis truncation was deliberate styling: the h3 nowrap/ellipsis rule dates from c1ecbca6ca50/d66f296eae1e, the shared Plugins row style (plugins.css .plugin-card-author and .plugin-catalog-results--rows h3) also ellipsizes, and the pre-rows card (before b8a06aa16af0) already capped the publisher at max-width 40%. The fix is a readability design change to wrap instead of truncate, not a repair of broken behavior."
+}

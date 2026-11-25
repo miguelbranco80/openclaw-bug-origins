@@ -1,0 +1,8 @@
+{
+  "rank": 100255,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "A long `[label](url\u2026)` cut before its closing `)` no longer matches the link regex, so raw Markdown still reaches the sidebar, list clients, and `sessions_list`",
+  "outcome": "answered",
+  "note": "The earlier \u201cFlatten previews before applying the character cap\u201d finding identified how the same link regex could leave raw Markdown in previews when truncation removed the closing parenthesis. The maintainer confirmed the ordering fix, which still left the regex mishandling intact links with nested brackets or balanced or escaped parentheses."
+}

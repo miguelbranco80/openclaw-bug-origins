@@ -1,17 +1,17 @@
 {
   "rank": 130,
   "sha": "3668144435351996c43884a192b80dba46aaff11",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "1d71aef2b129773517cb26ff1ae98069f3d14d16",
   "cause_pr": 176001,
-  "confidence": "medium",
-  "cause_quote": "#176001 created readLocalWorkspaceReviewBase with `if (!worktree || worktree.removedAt !== undefined || worktree.ownerKind !== \"session\" || ...) { throw new Error(\"Local workspace review owner changed\"); }`, folding a removed or missing worktree into the owner-mismatch error.",
+  "confidence": "high",
+  "cause_quote": "The new helper put `!worktree || worktree.removedAt !== undefined` in the condition that threw `Local workspace review owner changed`, and `if (!row) { return undefined; }` skipped the registry check when the review-base row was absent.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Opening Review for an old session whose worktree had been cleaned up showed \"Local workspace review owner changed\" with no way to recover.",
+  "user_saw": "Opening Review after a session's worktree was cleaned up displayed \u201cLocal workspace review owner changed\u201d with no recovery guidance.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Splits the removed or missing worktree case out of the owner-changed check in readLocalWorkspaceReviewBase, throwing guidance to use Restore in Settings > Worktrees, and checks the registry even when no review-base row exists.",
-  "reasoning": "local-workspace-review.ts has a single commit before the fix, 1d71aef2b129 (#176001), which created the file with the combined removal/owner-mismatch condition that produced the misleading error, so the defect shipped with the code. It is mostly a wrong diagnosis and missing recovery step rather than a broken review (the worktree really is gone), hence medium confidence; the fix also stops a missing review-base row from skipping the removal check."
+  "summary": "The fix makes Review give restore guidance for removed or missing worktrees even when the review-base row is absent, while preserving the checkout diff fallback for live worktrees.",
+  "reasoning": "The parent sent local Review directly to the checkout diff, and #176001 introduced the managed review-base lookup and its worktree registry checks. The introducing diff already conflated removal with ownership changes and skipped validation without a review-base row, and the helper's path history shows no intervening changes before this fix."
 }

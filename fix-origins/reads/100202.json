@@ -1,0 +1,17 @@
+{
+  "rank": 100202,
+  "sha": "f980e011502f473d3af3e12ab0115cbd58259794",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A command on an allowlist could run with a recursively evaluated shell assignment without prompting the operator for approval.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix requires approval for recursively evaluated standalone shell assignments and recognizes command-prefixed append assignments as environment preludes.",
+  "reasoning": "The July 1 snapshot already omitted standalone assignments from the explainer\u2019s command steps and risk checks, and the node host already used that analysis for shell allowlisting. The offline path history stopped at a missing pre-July commit, so I could not verify whether the omission shipped with the authorization feature or was introduced later."
+}

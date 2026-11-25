@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "fbd330b7aa4a26726fa8468f0db2a23ada3843bd",
+  "cause_pr": 99905,
+  "confidence": "high",
+  "cause_quote": "The new host gate required `params.pluginOrigin === \"bundled\" && BUNDLED_CHANNELS_WITH_PROVIDER_READ_GATES.has(params.ctx.channel)` to defer delegated cross-conversation reads to Discord or Slack, so installed copies fell through to the exact-current-conversation check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An agent using an installed official Discord or Slack plugin was denied access to another conversation that its configured account was allowed to read.",
+  "impact": "permissions",
+  "area": "channels",
+  "summary": "The fix restores provider-permitted context reads for verified official Discord and Slack installations and checks that caller and plugin authority remain valid through provider requests and result delivery.",
+  "reasoning": "The parent of #99905 already had installable Discord and Slack packages, and its dispatcher passed supported read actions to the selected adapter, where existing handlers enforced destination policy and could read a permitted target. #99905 inserted the bundled-only check before adapter dispatch, and the later read-gate refactor preserved that restriction.",
+  "rank": 100517,
+  "sha": "1b305870b3250562b70493df4529f8a66a2c0db5",
+  "rubric": "v1.2"
+}

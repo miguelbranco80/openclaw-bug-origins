@@ -1,1 +1,8 @@
-{"rank": 151, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review's findings cover avatar exclusion and profile extension dependency choices in draft-choices.ts; nothing mentions the whoami handle check rejecting mixed-case ClawHub handles."}
+{
+  "rank": 151,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items cover a dangling avatar reference and missing profile extension choices. The available review versions and history contain no warning about the publisher validator rejecting mixed-case ClawHub handles."
+}

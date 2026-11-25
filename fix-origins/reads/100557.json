@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Menus, hovercards, and Inbox had different borders and shadows, and the Inbox header and list used different background shades.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The change applies shared theme styles to floating surfaces, gives Inbox a uniform background, and simplifies Sharing labels and separators.",
+  "reasoning": "I checked when the shared overlay tokens were introduced and compared the Inbox tests before and after this change. The earlier tests explicitly required different backgrounds for the Inbox header and list, and the updated tests require a uniform surface. The PR describes a visual consistency update across several components and reports no broken interaction.",
+  "rank": 100557,
+  "sha": "4b0e7009414e1053d06f6549070d92b10c1b7112",
+  "rubric": "v1.2"
+}

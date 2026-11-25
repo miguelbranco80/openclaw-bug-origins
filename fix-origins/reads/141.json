@@ -1,17 +1,17 @@
 {
   "rank": 141,
   "sha": "aa4d490a848b4d96801fd7afcdea6cc01cc80d6e",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "36e277d76147ab839a5068f4d8bc0c5254f1d05a",
+  "cause_pr": 175837,
+  "confidence": "high",
+  "cause_quote": "The refactor added `(!parentOnly && delivery.reason !== \"visible_reply_missing\") ||` to the retry rejection condition, so a public completion marked retryable could have its wake retired before reaching the retry limit.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A finished subagent's result could stay undelivered to the parent chat after the requester's completion turn was cancelled, timed out, invalidated or conflicted, with no retry scheduled.",
+  "user_saw": "After a retryable interruption, a finished subagent's result could fail to appear in the requesting conversation without a visible failure notice.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Replaced the requester-settle scheduler's reason allowlist and ad hoc failure handling with one typed classifier so every retryable completion keeps its bounded wake and exhausted retries are stored as permanent failures.",
-  "reasoning": "The scheduler's reason allowlist (`!parentOnly && delivery.reason !== \"visible_reply_missing\"`) appears in the 1,897-file controller refactor 36e277d7614 (likely moved from older code) and was widened piecemeal by #175166, #200020 and #200165 (requester_transcript_conflict, requester_state_conflict, requester_aborted); this fix closes the remaining gaps (timeouts, preparation invalidation, predispatch cancellation, post-admission transport errors, exhausted retryable disposition). The defect is a mismatch accumulated across several commits around a deliberately narrow policy rather than one breaking line, and the allowlist's true origin could not be traced past the refactor, so no single cause is defensible."
+  "summary": "The fix schedules bounded retries for delivery outcomes classified as retryable and records a visible terminal failure when the retry budget runs out.",
+  "reasoning": "I checked the refactor's parent and confirmed that direct delivery already returned `retryable` without a reason for nonpermanent errors, and the wake handler scheduled another attempt. The refactor added a reason allowlist and called `completeBatch` when the scheduler declined a retry. Later fixes added specific reasons to that allowlist, but retryable worker timeouts and preparation failures could still fall through."
 }

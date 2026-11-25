@@ -1,7 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "outcome": null,
-  "note": "The only open item, “Add data-model compatibility proof,” asked for migration or upgrade evidence. The “Preserved-copy inspection and cleanup” section described snapshot handling without raising the risk of restore advice when temporary storage runs out."
-}

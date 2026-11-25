@@ -1,0 +1,17 @@
+{
+  "rank": 100805,
+  "sha": "2ab4a04c53b22271edee58ecb36f9385d9f758e9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d0b48d63efb88ac4f9f5eb447a39ea95cb2b0542",
+  "cause_pr": 163381,
+  "confidence": "high",
+  "cause_quote": "The new `if (!showDebugDetails && !showUpdateDiagnostics)` branch returned the CLI title and a recovery hint before reaching the existing `Reason:` line.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a foreground Gateway start failed unexpectedly, the terminal or systemd journal showed a generic CLI failure and a Doctor hint without the reason for the failure.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix restores redacted reasons for unexpected foreground Gateway startup failures, including managed `gateway --port` invocations, while keeping nested causes and stack traces behind the debug flag.",
+  "reasoning": "Before #163381, foreground Gateway startup already propagated unexpected errors to the shared CLI formatter, which printed the redacted reason with debug mode off. I checked that call path in the parent and confirmed that #163381 added the early return that suppressed the reason. Later commits restored reasons for invalid config and update commands, leaving ordinary Gateway startup errors on the terse path."
+}

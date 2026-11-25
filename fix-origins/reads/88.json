@@ -1,17 +1,17 @@
 {
   "rank": 88,
   "sha": "3900bb2366e8b7aa785b8eafd7b25131b0fbeb2e",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
-  "cause_sha": "db0d3d00ce531d1685c8d37a4984107ccbe27227",
-  "cause_pr": 171622,
-  "confidence": "medium",
-  "cause_quote": "readVerifiedArtifactSource was added with `if (!loaded.ok) { throw new ClawHubSourceError(\"clawhub_manifest_invalid\", \"Downloaded Claw package manifest is invalid.\") }`, discarding loaded.diagnostics.",
+  "cause_sha": "81662c56b67a08e663333cf4a2f8222f4f54cf60",
+  "cause_pr": 171623,
+  "confidence": "high",
+  "cause_quote": "The new `readVerifiedArtifactSource` threw `new ClawHubSourceError(\"clawhub_manifest_invalid\", \"Downloaded Claw package manifest is invalid.\")` when `loaded.ok` was false, discarding `loaded.diagnostics`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Adding a ClawHub Template with an invalid CLAW.md failed with only \"Downloaded Template package manifest is invalid.\" and no reason, in the CLI, Control UI and Gateway log.",
-  "impact": "presentation",
+  "user_saw": "When users tried to add a ClawHub Template with an invalid manifest, the CLI and Control UI reported that the manifest was invalid without saying why.",
+  "impact": "failed-every-time",
   "area": "cli",
-  "summary": "Appends up to three sanitized reader diagnostics (code, path, message, with cache paths made package-relative) to the clawhub_manifest_invalid error and sanitizes the local CLI failure message.",
-  "reasoning": "The reason-free message was in the ClawHub download path from its introduction in db0d3d00ce53 (#171622), confirmed by git grep showing the line absent before and present at that commit and unchanged (apart from the Claw-to-Template rename d1c8d42588a4) until the fix. The add still correctly fails; the defect is that the reader's diagnostics were dropped since day one, and it became common after legacy formats were retired, so medium confidence that this counts as a defect rather than a copy improvement."
+  "summary": "The fix adds up to three sanitized, package-relative manifest diagnostics to the error and reports how many were omitted.",
+  "reasoning": "The Add feature reintroduced a previously removed ClawHub source resolver and wired Add planning to it with the generic error already present. The later Claws-to-Templates rename changed the wording to \u201cTemplate\u201d and preserved the branch that discarded the diagnostics."
 }

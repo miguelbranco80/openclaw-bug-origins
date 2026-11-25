@@ -1,0 +1,8 @@
+{
+  "rank": 100436,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier P1 findings concerned clearing pending Bash IDs too soon and reusing the subprocess while prior work was unsettled. The at-merge Notification settlement section described retaining pending IDs without raising the risk that stopped tasks or tasks from an earlier input could keep the current reply from completing."
+}

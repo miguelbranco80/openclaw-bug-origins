@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "9b48cbcf40564876c251a9765b6492c5e21ce504",
+  "cause_pr": 168864,
+  "confidence": "high",
+  "cause_quote": "The introducing diff ran `rev-list` with `--indexed-objects` from `repoRoot` before the first fetch and noted that `Git includes every linked index`, so a scan that exhausted the five-minute budget restarted from scratch on retry.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw worktrees gc --retry-deferred` repeatedly timed out and left missing objects in later checkouts unrepaired, even after a Gateway restart.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The fix inventories linked worktrees individually, saves the last attempted checkout across restarts, and acquires the Git content slot before the ref queue to prevent a maintenance deadlock.",
+  "reasoning": "The introducing diff added explicit object repair with a five-minute deadline and a repository-wide scan that had to finish before any fetch. The path history shows that this scan and deadline stayed in place until the resumability fix, so the starvation case existed from the first version of explicit repair.",
+  "rank": 100241,
+  "sha": "cae563c34837c16e6b7d79b8c62feafd46eab5ee",
+  "rubric": "v1.2"
+}

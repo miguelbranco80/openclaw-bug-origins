@@ -1,0 +1,8 @@
+{
+  "rank": 100506,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focused on whether requester revocation or parent-generation replacement would block Gateway restart after Doctor settlement. The regression occurs earlier, when a legacy updater supplies no run ID and Doctor\u2019s child-process lease reservation is rejected."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "42700f9d92dc8bc127ba31c634d90230b9b2b18e",
+  "cause_pr": 160173,
+  "confidence": "high",
+  "cause_quote": "The commit added `if (completion !== \"completed\") { throw error; }`, so a declined triage threw the original startup error and unwound the foreground Gateway loop.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an in-process restart refused the configuration and automatic triage declined, the foreground Gateway exited, so the operator could no longer correct the configuration and signal the same process to restart.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix keeps the Gateway alive with manual recovery instructions when triage declines, retains one startup retry after confirmed triage cleanup, and allows terminal recovery failures to exit when a supervisor is present.",
+  "reasoning": "I checked the causing commit's parent and its existing test: the triage callback returned without a result, the Gateway loop stayed alive, and a second SIGUSR2 reached startup again. The causing diff made that same return value throw before the loop could wait for the operator's signal.",
+  "rank": 100492,
+  "sha": "b85fac0aa84a7dc1e8e38dc07e16e6f81b95b387",
+  "rubric": "v1.2"
+}

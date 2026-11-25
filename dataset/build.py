@@ -20,9 +20,9 @@ ROOT = os.path.dirname(HERE)
 SOURCE = os.path.join(ROOT, "fix-origins")
 COPIES = {
     "sampled_fixes.jsonl": "cases.jsonl",
-    "fix_rereads_gpt.jsonl": "audit/origin-second-reads.jsonl",
+    "fix_rereads_other_maker.jsonl": "audit/origin-second-reads.jsonl",
     "bot_reviews.jsonl": "clawsweeper/results.jsonl",
-    "bot_review_rereads_gpt.jsonl": "audit/flag-second-reads.jsonl",
+    "bot_review_rereads_other_maker.jsonl": "audit/flag-second-reads.jsonl",
     "blind_review.jsonl": "review-pilot/results.jsonl",
     "blind_review_regrades_gpt.jsonl": "audit/grade-second-reads.jsonl",
     "reported_problems.jsonl": "review-pilot/verify-results.jsonl",
@@ -39,7 +39,7 @@ def main():
             fix = json.loads(line)
             fixes[fix["sha"]] = fix
     with open(os.path.join(SOURCE, "second_reads.jsonl")) as source, \
-            open(os.path.join(HERE, "fix_rereads_claude.jsonl"), "w") as out:
+            open(os.path.join(HERE, "fix_rereads_same_model.jsonl"), "w") as out:
         for line in source:
             second = json.loads(line)
             first = fixes[second["sha"]]
@@ -58,6 +58,11 @@ def main():
                        "sampled": sum(1 for sha in fixes_in if (fixes_in[sha]["rank"] - 1) // 100000 + 1 == frame["id"])})
     with open(os.path.join(HERE, "frames.json"), "w") as handle:
         json.dump(frames, handle, indent=1)
+    judging = settings()["judging"]
+    name = lambda step: {"claude-opus-5-5": "Claude Opus 5.5"}.get(judging[step]["model"], judging[step]["model"])
+    with open(os.path.join(HERE, "readers.json"), "w") as handle:
+        json.dump({"fixes": name("origin"), "fixes_second": name("origin_second"), "fixes_other_maker": name("origin_reread"),
+                   "bot_reviews": name("flag"), "bot_reviews_other_maker": name("flag_reread")}, handle, indent=1)
     print("dataset assembled:", ", ".join(sorted(name for name in os.listdir(HERE) if "." in name and name != "build.py")))
 
 

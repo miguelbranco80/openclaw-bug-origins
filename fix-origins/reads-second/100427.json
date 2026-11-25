@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "e63b5a01cf2609adaff2ed2017f95f15c666b0fc",
+  "cause_pr": 168992,
+  "confidence": "high",
+  "cause_quote": "The new `const ownership = await readOwnership(admission.entry);` passed a snapshot taken before the writer claim, bypassing the fresh read required by the existing writer check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Every turn in a pinned native Codex session with a writer claim failed before dispatch with a message that native model ownership had changed.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix rereads native ownership when the admission snapshot lacks the expected writer claim.",
+  "reasoning": "I checked the causing commit and its parent. The parent already claimed the writer after admission and read the current session row during native setup, and the fix PR reports a passing pre-change baseline and a bisect to #168992. That commit made the first ownership check use the pre-claim snapshot, so its writer ID failed the existing check.",
+  "rank": 100427,
+  "sha": "3258dd87649cfe03aec0d8fba9d2974edb0e98ac",
+  "rubric": "v1.2"
+}

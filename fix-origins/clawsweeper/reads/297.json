@@ -1,1 +1,8 @@
-{"rank": 297, "flagged": "related", "where": "earlier-only", "quote": "After HTTP authentication succeeds, a policy outage now escapes bindHttpResponseAuthority().assertCurrent() and hasCurrentClientAuthority(). The session-entry route and plugin HTTP handlers reach finishGatewayHttpAuthorityError, which recognizes denial but not this new exception", "outcome": "answered", "note": "The 13:35 version's P2 items flag consumers of assertCurrent that mishandle the new unavailable error (HTTP finisher, plugin cookie), the same mechanism as the queue readers treating any throw as lost authority, but they name different consumers and fixing them would not cover the followup queue. steipete's comment addressed those items before merge."}
+{
+  "rank": 297,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The signal-only steering finding concerned whether a fresh signal from the same source was compatible, and the worker-admission finding concerned blocking provisioning after revocation. Neither addressed missing revocation signals or the queue discarding a message after a temporary authority-check failure."
+}

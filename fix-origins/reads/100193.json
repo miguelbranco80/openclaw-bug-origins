@@ -1,0 +1,17 @@
+{
+  "rank": 100193,
+  "sha": "76beb568588720ed7d9cfafc4c8730637afe7532",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "medium",
+  "cause_quote": "The commit added `requireLoadedCommand: true` to update service inspection and changed the systemd lookup to `opts?.requireLoaded && !inspection ? \"GetUnit\" : \"LoadUnit\"`, so an inspection without a manager binding could no longer reload a collected unit.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Linux update could stop at `managed-service-preflight` after systemd collected the stopped Gateway unit.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix uses the installed updater\u2019s effective UID to re-inspect a collected systemd unit when a verified legacy handoff records a stopped service and omits the manager UID.",
+  "reasoning": "The parent already revalidated stopped handoffs and used `LoadUnit`, which could reload an installed unit after systemd collected it. #140339 switched the update inspection to `GetUnit` unless it had a manager binding, and #143859 later accepted a missing UID only at the identity comparison after inspection. The historical diffs establish the lookup change, while the reported release-validation run covers the later candidate path."
+}

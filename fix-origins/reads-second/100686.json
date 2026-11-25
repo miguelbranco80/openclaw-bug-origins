@@ -1,0 +1,17 @@
+{
+  "rank": 100686,
+  "sha": "0e92339af24b0d16dbe34f4316ae5ce0f9f9ac43",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "89bf2a4e4b993128cceef2c40c78cb7f520062ed",
+  "cause_pr": 145947,
+  "confidence": "high",
+  "cause_quote": "The new Bun SDK alias hook used `return target ? { path: target, namespace: \"file\" } : undefined;`, passing the resolver's forward-slash Windows path directly to Bun.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Windows under Bun, a plugin calling `require.resolve()` for an OpenClaw SDK alias got a filename with forward slashes.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix normalizes SDK alias filenames at the native resolver boundary and preserves Jiti's forward-slash alias map.",
+  "reasoning": "I checked the parent of #139997 and found that the eager native resolver already passed through the same slash-normalized Jiti targets as the on-demand resolver. The #145947 diff introduced the Bun SDK alias hook and passed those targets through from its first implementation."
+}

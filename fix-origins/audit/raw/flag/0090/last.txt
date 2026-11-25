@@ -1,7 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "outcome": null,
-  "note": "The P1 snapshot-capacity finding concerns disk shortages and hard-linked files that cause capture to fail before Doctor. The reported failure occurs after capture, when Doctor mistakes a reader-triggered WAL-index rebuild for a database write."
-}

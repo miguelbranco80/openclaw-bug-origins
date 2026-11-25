@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "12d0fd2ef8afa92c5c9480de0f090e34488d565e",
+  "cause_pr": 128131,
+  "confidence": "medium",
+  "cause_quote": "The new plugin runner used `const command = resolveExecutablePath(params.executionCommand, { cwd, env: params.env });` and passed that path to the SDK, bypassing the supervisor that unwrapped Windows npm launchers.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Windows, agent turns using an npm-installed Claude CLI failed to start and returned no reply.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix resolves Windows npm launchers against the child working directory and passes the actual executable and any required leading arguments to the Claude CLI transport.",
+  "reasoning": "Before #128131, ordinary Claude turns used the process supervisor, whose Windows adapter resolved npm wrappers and prepended the JavaScript entry point when needed. The SDK refactor replaced that path with generic executable lookup, and #138707 retained that lookup when it switched to direct CLI spawning. The bundle reproduces the failure on the direct transport, but the SDK-era failure is inferred from the code and the report that the original repair targeted that adapter.",
+  "rank": 100650,
+  "sha": "3039685fd3fc542cbbd2511e0ed3d056c04dd69d",
+  "rubric": "v1.2"
+}

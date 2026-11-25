@@ -1,0 +1,8 @@
+{
+  "rank": 78,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge cancellation fixture finding and the earlier content-budget fixture finding address missing paths in tests. The Accepted reclamation tradeoff section discusses directories left behind after crashes or failed deletion, while the reported bug occurred as deletion continued under rising btrfs metadata reservation pressure."
+}

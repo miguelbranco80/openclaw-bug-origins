@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Clients uploading valid OpenAI-compatible requests over slow connections received HTTP 408 after 30 seconds, before inference began.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix gives Chat Completions, Responses, and embeddings requests 60 seconds to upload their bodies while retaining the shared 30-second default.",
+  "reasoning": "The July 1 snapshot already had a 30-second total body-read deadline, and the shared compatibility endpoint helper inherited it by passing only the byte limit. The later refactors I checked preserved that deadline, and the available path history stopped at the shallow boundary, so I could not verify when the affected endpoints first inherited it or whether slow uploads had previously worked.",
+  "rank": 100700,
+  "sha": "86bde198942724be67a1c32289fe965076d1b219",
+  "rubric": "v1.2"
+}

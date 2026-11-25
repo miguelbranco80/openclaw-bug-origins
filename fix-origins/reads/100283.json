@@ -1,0 +1,17 @@
+{
+  "rank": 100283,
+  "sha": "2098c4740eeabf312a1b208e41b4330962bcdf6e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "5c906f9d7329e5d371e0fe5c77eaa9feb9b9a159",
+  "cause_pr": 151456,
+  "confidence": "medium",
+  "cause_quote": "The new settled branch used `summarizeToolGroup(visibleActivity)`, while routine calls were marked `hideFromChannelProgress: true`, so a step with only routine children still rendered as a count even when it was the sole visible operation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a code-mode step with only routine nested calls finished, the Control UI chat showed \u201c1 command\u201d in place of its title and required two clicks to reach the details.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix renders a lone completed step with only routine children as a titled disclosure and prevents double-counting when a visible descendant sits beneath a hidden call.",
+  "reasoning": "The earlier grouped renderer already used counts after settlement, and #151456 carried that behavior into the new routine-filtered activity view even when only the parent step remained visible. The later #157438 change dropped the parent from the count and produced \u201cRaw details,\u201d while #165358 restored the count and left the collapsed title missing."
+}

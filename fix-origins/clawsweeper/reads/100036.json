@@ -1,0 +1,8 @@
+{
+  "rank": 100036,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Bounded diagnostic classification item describes the retry predicate without raising a concern about conflicts with the provider\u2019s explicit terminal status. The review history lists no open items in any earlier version."
+}

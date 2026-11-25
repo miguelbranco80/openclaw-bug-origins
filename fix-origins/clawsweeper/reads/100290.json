@@ -1,0 +1,8 @@
+{
+  "rank": 100290,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Technical review describes the preexisting cancellation failure and endorses the new scheduler without raising the risk that its first import could capture the active request context. The earlier \u201cPreserve cancellation for sends awaited by monitor tasks\u201d finding concerns a retirement deadlock in the Matrix send wrapper."
+}

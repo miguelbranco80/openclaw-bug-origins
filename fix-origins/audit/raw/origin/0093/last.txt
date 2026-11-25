@@ -1,0 +1,17 @@
+{
+  "rank": 93,
+  "sha": "486a0bddbb95bb5d00ff1ddf47d6cbc00403400b",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "455e84f77694553a01ca431e733dd51c55c937c9",
+  "cause_pr": null,
+  "confidence": "medium",
+  "cause_quote": "Added `shouldStartListeningAfterInitialMessage`, which returns true for Twilio when `!ctx.config.streaming.enabled`, and a conversation-mode branch in speakInitialMessage that calls `ctx.provider.startListening(...)` right after `speak()`, sending a second live TwiML update that replaces the playing `<Say>` greeting.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Twilio conversation calls without media streams the caller heard silence instead of the greeting, and the call hung up about 5 seconds after each reply if they did not speak.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "Twilio conversation calls now send Say plus a 120-second Gather in one TwiML update (no separate startListening) and renew listening through signed webhook silence redirects.",
+  "reasoning": "Issue #158262 traces the lost greeting to speakInitialMessage calling startListening after the Twilio Say fallback; at 455e84f7769^ playTts already sent `<Say>` followed by `<Gather>` and speakInitialMessage did nothing more, so the greeting played until 455e84f7769 (\"start listening after telnyx greetings\", no PR) added the startListening branch that also covers Twilio non-streaming. Confidence is medium because the fix also addresses the 5-second silence hangup (Gather without timeout and nothing after it), which appears to have been in place since the fallback was written and is closer to never-worked."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100755,
+  "sha": "a31a2aba5cf0ac2ba856f021687f5ce9d673ac5a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "1ca60fbc3a3f85c7072a9029346b5d31402ac0e4",
+  "cause_pr": 114388,
+  "confidence": "high",
+  "cause_quote": "The new legacy requester fallback called `return resolveSessionAgentId({ config: getRuntimeConfig(), sessionKey: ownerKey });`, which synchronously loaded configuration when no runtime snapshot was available.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A cold media status or duplicate check could stall when a restored task lacked a recorded requester.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "The fix resolves legacy media requester ownership with an asynchronous config snapshot, then refreshes task rows and checks that their owner and config source are still current.",
+  "reasoning": "The ownership diff introduced the legacy requester fallback and wired it into active-task and duplicate selection in the same commit. The config loader at that revision used `readFileSync` on a cold read, and #144674 later made task reads asynchronous while retaining the synchronous requester fallback."
+}

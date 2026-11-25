@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "28af40f432feb51ae517493e80036e6f1681b69d",
+  "cause_pr": 167532,
+  "confidence": "high",
+  "cause_quote": "The shared dispatcher added static imports for both `streamSubagentRegistryInWorker` and `streamTranscriptExportInWorker`, so either command loaded both modules before dispatch.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix loads only the selected stream reader before source admission and keeps unrelated handlers out of its emitted chunk.",
+  "reasoning": "I checked the causing commit and its parent: subagent restore previously called its reader directly, and transcript export used a separate read path. Moving both through the shared dispatcher added an export dependency to the existing restore path and pulled the mixed registry adapter into transcript exports. The evidence establishes extra module loading, with no reported user-facing failure or measured slowdown.",
+  "rank": 100842,
+  "sha": "d57f91b8fab05ef2226544eb963ccca73c0ddcfd",
+  "rubric": "v1.2"
+}

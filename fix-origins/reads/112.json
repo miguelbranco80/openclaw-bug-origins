@@ -1,17 +1,17 @@
 {
-  "rank": 112,
-  "sha": "37e7af19884b4a92667fc3be816eab64ad904c5b",
-  "rubric": "v1.1",
   "origin": "regression",
   "cause_sha": "8c7f96b00b459e421661f11c212f60adde906acb",
   "cause_pr": 152758,
-  "confidence": "medium",
-  "cause_quote": "In ui/src/components/tooltip-title.ts the title-hint suppression changed from `previewTargetForAnchor(link)` to `ownsHoverPreview(link)`, and the new `resolveHoverPreviewTarget` returns a page preview for any external http(s) link, so the hint nested in the ClawHub audit link was suppressed in favor of the page preview.",
+  "confidence": "high",
+  "cause_quote": "The diff added the `{ kind: \"page\", href: url.href }` fallback for ordinary external links and changed tooltip ownership to `Boolean(link && ownsHoverPreview(link))`, so the audit link's preview suppressed the nested icon's hint.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Hovering the info icon next to \"Security audit\" on plugin and Template pages showed a link page preview instead of any explanation of the audit.",
-  "impact": "presentation",
+  "user_saw": "With link previews enabled, hovering over the security audit info icon showed a preview of the audit page instead of the icon\u2019s hint.",
+  "impact": "failed-every-time",
   "area": "ui",
-  "summary": "Moved the security-audit info icon out of the audit link into its own tooltip button with explanatory copy, keeping the link on the verdict row.",
-  "reasoning": "The `<span title=\"View security audit\">` info hint inside the external audit link already existed at 8c7f96b00b4^ (security-audit.ts line 45), when title tooltips were suppressed only for plugin link-reader targets; #152758 extended hover previews to all ordinary external links and made tooltip-title defer to `ownsHoverPreview`, which hides nested title hints on those links. Medium confidence because the preview only applies when link previews (automaticallyFetchFavicons) are on and I did not run the UI; the fix also rewrote the hint copy, which is partly a content improvement."
+  "summary": "The fix gives the info icon on plugin and Template pages its own explanatory tooltip button and moves the audit link to the verdict row.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that the plugin audit icon already had a title inside the audit link, and the tooltip code displayed it because ordinary ClawHub links were outside the existing preview matcher. PR #152758 made those links eligible for previews and suppressed their nested hints. The Template page later inherited the same behavior when it adopted the shared audit renderer.",
+  "rank": 112,
+  "sha": "37e7af19884b4a92667fc3be816eab64ad904c5b",
+  "rubric": "v1.2"
 }

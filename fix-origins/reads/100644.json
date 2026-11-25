@@ -1,0 +1,17 @@
+{
+  "rank": 100644,
+  "sha": "cedc5aeb4cc5efd94c46ef038016aa326d17e7c4",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6b3617207ac19f95b960434c635fd902cc242d85",
+  "cause_pr": 172266,
+  "confidence": "high",
+  "cause_quote": "The new `if (!previousEditedInPlace && (valuesUnchanged || matchesPublished)) { return; }` guard skipped publication before the authored source snapshot could be updated.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plugin disabled by default was still rejected after the operator explicitly enabled it in a config update that left the resolved runtime values unchanged.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix publishes changes to authored config values or resolution provenance even when resolved runtime values stay equal, while preserving narrow refresh scopes.",
+  "reasoning": "I checked the causing diff and its parent. The parent already accepted source-only updates and replaced the stored source snapshot even when it suppressed the session-change event. The causing commit moved the equality check ahead of the source assignment, leaving plugin policy readers with stale authored settings."
+}

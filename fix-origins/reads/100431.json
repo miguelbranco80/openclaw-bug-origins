@@ -1,0 +1,17 @@
+{
+  "rank": 100431,
+  "sha": "ad0b2e37d0783458402cf01d4a84d0df35b632dc",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "iMessage setup showed next steps and skipped the path correction prompt when the configured imsg path pointed to a directory or a file without execute permission.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "The fix checks whether an explicit binary path points to an executable file before reporting it as available.",
+  "reasoning": "The faulty branch used `fs.access(resolved)` with its default existence check, and the iMessage setup code already used `detectBinary` to decide whether to prompt for a corrected path before #101407. Both behaviors predate the shallow history boundary, and the full-history path log stopped at a missing commit, so I could not establish whether the original implementation shipped with the defect or an earlier change introduced it."
+}

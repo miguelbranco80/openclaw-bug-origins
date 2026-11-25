@@ -1,0 +1,17 @@
+{
+  "rank": 100064,
+  "sha": "39ceca404cec29363e3cb6620a1417c5bb6ef659",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "36190da70d0e8797be4db0eec82b30479210393a",
+  "cause_pr": 183276,
+  "confidence": "high",
+  "cause_quote": "The added `const resident = readSessionActorEntryFacts({ database: identity, sessionKey: prepared.sessionKey });` installs the replica subscriber before commit, so publication recomputes and clones the sharing projection.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The publication reader now returns the prepared sharing projection for a current session entry, avoiding a redundant clone.",
+  "reasoning": "The parent already had the session patch path and a three-clone budget, which the fix PR reports passed on the parent and failed with four clones at #183276. I checked that the new lookup installs a subscriber that calls `readPreparedSessionEntryChange`, whose existing fallback recomputes the sharing projection because the current-publication result omits it. The measured regression was extra allocation on an existing write path."
+}

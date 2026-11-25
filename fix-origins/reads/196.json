@@ -1,7 +1,7 @@
 {
   "rank": 196,
   "sha": "a9e6314da7ff4cd96d559ffdfc551837c1a90294",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible.",
+  "user_saw": "nothing visible",
   "impact": "other",
   "area": "ui",
-  "summary": "Dropped the export keyword from loadClawHubSecurityVerdicts in the Control UI skills module so it stays module-internal.",
-  "reasoning": "The product diff only removes an `export` from a function, a CI unused-export/lint cleanup titled fix(ci); no runtime behavior changes. That is a tooling change titled as a fix, so not-a-defect."
+  "summary": "The fix makes the ClawHub security verdict loader private to the Skills module and exercises it through loadSkills in the test.",
+  "reasoning": "The product diff only removes the helper's export, and the revised test waits for the same verdict request through the normal Skills loading path. The earlier Solid readiness refactor already showed the helper as exported and added the direct test import, so the evidence supports an internal API cleanup."
 }

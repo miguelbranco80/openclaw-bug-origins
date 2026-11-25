@@ -1,0 +1,8 @@
+{
+  "rank": 100463,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings about interrupted runs and the idle Gateway watcher concern stale state in the Control UI. The spinner bug occurs during CLI cleanup when the final run-history read throws before the spinner can stop."
+}

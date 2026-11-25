@@ -1,0 +1,8 @@
+{
+  "rank": 100842,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Before merge item asked for conflict resolution and validation of export and cancellation paths, and the Tests item asked for compiled Gateway coverage. Neither review version raised the shared dispatcher\u2019s eager loading of both stream handlers."
+}

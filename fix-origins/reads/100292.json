@@ -1,0 +1,17 @@
+{
+  "rank": 100292,
+  "sha": "670e3fb4ea20e56be99d405d175475105fd741fa",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "c5c5397095d81686a9e32be4cd8db787111b59cc",
+  "cause_pr": 123416,
+  "confidence": "high",
+  "cause_quote": "The commit added `const bypassAllowlist = readBundledDiscoveryModeMemoized(params.env) === \"compat\";` to the policy used by installed-plugin activation, so the existing CLI lookups that omitted the environment used the process state root.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An available bundled CLI backend could be missing when the requested state directory used compatibility mode and the process state directory enforced the allowlist.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix passes the caller\u2019s environment to installed-plugin activation in both CLI backend lookups and routes the remaining worker-backed tests through the forked database-worker project.",
+  "reasoning": "The blamed refactor preserved an existing three-argument activation call in both lookup paths. I checked the parent and diff of #123416 and found that it introduced state-root-aware compatibility into the activation predicate while leaving those callers without the new environment argument, so CLI activation used the wrong root from the first version of that policy."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100427,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Native model preparation entry under Provenance checked describes the switch to the admission snapshot without raising a concern about writer claim timing. The open hydration and invalidation findings concern sandbox reservations, a separate code path."
+}

@@ -1,1 +1,8 @@
-{"rank": 129, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The only formatter-related item asks for published-updater-to-candidate verification that captured recovery diagnostics survive; that concerns the updater path, not default-mode plain Errors losing their Reason line, so I chose none over related."}
+{
+  "rank": 129,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 \u201cResolve merge risk\u201d item called for verifying captured updater diagnostics. That check exercised a different formatter path from the ordinary text-mode invocation that hid the blank `--agent` message."
+}

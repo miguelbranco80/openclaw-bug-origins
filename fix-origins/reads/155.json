@@ -1,17 +1,17 @@
 {
   "rank": 155,
   "sha": "8910654af4923408553a9af6183074f5e05ba7f8",
-  "rubric": "v1.1",
-  "origin": "regression",
+  "rubric": "v1.2",
+  "origin": "never-worked",
   "cause_sha": "5f40d22a366da865a83658698ecfb4bed5f965bb",
   "cause_pr": 178998,
-  "confidence": "medium",
-  "cause_quote": "It made the bundled macOS app run `ClientCredentialStartup.prepare(...)` (the narrow `doctor --client-credentials`) before Gateway startup, and that path calls `prepareOpenClawStateDatabaseSchema({ env }, \"doctor\")` to advance shared schema without completing the daemon runtime-pin migration.",
+  "confidence": "high",
+  "cause_quote": "The new native Doctor branch called `await prepareStartupClientCredentials({ env: process.env, runtime: defaultRuntime });`, whose SQLite path advanced the schema with `await prepareOpenClawStateDatabaseSchema({ env }, \"doctor\");` and returned without completing runtime-pin migration.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After upgrading, the macOS app's first launch could fail to start the Gateway because it launched the old seeded Gateway against state already migrated past that Gateway's supported schema.",
+  "user_saw": "On the first launch after an upgrade, the macOS app could start an old Gateway that could not read the migrated state.",
   "impact": "sequence-or-timing",
   "area": "apps",
-  "summary": "The native `doctor --client-credentials` path now also runs the daemon runtime-pin migration (even when credentials are already ready), so runtime intent is no longer left migrationPending after the schema advances.",
-  "reasoning": "The Swift side preserving the old seed while the runtime pin is migrationPending dates from b87a1abdad5 (#172703, 2026-10-15); the later 5f40d22a366 (#178998, 2026-10-21) added pre-start native credential preparation that migrates the shared schema via doctor without the pin handoff, so the preserved old Gateway now meets a too-new schema. Medium because I confirmed the schema-advancing call and the new app startup hook in 5f40d22a's diff but did not independently verify that upgraded first launches succeeded before it; it could also be read as never-worked of the auto credential migration feature."
+  "summary": "The native credential Doctor now finishes runtime-pin migration before the macOS app selects a Gateway runtime, including when credentials are already ready.",
+  "reasoning": "The introducing diff added automatic credential preparation to macOS startup and let it advance shared state while runtime intent remained pending. I checked that the earlier runtime-pin change already preserved the old bundled runtime while migration was pending and that the previous credential workflow relied on the updater or full Doctor, so the missing handoff shipped with the new automatic path."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 286,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 \u201cResolve merge risk\u201d items mention temporary workspace creation and ask owners to check error and filesystem-object behavior. Neither version raises synchronous filesystem calls or Gateway stalls during shell snapshot capture."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "fa407417f0a2c01308a657bf64ccd774397b4d4c",
+  "cause_pr": 126388,
+  "confidence": "high",
+  "cause_quote": "The diff added `scopedRootRows.push(...categorizedChildRows)` to surface grouped child sessions in the sidebar while retaining `!row.spawnedBy` in the shared filter used by palette search and navigation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After switching conversations, a user could still see the agent-created conversation in its sidebar group, but it was missing from shared navigation and searching by title or transcript returned no match.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix makes explicitly grouped agent-created conversations discoverable in Gateway search and shared navigation while preserving subagent, visibility, and archive exclusions.",
+  "reasoning": "The parent revision already excluded spawned rows from the shared visibility filter, and the original palette title search used that filter. PR #126388 first made categorized children sidebar roots without making them discoverable through that filter. Palette transcript search later inherited the same exclusion, and the September search rewrite carried it over to the Gateway.",
+  "rank": 100363,
+  "sha": "11741283eb04dbf1f8678b162e89d23c35032470",
+  "rubric": "v1.2"
+}

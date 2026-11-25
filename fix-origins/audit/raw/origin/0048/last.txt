@@ -1,0 +1,17 @@
+{
+  "rank": 48,
+  "sha": "351af32ae06ba1e08b3b960d5e94a8491073d700",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "6fd646e86cd7c4decdaadd8901dd7f2846b837c2",
+  "cause_pr": 188978,
+  "confidence": "medium",
+  "cause_quote": "restorePluginCohortMigrationRowsInDatabase added `throw new Error(`Plugin migration obligation changed after update publication: ${row.pluginId}. Recovery preserved the later decision.`)` when the current row matched neither before nor after, so the cohort could never settle.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "openclaw update repair failed on every attempt with 'Plugin migration obligation changed after update publication' after a plugin's obligation or install record changed following an update.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Plugin cohort rollback now keeps later-changed obligations and install records (with their snapshots), restores the rest, completes, and records a kept-changes warning instead of refusing.",
+  "reasoning": "The refusing throws (both the changed-obligation one and the missing-original-obligations one) were introduced together with the npm plugin cohort rollback feature in #188978 (6fd646e86cd7). The PR shows stored rows from an affected install that refuse every time on main, so the stuck repair is a real failure that shipped with the feature and is not a later regression. Confidence is medium because the refusal was a deliberate design choice whose dead-end consequence the fix redesigns."
+}

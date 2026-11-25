@@ -1,0 +1,17 @@
+{
+  "rank": 100435,
+  "sha": "2fb12f9caac93299f97bf50223776730007de93c",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "0884553208b2d592249d2027833721128a48453c",
+  "cause_pr": 174984,
+  "confidence": "high",
+  "cause_quote": "The diff removed the roster\u2019s `<SessionSection ... />` rendering and left `{renderPendingSessionCreateRow(roster.host, card().id)}` directly under the agent header, so the provisional row had no permanent row to hand off to.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When creating a session in Show all agents mode, users saw a temporary session row flash in the sidebar and disappear once the session was created.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix limits provisional new-session rows to the session list and removes them from the agent roster and pinned-agent gallery.",
+  "reasoning": "I checked the parent revision and confirmed that expanded agent groups rendered both the provisional row and the ordinary session sections, giving the handoff introduced in #174888 a destination. The #174984 redesign removed those session sections, kept the provisional row under unpinned agents, and added it below the new pinned gallery, so the row disappeared on successful creation."
+}

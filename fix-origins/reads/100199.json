@@ -1,0 +1,17 @@
+{
+  "rank": 100199,
+  "sha": "6c00e67f5703c85f2aea88cf79f7ff702821fbb5",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could start the Gateway on a Node build that still accepted TLS certificate chains using compromised CA keys.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "The fix requires Node 24.22.1 or 26.12.1 as the minimum for each supported release line and pins native pnpm to 12.15.0 to reject the compromised CA keys.",
+  "reasoning": "The September runtime diffs show that the numeric floors and the later vendor-build exception addressed SQLite compatibility, while the old numeric floors already admitted affected Node builds such as 26.12.0. The fix documents the October eMudhra key compromise and reports that the patched Node and native pnpm executables rejected the incident chains, tying the exposure to an external change in CA trust."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100544,
+  "sha": "23382dff323fa58e3fd65e634c66df0259f6e598",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "In `src/infra/update-managed-service-handoff.ts`, the `transfer` branch added `outcome = \"update\";` and `break;`, letting the updater start validation before the original Gateway exited.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Update status kept showing the automatic update as applying after the handed-off run had finished.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The Gateway tracks each campaign\u2019s exact update run and clears applying status when that run reaches a durable terminal outcome.",
+  "reasoning": "I checked the parent of #138839 and confirmed that scheduled campaigns already existed and the managed helper waited for the original Gateway to exit before starting the updater, discarding the process-local applying state with that exit. #138839 moved validation ahead of shutdown, so a handed-off run could fail preflight while the original Gateway kept serving its stale applying state."
+}

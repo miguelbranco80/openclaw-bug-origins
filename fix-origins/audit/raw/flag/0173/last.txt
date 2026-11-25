@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge “Add real behavior proof” item asks for callback and reply evidence on both Gateway routes. The earlier webhook recovery finding concerns a startup route conflict, and neither item addresses the loss of resolved allowlists after an unrelated config reload."
+  "outcome": null,
+  "note": "The at-merge review's items are real behavior proof for two accounts, CI attribution, a maintainer contract decision and generic data-model compatibility proof; earlier versions add webhook path guidance and approval-authority settlement. Nothing addresses config hot reload replacing startup-resolved allowFrom/groupAllowFrom/teams allowlists."
 }

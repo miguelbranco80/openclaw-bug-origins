@@ -1,0 +1,17 @@
+{
+  "rank": 100665,
+  "sha": "6f212fb009904efe6e9686f4bb433a39048b3b82",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "36e277d76147ab839a5068f4d8bc0c5254f1d05a",
+  "cause_pr": 175837,
+  "confidence": "high",
+  "cause_quote": "The new controller returned `reason: \"lifecycle-blocked\"` for a pending mutation, then passed that refusal through to `throw new ReplyRunAlreadyActiveError(options.sessionKey);`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The gateway accepted a chat prompt but never replied if the conversation was marked as read while the turn was starting.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix preserves the pending prompt and retries admission in queue order after a temporary lifecycle block.",
+  "reasoning": "I checked the refactor's parent, where reply startup and session patches shared lifecycle locking and the reply registry reported an active-run conflict only when a run occupied the slot. The refactor made a queued patch block final turn admission after startup validation had begun, and dispatch could retire the selected prompt after misreading that refusal as an active-run conflict. A later commit labeled read acknowledgments as `read-marker` mutations, but the refactor already put those patches through the same mutation queue."
+}

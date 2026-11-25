@@ -1,0 +1,17 @@
+{
+  "rank": 100699,
+  "sha": "a9b7dfc372e78b2adfdd8d601c5bd419557bb7c4",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8bf8e80e1d6bcf631a84c6a85cc50590970c674d",
+  "cause_pr": 130049,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `this.highlightedRunId = runId;` and applied `cronRunEntryMatchesLink(highlightedRunId, entry)` only to rows already returned by the paginated history request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening an automation run link showed recent history without the linked run when it was older than the first 50 entries.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix resolves linked run IDs before paginating history and adds a Show all runs button to return to normal history.",
+  "reasoning": "I checked the original deep-link diff and the history loader at that commit. From launch, selecting a linked job requested the first 50 runs without passing the linked run ID, so the renderer could highlight the target only if it was already on that page. The later Solid migration carried forward the same limitation."
+}

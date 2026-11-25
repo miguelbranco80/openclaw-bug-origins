@@ -1,0 +1,17 @@
+{
+  "rank": 100317,
+  "sha": "51b537c6b25c4bbccf999cc1d317f5e505796224",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "dac3cb6d47c2387442b3e50327fe6346af6d3232",
+  "cause_pr": 147711,
+  "confidence": "high",
+  "cause_quote": "The new receipt seeded `sources` with the index and added transcripts and sidecars via `for (const record of records)`, leaving orphan JSONL files subject to the new `if (capturedSources && !capturedSources.has(source))` skip.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After Doctor completed a deferred plugin migration, orphan transcripts stayed in the active sessions directory and showed up again in later Doctor reports.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "Doctor now captures existing orphan transcripts in deferred import receipts and records each shared archive move for every receipt that captured the source.",
+  "reasoning": "The parent of #147711 could archive orphans during ordinary imports, and #147711 introduced the deferred receipt and settlement path with the incomplete source inventory. I checked that #149308 broadened receipt eligibility to imports with missing-transcript warnings, while the fix's evidence shows the omission also affected imports without those warnings."
+}

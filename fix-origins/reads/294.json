@@ -1,7 +1,7 @@
 {
   "rank": 294,
   "sha": "9b0e696264b57d359cd2d8faa16a52496ca417f3",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On macOS with the app's bundled Bun runtime, setup detection failed because read-only SQLite helper processes launched with a reduced environment could not find a supported SQLite library.",
+  "user_saw": "On macOS, setup detection could fail to read saved credentials when OpenClaw ran on the app\u2019s bundled Bun.",
   "impact": "failed-every-time",
   "area": "apps",
-  "summary": "Adds withSelectedSqliteLibraryEnv so read-only SQLite worker subprocesses on Bun/macOS inherit the parent's selected OPENCLAW_SQLITE_LIBRARY even when the request supplies a projected environment.",
-  "reasoning": "The macOS app's bundled Bun (since 271702bb8d8, #161709) relies on OPENCLAW_SQLITE_LIBRARY in the environment, and the read-only worker launch has built the child env from the request env since at least a06612710e6 (#167024), so a caller passing a limited env drops the library path. The subject says \"restore\", but the commit has no PR or body, and I could not identify which change started passing a projected env on the setup-detection path (candidates such as 9323fb9d1d2/#200192 rework credential reads but I could not confirm the mechanism). Without a quotable breaking line, the origin stays unclear."
+  "summary": "The fix passes the selected SQLite library path to read-only subprocesses on macOS Bun, including launches with a limited environment.",
+  "reasoning": "The updated auth test reproduces the missing handoff by giving the child only OPENCLAW_STATE_DIR, and the older worker diff shows that caller-supplied environments predated the macOS app\u2019s bundled Bun Gateway. PR #169111 later switched setup detection from synchronous credential reads to the async reader, but the available history does not establish when macOS setup first supplied an environment that omitted the SQLite library path."
 }

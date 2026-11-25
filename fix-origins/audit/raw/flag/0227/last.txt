@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge and earlier Before merge items addressed preference compatibility, CI, and maintainer review. The supplied reviews raised no concern about overlapping touch targets on the Pages pencil or sidebar headers."
+  "outcome": null,
+  "note": "All versions cover CI completion, persisted appearance upgrade behavior and session creation; nothing concerns sidebar header or Pages pencil touch-target sizes."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100061,
+  "sha": "0f6a95442d4cb6be33551a7237496c52d6dc630a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "36e277d76147ab839a5068f4d8bc0c5254f1d05a",
+  "cause_pr": 175837,
+  "confidence": "high",
+  "cause_quote": "The new restore path selected the owner with `if (entry !== batch[0])` and then called `reserveSubagentControllerSource(entry, identity.batchKey, undefined, caller, {` without checking whether any child execution in the batch was still current.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart restored a superseded child completion batch, new chat messages could stay on \u201cWaiting for turn to start\u201d indefinitely.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix skips mailbox reservations for wholly obsolete batches and settles the full stored batch while delivering findings only from current child executions.",
+  "reasoning": "The parent of #175837 already filtered superseded executions during wake revalidation, and its restart path did not reserve mailbox positions for restored completions. The reservation feature shipped with a mismatch: restore could reserve the full frozen batch, but preparation rejected it when the filtered list lacked a superseded member, leaving the reservation at the head of the queue. #177698 changed how restore selected the owner while retaining the same mismatch."
+}

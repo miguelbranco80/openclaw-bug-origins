@@ -1,0 +1,17 @@
+{
+  "rank": 100767,
+  "sha": "f6b4cc314f46ecb336b909c677e1a903ebfe4ed6",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "42d0dad27aeb988519b0438b3eac587548bfdb6a",
+  "cause_pr": 153266,
+  "confidence": "high",
+  "cause_quote": "The diff added `const needsSetup = result !== null && (!installed || !result.nativeHostRegistered);`, which hid Setup when the older bridge rejected the status request, and made `installedProfiles: z.number().int().nonnegative(),` mandatory for setup replies that previously omitted it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After upgrading the Gateway dashboard, users running the older Mac app saw Chrome extension status as unavailable and lost the Set up Chrome on this Mac button.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix restores manual Chrome setup when automatic status checks fail and accepts older setup replies while still requiring an installed-profile count in status replies.",
+  "reasoning": "The causing diff shows that the parent dashboard offered Setup without a status check and accepted the three-field reply produced by the existing Swift install handler. PR #153266 gated that existing action on a successful reply and required a new field in the shared parser, breaking compatibility with the older bridge. The release tag was unavailable locally, so the shipped version identification comes from the fix PR."
+}

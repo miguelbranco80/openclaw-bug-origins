@@ -1,0 +1,8 @@
+{
+  "rank": 100713,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cOrder SQLite pages by original source keys\u201d finding in the earlier and at-merge reviews concerned escaped keys causing pagination and copy verification failures. No review item raised missing PostgreSQL planner statistics after a successful copy."
+}

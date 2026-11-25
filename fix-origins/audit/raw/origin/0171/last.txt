@@ -1,0 +1,17 @@
+{
+  "rank": 171,
+  "sha": "2874436966446987f2f72065ecea17a10dbaec87",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The static Control UI startup-failure page looked like a plain card disconnected from the app's design.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Restyled the static Control UI mount fallback page with a placeholder app shell, animated mascot, and a Reload/Troubleshooting recovery state, removing the Keep waiting action.",
+  "reasoning": "The PR describes a design change (the fallback 'looks disconnected from the rest of the app') and says retry, retirement and reload behavior are preserved; the diff is CSS and static markup only. No failure is reported, so this is a presentation/product change, not a defect."
+}

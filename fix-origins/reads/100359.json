@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Control UI chat and agent events could show an old parent session or omit the current parent after a session changed.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix replaces the gateway\u2019s permanent lineage cache with reads from the current prepared session projection and incognito store metadata.",
+  "reasoning": "The gateway already cached both parent values and misses indefinitely at the shallow boundary. I checked the dashboard eligibility change and the later prepared-read change, which both retained that cache. Older path history stopped at a missing object, so I could not verify when the cache was introduced or whether session lifecycle changes first exposed the stale results.",
+  "rank": 100359,
+  "sha": "4aa852f5b49c69040566eba9206b90ebdb9a4d56",
+  "rubric": "v1.2"
+}

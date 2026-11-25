@@ -1,0 +1,17 @@
+{
+  "rank": 100215,
+  "sha": "41a8839930e739b28541f287d0521e0c49c8eff8",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users signed in with ChatGPT could not see newer models such as gpt-6.1-sol in `/models` until they upgraded OpenClaw.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "ChatGPT model discovery now reports the latest stable Codex version from npm when it is newer than the bundled pin, with caching and an offline fallback.",
+  "reasoning": "The Git history shows that discovery deliberately reported the bundled Codex version, with a contract test enforcing the match and subsequent commits advancing the pin. The PR's backend comparison shows that ChatGPT hid the newly released gpt-6.1-sol at 0.158.0 and listed it at 0.160.0 and 0.161.0, so the provider's version requirement exposed the limitation for existing OpenClaw installs."
+}

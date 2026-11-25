@@ -1,17 +1,17 @@
 {
   "rank": 34,
   "sha": "cee08525d18231a7102b982d35fb675e51ef18e1",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "5e78ec6881c277fae9d4279e9315b5a1cc4b2925",
   "cause_pr": 169214,
-  "confidence": "medium",
-  "cause_quote": "The PostgreSQL engine's loseConnection marks the connection `isOpen = false` and throws 'PostgreSQL connection lost; transaction rolled back', while the same commit's Workboard worker wraps execution in `kernel.withWriteTransaction(() => execute(command))` and its catch only returns `{ ok: false, failure: encodeWorkboardSqliteFailure(error) }`, never reporting the dead connection to the worker runtime.",
+  "confidence": "high",
+  "cause_quote": "The PostgreSQL pilot routed writes through `kernel.withWriteTransaction(() => execute(command))`, where a disconnect set `this.isOpen = false` and the worker returned `{ ok: false, failure: encodeWorkboardSqliteFailure(error) }` while retaining the closed kernel.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With the experimental PostgreSQL engine, after one lost database connection every later Workboard request kept failing with 'PostgreSQL connection lost; transaction rolled back'.",
+  "user_saw": "After PostgreSQL disconnected during a Workboard write, subsequent Workboard requests kept failing.",
   "impact": "sequence-or-timing",
   "area": "plugins",
-  "summary": "Adds an assertSettled check to the Workboard kernel (transaction usable, connection open, no open transaction) and exposes it through the worker backend's existing settlement hook so a dead connection is retired and reopened on the next request.",
-  "reasoning": "The connection-lost error and the Workboard PostgreSQL path both arrived in 5e78ec6 (#169214); the generic worker settlement hook (backend.assertSettled) already existed since #149901 but Workboard's backend never supplied it, and its catch swallowed the failure into a structured reply. The fix's regression replay fails on the base and nothing shows the PG recovery ever worked, so this shipped with the engine; medium because intervening worker refactors (#170138, #172615) were not read line by line."
+  "summary": "The fix wires a database settlement check into the worker so a dead connection is retired and the next request can reopen the store without replaying the failed request.",
+  "reasoning": "The PostgreSQL introduction diff shows that connection loss stored a persistent error on the connection, while the worker encoded the thrown error as a normal reply and kept the same kernel for later requests. I checked the later worker recovery change, which added reopening for broker failures and preserved the structured error reply that left native connection loss undetected."
 }

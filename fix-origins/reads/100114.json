@@ -1,0 +1,17 @@
+{
+  "rank": 100114,
+  "sha": "43a8a798cabe7519620a8db9dd31d214844e0e46",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "f0b78f55d6d5acfb052a4512d97088b408a0c28d",
+  "cause_pr": 159073,
+  "confidence": "high",
+  "cause_quote": "The diff switched ingress mutations to `await runOpenClawStateWorkerOperation(...)` with `createSqliteWorkerWriteAdmission(assertActive, [context.admission.databasePath])`, putting writes behind a worker admission check that received no Doctor repair authority and could return an unknown native outcome to the existing retry handlers.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Doctor repair could change the ingress queue after its repair window closed, and an ingress write could be retried after SQLite returned an unknown outcome.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix passes Doctor's live repair authority to worker admission and makes unknown SQLite write outcomes terminal for ingress admission and settlement.",
+  "reasoning": "I checked the broker cutover's parent and confirmed that Doctor already checked repair authority before calling synchronous ingress transactions, which had neither a worker queue wait nor a worker outcome to replay. The cutover moved those same mutations to the worker while leaving Doctor's check at the call site and leaving the retry and settlement handlers unchanged."
+}

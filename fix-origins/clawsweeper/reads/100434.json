@@ -1,0 +1,8 @@
+{
+  "rank": 100434,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Projection persistence metric records the extra write for unchanged prompts without raising a risk. The earlier replay-fixture finding concerns missing admission metadata in tests and gives no indication that a successful foreground capture could rotate the transcript generation and invalidate Workshop\u2019s anchor."
+}

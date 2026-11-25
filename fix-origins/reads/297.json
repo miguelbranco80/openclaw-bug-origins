@@ -1,17 +1,17 @@
 {
   "rank": 297,
   "sha": "d979dba0245742be4a9c6e7c392de4015f9f8dd3",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
-  "cause_sha": "5a1c9b58767f360a5823c0c8c5be9057bd987b71",
-  "cause_pr": 198245,
+  "cause_sha": "715077a3befb5bb1239a8b0ebb52980e957ad316",
+  "cause_pr": 153989,
   "confidence": "medium",
-  "cause_quote": "It made policy outages non-terminal only inside the authority owners (`if (!isOperatorAuthorityUnavailable(error)) { revoked = true; ... }` while still `throw error`), leaving the queue readers that treat any `assertCurrent()` throw as lost authority unchanged.",
+  "cause_quote": "The first queued operator-authority check set `operatorAuthorityLost = true` whenever `assertCurrent()` threw and then set `disposition = { kind: \"consumed\" }`, while the authority owner's direct catch set `revoked = true` without aborting its signal.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With an access-policy plugin, a message queued during a brief policy outage was dropped as withheld (earlier silently cancelled) and never ran after the policy recovered.",
-  "impact": "sequence-or-timing",
+  "user_saw": "A message queued during a temporary access-policy outage was marked withheld and never received a reply after the policy recovered.",
+  "impact": "data-loss-or-duplication",
   "area": "gateway",
-  "summary": "Authority owners now abort their signal when assertCurrent finds a real revocation, and queue/mailbox/steer readers end custody only on recorded abort, retirement, cancellation or consumption instead of on any failed check, deleting isFollowupOperatorAuthorityCurrent.",
-  "reasoning": "The followup runner's catch-all (`try { assertCurrent() } catch { operatorAuthorityLost = true }`, present since at least the Oct 18 controller refactor) was correct while every assertCurrent failure meant revocation; #198245 introduced the non-revoking 'policy unavailable' error and taught only the owners about it, so outage survival for queued input never worked from that commit (#198729 later patched some steer/mailbox readers but not the followup runner or drain). It could also be read as latent with #198245 as trigger, hence medium confidence."
+  "summary": "The fix makes authority owners signal revocation and keeps queued input available for retry when a check fails without a recorded reason to end it.",
+  "reasoning": "The introducing diff already made a thrown assertion sufficient to consume queued work and failed to signal revocation detected by a direct check. I checked that #198245 later gave policy outages a nonterminal outcome at the authority layer while leaving the queue's terminal handling in place. The parent diff for #200213 already consumed the input on that path, and #200213 added the visible withheld notice."
 }

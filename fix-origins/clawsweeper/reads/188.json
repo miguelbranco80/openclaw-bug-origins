@@ -1,1 +1,8 @@
-{"rank": 188, "flagged": "related", "where": "earlier-only", "quote": "The handoff then records Session event execution failed because meta.error is absent; its first-failure retention prevents a later callback from replacing that generic text. Cron history and failure alerts lose the actionable recovery message.", "outcome": "answered", "note": "The earlier P2 item 'Preserve rejected runner failure details in terminal settlement' names the same generic-first failure recording, but only for kind: rejected outcomes; carrying that payload would not cover thrown failures without delivery evidence. steipete replied it was fixed in 66a8829ab738 and the merge version dropped it."}
+{
+  "rank": 188,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The handoff then records Session event execution failed because meta.error is absent; its first-failure retention prevents a later callback from replacing that generic text.",
+  "outcome": "answered",
+  "note": "The earlier \u201cPreserve rejected runner failure details in terminal settlement\u201d item identified the same generic fallback for rejected runner payloads. The author reported fixing that error projection, while the shipped bug occurred when terminal evidence lacked error text and the cause was stored on the reply operation."
+}

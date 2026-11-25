@@ -1,0 +1,8 @@
+{
+  "rank": 100174,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Persistence diagnostics item under Provenance checked describes the shared per-plugin warning budget as intentional. It raises no concern that a warning for one method could suppress migration guidance for another method in the same family."
+}

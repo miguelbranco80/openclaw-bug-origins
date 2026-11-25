@@ -1,0 +1,17 @@
+{
+  "rank": 100159,
+  "sha": "d25cadb3e78d6f740d0e6d63de48e080a398e40a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "f83b7ade15f3aefad7b367bef084ea5ffdbd9f8b",
+  "cause_pr": 177698,
+  "confidence": "high",
+  "cause_quote": "The diff added `...(preparedJoin ? { toolAuthorityFingerprint: preparedJoin.fingerprint } : { toolAuthorityOverlay: overlay })` while still sending `taskSuggestionDeliveryMode: supportsTaskSuggestions ? \"gateway\" : undefined` on that new path, so admission rejected a prepared join when the browser supplied `\"gateway\"` and the continuation had no mode.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a user sent guidance from the Control UI during a running subagent completion, their message waited for a separate turn.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets prepared same-requester joins inherit the running continuation\u2019s task-suggestion mode.",
+  "reasoning": "The introducing diff and its parent show that PR 177698 added the prepared continuation path to the gateway and documented steering into visible subagent announcements. The admission code at that commit already compared an explicitly supplied task-suggestion mode with the running backend\u2019s mode, so the new path shipped with the mismatch for browsers that advertised task suggestions."
+}

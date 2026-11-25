@@ -1,0 +1,8 @@
+{
+  "rank": 100449,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "This intentionally changes existing non-default state/config installations from being able to inspect, install, repair, or restart native Gateway services to receiving a skip diagnostic",
+  "outcome": "answered",
+  "note": "The P1 merge-risk item flagged the compatibility impact of the install-identity guard on Gateway services and left its effect on node lifecycle commands unexamined. The maintainer confirmed acceptance of the Gateway ownership rule and reported a Doctor check."
+}

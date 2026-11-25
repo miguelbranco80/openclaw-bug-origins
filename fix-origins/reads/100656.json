@@ -1,0 +1,17 @@
+{
+  "rank": 100656,
+  "sha": "61214694cc150a11e551c0e97fbeaaa01a2b8141",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Telegram progress message disappeared after the final send failed, leaving the chat without an answer or a delivery warning.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "Telegram now keeps a visible outcome when final delivery fails, preserves any accepted chunks, and requires confirmed delivery before reporting success.",
+  "reasoning": "The fix's parent clears unfinalized Telegram previews during turn cleanup, and the oldest locally readable dispatcher already clears progress without requiring final delivery to succeed. The cleanup predates the available file history, and the incident evidence leaves the plugin invalidation trigger unresolved, so I could not establish when the failure behavior first shipped or whether an earlier version handled the same rejection correctly."
+}

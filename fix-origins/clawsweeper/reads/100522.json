@@ -1,0 +1,8 @@
+{
+  "rank": 100522,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding concerns a file-replacement race during worker reads. Earlier findings covered path admission and Skill discovery, while the installation failure came from the paired-node adapter missing the applySkillRoot hook."
+}

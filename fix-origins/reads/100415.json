@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "1e2d50c663247a66934e2501481b964e3368c0d1",
+  "cause_pr": 173462,
+  "confidence": "high",
+  "cause_quote": "The new PostgreSQL reader branch called `selected = openAgentEngineStore(db, agentId, pathname, true, ...)` and returned a handle with `db: selected`, so each existing retained reader scope held a dedicated PostgreSQL connection until the scope closed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a multi-agent Gateway, session history reads and maintenance tasks could fail with PostgreSQL connection-limit errors even while the Gateway was idle.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix returns idle PostgreSQL connections to a bounded per-worker cache shared across stores while keeping logical readers available for reuse.",
+  "reasoning": "The parent used SQLite for agent databases and already had independent reader lanes and retained per-store scopes. The PostgreSQL cutover reused those scopes with a dedicated server connection per open reader, so idle readers could exhaust the role's connection limit from the first version of PostgreSQL agent storage. The later bridge cache accepted connections only when their handles closed, leaving connections held by retained readers outside its limit.",
+  "rank": 100415,
+  "sha": "f3009a56907e34a42d0d453dddff8adb13de4f20",
+  "rubric": "v1.2"
+}

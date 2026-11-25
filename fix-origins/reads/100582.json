@@ -1,0 +1,17 @@
+{
+  "rank": 100582,
+  "sha": "76ef7134efbb2281d93ce22be1d225aa9a186095",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "cfcdf2a51981531f0694b8235556da28993804df",
+  "user_visible": "yes",
+  "user_saw": "In process listings, ordinary CLI commands looked like separate daemons, and `openclaw gateway call` had the same title as the long-running Gateway.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "The fix sets ordinary CLI process titles to `openclaw` and leaves the long-running Gateway with the distinct title `openclaw-gateway`.",
+  "reasoning": "The parent of #73338 already named CLI processes after their top-level command, so `openclaw gateway call` could appear as `openclaw-gateway`. The #73338 diff gave that same title a new role as the long-running Gateway's identity and taught lock readers to accept the title alone, exposing the ambiguity in the existing naming scheme. The later CLI-name refactor preserved the command suffix."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100666,
+  "sha": "32427a18568f4ba95b432a2da794200aa37cce97",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A subagent completion or generated attachment could carry the original thread into a different conversation selected for delivery.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix checks conversation identity before inheriting a fallback thread and preserves explicit thread choices across subagent completion routes.",
+  "reasoning": "The oldest readable code already copied the requester\u2019s thread into bound destinations and merged fallback threads without checking the conversation, and the July 25 refactor carried those behaviors forward. The July 15 generated-media route reused the same faulty fallback pattern. The offline history could not establish when the original binding and hook behavior shipped or whether it had worked earlier."
+}

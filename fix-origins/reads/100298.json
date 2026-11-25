@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "feff169c052cbb1ae330c5f35a788108a13fbfa6",
+  "cause_pr": 136362,
+  "confidence": "high",
+  "cause_quote": "The diff moved `for (const listener of listeners) { listener(); }` out of the `syncThemePaletteStylesheet` callback, so a deferred download notified subscribers before `applyThemePresentation(settings)` ran.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An already-open MCP app kept the previous colors after the Control UI finished switching themes, until the app resized or reopened.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix notifies subscribers when a deferred theme palette is applied, while keeping preference notifications immediate and synchronous updates to a single notification.",
+  "reasoning": "I checked the parent of #136362 and confirmed that mounted MCP apps already subscribed to theme updates and read the host's computed colors after the palette was applied. The diff in #136362 moved the notification ahead of deferred palette application, leaving the app with the old colors. The later mascot and hat change restored a completion notification only when those branding fields changed.",
+  "rank": 100298,
+  "sha": "89c0030e4c451fbe1af8ec14cd8ecdd43e38d9c9",
+  "rubric": "v1.2"
+}

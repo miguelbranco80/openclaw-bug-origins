@@ -1,0 +1,8 @@
+{
+  "rank": 100111,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge findings addressed a missing packaged dependency and bearer exposure over HTTP, while the earlier enrollment finding addressed SDK compatibility. None of the review items pointed to the fixed download or enrollment deadlines that caused slow-uplink timeouts."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100849,
+  "sha": "e228ab4483d3f8048ad56add27c7e231e377b041",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An agent kept repeating the same memory search with unchanged hits even after loop detection warned it.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix excludes per-call timings and aggregate hit scores from successful memory-search outcome hashes so unchanged results count toward the existing loop block.",
+  "reasoning": "At the July 1 shallow boundary, memory search already returned per-call timings, and the generic loop detector already hashed the returned details and text when deciding whether outcomes were unchanged. The offline history could not trace those behaviors before that boundary, so I could not establish whether the defect shipped with loop detection or appeared after an earlier working version."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100273,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Production recovery owner item describes how the runner accumulates snapshots for retries. Neither the merge review nor the earlier open items raise a concern about recovery prompts or message history remaining in memory after a run ends."
+}

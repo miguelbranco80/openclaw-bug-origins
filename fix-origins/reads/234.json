@@ -1,17 +1,17 @@
 {
   "rank": 234,
   "sha": "3c408499583cb6d584473f72aa0bb8087a45bafc",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "5413688330fa0e6591c7861f4a214aa313a5c36f",
+  "cause_pr": 139492,
+  "confidence": "medium",
+  "cause_quote": "The new `/settings` route used a loader that returned `isNativeEmbedHost() ? undefined : redirect({ ...location, pathname: pathForRoute(\"chat\", context.basePath) })`, so browser navigation entered the Settings route before redirecting to Chat.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Opening /settings or a moved Settings section from a heavy page such as LobsterDex took roughly 8-36% longer because the outgoing page was briefly rebuilt before the redirect replaced it.",
+  "user_saw": "Opening a retired Settings link from a heavy page such as LobsterDex took longer because the browser briefly rebuilt the page they were leaving.",
   "impact": "slower-or-heavier",
   "area": "ui",
-  "summary": "Applies the existing Settings redirect policy at the app's pre-match URL canonicalization step so retired Settings links no longer remount the outgoing page before reaching the real destination.",
-  "reasoning": "This is a performance improvement measured against a baseline; the transient rebuild came from the long-standing loader-based redirect design (blame points to the original settings routes, the shallow graft, and #150133), not from a commit that made navigation slower than before. A sibling perf change hours earlier (#194624) applied the same treatment to General settings, consistent with an optimization series rather than a regression fix."
+  "summary": "The fix resolves retired Settings links before route matching so the outgoing page stays mounted until the destination is ready.",
+  "reasoning": "I checked the introduction of `/settings`: #139492 registered the route and put the browser redirect in its loader, while the application router only canonicalized Workboard before matching. The relocated section links acquired the same loader-only redirect pattern separately in #150133. The fix's tests confirm the rebuild on its baseline, but the exact remount behavior at introduction is inferred from the historical routing and outlet code."
 }

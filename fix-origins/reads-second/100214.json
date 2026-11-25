@@ -1,0 +1,17 @@
+{
+  "rank": 100214,
+  "sha": "ef39438c4a2f255334e81864c7d9ccef7cec0d65",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7fcf9124ce20cf8c8270c6fed0c3ad63927ae3a5",
+  "cause_pr": 145851,
+  "confidence": "high",
+  "cause_quote": "The new shared-state owner added `stores.set(key, opening)`, retaining each successful worker handle until lifecycle cleanup even after its work finished.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A request that needed a new SQLite store failed with \u201cSQLite worker store capacity reached\u201d when idle handles occupied the broker's available slots.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The fix lets the SQLite broker reclaim a reservation from an owner-confirmed idle shared-state client before admitting a new store.",
+  "reasoning": "The original broker already rejected opens when `this.clients.size >= MAX_STORES`, and the first shared-state worker cache retained idle handles without a way to release them under admission pressure. I checked the original broker and cache diffs and confirmed that the later idle timeout changes only affected how long handles stayed cached."
+}

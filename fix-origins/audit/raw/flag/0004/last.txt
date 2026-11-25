@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge “Resolve merge risk” item concerns unmanaged third-party resources, and the earlier finding concerns retained startup errors that reject a replacement registry. Neither identifies native-command channels continuing to use candidates from the retired registry after a hot reload."
+  "outcome": null,
+  "note": "The at-merge review lists only the unmanaged-resource lifecycle risk and config compatibility; earlier versions concern failed-plugin replacement rejection and merge conflicts. Nothing addresses native-command channels keeping candidates from the retired registry."
 }

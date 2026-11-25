@@ -1,0 +1,17 @@
+{
+  "rank": 100321,
+  "sha": "7d38d582ce50b4c91359d08273dc6218e7817c92",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e738c1467779af8e455ef41e8081cf10fa3c164c",
+  "cause_pr": 176106,
+  "confidence": "high",
+  "cause_quote": "The new verifier skipped every row where `event.type !== \"message\"` and then required `afterDelivery.has(parentId)`, so a reply whose immediate parent was a metadata row could never match.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "The QA handoff scenario timed out even though the child finished and the requester\u2019s final reply was present.",
+  "impact": "sequence-or-timing",
+  "area": "other",
+  "summary": "The QA verifier now follows the canonical active transcript branch through metadata while requiring the matching child settlement and visible reply within the same turn.",
+  "reasoning": "The scenario began verifying settled replies with this commit, and I checked that the runtime already supported appending context and system-prompt metadata before the assistant replied. The later verbatim-result change preserved the ancestry check, and the fix\u2019s metadata fixture directly exercises the missing link in the original verifier."
+}

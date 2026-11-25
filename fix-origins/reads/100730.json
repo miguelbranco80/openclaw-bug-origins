@@ -1,0 +1,17 @@
+{
+  "rank": 100730,
+  "sha": "5462f7f146436a50a56354dd39f8405eaeb5b60f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the system clock jumped during ChatGPT device-code sign-in, the login could time out early or keep waiting past 15 minutes.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix uses a monotonic clock for the 15-minute device-code polling deadline and its remaining budget.",
+  "reasoning": "The July 1 snapshot already seeded and checked the deadline with Date.now() and used the remaining wall-clock budget to schedule polling with setTimeout. PR #109494 reused that budget to cap individual requests, so the same clock-jump failure was possible before that change. Local history stopped at the shallow boundary, leaving it unclear whether the original device-code flow shipped with the defect or an earlier change introduced it."
+}

@@ -1,1 +1,8 @@
-{"rank": 90, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P1 finding is about mandatory capture refusing updates on disk shortage or hard-linked files, a different condition; nothing addresses concurrent readers rebuilding the WAL index so the capture fingerprint comparison fails."}
+{
+  "rank": 90,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Migration publication attribution entry describes the existing capture coordinator without raising a concern about the fingerprint check. The earlier archive-receipt finding concerns path aliases during restore, while the managed update failed when concurrent readers caused a WAL-index rebuild that changed the migration fingerprint."
+}

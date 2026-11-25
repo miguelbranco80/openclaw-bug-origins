@@ -1,0 +1,17 @@
+{
+  "rank": 212,
+  "sha": "7c36f1a9d92cfa921f94bfd515c3ac7eba628df7",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "7a1aa4eb4f442ad8a98a38901f826e9166edd8f4",
+  "cause_pr": 115409,
+  "confidence": "medium",
+  "cause_quote": "The Talk settings page's catalog load did `} catch { this.applyCatalog(connection, requestId, { kind: \"unavailable\" });` and rendered the unavailable state with the hint \"Connect to the Gateway to check realtime voice readiness.\"",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A connected user whose Talk catalog lookup failed (e.g. ambiguous Talk agent) was told to connect to the Gateway, and the Gateway settings page showed reconnect advice during a healthy connection.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Talk settings now show the actual catalog error (new failed state) instead of the disconnected hint, the catalog handler returns the readable agent-selection message, and the Gateway page shows the reconnect hint only after a failed disconnected attempt.",
+  "reasoning": "GraphQL blame of the pre-Solid talk-page.ts/talk.ts shows the catch-to-unavailable mapping and the 'Connect to the Gateway' unavailableHint both came from the original Talk settings page commit 7a1aa4eb (#115409); the Solid migration b8d31e96129 and the async-boundary refactor b79c32a97f88 (Errored fallback to kind unavailable) carried the same conflation forward, so it never distinguished failures from disconnection. The secondary Gateway-page hint (`<Show when={!props.dirty || reloadRequired()}>`) came from the page rebuild 404491496160 (#191283), a separate never-worked presentation choice; confidence is medium because the fix bundles two independent causes."
+}

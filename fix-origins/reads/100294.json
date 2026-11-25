@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Windows npm update failed when another process briefly locked the installed package directory during backup.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix adds bounded retries and per-attempt diagnostics for transient Windows errors while renaming the live package directory to its backup location.",
+  "reasoning": "I checked #136329 and its parent and found that the commit replaced `movePathWithCopyFallback` with a single `await fs.rename(targetSwapRoot, backupRoot)` for npm backups. The backup operation already existed, but the previous helper was supplied by an external dependency and the available tests only establish its cross-device fallback, so I could not verify whether transient Windows locks already caused the same failure.",
+  "rank": 100294,
+  "sha": "b5555b0bd9ed987d09fcdd5375031c023f25db7c",
+  "rubric": "v1.2"
+}

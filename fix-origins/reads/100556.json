@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "e1a15aacedd1b03ba13fa4f1e3b7265595e89bfd",
+  "user_visible": "yes",
+  "user_saw": "A Signal message or reaction could still go through after the originating task was canceled or superseded.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix carries the caller\u2019s lifetime check through Signal\u2019s send and reaction paths and runs it immediately before each daemon request, preserving results from requests already submitted.",
+  "reasoning": "PR #133520 added a shared callback for rechecking delivery authority immediately before provider I/O, exposing a gap in Signal\u2019s existing send path. I checked Signal\u2019s code before that commit and its later history: asynchronous preparation and quote fallback already existed, and the fix was the first Signal change to use the callback.",
+  "rank": 100556,
+  "sha": "4f3f2b2787a214d6171629d4e8f3b3d428342dd1",
+  "rubric": "v1.2"
+}

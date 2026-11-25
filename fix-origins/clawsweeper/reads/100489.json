@@ -1,0 +1,8 @@
+{
+  "rank": 100489,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Existing retry.provider.maxRetries configurations change from SDK/request retry counts to a shared turn-wide budget that may stop early when the 90-second retry window expires.",
+  "outcome": "answered",
+  "note": "The P1 merge-risk item flagged the shift to a shared turn-wide retry budget and focused on the 90-second ceiling. The maintainer accepted the shared budget, while the review left unaddressed that retries spent before a successful response could exhaust the budget for a later rate limit."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100798,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section discusses preserving an explicit CLI runtime through provider canonicalization, while the bug occurs when an automatically derived utility model has no credentials and misses the primary model\u2019s CLI pin. The earlier Preserve retry after empty isolated output finding concerns JSON recovery after an empty response."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "QA operators saw release-candidate evidence label a live-provider run as a mock fixture, even when a missing tarball blocked the run.",
+  "impact": "presentation",
+  "area": "other",
+  "summary": "The release-candidate evidence writer now records the live provider and includes a model only when all selected platforms agree.",
+  "reasoning": "Before the shared evidence writer was introduced, the producer already hardcoded `providerMode: \"mock-openai\"` while invoking a Parallels runner that defaulted to live OpenAI and selected credentials and models by platform. The mismatch predates the shallow boundary, and the local full-history lookup could not cross it, so I could not verify whether the producer shipped with the defect or an earlier change introduced it.",
+  "rank": 100895,
+  "sha": "9e45a8f47175dffc59547d3f8234912dc7e0584e",
+  "rubric": "v1.2"
+}

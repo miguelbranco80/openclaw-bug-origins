@@ -1,0 +1,8 @@
+{
+  "rank": 100754,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve Gateway recovery across fatal phase deadlines\u201d item covered a Gateway that repair itself stopped before timing out. No review item raised the missing start guidance when repair succeeded with a Gateway that was already offline."
+}

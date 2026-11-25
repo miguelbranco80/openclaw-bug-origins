@@ -1,0 +1,17 @@
+{
+  "rank": 100223,
+  "sha": "0f20813457717561c029f90ee65ed2f622e023e5",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6cd11338588e3dc520b9b38d34312948c84f1608",
+  "cause_pr": 105865,
+  "confidence": "high",
+  "cause_quote": "The first worker runtime constructed the shell tool with `exec: { host: \"gateway\", security: \"full\", ask: \"off\" }`, overriding any stricter policy for the turn.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An isolated worker could run commands that the Gateway's policy would have denied or required approval for.",
+  "impact": "permissions",
+  "area": "gateway",
+  "summary": "The fix carries the Gateway's effective exec policy in the worker launch descriptor and withholds shell tools when the authority is missing or the worker cannot enforce it.",
+  "reasoning": "I checked the introducing diff and confirmed that the first worker launch path called the embedded runtime with hard-coded full access and approvals off. The later scheduled-tool authority change passed allowed tool names but retained those exec defaults, so it could hide exec but could not restrict exec when the tool remained available."
+}

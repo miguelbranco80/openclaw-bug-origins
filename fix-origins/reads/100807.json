@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0606e31d0e623f010a96f0efe7d6434324cb6467",
+  "cause_pr": 126306,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `...(options?.githubPublicationAvailable === true ? [createGitHubPublishTool()] : []),` so an ineligible parent\u2019s tool list omitted the publisher before the inherited allowlist was captured.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A new managed child could not publish a draft pull request even though its own worktree was eligible and the parent\u2019s tool policy permitted publication.",
+  "impact": "permissions",
+  "area": "agents",
+  "summary": "The fix preserves policy-approved GitHub publication in newly created children\u2019s inherited allowlists while keeping the publisher unavailable to the ineligible parent.",
+  "reasoning": "The publication tool first shipped in #126306, when visible children could already receive their own managed worktrees and persist the parent\u2019s inherited allowlist. At that revision, the snapshot copied the parent\u2019s assembled authorized tools after workspace availability had excluded the publisher, so an eligible child under a restrictive allow policy inherited a ceiling that omitted it from the outset.",
+  "rank": 100807,
+  "sha": "3cbbeb08d471683097deb7544d2748e13f3b8520",
+  "rubric": "v1.2"
+}

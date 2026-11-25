@@ -1,0 +1,17 @@
+{
+  "rank": 68,
+  "sha": "34bc6434914728a8d13e8e2dcf6dd98bce6d1d88",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "c16858baa256a33134f35970df04519f48d3d7ed",
+  "cause_pr": 192368,
+  "confidence": "high",
+  "cause_quote": "c16858baa256 added `const installation = createHash(\"sha256\").update(resolveStateDir(env))...` and `path.join(admittedRoot, `sqlite-${installation}`)`, so snapshots taken while Doctor points OPENCLAW_STATE_DIR at its throwaway private copy land in a fresh per-run namespace the Gateway sweep never visits.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Leftover SQLite snapshot copies from Doctor and triage piled up in new ~/Library/Caches/openclaw/sqlite-<hash>/ directories (49 GB on one host) and were never reclaimed.",
+  "impact": "other",
+  "area": "storage",
+  "summary": "resolveSnapshotStagingRoot reuses the enclosing sqlite-<24 hex> namespace when the resolved state directory lies inside one, so Doctor/triage snapshot copies stay in the installation's swept namespace.",
+  "reasoning": "Per-installation namespaces and their automatic reclamation were introduced together in c16858baa256 (#192368, two days before the fix); before it no namespace existed and staging was operator-owned. That commit hashed resolveStateDir(env), which in the Doctor lint context is the private copy's path, so the reclamation feature never covered snapshots taken there and each run created a new namespace; the defect shipped with the feature."
+}

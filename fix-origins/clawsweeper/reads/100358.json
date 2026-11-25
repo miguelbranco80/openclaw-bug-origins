@@ -1,0 +1,8 @@
+{
+  "rank": 100358,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item about retargeting concerns an expiry sweep that leaves an email on the former Cloudflare policy. The reported bug occurs after policy removal succeeds, when an already-open Gateway connection or its active or queued work keeps running."
+}

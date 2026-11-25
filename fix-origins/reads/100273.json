@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "be4c0b17a630cb0dcf65e46931f809925b9c0de4",
+  "cause_pr": 166868,
+  "confidence": "high",
+  "cause_quote": "The introducing diff stored `continuation = { prompt: params.prompt, messages: [...(continuation?.messages ?? []), ...options.messages] }` and passed it into attempt parameters as `continuation: sessionPromptState.continuation`, while run disposal only closed the initial owner.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway operators could see heap usage grow after completed tool-heavy agent runs that required recovery.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "The fix releases recovery prompts and message history when continuations are replaced or runs finish, and retires callbacks after accepted transcript writes drain.",
+  "reasoning": "The introducing diff shows that recovery previously switched to a transcript-based instruction and that #166868 first packaged the original prompt and settled message snapshots into a continuation passed to later attempts. At that revision, transcript writer closures already captured the attempt object and prompt-state disposal left the continuation payload intact, so the new history could remain reachable after completion from its first release. The fix's reported WeakRef checks and heap snapshots confirm those retention paths on the baseline.",
+  "rank": 100273,
+  "sha": "1929324867c352347772d4a4ecda110c24d891af",
+  "rubric": "v1.2"
+}

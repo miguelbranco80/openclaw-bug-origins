@@ -1,0 +1,8 @@
+{
+  "rank": 100435,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Pin main, start a new main-agent session, and hold sessions.create pending. The pinned agent is excluded from this loop, which contains the roster's only renderPendingSessionCreateRow call; SidebarPinnedAgent renders no replacement.",
+  "outcome": "answered",
+  "note": "The earlier P2 finding \u201cPreserve creation feedback for pinned agents\u201d addressed a missing row while creation was pending and left the flash on successful creation without a permanent row unaddressed. The author responded that the pinned pending-creation browser tests passed on the repaired head."
+}

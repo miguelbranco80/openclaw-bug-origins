@@ -1,0 +1,17 @@
+{
+  "rank": 100148,
+  "sha": "89b6b48f8c48f8e9349c1af0324491a6b26b291f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "18f1c117e6a92d568e0cc3781c26882a291768ef",
+  "cause_pr": 153243,
+  "confidence": "high",
+  "cause_quote": "The new recovery coordinator called `await params.finalizeRun(...)` from `recover()`, which the registry invoked through `(await recovery.recover(runId, entry))` inside the sweeper.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart interrupted its subagents, the parent session waited for the registry sweep before learning what happened and continuing the task.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix reconciles interrupted subagents as soon as startup restores requester ownership and tells retained native children to verify uncertain tool outcomes before retrying.",
+  "reasoning": "PR #153243 introduced the policy of settling interrupted children and waking the parent, with settlement routed through the sweeper from the start. Its integration test explicitly ran a sweep after activation before checking for the parent wake, and the prior version of that test used the sweep to verify automatic child relaunch."
+}

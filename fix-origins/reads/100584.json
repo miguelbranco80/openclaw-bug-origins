@@ -1,0 +1,17 @@
+{
+  "rank": 100584,
+  "sha": "6448ce6c258f206fca29fad3dda231a706384d76",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When users alternated between channel messages and web chat in the same Claude CLI session, replies could continue from stale history and miss recent turns.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix gives each Claude CLI conversation one warm process and queue slot, retires incompatible processes before resuming, and limits standing approvals to the activated turn.",
+  "reasoning": "The Gateway reproduction showed two warm processes resuming the same native session and creating four stale-parent forks. I verified that the account- and auth-scoped keys predated the shallow boundary and survived both the Agent SDK and direct CLI transport refactors. The offline history could not resolve the older introducing diff, and I found no later change that established when cross-route continuity first failed."
+}

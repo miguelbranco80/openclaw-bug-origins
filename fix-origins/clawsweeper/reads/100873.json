@@ -1,0 +1,8 @@
+{
+  "rank": 100873,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cSeparate terminal activity from successful tool results\u201d finding addressed false success in web tool cards. The native \u201cResolve merge risk\u201d items requested runtime validation without identifying that the Gateway\u2019s unknown-outcome title could replace the local iOS tool title."
+}

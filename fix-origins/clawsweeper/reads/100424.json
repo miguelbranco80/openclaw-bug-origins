@@ -1,0 +1,8 @@
+{
+  "rank": 100424,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section mentions the proc-safe reaper import without raising a concern about running the support check before the Linux process-group scan. The earlier findings concern Windows private-creation paths."
+}

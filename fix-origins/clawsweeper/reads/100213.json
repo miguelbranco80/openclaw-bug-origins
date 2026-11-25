@@ -1,0 +1,8 @@
+{
+  "rank": 100213,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items cover CLI fallback, upgrade and packaging risks, and general compatibility checks. Neither those items nor the rest of the merge-time review raises the risk that matching a native catalog entry suppresses the configured context cap for ordinary Codex chats."
+}

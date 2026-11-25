@@ -1,17 +1,17 @@
 {
   "rank": 72,
   "sha": "31b28e921fa72d530219eec77a8900b232c346e0",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "c152c5976b218bf62f7c7666c4703d1a39ecfa80",
   "cause_pr": 184791,
   "confidence": "high",
-  "cause_quote": "The new per-request createEmbeddedRequestAuth.resolve() called `assertCurrent();` (which includes the authorization check that throws `unavailable` while a peer's refresh fence is pending) before `getApiKeyForModelCore`, so the request failed instead of reaching canonical resolution's peer-fence wait.",
+  "cause_quote": "The new request-auth resolver called `assertCurrent();` before `await getApiKeyForModelCore({`, so a peer's pending refresh threw before credential resolution could wait for it.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When several agent runs shared one OAuth profile and one refreshed the token, the other runs ended with `MCP authorization state is temporarily unavailable`.",
+  "user_saw": "An agent run failed with \u201cMCP authorization state is temporarily unavailable\u201d when its next model request overlapped another run's refresh of the same OAuth profile.",
   "impact": "sequence-or-timing",
   "area": "agents",
-  "summary": "Request auth now waits, bounded and abort-aware, for a peer OAuth refresh to settle when authorization reports MCP_AUTHORIZATION_UNAVAILABLE, and re-resolves credentials if it had to wait after lookup.",
-  "reasoning": "c152c597 introduced per-request OAuth resolution (auth-controller.request-auth.ts) with an upfront and post-lookup assertCurrent; at that commit authorization.ts already threw `unavailable` for a pending fact and authorization-observation already counted owner.pending, so the race existed from the feature's introduction. bae3b0bd only inlined the same code into auth-controller.ts (blame top), and 7bce7a6 kept the pending-to-unavailable rule unchanged."
+  "summary": "Request authentication now waits within the credential deadline for a peer's OAuth refresh and looks up credentials again if the refresh overlapped the first lookup.",
+  "reasoning": "The parent already had an OAuth manager that waited for pending refreshes, and the authorization code at #184791 already threw when the selected credential was pending. #184791 introduced per-request OAuth resolution with that throwing check ahead of the lookup, so the failure existed from the first version of the request-auth path. The later deadline refactor carried the same check forward when it inlined the resolver."
 }

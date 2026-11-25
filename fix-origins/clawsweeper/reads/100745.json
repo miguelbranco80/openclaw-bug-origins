@@ -1,0 +1,8 @@
+{
+  "rank": 100745,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item concerned lease inspection and teardown on restricted hosts with an outdated CLI. The Re-review continuity section mentioned the version probe only to describe a test fixture update and raised no concern about a healthy configured CLI timing out and triggering managed fallback."
+}

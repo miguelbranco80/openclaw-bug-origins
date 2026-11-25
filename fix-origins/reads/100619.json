@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The initial canary waited on `running.closed.then((value) => { code = value; })` and used `running.hasExited() ? \"\" : \" (deadline exceeded)\"` after cleanup, so the failure message had no way to tell whether lint had already emitted a complete report.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could report a generic health-check failure after lint had already produced its report, and unavailable automatic repair could appear as the failed step.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The fix distinguishes incomplete lint checks from completed checks followed by process or pipe stalls, records explicit timeout metadata, and marks automatic repair skipped when inference is unavailable before a turn starts.",
+  "reasoning": "The canary's introducing diff already based its deadline diagnostic on child closure and did not inspect the lint report when the deadline expired. Later commits preserved the deadline outcome and added lint findings, but still did not record whether the report was complete at the deadline. The separate repair-reporting error also shipped with its feature in #139495, which recorded every unrepaired stop as a failed repair step.",
+  "rank": 100619,
+  "sha": "ce00dd38683575df557bef727964450ce746088c",
+  "rubric": "v1.2"
+}

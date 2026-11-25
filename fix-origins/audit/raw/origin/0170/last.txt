@@ -1,0 +1,17 @@
+{
+  "rank": 170,
+  "sha": "426c1d69d314ebc6195299d4812fff2b99c48870",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "832bbf926fc55ec102bde3fb1a1b5e4341b848b6",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "AuthorName computed `const index = query ? fold(props.name).indexOf(fold(query)) : -1` on the NFD-folded name, then sliced the original with `props.name.slice(index, index + query.length)`, so the offsets went wrong whenever folding changed the string length.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the Dashboards author filter search, Korean or decomposed-accent names had nothing bolded or the wrong letters bolded (e.g. no bold for \ubbfc in \uae40\ubbfc\uc218, final 'a' plain in Garc\u00eda).",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Added matchFoldedQuery to map a match found in the folded name back to the original name's span, and used it for the author-name highlight, sharing one foldSearchText with the filter.",
+  "reasoning": "dashboard-tools.tsx was created by 832bbf926fc5 (its diff shows a new file) together with the AuthorName highlight that used folded-string indices and the raw query length to slice the unfolded name, so the highlight was wrong for length-changing folds from the start. The subject of 832bbf926fc5 has no PR number, so cause_pr is null."
+}

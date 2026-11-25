@@ -1,17 +1,17 @@
 {
   "rank": 4,
   "sha": "626527a745ad5418a4966280a9848ba5baf182c9",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "b5134de70af88e342accaba665590c7cb6b79f0b",
   "cause_pr": 145484,
-  "confidence": "medium",
-  "cause_quote": "The new partial plugin reload only adds a channel to channelTargets when `previousRegistry.commands.some((entry) => !nextRegistry.commands.includes(entry))` or `changedPluginIds.has(channel.pluginId)`, so retained command entries leave native-command channels running on candidates from the retired registry.",
+  "confidence": "high",
+  "cause_quote": "The hot reload rewrite removed `for (const channel of pluginReloadResult.activeChannels) { channelsToRestart.add(channel); }` and gated command-driven restarts on `previousRegistry.commands.some((entry) => !nextRegistry.commands.includes(entry)) || nextRegistry.commands.some((entry) => !previousRegistry.commands.includes(entry))`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After any plugin config hot reload, every plugin slash command on Telegram (and Discord/Slack native commands) replied that the command was no longer available after the plugin registry changed, until the Gateway restarted.",
+  "user_saw": "After an unrelated plugin hot reload, Telegram plugin slash commands reported that they were no longer available until the Gateway restarted.",
   "impact": "sequence-or-timing",
   "area": "channels",
-  "summary": "Plugin reload now also restarts channels with native commands that had plugin commands for that channel in the replaced registry, so they rebuild command candidates bound to the new registry.",
-  "reasoning": "Before b5134de70af8 the plugins.* hot-reload path called `beforeReplace(beforeChannelIds)` with every attached channel, stopping and restarting them all, while the retired-registry refusal and Telegram's start-time `listNativeCandidates` capture already existed, so candidates were refreshed. #145484 replaced that with targeted restarts that retain unchanged plugin records and command entries by identity, and the collectTargets logic the fix extends was introduced there verbatim. Medium because I did not run the pre-#145484 path to confirm a plugins.entries change reached the full-restart branch end to end."
+  "summary": "The fix restarts native-command channels that had plugin commands in the replaced registry, even when those command entries are reused.",
+  "reasoning": "I checked the parent code and confirmed that plugin hot reload already stopped attached channels before replacing the registry and restarted active channels afterward, so Telegram rebuilt its registry-bound command handlers. The rewrite skipped unchanged channels when command entries retained their identity, leaving their handlers bound to the retired registry. The September 16 change carried that restart rule into the extracted helper."
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100524,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items concerned production performance. The Cleanup lifecycle safeguards section covered store-owner retirement during ACP cleanup, a different path from the scheduler logging a failure when restart drain refused to start a sweep."
+}

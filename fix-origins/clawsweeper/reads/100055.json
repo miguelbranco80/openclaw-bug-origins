@@ -1,0 +1,8 @@
+{
+  "rank": 100055,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests item asks for WebKit coverage of keyboard dismissal, menu focus, selection, and unintended sends. The Findings section is empty, and the review raises no concern about the composer collapsing and hiding its toolbar when a nonempty draft loses focus."
+}

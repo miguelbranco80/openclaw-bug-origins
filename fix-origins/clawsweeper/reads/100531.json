@@ -1,0 +1,8 @@
+{
+  "rank": 100531,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Findings section lists no issues. The Evidence section describes the Details gutter and reading-column alignment without raising a concern about the gutter being counted as available width for Markdown tables."
+}

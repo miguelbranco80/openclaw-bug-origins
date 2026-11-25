@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Some selected controls kept the same background when hovered, and sidebar rail buttons used the same fill for hover and selection.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix standardized hover, selection, and selected-hover backgrounds across the Control UI while keeping rail badge cutouts matched to their controls.",
+  "reasoning": "The original sidebar rail deliberately grouped hover and selection under the same background rule, and the prior session-row test expected the active fill to stay fixed on hover. The PR\u2019s visual comparisons and updated tests establish a new styling convention while preserving the existing multi-selection highlight.",
+  "rank": 100617,
+  "sha": "ce732b1b97c9476b223f50020175712fe64edbbc",
+  "rubric": "v1.2"
+}

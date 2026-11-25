@@ -1,0 +1,17 @@
+{
+  "rank": 100235,
+  "sha": "9434e42d61217cf263ee2d6d5e173fa55da4a38f",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "36e277d76147ab839a5068f4d8bc0c5254f1d05a",
+  "cause_pr": 175837,
+  "confidence": "high",
+  "cause_quote": "The refactor switched the pre-ACK path to `await beginSessionControllerSteer(...)`, whose admission added `await racePromiseWithAbortSignal(predecessor, input.abortSignal);` to wait for older mailbox reservations.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A WebChat message sent during an active turn could stay marked \u201csending\u201d for minutes while an older queued input held up steering admission.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix acknowledges chat sends after durably saving the input and moves ordered steering admission and native acceptance into detached dispatch.",
+  "reasoning": "I checked the refactor's parent and confirmed that WebChat already supported active-turn steering by calling the backend injection path directly, so older queued inputs could not hold the ACK through a mailbox predecessor. The refactor inserted that wait into the existing pre-ACK path, and the fix PR reports a WebSocket test that reproduces the stall by holding an older reservation."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "e71d56d5572bb6eaf2b6aafeaf14393e8642da97",
+  "cause_pr": 121846,
+  "confidence": "high",
+  "cause_quote": "The introducing diff used `loadSessionEntryReadOnly(params.requestedSessionKey)` and `loadSessionEntryReadOnly(sourceParent)`, omitting the sending agent from both lookups.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A worker for a non-default agent could not use sessions_send to reach its own global parent or a sibling under that parent when sessions were stored per agent.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix supplies the sending agent for unqualified target and shared-parent lookups when no configured fixed store owns the key.",
+  "reasoning": "The commit that introduced worker family messaging already omitted the source agent from both target and shared-parent reads. I checked the resolver at that commit and confirmed that an unqualified `global` key without an explicit agent selected the default agent's store. The September rewrite replaced the lookup helper and carried forward the same omission.",
+  "rank": 100050,
+  "sha": "ea0ba3f63f61adbe2a72922f03201d3e8903314b",
+  "rubric": "v1.2"
+}

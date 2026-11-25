@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "73c9e39c619a290e8b27c7f7f7ce714440650fa1",
+  "cause_pr": 172287,
+  "confidence": "high",
+  "cause_quote": "The diff set `thread_unload_delay_secs=0` for managed servers and added `onUnload?.()` to the `notLoaded` handler, allowing `thread/resume` to proceed while native teardown was still pending.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A managed Codex conversation could fail to resume during a configuration refresh or reopen as a fresh conversation without its prior history.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix waits for the managed thread\u2019s close notification and allows one identical resume retry after the specific thread-closing rejection, preserving the conversation binding and history.",
+  "reasoning": "The parent of #172287 already supported refreshing and resuming an existing managed conversation through native synchronous reload, with coverage for policy refresh and the same host-profile scenario. The causing diff changed ordinary managed refresh to unload immediately after unsubscribe and treated `notLoaded` as readiness, although native Codex can still reject resume at that point. The fix PR documents that rejection in Linux CI and confirms the premature resume in deterministic tests.",
+  "rank": 100843,
+  "sha": "90a14817215f010a0969b8515563356a5323d75e",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "91b5b43d788ff3880f74bcd73f37eca2ff83d3fc",
+  "cause_pr": 113594,
+  "confidence": "high",
+  "cause_quote": "The picker curation diff deleted the manifest row `\"id\": \"o3\"` and several related rows, removing them from the input to OpenAI API-key discovery.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "OpenAI API-key users could not see some models their account could use in `/models`, and directly selecting `openai/gpt-5.2` returned `Unknown model`.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds eligible account-listed OpenAI chat models to the API-key catalog with conservative defaults when the manifest lacks a row.",
+  "reasoning": "I checked the parent of #113594 and confirmed that API-key discovery took its candidates from the manifest and retained `o3` when the live account catalog listed it. The curation commit removed that row, and #114258 kept the existing restriction to predefined rows. The fix also admits models such as `gpt-5.2`, whose earlier availability I could not establish from this history.",
+  "rank": 100789,
+  "sha": "c1f5fbe639701f83042d318e95eccb98dfd0d27a",
+  "rubric": "v1.2"
+}

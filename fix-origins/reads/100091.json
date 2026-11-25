@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ee5f7c61c5b7eb81f6d1bdf98fb03ca62c3e877f",
+  "cause_pr": 154324,
+  "confidence": "high",
+  "cause_quote": "The new Darwin reader only bypassed the unreadable-arguments error when `executable && isForeignNativeExecutable(executable, uid) && native.isPlatformBinary(pid)` was true, so an unreadable third-party daemon or Apple `.app` service could abort the census.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On affected Macs, `openclaw doctor --fix` reported that legacy plugin capture cleanup was skipped and left eligible directories on disk.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Doctor now excludes unreadable foreign-UID processes from the legacy capture census, preserves foreign-owned legacy directories, and uses custody and installed-index references for managed native cleanup.",
+  "reasoning": "The #154324 diff shows that Doctor previously only reported legacy captures and that the same commit introduced both automatic deletion and the Darwin census that could veto it. The later #157102 diff retained the executable and platform-signature checks for processes with a known UID, so the reported setup was blocked from the first version of automatic cleanup.",
+  "rank": 100091,
+  "sha": "96e4061553977c4434544b3f45059035d048fe3c",
+  "rubric": "v1.2"
+}

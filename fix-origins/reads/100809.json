@@ -1,0 +1,17 @@
+{
+  "rank": 100809,
+  "sha": "5129c0af2eebd9d8a50a5e01bf976e0502c27161",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An already compacted session could run another unnecessary compaction before replying when its token usage was stale.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Preflight compaction now estimates token pressure from the active model context when usable provider usage is unavailable.",
+  "reasoning": "The August cutover fix changed the fallback from a bounded recent-history read to a full-history read, but I checked its parent and found that the recent reader also included superseded messages when they fit within its limits. The fallback already used display messages at the shallow boundary, and the available history did not establish when that behavior first shipped or whether an earlier version handled compacted sessions correctly."
+}

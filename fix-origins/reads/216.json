@@ -1,7 +1,7 @@
 {
   "rank": 216,
   "sha": "0e7aab7cd5c2d6d4018bdc5e380a3849f4ad8700",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Nothing was reported; under an explicit strict browser SSRF policy, existing-session (Chrome MCP) navigation could follow redirects to destinations the policy would otherwise inspect, and now such navigations are refused with an error.",
+  "user_saw": "With strict browser SSRF policy enabled, an existing-session Chrome profile could follow a redirect before OpenClaw checked the destination.",
   "impact": "permissions",
   "area": "plugins",
-  "summary": "Adds a Chrome MCP navigation preflight that refuses http(s) navigation and tab opens on existing-session profiles when the strict SSRF policy requires redirect-hop inspection.",
-  "reasoning": "The fix extends the existing strict-policy redirect-inspection requirement (requiresInspectableBrowserNavigationRedirectsForUrl, which already gated the raw CDP fallback) to the Chrome MCP existing-session transport, closing an audit-found SSRF policy gap with no linked user report. It is either a never-worked gap from whichever commit first let Chrome MCP navigate without that gate or plain hardening; both the helper (GraphQL blame: April 2026 commits 8cfdc8dea15/121c452d666 and older) and the Chrome MCP navigation path predate the 2026-09-03 graft, and I could not pin the introducing line, so no cause is named."
+  "summary": "The browser plugin now rejects HTTP(S) navigation and tab opens through Chrome MCP when strict SSRF policy requires redirect inspection.",
+  "reasoning": "At the earliest locally readable revision, both Chrome MCP paths already dispatched after checking the initial URL and validated the final URL only afterward, while raw CDP tab opens already had a strict redirect-inspection gate. The older path history stopped at a missing commit object, so I could not verify whether the defect shipped with Chrome MCP or was introduced by a later change."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "cd32ddcdbd875c3d6a9f46ee9a926bc198719bea",
+  "cause_pr": 170518,
+  "confidence": "high",
+  "cause_quote": "The original materializer populated the destination with `const tables = await scan(source, descriptor, maxRowBytes, destination, assertCurrent);` and exited with `return verified;` without running `ANALYZE`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Initial queries against a newly ported or restored PostgreSQL store used default planner estimates until PostgreSQL collected statistics.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix runs schema-scoped PostgreSQL ANALYZE after verified bulk copies and again after agent memory rebuilds, reporting refresh failures as warnings.",
+  "reasoning": "The foundations commit introduced the shared materializer with the statistics refresh missing from its PostgreSQL copy path. The first CLI port reused that materializer and added an explicit commit before returning, and the path history shows no ANALYZE in the materializer before this fix.",
+  "rank": 100713,
+  "sha": "660b252bb85696d7f6a60cadf214711a490b66ce",
+  "rubric": "v1.2"
+}

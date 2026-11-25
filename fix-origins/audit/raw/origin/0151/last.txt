@@ -1,0 +1,17 @@
+{
+  "rank": 151,
+  "sha": "a56ba896f17a71647074ff798f70ee0f51e3bda4",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "94867f9f8845cdf63ec91ace384fcd043f45237c",
+  "cause_pr": 173346,
+  "confidence": "medium",
+  "cause_quote": "The introducing commit added `const publisher = result.user?.handle;` followed by a lowercase-only `/^[a-z0-9][a-z0-9._-]*$/` check, so a mixed-case whoami handle is rejected as clawhub_identity_required.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Control UI Template review and publish failed with 'Your ClawHub account needs a personal publisher handle.' for accounts whose ClawHub handle has uppercase letters.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "Lowercases and trims the ClawHub /whoami handle before validating it as the personal publisher.",
+  "reasoning": "The whoami call and lowercase-only regex check were added together in 94867f9f884 (src/claws/draft-publish.ts), then moved verbatim by the refactors f16e8bc092e7 and d1c8d42588a (Claws to Templates rename) without behavior change. Medium rather than high because I could not confirm ClawHub's whoami always returned GitHub-cased handles when the code was written (if it changed later this would be latent)."
+}

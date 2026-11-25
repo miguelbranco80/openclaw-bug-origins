@@ -1,0 +1,8 @@
+{
+  "rank": 100654,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Tests items ask for end-to-end Sage execution proof, and the SDK anchor finding concerns a documentation link. The at-merge review lists no findings and raises no concern about missing runtime discovery or static validation of the decision-only catalog row."
+}

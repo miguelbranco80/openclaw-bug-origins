@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The maturity scorecard displayed old QA results as current coverage after the capabilities those results were meant to verify had changed.",
+  "impact": "sequence-or-timing",
+  "area": "other",
+  "summary": "The fix records a versioned semantic taxonomy hash in QA evidence, verifies it during shard aggregation, and uses only matching evidence to score current coverage.",
+  "reasoning": "Blame shows that the renderer's selection of the latest scorecard by profile predates the local history boundary, and that selection gave valid coverage when the evidence and taxonomy described the same capabilities. I verified that #141955 changed Linux companion capability definitions while preserving their coverage IDs and category counts, which shows how a later taxonomy edit could make earlier evidence stale. The offline evidence does not identify which edit or artifact reuse triggered the reported failure.",
+  "rank": 100169,
+  "sha": "6aab56d5c288be3ed017d1dc0a7316a445397233",
+  "rubric": "v1.2"
+}

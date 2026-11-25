@@ -1,17 +1,17 @@
 {
   "rank": 13,
   "sha": "2840df5fa7bc91bb1d8b358b50c893eeba3970ad",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "c80f434ab35b9561ee5dd92384283f287b2bf6d1",
   "cause_pr": 142713,
   "confidence": "high",
-  "cause_quote": "#142713 deleted `if (props.inspectionError) { return renderRetryError(props.inspectionError, props.onRetryInspection); }` from renderAccess, leaving `if (!props.inspection) { return renderSettingsLoadingSkeleton(...) }` to run on failure, and moved the error to a page-level banner.",
+  "cause_quote": "The diff removed `if (props.inspectionError) { return renderRetryError(props.inspectionError, props.onRetryInspection); }` from `renderAccess`, so a failed inspection with no result fell through to the loading skeleton.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After a plugin's permission inspection request failed, its Permissions section kept showing a loading skeleton forever (alongside the error banner) instead of a finished state.",
-  "impact": "presentation",
+  "user_saw": "The plugin\u2019s Permissions section kept showing a loading skeleton after inspection failed, even though the error and Try again button were already visible.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "Plugin settings now derive the permissions loading state from whether the inspection read is actually pending, and suppress the empty-settings message while permissions are unknown.",
-  "reasoning": "The access section was introduced in #135840 with an explicit inspectionError branch that showed a retry error instead of the skeleton, so failure was handled. #142713 (unify installed plugin detail tabs) removed that branch from renderAccess and kept the `!props.inspection` skeleton, so a failed inspection rendered as permanent loading; later refactors (#149246, #150234, #150235, #168758) carried the `!inspection -> loading` condition forward unchanged until this fix."
+  "summary": "The fix ties the Permissions skeleton to the pending inspection request and suppresses the empty-settings message while permissions are unknown.",
+  "reasoning": "I checked the parent of #142713 and confirmed that the existing Access section rendered the inspection error and retry before checking for missing data. The tab refactor moved the error to a shared banner and left the permissions views showing a skeleton whenever inspection data was missing. The grouped settings editor, #150235, and the Solid port carried that behavior forward."
 }

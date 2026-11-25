@@ -1,17 +1,17 @@
 {
   "rank": 53,
   "sha": "e6a2efb46efad42eabba6e3e9b90b81b45d527d7",
-  "rubric": "v1.1",
-  "origin": "regression",
-  "cause_sha": "b9c242ddc0607fd2271443081e9c53bc408acaa0",
-  "cause_pr": 159891,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "f651a47ed73dd83ee25c227a7ff4adbdecdc8743",
+  "cause_pr": 159767,
   "confidence": "high",
-  "cause_quote": "browser-panel-operation-ownership.ts began binding every non-dashboard panel with a sessionKey to `() => ({ sessionKey, referencedTabs: this.host.sessionTabs ?? [] })`, so GET /tabs became session-filtered, while only the chat pane was updated to pass `.sessionTabs` and the focus page (sessionKey + fixedTab, no sessionTabs) sent an empty reference list.",
+  "cause_quote": "The new focus renderer passed `.sessionKey=${focusTarget.sessionKey}` and `.fixedTab=${tab}` but omitted `.sessionTabs`, so the session-scoped tab list excluded the untracked startup tab.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Opening the agent browser focus page cold (e.g. from the Android app) showed 'Couldn't load browser: This tab is no longer available' instead of the live startup tab.",
-  "impact": "failed-every-time",
+  "user_saw": "After a cold start, the Android Agent browser panel said the selected tab was unavailable even though it was still open.",
+  "impact": "sequence-or-timing",
   "area": "ui",
-  "summary": "BrowserDocument now passes its fixed tab as a referenced tab (sessionTabs) so the session-scoped tab list includes an untracked reused startup tab.",
-  "reasoning": "The focus-page browser panel predates #159891 (ec00e5842d3b moved it out of app-root.ts with `.sessionKey` and `.fixedTab` but no sessionTabs), and before #159891 GET /tabs was unscoped so the fixed tab was always listed. #159891 (b9c242dd) added Gateway-side session tab filtering for any panel with a sessionKey, with referenced tabs only supplied by the chat pane, which drops an untracked startup tab from the focus page's list; the fix PR itself names #159891 as the scoping change."
+  "summary": "The browser focus page now sends the selected tab as an explicit reference in its session-scoped tab request.",
+  "reasoning": "First-parent history shows that #159891 introduced session-scoped tab filtering before #159767 added the browser focus page used by Android. The introducing diff omits the tab reference, and the controller at that commit checks the fixed target against the already-filtered list, so the cold-start case was broken when the page shipped."
 }

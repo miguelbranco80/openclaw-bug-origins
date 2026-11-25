@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "8169aacdda928c4ef72954ca7f51362fb38e4d53",
+  "user_visible": "yes",
+  "user_saw": "After upgrading to 9.4 or 9.5, users with managed proxy routing saw 502 responses or handshake failures in WebChat or native Codex.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix routes loopback HTTP and WebSocket traffic directly by default, gives native subprocesses loopback proxy exclusions, and adds Doctor diagnostics while preserving explicit proxy and block modes.",
+  "reasoning": "The trigger's parent already cleared both NO_PROXY variables and documented a narrow, explicitly registered loopback bypass for Gateway control-plane traffic. The trigger bound a new inference relay to 127.0.0.1 and set `openai_base_url: route.baseUrl`, creating a native subprocess call that needed a direct loopback route under the existing managed proxy policy.",
+  "rank": 100851,
+  "sha": "8dc129424cbe0c9bf4af845fba3d4a319f3c8006",
+  "rubric": "v1.2"
+}

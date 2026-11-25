@@ -1,0 +1,17 @@
+{
+  "rank": 100747,
+  "sha": "65251b0d7c8ac24dbe287763ea80d19bb377c467",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With partial streaming, the final Telegram answer could appear unthreaded or reply to the wrong message despite an explicit reply tag.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "Telegram now sends a replacement final and removes the preview after delivery when the resolved reply target differs from the preview\u2019s actual target.",
+  "reasoning": "PR #146361 added a comparison against the pre-recovery payload, which accepts an explicit target already present in that payload. Its parent and the July 1 snapshot already allowed text finals to reuse previews without checking the final target against the preview\u2019s target. The available offline history stops at the shallow boundary, so I could not verify which commit introduced the mismatch or whether an earlier implementation handled it correctly."
+}

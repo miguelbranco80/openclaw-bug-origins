@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "076609646429a1b799dc8509bd9b09e5e3bd378a",
+  "cause_pr": 135711,
+  "confidence": "high",
+  "cause_quote": "The new utility preparation returned `provider: selection.provider, model: selection.modelId`, and the isolated runner used `resolveEffectiveAgentRuntime({ cfg: config, provider, modelId: request.model, agentId })` when no override was present, so the derived model could not pick up the primary model\u2019s CLI pin.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Claude CLI-only setups, session digests failed with a missing Anthropic API key error and the observer disabled itself after two attempts.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "Automatically derived utility completions now borrow the primary model\u2019s pinned CLI runtime when the derived model lacks usable provider credentials.",
+  "reasoning": "The earlier automatic model derivation selected a separate provider-declared model, and the observer still used API credential preparation before #135711. That PR introduced runtime-aware utility execution, but its dispatch resolved runtime policy against the derived model\u2019s identity, so a CLI pin scoped to the primary was missed from the first release of that routing.",
+  "rank": 100798,
+  "sha": "2dd93a290b748686160b4a478b7ee003cc0f9f24",
+  "rubric": "v1.2"
+}

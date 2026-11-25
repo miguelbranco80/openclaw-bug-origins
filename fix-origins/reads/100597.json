@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "57d926b4fd821088bddcd51b516215b409b5a2b4",
+  "cause_pr": 107688,
+  "confidence": "high",
+  "cause_quote": "The new deadline was initialized with `expiresAtMs: Date.now() + TERMINAL_OPEN_DEADLINE_MS` and checked with `Date.now() >= deadline.expiresAtMs`, so wall-clock jumps could shorten or extend the effective timeout.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the host clock jumped during a terminal open, the request could time out early or succeed after its 30-second deadline.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix measures the 30-second terminal-open deadline and checks it at final node dispatch using a monotonic clock.",
+  "reasoning": "The parent handler awaited catalog lookup and terminal creation directly, and the causing diff introduced the shared 30-second server-side deadline with wall-clock arithmetic. The later helper extraction retained that arithmetic, and the fix PR reported reproducing both early timeouts and late opens after clock jumps.",
+  "rank": 100597,
+  "sha": "88d86403a7513f11d6beb920b69e11fa5486cc3b",
+  "rubric": "v1.2"
+}

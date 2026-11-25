@@ -1,6 +1,7 @@
 {
-  "flagged": "related",
-  "where": "at-merge",
-  "quote": "Manual compaction now prefers the session binding’s authentication profile over generic Anthropic API authentication.",
-  "note": "The auth-provider merge-risk label drew attention to how manual compaction selects credentials from the session binding. It left the critical case unstated: forwarding a stored API-key profile directly could bypass the CLI account selector and bill the key on a subscription session."
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Items concern stale cross-provider harness bindings, native resume loss, skill env overrides and current-head proof; an earlier summary even asked to forward the session's selected auth profile. None warns that the raw auth pin bypasses the CLI account selector and can bill the stored API key."
 }

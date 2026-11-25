@@ -1,0 +1,17 @@
+{
+  "rank": 100238,
+  "sha": "baec505bffcfc67b4e80429974bf705a39dc57fe",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Post-upgrade Doctor could report success even when it could not read an enabled plugin\u2019s required manifest.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Post-upgrade Doctor now checks indexed manifests even without a stored hash and reports read failures as errors, while allowing Claude bundles to omit their optional manifest.",
+  "reasoning": "The oldest available source already skipped the probe when the stored hash was empty and converted manifest read failures to null, which suppressed findings. The canonical-index refactor retained that logic, and the local history ends before its introduction, so I could not establish whether the probe shipped with the defect or an earlier change broke working behavior."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0806c534c11a299b02e894a529e2392c6fb83063",
+  "cause_pr": 144762,
+  "confidence": "high",
+  "cause_quote": "Quick Chat began reading the published catalog with `async let catalog = transport.loadModelCatalog(sessionKey: target.sessionKey, agentID: target.agentID)` but passed only `models: modelCatalog.choices` into its existing snapshot loader, with no refresh on Gateway publications or projection of the Fast setting.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An open macOS Quick Chat picker kept showing old model choices after the Gateway published an update and offered no Fast setting.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix makes Quick Chat refresh model choices on Gateway updates, display published effort and speed options, and reload session settings after changes.",
+  "reasoning": "I checked the original Quick Chat picker and the diff that switched it from listing models to reading the published session catalog. The catalog integration shipped without a publication listener or Fast control, and the connected baseline cited in the bundle reproduced the stale picker on main after that integration landed.",
+  "rank": 100060,
+  "sha": "f2c4e63ed6b4aba89aa95ddbed09b5cd150a9b60",
+  "rubric": "v1.2"
+}

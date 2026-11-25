@@ -1,0 +1,17 @@
+{
+  "rank": 100799,
+  "sha": "33c350a17cbbe451a5a578ae86ddd9cbf824fe6f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Starting the Matrix channel could tie up the Gateway while it read and wrote startup state.",
+  "impact": "slower-or-heavier",
+  "area": "channels",
+  "summary": "The fix moved Matrix startup storage-root selection, metadata writes, and legacy crypto imports onto the SQLite worker.",
+  "reasoning": "The fix measured hundreds of Gateway-thread SQLite calls even for a canonical root, and the earlier worker migrations left startup metadata on the synchronous store. The July token-rotation stall fix already shows synchronous SQLite access during startup, but it addressed repeated scans of old token roots. The synchronous metadata path predates the shallow boundary, and the offline history could not establish when it was introduced or whether it made startup slower than before."
+}

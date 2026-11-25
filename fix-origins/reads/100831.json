@@ -1,0 +1,17 @@
+{
+  "rank": 100831,
+  "sha": "bd720caa8a94b3cf7e31c6e188645e0cb10c2249",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An interrupted broadcast returned a cancellation error without showing which destinations had already received the message, so retrying could send duplicates.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix preserves completed and possibly delivered broadcast results after cancellation and marks later destinations as unattempted.",
+  "reasoning": "The July 1 snapshot already shows the message tool forwarding an abort signal and the broadcast runner throwing between targets or rethrowing AbortError before returning its accumulated results. Local blame traces those lines to the shallow boundary, and the full-history path log stopped at a missing object, so I could not verify the introducing diff or establish that partial results ever survived cancellation."
+}

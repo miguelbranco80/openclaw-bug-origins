@@ -1,17 +1,17 @@
 {
   "rank": 137,
   "sha": "83d832338dd892458678fcd8e159f84e4ba7f77f",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Agent Git content commands (show, diff, log, restore) naming a missing commit in a shared blobless clone triggered Git lazy fetches that downloaded about a million objects and took seconds.",
+  "user_saw": "An agent's Git read took longer because it downloaded commit and tree history the shared clone already had.",
   "impact": "slower-or-heavier",
   "area": "agents",
-  "summary": "The agent Git PATH shim now prepares missing revision roots with negotiated blobless fetches before content commands and stops instead of falling back to Git's full-history lazy fetch.",
-  "reasoning": "The expensive transfer is Git's own promisor lazy-fetch behavior (noop negotiation), which existed before OpenClaw's agent Git shim; the shim was added two days earlier (b6d8eb287e0, #195498) for probes, and this change extends its mitigation to content commands. Nothing ever made these commands cheaper and then broke it, so this is a performance extension rather than a defect origin."
+  "summary": "The agent Git shim now fetches missing revisions with history negotiation before running content commands in shared blobless clones.",
+  "reasoning": "The original shim in #195498 passed content reads straight through to native Git, and the earlier #170970 diff documents the same redundant native lazy fetch on a different command path. The fix reproduces the problem by advancing origin and reading the new commit from a linked worktree that already has its ancestry, so the upstream commit exposes Git's existing lack of negotiation and the cost grows with repository history."
 }

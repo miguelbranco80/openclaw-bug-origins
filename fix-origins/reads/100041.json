@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After canceling an agent turn during cleanup, the user could wait up to 30 extra seconds for the turn to finish.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix checks cancellation after transcript writes drain and lets cancellation interrupt the optional idle wait while still awaiting required writes and runtime disposal.",
+  "reasoning": "The idle helper already raced only agent idleness against a timer at the shallow boundary. I checked the July cleanup extraction and the August lease removal, and both retained an awaited cleanup step after the abort snapshot. The offline history could not resolve the older helper change, so I could not establish when the cancellation gap first shipped or verify that late cancellation had previously worked.",
+  "rank": 100041,
+  "sha": "09b2a8618de64a5c82a527592228f39affbdd860",
+  "rubric": "v1.2"
+}

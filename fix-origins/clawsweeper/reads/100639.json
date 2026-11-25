@@ -1,0 +1,8 @@
+{
+  "rank": 100639,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "When an already-registered provider is appended and its anchor is focused before the bridge's mounting microtask, this recovery calls activateFocusedAnchor, which always activates with trigger \"pointer\" and the hover delay.",
+  "outcome": "open-at-merge",
+  "note": "The open P2 item \u201cRecover focused anchors with keyboard intent\u201d identifies the pre-mount focus path and explains why the preview opens after a delay and stays open after focus moves away. No human comment in the bundle answers it."
+}

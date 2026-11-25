@@ -1,0 +1,17 @@
+{
+  "rank": 100113,
+  "sha": "b2781bdc673eacc7210f01ca32e6b561373d3529",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "2fe1956ea1a69b77b79e94de51519a72c2309067",
+  "cause_pr": 129416,
+  "confidence": "high",
+  "cause_quote": "The change to `components.host = self.host.contains(\":\") && !self.host.hasPrefix(\"[\") ? \"[\" + self.host + \"]\" : self.host` wrapped `gateway.example.com:8443` in brackets, allowing it to pass URL construction as though it were IPv6.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On iOS, entering `gateway.example.com:8443` in the manual Gateway Host field left Connect enabled and showed no host-only guidance.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The shared gateway endpoint builder now adds brackets only to valid IPv6 literals, so manual iOS forms reject hostnames with an embedded port.",
+  "reasoning": "The parent of #129416 shows that manual iOS connections already used the shared builder and stopped when it returned nil, and the builder passed the unbracketed hostname and port directly to URLComponents as the host, which it rejected. The diff for #129416 changed that behavior through broad colon-based bracketing. First-parent history shows that #169875 later added inline guidance and the failing assertion, exposing the existing endpoint regression."
+}

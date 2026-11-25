@@ -1,0 +1,17 @@
+{
+  "rank": 100884,
+  "sha": "c39d9b0692dbaafa5b1bfe02514c9f6411ab5546",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With the required SDK update and without the guard, an operator could get an authorization error after a background refresh had already overwritten the connector\u2019s saved OAuth client registration.",
+  "impact": "data-loss-or-duplication",
+  "area": "plugins",
+  "summary": "The fix updates MCP dependencies to clear the CI audit, protects saved OAuth credentials during issuer-changing refreshes, and repairs browser test fixtures.",
+  "reasoning": "I classified the OAuth credential failure and verified that the parent pinned SDK 1.30.1 and already checked the token issuer. The PR\u2019s before-and-after evidence shows SDK 1.31.0 could overwrite the saved client before the background authorization guard ran, and the same squash adopted that SDK version and added the earlier guard."
+}

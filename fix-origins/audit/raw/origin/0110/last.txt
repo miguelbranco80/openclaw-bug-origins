@@ -1,6 +1,17 @@
 {
+  "rank": 110,
+  "sha": "2f4c8a5a15ae9ad3535ca45737db949fecbd15d1",
+  "rubric": "v1.1",
   "origin": "never-worked",
-  "cause_sha": "94a06613227b5d1bedea7115af39b4219b81c104",
-  "confidence": "medium",
-  "reasoning": "The fix replaces `resourcesPromise ??= createCuaExecutionResources()`, which cached the first rejection and made retry and close rethrow it after the filesystem was repaired. File history points to the August 15 commit that introduced first-use initialization, and the two later refactor diffs leave that cache untouched. The August diff is unavailable, so the attribution rests on the commit subject and file history."
+  "cause_sha": "079bb34196138313265790e6223ca8fbf4c56c74",
+  "cause_pr": 124035,
+  "confidence": "high",
+  "cause_quote": "The new file added `const resources = () => (resourcesPromise ??= createCuaExecutionResources(options));` and dispose awaited `(await resourcesPromise).dispose(discard)`, so a rejected initialization promise was cached and rethrown forever.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a temporary failure creating the CUA resource directory, recording retries and closing the computer execution kept failing with the original error even once the filesystem was repaired.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "Clears the memoized CUA execution-resources promise when initialization rejects so the same execution can retry recording or close.",
+  "reasoning": "GraphQL blame beyond the graft shows the memoized `resourcesPromise ??=` line came from the recording feature 079bb341 (#124035, file added), with 94a06613 (#124156) only dropping the options argument; the feature cached rejections from the start. The fix wraps the same promise in a catch that resets it, matching the reported stuck retry/close."
 }

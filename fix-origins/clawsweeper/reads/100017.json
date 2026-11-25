@@ -1,0 +1,8 @@
+{
+  "rank": 100017,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier item \u201cPropagate pricing cancellation outside the malformed-record catch\u201d addressed valid log entries being dropped after pricing preparation rejected. The Gateway hang came from a pending pricing wait that ignored the usage refresh\u2019s abort signal while holding its lock."
+}

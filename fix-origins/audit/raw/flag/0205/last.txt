@@ -1,6 +1,7 @@
 {
-  "flagged": "related",
-  "where": "earlier-only",
-  "quote": "paced growth following the live edge while preserving a paused reader, and normal completion/narration settlement on code carrying this change",
-  "note": "The October 11 “Add real behavior proof” item asked for evidence that paced text followed the live edge through completion, without identifying the keyboard-up scroll failure or the jump when the reply finished. The item was dropped by merge."
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The merge-time review has no findings and accepts replacing per-word timeline notifications with size-change anchoring; the closest earlier item is a real-behavior proof request to show 'paced growth following the live edge', which asks for evidence rather than naming a follow failure (keyboard up or completion jump), so it is graded down from related to none."
 }

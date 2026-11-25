@@ -1,0 +1,17 @@
+{
+  "rank": 100047,
+  "sha": "eacc8dcd118c9264bdade3418cb9a8f6116f954c",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After permanently denying a permission, tapping its row again during Android setup offered no way to open Android Settings.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix simplifies Android setup to four primary optional permissions, offers the Android Settings recovery dialog after permanent denial, and refreshes permission rows on return.",
+  "reasoning": "The setup callback already updated grant state without offering Settings recovery at the oldest locally inspectable revision, and PR #98752 carried that callback forward. The path history stops at the shallow boundary, so I could not verify when the callback was introduced or whether an earlier implementation supported recovery."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100737,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cVerify upgrade ownership\u201d recommendation asks for migration proof and actionable errors on ambiguous requests. The earlier findings concern plugin task access, and no reviewed item points to agent selection failing before LINE can apply an active session binding."
+}

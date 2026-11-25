@@ -1,0 +1,17 @@
+{
+  "rank": 100160,
+  "sha": "4ecd86a9cab1f48a12a0ab49d53b7cd36c7fcb51",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "7ab507770f3da4b0aa940e79c624ba15fa1329fc",
+  "cause_pr": 140897,
+  "confidence": "high",
+  "cause_quote": "The commit wrapped `revokePendingAgentDatabaseOpen(owner.path)` in `await drainAgentDatabaseResources({ rootPath }, async () => {`, delaying revocation until retained resources finished draining.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could find that a pending agent database write succeeded and persisted after shutdown began.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix revokes matching pending native database opens synchronously when root-wide or global asynchronous shutdown starts, then waits for retained resources and native work to finish.",
+  "reasoning": "The causing commit\u2019s parent revoked matching pending opens before its first await, so shutdown already blocked these writes. The causing diff moved revocation into a callback that runs only after retained resources drain, allowing a pending write to commit while shutdown waits. The fix PR reports reproducing that outcome with both selected-root and global close."
+}

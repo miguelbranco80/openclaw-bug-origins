@@ -1,0 +1,8 @@
+{
+  "rank": 100697,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "the next `syncRetainedBoardSession` applies the saved/shared default and immediately replaces the requested view\u2014split for an unset default.",
+  "outcome": "answered",
+  "note": "The earlier item \u201cPreserve transient presentation through the dashboard route change\u201d identified how dashboard activation could replace the current view, specifically after an agent command triggered navigation. The PR author reported fixing that path, while the shipped bug occurred when reloading a saved split layout reset the selected side tab."
+}

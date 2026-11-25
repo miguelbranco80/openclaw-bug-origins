@@ -1,0 +1,17 @@
+{
+  "rank": 100051,
+  "sha": "598e945b9ff5366d1c4976c9078b26cd57d19239",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "07563dc3b761b62d0902c33e8e647808a4437cde",
+  "cause_pr": 176958,
+  "confidence": "high",
+  "cause_quote": "The introducing diff filtered runtime selection on `entry[\"isAvailable\"]` and raised `No available watchOS runtime` when the filter found no match, before the new creation-time repair could run.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The screenshot job finished the iPhone and iPad captures, then stopped without producing the Apple Watch screenshot.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The shared Watch screenshot lane now gives CI one runtime repair attempt if runtime selection or simulator creation reports an unavailable runtime.",
+  "reasoning": "I checked the introducing diff and its parent: the parent selected from available Watch devices and had no runtime repair, while #176958 added repair only after a `runtime path not found` error during simulator creation. The reported run stopped during runtime selection, so it hit a gap that existed from the first version of the recovery feature. The PR leaves the underlying reason for the runtime becoming unavailable unproven."
+}

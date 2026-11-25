@@ -1,0 +1,8 @@
+{
+  "rank": 100794,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge section asks for general published-updater compatibility testing. The Technical review discusses the old five-minute limit and misses that the candidate turns an internal post-core allowance into an npm deadline when the operator supplies no timeout."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "fd018170c94387e843076b259ee54d8998ba935f",
+  "cause_pr": 168325,
+  "confidence": "high",
+  "cause_quote": "The compact rail put `renderSessionLeadingState(home, undefined, \"owned\", undefined, undefined, false, ...).leadingIndicator` inside the Home button, so session attention could replace the Home icon with a control that stopped clicks from reaching the button.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Clicking the Home icon did not open Home when the icon showed a failed run, a pending question, or an approval request.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "Home now uses a noninteractive glyph that preserves running, queued, unread, draft, and outbox indicators.",
+  "reasoning": "I checked the compact-rail commit against its parent, where the existing Home panel button rendered `icons.home` directly and dispatched the toggle event on click regardless of session attention. The new leading-state renderer substituted the attention icon when a run failed, and that icon's existing click handler called `event.stopPropagation()`. The later Solid migration carried that behavior forward.",
+  "rank": 100746,
+  "sha": "33e429040baffda00b4c93763597f1b5dba0a7b8",
+  "rubric": "v1.2"
+}

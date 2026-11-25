@@ -1,0 +1,17 @@
+{
+  "rank": 100723,
+  "sha": "b5d202d49f508b9ff2dc392775d0fc9d0525d3aa",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "ce38326114369bfb6f032c462d27bf37e0dfdf01",
+  "cause_pr": 161104,
+  "confidence": "high",
+  "cause_quote": "The commit initialized `let warningPending = Promise.resolve();` and added `await warningPending;` followed by `assertRunning();` on both sides of each probe, repeating the recovery check even when no startup warning had been issued.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The updater could spend extra time waiting for the candidate Gateway to become ready when the recovery database reader was cold.",
+  "impact": "slower-or-heavier",
+  "area": "update",
+  "summary": "The fix waits and rechecks recovery state only when there is a startup warning write to settle, while keeping the checks that bracket each readiness probe.",
+  "reasoning": "I checked the causing commit's parent and confirmed that readiness already polled both endpoints and checked recovery state before and after each probe through the existing artifact-preserving reader. The warning settlement commit doubled those checks on the no-warning path, and the fix's reported cold-reader comparison measured 16 snapshots before the fix and 8 after it across four polls."
+}

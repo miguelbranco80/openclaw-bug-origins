@@ -1,0 +1,17 @@
+{
+  "rank": 100810,
+  "sha": "ac9b848d2f0bb7126759d06046727cf1d24e4d5d",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "high",
+  "cause_quote": "The new `return withSharedStateWriteCoordinator(` wrapper in `runOpenClawStateWriteTransaction` made retention writes on cached database handles synchronously acquire the coordinator before starting the transaction.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway could briefly stop responding to unrelated requests while task retention waited for another holder to release the SQLite write coordinator.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix moved task-retention reads and writes to existing workers so SQLite coordinator contention could no longer block the Gateway event loop.",
+  "reasoning": "I checked that the parent of #140339 already pruned tasks and stamped cleanup deadlines through the shared SQLite transaction helper, which could use a warm database handle without acquiring the coordinator. #140339 added synchronous coordinator acquisition to that existing path, and the fix's responsiveness test isolates the resulting stall by holding only the coordinator lock."
+}

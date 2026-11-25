@@ -1,17 +1,17 @@
 {
   "rank": 253,
   "sha": "9f4e2639e622352c912b1be58a13c2f4e5e01654",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "98813c23905e68b41e5c58e72e3ee554986d7ab1",
+  "cause_pr": 168587,
+  "confidence": "high",
+  "cause_quote": "The shutdown change added `registerSignalExitGate(finished.promise, ...)` around the CLI invocation and replaced `process.exit(...)` in the signal handler with `process.exitCode = code`, leaving the uncanceled skills read running until it settled.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After pressing Ctrl-C or sending SIGTERM to `openclaw skills list/info/check`, the command kept waiting for the Gateway read and then printed timeout diagnostics or the full report anyway.",
+  "user_saw": "Interrupting `skills list`, `skills info`, or `skills check` during a pending Gateway read could leave the command running until timeout and print a report after the interrupt.",
   "impact": "sequence-or-timing",
   "area": "cli",
-  "summary": "Forwards the command's async-work abort signal into the skills.status Gateway read, stops offline fallback after abort, and suppresses late output and the missing-skill exit when interrupted.",
-  "reasoning": "loadSkillsStatusReport never passed an abort signal; the call shape predates the 2026-09-03 graft (3949fc0850e5 and 08f4a198a310 only refactored and moved it), and skills-cli.ts first used getAsyncWorkSignal on the same day as this fix (#198163 for skills update). The cooperative signal-exit machinery (src/cli/signal-exit-barrier.ts, async-work-scope.ts) is also older than the graft, so I could not tell whether these reads were written without cancellation from the start (never-worked) or were exposed when SIGINT handling became cooperative (latent), and I could not identify either commit."
+  "summary": "The fix passes the command's abort signal to the skills status read, skips local fallback and report output after cancellation, and preserves the interrupt exit code.",
+  "reasoning": "The parent of #168587 already called `skills.status` without an abort signal, but its CLI signal handler called `process.exit` after cleanup without waiting for the report to finish. The new shutdown gate waits for the command to settle, so the same uncanceled read can reach its timeout, fall back to a local scan, and print after the interrupt."
 }

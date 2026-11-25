@@ -1,0 +1,17 @@
+{
+  "rank": 100089,
+  "sha": "6b1cdc4785e336d2e64bd7d51f12bfb4808c9d0f",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the clipboard held only an image, the iOS chat composer showed no Paste action.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The iOS chat composer now offers Paste for clipboard images and stages them as attachments.",
+  "reasoning": "The composer before #116042 already used a text-bound SwiftUI TextField on iOS, with image paste wired only on macOS, so the switch to UITextView did not remove an existing iOS attachment handler. The oldest readable snapshot shows the same split, and the older path history stops at a missing object, leaving the original omission unverified."
+}

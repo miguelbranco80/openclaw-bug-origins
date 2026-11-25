@@ -1,0 +1,8 @@
+{
+  "rank": 165,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Findings section flags npm bundle validation and model-picker fixture measurements. The Evidence section leaves the Linux CI failures unattributed and raises no concern about CUA 0.37\u2019s window observation format or missing desktop element references."
+}

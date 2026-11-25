@@ -1,7 +1,7 @@
 {
   "rank": 27,
   "sha": "05eb25cbbf34a3f5a50b5e3763681c972e7da023",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The model picker reopened on the current model's provider instead of Favorites when the current model was not starred, even though Favorites was the last tab chosen.",
-  "impact": "presentation",
+  "user_saw": "After choosing Favorites and closing the picker with an unstarred model selected, users saw the current model\u2019s provider when they reopened it.",
+  "impact": "other",
   "area": "ui",
-  "summary": "Drops the condition that a remembered Favorites tab reopens only while it holds the selected model, so the picker reopens on Favorites whenever it was last chosen.",
-  "reasoning": "The removed condition was added deliberately in 27592cd31c1d (#199051) with a doc comment ('A remembered Favorites tab opens only while it holds the selected model') and a test asserting exactly that behavior. The fix reverses that design choice and rewrites the docs accordingly, so it is a product behavior change, not a defect in the earlier code."
+  "summary": "The model picker now reopens on Favorites whenever it was the last tab chosen and is still available, even with an unstarred model selected.",
+  "reasoning": "The commit that added Favorites tab memory explicitly tested that an unstarred selection reopened on its own provider, and the intervening Favorites reordering commit left that rule in place. The fix reverses that test expectation and documents the new reopening rule."
 }

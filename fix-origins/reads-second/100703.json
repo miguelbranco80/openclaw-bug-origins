@@ -1,0 +1,17 @@
+{
+  "rank": 100703,
+  "sha": "33a3fb23db7a2b9f6c58279613702423337b40ed",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "892911ba4f35f5bc05b50d798694780b3e5dc777",
+  "cause_pr": 166519,
+  "confidence": "high",
+  "cause_quote": "The new receipt filter required `facts.activitySummaryWatermark === undefined || transcriptUnchanged`, where `transcriptUnchanged` compared a process-wide counter that an unrelated session could advance.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The Gateway now reuses committed entry, participant, Board, and summary-watermark facts during session-list refreshes, reducing redundant worker reads.",
+  "reasoning": "PR #166519 introduced watermark reuse for entry replacement receipts with the process-wide guard already in place, so an unrelated transcript notification could force a fresh read from the first release of that path. I checked that the counter was already shared across sessions in the parent and that #167875 later made combined receipts advance the same counter before entry receipt readers consumed it. The fix adds coverage for both cases and reports fewer worker reads."
+}

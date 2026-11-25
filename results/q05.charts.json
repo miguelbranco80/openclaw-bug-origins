@@ -2,7 +2,7 @@
  {
   "stem": "q05-age-of-broken-later-bugs",
   "title": "Broken-later bugs, by time from cause to fix",
-  "reading": "Each bar is a number of broken-later bugs. The four bars add up to 51."
+  "reading": "Each bar is a number of broken-later bugs. The four bars add up to 389."
  },
  {
   "stem": "q05-median-days-to-fix",

@@ -1,0 +1,8 @@
+{
+  "rank": 100609,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cReview config compatibility\u201d item was generic, and \u201cCandidate isolation and downgrade behavior\u201d described the canary without raising an auth-policy concern. The earlier findings addressed backup recovery and did not flag the rehearsal dropping the configured Gateway auth rate limit."
+}

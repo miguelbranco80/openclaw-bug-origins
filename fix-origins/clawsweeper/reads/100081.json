@@ -1,0 +1,8 @@
+{
+  "rank": 100081,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items address stale tool authority after a role change, first-maintainer setup, and session ownership. Neither the merge review nor the earlier items raise how agents.list applies the allowlist for a restricted operator."
+}

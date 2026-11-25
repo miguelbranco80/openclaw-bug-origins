@@ -1,0 +1,8 @@
+{
+  "rank": 100875,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cAdd data-model compatibility proof\u201d item concerns SQLite migrations. The \u201cLive ownership and settlement\u201d section describes lease checks and cleanup without raising the risk that Gateway delays could make the worker refuse a still-pending admission request."
+}

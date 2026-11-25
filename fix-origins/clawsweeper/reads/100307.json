@@ -1,0 +1,8 @@
+{
+  "rank": 100307,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "At merge, the Pinned production change item reported that caller-session jobs bypassed the wait and missed the named-alias and current-session delivery cases. The earlier cancellation finding concerned what happens after an abort, while the reported stall occurred during a normal manual run."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100513,
+  "sha": "83129f42703ff36ee68708f8fc0fa88eb7562a25",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "da69daeb72cf47fb76afe55e5216319fd4245933",
+  "cause_pr": 109668,
+  "confidence": "high",
+  "cause_quote": "The original reader invoked plutil with `\"-convert\", \"json\", \"-o\", \"-\"` and capped stdout at `maxBuffer: 1024 * 1024`, so an unrelated Date value could break conversion and oversized metadata could exhaust the buffer before the identifier was read.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Mac app could appear in the installed-app inventory without its valid bundle identifier when its Info.plist contained a Date value or oversized metadata.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The macOS app scanner now asks plutil to extract CFBundleIdentifier directly as a string.",
+  "reasoning": "The introducing diff added the scanner with whole-plist JSON conversion and omitted the identifier when that subprocess failed. First-parent history shows the reader stayed unchanged from its introduction until this fix, and the fix PR reports reproducing the missing identifier with a native Date fixture against the original reader."
+}

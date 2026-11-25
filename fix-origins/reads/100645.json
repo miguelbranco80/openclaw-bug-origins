@@ -1,0 +1,17 @@
+{
+  "rank": 100645,
+  "sha": "7bda807a35f95e6ed1592a313a2aaa84ce7ed906",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "b86bcb7dd2185dd3af553e3ba7fce5bacc84b53c",
+  "user_visible": "yes",
+  "user_saw": "While Gateway diagnostics were open, operators could see CPU spikes and delayed chat responses, especially with a large retained task history.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix moved status database reads to the SQLite worker, summarized task metadata without restoring the full registry, and shared the read across overlapping requests.",
+  "reasoning": "The August read-only status change already loaded the complete task snapshot synchronously, including delivery state and integrity checks. The activity-graphs commit exposed that cost by adding a full Gateway status RPC every five seconds on the Connection page, and I verified that the RPC called the existing status summary. The companion diagnostics fix replaced that poll with system.info, while this fix addressed the cost of the backend status path itself."
+}

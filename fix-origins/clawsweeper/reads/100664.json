@@ -1,0 +1,8 @@
+{
+  "rank": 100664,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The explicitly documented freshness tradeoff means direct workspace identity/avatar edits require reload or reconnect instead of automatic expiry.",
+  "outcome": "unclear",
+  "note": "The compatibility label points to stale identity after direct workspace edits when automatic expiry is removed. It does not identify successful Gateway saves as affected, and the review lists no open finding for the concern."
+}

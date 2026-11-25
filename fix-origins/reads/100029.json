@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS, the Launch at Login toggle could revert after startup, an earlier enable could still restart the app after the user disabled it, and enabling could fail on a fresh remote-only install.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix serializes login-job changes, ignores stale startup status, and creates the plist directory before invoking launchctl.",
+  "reasoning": "I checked the parents of the July self-reload and transient-launch changes and found that startup could already assign stale status, toggle writes already ran in independent tasks, and plist writes already discarded errors without creating the parent directory. The affected code predates the July 1 shallow boundary, and the available offline history could not identify its introduction or establish a previously working implementation.",
+  "rank": 100029,
+  "sha": "7c0dfa5150809b92a9bbc0d32cdc7366b17ac388",
+  "rubric": "v1.2"
+}

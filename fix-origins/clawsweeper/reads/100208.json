@@ -1,0 +1,8 @@
+{
+  "rank": 100208,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d items concern merge conflicts and Stop\u2019s session-state behavior. The at-merge \u201cWorker write and final commit authority\u201d item describes write admission checks, while the bug occurred when a delayed completion wait retried after database read admission closed."
+}

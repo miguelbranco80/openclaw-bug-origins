@@ -1,0 +1,8 @@
+{
+  "rank": 117,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items address stale retries after Discard and invalid input accepted through the close confirmation. Neither concerns the missing permission error when a read-only viewer\u2019s Save is refused before dispatch."
+}

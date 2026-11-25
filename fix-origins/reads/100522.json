@@ -1,0 +1,17 @@
+{
+  "rank": 100522,
+  "sha": "8d756e9c009b2f89baa3ec1dcccf6cc8f4a140b3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "20db76a79212c7d0c4f2106fea4d61fdce9972a3",
+  "cause_pr": 154087,
+  "confidence": "high",
+  "cause_quote": "The introducing diff registered `...createNodeWorkspaceSkills(...)`, whose adapter supplied `loadSkills: (request) => call(\"discovery\", { ...request, ...mapSources(request) })` and omitted `applySkillRoot`, causing the existing installer guard to reject source installs.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Skill archive could upload successfully, but installing it in a paired-node workspace returned \u201cRemote workspace skill installation is unavailable.\u201d",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix connects the paired-node adapter to the native Skill workers for source installation, install tracking, and ClawHub updates and removal.",
+  "reasoning": "I checked the introducing diff and confirmed that it registered paired-node Skill discovery and dependency installation without a source installer. At that commit, the existing `if (access && !access.applySkillRoot)` guard rejected installation as soon as it found the new adapter, so paired-node Skill source installation failed from its introduction."
+}

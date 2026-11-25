@@ -1,0 +1,17 @@
+{
+  "rank": 100027,
+  "sha": "34b2cfb3126ce5830a6666ca940d4312b805311a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6df0fb818d67032c71eb885ac36febd540fbd10f",
+  "cause_pr": 98510,
+  "confidence": "high",
+  "cause_quote": "The new Gateway admission interruption handler unconditionally called `admittedRunAbort.controller.abort(createAgentRunRestartAbortError());` for an active run.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An interrupting message could leave the new turn waiting while the Gateway replayed the canceled turn.",
+  "impact": "data-loss-or-duplication",
+  "area": "gateway",
+  "summary": "The fix preserves ordinary cancellation reasons and reserves restart recovery for explicit restart aborts or a Gateway drain.",
+  "reasoning": "I checked the introducing diff and its parent: the Gateway already recognized typed restart aborts, and #98510 introduced session-work admission with handlers that sent ordinary lifecycle interruptions down that restart path from the start. The later chat interrupt fallback in #126291 called the same admission mechanism, exposing the existing misclassification in the message sequence reproduced by the fix PR."
+}

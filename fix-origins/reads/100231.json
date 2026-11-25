@@ -1,0 +1,17 @@
+{
+  "rank": 100231,
+  "sha": "7432b68780821a41b2e99f1fbcabd7192e68d18c",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could find a newly allocated container still present after sandbox provisioning reported a failure.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix tracks which container the current provisioning attempt allocated, removes it if a later step fails, and clears its registry entry after confirming removal while preserving the original error.",
+  "reasoning": "The oldest locally readable Docker implementation already allocated the container before awaiting startup, setup, and registry publication, with no cleanup for failures in those steps. That puts the defect before the cited refactors, and the path-limited history hit a missing commit at the shallow boundary, leaving the introducing change and any earlier working behavior unverified."
+}

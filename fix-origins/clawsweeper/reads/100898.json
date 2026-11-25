@@ -1,0 +1,8 @@
+{
+  "rank": 100898,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Both request builders therefore move the breakpoint before otherwise cacheable retained context, violating the retained-anchor behavior this revision intends to preserve.",
+  "outcome": "answered",
+  "note": "The earlier \u201cDistinguish prior turns from actual carrier relocation\u201d finding identified checkpoint exclusion caused by scanning prior turns. The author responded with a lifecycle-based revision, where a model check could still exclude carriers that a provider plugin opted to retain."
+}

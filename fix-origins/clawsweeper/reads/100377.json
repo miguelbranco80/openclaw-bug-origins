@@ -1,0 +1,8 @@
+{
+  "rank": 100377,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge review's \u201cRegression coverage and proof scope\u201d item describes the 750 ms startup test and leaves the next action's shorter probe and restart risk unexamined. The earlier finding concerned a retired configuration key in the troubleshooting docs."
+}

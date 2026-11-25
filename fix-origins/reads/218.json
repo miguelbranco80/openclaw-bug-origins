@@ -1,17 +1,17 @@
 {
   "rank": 218,
   "sha": "57f8e4beb1214c517863d542e6fa4ea8bb0fa57e",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "59834998f25bacb0fadee2028cf720cf8cdd3b97",
   "cause_pr": 165863,
-  "confidence": "medium",
-  "cause_quote": "The commit made a signal during \"activating\", \"restarting\", \"verifying\" call `for (const stop of admission.forward) { stop(); }` and wrapped the Gateway restart/verification in `forward(() => ...)`, while waitForGatewayHealthyRestart kept polling with `const signal = params.deadline?.signal ?? params.signal;` and ignored the stopped scope.",
+  "confidence": "high",
+  "cause_quote": "The diff wrapped `maybeRestartService` in `await forward(() =>` and added `for (const stop of admission.forward) { stop(); }`, so an interrupt cancelled native service checks while the readiness loop kept polling.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "An update interrupted with Ctrl-C or SIGTERM while verifying the restarted Gateway appeared to hang for up to the update deadline printing service=unknown health=ready even though the Gateway was healthy (and, separately, large-state installs fell back from candidate admission after a fixed 120 s).",
+  "user_saw": "After Ctrl-C or SIGTERM during update verification, the updater kept reporting `service=unknown` and `health=ready` even though the Gateway was running.",
   "impact": "sequence-or-timing",
   "area": "update",
-  "summary": "Makes restart readiness polling honor the enclosing command-process scope's cancellation and sizes candidate admission's timeout from measured state bytes capped by the step deadline.",
-  "reasoning": "The headline hang comes from the interrupted-update recovery path added in 59834998f25 (#165863): it stops forward command scopes on a signal during verifying and runs the restart/verification inside such a scope, but the readiness poller (its signal line dates from 2b125389c8b, Sept 22, before this commit) never read the scope signal, so every systemctl spawn died and polling continued until the deadline; that feature shipped with the bug. The second defect (admission using prepared.timeoutMs, unset by default, so a fixed 120 s) dates from acffa7681f0 (#155632) and is a separate never-worked sizing issue not traced further here."
+  "summary": "The fix makes Gateway readiness polling honor update cancellation and sizes the candidate admission timeout from measured SQLite state within the step deadline.",
+  "reasoning": "I classified the interrupted-update hang because it was the headline failure. The parent used the earlier signal-exit path, and #165863 introduced automatic recovery during verification while the readiness loop still observed only its explicit or deadline signal, so the new recovery path shipped with the hang. The same fix also addresses a separate timeout whose fixed 120-second default dates to the introduction of candidate admission in #155632."
 }

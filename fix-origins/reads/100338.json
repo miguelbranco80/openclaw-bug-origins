@@ -1,0 +1,17 @@
+{
+  "rank": 100338,
+  "sha": "14a0dd32f06170c3a39a3f4db52ef493166187e8",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a transient Telegram server error, the chat showed an unfinished streaming preview alongside a separate final reply.",
+  "impact": "data-loss-or-duplication",
+  "area": "channels",
+  "summary": "The fix retries idempotent Telegram preview edits after transient server errors while keeping the stricter retry rule for the initial send.",
+  "reasoning": "The preview edit predicate already excluded Telegram 5xx responses at the July history boundary, and the September flood-wait change retained that predicate. The fix PR names an older classifier change and an earlier in-place transport change, but their diffs were unavailable offline, so I could not verify whether the earlier transport ever recovered from 502 or 503 responses."
+}

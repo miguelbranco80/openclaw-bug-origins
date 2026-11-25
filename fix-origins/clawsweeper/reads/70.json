@@ -1,0 +1,8 @@
+{
+  "rank": 70,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cRead recovery inventory from the previous package root\u201d finding addressed rollback checks after partial backup cleanup. The at-merge \u201cReview config compatibility\u201d item was generic, and neither item pointed to pnpm launchers retaining temporary-stage paths after publication."
+}

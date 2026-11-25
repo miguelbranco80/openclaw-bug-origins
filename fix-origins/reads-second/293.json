@@ -1,17 +1,17 @@
 {
   "rank": 293,
   "sha": "31ad71a8addc1d42fbc5478f7e114860f5cbf6c7",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "77d9f42c86bf42ee05f997ec5f838ad95d268a0a",
   "cause_pr": 172026,
-  "confidence": "medium",
-  "cause_quote": "The new loopback-bundle-mcp.ts acquired configured MCP with `requesterSenderId: undefined` (\"Requester-scoped servers need a verified sender, which completions and automations lack\"), so requester-scoped servers were never materialized on Claude CLI turns.",
+  "confidence": "high",
+  "cause_quote": "The new loopback bridge passed `requesterSenderId: undefined` to `acquireSessionMcpRuntime`, so acquisition omitted requester-scoped servers even on turns with a verified sender.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On Claude CLI turns, a user's per-requester OAuth or resolver-based MCP server tools were missing entirely, with no notice, while the default runtime listed and called them.",
+  "user_saw": "Even after connecting their account, a user sending a Claude CLI message could not see or use their per-requester MCP tools.",
   "impact": "failed-every-time",
-  "area": "agents",
-  "summary": "Serves requester-scoped MCP tools on Claude CLI loopback turns via the shared harness materializer (bound to the turn's verified sender), and lists the sign-in tool with an explicit refusal on senderless turns.",
-  "reasoning": "#172026 introduced the loopback bridge for configured MCP on managed Claude CLI turns and deliberately passed `requesterSenderId: undefined`, documenting that requester-scoped servers are not offered; the fix adds them. Before #172026 the native Claude CLI path also never carried requester-scoped servers (native projection resolves OAuth with operator identity and omits unavailable servers; docs say requester-scoped servers never enter harness-native config), so this capability never worked on Claude CLI rather than regressing; medium confidence because the omission was a documented choice and could be read as a feature gap."
+  "area": "cli",
+  "summary": "The fix adds requester-scoped tools to the Claude CLI bridge catalog, binds calls to the current turn's verified sender, and explicitly refuses calls on senderless turns.",
+  "reasoning": "The causing diff introduced the configured-MCP loopback bridge with senderless acquisition, and the runtime manager only materialized requester-scoped servers when given a sender. I checked the preceding native CLI path, which also acquired its policy catalog without a requester and dropped servers with no allowed tools. The omission therefore shipped with the bridge."
 }

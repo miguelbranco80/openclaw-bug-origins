@@ -1,0 +1,8 @@
+{
+  "rank": 100444,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk (P1)\u201d item concerns read availability after broker loss. The earlier lifecycle-signal items concern timed polling in fault tests, which is separate from the Codex teardown guard counting a live supervisor as a leaked thread."
+}

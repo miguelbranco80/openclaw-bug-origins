@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "fb84dd57fd5746fb078ade93e79f58a4f2f57274",
+  "cause_pr": 165607,
+  "confidence": "high",
+  "cause_quote": "The new `externalPublication` check required `initial.phase === \"publishing\"` or a `superseded` record with the external-settlement intent, so a `prepared` record skipped verification even when the live package matched the candidate.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an external install made the candidate live while the activation journal still said `prepared`, `openclaw update repair` reported an incomplete publication and subsequent updates stayed blocked.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix lets `openclaw update repair` verify and settle a `prepared` activation when the live package already serves the recorded candidate, preserving the recovery evidence and clearing the update block.",
+  "reasoning": "I checked the introducing diff and its parent: before #165607, a matching candidate with an unchanged lease was routed back to pending recovery, and #165607 introduced verified settlement while excluding `prepared` records. A later diff added `publication-complete` while preserving that exclusion, so the prepared case had been missing since verified settlement shipped.",
+  "rank": 100696,
+  "sha": "1b8a273987baaa637c394560257414327882b4df",
+  "rubric": "v1.2"
+}

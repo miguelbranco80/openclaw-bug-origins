@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "8636bb6981844e4674ee2cdbc0d8d32aa2a8b816",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The commit routed settled empty stops through the settled-tool continuation and forced `{ ...params, disableTools: true }` whenever `terminalRetryState.settledToolContinuationAttempts > 0` and tools were still enabled.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the model stopped midway through reading several files, the user received a partial answer or a reply saying the agent could no longer read the remaining files.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix keeps tools and the full transcript available for one continuation when the current attempt explicitly reports no potential side effects and ends without visible output.",
+  "reasoning": "I checked the parent\u2019s empty-response recovery, which retried replay-safe post-tool stops through ordinary dispatch with the original tool settings, and found an existing test for an OpenAI-compatible post-tool empty stop. The causing commit moved settled empty stops ahead of that retry and disabled tools for the continuation regardless of side effects. The later isolation refactor preserved the tool restriction.",
+  "rank": 100716,
+  "sha": "4601114c7fbdbe10255146c9cdcfff9f7f430f4c",
+  "rubric": "v1.2"
+}

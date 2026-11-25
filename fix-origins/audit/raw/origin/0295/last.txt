@@ -1,6 +1,17 @@
 {
+  "rank": 295,
+  "sha": "649df9afd90875837fe78ade005180d6d7242d28",
+  "rubric": "v1.1",
   "origin": "not-a-defect",
   "cause_sha": null,
+  "cause_pr": null,
   "confidence": null,
-  "reasoning": "The fix moves the same survivor scan ahead of SQLite BEGIN, shortening the measured writer hold while preserving deletion and retained-history behavior. I checked the November 3 diff and its predecessor: the CTE replaced an existing in-transaction survivor scan, and the benchmark compares the fix with its immediate baseline, leaving any historical slowdown unverified."
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "unclear",
+  "user_saw": "Possibly brief stalls of other database writers while a session with retained transcript windows was deleted in a very large session database; no specific user report is cited.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "Runs the surviving-reference scan for empty-transcript session deletions before BEGIN and reuses it in the write transaction only if the database revision is unchanged, cutting the SQLite writer hold from about 1 s to about 1 ms in a synthetic test.",
+  "reasoning": "The PR is a performance change that moves an unchanged read (same SQL and parser) out of the write transaction, backed by a synthetic benchmark rather than a reported failure, and claims no lower total latency. Nothing indicates a commit made deletion hold the lock longer than before, so it is a performance improvement of code that was not slower earlier, which the rubric classifies as not-a-defect."
 }

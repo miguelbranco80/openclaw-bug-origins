@@ -1,0 +1,17 @@
+{
+  "rank": 100070,
+  "sha": "01f17b521f109ff719ce8285e31c4163f92c8f98",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Selecting Fish Audio\u2019s released `drama-3` model produced an \u201cinvalid Fish Audio model\u201d error before synthesis.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds `drama-3` to the Fish Audio model allowlist and updates the documentation to use the released ID.",
+  "reasoning": "The preview commit added `drama-3-preview` to the allowlist, and the fix\u2019s parent still rejected any ID absent from that list. The PR dates Fish Audio\u2019s release of the `drama-3` ID to the following day, so the external release exposed the stale allowlist."
+}

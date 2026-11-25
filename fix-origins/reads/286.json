@@ -1,17 +1,17 @@
 {
   "rank": 286,
   "sha": "1f229e323d50e8665fe334757ebc6159ee8794ac",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b0603cb443d58db38bf5b1dc3c00169d7631371e",
+  "cause_pr": 113596,
+  "confidence": "medium",
+  "cause_quote": "The diff replaced async `fs.mkdtemp` and `fs.open` with `return await withTempWorkspace(` and `await workspace.writeText(\"snapshot.out\", \"\")`, routing creation through fs-safe.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The whole Gateway froze for several seconds when a shell snapshot was captured before a host command while the btrfs filesystem was committing a transaction.",
-  "impact": "slower-or-heavier",
+  "user_saw": "The entire Gateway could stop responding for several seconds when a host command triggered shell snapshot capture during a btrfs transaction.",
+  "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Shell snapshot capture now creates its private temp directory and output file with async node:fs/promises instead of fs-safe's withTempWorkspace, and exec preparation and upload-cleanup timers get main-thread stall task names.",
-  "reasoning": "Shell snapshot capture has used fs-safe's withTempWorkspace since before the graft (f06ffe2bbe4 only swapped the in-repo re-export wrapper of the same @openclaw/fs-safe/temp function for a direct import), so no in-repo commit changed the behavior. The freeze comes from the external fs-safe dependency performing its native creates synchronously, which only hurt under production btrfs commit contention; I could not tie it to a specific fs-safe version bump (0.26.14 to 0.28 bumps in Oct-Nov have no evidence of introducing sync native creates), so this is latent dependency/platform exposure rather than a regression."
+  "summary": "The fix moved shell snapshot directory and file creation to asynchronous filesystem operations and added stall attribution for exec preparation and upload cleanup.",
+  "reasoning": "I verified that snapshot capture already used `node:fs/promises` for both creates before #113596 and that the later direct-import refactor preserved the same fs-safe helper. The fix PR's production traces tie the freezes to synchronous native creates inside that helper, though the adoption-era dependency implementation could not be verified offline."
 }

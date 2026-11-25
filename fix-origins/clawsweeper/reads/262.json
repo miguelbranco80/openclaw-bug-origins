@@ -1,1 +1,8 @@
-{"rank": 262, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Items concern executor fencing of rollback mutations, installed preservation, SDK lock options and generic compatibility proof; nothing addresses the pending-recovery failure dropping the original error message."}
+{
+  "rank": 262,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge item on unsupported retained recovery records addressed when mutable updates should be blocked. The rollback finding addressed executor authority, and neither item examined what the CLI displays when unfinished recovery blocks cleanup after an update has already failed."
+}

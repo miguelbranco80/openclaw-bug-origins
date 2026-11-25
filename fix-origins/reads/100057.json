@@ -1,0 +1,17 @@
+{
+  "rank": 100057,
+  "sha": "204ff97706173276407e022b02afb6437653cb56",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "06f5f73e473196624e51960d087af211304b8458",
+  "cause_pr": 111173,
+  "confidence": "high",
+  "cause_quote": "The diff removed `return cache.lastSuccessfulCatalog;` from the stale-reload branch and routed catalog reads through `prepareModelRuntimeSnapshot`, which executes `await replacement.promise;` during a rebuild.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The model picker could stall, show an error, or briefly drop models while the Gateway rebuilt its catalog.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix serves the last published model list during a rebuild, filters out providers whose relevant settings or credentials changed, and carries forward unchanged provider rows across plugin reloads.",
+  "reasoning": "I checked the parent of #111173, where the Gateway returned its cached catalog during a reload and a test explicitly held the refresh open while asserting that the previous catalog was still served. The lifecycle refactor replaced that read path with one that waited for the replacement owner, and #160274 and #170805 later added waits on the same gate to the catalog snapshot and chat metadata paths."
+}

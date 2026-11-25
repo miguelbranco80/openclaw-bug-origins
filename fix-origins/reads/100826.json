@@ -1,0 +1,17 @@
+{
+  "rank": 100826,
+  "sha": "757d73980426df41869314a063b17fc847b36511",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Unfinished model reasoning appeared in the reply when a native tool call was followed by a token limit or content filter.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix disables recovery of unclosed inline reasoning at native tool boundaries and preserves recovery on a normal terminal stop.",
+  "reasoning": "The August commit named in the PR renamed an existing tool-boundary flush. The oldest available source already calls that flush on a native tool delta and allows it to emit unclosed reasoning as visible text in non-strict mode. The offline history stops at the shallow boundary, so I could not verify which commit introduced the behavior or whether it had previously worked."
+}

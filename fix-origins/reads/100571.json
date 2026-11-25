@@ -1,0 +1,17 @@
+{
+  "rank": 100571,
+  "sha": "d816b6d0ec13e3d01801d7f69ec85cd6e6069652",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "332e4d3ec02df53b18003155fe44a0a102b383e1",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new host-authorized reuse path added `const resolved = await resolveRequiredConfiguredSecretRefInputString({` and proceeded into `resolveInteractiveCopilotStarterModel` without rechecking caller authority.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A GitHub Copilot reconnect could still start model discovery after the caller lost authorization while its saved token was being resolved.",
+  "impact": "permissions",
+  "area": "models/providers",
+  "summary": "The fix checks for cancellation and caller revocation before and after resolving the saved token, so a revoked reconnect stops before model discovery.",
+  "reasoning": "The introducing diff added reuse of the host-supplied profile and resolved its SecretRef without an authority check before discovery. The parent used a separate runtime-store lookup, which the commit message says found no saved profile in the affected Gateway flow. The fix's registered-provider test exercises the new path by revoking authority during the token read."
+}

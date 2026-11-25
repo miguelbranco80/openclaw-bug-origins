@@ -1,0 +1,17 @@
+{
+  "rank": 100259,
+  "sha": "4af2bb9e4cd7cbfb2f39347f59011453cc8ecaff",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "3ba0a0b23761ef8209827f7f3dd0f82713c33bbe",
+  "cause_pr": 160297,
+  "confidence": "high",
+  "cause_quote": "The new same-turn follow-up instructed the model, \u201cIf user input, approval, an external dependency, or an explicit pause prevents further work, report that concrete limitation,\u201d prompting it to repeat a blocker the original answer had already explained.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the agent stopped to ask for approval, Telegram showed a restated blocker in place of the original answer or as a second message.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The plan-completion check now tells the model to return only NO_REPLY if its previous answer already reported the blocker, preserving that answer.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that progress cards already supported pending steps and normal reply delivery finalized the original answer. The causing diff added a same-turn continuation that asked the model to report the blocker again, and the fix PR\u2019s Telegram reproduction shows the resulting restatement taking the original answer\u2019s place."
+}

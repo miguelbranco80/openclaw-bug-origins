@@ -1,0 +1,17 @@
+{
+  "rank": 100097,
+  "sha": "dad6ec80dc0c1151ef59343b4048ef39e4688925",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a5f3623302fd31f917bd83a5abeac56a09a7c737",
+  "cause_pr": 136995,
+  "confidence": "high",
+  "cause_quote": "The replacement health RPC explicitly set `deviceIdentity: null`, preventing the verifier from authenticating with the paired CLI's device credentials.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Update or restart verification timed out on a healthy trusted-proxy Gateway even though the local CLI was paired.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix lets the read-only restart verifier reuse the target service profile's existing device identity and operator token when no shared credentials are configured.",
+  "reasoning": "The causing commit replaced the existing restart probe with a health RPC that explicitly suppressed device identity. I checked its parent and confirmed that the old probe loaded the paired identity and cached operator token from the supplied environment, and that the Gateway already accepted valid device-token authentication."
+}

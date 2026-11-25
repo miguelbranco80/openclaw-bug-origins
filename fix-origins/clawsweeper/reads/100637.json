@@ -1,0 +1,8 @@
+{
+  "rank": 100637,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding concerns plugin access to lifecycle callbacks, and the earlier findings concern restart-abort cleanup and rebase validation. The request for CLI handoff proof did not identify a risk to the start time used by chat history when reopening an active session."
+}

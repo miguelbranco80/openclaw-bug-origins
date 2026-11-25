@@ -1,0 +1,17 @@
+{
+  "rank": 100417,
+  "sha": "297f3d8cf2e6ec27201df0eab2bab0d371514438",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "af717db39c78d9c7ca6cae5536791ab10557a6fa",
+  "cause_pr": 115907,
+  "confidence": "high",
+  "cause_quote": "The original Tool access loader returned early on `this.effectiveTools?.key === cacheKey ||`, so reopening reused a successful but empty pre-run result.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After opening Tool access before a run discovered MCP tools, users still saw an empty list when they reopened it after the run and had to reload the page to see the tools.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix refreshes the tool inventory when users open Tool access while sharing any matching request already in flight.",
+  "reasoning": "I checked the introducing diff and confirmed that it added the per-connector list and the cache guard together, with explicit opens allowed to retry errors but still subject to cached successes. At that commit, the gateway already read the MCP catalog discovered during a run, while the UI cache key tracked the agent, session, model, and configuration, leaving it unchanged by discovery alone."
+}

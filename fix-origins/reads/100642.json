@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "67fd7e910b89bac2d2e238ec700c7bc263b1afb1",
+  "cause_pr": 148567,
+  "confidence": "high",
+  "cause_quote": "The new Sign in with ChatGPT verifier ended with `return payload.sub;`, so the credential builder received only the subject and never saved the ID token's email claim.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The provider screen omitted the signed-in ChatGPT email, and generic labels in the composer made connected accounts hard to tell apart.",
+  "impact": "presentation",
+  "area": "models/providers",
+  "summary": "The fix saves the Sign in with ChatGPT email on sign-in and refresh and shows the selected account's email and sign-in method in the composer.",
+  "reasoning": "The first-parent history confirms that #148567 added the Sign in with ChatGPT OAuth runtime. Its introducing diff requested the email scope but returned only the subject from verification and built the credential without an email field, so the omission existed from the feature's first appearance on main.",
+  "rank": 100642,
+  "sha": "daecbc5cf54c6301a2292ca7ad88cecc51a119af",
+  "rubric": "v1.2"
+}

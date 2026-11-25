@@ -1,0 +1,8 @@
+{
+  "rank": 100897,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cProgress delivery authority\u201d section discusses guards for sending progress notifications. The \u201cBefore merge\u201d items cover compatibility, childless yields, and merge conflicts, with no concern about the Tasks panel discarding a final cancellation update because of its timestamp."
+}

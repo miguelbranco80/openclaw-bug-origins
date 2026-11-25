@@ -1,0 +1,17 @@
+{
+  "rank": 100585,
+  "sha": "03ba3c4c14ac774cd350ca7d1642801ba2ea8147",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "0eb6c8532af210eb1498a6c1b5686231822bb11c",
+  "cause_pr": 133873,
+  "confidence": "high",
+  "cause_quote": "The batching commit set `maxPendingCount: 256` on a shared queue and returned retryable `UNAVAILABLE` with `gateway request start capacity exceeded` when that queue refused an operator request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When many users connected to the same Gateway at once, some saw missing Control UI setup data or could not create a session.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix raises the Gateway's shared ordinary request-start queue limit to 1,024 waiting requests and caps each connection at 256.",
+  "reasoning": "I checked the batching commit's parent and confirmed that the Control UI already issued three approval-list requests and two cron requests during setup, while the Gateway dispatcher called the handlers directly. The batching commit introduced a shared queue that could reject those existing requests before their handlers ran. The later narration fix preserved the 256-request ordinary limit, and the fix PR reproduced the overflow with a fixed clock."
+}

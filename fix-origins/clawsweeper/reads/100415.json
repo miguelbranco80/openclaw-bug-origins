@@ -1,0 +1,8 @@
+{
+  "rank": 100415,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The run-input visibility item flagged SQLite JSON functions in PostgreSQL history queries, and the schema-seal item flagged writes inside a read-only transaction. Neither item addressed retained readers holding idle PostgreSQL connections until the Gateway exhausted its connection limit."
+}

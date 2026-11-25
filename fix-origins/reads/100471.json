@@ -1,0 +1,17 @@
+{
+  "rank": 100471,
+  "sha": "1ee38851402ac18f528b78558087a315e72e730a",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The English chat status read \u201cWaiting for turn to start\u2026\u201d while a turn was queued.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix removes the trailing ellipsis from the English queued-turn label and updates the test expectations.",
+  "reasoning": "I checked that #173860 introduced the queued-turn label with the ellipsis and that #172549 had already removed the ellipsis from the response-wait label. This fix aligns the punctuation of those two labels and changes only the displayed copy."
+}

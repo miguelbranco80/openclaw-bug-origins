@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Doctor reported a successful repair even though the merge replaced malformed bytes with replacement characters in MEMORY.md.",
+  "impact": "data-loss-or-duplication",
+  "area": "cli",
+  "summary": "Doctor now validates both root memory files as UTF-8 before archiving and again before merging, and warns when it skips the merge.",
+  "reasoning": "The July bounded-read change replaced `fs.promises.readFile(..., \"utf-8\")` with `buffer.toString(\"utf-8\")`, preserving the lossy decoding already present in the July 1 snapshot. The offline path history stopped at a missing object, so I could not verify which earlier commit introduced the defective merge.",
+  "rank": 100606,
+  "sha": "ce5b795128e359ebebd9df80bdcfaf0258659a5a",
+  "rubric": "v1.2"
+}

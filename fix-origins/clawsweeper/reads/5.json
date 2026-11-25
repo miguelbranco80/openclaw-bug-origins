@@ -1,1 +1,8 @@
-{"rank": 5, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No review version mentions the select handler re-running updateSlashMenu or the highlighted argument resetting to index 0. The earlier P2 finding about consuming the complete inline argument token concerns truncated dispatch with the caret mid-token, a different failure."}
+{
+  "rank": 5,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cConsume the complete inline argument token\u201d finding concerned Enter dispatching a truncated argument when the caret was inside the token. The review at merge listed no findings, and its Live Verification reported a timeout without identifying the selection-triggered menu reset that made Tab insert `default`."
+}

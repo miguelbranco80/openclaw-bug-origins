@@ -1,0 +1,17 @@
+{
+  "rank": 100773,
+  "sha": "ea9c7a32ce7d61af261332a55af9d5fd6791c743",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The Gateway now appends safe prose to the projected live reply after a directive settles, avoiding repeated full-reply parsing.",
+  "reasoning": "I checked #158489 and its parent: the old Gateway path parsed the complete buffer whenever it projected changed live text, and #158489 introduced an incremental projector that retained that work after a prose marker. Path history shows that #183198 moved the same condition into the stream module. The fix reduced measured parser work while delivering byte-identical text, and the reported timings did not establish a user-visible slowdown."
+}

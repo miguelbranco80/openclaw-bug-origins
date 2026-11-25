@@ -1,0 +1,8 @@
+{
+  "rank": 100200,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier refresh finding concerned a Gateway request timeout, and the loader finding concerned a misplaced override in a Gateway test. Neither finding nor the review at merge raised the missing catalog-owner plugin registry scope during standalone model availability checks."
+}

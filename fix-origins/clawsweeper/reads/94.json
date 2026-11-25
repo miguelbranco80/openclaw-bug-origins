@@ -1,0 +1,8 @@
+{
+  "rank": 94,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Technical review discusses native question calls rejected in Default mode, and the earlier \u201cPreserve native opt-ins\u201d finding concerns users who explicitly enabled the tool. Neither raises the risk that Default-mode guidance still mentions the tool after the PR disables it."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100351,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Third-party plugins that do not clean up unmanaged resources can retain timers, subscriptions, or native state when replacement replays lifecycle hooks; a Gateway restart may still be necessary.",
+  "outcome": "open-at-merge",
+  "note": "The Before merge item \u201cResolve merge risk (P1)\u201d points to resource cleanup when replacement replays lifecycle hooks. Its warning covers resources left behind, while Lossless failed because cleanup could close a database the replacement had already borrowed."
+}

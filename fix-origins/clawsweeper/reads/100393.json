@@ -1,0 +1,8 @@
+{
+  "rank": 100393,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "A user with credential-bearing retired JSON files must run `openclaw doctor --fix`; runtime intentionally fails closed for that affected agent instead of falling back to file, environment, or config credentials.",
+  "outcome": "open-at-merge",
+  "note": "The P1 Before merge item identifies the legacy credential gate that blocks provider setup. It describes manual Doctor recovery and leaves out the non-interactive onboarding loop caused by the deployment wrapper recreating the file."
+}

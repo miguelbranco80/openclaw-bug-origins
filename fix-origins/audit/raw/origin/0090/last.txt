@@ -1,0 +1,17 @@
+{
+  "rank": 90,
+  "sha": "869734209368313e7bcbc325ee72752fd2b57a71",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "d780fdc672d3567b3fcb83a08c962958b767486e",
+  "cause_pr": 158163,
+  "confidence": "medium",
+  "cause_quote": "#158163 introduced update database capture whose generation fingerprint hashes the WAL-index header (`after?.toString(\"hex\")`, later narrowed to iChange and frame checksum), which a no-write index rebuild resets, so the capture/compare treats it as a write.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A managed update from 2026.11.3 or 2026.11.4 run while `openclaw update status` or another reader was active failed with \"SQLite migration source changed after update capture\" and left the Gateway stopped reporting it cannot open existing data.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "At the target Doctor's first admission, adopts databases whose difference from the parent's capture is only a no-write WAL-index rebuild (non-empty WAL, iChange zero, frame checksum kept), warning that restore is unavailable so the update completes forward.",
+  "reasoning": "The race is inherent in the capture/compare design: since d780fdc672d3 (#158163) the generation fingerprint binds WAL-index bytes, kept as iChange plus checksum by 0ac1c241fba (#162599) and 237fdc662d9 (#182032), whose own comment admits a rebuild resets iChange and assumes callers never open sources natively across a capture. No later commit broke a working comparison; the published 11.3/11.4 parents simply hit the unhandled rebuild when readers exit. Medium because I did not confirm which commit made the parent's post-capture native open, and the stranding also depends on the parent's forward-recovery path."
+}

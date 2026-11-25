@@ -1,0 +1,8 @@
+{
+  "rank": 100789,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "\u201cLimit lifecycle filtering to picker views\u201d addresses existing catalog rows hidden by a final filter. The OpenAI API-key regression starts earlier, when deleting manifest rows removes eligible models from discovery."
+}

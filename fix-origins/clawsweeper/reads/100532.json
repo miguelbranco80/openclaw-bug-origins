@@ -1,0 +1,8 @@
+{
+  "rank": 100532,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier findings addressed draft hashes, concurrent writes, and conflict recovery. The request for Control UI evidence covered conflict handling and resolution without raising whether screen readers would announce the callout."
+}

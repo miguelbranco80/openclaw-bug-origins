@@ -1,1 +1,8 @@
-{"rank": 81, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "At-merge findings concern the restart E2E expectation for unreachable yielded parents, failed-handoff notice copy and upgrade proof. Nothing addresses visible spawned (createdVia spawn) coordinators being skipped while root resolution does not walk past them."}
+{
+  "rank": 81,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section noted the restriction to subagent keys, and the Technical review endorsed it without raising the risk that a visible spawned child would stop the walk before it reached the root. The sole finding concerned SQLite lock acquisition in the test fixture."
+}

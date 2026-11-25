@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The earlier “Consume the complete inline argument token” finding concerned Enter dispatching a truncated command when the caret sat inside an argument. The at-merge “Current-main gap” described drafts that begin with prose and missed how a leading command prevents completion for a second slash command."
+  "outcome": null,
+  "note": "The earlier finding concerns a caret inside an inline argument truncating the dispatched command, a different path; the at-merge items are CI and helper limits. Nothing addresses the leading-command argMatch branch returning before inline completion."
 }

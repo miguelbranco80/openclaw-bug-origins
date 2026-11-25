@@ -1,0 +1,17 @@
+{
+  "rank": 100205,
+  "sha": "0ed829e7fe4e178ea9e4693427c70e73139290d8",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6d01bf549cb381c4228ba5043996143cf45cef24",
+  "cause_pr": 168790,
+  "confidence": "high",
+  "cause_quote": "The Solid port added `<details class=\"lr-file\" open={props.expanded}>`, which reapplied the default closed state when a tab revision reached the file component.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A file diff they had opened in the GitHub reader was collapsed when they switched back to its tab.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix memoizes the document's expansion preference so tab changes preserve the user's toggle and a changed preference still updates the disclosure.",
+  "reasoning": "Before the migration, Lit's `?open=${expanded}` binding left the native toggle alone when the expansion preference stayed the same, and the existing GitHub panel E2E explicitly checked that an opened diff stayed open after switching away and back. The migration diff replaced that binding with a reactive Solid `open` binding that could reapply the unchanged default on a tab revision."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100538,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "When native membership is outside but the parent walk is incomplete, the new guard refuses regardless of inherited service markers. Retrying without those markers cannot repair the failed inspection.",
+  "outcome": "open-at-merge",
+  "note": "The P2 recovery-path finding identifies the same refusal condition in update preflight. Its requested change was to correct the recovery guidance, which would leave the gateway restart refusal in place."
+}

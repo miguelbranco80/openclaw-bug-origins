@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "While a user waited for a reply, a hidden memory-saving turn could run an unrelated tool and make changes outside the daily memory file.",
+  "impact": "permissions",
+  "area": "agents",
+  "summary": "The fix keeps hidden memory-saving turns restricted to their allowed persistence tools throughout tool assembly and harness presentation.",
+  "reasoning": "The fix PR reports that a pre-fix Gateway run exposed and executed an unrelated MCP tool during a file-backed memory save. The oldest readable code already appended MCP tools after selecting the memory tools, and the July runner refactor carried that behavior forward. The available history did not reach the introducing diff or establish that isolation had worked earlier.",
+  "rank": 100682,
+  "sha": "f17cc3ef72fa8e57918a39092fce0f7473781376",
+  "rubric": "v1.2"
+}

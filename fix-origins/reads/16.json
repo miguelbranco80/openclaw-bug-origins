@@ -1,17 +1,17 @@
 {
-  "rank": 16,
-  "sha": "5f99927e134e19edee859794ae34a15f3c7b7b7e",
-  "rubric": "v1",
   "origin": "regression",
   "cause_sha": "963826f2d3073a47f17d42b7c0f63c758cd72ded",
   "cause_pr": 188645,
   "confidence": "medium",
-  "cause_quote": "963826f2d30 replaced `: staticImports` with `: new Set([...staticImports, ...literalCalls])`, where onLiteralCall collects the first literal argument of every CallExpression that starts with \".\", so ordinary strings like \".\" and \".sqlite\" flowed into `resolveImport(specifierPath)` (createRequire().resolve).",
+  "cause_quote": "The change added `onLiteralCall: (specifier) => literalCalls.add(specifier)` and fed `new Set([...staticImports, ...literalCalls])` into the existing native resolver loop, sending ordinary arguments such as `.` and `.sqlite` through Bun\u2019s resolver.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Maintainers building the desktop standalone executable saw packaging fail (Bun panicked in chunk selection, then the codegen stage could not find the workspace-path-exclusions program) before compilation.",
+  "user_visible": "yes",
+  "user_saw": "Bun panicked during desktop standalone packaging before executable compilation began.",
   "impact": "failed-every-time",
   "area": "apps",
-  "summary": "Resolved standalone chunk references through the package-inventory CommonJS resolver instead of native createRequire resolution, and dropped the stale `workspace-manifest-` filename exception for the workspace-path-exclusions program.",
-  "reasoning": "The fix PR says chunk selection sent every relative-looking literal (e.g. `.`, `.sqlite`) through native resolution and exhausted Bun's resolver; that literal set was added to the resolve loop by #188645 (Oct 31), after standalone selected-plugin builds (#173794) and #183377 (Oct 25, 'restore trimmed AOT builds') had them working, while before it only static imports (or the scoped fallback for loader-using files) were resolved. Confidence is medium because the Bun panic mechanism is taken from the PR and I could not confirm packaging succeeded between Oct 25 and Oct 31; the second half (the `workspace-manifest-` prefix from #172384) went stale when the bundler's chunk naming changed, which I could not pin to one commit."
+  "summary": "The fix resolves runtime chunks against the package inventory and finds the workspace exclusions program by its current owner filename.",
+  "reasoning": "The parent already used the selector for standalone plugin packaging, and its static import scan and scope-aware loader fallback kept ordinary call arguments out of native resolution. The fix PR reports resolver exhaustion under Bun and completion after switching to inventory lookup, but the available evidence does not include a successful full desktop build at the suspected cause\u2019s parent. The stale workspace filename was a separate failure in the next packaging stage.",
+  "rank": 16,
+  "sha": "5f99927e134e19edee859794ae34a15f3c7b7b7e",
+  "rubric": "v1.2"
 }

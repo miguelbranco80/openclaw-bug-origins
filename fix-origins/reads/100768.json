@@ -1,0 +1,17 @@
+{
+  "rank": 100768,
+  "sha": "69ee152d57683a7a47133a75a83a01aabd434107",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "19ace6830b17a20cf5b103c1893a2c5d7bca6bc3",
+  "cause_pr": 123635,
+  "confidence": "high",
+  "cause_quote": "The original CUA client appended the entire stdout chunk with `this.stdout = Buffer.concat([this.stdout, chunk]);` and checked `if (this.stdout.length > MAX_MCP_LINE_BYTES)` before looking for a newline.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The strict MCP client reported a line-size error and disconnected when one stdout read contained valid messages whose combined size exceeded the per-message limit.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The strict stdio decoder now applies the configured byte limit to each newline-delimited frame and rejects an oversized frame before retaining any of the incoming chunk.",
+  "reasoning": "The diff that introduced the embedded CUA MCP client applied the line-size check to the combined buffer before splitting it, so a pipe read could push the buffer over the limit even when every message fit. I traced that same pre-split check through the buffer optimization, the private decoder extraction, and the move to the core strict client."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100067,
+  "sha": "40b332d1a8a97ab955a08b17e27554f5fa7b94cd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "1b3f38e7e4ffeee844ee7a3bbcdaf293c65eb2e1",
+  "cause_pr": 153063,
+  "confidence": "high",
+  "cause_quote": "The commit added `reportedStartupPhase = snapshot.startupPhase` and reported phase changes through `params.onProgress?.(snapshot.startupPhase)`, leaving those changes out of the watchdog's renewal condition.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway restart could report that startup was still in progress and exit with code 2 after 60 seconds even when the replacement had advanced to a new phase and became healthy shortly afterward.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets each new `/startupz` phase from the same replacement's own listener renew the restart readiness window within the existing five-minute cap.",
+  "reasoning": "The earlier restart watchdog credited migration activity, first observation of the running service or its listener, and boot identity. PR #153063 first wired explicit HTTP startup phases into the restart waiter, where they affected progress reporting and the outcome at expiry from day one but never renewed the deadline. Path history shows the same renewal condition persisted until this fix."
+}

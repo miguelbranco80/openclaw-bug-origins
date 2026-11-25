@@ -1,17 +1,17 @@
 {
   "rank": 165,
   "sha": "8873aeb433fd931c87e2bd5ba45f38b67215ae27",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
-  "trigger_sha": "70134e42285b4214579faba8ac10ed7098550643",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "70134e42285b4214579faba8ac10ed7098550643",
+  "cause_pr": 188576,
+  "confidence": "medium",
+  "cause_quote": "The dependency diff changed `\"@trycua/cua-driver\": \"0.36.0\"` to `\"@trycua/cua-driver\": \"0.37.0\"`, bringing in the Markdown default while the adapter still expected structured elements.",
+  "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On Linux, the computer tool's get_window_state returned no usable element references, so element actions such as set_value could not target any control.",
+  "user_saw": "On Linux X11 with CUA 0.37, window observations returned no usable element references, so actions such as `set_value` could not target a control.",
   "impact": "failed-every-time",
   "area": "plugins",
-  "summary": "The CUA computer adapter now passes tree_format: \"elements\" to get_window_state so CUA Driver returns structured elements instead of its new Markdown default.",
-  "reasoning": "The adapter's get_window_state request (older than the graft, last adjusted by 371791b9d6be for include_screenshot) relied on CUA Driver's default tree format, which worked until CUA 0.37 changed that default to Markdown. The in-repo exposure is the dependency refresh 70134e42285 (#188576), whose package.json diff moves @trycua/cua-driver from 0.36.0 to 0.37.0; that is an external API change, not a code regression, so latent with that commit as trigger."
+  "summary": "The CUA adapter now sends `tree_format: \"elements\"` with `get_window_state` requests so it can return usable element references.",
+  "reasoning": "I checked that the adapter already requested window state without a format before the upgrade and that an earlier live Linux X11 proof required usable element references. The fix PR reproduced missing references on CUA 0.37 and restored them by requesting structured elements explicitly. The available evidence did not include a live result from the immediate parent on CUA 0.36."
 }

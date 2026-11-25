@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The earlier “Add data-model compatibility proof” item asked broadly whether stored data would work after upgrade. The at-merge “Existing migration ownership retained” item described Doctor advancing the schema without raising the risk that a pending runtime pin could leave the app launching the old seeded Gateway."
+  "outcome": null,
+  "note": "The at-merge review has no open items. The earlier version's findings concern setup-promotion receipts, the restore regression and credential rebinding proof; none mention the client-credentials Doctor path advancing schema without the daemon runtime-pin migration, leaving the old seeded Gateway against a too-new schema."
 }

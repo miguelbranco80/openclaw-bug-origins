@@ -1,0 +1,17 @@
+{
+  "rank": 100320,
+  "sha": "1313c3871a2126fa76a683c2c09fe4167550ee79",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a2ef50cfc7f6c0f54b90f91047efceb082d78deb",
+  "cause_pr": 174661,
+  "confidence": "high",
+  "cause_quote": "`const GENERATED_IMAGE_DOWNLOAD_MAX_BYTES = 32 * MB` set the new download ceiling, which OpenRouter's one-payload calculation turned into a 45,787,819-byte JSON limit that rejected the 55.8 MB chat response.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A paid Gemini 4K generation through a custom OpenRouter URL failed with a JSON size error, and no image was saved.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix raised the generated-image download ceiling to 64 MiB and budgeted for the encrypted reasoning payload alongside each image in OpenRouter chat responses.",
+  "reasoning": "The parent of #174661 used the smaller media storage cap for provider reads, so the reported response also exceeded that earlier limit. The new above-cap download path in #174661 still rejected the measured response because its one-image budget included only base64 expansion and a 1 MiB envelope. The earlier one-payload budgeting predates the shallow boundary, so this attribution is scoped to the oversized-download support introduced by #174661."
+}

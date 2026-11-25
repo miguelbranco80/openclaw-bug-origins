@@ -1,0 +1,8 @@
+{
+  "rank": 100791,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Update the identity lifecycle assertion to use textAvatar",
+  "outcome": "dropped",
+  "note": "The History section records an earlier finding about the same textAvatar input that the owner dropdown omitted. The finding called for updating a test assertion and left the dropdown\u2019s renderer call unaddressed."
+}

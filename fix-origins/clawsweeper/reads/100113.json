@@ -1,0 +1,8 @@
+{
+  "rank": 100113,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Tests section called for end-to-end proof of Apple setup and Gateway transport. The earlier Watch routing and setup-parser sync items gave no reason to check whether IPv6 bracketing let a hostname with an embedded port pass manual iOS validation."
+}

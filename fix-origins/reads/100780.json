@@ -1,0 +1,17 @@
+{
+  "rank": 100780,
+  "sha": "b82b033920ee7a4df6323e3ee2b04ac8c6037fe0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "220578ba340863ac127d2076604e461fa693eb6e",
+  "cause_pr": 139517,
+  "confidence": "high",
+  "cause_quote": "The controller changed `settle()` from `Promise<void>` to `Promise<\"normal\" | \"cooperative\" | \"forced\" | \"uncertain\">` and added `return cleanup;`, while extension exec still discarded the return value and resolved an ordinary result.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An extension author received an ordinary command result after cancellation even though a descendant was still running.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "Extension exec now throws `CommandProcessCleanupError` when cleanup is uncertain and preserves the root command result and captured output in the error\u2019s cause.",
+  "reasoning": "I checked that extension exec already awaited a void settlement before #139517 and kept the same call when the controller began returning a cleanup verdict. The extension API therefore discarded uncertainty from the first version of that verdict. The follow-up #139957 added the specific case where the process group stays alive after a forced stop, which the same call also ignored."
+}

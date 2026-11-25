@@ -1,0 +1,8 @@
+{
+  "rank": 100457,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "Passing the locator to readRetainedSessionEntryFacts searches for its write token and physical fact cache at the wrong path. A valid managed-worktree file request consequently throws \"Session workspace changed during file read\" despite an unchanged selected entry.",
+  "outcome": "answered",
+  "note": "The P2 item \u201cUse the selected physical source for the worktree file guard\u201d identified the wrong path and the exact error on an unchanged worktree. The maintainer acknowledged the defect before merge and recorded the fix as a follow-up."
+}

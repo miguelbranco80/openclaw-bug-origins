@@ -1,6 +1,17 @@
 {
-  "origin": "unclear",
-  "cause_sha": null,
-  "confidence": null,
-  "reasoning": "The fix reproduces a write that reports success even though the Markdown reader cannot read the key back. The October 15 diff shows that the writer already passed the key directly into `frontmatter: [...ast.frontmatter, { key, value, line: 0 }]` and serialized it via `rebuildMdRaw`. The original feature and early parser diffs were unavailable, so I could not verify whether the mismatch shipped with the feature or arose later."
+  "rank": 159,
+  "sha": "5f06d69953b3ad1ac523837c6639e9089d2f717d",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "e3b33a26cdb11f0c6e57d33ef5e25e386b71c8de",
+  "cause_pr": null,
+  "confidence": "medium",
+  "cause_quote": "setMdInsertion took `const key = info.marker.key;` and appended `{ key, value, line: 0 }` to the frontmatter after only a duplicate-key check, with no check against the reader's key grammar.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw path set` reported success and modified the Markdown file when inserting a frontmatter key like `9name`, `name.dot` or `caf\u00e9`, but `path resolve` then could not find that key.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Made Markdown frontmatter insertion refuse keys that do not match the reader's ASCII key grammar, returning not-writable and leaving the file unchanged.",
+  "reasoning": "GraphQL blame at the fix's parent attributes the insertion lines to e3b33a26cdb (\"refactor: move oc-path into plugin\", the first-parent commit that landed oc-path in its current form after the original #78678 implementation was reverted), and that commit's patch shows the frontmatter insertion with no key validation; the reader regex `^([a-zA-Z_][a-zA-Z0-9_-]*)` in parse.ts was not re-checked at that exact commit, hence medium confidence. No later commit removed a validation, so the gap shipped with the feature."
 }

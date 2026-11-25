@@ -1,0 +1,17 @@
+{
+  "rank": 100498,
+  "sha": "011b7dd2040acacee4f2c8e4b8697bb259f46322",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "2bf30bac7b5cc815b3d628fd90d6d5f951fd78fe",
+  "cause_pr": 138690,
+  "confidence": "medium",
+  "cause_quote": "The diff added `const run = await admitUpdateCommandRun({` before update execution, requiring `createUpdateRun` to pass through `runOpenClawStateWriteTransaction`, whose database-open path rejects foreign-key violations.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On an installation with orphaned task-delivery rows, `openclaw update` exited with a SQLite foreign-key error before installing the update.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Update admission now uses Doctor\u2019s preservation-first recovery for known orphaned task-delivery rows and records the recovery count and backup location, while dry runs leave the rows untouched.",
+  "reasoning": "The parent of #138690 reached update execution after checking database ownership, with no mandatory history write at admission. I traced the new history write to the existing foreign-key check and verified that #140339 carried the refusal into its replacement writer. The earlier behavior is supported by source inspection, with no installed-run result for the pre-history version."
+}

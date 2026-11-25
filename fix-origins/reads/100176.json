@@ -1,0 +1,17 @@
+{
+  "rank": 100176,
+  "sha": "b4d088531754d71af3d3446e2c37e7aafd0eddc4",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "f9ea6dbb69c04883999225dc6cbf8a404d64443c",
+  "cause_pr": 142158,
+  "confidence": "high",
+  "cause_quote": "The commit added `if (params.includeProvider?.(plannedProvider, params.plugin) === false) { return []; }`, which dropped Z.AI's built-in rows because the China URLs matched neither the catalog URL nor the declared host.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The model list and model pickers showed no built-in Z.AI models when configured with a China endpoint.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds `open.bigmodel.cn` to the Z.AI plugin manifest and its official catalog mirror, restoring built-in model listings for the China general and Coding Plan endpoints.",
+  "reasoning": "The parent manifest already shipped the China onboarding choices and six built-in GLM rows, and the parent catalog planner selected those rows without checking the configured endpoint. The causing diff wired endpoint eligibility into catalog planning and discovery, which excluded the existing China URLs because the catalog URL and declared host covered only `api.z.ai`."
+}

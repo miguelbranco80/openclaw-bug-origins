@@ -1,0 +1,17 @@
+{
+  "rank": 100638,
+  "sha": "8879e5ef4b98e7ff17b0ac04e7695f66f3e143b2",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `loadUpdateRecoveries(options).find(isUpdateRecoveryPending)` after strict decoding of every row, and its predicate counted `record.effects.some((effect) => effect.state === \"intent\")` as pending even for terminal records awaiting obsolete-package cleanup.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The next update was refused when a completed recovery receipt used an older format or cleanup of an obsolete package was still pending.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix uses validated historical receipts for update admission, allows terminal obsolete-package cleanup to remain pending, and blocks CLI fallback completion while operational recovery is unfinished.",
+  "reasoning": "The path history and introducing diff show that #140339 shipped recovery admission with both the strict bulk decoder and the broad pending predicate. Its original tests explicitly expected admission to reject retained terminal legacy records, and the fix adds coverage for admitting those records and terminal cleanup while still blocking unfinished restoration."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100526,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge item \u201cScope outbound A2A context to the local conversation\u201d concerns shared remote conversation IDs. Neither that item nor the earlier cancellation and routing findings addresses the delivery queue retrying replies to peers with no outbound URL."
+}

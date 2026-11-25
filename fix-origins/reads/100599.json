@@ -1,0 +1,17 @@
+{
+  "rank": 100599,
+  "sha": "27f8c47bbb6fc440fe51ca84dc6488d75834ca1f",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "b10a19d0e5518b4a72f3238612ec710d7a778a6d",
+  "cause_pr": 174740,
+  "confidence": "high",
+  "cause_quote": "The Anthropic backend added `askuserquestion: \"ask_user\",` to its native capability map, causing capture to reject the newly projected name as non-canonical.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Every Claude CLI turn failed before a reply whenever Claude Code advertised its default native question tool.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix adds `ask_user` to the canonical native capability vocabulary so Claude CLI turns can complete with native questions enabled.",
+  "reasoning": "The fix PR reports that published OpenClaw 2026.10.4 completed all nine turns with the same Claude Code version and `AskUserQuestion` enabled. I checked the causing commit's parent, where the existing projection skipped `AskUserQuestion`, and verified that the core validator stayed unchanged from that parent through the fix's parent. The new mapping sent `ask_user` to that validator, which threw before Claude could reply."
+}

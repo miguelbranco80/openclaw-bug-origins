@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6cd11338588e3dc520b9b38d34312948c84f1608",
+  "cause_pr": 105865,
+  "confidence": "medium",
+  "cause_quote": "The original adapter mapped cancellation with `const reason = outcome.reason === \"cancelled\" ? \"aborted\" : \"error\";` and immediately published `stream.push({ type: \"error\", reason, error: message });`, leaving the worker turn controller live.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A managed worker could exit without acknowledging that a cancelled chat turn had finished.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The worker now aborts its turn controller before publishing a remote inference cancellation and removes the inference abort listener to avoid sending a duplicate cancellation request.",
+  "reasoning": "Gateway chat abort already supported remote inference cancellation when the worker adapter shipped, and the introducing diff shows that the adapter never forwarded that cancellation to the turn controller. The September stream refactor preserved that behavior, while placement routing made terminal acknowledgment depend on transcript settlement. The fix documents the rejected second write in the current implementation, but the same end-to-end failure was not verified on the introducing revision.",
+  "rank": 100203,
+  "sha": "f585b0421821c15ce1d0e545a13bcea0f36ab764",
+  "rubric": "v1.2"
+}

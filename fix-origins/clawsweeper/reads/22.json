@@ -1,1 +1,8 @@
-{"rank": 22, "flagged": "related", "where": "at-merge", "quote": "The sessionless helper now triggers immediate publication, but the first returned tool still contains its unpublished schema; the next call substitutes the detached published copy.", "outcome": "open-at-merge", "note": "The P2 digest-cache fixture item identifies the sessionless path now publishing where the base skipped it, the same removed guard, but only names the digest-cache test breakage, not the extra cleanup registration in one-shot supervisor tests."}
+{
+  "rank": 22,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The existing fixture supplies neither a session nor cleanup registration; the base skips publication without a session, whereas this PR publishes immediately and substitutes the detached publication on the next call.",
+  "outcome": "open-at-merge",
+  "note": "The P2 digest-cache finding and its Failure attribution evidence identified the change to schema publication when no session ID is supplied. The proposed fixture update addressed immediate publication, leaving the empty catalog\u2019s extra cleanup callback unaddressed."
+}

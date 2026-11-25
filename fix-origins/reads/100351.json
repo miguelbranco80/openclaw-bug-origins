@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "b5134de70af88e342accaba665590c7cb6b79f0b",
+  "cause_pr": 145484,
+  "confidence": "medium",
+  "cause_quote": "The new reload path called `loaded = withPluginCache(cache, () => preparePlugins({` before `runLifecycleHooks(previousRegistry, false, previousConfig)`, so the old registration's stop hook could close the database the replacement had just borrowed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After reloading Lossless settings, recall could fail with a closed database error.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix drains and disposes the old plugin registration before registering its replacement and can recreate the previous registration if activation fails.",
+  "reasoning": "The parent already hot-reloaded plugin settings and stopped the previous services before loading the replacement, without invoking the previous registration's `gateway_stop` hook during reload. PR #145484 added that hook after replacement registration and deferred registry disposal until after publication. The fix's tests model a borrowed resource being closed by either cleanup path, but the offline evidence does not identify which callback closed the database in the published Lossless package.",
+  "rank": 100351,
+  "sha": "967a8681d0d5aae9a428bc6d9583e753dc1fa013",
+  "rubric": "v1.2"
+}

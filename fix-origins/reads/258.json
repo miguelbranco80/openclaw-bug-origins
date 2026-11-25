@@ -1,7 +1,7 @@
 {
   "rank": 258,
   "sha": "76024435027d4ac4e51a58468bb1b5c4842d9fb0",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; only the CI dead-export (Knip) check failed.",
+  "user_saw": "Nothing visible.",
   "impact": "other",
-  "area": "other",
-  "summary": "Makes readPendingInputSource module-private and migrates test consumers to the maintained reader or a shared test helper.",
-  "reasoning": "The PR fixes a production Knip unused-export failure left by #184512; production behavior is unchanged (0 production LOC delta). That is a tooling/lint fix titled as a fix, so not-a-defect."
+  "area": "storage",
+  "summary": "The fix makes the raw pending-input reader private and migrates its test consumers so the dependency check passes.",
+  "reasoning": "The diff for #184512 shows that it moved the production caller into the reader's own module and left the export in place. The fix addresses the resulting unused-export check failure while preserving submitted-input reads, replay decisions, and invitation authority."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100667,
+  "sha": "2a7642919ecc445f59e39d636171ee39267f327e",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With a microphone that sent digital silence between utterances, Gemini 3.8 Live gave no reply and could merge the stalled utterance into the next user transcript.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The Google realtime voice bridge now keeps forwarding client-supplied silent audio to both Gemini 3.8 Live variants so server-side voice activity detection can complete the turn.",
+  "reasoning": "The live API probes show that the existing silence cutoff completed turns on Gemini 3.1 but stalled both Gemini 3.8 Live variants, which need trailing audio for voice activity detection. I checked that the bridge already accepted configurable model IDs and dropped silent frames after sending audioStreamEnd before #152413, which added model-specific compatibility without changing that cutoff. The cutoff predates the shallow history boundary, and I found no in-repo change that first exposed the provider incompatibility."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100135,
+  "sha": "7593d68192d591780a7aad518b17172b6fcb1099",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0d4037eea541d3c0ab93aec7d10611f0606cad0d",
+  "cause_pr": 171717,
+  "confidence": "high",
+  "cause_quote": "The new recovery loop skipped inputs with `if (!delivery || input.state !== \"interrupted\")`, but its endpoint-error handler said `// Preserve this exact saved input.` and left the input interrupted, making it eligible again at the next boot.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway operators saw the same blocked-delivery warning on every restart for a saved update whose source or destination session had been replaced.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix saves a durable notice before cancelling automatic replay for permanently replaced endpoints, retains the accepted input, and protects the notice during orphan repair.",
+  "reasoning": "The introducing diff added both the startup hook and a recovery loop that reported endpoint changes while leaving the blocked inputs eligible for the next boot. I checked the transient-retry follow-up and the remaining changes through the fix's parent, which preserved that behavior while changing retry handling, diagnostics, and input selection."
+}

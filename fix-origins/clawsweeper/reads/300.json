@@ -1,1 +1,8 @@
-{"rank": 300, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The only open item at merge is CI attribution for PR-card E2E failures; earlier items concern proof, docs and disclosure boundary, and nothing raises event-driven re-requests of terminally failed widgets."}
+{
+  "rank": 300,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The only open item at merge concerned PR-card E2E failures, and the earlier review focused on scope documentation and authorization proof. The Provenance checked section mentions retries and transcript reads but raises no concern about failed widgets retrying after later chat completions."
+}

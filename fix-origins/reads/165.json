@@ -1,17 +1,17 @@
 {
   "rank": 165,
   "sha": "8873aeb433fd931c87e2bd5ba45f38b67215ae27",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
-  "trigger_sha": "70134e42285b4214579faba8ac10ed7098550643",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "70134e42285b4214579faba8ac10ed7098550643",
+  "cause_pr": 188576,
+  "confidence": "medium",
+  "cause_quote": "The dependency diff changed `\"@trycua/cua-driver\": \"0.36.0\"` to `\"@trycua/cua-driver\": \"0.37.0\"`, whose Markdown default left the existing window-state parser without structured elements.",
+  "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Computer-use window observations on CUA 0.37 returned no usable element references, so element actions like set_value could not target any control.",
+  "user_saw": "On Linux, window observations returned no usable element references, so actions such as `set_value` could not target a desktop control.",
   "impact": "failed-every-time",
   "area": "plugins",
-  "summary": "The cua-computer adapter now passes `tree_format: \"elements\"` to CUA's get_window_state so it receives structured elements instead of the new Markdown default.",
-  "reasoning": "The adapter's get_window_state request was correct while CUA Driver returned structured elements by default; CUA 0.37 changed the default tree format to Markdown, which is an external dependency change. The in-repo bump from @trycua/cua-driver 0.36.0 to 0.37.0 came in 70134e42285b (#188576, routine dependency update), which exposed the gap, so it is the trigger rather than a cause."
+  "summary": "The CUA adapter now explicitly requests structured accessibility elements when observing a window.",
+  "reasoning": "The pre-upgrade adapter already supported element targeting and omitted the tree format, and an earlier Linux X11 live-proof commit documented a flow that required native element references. The dependency bump selected CUA 0.37, where the fix's runtime evidence confirms that the same request yielded zero usable references until it explicitly requested elements. The offline checkout did not provide a direct runtime comparison against 0.36."
 }

@@ -1,17 +1,17 @@
 {
   "rank": 50,
   "sha": "cc7f6b97120e761eaea7aea9702cf89e017febb9",
-  "rubric": "v1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9d4d6c62c065297590781c6ea2803b03b0ebff48",
+  "cause_pr": 177232,
+  "confidence": "high",
+  "cause_quote": "The introducing diff rendered report prose in `<div class=\"deep-research-report\">` and styled it with `.deep-research-report { white-space: pre-wrap; line-height: 1.65; }`, leaving it to inherit the app body's antialiased font smoothing.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On macOS, Deep Research report prose looked thinner than they preferred because of the app-wide antialiased font smoothing.",
+  "user_saw": "Deep Research report text in the Control UI side panel looked thin on macOS.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Set -webkit-font-smoothing/-moz-osx-font-smoothing to auto on the Deep Research report element so it keeps macOS stem darkening.",
-  "reasoning": "The thin rendering comes from the Control UI's deliberate app-wide antialiased body smoothing, not from broken code. The fix is one of a batch of typography-preference PRs (alongside #197458 for chat text) that changes the look of one element, with screenshots waived. This is a visual design adjustment, not a malfunction, so it is not a defect. The context blame (9d4d6c62c065, which added the pane) contains nothing wrong."
+  "summary": "The fix sets platform-default font smoothing on Deep Research report prose, including inline citations.",
+  "reasoning": "I checked the pane's introducing diff and confirmed its parent already set `-webkit-font-smoothing: antialiased` on `body`. The report inherited that setting from its first release, and the path history shows no font-smoothing changes in either stylesheet before this fix."
 }

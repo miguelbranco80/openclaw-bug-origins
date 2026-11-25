@@ -1,0 +1,8 @@
+{
+  "rank": 100086,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focus on rerunning the packaged upgrade after an optional-import correction and confirming migration compatibility. The Evidence section describes dependency discovery as part of the sibling-copy fix without raising a concern about Jiti parsing plugin dependencies during snapshot preparation."
+}

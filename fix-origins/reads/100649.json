@@ -1,0 +1,17 @@
+{
+  "rank": 100649,
+  "sha": "731324ec78b615e7910c7ad6a9455c29c823a0a0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6277d6da1331b039c2603ae89caae5a9bd3c1df0",
+  "cause_pr": 139683,
+  "confidence": "high",
+  "cause_quote": "The new `blockedStepReceipts` accepted `blocker: LegacyStateMigrationStep` and emitted `refusal: { code: \"blocked-by-prior-refusal\", message }`, with the message naming only the blocking step ID.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A blocked Doctor migration receipt named the earlier step that stopped execution but omitted that step\u2019s refusal code and message.",
+  "impact": "other",
+  "area": "cli",
+  "summary": "The fix carries the originating step ID, refusal code, and message from the halted execution receipt into each blocked migration receipt.",
+  "reasoning": "The introducing diff added blocked execution receipts with a generic refusal and only the blocker\u2019s ID, and a path-limited history search found no earlier use of that refusal code before the introducing commit. The later blocker refactor preserved the public receipt format, and the CI investigation exposed the existing diagnostic gap."
+}

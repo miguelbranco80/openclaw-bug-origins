@@ -1,0 +1,8 @@
+{
+  "rank": 100516,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review mentions preserving explicit no-restart guidance as a design goal and identifies no gap in that guidance. The earlier managed Node finding concerns a Gateway outage during same-version plugin maintenance, while the reported bug is a missing restart reminder after an update changes both core and plugins."
+}

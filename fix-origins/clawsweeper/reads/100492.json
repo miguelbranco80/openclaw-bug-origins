@@ -1,0 +1,8 @@
+{
+  "rank": 100492,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "The production handler legitimately returns no completion after an earlier triage attempt or other admission refusal. This new throw then exits a Gateway that previously stayed alive to accept an operator restart signal, which can strand foreground and Docker installs without a restart policy.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item \u201cPreserve manual restart recovery when triage declines\u201d identified the throw that made the foreground Gateway exit before the operator could signal it again. The item remained open at merge and received no human response in the bundle."
+}

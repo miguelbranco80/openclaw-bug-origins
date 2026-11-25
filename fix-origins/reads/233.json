@@ -1,17 +1,17 @@
 {
   "rank": 233,
   "sha": "97b03f7428d3711fb4b5653beeac5f0a62ab8afe",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d80fbe7a1ca1f618ef54a8b4d179b98c1c4b0f4c",
+  "cause_pr": 200394,
+  "confidence": "high",
+  "cause_quote": "The new restart capture path added `return captureQueuedOperatorRecoverySource(requester.operatorAuthority);`, which persisted the helper's bare `{ kind: \"unavailable\" }` marker when the requester's recovery source could not be captured.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Operators reading the 'Skipped restart resume' warning could not tell which capture condition left an operator run without a recovery source.",
+  "user_saw": "After a restart, operators saw a generic skipped-resume warning that did not say why the recovery source was unavailable.",
   "impact": "other",
   "area": "gateway",
-  "summary": "Records closed reason codes when an operator-run recovery source cannot be snapshotted, persists them on the existing unavailable marker, and adds operatorRecoveryUnavailableReason to the skipped-resume warning.",
-  "reasoning": "The PR states it is diagnostics only: refusal behavior, authorization, eligibility and user notice are unchanged, and the previous code deliberately returned undefined for these cases. Adding detail to a log payload is an observability improvement, not a fix of broken behavior, so no causing commit applies."
+  "summary": "The fix persists reason codes for unavailable operator recovery sources and includes them in structured restart-resume warnings.",
+  "reasoning": "I checked #200394 and its parent: restart admission previously used the session principal, and #200394 introduced capturing and restoring the interrupted requester's operator source. The existing capture helper returned the same unavailable marker for distinct conditions, and restoration turned that marker into a generic refusal, so the new restart path had no specific reason to report from its first release."
 }

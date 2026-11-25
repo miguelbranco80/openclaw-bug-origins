@@ -1,0 +1,8 @@
+{
+  "rank": 100322,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Candidate isolation and downgrade behavior item describes how the canary runs, and the Telegram proof item concerns final-report wording. Neither raises the loss of canary timings from successful Git update reports, and the earlier findings concern backup recovery."
+}

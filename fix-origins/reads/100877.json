@@ -1,0 +1,17 @@
+{
+  "rank": 100877,
+  "sha": "40b1f0175ef3350140d31299406cfbfe4e2f718c",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "870ed9a5ab5dea7f6a2792ec3332833388c27684",
+  "cause_pr": 131527,
+  "confidence": "high",
+  "cause_quote": "The new `await this.transcriptCheckpoint.flush();` after `handleItemCompleted` persisted completed tool work before terminal reasoning arrived, while the final snapshot still put reasoning first.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The command completed, but the agent CLI exited with an error and no final answer appeared in the CLI or chat history.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix places aggregate reasoning after checkpointed work in the final Codex snapshot so recovery can verify the transcript order and produce an answer.",
+  "reasoning": "I checked the parent of #131527 and confirmed that final-answer recovery already existed and the final mirror wrote the snapshot in the same order the verifier expected. The checkpointing diff made tool results persist earlier, so terminal reasoning landed after them in history but before them in the snapshot, causing the existing order check to reject recovery."
+}

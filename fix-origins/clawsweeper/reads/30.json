@@ -1,1 +1,8 @@
-{"rank": 30, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review in force at merge lists no findings or before-merge items, and the earlier version only asked for data-model upgrade proof; nothing concerns keying publication tasks by the invocation idempotency key so republishing opens a second PR."}
+{
+  "rank": 30,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAdd data-model compatibility proof\u201d item concerned recovering existing publication receipts after an upgrade. The merge version listed no findings and raised no concern about a fresh publish of the same checkout creating a second PR."
+}

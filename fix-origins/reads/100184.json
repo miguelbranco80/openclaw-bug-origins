@@ -1,0 +1,17 @@
+{
+  "rank": 100184,
+  "sha": "6678f6174b336fb5df22b661ab6e6cba0524bc9a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d809c115eb7285586214bc3477499be754989c21",
+  "cause_pr": 136588,
+  "confidence": "high",
+  "cause_quote": "The diff added `\"update.run\"` to `GATEWAY_ACTIONS` while retaining `profiles: []` on the `gateway` catalog entry, which excluded the tool from all limited profiles.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Owners using a default limited tool profile could not start an update by asking the agent in ordinary chat.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix exposed `gateway.update.run` to limited profiles, enforced chat authorization in the shared handler, and removed the English phrase shortcut.",
+  "reasoning": "I checked the restoration diff and its profile allowlist logic, which excluded `gateway` from minimal, coding, and messaging when the owner-gated action shipped. The earlier version of the tool also had `profiles: []` before its update action was removed, so there was no earlier working path through those profiles. PR #145527 added a pre-model `/update` confirmation as a workaround and left the tool grants unchanged."
+}

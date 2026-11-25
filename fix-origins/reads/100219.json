@@ -1,0 +1,17 @@
+{
+  "rank": 100219,
+  "sha": "86559e65983fe6a47b453a7d17bcc5a5f9c8fdeb",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "126b549a26ad0e16eb3728b657ecd71201932d80",
+  "cause_pr": 108398,
+  "confidence": "high",
+  "cause_quote": "The original snapshot writer used `chunks.push(Buffer.from(`M ${mode} :${blob.mark} ${JSON.stringify(blob.entry.path)}\\n`));`, emitting JSON escapes such as `\\u0001` that Git fast-import rejects in quoted paths.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Cloud workspace reconciliation failed when a supported filename contained a control character that Git rejected.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix gives result staging and rollback snapshots a shared streaming Git writer that preserves exact filenames and file bytes.",
+  "reasoning": "I checked the introducing diff and confirmed that the original manifest accepted the control character used in the fix\u2019s test while the original snapshot writer already encoded it with JSON.stringify. The later module split and file-backed rewrite retained the same quoting behavior."
+}

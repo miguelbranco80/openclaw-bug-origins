@@ -1,0 +1,17 @@
+{
+  "rank": 100678,
+  "sha": "e1044d962211a253da4bd9d70b8193ec5ec2b701",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A stale \u201cWorking\u201d preview stayed beside the final Discord reply after two temporary deletion failures.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix uses Discord\u2019s existing retry policy to retry transient preview deletion failures with backoff during the same cleanup call.",
+  "reasoning": "The August cleanup test in #130392 already expected a late preview to survive two HTTP 503 responses until a second cleanup call, so the September lifecycle migration in #155641 does not establish a regression. The direct DELETE predates the shallow history boundary, and the available offline history did not establish when the failure first shipped or whether one cleanup call had ever recovered from two such failures."
+}

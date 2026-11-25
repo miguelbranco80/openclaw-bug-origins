@@ -1,0 +1,8 @@
+{
+  "rank": 100406,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier findings covered an unreadable excluded file aborting the probe and package traversal launching one probe per entry. The review at merge described batched header reads without flagging that a large set of readable files could exceed the single probe deadline."
+}

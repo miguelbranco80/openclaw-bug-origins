@@ -1,0 +1,17 @@
+{
+  "rank": 100242,
+  "sha": "08d04a9d7b97e50849ba089c3837d2e1c3c4f7fd",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "406772b73f3b1481cfe635561e7643651894676a",
+  "cause_pr": 174022,
+  "confidence": "high",
+  "cause_quote": "The new sidebar Retry button used `.gateway-status__retry` with `border: 0` and `background: transparent` and called `onClick={() => params.onRetry?.()}` without rendering an in-progress state.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The sidebar\u2019s Retry action looked like plain text and gave no visible feedback when clicked.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix gives Retry an outline and hover feedback, shows a busy spinner during an active connection attempt, and blocks duplicate clicks until backoff resumes.",
+  "reasoning": "The introducing diff and path history show that the standalone sidebar footer Retry button shipped with borderless styling and no pending state. The fix PR reports that its browser check measured a 0px border on the original base, matching the CSS added when the button first shipped."
+}

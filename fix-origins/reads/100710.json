@@ -1,0 +1,17 @@
+{
+  "rank": 100710,
+  "sha": "d5fbbe86a807404123534306615595be89b2f1f3",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "60c24e3be3f4721237a379a1a5681116c23d1b52",
+  "cause_pr": 165567,
+  "confidence": "high",
+  "cause_quote": "The refactor replaced `const activationState = resolvePolicyPluginActivationState({` with `const activationState = resolvePluginActivationStateShared({` in both production callers, leaving the wrapper exported without a production consumer.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Developers saw the production unused-export check fail on the plugin activation wrapper.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix removed the unused activation wrapper and moved its policy tests to the shared activation function.",
+  "reasoning": "I checked that the unused-export guard already existed in the refactor's parent and that both production callers still used the wrapper there. The refactor switched both callers while leaving the export in place, and the fix message reports that the guard reproduced the failure on main and passed after the wrapper was removed."
+}

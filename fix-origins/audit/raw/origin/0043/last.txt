@@ -1,0 +1,17 @@
+{
+  "rank": 43,
+  "sha": "89a8860851df1dbca550e8711d178391c9cdacce",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Profile GitHub help paragraph said agents always use the shared account and that cloud work must be brought back to this computer before publishing with My GitHub.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Shortens one English help paragraph in the Control UI GitHub accounts panel so it no longer says agents always use the shared account or that all cloud work must return to this computer before personal publishing.",
+  "reasoning": "The fix changes only a single English locale string, with no change to credentials, permissions or publication logic, and the PR calls itself copy-only. The inaccurate wording was carried over from the earlier paragraph that #192283 rewrote (which already said workers keep the shared account and remote work must be reclaimed), so this is a help-text correction, which the rubric counts as a copy change, not a code defect."
+}

@@ -1,1 +1,8 @@
-{"rank": 62, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The security item worries that retained scopes might still authorize after revocation (too permissive), not that a warm transport runs assertCurrent in the first turn's async context and spuriously refuses. Unsure between related and none; chose none because the stated failure is the opposite direction and names no async-context binding."}
+{
+  "rank": 62,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cValidate authority after asynchronous preparation\u201d finding asks for proof that revoked or reassigned callers are rejected before final effects. The warm Claude CLI failure came from a reused transport carrying the first turn\u2019s authority scope into a valid follow-up, a path the review items do not address."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100388,
+  "sha": "6d5cf0f10e38a5318e79db79440d63604531c9b9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d9837a55eb7d90ccfdf8c216cef7680bb53043fc",
+  "cause_pr": 189008,
+  "confidence": "high",
+  "cause_quote": "The added condition `if (hasSqliteWorkerOutcomeUnknown(error) || isStateDatabaseAdmissionClosedError(error)) {` let exceptions from inspecting nested diagnostics escape because it ran before the existing `try` block.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a tool failed with unreadable nested error metadata, the agent turn stopped before the model could respond to the tool failure.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix moved the admission-closed check into the existing diagnostics guard and kept the unknown-write check ahead of it.",
+  "reasoning": "The parent commit already caught exceptions from nested storage diagnostics, and the earlier agent test explicitly expected a second model call after a tool error with unreadable nested metadata. The causing diff added a nested-error scan ahead of that catch, and the fix PR reports that the existing test then observed only one model call."
+}

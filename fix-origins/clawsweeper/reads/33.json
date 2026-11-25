@@ -1,1 +1,8 @@
-{"rank": 33, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No version mentions snoozed sessions; findings cover None-mode headers, pin reordering, cached snapshot duplication and Pinned collapse state, all different parts of the Pinned section."}
+{
+  "rank": 33,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The headerless None item concerns when saved pins trigger an Other header, and the cached-sections item concerns duplicate rows after reload. Neither those findings nor the earlier Pinned collapse item addresses snooze filtering for rows in Pinned."
+}

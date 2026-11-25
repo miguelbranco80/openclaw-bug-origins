@@ -1,7 +1,7 @@
 {
   "rank": 198,
   "sha": "29e5360e957886bf47810b72dfe25dca44250e96",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "ClawRouter-routed vision models could show as text-only and use router pricing limits instead of the selected endpoint's context and output limits.",
+  "user_saw": "Some ClawRouter vision models appeared text-only in chat, and chat ignored the selected endpoint\u2019s token limits.",
   "impact": "failed-every-time",
   "area": "models/providers",
-  "summary": "ClawRouter catalog discovery now reads the selected endpoint's clawrouter.native-capabilities.v1 facts for text/image input, context window, context tokens and output cap, and tolerates audio/video/json modalities instead of falling back to text-only.",
-  "reasoning": "The catalog parser from aab56517 (#178859) deliberately failed unknown modalities closed to [\"text\"] and took limits from pricing rows, which was correct for the catalog shape it was written against; the router service later supplied per-endpoint native capability facts and wider modality lists, which the plugin did not consume. That is an external contract change exposing older code, not a broken in-repo commit; the PR is framed as campaign work adopting an existing router contract, so this borders on not-a-defect and no single cause commit applies."
+  "summary": "ClawRouter discovery now uses the selected endpoint\u2019s declared image support and token limits while keeping the router\u2019s pricing cap on output.",
+  "reasoning": "The original ClawRouter integration inferred image support from model names and read token limits from pricing fields. The newer router catalog supplied endpoint-specific modalities and limits that the existing projection ignored. The first local use of the versioned contract was for hosted web search, and the local history does not identify when the router began supplying the affected fields."
 }

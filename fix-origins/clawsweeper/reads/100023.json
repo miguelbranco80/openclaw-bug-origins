@@ -1,0 +1,8 @@
+{
+  "rank": 100023,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Every later LocalMemoryFileWatcher therefore reuses the dead transport and add() throws the old error, including watchers for newly created agents or a subsequent in-process lifecycle. The new replacement test explicitly pins this permanent failure.",
+  "outcome": "answered",
+  "note": "The \u201cRelease the failed singleton after its worker exits\u201d item asked for future watchers to get a fresh worker, which would still leave active subscriptions stranded after a crash. The author responded that restoring automatic observation still required a Gateway restart and deferred recovery."
+}

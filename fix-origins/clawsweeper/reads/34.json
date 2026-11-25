@@ -1,1 +1,8 @@
-{"rank": 34, "flagged": "related", "where": "at-merge", "quote": "When PostgreSQL loses its connection during COMMIT, the new write path throws a canonical SqliteWorkerError and this backend catches it into encodeWorkboardSqliteFailure. The outer worker then V8-serializes the envelope.", "outcome": "open-at-merge", "note": "The P2 finding targets the same catch in sqlite-store.worker.ts that swallows the PostgreSQL connection-lost error into a reply envelope, but it is about losing the outcome-unknown classification, not about the dead connection never being retired; fixing only the classification would not have stopped later requests failing, so related rather than exact."}
+{
+  "rank": 34,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "When PostgreSQL loses its connection during COMMIT, the new write path throws a canonical SqliteWorkerError and this backend catches it into encodeWorkboardSqliteFailure. The outer worker then V8-serializes the envelope.",
+  "outcome": "open-at-merge",
+  "note": "The P2 finding on uncertain-outcome classification traced the same disconnect through the Workboard worker\u2019s error reply. Preserving the error classification would still leave the worker holding the closed kernel and subsequent requests failing."
+}

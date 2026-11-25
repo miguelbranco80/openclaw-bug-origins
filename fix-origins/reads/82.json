@@ -1,17 +1,17 @@
 {
-  "rank": 82,
-  "sha": "8633af9341852740eb176d22840a46c521064a1b",
-  "rubric": "v1.1",
   "origin": "never-worked",
   "cause_sha": "93e8fe353765072d576d2379f6c8b0a57fce343b",
   "cause_pr": 171545,
-  "confidence": "medium",
-  "cause_quote": "The PostgreSQL port of the transcript readers added jsonPathValue as `sql`(${value}::jsonb #>> ${objectPath(path)})`` and used it throughout the model-context projection, so any stored event with an escaped lone surrogate or NUL fails the jsonb cast (22P02).",
+  "confidence": "high",
+  "cause_quote": "The first PostgreSQL model-context reader added `const message = jsonPathValue(db, event, sql.lit(\"$.message\"), \"json\");`, whose `${value}::jsonb` cast rejects an escaped lone surrogate anywhere in the stored event.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a PostgreSQL-backed Gateway, every follow-up turn in a session whose transcript held a lone surrogate escape failed with 'invalid input syntax for type json', and a user message containing NUL was dropped.",
+  "user_saw": "On PostgreSQL, every follow-up turn failed after a transcript recorded a lone surrogate, and messages containing a NUL character could be dropped.",
   "impact": "failed-every-time",
   "area": "storage",
-  "summary": "Routes all PostgreSQL transcript and session-context reads through the jsonNativeFieldsValid (pg_input_is_valid jsonb) guard, decoding rejected rows in JavaScript, and replaces NUL with a space in the full-text index text.",
-  "reasoning": "SQLite always accepted these escapes; the failure exists only on the PostgreSQL engine, whose transcript readers were made portable in #171545 by casting stored JSON text to jsonb (jsonPathValue, jsonArrayElements, jsonSetPath in json-values.ts plus the model-context projection), so the defect shipped with that port rather than being broken later. The later guard from #183560 covered only some readers; the FTS NUL failure belongs to the same port series, so confidence is medium on the single cause commit."
+  "summary": "The fix routes transcript JSON that PostgreSQL cannot cast to JSONB through JavaScript and replaces NUL with a space only in derived search text.",
+  "reasoning": "The parent used SQLite-only model-context SQL, and #171545 introduced the PostgreSQL reader with a JSONB cast even though the PostgreSQL writer stored the original JSON text. The later navigation optimization retained the cast, and the subsequent fallback for deeply nested SQLite rows left the PostgreSQL path exposed. The NUL indexing failure was a separate write-path issue addressed by the same fix.",
+  "rank": 82,
+  "sha": "8633af9341852740eb176d22840a46c521064a1b",
+  "rubric": "v1.2"
 }

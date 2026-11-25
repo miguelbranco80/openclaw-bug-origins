@@ -1,0 +1,17 @@
+{
+  "rank": 100586,
+  "sha": "a9760fd99f9700efc4f228a02d7680eb25c4b569",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a99102804ebab7cc2e99687f7ca8ed34e576a9f1",
+  "cause_pr": 158313,
+  "confidence": "high",
+  "cause_quote": "The refactor replaced the quota walk that skipped missing entries with `for await (const entry of root.walk(\"\", {`, so a disappearing rsync temporary file could fail the scan and reach `quotaAbort.abort(error);`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Cloud worker workspace reconciliation could fail when a quota scan overlapped an inbound file transfer.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix adds `--inplace` to inbound rsync transfers into private staging so filenames stay stable during quota scans.",
+  "reasoning": "I checked the refactor\u2019s parent and confirmed that it already ran live quota scans against the same inbound rsync transfers, with `lstat` explicitly skipping entries that vanished with `ENOENT`. The refactor switched to the strict `fs-safe` walk and made scan errors abort the transfer, so an rsync rename during enumeration could now fail reconciliation."
+}

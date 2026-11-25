@@ -1,0 +1,17 @@
+{
+  "rank": 100282,
+  "sha": "51ee2570bf3628fe93680c77dc67efee6065c34c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "81a74b23eb1f59aeb7fbd9641e7345e5161d9b8d",
+  "cause_pr": 132224,
+  "confidence": "high",
+  "cause_quote": "The introducing diff routed reconciliation through `? finishDestroy(record, provider)`, whose new `await callProvider(r.environmentId, () => { \u2026 return owningProvider.resolveAllocation(\u2026) })` put the read-only lookup in a provider queue that shutdown waited to drain.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Gateway hit its shutdown deadline while worker reconciliation was still pending.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets shutdown stop waiting on optional allocation lookups and queued reconciliation while preserving saved cleanup intent and waiting for admitted provider mutations to settle.",
+  "reasoning": "I checked the introducing diff and its service shutdown code: #132224 replaced provisioning replay with an allocation lookup, and shutdown already joined the tracked provider promise even after the caller timed out. The startup test added in that commit expected shutdown to wait for the lookup, and #178538 later made inspection cancellable while leaving allocation lookup on the same wait path. The production journal confirms the shutdown stall but does not identify the specific blocked operation."
+}

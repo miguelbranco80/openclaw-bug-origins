@@ -1,0 +1,8 @@
+{
+  "rank": 100683,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Technical review mentions an unreproduced Discord npm failure without tying it to the provenance classifier or to valid packages outside the official catalog. The specific findings in the review concern native service inspection and recovery."
+}

@@ -1,7 +1,17 @@
 {
+  "rank": 200,
+  "sha": "5df28e77efea3a7bd958b19b758b3ea9b964cbbe",
+  "rubric": "v1.1",
   "origin": "latent",
   "cause_sha": null,
-  "trigger_sha": "b37936459a68b39081647320093207b038efec10",
+  "cause_pr": null,
   "confidence": null,
-  "reasoning": "The sanitizer already used `failedSteps.slice(-3)` to retain recent failures, so it dropped the initiating failure once three later failures followed it. The October 2 diff adds `result.steps.push({ name: \"gateway migration recovery\", … exitCode: 1 })` on the recovery path after a refused database rollback, adding one of the three later failures that displaced the trigger in the reported case."
+  "cause_quote": null,
+  "trigger_sha": "01430fa606f4f555906e53482999d21de6430814",
+  "user_visible": "yes",
+  "user_saw": "When an update failed and its recovery steps also failed, the update failure report and triage prompt listed only the recovery failures and omitted the step that actually caused the failure.",
+  "impact": "other",
+  "area": "update",
+  "summary": "The update failure-report sanitizer now keeps the first failed step alongside the latest two and, under the byte budget, prunes other records before the triggering and latest failures.",
+  "reasoning": "The keep-the-latest-three-failures policy dates to the triage feature eb270a1 (#134865, 2026-09-01) and was reshaped in 1e48d0c (#153147), per GraphQL blame and that diff; it was reasonable when failures ended the run. Recovery steps that run and fail after the trigger were added later (gateway recovery verification in 01430fa #153178 on 2026-09-20, npm swap recovery in b107d4a #158491), so their failures pushed the trigger out; I give 01430fa as one representative trigger but several later recovery-step additions contributed, and I did not confirm which one produced the exact #197083 step set."
 }

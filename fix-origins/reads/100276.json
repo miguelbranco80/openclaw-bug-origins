@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "51aa1b76d5d3dde7b4972e09f28f6495b081a7d6",
+  "cause_pr": 175729,
+  "confidence": "high",
+  "cause_quote": "The DeepSeek web search commit replaced `\"categories\": [\"models\"]` with `\"categories\": [\"models\", \"web\"]`, causing the existing exactly-one-category check to fail.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix restores `models` as DeepSeek's sole primary category and preserves its web search provider registration.",
+  "reasoning": "I checked the category test at the causing commit's parent and confirmed that it already required exactly one active category per bundled plugin. The causing diff shows that DeepSeek had the single `models` category before the web search commit added `web`, and the fix PR reports reproducing the resulting validation failure.",
+  "rank": 100276,
+  "sha": "03e9e7a5fe104c91370040d75627095f626333b0",
+  "rubric": "v1.2"
+}

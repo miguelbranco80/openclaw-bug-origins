@@ -1,0 +1,17 @@
+{
+  "rank": 100408,
+  "sha": "9b2bc0ed7e135d7be69f7f9749684bf30032981c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "08d0952df24a1e1bb715a2727fa0534438cb6f4a",
+  "cause_pr": 118113,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `maybeAutoDisableCronJobAfterRunFailure({ \u2026 error: STARTUP_INTERRUPTED_ERROR \u2026 })` to startup recovery, sending the already incremented interruption count through the new ten-failure auto-disable check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A recurring automation could stop running after a Gateway restart or operator cancellation pushed its failure streak to ten.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix excludes interruptions from failure streaks, auto-disable, and failure notifications while preserving completed job failures when webhook delivery is canceled.",
+  "reasoning": "The parent of #118113 already incremented the failure streak during startup recovery and only directly disabled interrupted one-shots there. The #118113 diff introduced recurring-job auto-disable and fed those interruption counts into it from day one, with a test in the same commit expecting a restart interruption to disable a recurring job whose streak was nine."
+}

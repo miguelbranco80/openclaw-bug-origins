@@ -1,0 +1,17 @@
+{
+  "rank": 100636,
+  "sha": "8100c600886016a0a983cca20a2dde32ee859c21",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a repair required changing the automation itself, the agent asked the user to intervene.",
+  "impact": "permissions",
+  "area": "cron",
+  "summary": "Cron repair turns now run as host session events and can inspect and update the job when its recorded requester still has owner authority.",
+  "reasoning": "I checked #161007's dispatch and documentation changes, which explicitly limited automatic repairs to the workspace and reserved changes to the job itself for a user reply. The documentation immediately before #188105 still described that restriction, and the fix expanded the repair turn's authority by allowing it to act for the job's requester."
+}

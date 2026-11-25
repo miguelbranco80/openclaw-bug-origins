@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "19296b003b55eac8f9a43cd0a3fc6f9e783e66b9",
+  "cause_pr": 110308,
+  "confidence": "high",
+  "cause_quote": "The new normalizer used `typeof row.published === \"string\" && PUBLISHED_RE.test(row.published) ? row.published : undefined`, so a date-shaped string such as `2026-02-30` passed through unchanged.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A web search result could show an impossible publication date such as February 30.",
+  "impact": "presentation",
+  "area": "agents",
+  "summary": "The fix validates the calendar date prefix of publication metadata and omits the field when the date is impossible.",
+  "reasoning": "I checked the introducing commit's diff and confirmed it added the shared normalizer and wired it into the registered web_search tool. The new branch accepted date-shaped values from its first version because its regex checked character structure only, and the later refactor changed an unrelated numeric helper.",
+  "rank": 100835,
+  "sha": "aa04ec44ec16b4ada80f285b7c8b945ad4c3a146",
+  "rubric": "v1.2"
+}

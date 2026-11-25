@@ -1,0 +1,8 @@
+{
+  "rank": 100590,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Session pin behavior section describes expected account selection, and the P2 merge risk asks maintainers to approve the general fallback contract. The earlier findings concern provider authorization, and no review item points to fresh cron sessions dropping the linked account override during migration."
+}

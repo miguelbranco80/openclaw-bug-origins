@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "9f330efbe677af4e38a0df67fa5ceae20801c8a0",
+  "cause_pr": 162481,
+  "confidence": "high",
+  "cause_quote": "The new `await context.cron.waitForManualRun(` was gated by `!runQueuesBehindCaller`, but the guard only checked `job.sessionTarget === \"main\" || resolveCronSessionTargetSessionKey(job.sessionTarget) === callerSessionKey`, missing current-session delivery and named aliases of the caller.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the agent manually ran an automation tied to the same conversation, its reply stalled for the full wait, 60 seconds by default, and the tool returned without a run outcome.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The fix makes manual agent-turn automation runs acknowledge immediately when their execution or announced result depends on the calling conversation.",
+  "reasoning": "The causing diff shows that manual runs previously acknowledged as soon as they were enqueued and that #162481 made the agent tool request a bounded completion wait. I checked that named-session canonicalization and serialized current-session delivery predated that change, so the new wait could hold the caller's turn open while the run needed that turn to end.",
+  "rank": 100307,
+  "sha": "c4f5599a74a857013af36a8538bb6b8668779c8b",
+  "rubric": "v1.2"
+}

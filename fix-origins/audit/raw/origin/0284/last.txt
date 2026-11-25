@@ -1,0 +1,17 @@
+{
+  "rank": 284,
+  "sha": "cb1143c00f381a85fc3d0a8c1218ebb9670b3fc3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "24ae0fc1984c9563ebd7b4417489ddf6abd88d78",
+  "cause_pr": 141121,
+  "confidence": "high",
+  "cause_quote": "#141121 wired `const stops = [gateway, agents, sessions].map((capability) => capability.subscribe(persistLiveBootRecord))` to a `persistBootRecord` that does `clearTimeout(timer); ... timer = setTimeout(flushBootRecord, 500)`, so every unrelated Gateway or agent publication restarted the pending boot-record write deadline.",
+  "trigger_sha": null,
+  "user_visible": "unclear",
+  "user_saw": "Possibly a Control UI reload that restored a stale sidebar catalog when frequent Gateway updates kept postponing the cache write; the reported evidence is a failing scheduled UI test.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "Compares the boot record's actual inputs at the shared persistence owner and skips re-persisting (and so re-arming the 500 ms debounce) when Gateway, agent or session publications leave them unchanged.",
+  "reasoning": "The trailing-debounce writer subscribed to every Gateway, agent and session publication from its introduction in #141121, and the boot-record persist function has always cleared and re-armed the timer; the earlier #189738 only filtered session row publications, leaving Gateway/agent ones resetting the deadline. No later commit changed that subscription to break a working rule, so the defect shipped with the feature."
+}

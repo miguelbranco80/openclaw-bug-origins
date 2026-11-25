@@ -1,0 +1,17 @@
+{
+  "rank": 100525,
+  "sha": "ae94766f288b54ec7ac840cc4e1479232405949b",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "cd9be2bbe7d89f4df2389cb633401d812fbd335a",
+  "cause_pr": 144404,
+  "confidence": "high",
+  "cause_quote": "The commit added `createProviderHttpError(new Response(snippet, {` after `const snippet = await readEmbeddingErrorBodySnippet(response);`, passing display-truncated JSON to the metadata parser.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Memory indexing kept retrying after an OpenAI-compatible provider reported exhausted embedding quota in a long error response.",
+  "impact": "slower-or-heavier",
+  "area": "models/providers",
+  "summary": "The fix parses the bounded, redacted embedding error body before shortening the displayed message, preserving quota metadata for the retry policy.",
+  "reasoning": "The adapter previously threw a plain Error containing the display snippet, and #144404 introduced structured HTTP error parsing for this path. I checked that the parser requires valid JSON and that the existing retry policy treats a 429 without a permanent quota code as retryable, so long responses lost quota metadata from the first version of the adapter's structured error handling."
+}

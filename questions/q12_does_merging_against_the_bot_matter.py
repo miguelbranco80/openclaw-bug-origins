@@ -33,7 +33,7 @@ def main(quiet=False):
         [{"label": label, "value": out.value("verdict_rate_" + key),
           "note": f"{out.value('verdict_bugs_' + key)} sampled bugs; {out.value('verdict_share_' + key)}% of changes"}
          for key, label in LEVELS if key in keep]),
-        "Each bar is a rate: bugs fixed in the three weeks that trace back to changes merged under that verdict, per "
+        "Each bar is a rate: bugs fixed in the period studied that trace back to changes merged under that verdict, per "
         "100 such changes. Verdicts seen on fewer than 20 sampled changes are left out.")
     out.save(quiet)
     return out

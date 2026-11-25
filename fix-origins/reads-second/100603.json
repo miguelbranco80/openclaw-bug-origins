@@ -1,0 +1,17 @@
+{
+  "rank": 100603,
+  "sha": "056f6278dd99abb57894ff272e236ece485d0cfa",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "65e49fa2008c2d77147f4604b6dd21333fee00bd",
+  "user_visible": "yes",
+  "user_saw": "After a Gateway upgrade, the operator saw recurring plugin-state open warnings that gave neither the underlying error nor the identity of the reader.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix adds bounded nested causes, native error codes, and reader identity to structured plugin-state logs and documents how to update the macOS companion worker.",
+  "reasoning": "The existing reader deliberately rejected newer schemas, and the schema bump from 17 to 18 exposed the limits of the generic open warning when the Gateway and companion worker ran different versions. I verified the schema bump and the pre-existing check on reused read handles, and the fix preserves that check while adding diagnostics. The PR reproduced the old reader\u2019s refusal in isolation, but the reporter\u2019s exact process and nested error were never captured."
+}

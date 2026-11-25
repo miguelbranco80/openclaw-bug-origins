@@ -1,0 +1,17 @@
+{
+  "rank": 100077,
+  "sha": "13b2557317cc7e12f6bb55109bea2c30dd59c41f",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The gateway now caches session selections by resident revision, topology scope, and activeOnly so repeated catalog polls can reuse each agent's selection.",
+  "reasoning": "Before #154551, broad reads rebuilt the selection on every call. #154551 added a single cache slot, #154590 moved that slot to the revision key, and the intervening #155345 changed only the downstream candidate cache. The fix PR reported identical catalog responses and lower CPU use for repeated polls, so the fix extends the original optimization to multi-agent polling."
+}

@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Tests section asks for a Gateway cron run to demonstrate the warning and latency. It gives no indication that the read-only connection bypassed statement observation or that the warning could report zero SQL statements."
+  "outcome": null,
+  "note": "The review in force at merge has no findings; its evidence says hydration 'reuses native statement observation' without questioning whether the read-only agent connection is observed, and the only test item asks generically for a Gateway cron run."
 }

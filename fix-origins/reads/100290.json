@@ -1,0 +1,17 @@
+{
+  "rank": 100290,
+  "sha": "0159de4ab5af96cdd2e7f7186b3e50045d5e80f3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "1d30025c63f0ba75433f37bb267be5d593330e67",
+  "cause_pr": 144907,
+  "confidence": "high",
+  "cause_quote": "The module-level `const detachedMediaGenerationAsyncRoot = new AsyncResource(\"openclaw.media-generation.detached-root\")` captured the request's async context when the scheduler was first imported inside that request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Matrix user could get stuck waiting for a generated image to arrive.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix schedules media completion from a shared context-free async root and explicitly clears work-scope ownership before queuing the microtask.",
+  "reasoning": "I checked the introducing diff and both tests: #144907 first attempted context isolation and tested an already-loaded scheduler, while its predecessor queued the microtask directly in the caller's context. The new test imports the scheduler inside a managed request, where the original async resource captured the request's context and let completion work join the scope that was waiting for it."
+}

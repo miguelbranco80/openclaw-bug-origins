@@ -1,0 +1,17 @@
+{
+  "rank": 100538,
+  "sha": "364a7980bcae7e0dcef5d9e173c5dbefb452a9cd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6209f31ce9bbcdc912f4d870bb7323b8fa0920ed",
+  "cause_pr": 158314,
+  "confidence": "high",
+  "cause_quote": "The added `if (!ancestors.has(1)) { throw new ServiceInspectionError(\"service-ancestry-unverified\"); }` rejected the restart even after native membership returned `outside`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "From an external macOS terminal with an unreadable ancestor, `openclaw gateway restart` failed with \u201cProcess ancestry could not be fully inspected.\u201d",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix lets macOS gateway restarts proceed when native launchd membership verifies that the caller is outside the Gateway job.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that a terminal without matching service markers reached the direct restart path when its partial ancestry omitted the Gateway PID. The causing diff added native membership detection but let `outside` fall through to the new PID 1 requirement, so the same restart could now fail before reaching `launchctl kickstart`."
+}

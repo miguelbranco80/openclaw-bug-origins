@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The P1 merge-risk item asked for verification that the formatter preserved captured updater diagnostics. The review raised no concern about the default CLI output hiding the blank --agent validation message."
+  "outcome": null,
+  "note": "The only formatter-related item asks for published-updater-to-candidate verification that captured recovery diagnostics survive; that concerns the updater path, not default-mode plain Errors losing their Reason line, so I chose none over related."
 }

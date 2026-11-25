@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "61b87fa8bd55737d649d3798d54da56f86fda7ec",
+  "cause_pr": 147540,
+  "confidence": "high",
+  "cause_quote": "The new `message.isCollapsibleWork` branch called `work.append(message)` on whole non-final assistant messages, then returned them in a single `.completedWork` disclosure that started collapsed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the final reply arrived, narration between tool calls disappeared from the chat transcript until the user expanded the Worked section.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The fix keeps narration and media inline in source order, folds contiguous tool and reasoning activity into separate disclosures, and preserves their expanded state when older history loads.",
+  "reasoning": "I checked the parent commit\u2019s transcript and bubble rendering, which displayed assistant text inline even when the same message contained tool activity. PR #147540 first put those messages behind a collapsed disclosure on macOS, and PR #148002 subsequently enabled the same projection on iOS.",
+  "rank": 100527,
+  "sha": "fdeb8f7efdd7c70e319c9e41db9cffc4577c348e",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100511,
+  "sha": "2678ee8e0e04d4721a4fe74ffb0c3ad0c70e2c2d",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "7c6b8bcfcc991d25340c16da32d5a550345673d6",
+  "user_visible": "yes",
+  "user_saw": "Installing an external plugin in an experimental Bun AOT build could fail because Bun refused to register a resolver that matched the executable\u2019s compiled entry point.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix excludes the exact Bun.main path from the captured-source resolver\u2019s filter while preserving matches for similarly prefixed external paths.",
+  "reasoning": "The September plugin reload change registered `builder.onResolve` with `filter: /.*/` and relied on the callback to redirect only files owned by a plugin. I checked that the filter was already present when #172384 added `--compile-aot`, bringing the resolver into a compiled executable where Bun rejects a matching entry-point filter before calling the callback. The fix PR\u2019s compiled fixture reproduced that registration failure."
+}

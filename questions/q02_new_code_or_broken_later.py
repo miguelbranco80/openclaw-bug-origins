@@ -2,7 +2,7 @@
 """Question 2. Among real bugs, how many were new code that never worked, and how many were working things broken
 by a later change?
 
-Reads: sampled_fixes.jsonl, fix_rereads_claude.jsonl, fix_rereads_gpt.jsonl, commits.tsv.
+Reads: sampled_fixes.jsonl, fix_rereads_same_model.jsonl, fix_rereads_other_maker.jsonl, commits.tsv.
 Answer in short: never-worked bugs are at least as common, from about even to about double, depending on how
 strictly the cases are filtered and on who reads them.
 
@@ -35,35 +35,35 @@ def main(quiet=False):
         out.add("sens_broke", "sens_broke_" + key, label, b)
         ratios.append(a / b)
 
-    gpt = load("fix_rereads_gpt.jsonl")
+    gpt = load("fix_rereads_other_maker.jsonl")
     first = [r["first_origin"] for r in gpt]
     second = [r["second_origin"] for r in gpt]
-    out.add("sens_never", "sens_never_first60", "First readers, on the fixes that were re-read", first.count("never-worked"))
-    out.add("sens_broke", "sens_broke_first60", "First readers, on the fixes that were re-read", first.count("regression"))
-    out.add("sens_never", "sens_never_gpt60", "Second model, on the same fixes", second.count("never-worked"))
-    out.add("sens_broke", "sens_broke_gpt60", "Second model, on the same fixes", second.count("regression"))
-    out.add("size", "ratio_low", "Lowest never-worked to broken-later ratio among the first readers' cuts",
+    out.add("sens_never", "sens_never_first_same", "Main reader, on the fixes the other maker's reader also read", first.count("never-worked"))
+    out.add("sens_broke", "sens_broke_first_same", "Main reader, on the fixes the other maker's reader also read", first.count("regression"))
+    out.add("sens_never", "sens_never_other", "The other maker's reader, on the same fixes", second.count("never-worked"))
+    out.add("sens_broke", "sens_broke_other", "The other maker's reader, on the same fixes", second.count("regression"))
+    out.add("size", "ratio_low", "Lowest never-worked to broken-later ratio among the main reader's cuts",
             round(min(ratios), 2))
     out.add("size", "ratio_high", "Highest never-worked to broken-later ratio", round(max(ratios), 2))
-    out.add("size", "gpt_ratio", "Never-worked to broken-later, by the second model",
+    out.add("size", "other_ratio", "Never-worked to broken-later, by the other maker's reader",
             round(second.count("never-worked") / max(1, second.count("regression")), 2))
 
-    for name, rows in (("second", load("fix_rereads_claude.jsonl")), ("gpt", gpt)):
+    for name, rows in (("second", load("fix_rereads_same_model.jsonl")), ("other", gpt)):
         pair = [r for r in rows if {r["first_origin"], r["second_origin"]} <= PAIR]
         out.add("size", name + "_pair_n", "Both readers said never-worked or broken-later", len(pair))
         out.add("size", name + "_pair_same", "Of those, same choice", sum(r["first_origin"] == r["second_origin"] for r in pair))
     both = [r for r in gpt if r["first_cause"] and r["second_cause"]]
-    out.add("size", "gpt_cause_n", "Fixes where both readers named a causing change", len(both))
-    out.add("size", "gpt_cause_same", "Of those, the same change",
+    out.add("size", "other_cause_n", "Fixes where both readers named a causing change", len(both))
+    out.add("size", "other_cause_same", "Of those, the same change",
             sum(r["first_cause"][:10] == r["second_cause"][:10] for r in both))
 
     for a, b in zip(out.group("sens_never"), out.group("sens_broke")):
         key = a["metric"].replace("sens_never_", "")
         out.add("never_share", "never_share_" + key, a["label"], round(100 * a["value"] / (a["value"] + b["value"])))
     # Three counts are enough to show the spread; all six are in the table under the chart.
-    shown = [("all", "First readers, counting every bug they traced"),
-             ("high", "First readers, counting only bugs where they were sure of the cause"),
-             ("gpt60", "A second model, on the 60 fixes it re-read")]
+    shown = [("all", "Main reader, counting every bug it traced"),
+             ("high", "Main reader, counting only bugs where it was sure of the cause"),
+             ("other", f"The other maker's reader, on the {len(gpt)} fixes it also read")]
     rows = [{"label": label, "value": out.value("never_share_" + key),
              "note": f"{out.value('sens_never_' + key)} never worked, {out.value('sens_broke_' + key)} broken later"}
             for key, label in shown]

@@ -1,0 +1,8 @@
+{
+  "rank": 100374,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cResolve merge risk\u201d item mentions rejecting explicit session searches when indexing is disabled, but its concern is patch size and code ownership. Neither that item nor the earlier migration findings question the advice to enable indexing when session history is available."
+}

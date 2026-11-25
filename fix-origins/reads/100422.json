@@ -1,0 +1,17 @@
+{
+  "rank": 100422,
+  "sha": "9ae585bb67a36460e35d97a5b5a4fe78ddd5082a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6552b30f56da4568cd4ba464bfd6cef4ac4f62f1",
+  "cause_pr": 174660,
+  "confidence": "high",
+  "cause_quote": "Adding `lifetime: \"process\"` to `state.integrity` let a reopened writer reuse the earlier integrity result and skip the foreign-key check that triggered orphan recovery.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could fail its final SQLite foreign-key check when an earlier write had warmed the integrity cache and orphaned task-delivery rows needed repair.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix retains schema subset validation across one-shot SQLite writes and runs requested orphan recovery even when admission is cached.",
+  "reasoning": "Before #174660, closing the last handle cleared admission facts, so reopening ran the integrity check and its typed foreign-key error triggered recovery. The #174660 diff retained the integrity result across closes, allowing validation to return without triggering recovery and leaving the final uncached check to reject the write. The same cutover left the hashed subset key connection-scoped, so ordinary writers still repeated schema validation on reopen."
+}

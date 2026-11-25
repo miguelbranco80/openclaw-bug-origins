@@ -1,17 +1,17 @@
 {
   "rank": 46,
   "sha": "2dd3ffec0063c60ef3815637a2e85c6757a42fd5",
-  "rubric": "v1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "90d30a1178a79dddd92e6190b66b95d89dfb3ca8",
+  "cause_pr": 166400,
+  "confidence": "high",
+  "cause_quote": "The new client used `const file = await open(credentialPath, constants.O_RDONLY | constants.O_NOFOLLOW);`, which waits for a writer on a FIFO before the regular-file check can run.",
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Only with a deliberately malformed setup (the relay credential path pointing at a writerless FIFO) would the native hook relay hang instead of denying; no real user report.",
-  "impact": "other",
+  "user_visible": "yes",
+  "user_saw": "The native hook relay CLI hung past its configured timeout when its credential path pointed to a named pipe with no writer.",
+  "impact": "failed-every-time",
   "area": "agents",
-  "summary": "Replaced the native-hook relay's hand-written credential open/stat/read with the fs-safe readRegularFile helper so special files such as a FIFO are rejected without blocking.",
-  "reasoning": "The blocking open has been there since the remote relay client was added in 90d30a1178a7 (open with O_RDONLY|O_NOFOLLOW but no O_NONBLOCK before the isFile check), so if this counted as a defect it would be never-worked. Both the superseded PR #172271 and this PR describe it as malformed local input reproduced with a synthetic mkfifo. No user hit it, so this is hardening without a reported failure."
+  "summary": "The fix uses a bounded, nonblocking regular-file reader so the relay promptly denies FIFO credentials while retaining the 16 KiB limit.",
+  "reasoning": "The introducing diff added the remote credential reader with a blocking open before both the regular-file check and the abort check, so a writerless FIFO could hang the relay from its first release. The path's first-parent history shows one intervening change, and its diff only changed HTTPS request handling after credential loading."
 }

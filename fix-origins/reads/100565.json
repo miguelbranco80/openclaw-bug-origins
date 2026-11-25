@@ -1,0 +1,17 @@
+{
+  "rank": 100565,
+  "sha": "7585dd88a3e7d1fd3f7a60757fd5a2a99afb7aeb",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d46497e0f67cba6ff8aaff9391a297e0133cc010",
+  "cause_pr": 168233,
+  "confidence": "high",
+  "cause_quote": "The initial relay wrapper created `AbortSignal.timeout(15_000)` for submission and passed it to `boundRequest`, leaving the timer armed after the Gateway accepted the run.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An MCP reply that was still making progress was cancelled about 15 seconds after submission.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The MCP relay now clears the submission deadline when the Gateway request settles.",
+  "reasoning": "The introducing commit added both relay submission paths and applied the same 15-second deadline to each. I checked Gateway ingress at that commit and confirmed it already passed the request signal into the authority captured for accepted work, so the deadline could cancel a run from the feature's first version."
+}

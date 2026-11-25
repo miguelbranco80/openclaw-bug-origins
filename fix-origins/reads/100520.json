@@ -1,0 +1,17 @@
+{
+  "rank": 100520,
+  "sha": "910069eff86b6892ebe06562bce911e6e0317044",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "88004e9cc669e66a2028fb97eb16e6a7567a513a",
+  "cause_pr": 152691,
+  "confidence": "high",
+  "cause_quote": "The worker-read change added `context.getRuntimeConfig() !== cfg` to the guard after the awaited session read, then returned any resulting exception through `respond(false, undefined, errorShape(ErrorCodes.UNAVAILABLE, formatErrorMessage(error)))`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The New Session project picker could show an internal error and ask the user to retry when project data changed during loading.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix retries the entire project listing up to three times when a consistency check detects a mid-read change and returns a plain retryable error if all three attempts fail.",
+  "reasoning": "I checked the parent of #152691 and confirmed that the existing default listing read recents synchronously after the registry lookup and returned them without a config check across a session-read await. #152691 introduced that await and made a config change during it fail the request immediately. #154705 later added the session-projection guard and the specific wording reported in the picker, extending the same fail-on-change behavior."
+}

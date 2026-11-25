@@ -1,0 +1,17 @@
+{
+  "rank": 100563,
+  "sha": "39bad21f1fad35b1f969e5635209f7b44adb7ef6",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "069361bc2f78e14d27aae9e9db2e15e4c49171d8",
+  "cause_pr": 171729,
+  "confidence": "high",
+  "cause_quote": "The diff set `CRABBOX_NONBLOCKING_CAPTURE_VERSION = \"0.78.0\"`, selected `[\"--wait=false\"]` for eligible first AWS captures, and rejected results when `(captureEstablishedRequired && record.captureEstablished !== true)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With Crabbox 0.78.0, the first AWS warm-image capture was marked uncertain and blocked session enrollment until an operator intervened.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix raises the nonblocking capture minimum to Crabbox 0.79.0 and waits for the exact checkpoint to become available before enrollment when attestation is missing or false.",
+  "reasoning": "I checked the parent of #171729 and confirmed that it already captured the warm image before enrollment using `--wait` and accepted a successful result without attestation. The #171729 diff replaced that working path for eligible first AWS captures with an attestation requirement that Crabbox 0.78.0 could not meet, according to the dependency contract documented in the fix bundle."
+}

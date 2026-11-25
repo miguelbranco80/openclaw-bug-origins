@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI rejected a static PNG that exceeded the Gateway's image size limit.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix uses a browser worker to resize oversized static PNGs to the Gateway's advertised byte limit before upload.",
+  "reasoning": "I checked the client-side size guard introduced in #123654 and its parent, where the Gateway already rejected images above the same effective limit. The later shared admission check enforced that policy across intake routes, and this fix adds browser-side resizing so those images can be uploaded within the existing limit.",
+  "rank": 100291,
+  "sha": "5a5a0e7e8a64f288d98cfe9a1515fae34645126a",
+  "rubric": "v1.2"
+}

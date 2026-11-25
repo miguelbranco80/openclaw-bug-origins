@@ -1,0 +1,17 @@
+{
+  "rank": 100039,
+  "sha": "7b21f493018db56aa6415feaf1b56a9e634d5054",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "c48ed955338c02fc6bc4ef1125275cd3e2af8de8",
+  "user_visible": "yes",
+  "user_saw": "A paired Mac appeared again under \u201cConnected without pairing\u201d on the Devices page.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The gateway now fills in a missing device ID on native macOS Node presence beacons using the authenticated connection\u2019s device ID.",
+  "reasoning": "Before the Devices merge, the native Mac already sent beacons keyed by installation ID, and the Instances page displayed those beacons as presence records. The merge in #104561 introduced a new consumer that compared beacon IDs against paired device and node IDs and classified unmatched beacons as unpaired. The Mac\u2019s installation ID could not match its pairing record, so that new use exposed the existing identity mismatch."
+}

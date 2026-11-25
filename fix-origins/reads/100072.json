@@ -1,0 +1,17 @@
+{
+  "rank": 100072,
+  "sha": "1884d7537d48fd7477bcb9c400bd00a2a8b23d7f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "ea06d72e851942e42dc36e38a19a5890901090b2",
+  "cause_pr": 121724,
+  "confidence": "medium",
+  "cause_quote": "The initial Secrets table set `.secrets-store__actions-heading, .secrets-store__actions-cell { width: 44px; }` while applying `padding: var(--space-3) var(--space-4);` to its cells, leaving too little room for the button when the fixed-layout column was tight.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The row actions button in Secrets settings was partly clipped in narrow tables, including on tablets.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix widens the Secrets actions column to fit the 44px button and both sides of the cell padding.",
+  "reasoning": "The introducing diff already combined a fixed-layout table, a padded 44px actions column, and the row actions button. Later commits changed the other column widths and added a 44px minimum for the button on touch devices, while the original width and padding persisted. The fix documents clipping with both mouse and touch input on September code, and the launch-era behavior is inferred from the source."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 148,
   "sha": "ae0d37b3c442c1ff4c06ea9a30e85a7dd4514093",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "e7b868bbabfc245668520db520863fc56b260440",
-  "cause_pr": 146546,
-  "confidence": "low",
-  "cause_quote": "The commit that created managed browser audio capture added `const result = await callCapture(\"pull\");` and `callCapture(\"stop\")` running in the async context of the joining request, whose authority expires when the join responds.",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "715077a3befb5bb1239a8b0ebb52980e957ad316",
+  "cause_pr": 153989,
+  "confidence": "medium",
+  "cause_quote": "The dispatch resolver added `(operatorRunAuthority && !useScopedClient ? undefined : scope?.hasCurrentClientAuthority)`, making recurring meeting calls inherit the join request\u2019s authority check even when they supplied none.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "In a bidi Google Meet (or other meeting) session with managed browser capture, the bot greeted and then went deaf about 300 ms after the join returned, logging 'Gateway requester authority changed' or 'Browser requester is no longer active'.",
-  "impact": "failed-every-time",
+  "user_saw": "The meeting bot joined and greeted participants, then stopped hearing them shortly after the join command returned.",
+  "impact": "sequence-or-timing",
   "area": "plugins",
-  "summary": "Meeting browser capture pulls/cleanup and chrome-node bridge commands now run on the plugin instance's background runner (shared captureCurrentPluginBackgroundRunner helper) instead of the joining request's context.",
-  "reasoning": "Managed browser audio capture was created in e7b868bbabfc (2026-09-12) with pull/stop dispatched from the join request's context, and the requester-authority checks it trips (browser-request hasCurrentClientAuthority, operator tool authority that aborts after the invocation in server-plugin-in-process-dispatch.ts) already existed at that commit, so the failure most likely shipped with the feature; the issue was reported on 2026.10.4. Low confidence because I could not confirm the CLI-join authority actually expired at that commit, and the chrome-node transport predates the graft so its own origin is unknown."
+  "summary": "The fix runs recurring browser audio pulls, browser capture cleanup, and Chrome-node bridge commands under the plugin instance\u2019s background context.",
+  "reasoning": "The parent of #153989 already contained both recurring audio transports, and its in-process dispatcher only checked authority explicitly supplied by those calls, which they did not supply. #153989 added the fallback to the ambient request\u2019s authority, so later audio calls could fail once the CLI disconnected and the join request released its authority. I verified the change in the source and parent diff, but the bundle\u2019s live comparison covers the November fix and its baseline."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "89fcceb655c193604bfef0f73e5c23871ea0c3dd",
+  "cause_pr": 142063,
+  "confidence": "high",
+  "cause_quote": "The new standalone branch called `withPreparedModelCatalogOwner` with `...(opts.refresh ? { refreshFullCatalog: true } : {})` and omitted managed proxy startup before provider discovery.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With no Gateway running, `openclaw models list --refresh` failed to discover models from providers that required the configured proxy.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix starts the configured managed proxy before local catalog refresh and releases it in a `finally` block.",
+  "reasoning": "The introducing diff added the `--refresh` flag and the standalone discovery path together. At that revision, CLI startup already classified `models list` as `networkProxy: \"bypass\"`, so the new path ran provider discovery without activating the configured proxy from its first release.",
+  "rank": 100026,
+  "sha": "4b1de20055568352a3d466f8ac348a53ccf8aa41",
+  "rubric": "v1.2"
+}

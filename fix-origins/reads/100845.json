@@ -1,0 +1,17 @@
+{
+  "rank": 100845,
+  "sha": "d9de7319df3003c58872ce2bbeefa076c0dadbc9",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On macOS, Gateway discovery could omit a service defined by a binary plist or display a nested environment value as its label.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix uses a shared native plist decoder so Gateway discovery, command inspection, and ownership checks read top-level fields from the captured definition and accept unrelated date and data metadata.",
+  "reasoning": "The new native tests exercise user LaunchAgent discovery, where the existing XML-only command scan missed binary plists and a regex could select a nested Label. The diff for #97285 shows that the first-match label regex already existed, and blame places the XML command scan before the shallow boundary. Offline history could not identify their introducing commit or establish that discovery previously handled these definitions correctly."
+}

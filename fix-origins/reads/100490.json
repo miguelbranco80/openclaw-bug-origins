@@ -1,0 +1,17 @@
+{
+  "rank": 100490,
+  "sha": "c9c023fbb12d8bfde61af4a228a9170e4f8b3f9b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "216798c496a1e02782d7c32e21a11626c024ad37",
+  "cause_pr": 160682,
+  "confidence": "high",
+  "cause_quote": "The new `if (unresolved.length > 0)` branch threw `Plugin settings are not ready for activation` before invoking the callback that saved the repair package.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Plugin install or update rejected the replacement package that Doctor needed to finish the pending data migration.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix lets users save repair packages while activation is deferred, unset the exact affected plugin entry, and try the exact trusted npm release when ClawHub lacks it.",
+  "reasoning": "I checked the parent of #160682 and confirmed that replacement installs and updates could publish their packages while the deferred migration machinery was already present. The diff routed both publication paths through a new migration check that threw before saving the package, leaving Doctor without the replacement it needed. The registry fallback and exact config unset changes address separate failures."
+}

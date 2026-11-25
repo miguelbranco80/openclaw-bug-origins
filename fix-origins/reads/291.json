@@ -1,17 +1,17 @@
 {
   "rank": 291,
   "sha": "d936d4b5e36d97f5fc05a54136e459a264a66e99",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "1143f7384233958b798a5de242b396d94b975b0c",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "medium",
-  "cause_quote": "The commit added `signal: params.signal` only to the Gemini generateContent request in runGeminiSearch, leaving the existing `resolveCitationRedirectUrl(citation.url)` batches in the same function without the signal.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "After cancelling a Gemini web search, OpenClaw kept issuing citation redirect HEAD requests (including later batches) instead of stopping; little was directly visible beyond extra outbound traffic and delay.",
+  "user_visible": "yes",
+  "user_saw": "Cancelling a Gemini web search could leave it waiting for citation redirects and still cause it to start more requests.",
   "impact": "sequence-or-timing",
   "area": "models/providers",
-  "summary": "Forwards the Gemini search AbortSignal into the citation redirect resolver so cancelled searches stop pending and future citation HEAD requests and preserve the cancellation reason.",
-  "reasoning": "Citation redirect resolution already existed in runGeminiSearch when 1143f738423 (\"fix(web-search): honor provider abort signals\") added cancellation support for Gemini search; that diff threaded the signal into the main request only, so cancellation never covered citation fetches from the day it was introduced. Checked the file at 1143f738423 via the contents API (citation loop present, no signal) and the commit's patch; later commits in the local history are refactors that did not touch this. It is a missed path of the cancellation feature, not a later break, hence never-worked with medium confidence."
+  "summary": "The fix forwards the search cancellation signal to citation redirect requests, aborts active requests and prevents later batches, and preserves the caller\u2019s cancellation reason.",
+  "reasoning": "The oldest readable Gemini implementation already passed `params.signal` to the search POST while calling `resolveCitationRedirectUrl(citation.url)` without it. I checked the later provider refactor and cache cancellation fix, which left citation requests uncancellable. The offline history is missing a parent at the shallow boundary, so I could not verify when the omission first shipped or whether cancellation had worked earlier."
 }

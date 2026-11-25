@@ -1,17 +1,17 @@
 {
   "rank": 242,
   "sha": "3777fda157ff9bddfce7a0d083aba8291d70602c",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "cd326f915580c3e3c5c915bf4416e68a1c843089",
+  "cause_pr": 165534,
+  "confidence": "high",
+  "cause_quote": "The worker migration added `const capturedMutation = structuredClone(mutation);` and passed `mutation: capturedMutation` into `localWorkspace.mutate`, so the Gateway copied the entire rollback pack and serialized it before dispatch.",
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Possibly brief Gateway responsiveness hiccups (about 60 ms synchronous segments) while a very large managed workspace was reconciled; the fix itself does not reproduce the reported production stall.",
+  "user_visible": "yes",
+  "user_saw": "Connected clients could become temporarily unresponsive while the Gateway reconciled a large managed workspace.",
   "impact": "slower-or-heavier",
   "area": "gateway",
-  "summary": "Prepares a transferable copy of the workspace rollback pack in the Git worker and sends it to the SQLite worker outside the structured-clone envelope, moving oversized-mutation diagnostics into the SQLite worker, so the Gateway thread no longer serializes ~120 MB packs.",
-  "reasoning": "This is a performance optimization in a series (#194475, #196835) of reconciliation-stall reductions: the main-thread serialization of the rollback pack was the original design, not something a later commit made slower, and the PR's own benchmark shows 60 ms segments reduced to 8 ms without reproducing the reported 1.1 s production stall. Per the rubric, a performance improvement of code that was never faster is not-a-defect; no causing commit is identified."
+  "summary": "The fix prepares a transferable copy of the rollback pack in the Git worker, sends it to SQLite outside the serialized command, and moves oversized mutation diagnostics into the SQLite worker.",
+  "reasoning": "The migration replaced a direct SQLite write with a worker command that carried the existing `journal_pack: journal.basePack` field, and the SQLite client at that commit synchronously serialized the entire command input before dispatch. The worker publication path therefore processed the full pack on the Gateway thread from its first version, and later compression changes retained that cost."
 }

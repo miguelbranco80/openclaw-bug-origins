@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6c9b38862d2d32133edde3127b3eeb0056feb90f",
+  "cause_pr": 117587,
+  "confidence": "medium",
+  "cause_quote": "The new agent registry load plan passed `...(plan.config ? { activationSourceConfig: plan.config } : {})`, supplying the prepared config as the authored source.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An agent plugin could fail to load with an invalid-config error even though its configured SecretRef was valid.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "Agent plugin loading now validates the authored SecretRef from the captured config generation and passes the resolved credential to the plugin.",
+  "reasoning": "The scoped agent loader shipped with an explicit source override pointing to prepared values. The shared loader later added authored SecretRef validation in #131310, but its source resolver still honored that override, and #135118 carried the same assignment forward. I found no version of the affected agent load plan that preserved the authored SecretRef before this fix.",
+  "rank": 100044,
+  "sha": "4822727e0a4330149c0ddcb9b6372a92a6d4b518",
+  "rubric": "v1.2"
+}

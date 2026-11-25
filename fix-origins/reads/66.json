@@ -1,17 +1,17 @@
 {
   "rank": 66,
   "sha": "21960ae268b41a8f603a80d0edc1cc6c4644ec56",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "98813c23905e68b41e5c58e72e3ee554986d7ab1",
+  "cause_pr": 168587,
+  "confidence": "high",
+  "cause_quote": "By adding `registerSignalExitGate(finished.promise, ...)`, the shutdown handler began waiting for the command to finish even when its pending node lookup had no abort signal.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Pressing Ctrl+C during `openclaw nodes camera list` or `location get` left the CLI waiting on the node lookup until it answered, timed out or the launcher force-killed it.",
+  "user_saw": "Pressing Ctrl+C while `nodes camera list` or `nodes location get` was looking up the node left the CLI waiting for a Gateway reply or timeout.",
   "impact": "sequence-or-timing",
   "area": "cli",
-  "summary": "resolveCliNode now forwards the command's abort signal to its node.list and legacy node.pair.list lookup calls so Ctrl+C closes the lookup and exits 130.",
-  "reasoning": "The lookup calls in resolveCliNode never passed a signal: callNodesGatewayCli only gained a signal option in 24f686dd056a (#197185, Nov 11), which wired Ctrl+C into the four inventory read commands and left lookup untouched, and the lookup lines themselves blame (via GitHub GraphQL) to Jan-Aug 2026 commits older than the graft. This is a gap in incremental Ctrl+C cancellation coverage that existed since the lookup was written, not a break by a later commit; no single introducing commit could be identified for a never-worked answer, so unclear."
+  "summary": "The shared node resolver now forwards the command\u2019s abort signal to both `node.list` and the legacy `node.pair.list` fallback.",
+  "reasoning": "The causing commit\u2019s parent already used both lookups for camera and location reads, and its SIGINT handler could exit with status 130 without waiting for those commands. The new shutdown gate made exit depend on command completion while both lookups still lacked cancellation. PR #199388 later forwarded the signal to `node.invoke`, leaving the earlier lookup wait in place."
 }

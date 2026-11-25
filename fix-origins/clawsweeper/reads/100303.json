@@ -1,0 +1,8 @@
+{
+  "rank": 100303,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding about the rollback executor concerns package mutations continuing after the original helper dies. The earlier Windows descendant-settlement finding concerns a child that keeps writing after its worker exits. Neither addresses the macOS activation guard rejecting a live updater still inside the Gateway process tree."
+}

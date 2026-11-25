@@ -1,0 +1,8 @@
+{
+  "rank": 100346,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve shell recovery after slow native failure\u201d finding addressed a failed native load that exhausted the timeout before `ps` could run. Investigating that timeout would not likely have uncovered the x64 worker\u2019s crash inside the Koffi query under Rosetta."
+}

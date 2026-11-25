@@ -1,6 +1,17 @@
 {
-  "origin": "regression",
-  "cause_sha": "70134e42285b4214579faba8ac10ed7098550643",
-  "confidence": "medium",
-  "reasoning": "The package diff changes `\"@trycua/cua-driver\": \"0.36.0\"` to `\"@trycua/cua-driver\": \"0.37.0\"`, whose Markdown default leaves the existing adapter without the structured `elements` it uses to mint references. Earlier tests and docs show that element references predated the upgrade, and the fix reports that explicitly requesting `tree_format: \"elements\"` restored them on Linux. The available evidence does not include a native Linux run on 0.36.0."
+  "rank": 165,
+  "sha": "8873aeb433fd931c87e2bd5ba45f38b67215ae27",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "70134e42285b4214579faba8ac10ed7098550643",
+  "user_visible": "yes",
+  "user_saw": "Computer-use window observations on CUA 0.37 returned no usable element references, so element actions like set_value could not target any control.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The cua-computer adapter now passes `tree_format: \"elements\"` to CUA's get_window_state so it receives structured elements instead of the new Markdown default.",
+  "reasoning": "The adapter's get_window_state request was correct while CUA Driver returned structured elements by default; CUA 0.37 changed the default tree format to Markdown, which is an external dependency change. The in-repo bump from @trycua/cua-driver 0.36.0 to 0.37.0 came in 70134e42285b (#188576, routine dependency update), which exposed the gap, so it is the trigger rather than a cause."
 }

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "9344233e7a66fe36479d55b7f7ae8e10eb886586",
+  "cause_pr": 185730,
+  "confidence": "high",
+  "cause_quote": "The redesign added `if (!marked.resumeAfterRestart) { continue; }` to startup and deleted `mainRestartRecovery` during session normalization, so it skipped sessions marked by the previous version.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After upgrading the Gateway, sessions that were active when the old version stopped stayed idle.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets startup consume recent, unsettled legacy restart markers and send one resume input per eligible interrupted session.",
+  "reasoning": "I checked the redesign's parent and found shutdown tests that verified it wrote `mainRestartRecovery` and a startup test that verified a session carrying that marker reached execution. The redesign discarded that marker and required the new one, which the old version could not write during the pre-upgrade stop.",
+  "rank": 100495,
+  "sha": "0ebd36afdbfe8430870f034bb5df2a6944a36707",
+  "rubric": "v1.2"
+}

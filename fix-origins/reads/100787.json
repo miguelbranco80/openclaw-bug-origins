@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "9c2335a2d07e397ac2e30aa73f9412b77479a9e9",
+  "cause_pr": 158703,
+  "confidence": "high",
+  "cause_quote": "The introducing diff passed `modelProvider` directly and returned `params.serviceTier` when `(params.modelProvider !== \"openai\" && params.modelProvider !== CODEX_RESPONSES_OAUTH_PROVIDER)`, so a missing provider skipped the Ultrafast catalog check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With ChatGPT sign-in, Codex used Ultrafast on the first message and dropped to Fast on later turns in the same conversation.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix uses the run's effective provider for the Ultrafast catalog check when a resumed or reused thread has no stored provider.",
+  "reasoning": "The parent of #158703 already omitted the OpenAI provider from native-auth bindings, preserved that omission on resume and warm reuse, and supplied the native provider for the first turn. The Ultrafast implementation in #158703 rejected the missing provider from the start, and the later switch to explicit Ultrafast selection left that provider check intact.",
+  "rank": 100787,
+  "sha": "9b5ac9968707ac3bd40eed60f82b8a04f34a637e",
+  "rubric": "v1.2"
+}

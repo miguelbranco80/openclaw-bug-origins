@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "f66fff57f33975fb0a2acd65367b65dfc4282d91",
+  "cause_pr": 116906,
+  "confidence": "high",
+  "cause_quote": "The new PowerShell choice completer set `$choicePrefix = $wordToComplete` and filtered choices with `Where-Object { $_ -like \"$escapedChoicePrefix*\" }`, so a leading quote in the prefix prevented `fish` from matching.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Tab after a quoted prefix such as `'f` for `--shell` suggested local files instead of `fish`.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix uses the parsed PowerShell string literal as the matching prefix for quoted option values.",
+  "reasoning": "I checked the causing diff and its parent: the parent completed command and flag names, and #116906 added option-value choice completion. The new matcher used the quote-inclusive text from PowerShell from the start, and the path history confirms that #116906 introduced that assignment.",
+  "rank": 100601,
+  "sha": "435deb1c1386f0aeb9c42c772233aaf8481ffe30",
+  "rubric": "v1.2"
+}

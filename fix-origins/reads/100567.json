@@ -1,0 +1,17 @@
+{
+  "rank": 100567,
+  "sha": "00b09f4638688e5d82c9203ba59c13a292062851",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "4bee6152f4d454b84e917ab09bfa0b44d52e01c9",
+  "cause_pr": 135840,
+  "confidence": "high",
+  "cause_quote": "The new Advanced tab called `void runtimeConfig.ensureSchemaLoaded();` in an effect keyed to the runtime config object, and its Reload handler called only `void this.context.runtimeConfig.refresh({ discardPendingChanges: true });`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Plugins \u2192 Advanced could stay on \u201cPlugin settings schema is unavailable\u201d after the Gateway connected or the first schema request failed, even after clicking Reload.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix requests the Advanced schema when the Plugins route is connected and retries a missing schema after Reload.",
+  "reasoning": "PR #135840 introduced the Advanced tab with both gaps. I checked that the subscription effect skipped reruns while the runtime config object stayed the same, that schema loading returned early before Gateway connection, and that the original Reload handler refreshed only config values. The later switch to `discardDraft({ reloadOnly: true })` carried forward the missing schema retry."
+}

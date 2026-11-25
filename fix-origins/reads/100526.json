@@ -1,0 +1,17 @@
+{
+  "rank": 100526,
+  "sha": "9aa007dabc519f4e9dac168758c58780d0182623",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "ad1e946c7ada5c11d54634cd7a9b5815d65c1442",
+  "cause_pr": 130008,
+  "confidence": "high",
+  "cause_quote": "The initial A2A adapter threw `new Error(`peer ${peerName} has no url configured for outbound A2A`)`, which the delivery queue treated as retryable.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A reply to an inbound-only A2A peer failed, triggered extra agent turns on retry, and ended up in the dead-letter queue.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix makes missing peer URLs and unresolved outbound token references produce typed non-retryable errors so the delivery queue stops after the first attempt.",
+  "reasoning": "The A2A launch wired the outbound sender into durable delivery and introduced the plain missing-URL error in the same commit. The queue code at launch already retried errors that matched neither a typed permanent rejection nor its text patterns, and the new error matched neither. PR #165021 later added the unresolved-token guard with the same classification mistake."
+}

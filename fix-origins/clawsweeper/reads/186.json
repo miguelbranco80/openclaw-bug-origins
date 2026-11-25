@@ -1,1 +1,8 @@
-{"rank": 186, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The merge-risk items concern sessions whose newest required frame exceeds the limit and must reset; that is a different failure from the budget x 8 byte cap silently dropping oldest turns and missing the prompt cache, which the review never raises. Chose none over related because the item addresses rejection, not trimming of history."}
+{
+  "rank": 186,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Existing sessions whose newest required frame or boundary exceeds the limit will stop preparation and require /reset or /new, losing active conversation continuity",
+  "outcome": "answered",
+  "note": "The first P1 item under Before merge flagged the same history cap when the newest required frame alone exceeded it. The maintainer accepted rejection and reset recovery in that case, while the shipped bug silently omitted older turns before compaction even when the newest frame fit."
+}

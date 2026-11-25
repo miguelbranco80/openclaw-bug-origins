@@ -1,17 +1,17 @@
 {
   "rank": 95,
   "sha": "307d9c45fb2548d300276c473ccb7c5cab4768bc",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "add5c513aed8eff62db30d30c021693f299c2e4c",
+  "cause_pr": 100648,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `const items = filteredItems(props.query, Boolean(props.onSlashCommand), props.sessionItems);`, feeding session results into the existing clickable `<div>` renderer, and routed selection through `props.onSelectSession?.(item.action.slice(SESSION_ACTION_PREFIX.length));`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Command palette results could not be Cmd/Ctrl/middle-clicked to open in a new browser tab because they were not links.",
-  "impact": "other",
+  "user_saw": "Middle-clicking or using Cmd+click or Ctrl+click on a command palette result failed to open it in a new tab.",
+  "impact": "failed-every-time",
   "area": "ui",
-  "summary": "Rendered Control UI command palette results as anchors with real session/page hrefs so modifier and middle clicks open new tabs, while plain clicks keep in-app navigation.",
-  "reasoning": "The diff adds new capability: it computes hrefs (sessionNavigationTarget, a new pageDestination helper) and wraps results in `<a>` where they previously had no href at all. Nothing in the blamed history shows palette results ever being links, so no commit broke an existing behavior. There is no linked issue or PR describing a failure, so this is an enhancement titled as a fix (low certainty because no PR text was available)."
+  "summary": "The fix gives navigable palette results real links so browser new-tab gestures work while regular clicks still select the result in the current tab.",
+  "reasoning": "I checked the commit that introduced palette session search and confirmed that session results used clickable divs with no link destination from their first release. The later message search and Solid migration retained that renderer behavior, and the fix adds end-to-end coverage for opening session and message results in new tabs while keeping the original palette open."
 }

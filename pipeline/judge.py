@@ -199,10 +199,14 @@ def flag_cases(step, config):
     task = ("\n\n## Your task\n\nJudge the one bundle in the current directory: `./bundle.md`, and `./full.md` if you "
             "need the whole review text. Read nothing else on this machine and do not use the network.\n\n")
     cases = []
+    # The second-maker check covers the bot reviews of the frames marked `reread_bot` in study.json (default: all).
+    checked = {frame["id"] for frame in settings()["frames"] if frame.get("reread_bot", True)}
     for name in sorted(os.listdir(folder)) if os.path.isdir(folder) else []:
         if name.endswith(".full.md"):
             continue
         key = name[:-3]
+        if step == "flag_reread" and (int(key) - 1) // 100000 + 1 not in checked:
+            continue
         files = {"bundle.md": os.path.join(folder, name)}
         if os.path.exists(os.path.join(folder, key + ".full.md")):
             files["full.md"] = os.path.join(folder, key + ".full.md")
@@ -452,6 +456,8 @@ def run_case(label, case, config, stop):
         while True:
             if stop.is_set():
                 return "not started"
+            if case.done():
+                return "done"  # answered meanwhile, for example by another run of the same step
             try:
                 started = time.time()
                 text = model.run(config["backend"], config["model"], case.prompt + FINAL + "\n", prepare(label, case),

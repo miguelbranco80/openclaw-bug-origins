@@ -1,0 +1,17 @@
+{
+  "rank": 100040,
+  "sha": "5198c7030ef4547c2b88bb70802f3e6e5f158ea0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "cc2fc55f9b480b16ca2ba5d06dacf0c97cf2d587",
+  "cause_pr": 122536,
+  "confidence": "high",
+  "cause_quote": "The original `portal.list` catch set `this.loaded = true`, so `renderEmptyState()` fell through `${this.loading && !this.loaded` to `portalsPage.emptyHint` and the start prompts, then appended the error without a Retry button.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When the first portal list request failed, the Portals page showed an error alongside instructions to start a portal and offered no Retry button.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix adds a retryable first-load error state and preserves portal previews through refreshes and same-client reconnects.",
+  "reasoning": "The original Portals feature diff adds both the failing request handler and the empty-state renderer, so the misleading prompts and missing Retry shipped with the feature. The fix's parent still marked a rejected list as loaded, and the new test checks that Retry issues a second list request and displays the preview after it succeeds."
+}

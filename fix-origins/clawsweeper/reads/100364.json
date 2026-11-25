@@ -1,0 +1,8 @@
+{
+  "rank": 100364,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cResolve merge risk\u201d items questioned whether fleet RSS measurements covered the original Linux incident. The at-merge \u201cCatalog isolation and retirement\u201d section discussed stale queued requests and shutdown, with no concern about superseded plugin registries accumulating across refreshes."
+}

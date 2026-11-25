@@ -1,0 +1,17 @@
+{
+  "rank": 100234,
+  "sha": "01080c52372ed7adba27d4d3c22eb7206ed00197",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "8da589121c6ec610f28d85042e7acce8b9048c4f",
+  "cause_pr": 183816,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `this.codeHighlights?.pause();` inside `release()` while leaving `update(active)` driven by caller presentation, so hiding the browser tab did not trigger worker cancellation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After switching away from a tab displaying a long Markdown code block, a user could see the tab continue using resources for syntax highlighting.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix makes the shared Markdown owner pause highlighting and release observers when the browser tab is hidden, then resume unfinished work for panes that are still presented.",
+  "reasoning": "I checked the worker-introducing diff and confirmed that the existing Markdown attachment caller activated the owner with `blocks.update(true)` at that revision. The worker and shared owner were unchanged from that commit to the fix's parent, so the worker shipped with the missing tab visibility handling."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 272,
   "sha": "f17c94115978d10e0702dd48170464a1f4c84dc0",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "37ffe3ce94e29935903ed9c9b83b24bd086a0e74",
-  "cause_pr": 161913,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d0b48d63efb88ac4f9f5eb447a39ea95cb2b0542",
+  "cause_pr": 163381,
   "confidence": "high",
-  "cause_quote": "The storage-locations feature added the guard `throw new Error(\"--namespace requires --from <location>.\");` to backup verify and restore as a plain Error, which runCommandWithRuntime rethrows in JSON mode and the top-level handler formats as an unexpected failure with a Doctor hint.",
+  "cause_quote": "The new `if (!showDebugDetails && !showUpdateDiagnostics)` branch returns the generic failure title and Doctor hint before reaching the `Reason:` line that printed the validation message.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Running `openclaw backup verify|restore --namespace n --json` without `--from` printed a generic 'unexpected runtime error' block with an `openclaw doctor` hint on stderr instead of the plain remedy message.",
+  "user_saw": "Running `backup verify` or `backup restore` with `--json` and `--namespace` but without `--from` showed a generic failure and a Doctor hint on stderr and omitted `--namespace requires --from <location>`.",
   "impact": "presentation",
   "area": "cli",
-  "summary": "Routes the backup verify/restore '--namespace requires --from' guard through throwExpectedCliError so JSON mode prints the remedy instead of the generic failure and Doctor hint.",
-  "reasoning": "Blame of the removed line and the feature diff show #161913 introduced the guard as a plain `new Error` on day one. At that commit the expected-error mechanism (isExpectedCliError/ExpectedCliError) already existed, runCommandWithRuntime already rethrew all errors in JSON mode, and formatCliFailureLines already gave non-expected errors the generic title plus `Try: openclaw doctor`. So the JSON-mode output was wrong from the start, and no later commit broke it."
+  "summary": "The fix marks the missing-`--from` validation error as expected so the CLI prints the existing remedy on stderr in JSON mode.",
+  "reasoning": "The parent of #163381 already had the namespace guard in both commands, and `runCommandWithRuntime` rethrew its error in JSON mode to the root handler, whose stderr formatter included the message on its `Reason:` line. The #163381 diff made ordinary errors return a generic diagnostic before that line, and the fix restores the remedy through the expected-error path."
 }

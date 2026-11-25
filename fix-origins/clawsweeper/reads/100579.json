@@ -1,0 +1,8 @@
+{
+  "rank": 100579,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "The queued abort handler does not update that receipt either. Retry therefore keeps returning `accepted` for cancelled work until dedupe expiry.",
+  "outcome": "open-at-merge",
+  "note": "The P1 finding identified the session-preparation guard that aborted hidden refreshes, and the P2 finding identified the stale acceptance receipt that prevented a canceled queued refresh from restarting. Both findings were open at merge, and the bundle contains no human response."
+}

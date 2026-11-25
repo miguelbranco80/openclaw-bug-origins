@@ -1,0 +1,17 @@
+{
+  "rank": 100698,
+  "sha": "5f7904f16f3c8815e896df1ee33d3afad6fc33ec",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "736dddb96a6e731ddc440e2dafd8f147a2dfe7d2",
+  "cause_pr": 110864,
+  "confidence": "high",
+  "cause_quote": "The introducing diff calls `settleDeferred()` as soon as transport `lifecycle.onAdopted()` finishes, before the outer adoption code reaches `await Promise.allSettled(replayClaims.map(async (claim) => claim.commit()))`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Feishu operator could see an account restart finish while replay-protection writes for already accepted events were still pending.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix closes Feishu handler admission during shutdown and waits for accepted handlers and deferred replay writes before releasing account resources.",
+  "reasoning": "The parent lacked the durable broadcast settlement code, and #110864 introduced it along with account cleanup that awaited only `durableIngress?.stop()`. The original ingress stop waited on deferred transport claims whose completion could precede the logical replay writes, so the gap existed from the first version of durable Feishu ingress, including before the move to the shared ingress monitor."
+}

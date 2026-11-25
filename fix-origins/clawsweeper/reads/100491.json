@@ -1,0 +1,8 @@
+{
+  "rank": 100491,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Labels section mentions changed foreign-slot CLI behavior in general terms, and Before merge asks for data-model compatibility proof. Neither those sections nor the earlier findings raise the issue of unresolved SecretRefs reaching the provider health probe."
+}

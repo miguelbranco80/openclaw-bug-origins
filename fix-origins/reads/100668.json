@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "64853b1a9d505dc3980e4bedfc39ee79c043ffbf",
+  "cause_pr": 124301,
+  "confidence": "high",
+  "cause_quote": "The rule `.new-session-page__incognito-toggle.shell-chrome-controls__button` added `height: 40px;`, dropping the Incognito switch\u2019s center 4px below the 32px navigation buttons at the same 10px top offset.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On desktop web, the Incognito switch, sidebar controls, and page titles sat at visibly different heights.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix aligns desktop web session headers, page toolbars, and navigation controls on the centerline of a shared 48px row while preserving mobile and native window clearance.",
+  "reasoning": "I checked the parent of #124301 and verified that Incognito and the navigation buttons shared the same 32px height and 10px top offset before the composer redesign enlarged Incognito. That change caused the Incognito regression, while the ordinary page toolbar had a separate source of misalignment in the 52px row introduced by #148362.",
+  "rank": 100668,
+  "sha": "c32d26f3e204c0acd423e52e47bd60b9aa4c9e0b",
+  "rubric": "v1.2"
+}

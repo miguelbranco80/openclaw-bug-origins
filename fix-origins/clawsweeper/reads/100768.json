@@ -1,0 +1,8 @@
+{
+  "rank": 100768,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings and earlier Before merge items address socket authentication, provider selection, allowlist policy, and signed-app permissions. None raises the stdout size check that rejects a read containing multiple valid MCP messages."
+}

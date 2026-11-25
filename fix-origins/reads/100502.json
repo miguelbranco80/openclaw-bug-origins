@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "31aa5548996860a0500b13bc61b25923a07d32c4",
+  "cause_pr": 142839,
+  "confidence": "high",
+  "cause_quote": "Wrapping `prepareDoctorLintExecution(runtime, opts)` in `withArtifactPreservingStateReads(() => ...)` made each ordinary fresh SQLite read prepare a separate private copy.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Full Doctor reports on large installations generated heavy temporary disk writes by copying the shared-state database repeatedly.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "Full Doctor reports reuse one private database snapshot for ordinary reads and preserve completed update findings and exit codes if snapshot cleanup fails.",
+  "reasoning": "I checked the causing diff and its parent: full Doctor reports already existed, and ordinary fresh reads could open the source database directly without staging a copy per read. The new report-wide artifact-preserving wrapper activated the reader's existing per-read copy path, and the fix's parent still used that path when no reusable snapshot was in scope.",
+  "rank": 100502,
+  "sha": "e71ac748fccb0b8c6ba076e0efc5408ba8a2ade8",
+  "rubric": "v1.2"
+}

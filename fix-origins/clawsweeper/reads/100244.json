@@ -1,0 +1,8 @@
+{
+  "rank": 100244,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cVerify retained authority at the final effect\u201d item focused on whether a revoked owner could still make changes, and the earlier journal findings focused on reading legacy journals. No item addressed the comparison between the canonical install key and the aliased package path that caused the rollback."
+}

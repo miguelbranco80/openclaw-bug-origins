@@ -1,0 +1,8 @@
+{
+  "rank": 100692,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge storage finding concerns unencrypted transcripts in IndexedDB, and the earlier invalidation items concern clearing rendered transcripts after credential changes and across tabs. Neither addresses the in-memory revision entries retained after snapshot writes settle."
+}

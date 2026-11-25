@@ -1,0 +1,17 @@
+{
+  "rank": 100641,
+  "sha": "cba73231243d85ff0e9e34d7b3c35cd869b0430b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "777e85c9eece4e6dddb33c9e7ed18389a8e52ef3",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new host check `if (!sameTranscriptEntryAnchor(admission, current))` compared `storePath` with `left[field] === right[field]`, rejecting different paths to the same database.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Codex turn failed to start when the session history reader accessed the transcript database through a filesystem alias.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix verifies that both paths refer to the same physical database before comparing the current-input anchors.",
+  "reasoning": "I checked the causing commit's parent and confirmed that final context validation used a worker read fence that accepted filesystem aliases. The causing commit added a host-side anchor check that rejected those same reads on raw path inequality, and the fix's incident diagnostics identify that mismatch before `turn/start`."
+}

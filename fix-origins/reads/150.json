@@ -1,7 +1,7 @@
 {
   "rank": 150,
   "sha": "c324818cbf86074f34578d07f381b0d2835955a1",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; only the generated model prompt's section headings changed.",
+  "user_saw": "nothing visible",
   "impact": "presentation",
   "area": "agents",
-  "summary": "Added '### Conversation Behavior' and '### Tool Bindings' headings to the generated conversation instructions so that guidance no longer sits under the preceding Message Context or Delivery Format heading.",
-  "reasoning": "The PR describes a prompt-structure correction with no reported failure and explicitly claims no improvement in model behavior or instruction compliance; the instruction prose is unchanged. That is a cleanup or prompt-format change, not a defect fix, so no cause is assigned."
+  "summary": "The fix adds Conversation Behavior and Tool Bindings headings to the generated instructions.",
+  "reasoning": "I checked #189522, which wrapped the existing Codex instructions and tool list in an explicit block, and the fix diff, which adds headings around the existing text. The PR reports a prompt layout problem in captured requests and provides no evidence of a failure in model behavior, message delivery, or tool execution."
 }

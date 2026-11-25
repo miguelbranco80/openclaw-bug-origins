@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A matching request could return Exa or Tavily results obtained with another credential, or a Teams reply could include or omit its parent message based on another bot\u2019s access.",
+  "impact": "permissions",
+  "area": "plugins",
+  "summary": "The fix adds a hash of the resolved credential to the cache keys for Exa search, Tavily search and extract, and Teams parent-message lookups.",
+  "reasoning": "The July 1 snapshot already showed all three plugins omitting credentials from cache keys while using them for upstream requests. The later Exa refactor preserved the omission, and Tavily\u2019s move to a shared search cache preserved its existing key. The available offline history stopped at a missing parent before July 1, so I could not verify whether the omission shipped with the original caches or whether a later change first exposed it.",
+  "rank": 100074,
+  "sha": "8f4deefd7c8ab0d82e40bee647ea0b15b21d12c1",
+  "rubric": "v1.2"
+}

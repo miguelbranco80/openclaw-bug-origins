@@ -1,1 +1,8 @@
-{"rank": 106, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No findings or before-merge items; the only test note asks for WebKit end-to-end proof and nothing addresses the one-line composer applying at drawer-nav widths above phone size."}
+{
+  "rank": 106,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cUse reachable mobile controls in the Layout helper consumers\u201d item concerns browser tests looking for a missing View menu action. The review raises no concern about the empty composer collapsing in wider windows with drawer navigation."
+}

@@ -1,0 +1,8 @@
+{
+  "rank": 100091,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The new macOS cleanup path lacks recorded real-platform validation of successful reclamation and preservation when another producer or an unreadable live process is present.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item under Before merge called for testing macOS reclamation with an unreadable live process present. It left open whether an unreadable process owned by another user could abort the census and cause Doctor to skip cleanup."
+}

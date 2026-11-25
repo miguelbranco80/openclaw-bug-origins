@@ -1,0 +1,17 @@
+{
+  "rank": 55,
+  "sha": "e324e2e84acc1fb213a7b8f4b29e1f01bab44d39",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "aae90cb0364e04d3620f64e91877012d4f29f23d",
+  "cause_pr": 28488,
+  "confidence": "medium",
+  "cause_quote": "It introduced reply-media hydration and merged it with `const contextMedia = [...currentMediaForContext, ...replyMedia];`, with no check that the replied-to media is the same Telegram file as the current attachment.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a Telegram user replied to an image with that same image, the agent received the identical image twice.",
+  "impact": "data-loss-or-duplication",
+  "area": "channels",
+  "summary": "The Telegram pipeline carries file_unique_id on media refs and skips reply and external-reply media whose id matches media already on the current message.",
+  "reasoning": "The duplicate arises because replied-to media is appended to the current message's media without source-identity dedupe; that join was created by #28488 (aae90cb, 2026-02-27, found via PR search and its diff since the code predates the graft), and no later commit is shown to have removed an earlier dedupe. Confidence is medium because the hydration code was heavily moved since then and I did not trace every intermediate version, and the PR notes the case never occurred in production data, though it reproduced on real Telegram."
+}

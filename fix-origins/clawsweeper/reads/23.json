@@ -1,1 +1,8 @@
-{"rank": 23, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No item concerns comma-bearing paths in Docker --mount strings; the Windows finding is about native Windows paths as Linux mount targets, a different condition, and the rest cover daemon revalidation, cancellation capacity, and journal upgrade."}
+{
+  "rank": 23,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Windows isolation finding concerns native Windows paths being passed to a Linux container. The review raises no concern about commas being interpreted as bind-mount field separators."
+}

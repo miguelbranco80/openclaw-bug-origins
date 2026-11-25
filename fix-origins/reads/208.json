@@ -1,17 +1,17 @@
 {
   "rank": 208,
   "sha": "928818442b99b6daf992e2f0472f54d535c3a271",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "0351056b6057981c4d43d729a8b3632a54a3dc4e",
-  "cause_pr": 151273,
-  "confidence": "low",
-  "cause_quote": "It added the plugin-replacement rollback `await rollbackConfigEffects?.()` whose failure only sets `restored = false` and logs 'Plugin runtime rollback could not republish the model runtime', with no recovery for the retired model/reply publication.",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "e765b0c079c7429b8d9d528becbd6031c06bea07",
+  "cause_pr": 147472,
+  "confidence": "medium",
+  "cause_quote": "The reload preparation added `markPreparedModelRuntimeSnapshotsStale(\"prepared model runtime owner is stale before plugin drain\", ...)`, retiring the existing publication before commit and making reply availability depend on a successful rollback refresh.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "After a failed plugin replacement (for example removing a plugin from config), the agent stopped replying on Telegram and Talk Mode, inbound messages were dead-lettered, and only a manual Gateway restart restored service.",
+  "user_saw": "After a plugin replacement failed and could not restore reply publication, conversations stopped receiving replies until an operator restarted the Gateway.",
   "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Plugin lifecycle now flags a failed model/reply rollback publication on PluginRuntimeApplicationError, config writes and plugins.reload then schedule the existing work-draining recovery restart, and model-owner recovery backs off while that restart is pending to preserve inbound retry budget.",
-  "reasoning": "The rollback-publication failure path (moved verbatim by bca882333b9d) was introduced in 0351056b605 (#151273) as log-only with no recovery, and no later commit removed a working recovery; demand recovery from 765c2f145715 never covered this case (issue #189579 shows its 'recovery failed'). Low confidence because the defect is a missing recovery for a compound failure (replacement fails and rollback also fails) rather than a quoted line that plainly breaks, and I could not confirm whether the triggering rollback failure itself stems from a later change."
+  "summary": "The fix schedules a work-draining Gateway restart when model and reply rollback fails and preserves queued messages\u2019 retry budget while the restart is pending.",
+  "reasoning": "I checked the causing commit and its parent: the parent retired the existing reply publication at config commit, so a service-stop failure before commit left that publication in place. PR #147472 moved retirement ahead of the drain and relied on rollback to republish, while the Gateway had no restart fallback for an uncommitted rollback failure. A later change made rollback run after more failure paths, but the original dependency on successful republication was already present."
 }

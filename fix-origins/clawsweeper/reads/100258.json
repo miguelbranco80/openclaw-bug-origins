@@ -1,0 +1,8 @@
+{
+  "rank": 100258,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The run-input visibility finding concerns SQLite JSON functions in PostgreSQL history reads. Session deletion failed in a separate path where default transcript archival called the SQLite-only schema installer."
+}

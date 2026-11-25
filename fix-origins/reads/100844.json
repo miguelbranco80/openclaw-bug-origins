@@ -1,0 +1,17 @@
+{
+  "rank": 100844,
+  "sha": "dfcb2469b18ab1c92aa5421eb994b3f7cc5c9677",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "a05cfd475675c5b77eb70b17a67ad8ead51da152",
+  "user_visible": "yes",
+  "user_saw": "On Bun Gateways that required a managed proxy for internet access, OpenAI realtime voice failed to connect because it tried to reach OpenAI directly.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The fix switches three OpenAI realtime WebSocket constructors to the SDK loader so Bun honors the managed proxy and a refused tunnel ends the connection attempt.",
+  "reasoning": "The parent of #114256 already used bare `ws` for native realtime voice and installed managed proxy routing, while #114256 enabled the Gateway to run on Bun. Bun's substitute for `ws` bypasses the Node HTTP hooks that routing depends on, and the two sideband paths added shortly afterward inherited the same import pattern. The history shows no earlier working Bun proxy path for these sockets."
+}

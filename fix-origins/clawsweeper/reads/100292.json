@@ -1,0 +1,8 @@
+{
+  "rank": 100292,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The new compatibility branch consults its optional `env`, but explicit-environment consumers such as setup backend lookup, plugin inspection, and provider-auth evidence omit it after building metadata with that same env.",
+  "outcome": "open-at-merge",
+  "note": "The P1 item \u201cForward the scoped environment through enablement rechecks\u201d identified the fallback to `process.env`, but its examples did not identify either affected CLI backend lookup. The item remained open at merge, and the human comments about earlier revisions did not answer it."
+}

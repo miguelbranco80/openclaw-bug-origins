@@ -1,0 +1,8 @@
+{
+  "rank": 100185,
+  "flagged": "exact",
+  "where": "at-merge",
+  "quote": "With a live Gateway and an existing capture directory, an ordinary `openclaw plugins` command enters this new non-Gateway cleanup path, waits for Doctor's exclusive lock deadline, and emits a deferred-cleanup warning despite valid configuration.",
+  "outcome": "open-at-merge",
+  "note": "The open P2 item \u201cAvoid maintenance locking during ordinary plugin CLI preflight\u201d identifies the warning caused by expected lock contention with a live Gateway and asks to make that contention quiet. No human response appears in the bundle."
+}

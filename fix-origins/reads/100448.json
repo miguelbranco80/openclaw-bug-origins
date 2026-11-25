@@ -1,0 +1,17 @@
+{
+  "rank": 100448,
+  "sha": "5fcd0f59a1648d40f2f26084bcdaa32255cbfa7e",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The browser close command reported that the tab was closed while it was still open.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The fix checks that an HTTP CDP tab disappears before reporting success and preserves the selected tab if the close cannot be confirmed.",
+  "reasoning": "The oldest available source already returned after Chrome acknowledged the close request, and the later refactors preserved that behavior. The relevant code predates the shallow boundary, and the offline history could not establish when it was introduced or whether Chrome's behavior changed afterward."
+}

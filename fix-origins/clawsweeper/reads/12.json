@@ -1,0 +1,8 @@
+{
+  "rank": 12,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Before merge item concerned CI failures. The earlier Review history entries concerned respawn signal propagation, terminal assertions, and a capture fixture deadline, with no concern about shutdown waiting on uncancelled cron reads."
+}

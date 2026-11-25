@@ -1,0 +1,17 @@
+{
+  "rank": 100727,
+  "sha": "b2d00be586ee0d2ebf2fd3e2bc1423fc4fc3951d",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6fdc930787328337de40f5fbb6dfab23d560037d",
+  "cause_pr": 167163,
+  "confidence": "high",
+  "cause_quote": "The diff removed the explicit `projectionLane` argument and added `const status = await channel.request(\"transcript-index-status\");`, making the search wait for a writer-backed status check inside the shared history worker task.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Chat messages and progress-card updates could stall when a history search overlapped a progress-card save.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix gives session target discovery a dedicated read-only worker lane so its cleanup can finish while history search waits for the database writer.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that progress-card saves already held writer admission through target discovery, while search used the separate projection lane and requested index status between worker tasks. The causing commit moved that status wait into a task on the shared history lane, so discovery cleanup could wait for a search that was itself queued behind the save\u2019s writer admission. The fix\u2019s regression test covers that ordering, and the PR reports a timeout before the fix and completion afterward."
+}

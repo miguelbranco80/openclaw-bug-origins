@@ -1,0 +1,17 @@
+{
+  "rank": 100239,
+  "sha": "a43a77bf92d184a990ff4320bf893f83fea2d0e9",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Signal channel still showed as connected after a silent network drop, but new messages stopped arriving.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix adds a WebSocket keepalive that terminates an unresponsive Signal container receive socket so the existing loop can reconnect, with timeout enforcement suspended while reads are locally paused.",
+  "reasoning": "The oldest readable snapshot already relied on the WebSocket close event to reconnect and had no heartbeat to detect a silent drop after opening. This suggests the transport may have shipped with the defect, but the offline history stopped at a missing object before I could verify the introducing diff."
+}

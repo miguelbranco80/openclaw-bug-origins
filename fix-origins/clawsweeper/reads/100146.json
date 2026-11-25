@@ -1,0 +1,8 @@
+{
+  "rank": 100146,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve compatibility for the exported harness capability\u201d finding concerned the public SDK\u2019s controlUiAdmin field. The at-merge \u201cAdmission and revocation remain owner-bound\u201d item described checks for fresh turns and inactive grants without raising a concern about queued owner messages losing authority when they run under a new ID."
+}

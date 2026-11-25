@@ -1,0 +1,8 @@
+{
+  "rank": 100204,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The fallback skill discovery finding concerns skill loading in embedded runs without a snapshot. The earlier compatibility item describes the intended switch to configured bootstrap files, while the shipped bug was that CLI-backed sessions still loaded bootstrap files from the execution folder."
+}

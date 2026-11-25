@@ -1,0 +1,8 @@
+{
+  "rank": 100900,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cAtomic worker ownership\u201d section describes predicate evaluation without raising any concern about Gateway modules loading on turns without a Goal routing predicate. The earlier findings address callback storage locators and abort-save fault injection."
+}

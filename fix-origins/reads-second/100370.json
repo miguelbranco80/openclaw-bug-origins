@@ -1,0 +1,17 @@
+{
+  "rank": 100370,
+  "sha": "9cd23e6067c84433439d14166b15c132ddcc1983",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9d982698026a2239a1b6d5d02b3616fbe39f720d",
+  "cause_pr": 136533,
+  "confidence": "high",
+  "cause_quote": "The commit removed `!isCodexRuntime &&` from the host-byte latch check and carried forward `transcriptByteCompactionLatch: params.transcriptByteCompactionLatch` in the shared accounting patch, so native-only accounting erased the latch when it omitted that field.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After Codex compacted its own context, the next turn in an oversized session could show another compaction-start notice and take longer because OpenClaw sent an unnecessary compaction request.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix preserves host-byte compaction suppression during native-only accounting and lets host transcript compaction explicitly clear or refresh it.",
+  "reasoning": "I checked the original latch, which explicitly excluded Codex, and confirmed that native compaction counts already flowed through shared session accounting before #136533. When #136533 extended the latch to Codex sessions, that accounting path could immediately erase a matching latch without changing the host transcript. The defect therefore shipped with Codex support for the latch."
+}

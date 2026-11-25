@@ -1,17 +1,17 @@
 {
-  "rank": 117,
-  "sha": "355e5ae57e4eef2d39d1afa765613f2981d8d62c",
-  "rubric": "v1.1",
-  "origin": "unclear",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "origin": "regression",
+  "cause_sha": "d3b571f8163c658feafb327d8699d3485ae1680d",
+  "cause_pr": 191398,
+  "confidence": "high",
+  "cause_quote": "The channel Save rewrite removed the form\u2019s `params.props.config.lastError` alert and gated its replacement on `if (sent && config.lastError)`, suppressing the permission error when the write was refused before dispatch.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A read-only viewer could edit channel settings fields and press Save, but nothing was saved and no explanation appeared.",
+  "user_saw": "Read-only viewers could edit channel settings and click Save, leaving an unsaved draft with no explanation.",
   "impact": "permissions",
   "area": "ui",
-  "summary": "The shared channel configuration form now disables its fields and Save when the viewer lacks administrator access and shows the existing admin-required explanation.",
-  "reasoning": "The channel config form never consulted canAdmin in any version I checked: not in the Solid rewrite (f49b7cd0eb5f), nor in the Lit view.config.ts before it (canAdmin gated only the detail toggle, pairing and wizard), and the form itself dates back to pre-graft code (fullhist shows 1ad26d6fea0, Jan 2026, 'schema-driven channels and settings'). Whether read-only operator access existed when that form was written (never-worked) or arrived later without updating it (latent) is older than the graft and I could not establish it, so the origin is left unclear."
+  "summary": "The shared channel settings form disables editing and Save for read-only viewers, explains that changes require administrator access, and keeps Discard available.",
+  "reasoning": "In the parent of #191398, the form already allowed read-only edits, but its Save path published an administrator-access error on refusal and the form displayed it. #191398 introduced a channel-local draft and replaced the visible error with feedback gated on dispatch, so an authorization refusal left the draft unsaved without an explanation.",
+  "rank": 117,
+  "sha": "355e5ae57e4eef2d39d1afa765613f2981d8d62c",
+  "rubric": "v1.2"
 }

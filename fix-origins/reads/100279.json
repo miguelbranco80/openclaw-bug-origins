@@ -1,0 +1,17 @@
+{
+  "rank": 100279,
+  "sha": "a2747a0bb2cf6ff436706e03f1a128a865e007bd",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "4b1c45066b189e76d7cd28753876d8ae4b9bb542",
+  "user_visible": "yes",
+  "user_saw": "Operators saw the Control UI send an extra parent-session request on each child update during active swarm runs.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The swarm hydrator now checks child updates against the current parent observation and skips summary-triggered reads when the parent row already contains member details.",
+  "reasoning": "The hydrator added in #146122 re-read the parent to recover facts that child events did not supply. I checked that #152510 added recipient-authorized ancestor rows to child events and that the store stages those rows before notifying list listeners, making the old fallback redundant when the frame already contains the parent details. The fix addresses both the summary-based read and the child check that still consulted the previous parent callback's row."
+}

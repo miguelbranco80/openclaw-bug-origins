@@ -1,1 +1,0 @@
-{"rank": 204, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review in force at merge has no findings; the earlier P2 asked to add -journal to the retry-destination inventories (more sidecar declarations), which does not concern declared sidecar roots lacking capture entries and failing the manifest root-completeness check."}

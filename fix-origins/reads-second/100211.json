@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "a5f9adf483d660cb0eb30e35f5f229744658df57",
+  "cause_pr": 124613,
+  "confidence": "medium",
+  "cause_quote": "The first blocked-submit notice returned `undefined` when `block.gate !== this.blockedSubmitGate`, so the explanation disappeared if one preparation check gave way to another.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Enter or clicking Start while a new chat was still loading could leave the draft unsent with no explanation and a Start button that looked enabled.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix disables Start during preparation and, after a blocked attempt, shows the current readiness reason until the user can retry.",
+  "reasoning": "PR #124613 introduced blocked-submit feedback and covered a single preference restore, but its diff tied the notice to the first blocking check from day one. The fix parent still used that same comparison, and PR #127823 separately introduced the exception that kept Start natively enabled when a blocking reason existed. The history explains why feedback could disappear when checks changed, but does not establish why every reported attempt lacked a visible notice.",
+  "rank": 100211,
+  "sha": "279015b0578ee497695120b2c682a8154fc520ab",
+  "rubric": "v1.2"
+}

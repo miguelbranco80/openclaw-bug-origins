@@ -1,17 +1,17 @@
 {
   "rank": 257,
   "sha": "56e6861a4d0967f9794a6bca1759cc72cd9965e2",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9bf3231d2535d854c409de70df2863385df64809",
+  "cause_pr": 187822,
+  "confidence": "high",
+  "cause_quote": "The introducing diff assigned `preparation.recoverInputs = migrated ? migrated.recoverInputs : undefined;` and left that reference in the startup scope after the recovery `finally` called `finishInputs();`.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing visible; a Gateway with many sessions kept roughly 14 MB of completed restart-recovery data in memory after startup.",
+  "user_visible": "yes",
+  "user_saw": "Operators with many sessions could see the Gateway keep using extra memory after restart recovery finished.",
   "impact": "slower-or-heavier",
   "area": "gateway",
-  "summary": "Clears preparation.recoverInputs after restart input recovery settles so published admission callbacks no longer retain the parsed session rows, and reuses assertionSucceeds for a line-cap.",
-  "reasoning": "This is a bounded, one-time memory retention reduction (13-14 MB on a 35 GiB synthetic fixture) with no reported failure; the PR itself says it does not explain long-running growth and claims no other behavior change. The retained closure dates to restart input recovery (9bf3231d253, #187822) and was never lighter, so under the rubric this is a resource optimization rather than a defect; the blamed f787a896894 lines are only the unrelated assertion-helper refactor."
+  "summary": "The fix clears the startup scope\u2019s recovery reference when recovery settles, releasing the prepared session rows after success or failure.",
+  "reasoning": "I checked the introducing diff and confirmed that it added both deferred recovery\u2019s closure over the prepared session rows and the startup scope\u2019s reference to that closure. Published admission callbacks could keep that scope alive after recovery settled. I also checked #195987, which wrapped the existing closure in a per-session recovery object and preserved the same reference."
 }

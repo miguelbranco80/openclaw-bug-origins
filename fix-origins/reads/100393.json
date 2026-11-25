@@ -1,0 +1,17 @@
+{
+  "rank": 100393,
+  "sha": "82b8cd04ae16a6712332dcb14b8391709b218c9d",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "19a98c873ce63c839869f2b109057d9965649056",
+  "cause_pr": 114033,
+  "confidence": "high",
+  "cause_quote": "The SQLite-only cutover added `assertAuthProfileMigrationReady(effectiveAgentDir);` before loading the credential store, and that guard throws a migration error when it finds `auth-profiles.json`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Non-interactive onboarding stopped with AUTH_PROFILE_MIGRATION_REQUIRED on every attempt when the deployment wrapper recreated the legacy credentials file.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Non-interactive onboarding now runs Doctor's existing migration before provider setup to import legacy credentials into SQLite and archive the original file.",
+  "reasoning": "I checked the parent of the SQLite cutover and confirmed that it already supported non-interactive provider setup and that its credential loader could proceed to an empty store when SQLite was missing, even with auth-profiles.json present. The cutover added the throw before that fallback, and a later fix relaxed the guard only for stores that already held migrated credentials, leaving the fresh setup in the report blocked."
+}

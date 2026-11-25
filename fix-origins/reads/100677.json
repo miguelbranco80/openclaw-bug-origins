@@ -1,0 +1,17 @@
+{
+  "rank": 100677,
+  "sha": "7bcb0a2e8eae9800cbc74be7253201b147ede8e9",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "b34254154ba8a6d3afec334e59f1c449b8e5139d",
+  "cause_pr": 144329,
+  "confidence": "high",
+  "cause_quote": "The diff added `\"channelLogin\": {}` for both MiniMax OAuth methods and passed `assertCurrent: params.assertCurrent` into the provider method, but the MiniMax handler forwarded `...(ctx.signal ? { signal: ctx.signal } : {})` and omitted the authority callback.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A MiniMax chat sign-in already in progress could keep requesting and obtain a token after the operator revoked the sender\u2019s owner permission, though OpenClaw blocked saving the credential.",
+  "impact": "permissions",
+  "area": "models/providers",
+  "summary": "The fix passes the chat authority check into MiniMax OAuth and runs it before outbound requests and after awaited steps.",
+  "reasoning": "I checked the introducing diff and its parent: the parent restricted chat login to Codex, and #144329 added both MiniMax chat login methods with a live owner check that their polling loop did not use. From the first release of that flow, revocation could block credential persistence while leaving the abort signal untouched and polling active. The fix\u2019s reported evidence uses synthetic provider endpoints, and live Slack delivery and Gateway refresh remain unverified."
+}

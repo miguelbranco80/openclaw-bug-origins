@@ -1,17 +1,17 @@
 {
-  "rank": 31,
-  "sha": "466a4b6f5073b5fe83b6a0b479a6dfc8392c82e4",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "44339a644761266903a1537d0845f3cbe9471a37",
+  "origin": "unclear",
+  "cause_sha": null,
   "cause_pr": null,
-  "confidence": "low",
-  "cause_quote": "Steering began with `if (queueEmbeddedPiMessage(sessionIdFinal, queuedBody)) { ... return undefined; }`, which folded a later inbound message into the running agent turn without giving it its own reply target, so answers to it were delivered under the run's original source.",
+  "confidence": null,
+  "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "In Telegram, when a second message was steered into a running turn, the answer to it was posted as a reply quoting the first message instead of the second.",
+  "user_saw": "When a second Telegram message steered an active run, the answer to that message quoted the first message.",
   "impact": "sequence-or-timing",
   "area": "channels",
-  "summary": "Captures each assistant message's consumed Telegram input at native message_start/message_end, persists it as sourceMessageId on the assistant delivery facts, and applies it as an implicit reply target through buffered and final payloads.",
-  "reasoning": "The reporter states upstream 'lacks this per-assistant source capture', and the fix adds new state (sourceMessageId, getUserTranscriptContexts wiring) rather than restoring removed code; no blame candidate removed such tracking. Reply targets have always been run-level since steered inputs were first merged into an active run in 44339a64476 (2025-12-20, found via the full-history log and gh api), so this is a gap that shipped with steering. Low confidence because the exact commit where Telegram per-message reply threading and steering first met is not pinned."
+  "summary": "The fix captures the input each assistant message consumed and preserves that input\u2019s ID through buffering, persistence, and reply threading.",
+  "reasoning": "I checked #149925 and its parent: #149925 began delivering separate answers for steered inputs, but its parent already delivered the last steered answer and used the original run\u2019s message ID as the implicit reply target. That places the targeting flaw before #149925, and the available offline history did not establish when steering first inherited that target or whether it ever worked correctly.",
+  "rank": 31,
+  "sha": "466a4b6f5073b5fe83b6a0b479a6dfc8392c82e4",
+  "rubric": "v1.2"
 }

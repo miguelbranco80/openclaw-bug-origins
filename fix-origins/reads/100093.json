@@ -1,0 +1,17 @@
+{
+  "rank": 100093,
+  "sha": "83c98097fa7df622c0ce57675ee5f9f01fd6147f",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "f41d6b86189699d0a829c63fd425bc61a7b5702b",
+  "user_visible": "yes",
+  "user_saw": "Android release operators saw a successful build stop at signing-certificate verification before the upload.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The APK verifier now accepts scheme-prefixed signer labels from Android build-tools 37 while still requiring exactly one signer with the pinned certificate.",
+  "reasoning": "I checked that the release workflow already used the shared Android toolchain action and that the verifier and its acceptance fixture expected the older `Signer #1` format. PR #171658 switched that action from `build-tools;36.0.0` to `build-tools;37.0.0`, exposing the parser's existing format assumption when the new tool emitted `V2 Signer:` for a valid APK."
+}

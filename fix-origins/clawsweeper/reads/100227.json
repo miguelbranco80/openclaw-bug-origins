@@ -1,0 +1,8 @@
+{
+  "rank": 100227,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Consequently, an absent or disabled QQ Bot plugin can still resolve a stale `clientSecret` SecretRef and block startup, contrary to the collector\u2019s inactive-owner invariant.",
+  "outcome": "open-at-merge",
+  "note": "The active plugin-origin fence finding identified a startup risk in the same QQ Bot SecretRef fallback. Its proposed guard covered absent or disabled plugins and would still leave enabled accounts without per-account failure isolation."
+}

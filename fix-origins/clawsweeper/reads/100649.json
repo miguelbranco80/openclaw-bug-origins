@@ -1,0 +1,8 @@
+{
+  "rank": 100649,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge compatibility item warns that a required migration refusal stops later repairs. The Unified mode and refusal propagation entry describes how subsequent receipts are closed without raising any concern about the missing refusal code and message."
+}

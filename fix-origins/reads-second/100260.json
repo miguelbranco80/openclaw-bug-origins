@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "187594c66309a878436434668c85b2f1fb85d6e9",
+  "cause_pr": 159873,
+  "confidence": "high",
+  "cause_quote": "The new `prepareCronRunAdmission` call passed `scheduledToolPolicy: request.scheduledToolPolicy`, and admission stored it as `policy: scheduledToolPolicy`, leaving the recorded creator origin out of the message grant.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An account-owned scheduled script could fail with \u201cScheduled telegram:delete requires matching recorded creator origin\u201d even when the job had a matching recorded origin.",
+  "impact": "permissions",
+  "area": "cron",
+  "summary": "Scheduled script message admission now uses the creator-origin policy resolved during runtime preparation, while Telegram still enforces its separate conversation-binding check.",
+  "reasoning": "The parent of #159873 used generic run admission and issued no scheduled message capability for the script. I checked that the creator-origin check already existed when #159873 introduced the script\u2019s message grant with an origin-free policy. #176158 later restored the origin during preparation and included it in the cache key, but admission still used the original request policy.",
+  "rank": 100260,
+  "sha": "f883a852363f27b2a07b432d704fe122e0ff04ec",
+  "rubric": "v1.2"
+}

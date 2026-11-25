@@ -1,17 +1,17 @@
 {
   "rank": 12,
   "sha": "ea4879279abbf0e80d992a5649ef2f9b24debbd0",
-  "rubric": "v1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "98813c23905e68b41e5c58e72e3ee554986d7ab1",
+  "cause_pr": 168587,
+  "confidence": "high",
+  "cause_quote": "The shutdown rewrite added `registerSignalExitGate(finished.promise, ...)` around the whole CLI invocation and replaced `process.exit(...)` with `process.exitCode = code`, so the signal handler waited for the pending Gateway read to settle.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Pressing Ctrl+C during `openclaw cron status/get/runs/scratch` left the CLI hanging about two seconds until the launcher force-killed it.",
+  "user_saw": "Pressing Ctrl+C or sending SIGTERM during a pending cron status, get, runs, or scratch read left the CLI hanging until the launcher killed it about two seconds later.",
   "impact": "sequence-or-timing",
-  "area": "cli",
-  "summary": "Added callCronReadFromCli, which passes the command's async-work abort signal to the Gateway call, and routed cron status, get, runs and scratch reads through it.",
-  "reasoning": "This is one step in a series that extends the newer CLI cancellation contract to more commands (#186750 run-wait, #187726 list/show, this PR, then #198012 and #199955); the cron read commands predate that contract and still exited via the launcher's forced kill. Extending a new capability to older commands is a behavior improvement rather than a broken or regressed behavior, so there is no causing commit."
+  "area": "cron",
+  "summary": "The fix passes the CLI abort signal to cron status, get, runs, and scratch reads so they stop promptly on interruption, while writes already sent can still report their receipts.",
+  "reasoning": "I checked the causing commit and its parent: the same cron reads already omitted the transport signal, but the prior signal handler called `process.exit` after its barriers without waiting for the command itself. The new invocation-wide gate waited for those reads to finish, and #187726 later wired cancellation into list and show only."
 }

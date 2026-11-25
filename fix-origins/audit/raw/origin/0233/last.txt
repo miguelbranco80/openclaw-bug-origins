@@ -1,0 +1,17 @@
+{
+  "rank": 233,
+  "sha": "97b03f7428d3711fb4b5653beeac5f0a62ab8afe",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators reading the 'Skipped restart resume' warning could not tell which capture condition left an operator run without a recovery source.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "Records closed reason codes when an operator-run recovery source cannot be snapshotted, persists them on the existing unavailable marker, and adds operatorRecoveryUnavailableReason to the skipped-resume warning.",
+  "reasoning": "The PR states it is diagnostics only: refusal behavior, authorization, eligibility and user notice are unchanged, and the previous code deliberately returned undefined for these cases. Adding detail to a log payload is an observability improvement, not a fix of broken behavior, so no causing commit applies."
+}

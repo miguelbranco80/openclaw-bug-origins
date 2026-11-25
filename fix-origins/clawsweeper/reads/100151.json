@@ -1,0 +1,8 @@
+{
+  "rank": 100151,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Authority final-effect check verifies that revoking authority blocks dispatch, and the Before merge items concern Twitch test placement and no-send accounting. None of these items addresses how Gateway sends resolve an adapter\u2019s destination alias when the account default points elsewhere."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 144,
+  "sha": "0fd8c138f5bcdda06f3484f0e24a2a7afffbf8b6",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An IRC channel configured with an empty per-channel allowFrom still let senders through when a wildcard channel or global group list allowed them.",
+  "impact": "permissions",
+  "area": "channels",
+  "summary": "The IRC monitor now treats an explicitly empty per-channel allowFrom as a deny-all sender list instead of falling back to the wildcard channel's list, and documents that rule.",
+  "reasoning": "The removed code deliberately used `groupConfig?.allowFrom?.length ? groupConfig.allowFrom : wildcardConfig?.allowFrom`, so an empty list meant 'inherit', and the docs said nothing about empty lists before this PR, which adds the deny rule to the docs and warns that existing configs change meaning after upgrade. With no linked issue and no prior documented contract that an empty list denies, this is a permissions policy change rather than a broken promise; blame could not be read locally (missing blob), so I did not trace the original author of the fallback."
+}

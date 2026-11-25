@@ -1,0 +1,17 @@
+{
+  "rank": 100708,
+  "sha": "4a5ec828b19c5207028faa9cdedb6528ae931c55",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6c00e67f5703c85f2aea88cf79f7ff702821fbb5",
+  "cause_pr": 179992,
+  "confidence": "high",
+  "cause_quote": "The commit changed the SQLite-checked runtime gate to `if (!isSupportedOpenClawNodeVersion(version))` and raised the minimums from Node 24.16.0 and 26.1.0 to 24.22.1 and 26.12.1.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a previously supported Node version such as 24.21.0, the updater could refuse to proceed or the Gateway could fail to restart on that pinned runtime.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix restores the earlier Node compatibility minimums, preserves SQLite safety checks, and turns the newer security patch minimums into warnings.",
+  "reasoning": "I checked the updater in the causing commit\u2019s parent and confirmed it already called `nodeRuntimeFailure`, which let previously supported Node versions through when their SQLite probes passed. The causing diff raised the package engine minimums and made the runtime gate enforce those same minimums, so Node 24.21.0 could fail preflight even with safe SQLite. The fix PR also documents a successful update from 2026.10.5 using the same pinned Node 24.21.0 runtime."
+}

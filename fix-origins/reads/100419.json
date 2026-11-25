@@ -1,0 +1,17 @@
+{
+  "rank": 100419,
+  "sha": "cb443bb37220c6e0c26500b631c0d6b275a4ec60",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "plugins",
+  "summary": "The provider ownership index now publishes frozen sorted copies, eliminating the need for a lint suppression.",
+  "reasoning": "I checked #172481's diff and confirmed that it introduced the `unicorn/no-array-sort` suppression alongside the cached ownership index. The fix removes one entry counted by the production lint-suppression guard while preserving deterministic ordering, provider precedence, and shared frozen results."
+}

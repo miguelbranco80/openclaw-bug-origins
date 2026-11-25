@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "ClawSweeper’s “Add real behavior proof” item asked for live sign-in and authorization evidence without raising a callback port conflict. The human reviewer’s port 8080 finding concerned OpenClaw retaining its own listener after a timeout."
+  "outcome": null,
+  "note": "The ClawSweeper review covers real-behavior proof, final-effect authority proof, SDK and compatibility risks; it never mentions the fixed 8080 callback port. A human review mentions port 8080 only regarding listener cleanup after a timeout, not the bot."
 }

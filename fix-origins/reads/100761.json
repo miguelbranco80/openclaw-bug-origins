@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "212f04188a05a0aca8badd14f68448e00c8958d4",
+  "cause_pr": 144155,
+  "confidence": "high",
+  "cause_quote": "The new check read the descriptor with `fs.fstatSync(descriptor)` and compared it with `assertSamePath(fs.lstatSync(databasePath), identity, \"file\")`, so both file IDs were rounded to JavaScript Numbers before comparison.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix uses BigInt stats to compare a newly created managed-update handoff database\u2019s open descriptor with its path before SQLite opens it.",
+  "reasoning": "I checked the introducing diff and its parent: SQLite previously created the database directly, and #144155 introduced the pre-open comparison between the new file descriptor and its path. From its first version, that check could accept a replacement file whose distinct Windows ID rounded to the same Number. The PR\u2019s synthetic Windows diagnostics established the precision loss, and the earlier intermittent publication-test failure remains unexplained.",
+  "rank": 100761,
+  "sha": "c279fc74d1827f484ff04d7ad23d69a8fe23d5b8",
+  "rubric": "v1.2"
+}

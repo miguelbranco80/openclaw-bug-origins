@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6718352a63df815940c7a7bc5666f6484c7b8d9a",
+  "cause_pr": 148305,
+  "confidence": "high",
+  "cause_quote": "The new async loader used `deps.fs.promises.access(configPath).then(() => true, () => false)`, so any rejected access check sent it down the missing-config path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "OpenClaw silently loaded fresh-install defaults when its configured file was inaccessible.",
+  "impact": "failed-every-time",
+  "area": "other",
+  "summary": "Both config loaders now read the root file directly, use defaults on ENOENT, and report other I/O errors.",
+  "reasoning": "The factory and loader diffs show that #148305 introduced the async load API and its error-swallowing probe together. The same diff preserves the older synchronous existence check, which path history traces back beyond the shallow boundary, so the original source of the synchronous defect could not be verified offline.",
+  "rank": 100323,
+  "sha": "82357f8636ba1716ff012b40950ea7e141e47950",
+  "rubric": "v1.2"
+}

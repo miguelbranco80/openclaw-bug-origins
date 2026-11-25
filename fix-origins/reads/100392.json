@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0bab08510e75938e8317aa54d5d5c37a49ef7543",
+  "cause_pr": 106352,
+  "confidence": "high",
+  "cause_quote": "The original `dashboardJsonFailure` wrote `writeRuntimeJson(runtime, { ok: false, reason }, 0);` and then called `runtime.exit(1);` without reporting the error on stderr.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When `openclaw dashboard --json` failed to hand off to the browser, users watching stderr saw a nonzero exit with no explanation.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix prints the dashboard handoff error and a diagnostic command to stderr while preserving the JSON failure response on stdout.",
+  "reasoning": "The dashboard diagnostics are the only production code change in this commit because the Gateway recovery fix had already landed in #176861. The introducing diff for `dashboard --json` shows that its failure handler skipped stderr from the start, and #168812 only changed the JSON payload.",
+  "rank": 100392,
+  "sha": "5159f10d8f696068406851e00be3ebe4db5fa9e9",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 156,
+  "sha": "8d4ca5408cb478955474444a1537e71aee1081f5",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw agents list` (and channel capabilities, interactive remove, fallback status, health) printed two DEP_PLUGIN_SDK deprecation warnings blaming the bundled Matrix plugin, though core made the deprecated call.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Switched agents list, channel capabilities, interactive channel removal, fallback channel status and health from the synchronous listReadOnlyChannelPluginsForConfig to the awaited listReadOnlyChannelPluginsForConfigAsync so the deprecated sync Matrix saved-auth probe no longer runs.",
+  "reasoning": "These callers used the synchronous read-only plugin inventory long before the change (agents.providers.ts already did before the #177514 fold), when it was a supported API; it became noisy only once the SDK began emitting once-per-process deprecation warnings for synchronous plugin-state stores (PluginStateSyncKeyedStore.entries warnings predate a157713fe8a; the createPluginStateSyncKeyedStore warning was added by fe265106c39 #174902), which the bundled hasAnyMatrixAuth probe hits. The sibling fix c71a8b62a92 (#190257, issue #190243) migrated status/channels list/doctor the same way; this one finishes the remaining callers. No single in-repo commit both introduced the warning and is clearly the trigger (two warnings with different origins), so trigger is left null."
+}

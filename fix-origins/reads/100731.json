@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "3036e137601927b875c81b018ee7e43909ca9621",
+  "cause_pr": 169512,
+  "confidence": "high",
+  "cause_quote": "The new first-launch path called `self.install_cli` with `InstallChannel::Dev` for non-release builds, sending fresh Windows installs into an installer branch that rejected that channel.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a fresh non-release Windows desktop install without an existing CLI, automatic setup showed an error and dropped back to manual setup.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "The fix bundles the same commit's core CLI and Codex plugin in non-release Linux and Windows Tauri builds so fresh setup can install them locally.",
+  "reasoning": "I checked the introducing diff and its parent: #169512 added automatic local setup, while the previous startup path only attempted to connect. The Windows installer already rejected Development in #169522, so the new automatic path shipped with a deterministic failure on fresh non-release Windows installs without a CLI.",
+  "rank": 100731,
+  "sha": "61ed7497922beb4013a4b2bfa599904cc75e3681",
+  "rubric": "v1.2"
+}

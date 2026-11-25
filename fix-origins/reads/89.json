@@ -1,17 +1,17 @@
 {
   "rank": 89,
   "sha": "3f3a4b0c03b330d61b9b17d489dc2909ac572370",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "6946824aa91caca8230af5d8aed616854177f7bf",
   "cause_pr": 203269,
-  "confidence": "medium",
-  "cause_quote": "#203269 added `<label class=\"new-session-page__device-path-entry\">{t(\"newSession.deviceFolderPath\")}<input .../>` styled with `padding: var(--picker-inset)` while the picker input adds `padding-inline: var(--picker-row-inset)`, so the label text starts left of the path text.",
+  "confidence": "high",
+  "cause_quote": "The new `DevicePathEntry` rendered `{t(\"newSession.deviceFolderPath\")}` directly inside the label, leaving the label text without the input\u2019s `--picker-row-inset`.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "In New Session the 'Absolute path on device' label sat about 8 px left of the path it described, and on phones the project search text jumped left and the field shrank when tapped.",
+  "user_saw": "In New Session, the device-path label sat 8 px left of the entered path, and tapping project search on a phone shifted its text left and shrank the field.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Wraps the device-path label text in a span inset to match its input and scopes the picker input geometry to the picker panel so it holds in every focus state, including touch focus.",
-  "reasoning": "The device-path misalignment is in the redesigned compact device-folder picker that 6946824aa91c (#203269) introduced the same day; its diff adds the bare label text with only the panel inset while the input text gets an extra row inset, which plainly produces the 8 px offset the fix measures. The second issue (project search losing its padding and height on touch focus) dates to the picker CSS from e80a6dd9fdb4 (#197820) and later selector edits, but I could not identify which competing rule wins on touch focus, so overall confidence is medium."
+  "summary": "The fix gives the device-path label the same inset as the entered path and keeps project search aligned and at least 40 px tall when focused on a phone.",
+  "reasoning": "The classification is for the device-path defect, the original focus of the fix. The #203269 diff replaces the persistent form with a new picker entry and introduces the unequal text insets in that same change. The mobile search symptom is separate, and the CSS history did not establish when it first appeared."
 }

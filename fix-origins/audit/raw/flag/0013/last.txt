@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The closest item, “Keep optional catalog reads off the inspection response,” concerns a server-side delay in returning successful local inspection results. The Permissions skeleton persists after the inspection request has already failed because the UI treats a missing result as loading."
+  "outcome": null,
+  "note": "The review's findings cover ClawHub identity, catalog reads delaying inspection, and the icon discovery marker; none mention the removed inspectionError check in renderAccess or a permanent loading skeleton after a failed inspection."
 }

@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The closest finding, “Reconcile older cached sections before rendering Pinned,” concerns duplicate rows after restoring an older snapshot. The review versions contain no finding about filtering snoozed sessions out of Pinned until they wake."
+  "outcome": null,
+  "note": "No version mentions snoozed sessions; findings cover None-mode headers, pin reordering, cached snapshot duplication and Pinned collapse state, all different parts of the Pinned section."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100479,
+  "sha": "d5b11b54afc049b6348b3788ff5e1e3278bc6995",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1fa6ad6971cf179be78bbb8d0e4eec1a9ab3fcda",
+  "cause_pr": 156926,
+  "confidence": "high",
+  "cause_quote": "The diff replaced \u201csummarizeToolGroup(activity, { includeFailureCount: opts.expanded })\u201d with \u201cconst label = duration ? t(\"chat.workRun.workedFor\", { duration }) : t(\"chat.workRun.worked\");\u201d, removing the operation counts while keeping failure badges.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A collapsed Control UI work summary could show \u201c20 failed\u201d with no indication that the run made 200 tool calls.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix displays one total tool-call count alongside the outcome badges and reconciles prepared activity with raw tool cards to avoid double-counting.",
+  "reasoning": "I checked the renderer diff and its parent\u2019s grouping code. Before #156926, the collapsed header showed per-operation counts such as \u201c1 read\u201d alongside failures, which the prior test assertions confirm. #156926 replaced those counts with the duration heading while retaining failure badges, and #157904 restores that context as a single total."
+}

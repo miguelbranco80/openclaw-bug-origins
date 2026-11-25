@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The CLI reported a Gateway timeout even though the Gateway had already deleted the agent.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The CLI now warns that a dispatched Gateway request may have succeeded despite the timeout and advises checking state before retrying.",
+  "reasoning": "The earliest available Gateway code uses the same bare timeout message before and after dispatch, and the offline path history could not reach the commit that introduced it. A later agent-deletion change surfaced the timeout by suppressing local replay, but it left the shared timeout message unchanged, so the evidence cannot establish the origin of the reporting defect.",
+  "rank": 100149,
+  "sha": "fdc62b9bbade33efcbbc7203cb9cace15584ca4f",
+  "rubric": "v1.2"
+}

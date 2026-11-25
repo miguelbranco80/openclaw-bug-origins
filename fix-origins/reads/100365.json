@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a Dashboard update failed, the operator saw an INFO completion log with a status but no reason for the failure.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The Gateway now logs failed Dashboard updates at WARN with a public reason and a sanitized error summary.",
+  "reasoning": "The July 1 snapshot already used the same unconditional INFO completion log for results that could include a failure reason. The path history after July 1 showed no addition or removal of that log before the fix, and missing objects blocked the older path history, so I could not verify whether the logger shipped this way or had previously reported failures correctly.",
+  "rank": 100365,
+  "sha": "ad7669535c379858904a577a3fe4b802f6e22730",
+  "rubric": "v1.2"
+}

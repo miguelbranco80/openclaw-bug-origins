@@ -1,0 +1,8 @@
+{
+  "rank": 74,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Before merge item asked whether Anthropic would accept and clear temporary system messages across continuations. The at-merge Stored data model section asked about migration compatibility, and the review did not raise the timing gap between the steering check and permission-prompt refresh."
+}

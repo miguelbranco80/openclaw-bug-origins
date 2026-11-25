@@ -1,17 +1,17 @@
 {
   "rank": 56,
   "sha": "3481cbc81435a8703da96f54aaa8161a2f0fbd31",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7701d7e404c6155168e05f42e01067205f13cf80",
+  "cause_pr": 199825,
+  "confidence": "high",
+  "cause_quote": "The new route observer changed the sidebar only under `if (section && route !== previous && owner.navigationView !== section)`, so routes without a section could retain the previous sidebar.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Pages such as Usage and Knowledge showed a sidebar beside them, the rail's More item looked current, and Automations briefly showed its list page when opened.",
+  "user_saw": "Usage and some plugin pages could retain an unrelated sidebar, the closed More menu could look active, and opening Automations could briefly flash its old list.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Moved the decision of which sidebar (if any) stands beside a page to the page's route and shell, removed the More item's current-item fill, and made choosing Automations again close its open panel.",
-  "reasoning": "This is part 10 of a 16-PR stacked side-rail redesign; it landed minutes after its own predecessors #199825 (7701d7e) and #199827 (a749c7f), which it continues rather than repairs. The removed 'More carries the current-item fill while the open page has no item of its own' memo and the shared-sidebar behavior were deliberate design choices, so the change is an in-flight product/design evolution of unreleased navigation work, not a fix of shipped behavior. The Automations flash sub-item may trace to a749c7f, but it was never on main in a working state outside this series."
+  "summary": "The fix derives sidebar visibility from the active page, ties the More highlight to the open menu, and lets Automations know before its first frame whether the sidebar is visible.",
+  "reasoning": "I checked #199825 and its parent: the parent used Pages as a sidebar view, and #199825 introduced section-specific sidebars and the More popover. That first implementation handled sidebar-less destinations in rail and menu click handlers but left them unhandled by the route observer, and it styled More from the active route even when the popover was closed. The Automations flash came from a separate layer, #199827, which registered sidebar presence in `onSettled`."
 }

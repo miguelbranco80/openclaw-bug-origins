@@ -1,0 +1,17 @@
+{
+  "rank": 100524,
+  "sha": "1f94a0c79907d38aca65c8af89a1037ce027dcad",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "5bedf63689d88d51c686abf1d11f2c0831f0b26a",
+  "cause_pr": 153634,
+  "confidence": "high",
+  "cause_quote": "The new rejection handler called `log.warn(\"Task registry maintenance failed\", { error });` for every rejection, including a restart drain refusing a sweep before it began.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a Gateway restart, operators could see a task registry maintenance failure warning for a scheduled sweep that never started.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The scheduler now suppresses expected restart-drain refusals before a sweep starts and still reports failures from sweeps that started.",
+  "reasoning": "I checked the causing commit's parent and confirmed that the existing scheduler already received typed restart-drain refusals and cleared its in-progress flag without logging a warning. PR #153634 added unconditional warning logging to the rejection handler, and PR #154308 carried that behavior into the extracted scheduler."
+}

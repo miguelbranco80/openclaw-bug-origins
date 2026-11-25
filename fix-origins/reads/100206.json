@@ -1,0 +1,17 @@
+{
+  "rank": 100206,
+  "sha": "ab1b93295ad0f0c093563585bbc76f2e6ce39686",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Standalone SDK sessions omitted nested skills such as deploy/build/SKILL.md when a root .gitignore rule of /build should have hidden only the top-level build directory.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The shared ignore matcher now preserves leading slashes on scan-root patterns and negations.",
+  "reasoning": "The July 14 refactor changed matcher construction, but its parent already passed slash-stripped root patterns to the matcher, and the preceding fix's diff shows that behavior was already present. The available history could not resolve the relevant path before the shallow boundary, so I could not verify whether the original skill scanner shipped with the defect or an earlier change broke working behavior."
+}

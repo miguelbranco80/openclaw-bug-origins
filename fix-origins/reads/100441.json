@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "2bfa3ebc98b854fa1d59d09fe8d5f45b721cbc7b",
+  "cause_pr": 145664,
+  "confidence": "high",
+  "cause_quote": "The new publication guard called `readGatewayServiceState(service, { env: params.env, ... })` and derived the serving layout from `state.command`, so it checked only the selected Gateway before replacing runtime outputs.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator could run `openclaw update repair` and have it replace generated files that a running sibling Gateway was still using.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "Runtime repair now checks for live managed Gateways that share its physical output paths before each publication and refuses replacement when it finds one.",
+  "reasoning": "The parent revision went straight into the Doctor phase, and #145664 added source runtime completion before that phase. The introducing diff checked the selected service, its lock, and its port, leaving a live sibling with shared outputs outside the guard from the first version. The path history and the fix's overlap tests confirm that sibling discovery was added to this publication path by the fix.",
+  "rank": 100441,
+  "sha": "ecb13ad18dfd305d7d8605c68b2f5144e72ead58",
+  "rubric": "v1.2"
+}

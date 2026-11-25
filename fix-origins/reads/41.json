@@ -1,17 +1,17 @@
 {
   "rank": 41,
   "sha": "961a9d1e469b03927565f5f2573be3256bdf0608",
-  "rubric": "v1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "4319ddbe8cb08a49335eff22b82e3a7afe3d3201",
   "cause_pr": 106406,
-  "confidence": "medium",
-  "cause_quote": "The new migrations.memory.apply handler called `runMigrationApply({ runtime: silentRuntime, ..., opts: { yes: true, json: true, ... allowPartialResult: true } })` with no backupOutput, so the pre-migration backup fell to the backup engine's current-directory default.",
+  "confidence": "high",
+  "cause_quote": "The new Gateway handler called `const applied = await runMigrationApply({` with an `opts` object that omitted `backupOutput`, so the backup inherited the Gateway process's working directory.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A memory import from the Control UI or onboarding wrote the pre-migration backup archive into whatever folder the Gateway or onboarding process was started from, such as a source checkout.",
-  "impact": "other",
+  "user_saw": "When the Gateway ran from a source checkout outside the backed-up paths, a Control UI memory import left its backup archive in that checkout.",
+  "impact": "failed-every-time",
   "area": "gateway",
-  "summary": "Adds a preferHomeOutput backup option so Gateway memory imports and onboarding migrations write their unattended pre-migration backup to the home folder instead of the process cwd.",
-  "reasoning": "The local history is grafted at b14a2cae (2026-09-03), so I traced the Gateway memory import through gh api to its introduction in #106406, whose runMigrationApply call passes no backup output and therefore always used the cwd default that the fix overrides; onboarding (#108977) reused the same path. Nothing later changed the cwd default, so the misplaced archive shipped with the feature; confidence is medium because the pre-graft backup default was not re-read line by line."
+  "summary": "Gateway and onboarding migrations now prefer the user's home directory for automatic backups when it lies outside the backed-up sources.",
+  "reasoning": "The Gateway memory import shipped with the misplaced-backup behavior in #106406. I checked its introducing diff and its parent, where migration apply already forwarded `backupOutput` and the backup engine already defaulted to the process working directory when that directory was outside the backed-up sources. The onboarding memory import inherited the same default, and the separate post-install migration path predates the local history boundary."
 }

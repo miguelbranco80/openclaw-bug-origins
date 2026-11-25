@@ -1,0 +1,17 @@
+{
+  "rank": 100201,
+  "sha": "f5381735e51d366879d398db3c622fefa6e4a18a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "90b573403ad2d1f8e0fd1d6d278d2062f7ddc60d",
+  "cause_pr": 188379,
+  "confidence": "high",
+  "cause_quote": "The original startup code set `const bytesPerSecond = Math.max(1, Math.floor(memoryHigh / 600 / devices.length));` and applied that rate to every backing device, including SSDs.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Disk-intensive agent commands ran slowly on Linux SSDs when delegated exec isolation was enabled.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Gateway startup now caps agent exec I/O at 160 MiB/s and 40,960 IOPS per direction on each non-rotational device, subject to inherited limits.",
+  "reasoning": "The first-parent history and introducing diff show that #188379 added the cgroup startup code and wired it into Linux Gateway startup in the same commit. Its original formula capped a single SSD at about 6.8 MiB/s per direction with a 4 GiB exec memory allowance, so the excessive throttling shipped with the isolation feature."
+}

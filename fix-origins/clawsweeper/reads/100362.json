@@ -1,0 +1,8 @@
+{
+  "rank": 100362,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Commands requiring forced termination can leave shutdown reporting cleanup failure even after the root exits; the PR body explicitly accepts this operator-visible compatibility tradeoff.",
+  "outcome": "open-at-merge",
+  "note": "The P1 merge-risk item links forced termination to shutdown cleanup failure. It leaves out that the POSIX anchor skips the required closing receipt and that the resulting shutdown failure can leave the Gateway offline after a Control UI restart."
+}

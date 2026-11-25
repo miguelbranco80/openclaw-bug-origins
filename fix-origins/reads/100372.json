@@ -1,0 +1,17 @@
+{
+  "rank": 100372,
+  "sha": "f7968d7f0f9a7e36a608bbfc9abf1ea3a105c464",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "f898552b50aca9a23c0c823721e2dee058174a3d",
+  "cause_pr": 134351,
+  "confidence": "high",
+  "cause_quote": "The new PowerShell bootstrap passed the profile path through `launcher.map(quotePowerShellLiteral)`, whose `value.replaceAll(\"'\", \"''\")` left typographic apostrophes unescaped.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A managed GitHub command could exit before running if its profile path contained a typographic apostrophe, and the same quoting error could prevent Windows from verifying a Gateway restart.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix uses the shared PowerShell quoting helper for managed GitHub launches and Windows Gateway restart verification.",
+  "reasoning": "I checked the parent of #134351 and confirmed that gateway exec already supported managed GitHub profiles and passed the profile path in the child environment as `GH_CONFIG_DIR`, where PowerShell did not parse it as source. #134351 introduced a launch-time credential resolver that embedded the path in PowerShell source with ASCII-only escaping, causing the reproduced launch failure. The restart observer had a separate origin in #147437, which introduced the executable and entrypoint checks using the same incomplete escaping."
+}

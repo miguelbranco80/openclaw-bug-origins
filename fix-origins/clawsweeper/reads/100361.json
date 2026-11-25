@@ -1,0 +1,8 @@
+{
+  "rank": 100361,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items in the merge-time review and the earlier versions shown address dependency security and plugin compatibility. The Verification section reports successful inbound audio and raises no concern about delayed outbound callbacks or RTP timestamp drift during longer calls."
+}

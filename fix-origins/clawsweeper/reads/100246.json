@@ -1,0 +1,8 @@
+{
+  "rank": 100246,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Tests item asked for proof that the accepted conversation opens while cleanup is pending and that cleanup then finishes. The at-merge Provenance section mentions duplicate drafts as a historical concern and says the PR preserves the safeguard, leaving the risk of closing the tab before IndexedDB cleanup unflagged."
+}

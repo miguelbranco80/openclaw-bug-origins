@@ -1,0 +1,8 @@
+{
+  "rank": 100490,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The retained-input finding warned that publication could complete a migration too early, and the merge-risk item described rejection by the old updater before the candidate ran. The shipped bug came from the candidate\u2019s unresolved-migration check blocking the save of the replacement package Doctor needed."
+}

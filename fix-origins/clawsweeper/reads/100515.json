@@ -1,0 +1,8 @@
+{
+  "rank": 100515,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Findings concern ZIP upload quotas across profiles. The earlier review items and history contain no warning about skill library metadata reaching the terminal with unescaped control sequences or line breaks."
+}

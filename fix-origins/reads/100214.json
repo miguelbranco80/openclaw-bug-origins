@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "7fcf9124ce20cf8c8270c6fed0c3ad63927ae3a5",
+  "user_visible": "yes",
+  "user_saw": "New SQLite work could fail with \u201cSQLite worker store capacity reached\u201d while idle shared-state handles still held broker reservations.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "The broker can reclaim an owner-confirmed idle shared-state client at the 64-client limit and use the released reservation for a new open.",
+  "reasoning": "I checked #144871, which introduced the broker and explicitly documented that it rejects new opens when 64 clients are opening or live. #145851 added a shared-state owner that cached open clients across operations, allowing idle handles to consume those reservations. #151581 later added timed idle retirement, which still left new opens subject to rejection before the timer fired.",
+  "rank": 100214,
+  "sha": "ef39438c4a2f255334e81864c7d9ccef7cec0d65",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100309,
+  "sha": "6c7580515752f09591fb40bcdf2d6654179c7fa9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "bd43c96f56504ab8f877291f24e9d797bc7015b4",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The commit added `autoSaveRequiresExplicitSubmit = true` on connection changes with a pending draft and gated autosave on `!autoSaveRequiresExplicitSubmit`, while the page reload path left that flag set.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After reconnecting and choosing Reload Config, users saw \u201cAutosave paused after reconnect\u201d and their next Settings edit stayed unsaved.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix routes Settings reloads through the write coordinator so a successful reload resumes autosave and an offline reload preserves the draft.",
+  "reasoning": "I checked the causing commit\u2019s parent, where the Agents page already used `refresh({ discardPendingChanges: true })` to install a fresh snapshot and reset autosave status, allowing the next form edit to schedule a save. The causing diff added a separate reconnect latch and cleared it in `discardDraft`, leaving the existing page reload path unable to resume autosave. PR #123663 later surfaced the existing pause in the UI."
+}

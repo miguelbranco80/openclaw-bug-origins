@@ -1,0 +1,8 @@
+{
+  "rank": 100633,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge item \u201cNo-op and validation precede activation\u201d describes the staged package path. The earlier recovery inventory findings concern package rollback after partial backup cleanup, a separate path from the same-commit Git shortcut that skipped rebuilding missing runtime artifacts."
+}

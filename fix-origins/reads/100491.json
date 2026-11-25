@@ -1,0 +1,17 @@
+{
+  "rank": 100491,
+  "sha": "c57f5b61e4c735d618c93362095caa25cfb8e717",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0dc63eecaddd06b66c3db3f92ab67644a526e954",
+  "cause_pr": 162175,
+  "confidence": "high",
+  "cause_quote": "The new foreign-slot branch called `await runSelectedMemoryProviderStatus(opts, runtimeConfig, slotOwner)` and returned before command secret resolution, so the provider received the raw `cfg`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Memory status and Doctor could report an invalid API key for a memory plugin that was working through the Gateway.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Memory status and Doctor now resolve the selected memory plugin\u2019s declared SecretRefs before probing its health and report it as unavailable if resolution fails.",
+  "reasoning": "The #162175 diff introduced foreign-provider health reporting in memory status and passed the raw configuration through the new path from its first version. I also checked #162176, which added Doctor\u2019s foreign-provider health probe and independently passed the raw configuration from its first version. The cited cause is the first of those two additions."
+}

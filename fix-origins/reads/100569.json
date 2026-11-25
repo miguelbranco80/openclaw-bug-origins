@@ -1,0 +1,17 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "ee679bb785be9aa9c4343f682cc142d314db6cef",
+  "user_visible": "yes",
+  "user_saw": "During database contention, channel discovery could save a conversation address for an agent that had lost the route.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix queues discovered conversation writes through the shared agent database writer and rechecks route ownership after admission.",
+  "reasoning": "I checked that discovery already read the current routing configuration and persisted addresses synchronously before #146563 introduced shared write admission for session and trajectory writers. That change exposed the existing direct write as a bypass of the shared queue, and the fix's held-writer tests cover both premature persistence and route revocation while discovery should be waiting.",
+  "rank": 100569,
+  "sha": "13ffb8a5cda4d38e98792b4d3695f05e08a40766",
+  "rubric": "v1.2"
+}

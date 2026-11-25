@@ -1,0 +1,17 @@
+{
+  "rank": 100875,
+  "sha": "c47c7fb6341c2c6d1ddd653b83d2a4959b6add48",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "2fa9fe3825fa6973069e17b298f7d765ac0d646d",
+  "cause_pr": 148623,
+  "confidence": "high",
+  "cause_quote": "The original worker admission code added `Atomics.wait(decision, 0, REQUESTED, ADMISSION_TIMEOUT_MS)` with `ADMISSION_TIMEOUT_MS = 5_000`, then used `Atomics.compareExchange(decision, 0, REQUESTED, REFUSED)` to reject a still-pending request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Chat turns and task lists could fail with \u201cSQLite transaction admission was refused\u201d when a busy Gateway was slow to respond.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix keeps SQLite worker admission pending until the host grants or refuses the request.",
+  "reasoning": "The path history and introducing diff show that moving project registry removal to the state worker added the admission protocol and its five-second worker deadline together. From the first version, a delayed host could lose the chance to grant a valid request because the worker had already changed its state from pending to refused."
+}

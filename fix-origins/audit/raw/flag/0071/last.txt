@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The Evidence section identifies the preexisting json_set failure and treats the PR’s replacement as correct. The Tests section notes pending PostgreSQL runtime verification without raising the PostgreSQL 16 compatibility issue with the retained json(...) call."
-}

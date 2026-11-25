@@ -1,0 +1,17 @@
+{
+  "rank": 100817,
+  "sha": "d15088d167b23c0db1232a1791ea08b793e1b374",
+  "rubric": "v1.2",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "c42e11eec1554a001ef477645e4bd9fbfbbbbb08",
+  "user_visible": "yes",
+  "user_saw": "With many Gateways configured, the compact sidebar submenu clipped the Gateway settings action near the bottom of the window.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix makes nested menus inherit a side-opening parent's vertical end alignment and chooses the opening side from the text direction.",
+  "reasoning": "The original Solid Menu gave nested menus a side-start default, and the browser test before the rail change explicitly expected that default under a top-end parent. PR #179218 changed the compact identity menu from top-start to right-end, exposing the existing default when its Gateway submenu needed the space above its trigger."
+}

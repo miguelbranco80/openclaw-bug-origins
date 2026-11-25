@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "4a1cc226964a170a5d79139150baab989cac921a",
+  "cause_pr": 134281,
+  "confidence": "high",
+  "cause_quote": "The commit removed the ChatGPT transport's per-request loop, `for (let attempt = 0; attempt <= maxRetries; attempt++)`, and added a run-scoped cutoff, `if (transientRetryCount >= transientRetryBudget) { return false; }`, without resetting the count after a successful response.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A long-running agent turn could stop after another temporary rate limit despite making progress between failures, and the final error could show only the provider's short retry hint.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix gives the agent a fresh retry budget after each completed model response, bounds retries without progress, and reports retry exhaustion in the final reply.",
+  "reasoning": "I checked the parent of #134281 and confirmed that the ChatGPT transport retried HTTP 429s with a fresh counter for each request, so earlier recoveries did not spend the next request's budget. #134281 moved that accounting into the embedded run and removed the consecutive rate-limit counter reset. #151610 later reset the outage timer on completed responses while explicitly retaining the accumulated retry count.",
+  "rank": 100489,
+  "sha": "f0bc1de7ca8616ad118abde03e0c285de54836b7",
+  "rubric": "v1.2"
+}

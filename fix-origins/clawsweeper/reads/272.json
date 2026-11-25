@@ -1,1 +1,8 @@
-{"rank": 272, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Items concern namespace takeover fencing and config compatibility; nothing mentions the --namespace requires --from guard being a plain Error in JSON mode."}
+{
+  "rank": 272,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item in Before merge asked for verification of captured updater diagnostics. The Evidence section mentioned the existing Reason line in the context of Gateway transport messages and raised no concern about losing backup validation messages in JSON mode."
+}

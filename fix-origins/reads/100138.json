@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "dbb8bb47802a9d6930c5d703a62bd422c660f470",
+  "cause_pr": 112947,
+  "confidence": "high",
+  "cause_quote": "Adding `AWS_SECRET_ACCESS_KEY_VALUE_REDACT_PATTERN` to `DEFAULT_REDACT_PATTERNS` let the 40-character AWS key heuristic mask the reported status URL from `com/` onward because the dot counted as a token boundary.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A public status link sent in Control UI was permanently shortened in chat history, and the model received the shortened link.",
+  "impact": "data-loss-or-duplication",
+  "area": "gateway",
+  "summary": "The fix makes server, browser, and approval redaction share a matcher that preserves public status URLs while still masking credentials.",
+  "reasoning": "The causing commit\u2019s parent already applied default credential redaction to persisted user messages, and none of its default rules matched the reported status URL. The commit added a rule that matches the URL\u2019s 40-character suffix after the hostname dot, and the later UI refactor carried that rule forward.",
+  "rank": 100138,
+  "sha": "103bdf8d147c95be35fea4c09f1d1ad182b9c77e",
+  "rubric": "v1.2"
+}

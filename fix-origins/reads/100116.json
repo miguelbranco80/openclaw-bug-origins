@@ -1,0 +1,17 @@
+{
+  "rank": 100116,
+  "sha": "353c2ecabe88626256051a45ef9ccc12f4bdeb2a",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "03e18cf9073c2feaa5db9a92a093bfa2169cd02c",
+  "cause_pr": 175307,
+  "confidence": "high",
+  "cause_quote": "The commit added `observer.assertCurrent()` to shared preparation's authority check, so the outer callback could reject an already-committed registration notice when the last caller retired.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When a reply's lifecycle ended during cold agent database registration, the gateway reported an unknown outcome instead of the expected stale-lifecycle refusal.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix lets the outer authorization callback acknowledge an already-committed registration after caller retirement.",
+  "reasoning": "I checked the causing diff and its parent: the parent already recorded the commit receipt, and shared preparation checked only the native generation's authority. The new caller check let the outer callback reject the receipt after the inner helper returned, leaving the worker without an installed identity. The fix PR reports that reverting #175307 cleared both cold-registration failures and restoring it reproduced them."
+}

@@ -1,1 +1,8 @@
-{"rank": 205, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The merge-time review has no findings and accepts replacing per-word timeline notifications with size-change anchoring; the closest earlier item is a real-behavior proof request to show 'paced growth following the live edge', which asks for evidence rather than naming a follow failure (keyboard up or completion jump), so it is graded down from related to none."}
+{
+  "rank": 205,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "paced growth following the live edge while preserving a paused reader, and normal completion/narration settlement on code carrying this change.",
+  "outcome": "dropped",
+  "note": "The October 11 \u201cAdd real behavior proof\u201d item asked for evidence that paced text growth followed the live edge, a check that could have exposed the scrolling regression. It left the keyboard-open failure unspecified, and the merge-time review dropped the request."
+}

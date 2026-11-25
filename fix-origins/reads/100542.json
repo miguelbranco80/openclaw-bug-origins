@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "561d92da3a286857c25d9ec508095d8ee4dc14da",
+  "cause_pr": 168206,
+  "confidence": "high",
+  "cause_quote": "The introducing diff passed all non-incognito sessions to `sessions: row.array().max(200)` and let Pages fall through to the Sessions readiness check after its dashboard catalog finished loading.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On reload, operators with large rosters saw session rows appear late and shift the selected row, while operators who had switched to Pages could see the previous Sessions view during reconnect.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix caps the embedded routing roster at 200 rows, uses dashboard catalog readiness for Pages, and preserves the last good snapshot when a catalog read fails.",
+  "reasoning": "The introducing commit bundled the routing roster and settled rail view into one snapshot, so an oversized roster could block the entire snapshot and a completed Pages read could still wait on the inactive Sessions roster. I checked that the predecessor cache also rejected rosters over 200 rows and that the later schema extraction preserved the same cap, so the evidence supports defects present when the unified snapshot shipped.",
+  "rank": 100542,
+  "sha": "05287aca6a6584f8f10c763c7b21947cc7f8089c",
+  "rubric": "v1.2"
+}

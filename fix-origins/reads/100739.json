@@ -1,0 +1,17 @@
+{
+  "rank": 100739,
+  "sha": "268a3ce8ab0934132dfbef8a7158e75f2fab69e1",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "3ac0c058fe163d0b881aba9e4bea276e2d294b10",
+  "cause_pr": 170467,
+  "confidence": "high",
+  "cause_quote": "The initial watch cache used `if (preparedPaths.size <= 256)` as its eviction stop condition, then called `oldest.close()` on evicted entries, so a fleet with more than 256 distinct directories could never retain all its watches between walks.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators with more than 256 distinct agent directories saw a less responsive Gateway as repeated scans tore down and rebuilt filesystem watches.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix sizes the prepared-path cache to the registered fleet, avoids full observer scans on routine watch changes, and limits per-agent startup directory preparation to the selected owner.",
+  "reasoning": "The parent resolved directory identities directly, and PR #170467 introduced watch-backed reuse with the 256-entry FIFO cap in the same diff, so reuse across larger fleets was broken from its first release. I also checked that PR #171318 later added full observer scans when rescheduling recovery, which amplified the cost of the existing watch churn. The fix's test covers repeat walks at 64, 256, and 810 agents and checks for zero watch creation, watch closure, and realpath calls on the repeat walk."
+}

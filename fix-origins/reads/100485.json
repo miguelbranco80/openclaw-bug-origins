@@ -1,0 +1,17 @@
+{
+  "rank": 100485,
+  "sha": "2e418fed16b173a1f9bde5896f29b13959b5e3a6",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "349aef786a698ad68fc88909334e75ba33e6045a",
+  "cause_pr": 150354,
+  "confidence": "high",
+  "cause_quote": "The introducing diff set `restartOnError: false` on the shared pool without a failure reporter and read status from `gatewayCatalog.current?.pool.getSnapshot()`, so replacing the pool erased its counters.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators could see healthy-looking Gateway status and no crash warning while the model-catalog worker repeatedly failed and was replaced.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix logs each unexpected Gateway model-catalog worker failure with its reason and affected catalog count, and exposes a process-lifetime failure count in status and health diagnostics.",
+  "reasoning": "I checked the introducing diff and confirmed that it added both the shared worker and its Gateway status reporting, while its worker failure handler closed the pool without logging the failure. The parent already discarded background renewal rejections, and the new status read only the current pool's counters, so the shared worker shipped with the blind spot."
+}

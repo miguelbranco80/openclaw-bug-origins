@@ -1,0 +1,17 @@
+{
+  "rank": 100901,
+  "sha": "84a5cf931ae68b8be6dd3668b0f730e072100a91",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "697f773c4a8fd883d1ce1d9732dfff41166d1e2d",
+  "cause_pr": 132073,
+  "confidence": "high",
+  "cause_quote": "The original revoke called `await this.policy.update((emails) => {` before changing the grant record, while the sweep selected only entries where `value.expiresAt !== null && value.expiresAt <= Date.now()`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A maintainer saw a Cloudflare error when revoking access, and the visitor could remain authorized until the original expiry or indefinitely for a permanent grant.",
+  "impact": "permissions",
+  "area": "plugins",
+  "summary": "The fix records immediate expiry before contacting Cloudflare so the startup or hourly sweep can retry a failed revocation.",
+  "reasoning": "The introducing diff added both revoke and the expiry sweep, and the path history shows no intervening change before the fix. If the original Cloudflare update failed before removing access, the stored expiry stayed unchanged, so the sweep skipped the grant until its original expiry and skipped permanent grants indefinitely."
+}

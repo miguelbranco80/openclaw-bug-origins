@@ -3,7 +3,7 @@
 
 Reads: sampled_fixes.jsonl, named_cause_study.json.
 Days are the commit time of the fix minus the commit time of the causing change.
-Answer in short: about three weeks for a working thing broken later, unless the fix says what caused it, in which
+Answer in short: one to four weeks for a working thing broken later, unless the fix says what caused it, in which
 case it was fixed within a day.
 
 Usage: python3 questions/q05_how_long_do_bugs_live.py
@@ -35,7 +35,7 @@ def main(quiet=False):
     out.add("size", "named_count", "Broken-later fixes that say what caused the bug", len(named))
     out.add("size", "broke_count", "Broken-later bugs in the sample", len(broke))
     low, high = wilson(len(broke), SAMPLE)
-    out.add("size", "broke_scaled", "Broken-later bugs fixed in the three weeks, scaled from the sample",
+    out.add("size", "broke_scaled", "Broken-later bugs fixed in the period studied, scaled from the sample",
             int(round(len(broke) / SAMPLE * POPULATION, -1)), int(round(low / 100 * POPULATION, -1)),
             int(round(high / 100 * POPULATION, -1)))
     out.add("size", "first_study_median_days", "Median days in the first, wording-based study",

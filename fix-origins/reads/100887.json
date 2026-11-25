@@ -1,0 +1,17 @@
+{
+  "rank": 100887,
+  "sha": "34aff4fa8e919ee1a08dbbfcc3f2bdd0e07faca3",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "919b4fdc2c858c6f734d580abd9f8ad595effa40",
+  "cause_pr": 104210,
+  "confidence": "high",
+  "cause_quote": "The new local audio resolver used `path.join(env.HOME, trimmed.slice(2))`, which collapsed the symlink and following `..` before the filesystem could resolve them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The audio transcription CLI ran the wrong executable when a home-relative PATH entry traversed a symlink followed by `..`.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix passes home-expanded PATH entries to the shared executable resolver so filesystem traversal, embedded delimiters, and PATH order are preserved.",
+  "reasoning": "The introducing diff added the local audio inspector and wired it into the CLI with the faulty lookup already present. Its parent used the same lexical normalization in the older audio runner, whose history stops at the local shallow boundary. I also checked #148270, which made transcription execute the discovered path directly and left the faulty lookup in place."
+}

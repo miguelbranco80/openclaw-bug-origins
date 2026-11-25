@@ -1,0 +1,8 @@
+{
+  "rank": 100261,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "A worker catalog reference backed only by main is treated as plaintext, then written locally as the literal profile ID, overriding the inherited real credential",
+  "outcome": "answered",
+  "note": "The \u201cPreserve inherited profile references in worker catalogs\u201d finding identified how a local import could override an inherited credential, but its proposed fix covered literal profile IDs and would still allow a stale catalog key to be imported. The author responded that the inherited-profile finding had focused regression coverage."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "798c21af7b964cd3a57c9ed3666ae6ade4a6cf02",
+  "cause_pr": 128356,
+  "confidence": "high",
+  "cause_quote": "The initial command-palette catalog search added `const label = normalizeLowercaseStringOrEmpty(item.label);` and compared it with `label.includes(query)`, so canonically equivalent labels and queries in different Unicode forms failed to match.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Searching for a name such as \u201ccaf\u00e9\u201d could omit a command-palette result, Signal alias, or Codex session when the stored text used a different Unicode form.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix applies NFC normalization to both sides of local text comparisons in command-palette catalog search, Signal alias directory search, and Codex CLI session search.",
+  "reasoning": "The palette catalog search shipped with the failing comparison, so its introducing commit is the representative cause for this bundled fix. Signal alias search independently shipped with the same omission in #95738, whose first implementation used `!alias.includes(query)`. The Codex comparison predates the shallow boundary, and the available offline history did not establish its introducing commit.",
+  "rank": 100741,
+  "sha": "99c7f9736aa28918f8108184f6952bc9ec0eb0bf",
+  "rubric": "v1.2"
+}

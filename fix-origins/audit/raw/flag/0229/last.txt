@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The Before merge items focused on rerunning the packaged upgrade after the optional-import correction. The Evidence section described private-path containment as a safeguard and raised no concern about candidate Doctor rejecting dependencies resolved into the staged package."
+  "outcome": null,
+  "note": "The at-merge review has no findings; its items ask for the pending published-2026.9.4 package rerun and generic data-model compatibility proof. It describes private-path containment approvingly and never questions rejecting dependency targets that resolve into the staged candidate package via host links."
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100753,
+  "sha": "61deaaef5879e8acc588b38ab866152056d91427",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The agent ran a different model without warning when a wildcard model policy excluded the configured default.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The shared model selector now logs a sanitized warning naming the configured model, the substitute, and the policy to update.",
+  "reasoning": "At the July 1 shallow boundary, the selector already returned the first allowed catalog model without logging, and the reply caller silently adopted it. Later changes revised how the selector chose an allowed model, but the available history could not establish whether silent substitution shipped with wildcard support or an earlier change removed a warning."
+}

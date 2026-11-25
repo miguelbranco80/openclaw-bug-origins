@@ -1,0 +1,17 @@
+{
+  "rank": 100033,
+  "sha": "ea6dff2bf5294601b370b2db652e80b38fb0359e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "6277d6da1331b039c2603ae89caae5a9bd3c1df0",
+  "cause_pr": 139683,
+  "confidence": "high",
+  "cause_quote": "The commit added `const refused = result.warnings.length > 0 && result.warningDisposition !== \"recoverable\";` and made the migration loop `break` when `receipt.outcome === \"refused\"`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Doctor reported a leftover allowlist for a removed channel account and skipped all later state migrations, including during update-time repair.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Doctor now archives legacy allowlists for removed channel accounts, reports a recoverable warning, and continues unless a separate migration warning requires it to stop.",
+  "reasoning": "I checked the causing commit's parent and verified that pairing migration already warned about unresolved allowlists and that the Doctor loop continued through later steps after collecting those warnings. The causing commit turned the same warning into a refusal and stopped the loop, so a leftover allowlist for a removed account began blocking unrelated migrations."
+}

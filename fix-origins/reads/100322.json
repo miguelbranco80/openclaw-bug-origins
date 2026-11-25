@@ -1,0 +1,17 @@
+{
+  "rank": 100322,
+  "sha": "77224e7672cd03216b24f6793146183703ac3094",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `await params.validateCandidate?.(params.worktreeDir);` with a `Promise<void>` callback that checked failures and discarded the successful canary step results.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A successful Git update report could leave a long interval unexplained because it omitted the time spent copying private state, running Doctor, and starting the test Gateway.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "The fix keeps successful Git canary timings in update reports, adds cleanup and activation timings and Doctor section diagnostics, and prioritizes those records during history compaction.",
+  "reasoning": "I checked the introducing diff and its parent. The parent ran a simpler Git preflight without the rehearsal, and the new rehearsal already returned timed steps internally while its Git callback discarded them. The later refactor made the callback mandatory and preserved that behavior."
+}

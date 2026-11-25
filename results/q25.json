@@ -1,13 +1,13 @@
 [
 {"group": "tests_commits", "metric": "tests_commits_with", "label": "Changes code and tests together", "value": 24833, "low": null, "high": null},
 {"group": "tests_share", "metric": "tests_share_with", "label": "Changes code and tests together", "value": 63.3, "low": null, "high": null},
-{"group": "tests_bugs", "metric": "tests_bugs_with", "label": "Changes code and tests together", "value": 106, "low": null, "high": null},
-{"group": "tests_rate", "metric": "tests_rate_with", "label": "Changes code and tests together", "value": 5.69, "low": null, "high": null},
+{"group": "tests_bugs", "metric": "tests_bugs_with", "label": "Changes code and tests together", "value": 494, "low": null, "high": null},
+{"group": "tests_rate", "metric": "tests_rate_with", "label": "Changes code and tests together", "value": 26.51, "low": null, "high": null},
 {"group": "tests_commits", "metric": "tests_commits_without", "label": "Changes code and no test file", "value": 3779, "low": null, "high": null},
 {"group": "tests_share", "metric": "tests_share_without", "label": "Changes code and no test file", "value": 9.6, "low": null, "high": null},
-{"group": "tests_bugs", "metric": "tests_bugs_without", "label": "Changes code and no test file", "value": 2, "low": null, "high": null},
-{"group": "tests_rate", "metric": "tests_rate_without", "label": "Changes code and no test file", "value": 0.7, "low": null, "high": null},
-{"group": "tests_ratio", "metric": "tests_ratio_without", "label": "Changes code and no test file", "value": 0.12, "low": 0.03, "high": 0.5},
-{"group": "tests_adjusted", "metric": "tests_adjusted_without", "label": "Changes code and no test file", "value": 0.29, "low": 0.07, "high": 1.13},
-{"group": "size", "metric": "bugs", "label": "Sampled bugs whose causing commit is in the list", "value": 108, "low": null, "high": null}
+{"group": "tests_bugs", "metric": "tests_bugs_without", "label": "Changes code and no test file", "value": 11, "low": null, "high": null},
+{"group": "tests_rate", "metric": "tests_rate_without", "label": "Changes code and no test file", "value": 3.88, "low": null, "high": null},
+{"group": "tests_ratio", "metric": "tests_ratio_without", "label": "Changes code and no test file", "value": 0.15, "low": 0.08, "high": 0.27},
+{"group": "tests_adjusted", "metric": "tests_adjusted_without", "label": "Changes code and no test file", "value": 0.32, "low": 0.18, "high": 0.57},
+{"group": "size", "metric": "bugs", "label": "Sampled bugs whose causing commit is in the list", "value": 505, "low": null, "high": null}
 ]

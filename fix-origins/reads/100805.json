@@ -1,0 +1,17 @@
+{
+  "rank": 100805,
+  "sha": "2ab4a04c53b22271edee58ecb36f9385d9f758e9",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d0b48d63efb88ac4f9f5eb447a39ea95cb2b0542",
+  "cause_pr": 163381,
+  "confidence": "high",
+  "cause_quote": "The new `if (!showDebugDetails && !showUpdateDiagnostics)` branch returned the generic failure title and recovery hint before the formatter reached the existing `Reason:` line.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an unexpected Gateway startup error reached the CLI formatter with debug mode off, operators saw a generic failure and a Doctor hint in the service journal with no explanation of the startup error.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix restores a redacted failure reason by default for foreground Gateway starts, including the managed service invocation.",
+  "reasoning": "The causing commit's parent already ran foreground Gateway commands and routed unexpected errors that escaped startup to the shared CLI formatter, which printed a reason before checking whether to print a stack. PR #163381 added an early return that suppressed the reason for ordinary errors without debug or update diagnostics, and later exceptions for update commands left Gateway starts on that path."
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "03e4bc05af6695095c9b8e7b3cc562d067d3e56e",
+  "cause_pr": 134755,
+  "confidence": "medium",
+  "cause_quote": "The new `const settlement = drainNotificationQueue().then(closeProjection);` called `transcriptCheckpoint.flush(true)` before `buildResult` could synthesize and enqueue missing native tool results.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an interrupted Codex turn, the saved transcript could show a native tool call with no matching result.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "The fix synthesizes missing native tool results before normal checkpoint closure, timeout recovery, and exceptional cleanup.",
+  "reasoning": "I checked the causing commit's parent and confirmed that result assembly synthesized missing rows before the final transcript mirror and before cleanup closed the checkpoint. The commit reversed that checkpoint ordering during settlement, so a synthesized row could be lost if the final mirror did not finish. The earlier ordering establishes the regression for normal settlement, while the fix also covers exceptional exits that could skip result assembly entirely.",
+  "rank": 100539,
+  "sha": "3c32976e2908d378f93782616f06638984a81e2f",
+  "rubric": "v1.2"
+}

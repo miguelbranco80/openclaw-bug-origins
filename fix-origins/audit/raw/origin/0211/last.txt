@@ -1,0 +1,17 @@
+{
+  "rank": 211,
+  "sha": "4c79d8f41631ede63a1de20546224ee4c8c37e50",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; archived usage reads did a few short synchronous realpath/exists calls on the Gateway thread.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Made session transcript path resolution usable asynchronously (generator-based shared policy with sync and async drivers) and switched the async archived-usage reader to the async resolver.",
+  "reasoning": "The transcript candidate resolver has always used safeRealpathSync/existsSync (code older than the graft); 59d9759d0250 (#200136) converted only the final existence check in readLatestSessionUsageFromTranscriptFileAsync to async and left the resolver synchronous, so this PR completes a zero-sync-filesystem hardening rather than repairing a behavior that ever worked differently. No user-reported failure; the result (correct usage) was unchanged, only blocking microsecond filesystem probes were removed, which the rubric treats as performance/hardening."
+}

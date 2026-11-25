@@ -1,0 +1,17 @@
+{
+  "rank": 100230,
+  "sha": "5c60120e891f2d7e81d8e40f4227f17060198092",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "678cdf4246e730628c5779034c2d226d8246b325",
+  "cause_pr": 154792,
+  "confidence": "high",
+  "cause_quote": "The transcript sidecar's stop handler added `await import(\"../transcripts/capture-operations.js\")`, so shutdown could first resolve that chunk after the updater had removed it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an in-place update replaced its files, the running Gateway failed to shut down cleanly and reported ERR_MODULE_NOT_FOUND.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix makes Gateway shutdown use cleanup code retained before package replacement and saves transcript notes without starting optional model inference.",
+  "reasoning": "Before #154792, the updater already supported replacing the package while the old Gateway was serving, and transcript shutdown only stopped the existing sidecar, whose startup had already loaded capture-operations if the sidecar ran. The causing diff adds a shutdown-time import even when that sidecar never started, and the 2026.9.6 changelog confirms the change shipped in the release where the missing chunk was observed."
+}

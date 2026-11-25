@@ -1,17 +1,17 @@
 {
   "rank": 124,
   "sha": "fc8c2d0c4d8e49b614382ac7275fec96e3c43608",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
+  "rubric": "v1.2",
+  "origin": "unclear",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "unclear",
-  "user_saw": "Nothing reported; in theory an update could delete another unfinished update handoff's temp directory if it was more than 24 hours old.",
+  "user_visible": "yes",
+  "user_saw": "Running an update could delete another installation\u2019s unfinished handoff directory once it was at least 24 hours old.",
   "impact": "data-loss-or-duplication",
   "area": "update",
-  "summary": "Removed the global 24-hour age-based sweep of openclaw-update-run-handoff-* temp directories from mutable update preparation, leaving cleanup to each helper's own lifecycle.",
-  "reasoning": "The sweeper dates from the original managed-update handoff work (22a0ca9e3b2, May 2026, pre-graft; the only post-graft touch is the 74269ecbfee6 refactor) and deliberately pruned old handoff dirs; the fix is an ownership change (an installation fence should not delete other installations' handoffs) argued from source reading. The PR states the pre-fix deletion was only source-verified, with no reported incident or red baseline, and the failure needs an unfinished handoff older than 24 hours, so this reads as hardening/policy cleanup rather than a reported defect."
+  "summary": "The fix removes the global age-based cleanup of managed-service handoff directories from update preparation.",
+  "reasoning": "The sweeper recursively deleted matching temporary directories based on age alone, without checking ownership or whether the handoff had finished. I checked that #114803 moved an existing sweep behind update admission and that #147019 later moved the same call into a helper. The sweeper predates the available July history, and the offline history could not establish when it first became possible to delete another unfinished handoff."
 }

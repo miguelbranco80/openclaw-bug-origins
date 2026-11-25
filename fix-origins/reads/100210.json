@@ -1,0 +1,17 @@
+{
+  "rank": 100210,
+  "sha": "4a4b116a30c8d09742ee7dc2bc63bf9e26f8df7e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9e21f72f4ca9bba016c6c7b245dca0c641281712",
+  "cause_pr": 151618,
+  "confidence": "high",
+  "cause_quote": "The initial pasted-text chip called `void this.loadExcerpt(this.src, controller);` in `willUpdate` as soon as a source was available, with no viewport or focus check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Scrolling attachment-heavy chat history triggered extra metadata requests and pasted-text excerpt downloads for chips far outside the viewport.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix defers metadata resolution for pasted-text and grouped comment chips until they approach the viewport or receive focus, which also delays pasted-text excerpt downloads.",
+  "reasoning": "The pasted-text chip's introducing diff resolves its source during rendering and starts an excerpt read as soon as that source is available. The grouped-comment path independently shipped eager metadata resolution in #148649 while already gating body reads on reveal. I checked that #155623 added viewport deferral for other attachment cards while preserving the existing eager behavior for text chips."
+}

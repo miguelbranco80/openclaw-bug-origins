@@ -1,0 +1,17 @@
+{
+  "rank": 69,
+  "sha": "6091f622fe4dc75c495c091b81afdde5298c99d2",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "34e607682be52d3a35419daf8ba923ac10c49a1e",
+  "cause_pr": 183800,
+  "confidence": "low",
+  "cause_quote": "#183800 added `const positioning = this.initialRange.preparingEnd || this.offsetState.pendingScrollOffset; if (source === \"auto\" && (positioning || !this.canAutoFollow())) return false;`, so automatic end-follow stops renewing the destination while end preparation is active, even after virtual-core's scroll journey expires and the stream keeps growing.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing End in the Control UI chat transcript while tool results streamed stopped thousands of pixels above the bottom.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "Plain End on the transcript is routed to the pane's manual Latest action (preventing the native default), and an auto follow during end preparation now re-issues scrollToEnd when the destination has grown instead of short-circuiting.",
+  "reasoning": "The removed short-circuit (`preparingEnd && scrollCommand.target === 'end'` returning true) was reshaped by d122c1b06011 hours earlier, but `git log -S preparingEnd` shows the preparation state and the auto-follow bail-out were first added by 34e607682be5 (#183800, Nov 5); before it, every auto follow called scrollTranscriptToEnd and renewed the destination. The fix's reproduced failure is exactly that non-renewal after the journey expires, but #183800 is a 192-file perf change and I did not verify End followed a long stream before it, and the PR admits part of the historical miss is unexplained, hence low confidence."
+}

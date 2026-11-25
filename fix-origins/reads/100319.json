@@ -1,0 +1,17 @@
+{
+  "rank": 100319,
+  "sha": "745efb1629b662357b845e7db69c758e341b2c07",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "other",
+  "summary": "The fix rewrites the Talk JSON lookup with Kysely\u2019s expression builder and injects the invalid incognito grant through the test fixture to restore both static checks.",
+  "reasoning": "The path history and fix diff trace the raw Talk expression and the incognito lint suppression to #165546 and #165548, respectively. The PR reports that the failures were confined to the architecture and suppression-inventory checks, with Talk\u2019s indexed lookup and malformed-JSON handling preserved and the incognito rejection assertion unchanged."
+}

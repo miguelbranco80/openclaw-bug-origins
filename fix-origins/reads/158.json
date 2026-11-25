@@ -1,17 +1,17 @@
 {
-  "rank": 158,
-  "sha": "0971c086cb8b2265bb140bee0db53c3142799704",
-  "rubric": "v1.1",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing functionally wrong; broad sessions_search calls did somewhat more Gateway main-thread work on large archives (about 12% more CPU in a synthetic 3,500-session benchmark).",
+  "user_visible": "yes",
+  "user_saw": "Broad session searches could take longer when the Gateway had thousands of archived sessions.",
   "impact": "slower-or-heavier",
   "area": "agents",
-  "summary": "Replaced sessions_search's paged active+archived full-row listing (repeated for the requester's agent) with one tagged dashboard summary inventory plus an exact requester-owned global lookup, and added that lookup to the embedded Gateway adapter.",
-  "reasoning": "The PR is a performance optimization measured on a synthetic workload with unchanged search results; it reports no user incident and does not claim an earlier commit made discovery slower. The duplicate-scan design was how the tool's discovery was written, so this is a performance improvement of code that was never faster, which the rubric treats as not-a-defect."
+  "summary": "The fix replaces repeated full-row scans with one paginated summary scan and looks up the requester's global session directly when needed.",
+  "reasoning": "The introducing diff for #105057 already ran `await listPages()` followed by `await listPages(params.unscopedAgentId)` for unrestricted searches, and path history traces the second call to that introduction. The baseline passed the search-result assertions, and the synthetic benchmark returned the same candidate keys while using less Gateway CPU and memory after the fix. The evidence supports a performance improvement to the original behavior.",
+  "rank": 158,
+  "sha": "0971c086cb8b2265bb140bee0db53c3142799704",
+  "rubric": "v1.2"
 }

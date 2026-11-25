@@ -1,0 +1,8 @@
+{
+  "rank": 100150,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge finding on retained authority asks whether a revoked owner can still modify the package, and the earlier recovery-guidance finding concerns legacy journal discovery. Neither addresses the retry path that reports an update as running because the cancelled updater\u2019s lease survives its exit."
+}

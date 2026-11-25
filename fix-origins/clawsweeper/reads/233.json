@@ -1,0 +1,8 @@
+{
+  "rank": 233,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The restart refusal test item asks for revoking a requester whose source was already captured. It does not address the missing reason in the skipped-resume warning when the source could not be captured in the first place."
+}

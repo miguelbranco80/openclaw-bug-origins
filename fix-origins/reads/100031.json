@@ -1,0 +1,17 @@
+{
+  "rank": 100031,
+  "sha": "cce505d4b3315811552d4b6834181c14f340ca67",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "77575d74f68cc11023a9f6830c53a7150b89c35e",
+  "cause_pr": 100290,
+  "confidence": "high",
+  "cause_quote": "The outbox feature added `ChatBubbleContainer(style = bubbleStyle(\"user\").copy(borderColor = statusColor.copy(alpha = 0.6f)), roleLabel = \"You\", ...)`, putting pending messages in a 90%-width container while confirmed user messages used 84%.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Android, outgoing messages changed width when delivery was confirmed, and the assistant\u2019s working indicator had a different shape and width from the reply that followed.",
+  "impact": "presentation",
+  "area": "apps",
+  "summary": "The fix gives pending, working, streaming, and confirmed messages the same bubble geometry for each speaker while preserving their actions.",
+  "reasoning": "I checked the outbox introduction and its parent: confirmed user messages already used 84% width, and the new outbox row used 90% on its first appearance. The assistant mismatch had a separate path: #112221 wired the 90%-width working indicator alongside 94%-width replies. The later parity redesign changed reply geometry while the existing mismatch persisted."
+}

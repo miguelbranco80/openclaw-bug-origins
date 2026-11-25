@@ -1,17 +1,17 @@
 {
   "rank": 145,
   "sha": "7cb238ad89ab8054f177cf6c6038f11166bb08b6",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "never-worked",
   "cause_sha": "47f78a32eb9ece6564aae5184113d29097a78c36",
   "cause_pr": 120457,
-  "confidence": "medium",
-  "cause_quote": "The server-compaction replay match introduced in openai-responses-compaction-replay.ts included `state.model === context.model &&`, so a checkpoint written by one model was never replayed after a model switch.",
+  "confidence": "high",
+  "cause_quote": "The initial OpenAI Responses checkpoint replay matcher required `state.model === context.model &&`, so it rejected a saved checkpoint whenever the session switched models.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "Sessions that switched models (fallbacks, overrides, alternation) dropped their server compaction checkpoint, resent the full raw history and fell back to client summarization.",
+  "user_saw": "After a model switch, a compacted session resent its full history and could fall back to client-side summarization.",
   "impact": "slower-or-heavier",
   "area": "models/providers",
-  "summary": "Removed the model id from the provider replay fence so compaction checkpoints and replay items survive model switches within the same provider API, endpoint and session.",
-  "reasoning": "GraphQL blame puts the removed `state.model === context.model` line in #135727 (ef681015), a refactor that moved the fence; #200063's description says the fence was added in #120457, and that PR's diff (47f78a32) adds `state.model === context.model &&` to the original compaction replay match. Server compaction therefore never survived a model switch from the start, which the incident host saw on 357 of 800 dropped-checkpoint turns. The fence was a deliberate conservative choice, now relaxed after raw API checks showed providers accept cross-model items; that makes the not-a-defect reading arguable, so cause confidence is medium."
+  "summary": "The fix preserves provider compaction checkpoints across model switches by removing model ID from the replay compatibility check.",
+  "reasoning": "The introducing diff for OpenAI Responses checkpoint replay already rejected model mismatches, and path history shows that session model fallback predated that change. The initial Anthropic implementation imposed the same restriction, and the later shared-matcher refactor carried it forward unchanged. The fix's reported API checks confirmed that both providers accepted checkpoints across the tested model switches."
 }

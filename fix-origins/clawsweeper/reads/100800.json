@@ -1,0 +1,8 @@
+{
+  "rank": 100800,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cKeep Active Memory inactive without explicit configuration\u201d item and the at-merge \u201cResolve merge risk\u201d item both address when escalation is enabled by default. Neither examines why the recall-intent check skips deep recall for French questions after a weak initial lookup."
+}

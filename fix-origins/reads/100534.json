@@ -1,0 +1,17 @@
+{
+  "rank": 100534,
+  "sha": "dcb8c0eb4224fc07beb3604bae8708c0bc861cc5",
+  "rubric": "v1.2",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "The fix names the replica cell snapshot before iterating and updates the gateway worker test to expect inventory discovery at startup and reuse during the next event.",
+  "reasoning": "The replica loop already copied the map values before iterating, so assigning that copy to a local variable preserves runtime behavior and removes the lint suppression. I checked the preceding performance commit, which deliberately added inventory memoization, and the revised test still checks that entry reads reach the worker while accounting for inventory reuse."
+}

@@ -1,17 +1,17 @@
 {
   "rank": 213,
   "sha": "b4068cb5ca0b5c83dc2f428f7036b1c7dccff762",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
-  "trigger_sha": "69eb76e6347b37573f91b01240e6b1d6c12871d2",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "69eb76e6347b37573f91b01240e6b1d6c12871d2",
+  "cause_pr": 201407,
+  "confidence": "high",
+  "cause_quote": "The transcript avatar diff changed the launch link from `label={props.launch.label!}` to `label={name()}`, which renders `SubagentName` with the child session key, and left the completion row rendering its generic robot and plain-text name.",
+  "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A subagent's completion row in the chat transcript showed a generic robot icon instead of the colored avatar shown on its launch row.",
+  "user_saw": "A named subagent appeared with a colored avatar when launched and a generic robot icon when it finished.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Completion rows for named subagents now render the session-keyed SubagentName avatar/name component and drop the generic robot icon, keeping it only for anonymous completions.",
-  "reasoning": "The completion row was created in 18136c960eaf (#198133) with a generic bot icon, before any avatar component existed; the SubagentName avatar was added four days later by 69eb76e6347 (#201407) to launch/activity rows only. Nothing that worked stopped working: this extends a cosmetic avatar treatment to one more row type, which the rubric treats as a presentation change rather than a defect (69eb76e6347 is recorded as the change that made the inconsistency noticeable)."
+  "summary": "The fix uses the same session-keyed avatar for named subagent completions and keeps the generic robot for anonymous summaries.",
+  "reasoning": "I checked the avatar commit's diff and its parent's completion renderer. The completion renderer already used a generic robot, and the avatar commit added colored avatars to launch rows while leaving completion rows untouched, so the mismatch existed from the first release of transcript avatars."
 }

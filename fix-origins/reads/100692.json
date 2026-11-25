@@ -1,0 +1,17 @@
+{
+  "rank": 100692,
+  "sha": "3f1fed52af74aaf8e54e49781d895008c0f3e3f7",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0e7f8c9ce963ed4ffd7a0b154503e2e09dd90802",
+  "cause_pr": 125128,
+  "confidence": "high",
+  "cause_quote": "The original snapshot store ran `this.revisions.set(sessionKey, (this.revisions.get(sessionKey) ?? 0) + 1);` on each snapshot write and left the key in the map after the write settled.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "The fix releases each session\u2019s snapshot invalidation metadata when its last reader or queued write settles, while preserving stale-result rejection.",
+  "reasoning": "The feature\u2019s introducing diff wired chat navigation into snapshot caching and added a revision map that retained every written session key until a full clear. Path history and the later read-scope diff show that read-only captures eventually began retaining keys too, extending the retention defect that already shipped with snapshot writes. The fix PR\u2019s heap census confirmed retained entries after navigation, with no visible UI effect or demonstrated reduction in total heap."
+}

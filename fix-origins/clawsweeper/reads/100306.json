@@ -1,0 +1,8 @@
+{
+  "rank": 100306,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cAdd real behavior proof\u201d item focused on authorization and revocation before GitHub writes. The at-merge review listed no findings and raised no concern about how GitHub chooses the squash commit title for a one-commit PR."
+}

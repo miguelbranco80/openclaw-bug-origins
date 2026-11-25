@@ -1,6 +1,0 @@
-{
-  "flagged": "none",
-  "where": null,
-  "quote": null,
-  "note": "The Tests section focused on keyboard dismissal, menu focus, selection, and accidental sends. The Staged integration boundary noted that production callers did not yet pass mobileComposer, without raising the risk that wider drawer-navigation windows would collapse the composer and hide its toolbar."
-}

@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the system clock jumped during `voicecall continue`, the command could report a timeout too early or keep polling past its configured budget.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "The fix measures the voice-call continue polling deadline and remaining time with `performance.now()`.",
+  "reasoning": "The oldest available version already used `Date.now()` for both the polling deadline and the remaining sleep budget, so a wall-clock jump could already shorten or extend polling. PR #109053 reused that calculation to cap individual gateway requests, and later refactors preserved the wall-clock dependency. The offline history did not reach the introduction of the polling loop, so I could not verify whether it shipped with the defect or acquired it later.",
+  "rank": 100254,
+  "sha": "94891f92a63130918f93ffd4dc20d30c14c156c0",
+  "rubric": "v1.2"
+}

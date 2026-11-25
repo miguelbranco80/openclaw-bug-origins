@@ -1,17 +1,17 @@
 {
   "rank": 111,
   "sha": "907e17b9ff49063230cb0bc745a662700128c47d",
-  "rubric": "v1.1",
-  "origin": "latent",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "99f5d0f8e4e0b1f8bee63b631620439069ac3003",
+  "cause_pr": 177067,
+  "confidence": "high",
+  "cause_quote": "The worker began using `state.createRoot = createNativeRoot`, whose host callback ran `reply.root = nativeRoots.allocate()` and synchronously created the native capture root on the Gateway thread.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "The Gateway froze for about two seconds while a plugin was being prepared on a host whose btrfs filesystem was waiting on a transaction commit.",
-  "impact": "slower-or-heavier",
+  "user_saw": "The Gateway could stop responding briefly when the filesystem delayed directory creation during plugin preparation.",
+  "impact": "sequence-or-timing",
   "area": "gateway",
-  "summary": "Moved creation and custody of plugin source/native capture roots and staging tokens from the Gateway main thread into the existing spawn-broker resource owner, so filesystem create stalls no longer block the event loop.",
-  "reasoning": "The removed code did ordinary synchronous mkdtemp/metadata calls on the main thread as designed by the preparation-worker work (#172750, #184753); nothing regressed, and the stall came from the Team host's btrfs create waiting on a filesystem transaction (incident 2026-11-16), an environmental condition outside the code. The fix is an architectural off-main-thread move with accepted CPU/latency costs, so it is classified latent rather than a regression or never-worked; one could also argue not-a-defect (performance hardening), but there was a real reported stall."
+  "summary": "The fix moves physical source and native capture root and staging token creation into the broker so filesystem delays leave the Gateway event loop responsive.",
+  "reasoning": "I checked the causing diff and its parent, where native admission called `createPluginNativeCaptureRoot` directly inside the preparation worker. PR #177067 redirected that same operation to the Gateway host, where a slow synchronous create blocked the event loop. The fix also covers source and catalog allocations that already ran on the host, so the cited cause applies specifically to the native capture regression."
 }

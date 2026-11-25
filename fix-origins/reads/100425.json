@@ -1,0 +1,17 @@
+{
+  "rank": 100425,
+  "sha": "574927f256fa1a5355985b3d657d357abdd3fffb",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6c66f48a7c1144eaa40b2927fe9823ae0f93151a",
+  "cause_pr": 124849,
+  "confidence": "high",
+  "cause_quote": "The new `onError: (err) =>` callback called `defaultRuntime.writeJson(formatCliJsonFailure(err))`, but the config mutation handler caught these usage errors and exited before that callback could run.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `config patch` or `config unset` with `--json` and without `--dry-run` exited with status 1 and printed a diagnostic to stderr, leaving stdout empty.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix makes `config patch` and `config unset` emit the standard JSON failure envelope when `--json` is used without `--dry-run`.",
+  "reasoning": "I checked #124849 and its parent and confirmed that both commands already caught this usage error locally, where the handler wrote JSON only if `dryRun && json` and otherwise printed to stderr and exited. #124849 introduced the documented JSON failure contract but left that handler unchanged, so these invocations fell short of the contract from the day it shipped."
+}

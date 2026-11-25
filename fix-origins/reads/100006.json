@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With host reads enabled, the agent could open an image with `read` but got an allowed-directory error from `view_image` for the same file.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix adds the referenced file\u2019s parent directory to the media tool\u2019s allowed roots when the run is unsandboxed and its filesystem policy sets `workspaceOnly: false`.",
+  "reasoning": "The earliest available source already shows the image tool using a fixed media-root list while unsandboxed `read` skips the workspace guard when `workspaceOnly` is false. The July refactor preserved that restriction, and the August rename to `view_image` left it in place. The mismatch predates the July 1 shallow boundary, and the available offline history could not establish when it began or whether host paths had worked before.",
+  "rank": 100006,
+  "sha": "f113dde017ecb6dcf91af45e0bf3a4057f867d90",
+  "rubric": "v1.2"
+}

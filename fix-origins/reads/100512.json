@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the sidebar or chat header, the Assign to submenu could stay open and keep its highlight after the pointer moved onto Fork conversation.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix disables pointer hit testing on Web Awesome\u2019s submenu hover triangle so neighboring rows can receive hover events.",
+  "reasoning": "The fix\u2019s Chromium reproduction shows that the hover triangle intercepted pointer movement from a tall assignee submenu to a sibling row. The Web Awesome safe-triangle logic predates the switch to the full user directory in #136978, but the earlier assignment menu could also render long lists. The diffs and tests I checked do not establish when this pointer path first failed.",
+  "rank": 100512,
+  "sha": "014ec10943923ea0faea8cabb940d1892290a99a",
+  "rubric": "v1.2"
+}

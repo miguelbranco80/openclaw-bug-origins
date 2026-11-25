@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "253b784468c6cf5fae20d2613b91489018123ab7",
+  "cause_pr": 101076,
+  "confidence": "high",
+  "cause_quote": "The original scenario used `waitForOutbound` with `textIncludes: { ref: config.expectedMarker }` and saved that match as `outbound`, so a matching preview could satisfy the reply-shape assertion before the final arrived.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible in the product. The QA CLI could report a pass even when Discord sent the final as a quoted reply.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix applies the configured Discord reply policy and validates the retained final by its native delivery receipt after the channel run completes.",
+  "reasoning": "The scenario's introducing diff selects an outbound message by marker, and the transport implementation at that commit returns the first match without waiting for completion. Discord support arrived later, and a subsequent recorder refactor also omitted quote metadata, but the scenario's ability to pass on a preview was present from its first revision.",
+  "rank": 100481,
+  "sha": "268fdc552c41de60f9d8a9720c5e2c969c16b842",
+  "rubric": "v1.2"
+}

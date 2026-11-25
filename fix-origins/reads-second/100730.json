@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the system clock jumped during ChatGPT device-code sign-in, the authorization could time out early or keep polling past 15 minutes.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "The fix uses a monotonic clock to calculate and enforce the 15-minute device-code polling deadline.",
+  "reasoning": "The July 11 diff shows that the existing poller already compared its deadline against Date.now() and used setTimeout for poll delays, so it was already sensitive to clock jumps. The July 16 change reused that deadline to cap individual requests. The offline history stops before July 1, so I could not verify whether the wall-clock deadline shipped with the original poller or replaced an earlier implementation.",
+  "rank": 100730,
+  "sha": "5462f7f146436a50a56354dd39f8405eaeb5b60f",
+  "rubric": "v1.2"
+}

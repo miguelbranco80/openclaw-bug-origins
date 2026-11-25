@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "7043f8fb4f6af6023f59934505573f748379b505",
+  "cause_pr": 147571,
+  "confidence": "high",
+  "cause_quote": "The Gateway added `state: currentActivity?.executionState ?? \"unknown\"`, and the task detail label began displaying \u201cActivity unknown\u201d whenever `task.execution?.state === \"unknown\"`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The task detail panel showed \u201cActivity unknown\u201d for a live CLI-backed task before activity events arrived or after they were cleared.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix uses the matching live CLI run to report Running or Queued when activity is missing and republishes task summaries when run ownership or queue capacity changes.",
+  "reasoning": "I checked the task detail renderer in the causing commit\u2019s parent and confirmed that it labeled active tasks from their stored status, so Running appeared even without activity events. The causing diff added a separate execution status whose native lookup covered only subagents, then made the existing label prefer Unknown over the stored status when a CLI run had no cached activity.",
+  "rank": 100136,
+  "sha": "6f6e7fe7eaacd4c1b5a607b73421be22767dfb18",
+  "rubric": "v1.2"
+}

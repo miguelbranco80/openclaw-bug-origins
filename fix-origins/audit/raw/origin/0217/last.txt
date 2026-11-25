@@ -1,0 +1,17 @@
+{
+  "rank": 217,
+  "sha": "bbbf6cb3f308b66c8f7cbfbda3e6c74f2258332e",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "While Codex retried a model request, chats showed only a typing indicator for minutes with no explanation of the delay.",
+  "impact": "presentation",
+  "area": "channels",
+  "summary": "Tags Codex app-server retry status with reason codex_retry and projects it through the existing model-wait progress path so chats show a transient \"Still working. Retrying\u2026\" notice.",
+  "reasoning": "The model-wait progress projection added in 8e02fdeaaa2e (#172951) was designed for waiting_for_model phases (local model responses and slot waits) and never covered provider retries; the fix adds a new progress notice for a new phase rather than restoring behavior that once worked. Nothing failed: typing was shown and the final answer arrived, so this is a UX enhancement framed as a fix."
+}

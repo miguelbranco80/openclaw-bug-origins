@@ -1,0 +1,17 @@
+{
+  "rank": 100711,
+  "sha": "368ec5c22d8cb1a3a5d106d305fee47eb3b08891",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "a95486cefc677fcc3905252f17813232c09b1d28",
+  "cause_pr": 113698,
+  "confidence": "high",
+  "cause_quote": "The initial Side chat question input used `?disabled=${!this.connected || this.companion.pendingQuestion !== null}`, which disabled typing whenever a question was pending.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users could not type a follow-up question in Side chat until the current answer finished.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix keeps the Side chat question box editable with its normal placeholder during an answer and continues to block sending until the answer finishes.",
+  "reasoning": "The commit that introduced the Side chat composer already disabled its question input while an answer was pending. I checked the later turn-history refactor and confirmed that it carried the same restriction forward using the new pending-turn state."
+}

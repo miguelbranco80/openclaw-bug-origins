@@ -1,17 +1,17 @@
 {
-  "rank": 229,
-  "sha": "dab086c0d82b781114fda0ac0727136fd4cc68f6",
-  "rubric": "v1.1",
-  "origin": "never-worked",
+  "origin": "regression",
   "cause_sha": "3c34fffbf795fee09ebafc0b5186b32942256bc7",
   "cause_pr": 146616,
   "confidence": "medium",
-  "cause_quote": "The new rehearsal check added `if (isPathInside(privateRoot, reference.source) && isPrivateLookup(reference.specifier)) { assertPrivate(reference.target); }`, where assertPrivate accepts only targets inside the private rehearsal root, so dependencies reached through host links into the staged candidate package are rejected.",
+  "cause_quote": "The new Doctor preflight called `assertPrivate(reference.target)` for private plugin lookups and rejected targets when `!isPathInside(privateRoot, resolvePathViaExistingAncestorSync(file))`, even when the resolved dependency was inside the staged package.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "On a Windows npm-global install, every managed update rolled back during candidate Doctor with 'Plugin dependency is outside the temporary update copy' for the staged package's own typebox dependency.",
+  "user_saw": "On affected Windows npm-global installs, managed updates repeatedly rolled back after Doctor reported that a staged typebox dependency was outside the temporary update copy.",
   "impact": "failed-every-time",
   "area": "update",
-  "summary": "Lets candidate Doctor accept dependency targets of private plugin copies that resolve into the canonical staged candidate package (in addition to the private rehearsal root), while plugin entries and repair writes stay private-only.",
-  "reasoning": "Blame of every removed assertPrivate line points to 3c34fff (#146616), which created update-candidate-plugin-repair.ts and the private-only target assertion; at that commit update-candidate-plugin-tree.ts already projected host links to the candidate root (`relocations.push({ sourceRoot: host, destinationRoot: candidateRoot })`, `hostLinks`), so the conflict existed from the start. Medium because I did not confirm that the dependency inspection at 3c34fff traversed host-link files the same way as at the fix parent (it was later made async in #188787)."
+  "summary": "Candidate Doctor now accepts dependency targets from private plugin lookups when they resolve inside either the private rehearsal copy or the staged OpenClaw package.",
+  "reasoning": "The parent commit already created Windows junctions to the staged host, and its snapshot test verified that a copied plugin could load through such a link. PR #146616 added the Doctor preflight assertion that rejected dependencies reached outside the private root. The fix PR reproduced the rejection with junction-compatible symlinks, but the exact Windows importer and a full pre-change Windows update remain unverified.",
+  "rank": 229,
+  "sha": "dab086c0d82b781114fda0ac0727136fd4cc68f6",
+  "rubric": "v1.2"
 }

@@ -1,0 +1,8 @@
+{
+  "rank": 100850,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items ask for visual inspection of the emulator captures. The Introduced patch and action boundary section describes popup cancellation as intended behavior and raises no concern that a one-pixel size mismatch could close the menu."
+}

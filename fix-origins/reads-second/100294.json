@@ -1,0 +1,17 @@
+{
+  "rank": 100294,
+  "sha": "b5555b0bd9ed987d09fcdd5375031c023f25db7c",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Windows npm update aborted when another process briefly locked the installed package directory.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The updater now retries the Windows package backup rename on transient lock errors, revalidating update authority and filesystem identity before each retry.",
+  "reasoning": "PR #136329 replaced the existing npm backup move helper with `await fs.rename(targetSwapRoot, backupRoot)`, which aborts the swap on the first rename error. I checked the parent call site and its recovery tests, which establish a copy fallback for cross-device moves but leave the earlier helper's behavior under transient Windows locks unverified."
+}

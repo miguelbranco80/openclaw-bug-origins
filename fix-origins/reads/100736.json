@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "87ceec92ecdcbf259c6f0a0d7c3a45f49e8d9e98",
+  "cause_pr": 139722,
+  "confidence": "high",
+  "cause_quote": "The new package preflight ran before same-version completion and threw an update refusal at `if (!snapshot.valid || snapshot.readError) {`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A plain `openclaw update` exited with `invalid-config` on an already-current npm installation whose legacy settings Doctor could repair.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix prepares a Doctor repair plan for the selected config before installed admission so the existing finalizer can apply it during same-version maintenance.",
+  "reasoning": "In the causing commit\u2019s parent, the same-version path could complete successfully with a readable legacy config and leave its bytes intact. The commit added strict config validation before that path, while the later Doctor planning code still required `--channel` at startup. I checked the earlier identical-package repair as well, and its fallback required candidate config admission, which the plain already-current path skips.",
+  "rank": 100736,
+  "sha": "3f94ecd5feeba009bec3f6a1a1febdf420a71def",
+  "rubric": "v1.2"
+}

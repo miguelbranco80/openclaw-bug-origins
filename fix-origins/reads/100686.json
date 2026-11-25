@@ -1,0 +1,17 @@
+{
+  "rank": 100686,
+  "sha": "0e92339af24b0d16dbe34f4316ae5ce0f9f9ac43",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Windows under Bun, a plugin's require.resolve() call for an SDK alias returned a filename with forward slashes.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "The fix converts SDK alias targets to platform-native filenames at the native resolver boundary while preserving Jiti's alias spelling.",
+  "reasoning": "The parent of #139997 already returned SDK targets from the slash-normalized Jiti map, and the July 1 snapshot shows the same behavior, so the blamed on-demand rewrite carried it forward. I checked the later Bun resolver integration, which also passed the target through directly, but the available history did not establish when the wrong filename first became observable under Bun or whether the same setup had previously returned native filenames."
+}

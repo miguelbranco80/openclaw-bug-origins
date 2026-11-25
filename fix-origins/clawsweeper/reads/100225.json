@@ -1,0 +1,8 @@
+{
+  "rank": 100225,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cWhat this changes\u201d section describes draft retention when reordering widgets, and \u201cProvenance checked\u201d marks widget retention as preserved. The \u201cBefore merge\u201d items address locale refresh and native-plugin handle revocation, with no concern about stale visibility tearing down the MCP iframe when a minimized panel reopens."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100852,
+  "sha": "5657b48391ec77d96fb4e08d1abbbdc15efaaafe",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After the Sessions list refreshed, a replacement with the same key could appear selected and be deleted when the user confirmed bulk deletion.",
+  "impact": "data-loss-or-duplication",
+  "area": "ui",
+  "summary": "The Sessions page now captures session identity when a row is selected, clears stale selections after refresh, and rechecks them after confirmation.",
+  "reasoning": "Before the July UI refactor, bulk selection already stored only keys, refresh could replace the displayed rows, and deletion sent those keys to the Gateway. The August confirmation fix moved the row lookup ahead of the dialog, leaving the earlier window between selection and opening the dialog exposed. The key-only behavior predates the shallow boundary, and the older path history could not be read offline to verify its introducing commit."
+}

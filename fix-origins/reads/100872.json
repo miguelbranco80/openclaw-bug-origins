@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "517d0b1c2c570fa4f21ea71d52922ef596bb36db",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new detector set `activity.repeatedRequestFirstStartedAt = params.now ?? Date.now();` on the initial request, so the first retry inherited the time already spent on that request.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a long model response hit its output limit, the first corrective retry could be canceled within seconds.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix starts the stagnation clock on the first retry and keeps the same deadline for subsequent retries until semantic progress or an owner change resets it.",
+  "reasoning": "The path history and introducing diff show that the same commit added both the repeated-request clock and the recovery check that aborts when its age reaches the threshold. The original code exposed the age as soon as the second request started, so an initial response that had already outlasted the threshold made the first retry immediately eligible for cancellation.",
+  "rank": 100872,
+  "sha": "f02f2de695169db662dae961fc5c19951f0f4a28",
+  "rubric": "v1.2"
+}

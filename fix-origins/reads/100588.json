@@ -1,0 +1,17 @@
+{
+  "rank": 100588,
+  "sha": "ab7cbee8a2ffdf117aa318c4ac66efe9334c67ca",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw path set` could report success while silently deleting unrelated Markdown metadata and comments.",
+  "impact": "data-loss-or-duplication",
+  "area": "cli",
+  "summary": "Markdown edits now patch the selected source range and preserve untouched bytes in both the body and frontmatter.",
+  "reasoning": "The oldest available source already rebuilt the entire document from an index that omitted YAML continuation lines and standalone comments. I checked that #140150 retained that reconstruction when it renamed the renderer. The path history stopped at the July 1 shallow boundary, so I could not verify whether Markdown editing shipped with this behavior or acquired it earlier."
+}

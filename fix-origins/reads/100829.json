@@ -1,0 +1,17 @@
+{
+  "rank": 100829,
+  "sha": "65485f6adee955abe60d18ec3277ff9bd77e1309",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "d98459427de98ad4bbcb4a9b578b3aa51d83473f",
+  "cause_pr": 153597,
+  "confidence": "high",
+  "cause_quote": "The commit added `clearChromeMcpSnapshotRefsForTarget(getChromeMcpRoutingState(target.lease.session), params.targetId)` at the start of `withChromeMcpDocument`, deleting the target\u2019s snapshot references before each condition probe.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a condition wait in an existing Chrome session, a click using a still-valid element reference from the preceding snapshot failed with an unknown-reference error.",
+  "impact": "sequence-or-timing",
+  "area": "other",
+  "summary": "The fix preserves usable snapshot references during condition waits and bundles a patched Chrome DevTools MCP runtime that rejects stale references after renderer replacement.",
+  "reasoning": "The causing commit\u2019s parent already polled through `withChromeMcpDocument` and left the existing reference map intact, so actions could still resolve references to unchanged elements after a wait. PR #153597 made the first poll delete those mappings unconditionally. The fix also addresses a separate renderer ID collision in the published MCP runtime."
+}

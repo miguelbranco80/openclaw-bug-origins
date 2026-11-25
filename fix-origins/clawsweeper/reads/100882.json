@@ -1,0 +1,8 @@
+{
+  "rank": 100882,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier \u201cPreserve synchronous finalization for mixed capture sessions\u201d finding addressed a cleanup exception when legacy and async callers shared a session. The at-merge \u201cRelease check\u201d noted the absence of async capture storage in the latest release without raising the risk that QA Lab and the Slack adapter would fail to load when their new SDK imports were missing."
+}

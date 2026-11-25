@@ -1,17 +1,17 @@
 {
   "rank": 36,
   "sha": "86c93003e2ab1eb1ea29859a39931675e6164d7d",
-  "rubric": "v1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "92e16d25ce01f301ba3d98ab5640faf8319b72d5",
+  "cause_pr": 192135,
+  "confidence": "high",
+  "cause_quote": "The provider-rail redesign added `.chat-controls__model-menu { height: 350px; flex: 0 1 350px; }` on desktop, giving the empty picker the same fixed height as a populated one.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "With no models available, clicking the composer's model control opened a large, mostly empty picker that overflowed the composer instead of taking them to setup.",
+  "user_saw": "On an unconfigured installation, opening the composer\u2019s model control showed an oversized picker with a search field and no models.",
   "impact": "presentation",
   "area": "ui",
-  "summary": "Replaced the model picker with a direct 'Set up a model' button when the loaded catalog is empty (including automatic account selection), and moved search/shortcut wiring into the lazy panel to stay within the bundle budget.",
-  "reasoning": "Issue #200612 asks for new behavior ('replace the model control with a Set up models button'); the fix does not repair the empty picker but swaps it for a setup action, which is a UX/product change. The oversized empty popover traces to the fixed 'height: 350px' added by feat #192135 (92e16d25ce0), but that cosmetic aspect is not what the fix changes, so this is classed as a design change rather than a regression or never-worked defect."
+  "summary": "The fix replaces the composer\u2019s picker with a direct Set up a model button when the catalog is confirmed empty and setup is available.",
+  "reasoning": "I checked the parent of #192135 and confirmed that the empty picker sized to its content and offered a working setup action inside the menu. The redesign imposed a 350px desktop height that still applied to the empty automatic-account state at the fix\u2019s parent. The fix addresses that presentation regression by moving setup directly into the composer."
 }

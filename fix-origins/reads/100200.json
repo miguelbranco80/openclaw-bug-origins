@@ -1,0 +1,17 @@
+{
+  "rank": 100200,
+  "sha": "dd761684c62564bca861ff9f4b8f7a6cfd517401",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "89fcceb655c193604bfef0f73e5c23871ea0c3dd",
+  "cause_pr": 142063,
+  "confidence": "medium",
+  "cause_quote": "The new standalone callback used `return await buildModelsListResult({` with the prepared owner but entered no scope for that owner's plugin registry.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running `openclaw models list --refresh` without a Gateway showed configured Anthropic models as unavailable even when Claude Code was logged in.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix uses the catalog owner's plugin registry to prepare model availability and resolve CLI runtime bindings.",
+  "reasoning": "I checked the introducing diff and its parent. PR #142063 added `--refresh` and routed standalone listing through a prepared owner, replacing a separate CLI path that supplied native auth results for detailed lists. The new projection passed the registry to selected helpers but left row auth evaluation unscoped, and the available reproduction covers later main, so first-release failure is inferred from the code."
+}

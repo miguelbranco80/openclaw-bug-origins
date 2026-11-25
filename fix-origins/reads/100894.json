@@ -1,0 +1,17 @@
+{
+  "rank": 100894,
+  "sha": "64b97d4663329f397296b2edc014e9532162cbb1",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A guest using the messaging profile could still run native shell commands through Codex.",
+  "impact": "permissions",
+  "area": "agents",
+  "summary": "The fix disables Codex native execution when the effective tool profiles, including their alsoAllow entries, omit a required capability.",
+  "reasoning": "At the shallow boundary, the Codex native execution gate already checked the per-run allowlist and sandbox policy, while the ordinary harness handoff did not translate a limited profile into a native restriction. The August direct-message policy change added a restriction flag for explicit policies and left the existing profile gap in place. The available history stops before that earlier behavior was introduced, so I could not establish whether it shipped with native execution or broke later."
+}

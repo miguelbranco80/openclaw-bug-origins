@@ -1,0 +1,8 @@
+{
+  "rank": 100659,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "At merge, the Before merge item concerned the Cmd/Ctrl+Enter shortcut remap, and the Evidence section listed test coverage for the toast\u2019s Open action without raising a navigation concern. Earlier findings addressed whether the completion watcher would reach the point of showing a toast, leaving the Open session button\u2019s lack of middle-click support unflagged."
+}

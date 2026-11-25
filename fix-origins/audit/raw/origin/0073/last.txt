@@ -1,0 +1,17 @@
+{
+  "rank": 73,
+  "sha": "a2f84f88982c88dde79f69c8a1ee1b5db9a806d4",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With `openclaw qr --json`, stderr showed the generic 'The CLI command failed.' banner and Doctor hint instead of the specific refusal message, while the JSON stdout envelope already carried that message.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Switched four qr-cli refusals (conflicting auth flags, conflicting access flags, --remote without a remote URL, resolver refusal) from plain Error to throwExpectedCliError so --json stderr shows the existing message.",
+  "reasoning": "The JSON stdout envelope and exit code were already correct (formatCliOperatorError returns the plain error's message, and the fix leaves stdout byte-identical); only the stderr diagnostic changed, and the existing e2e test explicitly asserted the old behavior (`expect(result.stderr).not.toContain(conflict.message)`), so this was intended, tested behavior being improved as part of a series of call-site migrations to the expected-error owner. The thrown lines predate the shallow graft and no breaking commit applies."
+}

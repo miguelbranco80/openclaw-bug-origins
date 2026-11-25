@@ -1,0 +1,17 @@
+{
+  "rank": 63,
+  "sha": "ecb25a3dd58a12e4d7890e16eba194090a36ed70",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In message-tool reply mode on Telegram, a \"Working\" progress card appeared below the bot's answer when the run kept working after the final message send, and disappeared later.",
+  "impact": "presentation",
+  "area": "channels",
+  "summary": "Adds an onSourceReplyDelivered listener on the reply operation so runReplyAgent reports a final message-tool send to onObservedReplyDelivery mid-run in message_tool_only mode, letting channels retire the progress card immediately.",
+  "reasoning": "Channels only learned of a message-tool delivery through onObservedReplyDelivery at end of run (added to Telegram by 43887216323, #154467, for stale cards after final replies); no commit removed an earlier mid-run signal, so this looks like a gap that never worked rather than a regression. The progress-card and message_tool_only paths blame to the shallow graft (older than 2026-09-03), and I could not identify the introducing commit, so the origin is left unclear (most likely never-worked)."
+}

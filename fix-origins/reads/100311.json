@@ -1,0 +1,17 @@
+{
+  "rank": 100311,
+  "sha": "342fea1a2ad1ba74b6b5585ff30377e099ae2204",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Tools in a new ACP session ran in the default agent workspace and could write files to the wrong project.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix creates fresh ACP sessions through Gateway's sessions.create call to persist the requested working directory.",
+  "reasoning": "Before the August translator split, the bridge already stored the requested directory locally and included it in prompt text while sending no execution directory to Gateway. The same code path predates the July 1 shallow boundary, and the offline history query stopped at a missing parent, so I could not verify when the omission began or whether the behavior ever worked."
+}

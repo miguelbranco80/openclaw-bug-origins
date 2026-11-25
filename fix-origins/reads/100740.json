@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If the Gateway service definition disappeared during a failed start, setup could try to reinstall the service without showing the cleanup or ownership error.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix applies the existing inspection fallback policy so Gateway start recovery propagates native cleanup errors and ownership refusals before checking for a missing installation.",
+  "reasoning": "The catch already converted a failed service operation into `missing-install` when its follow-up check found no installation before the July history boundary, and #116815 preserved that behavior while adding post-start checks. The original diff was unavailable offline, and later commits that introduced the typed errors do not establish when either safety failure first reached this catch.",
+  "rank": 100740,
+  "sha": "3fa604a1326938cc811e3f2e52ad4de12571dfc3",
+  "rubric": "v1.2"
+}

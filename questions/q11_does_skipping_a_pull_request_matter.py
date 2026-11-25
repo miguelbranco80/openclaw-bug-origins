@@ -3,7 +3,7 @@
 
 Reads: sampled_fixes.jsonl, commits.tsv. A commit counts as "straight to main" when its title carries no pull
 request number.
-Method: as in question 4, bugs fixed in the three weeks per 100 commits made since 10 Sep 2026, also within size
+Method: as in question 4, bugs fixed in the period studied per 100 commits made since 10 Sep 2026, also within size
 groups so that size does not masquerade as route.
 Answer in short: no sign of it. Direct commits carried fewer bugs per commit, and they are smaller. Few cases.
 

@@ -1,0 +1,17 @@
+{
+  "rank": 100766,
+  "sha": "e95851fa65d3a91db17b4825cf832b12a4ef07a1",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "12ec309f9b0ba17ddc227451d896f70c956d2f48",
+  "cause_pr": 172362,
+  "confidence": "high",
+  "cause_quote": "The touch rule added `grid-template-columns: 20px minmax(0, 1fr) auto var(--session-row-actions-reserve);` to every team session row, so even rows without a disclosure control lost title space to the extra grid gap.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "At a 334 px touch sidebar width, a short session name such as \u201cProject next steps\u201d was clipped.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix reserves a disclosure column only for touch sidebar rows that contain a disclosure control.",
+  "reasoning": "I checked the causing commit\u2019s parent and confirmed that its touch layout had three columns and that its existing 334 px touch fixture already asserted that both short names fit. The causing diff added an unconditional fourth column with an extra gap, and the fix\u2019s PR reports reproducing the clipping and verifying that both names fit after the repair."
+}

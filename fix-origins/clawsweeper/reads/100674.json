@@ -1,0 +1,8 @@
+{
+  "rank": 100674,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings concern deferred CLI history disclosure and unreleased voice-request authorization. The review history also mentions describe-row preparation, a separate path from the first chat turn, where store registration invalidated the request\u2019s retained authorization."
+}

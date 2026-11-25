@@ -1,0 +1,8 @@
+{
+  "rank": 100507,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The scheduled-send finality finding concerns turns ending early after a successful message-tool send. The destination-repair evidence covers live route checks during sends and does not address how Cron records a successful write to the same conversation when there is no external route."
+}

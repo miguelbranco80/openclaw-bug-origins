@@ -1,0 +1,8 @@
+{
+  "rank": 100764,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge item concerns how third-party controllers reconcile outcome-unknown creation errors before retrying. It does not address the loss of the original error when createManaged receives an ordinary persistence rejection."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100876,
+  "sha": "caa6096b1eb645519f3af83c467b7768d97c048a",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0a8e3604ba24de4791d3505b7a442e8017276dd0",
+  "cause_pr": 98236,
+  "confidence": "high",
+  "cause_quote": "The original migration code ran `await importLegacySessionRecord(params.target, record, report);` without a catch before `updateMigrationManifestTarget(...)`, so a rejected import escaped before its error or timestamp was journaled.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a session SQLite import failed, Doctor could generate a GitHub support draft that omitted the original error.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "Doctor now journals import errors and timestamps, includes them in recovery reports even after clean validation, and prints an explicit message when there is nothing to recover.",
+  "reasoning": "The introducing diff shows that recovery treated unfinished journals as failed runs and generated support drafts from them, even though an import exception could leave the journal without any failure details. The later zero-issue guard in #155246 also suppressed reports for failures that had been recorded, but the original missing-error defect was present from the first implementation."
+}

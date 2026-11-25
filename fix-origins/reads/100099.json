@@ -1,0 +1,17 @@
+{
+  "rank": 100099,
+  "sha": "4d7fe66abd814a974afa0464a40f66381aee4f6b",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "0cb56ace62284c8119ae9bc026b1b30cc1be1f77",
+  "cause_pr": 115110,
+  "confidence": "high",
+  "cause_quote": "The diff added `void host.loadMoreSidebarSessions();` to the enabled sidebar button while adding `owner.sessionsLoading ||` to the guard that returns before requesting a page.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a sidebar refresh, users could click the enabled Load more sessions button and no new page would load.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix uses the sidebar controller\u2019s loading state to disable the Load more sessions button and mark it busy during a refresh.",
+  "reasoning": "The parent\u2019s section control only revealed rows already loaded, and #115110 introduced server-backed sidebar pagination with an enabled button and a controller that rejected clicks during refresh. I checked that the loading guard survived the filtered-list refactor and that #131202 carried the mismatch into the dedicated roster button. The later bulk-deletion flow exposed the same mismatch during a refresh of the selected agent\u2019s filtered list."
+}

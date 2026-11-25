@@ -1,17 +1,17 @@
 {
   "rank": 157,
   "sha": "4b74fd5a979df8afd4d018094ef6520f74ce7d5e",
-  "rubric": "v1.1",
-  "origin": "never-worked",
-  "cause_sha": "97d9da11b74e5c193e7053d998e41403deaf3c3d",
-  "cause_pr": 141776,
-  "confidence": "low",
-  "cause_quote": "DoctorUnreadableStateDatabaseError was added with the fixed recovery text \"Stop OpenClaw processes, then restore this file from a verified backup\" for every indeterminate state-database inspection failure, with no distinction for snapshot-capacity errors.",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "a1457127d3652585c8e0a124ebad59987f862ed7",
+  "cause_pr": 140854,
+  "confidence": "high",
+  "cause_quote": "The Doctor readiness branch began telling operators to \"Stop OpenClaw processes, then restore the affected database from a verified backup.\" for every indeterminate result, including snapshot failures caused by full storage.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "When the disposable inspection snapshot ran out of temp disk space, Doctor (and deep gateway status / final readiness) said the state database was unreadable and told the operator to restore it from backup.",
-  "impact": "presentation",
+  "user_saw": "Doctor told operators to restore their database from backup when a temporary inspection snapshot ran out of disk space or quota.",
+  "impact": "failed-every-time",
   "area": "cli",
-  "summary": "Carried the original inspection failure into the unreadable-state-database formatter and readiness message so snapshot capacity errors (ENOSPC/EDQUOT) get free-space/quota retry advice instead of restore-from-backup advice.",
-  "reasoning": "The restore advice was written generically for any indeterminate inspection failure (Doctor's DoctorUnreadableStateDatabaseError in 97d9da11b74e, later shared by faaff274adc1 for deep status, and the readiness message whose only exception was added for contention in 2528311094f2); snapshot-based read-only inspection, and thus capacity failures, already existed before the graft, so the misleading advice appears to have shipped with that diagnosis rather than being broken by a later commit. The capacity classifier itself arrived later in 6f8893c6d04 (#192699) but was never consumed by these formatters; several entry points share the defect, so the single cause sha is low confidence."
+  "summary": "Doctor and deep Gateway status now tell operators to free snapshot disk space or quota and retry, while still refusing to certify database readiness.",
+  "reasoning": "I checked the parent of #140854 and confirmed that Doctor already used disposable snapshots for its final readiness check, where snapshot capacity errors carried free-space guidance and Doctor advised retrying. The diff in #140854 replaced that retry instruction with blanket restore advice, and later changes applied the same diagnosis to repair admission and deep Gateway status."
 }

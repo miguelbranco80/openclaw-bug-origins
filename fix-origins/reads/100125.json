@@ -1,0 +1,17 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "nothing visible",
+  "impact": "other",
+  "area": "agents",
+  "summary": "The fix removes the unused named export for the setup verification context type.",
+  "reasoning": "The Muse setup commit introduced both the named type export and the verifySetup method that uses it. The fix removes only the export modifier, and the fix message describes export-scan cleanup with no reported setup failure.",
+  "rank": 100125,
+  "sha": "d07bd8b6ad7bba7832d9edc7b4f9a8dcdca8f683",
+  "rubric": "v1.2"
+}

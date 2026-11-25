@@ -1,0 +1,17 @@
+{
+  "rank": 100080,
+  "sha": "bd490e718be0f0a390efd4faf086fc6af410ce46",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart or pricing update, the Usage page could take minutes to load and show \u201cPartial results\u201d with a cost total far below the actual total.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix preserves cached usage rollups across pricing changes when catalog prices cannot affect their totals.",
+  "reasoning": "The July SQLite rollup commit stamped every rollup with the global pricing fingerprint, but its parent already discarded cached usage on a fingerprint mismatch. The earliest locally readable implementation also required a matching fingerprint for each cached transcript, and the available offline history could not establish when that behavior was introduced."
+}

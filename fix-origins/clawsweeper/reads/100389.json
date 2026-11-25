@@ -1,0 +1,8 @@
+{
+  "rank": 100389,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "On upgrade, an existing interrupted delegated session without surviving sender authority can now be tombstoned, including an unsent final without a queue owner. The intended fail-closed contract and user recovery outcome need explicit maintainer acceptance and existing-state proof.",
+  "outcome": "answered",
+  "note": "The earlier P1 merge-risk item identified the tombstone and asked for proof of the user recovery outcome, leaving the same-conversation failure for fresh authenticated messages unstated. The maintainer answered with a probe that showed the tombstone and a /new or /reset notice."
+}

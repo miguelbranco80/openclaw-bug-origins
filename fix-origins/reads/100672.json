@@ -1,0 +1,17 @@
+{
+  "rank": 100672,
+  "sha": "207b7813aea9aa3c4bd6171407a664f92979c209",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When another Discord member changed voice state, the bot could time out joining voice, reconnect muted, or switch channels.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The Discord Gateway now forwards only the bot's own voice-state updates to its voice adapter while preserving guild-based voice-server routing and listener delivery for other members' events.",
+  "reasoning": "The oldest readable snapshot already forwards every guild member's voice-state update to the guild's adapter, and the September dependency refresh preserves that routing. The offline path history stops at the shallow boundary, so I could not verify when the forwarding first shipped or whether it replaced a working implementation."
+}

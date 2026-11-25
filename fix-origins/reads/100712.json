@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "47a02a38ffb83e5d791fcaba0633ab46ecb61fbe",
+  "cause_pr": 151670,
+  "confidence": "medium",
+  "cause_quote": "The change added `const nextKey = previous.reconcile(inputs);` to refresh handling and wired that callback to `return loadLocalSkillTiers(workspaceDir, sourceOptions).sourceKey;`, forcing a full skill scan after the source version advanced.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a Gateway with large extra skill directories, repeated scans saturated the main thread and flooded the logs with escaped-symlink warnings.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix reuses discovery results for unchanged roots whose watcher coverage is verified and deduplicates escaped-path warnings.",
+  "reasoning": "I checked the parent of #151670 and confirmed that watcher refreshes advanced the version and notified listeners, with discovery deferred until the next load. The commit added synchronous reconciliation on watcher refreshes, which explains one of the two rescan paths in the fix report. The other path, a cache miss on the next preparation, could already happen after a version bump, and the event driving the live loop was never identified.",
+  "rank": 100712,
+  "sha": "c5baaee54b000e78c496501871e47f2d938fe700",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "ca77256127e6ba13c00d68bca42194d1b9e2a780",
+  "cause_pr": 163889,
+  "confidence": "medium",
+  "cause_quote": "The new worker loader ran `await predicates.prepareSessionTurnPredicates();`, which imported Gateway session-store lookup and read modules even for turns without a Goal routing predicate.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators could observe higher memory use when native SQLite session workers loaded host modules that ordinary turns did not need.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The fix separated native SQLite session code from host imports, loaded Goal routing dependencies only when needed, and preserved the original CLI failure when fork restoration also failed.",
+  "reasoning": "I checked the parent\u2019s transcript-turn path and the introducing diff: #163889 moved eligible turns into the agent executor and bundled unconditional Gateway predicate preparation with the new worker path. The fix removes several additional import paths, so this commit establishes one source of the measured worker overhead without accounting for the full memory difference.",
+  "rank": 100900,
+  "sha": "8e5abec30544aacefc56c8d2ee0673e9296710e6",
+  "rubric": "v1.2"
+}

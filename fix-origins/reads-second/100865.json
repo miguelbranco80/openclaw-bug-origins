@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "0d383e93a73a7cdff90acb9b55b33f4378e5df48",
+  "cause_pr": 142933,
+  "confidence": "high",
+  "cause_quote": "The new artifact path immediately executed `return await run(mergeMigrationProviders(activeProviders, providers));`, bypassing the Codex registration that set the managed app-server root.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a fresh process, `openclaw migrate codex` listed no installed plugins, and `--plugin <name>` reported that none were available.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix initializes the managed Codex plugin root when the public migration artifact builds the provider.",
+  "reasoning": "The parent already supported direct Codex plugin selection, and its CLI loaded the provider through the plugin registry, where Codex registration set the root required for inventory discovery. The causing diff routed the same command through a lightweight artifact that only re-exported the provider builder, leaving the root unset in a fresh process.",
+  "rank": 100865,
+  "sha": "c2d48f9f67488bd450a0e5f580955bf59e1063fd",
+  "rubric": "v1.2"
+}

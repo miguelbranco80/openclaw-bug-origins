@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "a637374e4352db411f7bf2c3713852d86a8c0265",
+  "cause_pr": 138046,
+  "confidence": "high",
+  "cause_quote": "The agent loop added `asyncToolExecution: true`, and the Responses transport marked each eligible Astra function tool `async: true`, allowing the model to answer while its tools were still running.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A scheduled Astra run reported that its tools returned no results while the calls were still running, and that message remained the delivered summary.",
+  "impact": "sequence-or-timing",
+  "area": "cron",
+  "summary": "The agent loop now enables async tool execution only when the available tools include `sessions_yield`.",
+  "reasoning": "I checked the parent commit and confirmed that Astra already supported tool calls and the agent loop awaited completed tool calls and appended their results before the next model turn. The causing diff enabled async calls without checking for a way to collect results before the model answered, and its new transport test explicitly showed Astra emitting an answer while a tool was still running with no `sessions_yield` available.",
+  "rank": 100581,
+  "sha": "afa9bfdcf82a7e1bdc4f8baf1bd4cbaf3200a936",
+  "rubric": "v1.2"
+}

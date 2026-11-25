@@ -1,0 +1,17 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Mattermost slash command disappeared when OpenClaw tried to repair it and could not read the response body after Mattermost deleted it.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix skips reading the body of a successful Mattermost slash-command DELETE so registration can recreate the command after a failed update.",
+  "reasoning": "The fix\u2019s test shows that a failed update followed by a successful DELETE with an unreadable body prevented OpenClaw from sending the replacement POST. The delete-and-recreate fallback and the client\u2019s success-body parsing both predate the July 1 shallow boundary, and the available older history did not establish when they first interacted this way.",
+  "rank": 100056,
+  "sha": "1f0e757498d38a33c0f974727ef9b85c69b10b36",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100483,
+  "sha": "f3556310d29dfb545fe07c6f304ad4cae5450dac",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6d6ea35f76165921cc05951ab99cddbea221dc41",
+  "cause_pr": 160080,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `\"id\": \"kie\"` and `\"enabledByDefault\": true` to the new plugin manifest while omitting both `extensions/kie/assets/icon.png` and `extensions/kie/assets/activity.svg`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI showed generic fallback artwork for Kie\u2019s plugin identity and video activity.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix bundled the shared OpenClaw identity PNG and the existing Vydra video activity SVG with Kie and documented their sources.",
+  "reasoning": "The activity artwork convention was already in place when Kie was introduced. I checked the introducing diff and the history of `extensions/kie`, which show that the new bundled plugin shipped without either asset and that both paths first appeared in this fix. The fix PR reproduced the missing-file inventory failure and both Control UI fallbacks."
+}

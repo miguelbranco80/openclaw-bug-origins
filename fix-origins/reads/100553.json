@@ -1,0 +1,17 @@
+{
+  "rank": 100553,
+  "sha": "4d65e382a834c07502ca1db62b027c69f74fbbdc",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "65ad1800528623f4148039b547a5550d0b89cf9e",
+  "cause_pr": 180139,
+  "confidence": "high",
+  "cause_quote": "The introducing diff put `facets.append(loadingPlaceholder(\"rows\", \"Loading types\u2026\", 4));` inside the mobile facet row, where the placeholder grid made the flex row tall enough to stretch the Everything chip.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On phones, the Everything chip stretched into a tall green oval beside four stacked placeholder bars while Knowledge Browse loaded its types.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix renders the mobile loading placeholders as pills in the same row as the Everything chip and keeps the loading status available to screen readers.",
+  "reasoning": "The plugin import added the loading markup and the stylesheet together, pairing a four-row placeholder grid with a horizontal mobile flex container that stretched its children. The stylesheet\u2019s first-parent history contains only that import and this fix, so the broken loading layout shipped with Knowledge Browse on main."
+}

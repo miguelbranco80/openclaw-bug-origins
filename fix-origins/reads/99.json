@@ -1,17 +1,17 @@
 {
   "rank": 99,
   "sha": "8c292ddb1b143685d7146193caa7f132d57a136f",
-  "rubric": "v1.1",
-  "origin": "not-a-defect",
-  "cause_sha": null,
-  "cause_pr": null,
-  "confidence": null,
-  "cause_quote": null,
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "664352cc7ca632a77583ed81417b0c996d9ace26",
+  "cause_pr": 136679,
+  "confidence": "high",
+  "cause_quote": "The introducing diff added `for (let offset = 0; sessions.length < limit; offset += 200)`, so denied meetings left the result count unchanged and the loop kept fetching full pages until the archive was exhausted.",
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Nothing reported; in theory a transcripts list call by a caller denied most meetings could scan the whole archive before returning.",
+  "user_visible": "yes",
+  "user_saw": "Listing meeting transcripts could take a long time when most or all stored meetings were inaccessible to the caller.",
   "impact": "slower-or-heavier",
   "area": "agents",
-  "summary": "Bounds each transcripts list call to one 200-row page and returns a nextOffset continuation instead of auto-paging through the archive past denied rows.",
-  "reasoning": "The unbounded page walk was a deliberate pre-graft design ('hidden meetings must not crowd accessible captures out'); issue #161327 is a code-audit finding about missing work bounds, with no reported failure or slowdown. This is resource hardening, so not-a-defect per the rubric."
+  "summary": "The fix caps each transcript list call at 200 examined meetings and returns a continuation offset that advances past denied rows.",
+  "reasoning": "PR #136679 introduced the agent tool\u2019s list action with a limit on authorized results and no cap on the number of pages it could scan. I checked that the later read-worker change switched the end-of-archive check to `hasMore` and that the October refactor moved the existing loop into the tool module."
 }

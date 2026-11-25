@@ -1,0 +1,8 @@
+{
+  "rank": 100621,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge \u201cCandidate isolation and downgrade behavior\u201d item describes the canary\u2019s startup bounds without raising a concern about network plugin repair consuming its deadline or the resulting SQLite interruption. The earlier findings concern backup retention and recovery inventory."
+}

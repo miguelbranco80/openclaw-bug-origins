@@ -1,1 +1,7 @@
-{"flagged":"none","where":null,"quote":null,"note":"The at-merge Label justifications describe model identity as part of the replay fence without identifying it as a risk. The earlier findings address provider rejection and oversized worker payloads, which are separate causes of replay failure."}
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "Review items concern recovery of rejected compaction, Azure routing, replay omission reporting and proof gaps; the model fence is only described neutrally (label justification 'fenced by provider route, model, session...') and never raised as dropping checkpoints on model switch."
+}

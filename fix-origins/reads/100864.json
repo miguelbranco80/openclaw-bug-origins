@@ -1,0 +1,17 @@
+{
+  "rank": 100864,
+  "sha": "aa919f39a50de88fea6cc2bc785437eec1e39c3f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e0e80d74d82c51cce90d07f47fab3727add3db57",
+  "cause_pr": 135701,
+  "confidence": "high",
+  "cause_quote": "The new handoff function ended with `return true;` after transferring ownership, and its caller handled that result with `throw new UpdateCommandAbort();`, which was caught without setting an exit code.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Scripts received exit code 0 from a Gateway-launched `openclaw update` while the detached helper was still running the update.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The update CLI now exits with code 75 after successfully handing an unfinished update to the detached helper.",
+  "reasoning": "The introducing diff added the detached CLI handoff for agent-launched updates, where the previous path refused to stop an ancestor Gateway. I checked that the original successful transfer took the normal CLI exit path without setting an exit status and that the fix changes the process-level test expectation from 0 to 75."
+}

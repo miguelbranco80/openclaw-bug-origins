@@ -1,7 +1,7 @@
 {
   "rank": 161,
   "sha": "3ea9d63c3011fcfb949ea724cb2f8f6af4af1924",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -9,9 +9,9 @@
   "cause_quote": null,
   "trigger_sha": null,
   "user_visible": "internal",
-  "user_saw": "Nothing visible; the worker runtime permission test failed in scheduled CI.",
+  "user_saw": "Nothing visible.",
   "impact": "other",
-  "area": "other",
-  "summary": "Updated the worker apply_patch containment test fixture to expect the new source-specific recovery guidance and compact (non-indented) JSON tool-result text.",
-  "reasoning": "The fix touches only a test suite file and changes no production code; the failures came from intentional product changes, 5d5c90e1e4e (#194473, root-aware recovery guidance) and 3d6699cb9d9 (#196756, compact JSON tool results), which did not update this fixture. Stale test expectations after a deliberate behavior change are a CI/test alignment, not a product defect."
+  "area": "agents",
+  "summary": "The fix updates worker permission tests to expect recovery guidance specific to the containment policy and compact JSON tool results.",
+  "reasoning": "I checked that #194473 deliberately made the recovery guidance depend on the containment source and that #196756 deliberately switched tool results to compact JSON. The reported failure was a mismatch in CI assertions, and the fix changed only the worker permission test suite."
 }

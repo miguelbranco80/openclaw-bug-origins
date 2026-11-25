@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "4a66195396d49419e4f4ec155f4219a0b1d1c94e",
+  "cause_pr": 163287,
+  "confidence": "high",
+  "cause_quote": "The worker refactor added `const writer = createCacheWriter(options);` during refresh-lock preparation, and the writer called `captureOpenClawAgentDatabaseExecution(options)` without passing the identity of the absent store.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Gateway request to create the first session in a fresh store could fail while a background usage refresh was starting.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Usage refresh now retains the original absent-store identity so first-session creation can share the same database owner.",
+  "reasoning": "I checked the refactor's parent and confirmed that session preparation already supported first creation and that preparing a usage refresh lock left database admission until the write. The refactor registered an execution owner during lock preparation, causing the existing first-creation guard to reject that ordering. Later changes allowed callers to share an owner with a matching creation identity, but the usage writer still supplied none.",
+  "rank": 100226,
+  "sha": "6d479f5c893a687e92683b7e896be26e4c8bedd3",
+  "rubric": "v1.2"
+}

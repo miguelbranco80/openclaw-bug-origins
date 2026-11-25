@@ -1,0 +1,17 @@
+{
+  "rank": 100684,
+  "sha": "53840c885091ce89265965d41df3fa3ec48a97b2",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8fda96471f4254820672151298b7fe129e933347",
+  "cause_pr": 174206,
+  "confidence": "high",
+  "cause_quote": "The refactor replaced the DOM lookup with `const node = optionElements.get(active() ?? \"\");`, which reads the highlighted value in the effect's untracked callback.",
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The picker uses the open state and highlighted value captured during the effect's tracked phase to scroll the highlighted option into view without a Solid warning.",
+  "reasoning": "I checked the refactor's parent and confirmed that it already scrolled to the highlighted row by querying `[data-active]`, with `overlay.open` reading a plain boolean. The refactor added the reactive `active()` read to the scrolling callback, and the fix's browser test isolated `STRICT_READ_UNTRACKED` while keyboard navigation, scrolling, and selection still passed on the base."
+}

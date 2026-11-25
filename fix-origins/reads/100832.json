@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "3b88500581f6e9bf28f4e6ef91f2deb5483c16c7",
+  "cause_pr": 145390,
+  "confidence": "high",
+  "cause_quote": "The initial failure-fact sanitizer used `.find((line) => line.trim())` to keep only the first nonempty line, and its `[redacted-path]` replacement stripped the remainder of a line starting at an unquoted loader path.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The update failure report omitted the glibc version required by the native addon.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "The fix extracts bounded numeric glibc requirements before truncation and path redaction so they survive in public update failure reports.",
+  "reasoning": "I checked the introducing diff and confirmed that it added structured failure facts, applied first-line and path truncation to their messages, and projected them through a public cause list that omitted glibc requirements. The later rollback-diagnostic change expanded that list for package rollback messages, while the fix's test shows that numeric loader errors are lost through the original failure-fact path.",
+  "rank": 100832,
+  "sha": "f3b6fecc63dcc8e0991da8ede86e3e95f2700b37",
+  "rubric": "v1.2"
+}

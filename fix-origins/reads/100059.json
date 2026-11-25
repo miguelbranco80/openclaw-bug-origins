@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "e3bc0f326cb2ada3c175ba8df8ec3e60f32d3132",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new renderer added `segments.push({ kind: \"table\", start: offset, end: offset, table });` and sorted ties by `right.end - left.end`, placing a following quote ahead of the zero-width table and making the table appear to be its child.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Telegram rich replies, a Markdown table appeared inside the quote that followed it or disappeared before a following list.",
+  "impact": "data-loss-or-duplication",
+  "area": "channels",
+  "summary": "The fix reserves and preserves one Markdown IR position per native table so Telegram retains the authored block boundaries and table content.",
+  "reasoning": "The pre-rewrite rich HTML renderer emitted the table before rendering the remaining text at the shared offset, which kept it outside the following quote. The Bot API 10.2 rewrite introduced the quote regression by treating the same offset as containment. I also checked #113158, which later added native list ranges and dropped the table when it fell outside the list item's content range.",
+  "rank": 100059,
+  "sha": "c1d38ec4227f43c10e9fbeaa7a087b1fd64872aa",
+  "rubric": "v1.2"
+}

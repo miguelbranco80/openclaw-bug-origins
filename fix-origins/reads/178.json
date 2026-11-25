@@ -1,7 +1,7 @@
 {
   "rank": 178,
   "sha": "066c7ecdeccf3f958d356cfdadac7a7146133021",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "not-a-defect",
   "cause_sha": null,
   "cause_pr": null,
@@ -12,6 +12,6 @@
   "user_saw": "Nothing visible.",
   "impact": "other",
   "area": "ui",
-  "summary": "Removed the unused sharedThemeProjection export from shared-application-projections.ts and dropped 'theme' from the reactive README table.",
-  "reasoning": "A dead-export cleanup titled fix(ci): the export added in f27b11a7 (#183544) became orphaned and tripped an unused-export check; no runtime behavior changes. Tooling/cleanup is not-a-defect under the rubric."
+  "summary": "The fix removed the unused shared theme projection export and its entry in the UI adapter documentation.",
+  "reasoning": "The diff for #183544 shows that the browser preview card used the shared theme projection when it was introduced. The diff for #197549 shows that the call disappeared when automatic browser preview cards were intentionally removed, leaving an unused export for this CI cleanup."
 }

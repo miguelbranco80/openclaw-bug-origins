@@ -1,1 +1,8 @@
-{"rank": 271, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Both versions cover only the initial-blank admission boundary, exact-head CI and maintainer acceptance. Nothing mentions a document-revision epoch mismatch being reported as 'access was revoked'."}
+{
+  "rank": 271,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The \u201cResolve merge risk\u201d items in both versions focus on which tabs qualify for the initial about:blank exception. Neither version raises the risk that navigation during a read could trigger an access-revoked error while tab access remains valid."
+}

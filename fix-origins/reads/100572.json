@@ -1,0 +1,17 @@
+{
+  "rank": 100572,
+  "sha": "e1debd99e32ceb094667d3377ab7dc4bced5c43e",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "c768bd125a14015bc48d7cf4002f3d84bd12226a",
+  "cause_pr": 154804,
+  "confidence": "high",
+  "cause_quote": "The new listener used `if (event.kind !== \"opened\")` to call `workerEnvironmentProjections.invalidate(event.identity, event.path)`, so an ordinary `open-error` closed the active inventory.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Worker provisioning got stuck with \u201cWorker environment inventory has closed\u201d after a separate database open was refused.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix preserves admitted worker inventory through ordinary open refusals and publishes terminal retirement when a fresh open discovers durable quarantine.",
+  "reasoning": "I checked the parent of #154804: worker inventory reads and writes acquired the database on each operation, so they could resume after contention cleared even though the database code already emitted `open-error`. The #154804 diff added a persistent inventory owner and a listener that permanently closed it on that existing event. The fix\u2019s interprocess-lock test covers recovery of the same inventory after the lock clears."
+}

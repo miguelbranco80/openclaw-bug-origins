@@ -1,0 +1,8 @@
+{
+  "rank": 100619,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes candidate isolation and bounded readiness checks without raising the case where lint produces a complete report before the process or pipe stalls. The earlier Before merge findings concern backup recovery, and the Root-cause cluster mentions the repair PR without flagging how unavailable inference is reported."
+}

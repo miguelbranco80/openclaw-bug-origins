@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "8a8927149ff0c3e0bed6b7babc0c6eefd0fd0bd0",
+  "cause_pr": 134684,
+  "confidence": "high",
+  "cause_quote": "The new loading skeleton used `Array.from({ length: 7 }, ...)` to render seven plain bars regardless of the loaded sidebar\u2019s search field and navigation groups.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When Settings opened before the sidebar finished loading, seven plain bars appeared and then shifted into a search field and grouped navigation rows.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix builds the loading skeleton from the visible Settings navigation groups and uses the loaded sidebar\u2019s layout for the search field, headings, and rows.",
+  "reasoning": "The introducing diff replaced a text loading indicator with the seven-bar skeleton. I checked the loaded sidebar in that commit\u2019s parent and confirmed it already rendered a search field and grouped icon-and-label rows, so the skeleton\u2019s layout mismatch shipped with its introduction.",
+  "rank": 100611,
+  "sha": "176184c2e6f3db13c4c0f150f9466baac9019350",
+  "rubric": "v1.2"
+}

@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "2fa9fe3825fa6973069e17b298f7d765ac0d646d",
+  "cause_pr": 148623,
+  "confidence": "high",
+  "cause_quote": "The initial implementation set `ADMISSION_TIMEOUT_MS = 5_000`, then used `Atomics.wait(decision, 0, REQUESTED, ADMISSION_TIMEOUT_MS)` and `Atomics.compareExchange(decision, 0, REQUESTED, REFUSED)` to refuse requests the host had yet to decide.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Chat turns and task lists could fail with \u201cSQLite transaction admission was refused\u201d when a busy Gateway delayed the admission decision.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix keeps SQLite worker admission pending until the host grants or refuses the request.",
+  "reasoning": "The introducing diff added the worker admission protocol and its five-second deadline together, so host scheduling delays could cause false refusals from the first version. The path history and the later task-worker diff show that task operations inherited the existing deadline.",
+  "rank": 100875,
+  "sha": "c47c7fb6341c2c6d1ddd653b83d2a4959b6add48",
+  "rubric": "v1.2"
+}

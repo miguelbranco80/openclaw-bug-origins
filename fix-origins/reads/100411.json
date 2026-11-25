@@ -1,0 +1,17 @@
+{
+  "rank": 100411,
+  "sha": "a7c6365bafae7ff6a0012945e33c1d13200c908b",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "09e2b15466e1eddd581248bed0be867a0b248c7e",
+  "cause_pr": 144420,
+  "confidence": "high",
+  "cause_quote": "The diff added the Gateway handler `\"models.authSetApiKey\": async ({ params, respond, context }) => {` and returned `{ provider, profileId, ...(warning ? { warning } : {}) }` without declaring either shape in the protocol schema.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway client authors had to define their own request and response types to call the API-key editing method.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix declares and exports the API-key editing request and result schemas, uses the request schema for Gateway validation, and generates the corresponding Swift types.",
+  "reasoning": "The introducing diff registered the method and implemented key saving with a hand-built response, while its only model-auth schema change added a field to the logout request. Path-scoped history confirms that the handler first appeared in #144420 and that the protocol definitions first appeared in this fix, so generated clients lacked the types from the method\u2019s introduction."
+}

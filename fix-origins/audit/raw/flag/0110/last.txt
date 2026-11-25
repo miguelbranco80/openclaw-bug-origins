@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "“Retain recording ownership until stop succeeds” covers a driver stop failure, and “Discard unreachable resources on normal completion” covers directory retention after successful initialization. The shipped bug came from caching a rejected resource-initialization promise."
+  "outcome": null,
+  "note": "The P1 findings cover clearing recording state before a failed stop, normal-completion disposal, harness cleanup forwarding and upload handles; none concerns the memoized resourcesPromise caching a rejected initialization. The failed-stop item is a different retry path, so not counted as related."
 }

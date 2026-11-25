@@ -1,0 +1,17 @@
+{
+  "rank": 100213,
+  "sha": "7943ae59280f6ffd4bae07e4a877a361e79e654b",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8cd38b03ceb822718ab2e5e1693340f15df22b14",
+  "cause_pr": 150224,
+  "confidence": "high",
+  "cause_quote": "The diff added `(pluginHarnessOwnsTransport && (catalog?.entries.some(ownsSelectedNativeModel) === true || catalog?.routeVariants.some(ownsSelectedNativeModel) === true))` to `nativeModelOwned`, causing the existing cap guard to suppress authored caps for ordinary configured chats whose models matched the Codex catalog.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Codex chats on affected configured models grew past the configured context cap without compacting at that limit.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix forwards authored context caps to Codex on thread start and resume for configured chats and subagents, and reserves cap suppression for sessions with a durable harness pin.",
+  "reasoning": "PR #124735 added cap forwarding to Codex thread start and resume, and the parent of #150224 still forwarded caps for ordinary configured Codex chats because `nativeModelOwned` was true only for native sessions. PR #136754 added the guard while that flag was limited to native sessions. PR #150224 broadened the flag to include ordinary chats with matching catalog entries, making the guard drop their caps."
+}

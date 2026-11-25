@@ -1,0 +1,8 @@
+{
+  "rank": 100428,
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "After a user loads 200 cards and selects Start agents, dispatch still requests the default list once and replaces state.cards with its now-bounded 100-card response.",
+  "outcome": "open-at-merge",
+  "note": "The dispatch finding and the compatibility label point to existing consumers that expect a complete default card list. Fixing the dispatch reload would still leave the board picker counting only the first page on initial load."
+}

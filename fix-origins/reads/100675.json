@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "d61bf615bb3b5da02ce92e1cc78f15856ac95246",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The worker diff replaced `return new Worker(url, {` with `return createCpuTrackedWorker(url, {` and added a required named import for a factory the supported 2026.9.6 host did not export.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Discord voice failed to load when a newer Discord plugin ran on OpenClaw 2026.9.6.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "Discord voice now uses the host\u2019s shared context composer and CPU-tracked worker factory when available and falls back to the legacy profile loader and native worker when those capabilities are absent.",
+  "reasoning": "The causing diff shows that the existing Discord audio worker previously used Node\u2019s native constructor, which the fix PR verified against the published 2026.9.6 host. The required SDK factory import introduced the first of the two load blockers fixed here. I also checked #159548, which subsequently replaced the supported profile loader with a required import of the newer context composer.",
+  "rank": 100675,
+  "sha": "633513501ede54a4e974da5ea1dc63d1263031bd",
+  "rubric": "v1.2"
+}

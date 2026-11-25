@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "9c93bc347ceca939d4dfd8d934f15ecc94b7a45a",
+  "cause_pr": 160946,
+  "confidence": "high",
+  "cause_quote": "The new native retirement path called `sealRetainedSnapshotTempDirectory(directory);` before closing the resource, but the new seal function checked `const owner = pendingTempDirectoryCleanup.get(directory);` in the original module instance, where readers registered after a reload were invisible.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a module reload, a SQLite snapshot could disappear while a read still needed it, causing the read to fail.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "The fix shares SQLite snapshot readers, native cleanup, and pending work across module reloads while preserving each caller\u2019s original directory ownership.",
+  "reasoning": "The parent used a separate token-retirement callback, and #160946 introduced the retained preparation and native directory-removal path exercised by the fix. I checked that the new path reused the original staging owner across reloads while its retirement check still consulted a module-local registry, so it could miss a reader from the first release.",
+  "rank": 100501,
+  "sha": "7b64dadaeeb43212fb23787feaf8722f56a45032",
+  "rubric": "v1.2"
+}

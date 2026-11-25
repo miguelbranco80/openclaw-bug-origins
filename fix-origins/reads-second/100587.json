@@ -1,0 +1,17 @@
+{
+  "rank": 100587,
+  "sha": "53393f7d866819e87550f01bc0ba23b4f32d5ebf",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "20db76a79212c7d0c4f2106fea4d61fdce9972a3",
+  "cause_pr": 154087,
+  "confidence": "high",
+  "cause_quote": "The introducing diff launched the child with `cwd: request.workspaceDir` and built its arguments with `return resolveRuntimeWorkerArgv(resolveRuntimeWorkerUrl(entry));`, leaving the source loader without the checkout's TypeScript configuration.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When running OpenClaw from source, paired-node workspace Memory and Skills operations failed to start their workers from a workspace outside the checkout.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix explicitly registers the checkout's TypeScript configuration for source workspace workers and removes three test workarounds.",
+  "reasoning": "The introducing diff added the paired-node Memory and Skills worker launch with the workspace as its working directory, and the runtime helper at that revision loaded `tsx` without an explicit configuration path. The same commit added a test mock that supplied the checkout configuration for children running outside the checkout, showing that the production path shipped with the defect."
+}

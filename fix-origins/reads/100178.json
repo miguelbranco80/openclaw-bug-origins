@@ -1,0 +1,17 @@
+{
+  "rank": 100178,
+  "sha": "37ae73947bf07fc562ba935c4581283b4b80ecb2",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Sending a Telegram message to topic 0 posted it to the group and then returned a topic mismatch error.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "Telegram sends and typing actions now reject topic 0 before any chat lookup or Bot API request.",
+  "reasoning": "I checked the parent of 5a8c27ca41fa0c6b5a48faea742c29109a66db04 and confirmed that the parser already accepted zero and the forum send helper could pass it to Telegram. That commit added the post-delivery mismatch error, so the error appeared after the invalid send path already existed. The zero-accepting parser predates the shallow boundary, and the available offline history did not establish where it was introduced."
+}

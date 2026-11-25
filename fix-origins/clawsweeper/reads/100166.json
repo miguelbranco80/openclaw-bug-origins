@@ -1,0 +1,8 @@
+{
+  "rank": 100166,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items focused on plugin and secret-resolver execution and unrelated E2E failures. The Evidence section discusses sidecar selection in connection with documentation files and never raises the omission of the worker files or transfer archive needed for deployment."
+}

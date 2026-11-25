@@ -1,0 +1,17 @@
+{
+  "rank": 100405,
+  "sha": "22a86446cd5149f7da7b11fb6d7ca1390e9eb294",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Android, the File picker in chat and New Session greyed out STL models and other unlisted files, so users could not select them.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The fix removed the general File picker's MIME and extension allowlist while keeping Photo and Take photo restricted to images.",
+  "reasoning": "The July Control UI refactor carried over the existing chat file allowlist, the New Session change reused it, and the September camera change preserved it. The filter predates the shallow boundary, and the offline history lookup failed on a missing object, so I could not verify when the restriction first shipped or whether Android users could previously select those files."
+}

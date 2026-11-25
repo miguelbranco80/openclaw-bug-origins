@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "af74c9c0e0048823371cce5aeb185f66088e507c",
+  "cause_pr": 126566,
+  "confidence": "high",
+  "cause_quote": "The new CLI handoff called `setActiveEmbeddedRun(params.sessionId, cliOwner, params.sessionKey, params.sessionFile)` with a `cliOwner` that supplied `runId: params.runId` but omitted `startedAtMs`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Control UI\u2019s Working timer reset when a user reopened or reloaded a session while a claude-cli turn was still running.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix records the logical turn\u2019s start time when the lifecycle manager is created and passes it to the CLI owner for chat history recovery.",
+  "reasoning": "I checked that #119729 added timestamp recovery for chat abort controllers and that #123189 extended it to owners in the embedded-run registry. #126566 first registered deferred CLI owners in that registry without a start timestamp, so the new recovery path fell back to the current time from its first version.",
+  "rank": 100637,
+  "sha": "b1220c4188d326d19b5279d0908b1428036f6dd5",
+  "rubric": "v1.2"
+}

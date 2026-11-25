@@ -1,17 +1,17 @@
 {
   "rank": 254,
   "sha": "8150463153c26a61b771d4000cd6e5238686ccfe",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "regression",
   "cause_sha": "ba6dce8d054d275d35fe24bfe0be87ddf7ff5f74",
   "cause_pr": null,
   "confidence": "high",
-  "cause_quote": "The new isHumanAddressedChatMessage returned true for any message with selected mentions whose remaining text did not name the agent (`if (!params.mentions?.length) return false;` then only an agent-name check), so `Please make poster previews. cc @Bob` skipped the agent turn.",
+  "cause_quote": "The classifier added `return !matchesMentionPatterns(remaining, buildMentionRegexes(params.cfg, params.agentId));` for any selected mention, and the new `if (request.humanAddressed)` branch returned before agent dispatch.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "A chat request that copied a teammate (for example ending in 'cc @Bob') got no agent reply at all.",
+  "user_saw": "The agent did not reply to a chat request that copied a teammate with a selected mention unless the request explicitly named the agent.",
   "impact": "failed-every-time",
   "area": "gateway",
-  "summary": "Treats a message as human-addressed only when it starts with a selected person, so incidental or cc mentions after a request still run the agent.",
-  "reasoning": "Before ba6dce8d054d, selected human mentions did not suppress the agent, so requests with a cc mention were answered. That commit added isHumanAddressedChatMessage and wired chat.send to skip the agent turn whenever any person was selected and the agent was not named; its diff and docs ('A message with selected people is addressed to them, not to the agent') show the over-broad rule that suppressed cc'd requests, and the fix narrows it to leading mentions. The fix landed the day after, and ba6dce has no PR number in its subject."
+  "summary": "The fix keeps the agent turn for incidental teammate mentions and suppresses it only when a selected teammate leads the message and the agent is unnamed.",
+  "reasoning": "I checked the causing commit\u2019s parent, where chat.send validated selected recipients and continued through normal agent dispatch, and an existing integration test exercised a message with a selected mention as a follow-up turn. The causing commit added the classifier and early return, so a request that merely copied a teammate now completed without an agent turn, as the fix PR reproduced."
 }

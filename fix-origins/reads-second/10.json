@@ -1,17 +1,17 @@
 {
-  "rank": 10,
-  "sha": "d98ec68ceded4bcd37784a3c5912d8df16a26b9a",
-  "rubric": "v1.1",
   "origin": "never-worked",
-  "cause_sha": "98742bc2c7f222a05d9c3a7d1622c49e21dec56f",
-  "cause_pr": 112387,
+  "cause_sha": "102f18446ff0df6104211ca8a156f4940dfcdd86",
+  "cause_pr": 128373,
   "confidence": "high",
-  "cause_quote": "The commit added the `if (streamPatchRequested && !normalized.streamCommand) { ... return { kind: \"patch-existing-stream\", ... } }` early return in resolveCronEditScheduleRequest, before the call to resolveDirectSchedule that holds the existing `--on-exit-cwd requires --on-exit.` check.",
+  "cause_quote": "The shared registration added `.option(\"--on-exit-cwd <path>\", \"Working directory for the --on-exit watched command\")` to `cron edit` and switched it to `resolveCronEditScheduleRequest(opts)`, where the stream patch branch returned before the flag-pair check.",
   "trigger_sha": null,
   "user_visible": "yes",
-  "user_saw": "`openclaw cron edit <id> --stream-cwd /x --on-exit-cwd /y` exited 0, changed the stream working directory and silently dropped `--on-exit-cwd`.",
+  "user_saw": "A cron edit with both --stream-cwd and --on-exit-cwd but no --on-exit reported success, changed the stream working directory, and silently ignored --on-exit-cwd.",
   "impact": "failed-every-time",
   "area": "cron",
-  "summary": "Moved the `--on-exit-cwd requires --on-exit` check into normalizeScheduleOptions so it also runs on the stream-metadata edit path.",
-  "reasoning": "The on-exit-cwd check lived only in resolveDirectSchedule (from the on-exit feature, 68bfa42b) and in create; the stream-metadata edit path that bypasses it was introduced in 98742bc2c7f2 (#112387), whose diff shows the new early return placed before resolveDirectSchedule with the check left in place. The path never validated the flag pair from its introduction, so this is never-worked rather than a regression; later commits only changed error types and trimming."
+  "summary": "The fix moves validation of --on-exit-cwd into schedule normalization so an invalid flag combination is rejected before any stream update.",
+  "reasoning": "I checked the stream feature and the option registration diffs: stream metadata edits already existed, and --on-exit-cwd was accepted only by cron add before PR #128373. The first version that accepted the flag on cron edit passed it to a resolver whose stream metadata branch returned before the existing validation, so the defect shipped with CLI support for that flag on edits.",
+  "rank": 10,
+  "sha": "d98ec68ceded4bcd37784a3c5912d8df16a26b9a",
+  "rubric": "v1.2"
 }

@@ -1,0 +1,17 @@
+{
+  "rank": 100737,
+  "sha": "8afd4f10c84f7d775a13cea910aaf73e1d052475",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "1ca60fbc3a3f85c7072a9029346b5d31402ac0e4",
+  "cause_pr": 114388,
+  "confidence": "high",
+  "cause_quote": "The multi-agent ownership change replaced the first-agent fallback `return normalizeAgentId((agents.find((agent) => agent?.default === true) ?? agents[0])!.id)` with `throw new AgentSelectionRequiredError(agentIds, context)` when no sole or compatible owner could be resolved, stopping LINE before it could apply the active session binding.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Messages in actively bound LINE direct and group conversations went unanswered when multiple agents were configured and LINE had no explicit route.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "LINE now checks the active session binding before ordinary agent selection and reuses the bound owner for group mention checks and message routing.",
+  "reasoning": "I checked the parent of #114388: ordinary routing could select a default or first agent in a multi-agent setup, so admitted messages could reach the existing runtime binding lookup and be routed to the bound session. The #114388 diff made that preliminary lookup throw on ambiguous ownership, and the fix's baseline reproduced the resulting failure in both direct and group messages."
+}

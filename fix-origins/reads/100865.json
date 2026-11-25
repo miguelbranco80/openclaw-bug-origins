@@ -1,0 +1,17 @@
+{
+  "rank": 100865,
+  "sha": "c2d48f9f67488bd450a0e5f580955bf59e1063fd",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "0d383e93a73a7cdff90acb9b55b33f4378e5df48",
+  "cause_pr": 142933,
+  "confidence": "high",
+  "cause_quote": "The new `return await run(mergeMigrationProviders(activeProviders, providers));` returned the public artifact's provider before registry acquisition could run the Codex registration that sets the managed plugin root.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A fresh `openclaw migrate codex` showed an empty plugin list and reported `Available plugins: none` when the user selected an installed plugin with `--plugin`.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The public Codex migration provider now sets the managed plugin root before building the provider so direct migrations can discover installed plugins.",
+  "reasoning": "In the causing commit's parent, the direct CLI already resolved the Codex provider through plugin registration, which set the root required by the existing `plugin/installed` discovery call. The causing diff made explicit provider lookup return the lightweight artifact before registration, and the artifact's bare re-export left the required root unset."
+}

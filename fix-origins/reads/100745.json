@@ -1,0 +1,17 @@
+{
+  "rank": 100745,
+  "sha": "8b1403496ac0aab04de77cbfd2aa61304b88de44",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "4af8616c62ae05f9eb47b436fd2c2e394c50c436",
+  "cause_pr": 143768,
+  "confidence": "high",
+  "cause_quote": "The diff added `const VERSION_TIMEOUT_MS = 5_000;` and passed `timeoutMs: VERSION_TIMEOUT_MS` to the configured CLI's version probe, so a healthy CLI that took longer than five seconds fell through to managed selection.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a busy Gateway startup, OpenClaw selected managed Crabbox 0.56 even though the configured 0.64 executable was healthy.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "The fix consolidated remote snapshot preparation commands and raised the Crabbox version-probe timeout from five to thirty seconds.",
+  "reasoning": "I classified the reported CLI fallback and treated the snapshot round-trip reductions as performance improvements. I checked the causing commit and its parent: Linux cloud-worker provisioning previously used the explicitly configured executable directly, and #143768 put that selection behind a timed probe with managed fallback. The fix PR records a healthy probe taking 6.922 seconds and selecting the older managed CLI under the five-second limit."
+}

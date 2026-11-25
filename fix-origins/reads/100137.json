@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "7aae49e8677b18ca992b72a49221e1b6de4b45e4",
+  "cause_pr": 169660,
+  "confidence": "high",
+  "cause_quote": "The new `onInternalSessionTranscriptUpdate` listener called `refreshAgent(target.agentId, storePath, [update.sessionFile ?? formatSqliteSessionFileMarker({ ...target, storePath })]);` for each targeted, non-incognito transcript publication, putting the existing scan and durable lock cycle on ordinary chat turns.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway operators could see extra SQLite and worker activity during ordinary chat turns even with the Usage report closed.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "The fix batches usage-bearing publications, scans only appended transcript rows when safe, replaces durable refresh locks with a Gateway-owned reservation, and flushes pending work when the Usage overview is read.",
+  "reasoning": "I checked the parent, where cache refreshes were requested by usage reads when data was stale, and the causing diff, which wired transcript publications to that refresh path during normal Gateway operation. This made existing chat turns heavier as soon as the sidecar shipped. The fix PR measured a drop from 122 to 10 Usage SQL statements and from 18 to 2 worker requests per warmed turn.",
+  "rank": 100137,
+  "sha": "23dee30706d6efb7652e1915e2aa9b8e0101502b",
+  "rubric": "v1.2"
+}

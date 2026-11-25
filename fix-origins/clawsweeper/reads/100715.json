@@ -1,0 +1,8 @@
+{
+  "rank": 100715,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items concern heartbeats writing into active interactive prompts. The review does not raise the missing stderr forwarding from Doctor child processes during managed updates."
+}

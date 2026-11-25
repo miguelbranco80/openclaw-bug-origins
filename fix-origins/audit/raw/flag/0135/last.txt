@@ -2,5 +2,6 @@
   "flagged": "none",
   "where": null,
   "quote": null,
-  "note": "The at-merge “Add real behavior proof” item focused on local approval after an approver’s authority is revoked or expires. Neither that item nor the supplied earlier items raised invitation count or lifetime limits or the misleading error message."
+  "outcome": null,
+  "note": "All items concern local-approver revocation proof and security attention; nothing mentions the limit_reached message wording or invitation limits."
 }

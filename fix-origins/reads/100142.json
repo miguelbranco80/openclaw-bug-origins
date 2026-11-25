@@ -1,0 +1,17 @@
+{
+  "rank": 100142,
+  "sha": "2f504abebddca671613ede82dee5a704fd4d9478",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "fd2a6caa89df050ccdef7a51881e9dbbd6e55005",
+  "cause_pr": 157806,
+  "confidence": "high",
+  "cause_quote": "The introducing diff required `turn.kind !== \"normal\" && turn.authorized && turn.commandName?.toLowerCase() === \"followup\"` for explicit followup admission, but Feishu supplied command text and authorization without the command metadata needed to satisfy that condition.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Feishu or Lark user's /followup could go unacknowledged until the active turn finished, and the next message in the chat could also be held up.",
+  "impact": "sequence-or-timing",
+  "area": "channels",
+  "summary": "The fix classifies Feishu commands before turn acquisition, releases the chat lane when a followup hands off to the runtime queue, and settles broadcast observer commands without dispatching them.",
+  "reasoning": "PR #157806 registered /followup and added its busy-turn admission exception in the same commit. At that revision, Feishu's context builder supplied command text and authorization without a typed command, so core could recognize the text as a control command while failing the explicit followup check that let it reach queue admission during active work. Feishu's per-chat durable ingress lane predated /followup and compounded the delay for subsequent messages."
+}

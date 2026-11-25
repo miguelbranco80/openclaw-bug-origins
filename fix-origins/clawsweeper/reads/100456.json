@@ -1,0 +1,8 @@
+{
+  "rank": 100456,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items raised compatibility, mergeability, and validation concerns. The Evidence section described how the FIFO writer checks ownership but raised no concern that a superseded callback could throw when claiming browser cleanup."
+}

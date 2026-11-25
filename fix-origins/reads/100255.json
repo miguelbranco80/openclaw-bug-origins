@@ -1,0 +1,17 @@
+{
+  "rank": 100255,
+  "sha": "e73028f81cdadff4b7fe1cda28fce9eb4ab69adc",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9a947e4bb8d05c5cd69ef453e8ba1e54c02b0d83",
+  "cause_pr": 125113,
+  "confidence": "high",
+  "cause_quote": "The added `.replace(/\\[([^\\]]+)\\]\\([^)]*\\)/g, \"$1\")` skips labels containing nested brackets and ends the destination at the first closing parenthesis, even when it is balanced or escaped.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Session previews showed raw Markdown or leftover URL fragments, and a long URL could crowd out the text that followed it.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The fix replaces regex-based link stripping with a parser that handles nested labels, balanced or escaped parentheses in destinations, and optional titles.",
+  "reasoning": "The introducing diff shows that #125113 enabled Markdown flattening in Gateway session previews and used the limited regex from the existing sidebar narration code. Previously the Gateway projected transcript text verbatim, and the path history shows the shared flattener kept its original regex until this fix."
+}

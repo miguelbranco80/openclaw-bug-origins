@@ -1,0 +1,17 @@
+{
+  "rank": 100403,
+  "sha": "f5c406ffbaded5d02aa645ecf121fdf0e1f6245e",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "07bf384a8b3fab7179ab3072288beed45cd4225e",
+  "cause_pr": 99935,
+  "confidence": "high",
+  "cause_quote": "The original reader used `for (const rawSegment of path.split(\".\"))` and `rawSegment.split(/[[\\]]/).filter(Boolean)`, splitting literal dots and brackets inside record keys.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The setup agent reported \u201cnot set\u201d for an existing configuration entry whose key contained a literal dot or bracket.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The setup agent now uses the shared configuration path parser for reads, so quoted and escaped keys resolve correctly while sensitive values remain redacted.",
+  "reasoning": "I checked the introducing diff and confirmed that it added the read operation and a tool that passed paths directly to the delimiter-splitting reader, so that tool could never resolve these keys. A later commit expanded command validation to accept quoted and escaped paths, exposing the same lookup failure through typed commands."
+}

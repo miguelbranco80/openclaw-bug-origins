@@ -1,17 +1,17 @@
 {
   "rank": 175,
   "sha": "9d4ea3256cc4dfa4d1fa06b1826ae43a33ff859d",
-  "rubric": "v1.1",
+  "rubric": "v1.2",
   "origin": "latent",
   "cause_sha": null,
   "cause_pr": null,
   "confidence": null,
   "cause_quote": null,
   "trigger_sha": null,
-  "user_visible": "internal",
-  "user_saw": "Release qualification for 2026.11.1-beta.1 repeatedly failed on ClawHub package reads that returned transient HTTP 500s for longer than the retry window.",
-  "impact": "other",
+  "user_visible": "yes",
+  "user_saw": "Release operators saw beta qualification fail before child jobs started because ClawHub package reads exhausted their retries.",
+  "impact": "sequence-or-timing",
   "area": "plugins",
-  "summary": "Added a fourth, 30-second retry delay to the ClawHub read backoff (1s/3s/10s/30s).",
-  "reasoning": "The retry schedule (older than the graft) was adequate until the external ClawHub service started having transient 500 outages longer than about 14 seconds during release qualification; the code was not changed to break, the outside service's behavior outgrew it. Retry tuning is close to not-a-defect, but there was a concrete reported failure caused by an external change, so latent fits best; no in-repo trigger commit."
+  "summary": "The fix adds a fourth ClawHub read retry with a 30-second backoff so package reads can recover after four consecutive HTTP 500 responses.",
+  "reasoning": "I checked that the July implementation already used the 1-, 3-, and 10-second schedule for release package reads, and that HTTP 500 became retryable under that same schedule days later. The fix PR reports that ClawHub endpoints recovered shortly after the existing retries were exhausted, indicating that longer upstream outages exposed the retry limit."
 }

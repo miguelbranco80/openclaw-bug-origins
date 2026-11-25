@@ -1,0 +1,17 @@
+{
+  "rank": 152,
+  "sha": "47b4b5e4e8eb1424e2ae6c629e383d73effb8dca",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "0eb84f967507089583117c874983c8358e991fcf",
+  "cause_pr": null,
+  "confidence": "high",
+  "cause_quote": "The new view-value-picker.tsx search keydown handler checked only `if (event.key !== \"Enter\" || event.isComposing || !query().trim())`, so a keyCode 229 or post-compositionend Enter selected the first match.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Confirming Chinese or Japanese IME text with Enter in a Usage provider or creator filter search selected the first match, changed the filters, and closed the creator picker.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "The Usage value-picker search now uses the shared IME guard (keyCode 229 and Enter right after compositionend) and stops propagation instead of selecting.",
+  "reasoning": "view-value-picker.tsx was created by 0eb84f96750 with the Enter-selects-first-match search and only an event.isComposing guard, even though the shared ui/src/lib/ime.ts helper already existed at that commit; the only later change (d2ba427fa13) did not touch this handler. The searchable picker and its IME gap shipped together, so never-worked."
+}

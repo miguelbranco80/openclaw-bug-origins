@@ -1,0 +1,17 @@
+{
+  "rank": 100130,
+  "sha": "e72e9a566d35047c08ef7ee6a85966491be81707",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "8d8944985883a74484c0ca397c535e5291fddcda",
+  "cause_pr": 175077,
+  "confidence": "high",
+  "cause_quote": "PR #175077 removed `assertSupportedStateSchemaVersion(db, database.path);` from the cached SQLite read path, letting the update parent reuse an open handle after Doctor revoked its schema admission.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An update could keep using a database schema newer than the updater supported after Doctor exited, and Doctor could move legacy session files while the shared-state database was missing and its SQLite sidecars remained.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "The fix closes retained parent database handles after Doctor exits and blocks destructive session migration when the shared-state database is missing and its SQLite sidecars remain.",
+  "reasoning": "Before #175077, the Doctor handoff revoked admission and cached reads rechecked schema compatibility when admission facts changed or disappeared, with an existing test covering both successful and unsuccessful child exits. The #175077 diff removed that recheck, so it is the primary cause recorded here. The same fix also addresses a separate regression from #175129, which replaced the unconditional registry read with a lazy read that canonical paths could skip, bypassing the orphan-sidecar refusal."
+}

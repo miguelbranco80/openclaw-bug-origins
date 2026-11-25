@@ -1,0 +1,8 @@
+{
+  "rank": 100546,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier findings concerned RTL list indentation and styling for JSON disclosures. The at-merge Verification section cited Chromium coverage and raised no concern about Safari leaving the native bullet visible alongside the custom bullet."
+}

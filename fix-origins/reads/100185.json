@@ -1,0 +1,17 @@
+{
+  "rank": 100185,
+  "sha": "be43232aa6d6e1d9086380b1079f622e2cf52058",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "f3a2a91cb4c676859556765832b7a123a8517ee0",
+  "cause_pr": 158950,
+  "confidence": "high",
+  "cause_quote": "The new startup cleanup caught every lock refusal and called `process.emitWarning(`Plugin source capture startup cleanup deferred: ${String(error)}`)`, so expected contention surfaced as a warning from its first version.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A routine CLI command succeeded but printed a warning advising the operator to stop a healthy Gateway.",
+  "impact": "presentation",
+  "area": "cli",
+  "summary": "Startup capture cleanup now silently skips expected state ownership contention and still warns on other failures.",
+  "reasoning": "I checked that #158950 added both the cleanup and its CLI preflight call, and that the existing maintenance lock already rejected acquisition while the Gateway held the shared lifecycle lock. The cleanup warned on that expected refusal from its first version. The later #157413 lock rewrite added explicit advice to stop the Gateway to a warning path that already existed."
+}

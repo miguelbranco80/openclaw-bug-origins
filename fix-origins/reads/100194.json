@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "7f0410c2e66e912a524e72ca883deef2dca09d0f",
+  "cause_pr": 162669,
+  "confidence": "high",
+  "cause_quote": "The migration added `const scheduler = params.scheduler.scope();` to Discord presence setup after socket registration, and the new `scope()` calls `assertOpen()`, which throws `Plugin service scheduler is closed` after account retirement.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "If a restart overtook slow Discord startup, the Gateway process could hang during shutdown because a Discord connection stayed open.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Discord startup now disconnects the gateway socket and disposes any created supervisor if registration or presence setup fails, while preserving the original error.",
+  "reasoning": "I checked the scheduler migration and its parent: the old presence setup used a local timer, returned the socket to the provider, and let the existing lifecycle disconnect it on an already-aborted signal. The migration made account abort close the scheduler, so late presence setup could throw before handing off the socket. The fix also covers the older cleanup gap when registration itself rejects.",
+  "rank": 100194,
+  "sha": "7d29d984bf1e14c7604d648589aba0f61f8b16e2",
+  "rubric": "v1.2"
+}

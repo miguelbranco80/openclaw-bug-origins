@@ -1,0 +1,17 @@
+{
+  "rank": 100453,
+  "sha": "3fe99086c00c7ec3c76314b797abacfe258029c0",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "e210870acfe2fd7df6fcd464e4d775fac5a55710",
+  "cause_pr": 165399,
+  "confidence": "high",
+  "cause_quote": "The new catalog handler used `event.description.slice(0, 4096)`, which leaves a lone high surrogate when the cutoff falls inside a surrogate pair.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway clients received a malformed event description when the 4,096-unit cutoff split an emoji.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix uses `truncateUtf16Safe` to keep surrogate pairs intact at the existing description cap.",
+  "reasoning": "The path-limited first-parent history places the first appearance of `mcp.events.list` in PR #165399. Its diff adds the handler and shows that the original RPC returned descriptions truncated with a raw UTF-16 slice, matching the malformed response documented in the fix PR."
+}

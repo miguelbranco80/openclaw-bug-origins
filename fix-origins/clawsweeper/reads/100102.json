@@ -1,0 +1,8 @@
+{
+  "rank": 100102,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P2 finding concerns the UI showing a welcome screen for an unanchored partial history window. The Gateway continuation calculation entry records a behavior change without raising a concern about the unexpected hasMore field in centered and retained API responses."
+}

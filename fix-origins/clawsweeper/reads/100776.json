@@ -1,0 +1,8 @@
+{
+  "rank": 100776,
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The new draft picker can display an alternative runtime's window choices, but `sessions.create` forwards that choice into this validator, which still looks up only the canonical provider/model row.",
+  "outcome": "answered",
+  "note": "The earlier \u201cValidate context windows against the selected runtime\u201d finding flagged the use of base-model metadata during session creation, while the shipped bug used API catalog metadata for the displayed limit when the selected native runtime had no matching entry. The PR author responded with a fix, and ClawSweeper marked the finding addressed by merge."
+}

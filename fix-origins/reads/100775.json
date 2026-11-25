@@ -1,0 +1,17 @@
+{
+  "rank": 100775,
+  "sha": "26c662436e687fc460ea00e363095b4b1cf27a0f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "9843b937e3547feb30544d384b14ad201000ae74",
+  "cause_pr": 82290,
+  "confidence": "high",
+  "cause_quote": "The new pin verifier hashed `[managed.programArguments, managed.workingDirectory ?? null]`, so it rejected the readback when systemd supplied the user's home directory and the install plan omitted `WorkingDirectory`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A pinned Linux service install reported a readback failure and left the runtime pin unsaved even though the service had started.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The fix preserves the authored systemd definition when override inspection finds no relevant overrides, so pin verification compares it with the install plan.",
+  "reasoning": "The path history and #82290's diff show that `--runtime-path` and strict post-install verification shipped together. I checked that the systemd reader at that commit already dropped the authored definition when the override set was empty, leaving the new verifier to compare systemd's effective home directory with the plan's omitted directory from the first release of pinning."
+}

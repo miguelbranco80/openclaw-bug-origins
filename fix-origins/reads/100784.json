@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "89fe452991229132b1a4195fb9d139c5007d5ef6",
+  "cause_pr": 112216,
+  "confidence": "medium",
+  "cause_quote": "The original observer request set `maxTokens: Math.min(SESSION_OBSERVER_MODEL_MAX_TOKENS, Math.floor(prepared.model.maxTokens))`, capping the entire completion at 300 tokens while leaving thinking enabled on models configured to use it.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With a local reasoning model, the session observer could stop publishing digests and other utility outputs such as activity recaps could be missing.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "The fix explicitly disables thinking for bounded utility completions and preserves that setting when configured local-provider payload fields are applied.",
+  "reasoning": "The observer shipped with a 300-token cap and no thinking override, and its original native Ollama transport forwarded configured thinking and used the cap as `num_predict`. The later activity recap shipped with the same pattern at 240 tokens, and the token-reserve patch documents both failures on its own parent. The mechanism is present in the observer's introducing diff, while the recorded live reproduction comes from a later revision.",
+  "rank": 100784,
+  "sha": "380c115e392604aed13bc4db5e80205deac22a08",
+  "rubric": "v1.2"
+}

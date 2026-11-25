@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "c7e7ac2728917f085aff0ad50755fd39aa57f2b3",
+  "cause_pr": 111451,
+  "confidence": "medium",
+  "cause_quote": "The diff replaced the call to `migrateAndStripShippedPluginInstallConfigRecords` with `const validationConfigRaw = effectiveConfigRaw;`, sending restored `plugins.installs` records directly to strict config validation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The older Git updater reported success, but the new Gateway refused to start and exited with code 78.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Doctor preserves the old updater\u2019s config until its final write, then Gateway startup imports retired plugin install records and saves the migrated config.",
+  "reasoning": "I checked the parent of #111451 and its removed tests, which show that config loading accepted legacy plugin install records and stripped them before validation. #111451 removed that compatibility, and #138914 restored migration during Doctor while leaving Gateway startup exposed when the old updater wrote the records back afterward. The earlier code and tests establish the plugin-record behavior, while the full February updater replay is documented only for the failing and fixed builds.",
+  "rank": 100899,
+  "sha": "4017a1a2f44cdeb350833bbce386ba37755f5dd4",
+  "rubric": "v1.2"
+}

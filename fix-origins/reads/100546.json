@@ -1,0 +1,17 @@
+{
+  "rank": 100546,
+  "sha": "56c4d483375fc62564e3bf43a819a9a384814548",
+  "rubric": "v1.2",
+  "origin": "regression",
+  "cause_sha": "56e6221a8173c41cb6fc38f2e56d0b40aab9cbee",
+  "cause_pr": 122286,
+  "confidence": "high",
+  "cause_quote": "The gutter change added `::before { \u2026 content: \"\u2022\"; \u2026 }` and relied on `::marker { content: \"\"; }` to hide the native bullet, so Safari versions that ignore marker content rendered both.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In affected Safari versions, ordinary bulleted lists in chat showed two overlapping bullets per item.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The fix applies `list-style: none` to ordinary unordered chat list items so only the custom bullet is drawn.",
+  "reasoning": "I checked the first-parent history, the gutter change's diff, and its parent stylesheet, which used a single native bullet for ordinary unordered items. The gutter change broke that existing rendering by drawing a second bullet and relying on marker-content support to suppress the first. The fix PR demonstrated the failure by emulating Safari's marker-content limitation."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 100045,
+  "sha": "bc34252247d0b4a3a3f1e0068edb9b2335ec0600",
+  "rubric": "v1.2",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a new session or cron run, an MCP server without an explicit timeout could appear to have no tools when its tool list took more than 1.5 seconds.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "The fix raised the default MCP tool catalog listing timeout from 1.5 seconds to 10 seconds and preserved explicitly configured timeouts.",
+  "reasoning": "The fix parent confirms that servers without an explicit timeout used the 1.5-second catalog limit. The fix attributes that limit to PR #85063, but the local path history fails at the shallow boundary, so I could not inspect the earlier diff or verify whether slow listings had worked before that PR."
+}

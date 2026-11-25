@@ -1,0 +1,8 @@
+{
+  "rank": 100160,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge items on the updater handoff focus on worker exit, lease release, and restart success. The Fresh authority and ordered publication section describes commit-gate revocation during worker retirement and raises no concern about pending database opens remaining authorized while shutdown waits for resources to drain."
+}

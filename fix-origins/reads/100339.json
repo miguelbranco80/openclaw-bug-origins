@@ -1,0 +1,17 @@
+{
+  "origin": "regression",
+  "cause_sha": "70c2e666ec6af15b6316c48ffb3c681a253a1582",
+  "cause_pr": 133563,
+  "confidence": "high",
+  "cause_quote": "The diff added `return !hasActiveAgentDatabaseLease(params.agentId, params.env);` and `await withAgentDatabaseMaintenanceLease({ env }, async () => {`, so an idle agent could trigger a global maintenance request for cursor bookkeeping while another agent held a writer lease.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw doctor --non-interactive` could exit with a database-in-use error on healthy transcript history when one configured agent was idle and another held a writer lease.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "Doctor now checks for active writers across all agents and defers migration cursor bookkeeping while any writer is active, while still requiring exclusive maintenance for actual repairs.",
+  "reasoning": "The parent already ran the historical transcript migration and could record completion on the idle agent's database while another agent held a lease. PR #133563 paired a per-agent preflight with an existing global maintenance guard, creating the false refusal, and I checked that the later PostgreSQL rewrite preserved the same predicate for native databases.",
+  "rank": 100339,
+  "sha": "d43865a98aa7e7d066fb4885d8440bdb7641f549",
+  "rubric": "v1.2"
+}

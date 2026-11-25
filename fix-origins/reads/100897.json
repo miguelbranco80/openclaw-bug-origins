@@ -1,0 +1,17 @@
+{
+  "rank": 100897,
+  "sha": "90fcceed4120988345fa22edf6a67bc70e0f097f",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "7043f8fb4f6af6023f59934505573f748379b505",
+  "cause_pr": 147571,
+  "confidence": "medium",
+  "cause_quote": "The new Tasks row rendered `const delivery = backgroundTaskDeliveryLabel(task);` from a snapshot whose existing freshness check discarded older-timestamped cancellation corrections.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After stopping a child task, the Control UI showed \u201cCancelled\u201d alongside \u201cWaiting to send to parent\u201d until the operator refreshed the Tasks panel.",
+  "impact": "sequence-or-timing",
+  "area": "ui",
+  "summary": "The fix gives substantive terminal corrections a strictly newer publication timestamp while preserving execution times and cleanup deadlines.",
+  "reasoning": "The commit that introduced delivery labels in the chat Tasks panel used the existing merge rule `if (lookupAt < currentAt) { return current; }`, which discards a final cancellation update carrying an earlier timestamp. I checked that the registry already accepted the finalizer\u2019s supplied timestamp and set delivery to `not_applicable` before that UI feature landed, and that the later shared-transition refactor preserved this behavior."
+}

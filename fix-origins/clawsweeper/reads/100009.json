@@ -1,0 +1,8 @@
+{
+  "rank": 100009,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier P2 finding concerned a test locator broken by the Unavailable label changing the cloud row\u2019s accessible name. At merge, the Evidence section recorded the locator fix and discussed screenshots without raising the empty check slot that pushed the label inward."
+}

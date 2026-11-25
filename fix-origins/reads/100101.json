@@ -1,0 +1,17 @@
+{
+  "rank": 100101,
+  "sha": "7dfd9fbace772e559fc903e282c4cd9aeedf2d8c",
+  "rubric": "v1.2",
+  "origin": "never-worked",
+  "cause_sha": "6db8577c783c789e1810d265921e14e35863dcc4",
+  "cause_pr": 175256,
+  "confidence": "high",
+  "cause_quote": "The new host seed awaited `await attempt.onAgentEvent?.({ stream: \"compaction\", data: { phase: \"context_bounded\" } });` without a catch, so an observer exception or rejection prevented it from returning the seed.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A Codex turn failed before reaching the model when history had to be trimmed for a fresh thread and the compaction observer threw or rejected.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "The fix catches and logs compaction observer failures so bounded history can still be returned after the cancellation and authority checks.",
+  "reasoning": "The introducing diff added the host's `prepareBoundedSeed` capability, wired Codex to call it for fresh-thread history, and included the unguarded observer await from the start. Earlier local history showed no `host-seed.ts`, and a scoped search found no earlier `context_bounded` event in the harness, embedded runner, or Codex app-server paths."
+}

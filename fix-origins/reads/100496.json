@@ -1,0 +1,17 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6b5fb4b23509eef35aead816d03052efe60684e5",
+  "cause_pr": 150702,
+  "confidence": "high",
+  "cause_quote": "The new provenance switch assigned `source = \"other\";` in its default branch, so missing and invalid provenance escaped the recovery store's `source === undefined` check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a gateway restart, an interrupted internal run could resume even though its latest input had no verified human sender.",
+  "impact": "permissions",
+  "area": "agents",
+  "summary": "The fix recognizes explicit `external_user` provenance as human evidence and sends missing or unknown provenance through the existing tombstone path.",
+  "reasoning": "I checked the introducing diff and its parent: the parent had a replay-safety reader, and #150702 added the internal-ingress sender-authority check and source classification together. The provenance normalizer already returned `undefined` for missing or invalid kinds, so the new default misclassified both from the first version of the check.",
+  "rank": 100496,
+  "sha": "e7d6bd8fab28956db0867c9e7211f5b193ec177d",
+  "rubric": "v1.2"
+}

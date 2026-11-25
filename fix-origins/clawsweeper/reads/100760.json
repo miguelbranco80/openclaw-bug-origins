@@ -1,0 +1,8 @@
+{
+  "rank": 100760,
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item in Before merge asked for verification that the published updater retained its captured diagnostics. That check did not exercise the concise CLI path that hid the config path and parse error during browser extension installation."
+}
