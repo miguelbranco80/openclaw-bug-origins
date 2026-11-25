@@ -41,16 +41,17 @@ def signed_in(backend):
     if backend == "agent":
         return True, "work orders for the operating agent; no tool needed"
     if not shutil.which(backend):
-        return None, f"`{backend}` is not installed"
+        return None, "not installed"
     if backend == "codex":
         run = subprocess.run(["codex", "login", "status"], capture_output=True, text=True)
         text = (run.stdout + run.stderr).strip()
         return run.returncode == 0 and "logged in" in text.lower(), text.splitlines()[0] if text else "no answer"
     run = subprocess.run(["claude", "auth", "status"], capture_output=True, text=True)
     try:
-        return bool(json.loads(run.stdout).get("loggedIn")), run.stdout.strip().replace("\n", " ")[:120]
+        ok = bool(json.loads(run.stdout).get("loggedIn"))
     except ValueError:
-        return False, (run.stdout + run.stderr).strip()[:120]
+        ok = False
+    return ok, "signed in" if ok else "not signed in"
 
 
 def _classify(backend, text):
@@ -122,9 +123,12 @@ LOOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "look.py")
 
 def _claude(model, prompt, cwd, log_dir, effort, timeout, read_dirs, git, gh):
     # Never raw git or gh: a reader works from strangers' text. Lookups go through look.py, which can only read.
+    # Each kind of lookup is granted by itself, so a step that may not use the network cannot reach GitHub.
     tools = ["Read", "Grep", "Glob"]
-    if git or gh:
-        tools += [f"Bash(python3 {LOOK}:*)"]
+    if git:
+        tools += [f"Bash(python3 {LOOK} {kind}:*)" for kind in ("git", "history")]
+    if gh:
+        tools += [f"Bash(python3 {LOOK} {kind}:*)" for kind in ("commit", "pull", "blame")]
     command = ["claude", "-p", "--model", model, "--output-format", "json", "--no-session-persistence",
                "--strict-mcp-config", "--effort", effort, "--allowedTools", *tools,
                "--disallowedTools", "Edit", "Write", "NotebookEdit", "WebFetch", "WebSearch", "Agent"]

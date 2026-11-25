@@ -330,6 +330,11 @@ def main():
         elif args.command == "judge":
             need_clone()
             only = {f"{int(c):04d}" for c in args.cases.split(",")} if args.cases else None
+            if args.backend in ("codex", "claude") and not args.model:
+                configured = settings()["judging"][args.step]
+                same = all(c["backend"] == args.backend for c in (configured if isinstance(configured, list) else [configured]))
+                if not same:
+                    raise SystemExit("--backend changes the tool, so also say which of its models to use: --model <name>")
             done, failed, waiting = judge.run_step(args.step, only=only, backend=args.backend, model_name=args.model,
                                                    jobs=args.jobs, limit=args.limit)
             say(f"{args.step}: {done} answered now, {failed} failed, {waiting} waiting for a subagent")

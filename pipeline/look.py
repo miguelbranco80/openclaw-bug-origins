@@ -23,8 +23,20 @@ from pipeline import gh  # noqa: E402
 from pipeline.settings import Paused, clone, git_env, history_dir, settings  # noqa: E402
 
 GIT_READS = {"log", "show", "blame", "diff", "rev-parse", "rev-list", "cat-file", "ls-tree", "merge-base"}
-REFUSED = ("--output", "--ext-diff", "--textconv", "--no-index", "--exec", "--upload-pack", "--receive-pack",
-           "--git-dir", "--work-tree", "--open-files-in-pager", "--contents")
+# Options a reader may pass. Anything else is refused: an allowlist, because git has options that write files or
+# run programs (--output, --ext-diff, --textconv, ...) and new ones appear.
+OPTIONS = {
+    "--format", "--pretty", "--oneline", "-n", "--max-count", "--skip", "--since", "--until", "--after", "--before",
+    "--author", "--grep", "-i", "--regexp-ignore-case", "--first-parent", "--no-merges", "--merges", "--reverse",
+    "--name-only", "--name-status", "--stat", "--numstat", "--shortstat", "--raw", "-p", "--patch", "-s",
+    "--no-patch", "-S", "-G", "--pickaxe-regex", "--follow", "-M", "-C", "-w", "-b", "--ignore-all-space",
+    "--no-renames", "--no-color", "--abbrev-commit", "--abbrev", "--date", "--unified", "--diff-filter",
+    "--porcelain", "--line-porcelain", "-l", "-r", "-t", "-d", "-e", "--full-tree", "--verify", "--short", "-q",
+    "--count", "--is-ancestor", "--is-shallow-repository", "--decorate", "--no-decorate", "--topo-order",
+    "--date-order", "--ancestry-path", "--full-history", "-m", "-c", "--cc", "--root", "-z", "--no-ext-diff",
+    "--no-textconv", "--left-right", "--cherry-pick", "--objects", "--missing",
+}
+ATTACHED = re.compile(r"-(\d+|U\d+|L.+|S.+|G.+|n\d+)")  # -3, -U5, -L10,20:path, -Stext, -Gregex, -n5
 BLAME = """query($owner: String!, $name: String!, $sha: String!, $path: String!) {
   repository(owner: $owner, name: $name) { object(expression: $sha) { ... on Commit { blame(path: $path) {
     ranges { startingLine endingLine commit { oid committedDate messageHeadline } } } } } } }"""
@@ -39,9 +51,13 @@ def git(base, args):
     if not args or args[0] not in GIT_READS:
         refuse("only these git subcommands are available: " + ", ".join(sorted(GIT_READS)))
     for arg in args[1:]:
-        if arg.startswith(REFUSED) or arg == "-O" or arg.startswith("-O"):
+        if arg == "--":
+            break  # everything after is a path
+        if arg.startswith("-") and arg.split("=")[0] not in OPTIONS and not ATTACHED.fullmatch(arg):
             refuse(f"the option {arg.split('=')[0]} is not available")
-    done = subprocess.run(["git", *base, "--no-pager", *args], env=git_env(), timeout=300)
+    harden = ["-c", "core.pager=cat", "-c", "diff.external=", "-c", "core.fsmonitor=false", "--no-pager"]
+    extra = ["--no-ext-diff", "--no-textconv"] if args[0] in ("log", "show", "diff") else []
+    done = subprocess.run(["git", *base, *harden, args[0], *extra, *args[1:]], env=git_env(), timeout=300)
     sys.exit(done.returncode)
 
 

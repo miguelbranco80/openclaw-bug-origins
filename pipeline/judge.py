@@ -367,8 +367,11 @@ def laterfix_cases(step, config):
     for name in sorted(os.listdir(folder)) if os.path.isdir(folder) else []:
         key = name[:4]
         listing = open(os.path.join(folder, name)).read()
-        task = (f"\n\n## Your task\n\nThe checkout is `{clone()}`: run the two allowed commands as "
-                f"`git -C {clone()} ...`. Your bundle follows.\n\n" + listing + "\n\n")
+        how = (f"`git -C {clone()} show ...`" if config["backend"] == "codex"
+               else f"`python3 {model.LOOK} git show ...` (the lookup tool adds the checkout and the "
+                    "`GIT_NO_LAZY_FETCH` setting; plain `git` is not available in this run)")
+        task = (f"\n\n## Your task\n\nThe checkout is `{clone()}`: run the two allowed commands as {how}. "
+                "Your bundle follows.\n\n" + listing + "\n\n")
         cases.append(Case(key, text + task, None, os.path.join(verify, "laterfix-reads", key + ".json"), "json",
                           check_findings("fixed", ("yes", "partly", "no"), listing), read_dirs=(clone(),), git=True,
                           finish=lambda answer, key=key: dict(answer, case=key)))
@@ -495,7 +498,8 @@ def orders(label, cases, config):
         allowed = [f"`{work}` (your working directory)"] + [f"`{path}`" for path in case.read_dirs]
         with open(os.path.join(folder, case.key + ".md"), "w") as handle:
             handle.write(case.prompt + f"""Work in `{work}`. You may read only: {', '.join(allowed)}.
-{"Run git and GitHub lookups only as your task section says." if case.git else "Do not run git and do not use the network."}
+{"Run git only as your task section says." if case.git else "Do not run git."}
+{"Use the network only for the GitHub lookups your task section names." if case.gh else "Do not use the network."}
 Write exactly one JSON object, and nothing else, to `{answer}`. Write no other file.
 """)
         waiting.append(case.key)
@@ -522,7 +526,7 @@ def run_step(step, only=None, backend=None, model_name=None, jobs=None, limit=No
             continue
         ok, detail = model.signed_in(config["backend"])
         if not ok:
-            raise Paused(f"{detail}. Sign in ({model.SIGN_IN.get(config['backend'], 'install it')}), or run this "
+            raise Paused(f"`{config['backend']}` is {detail}. Sign in ({model.SIGN_IN.get(config['backend'], 'install it')}), or run this "
                          "step with another backend: --backend codex, --backend claude or --backend agent")
         stop = threading.Event()
         with ThreadPoolExecutor(jobs or settings()["limits"]["jobs"]) as pool:

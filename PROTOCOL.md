@@ -212,7 +212,13 @@ failure under `work/failures/`. Models never write files.
 
 Readers work from text written by strangers: commit messages and pull request descriptions. That text can contain
 instructions. This is why no backend gives a model the `git` or `gh` commands with network access, and why answers
-are checked for shape before they are stored.
+are checked for shape before they are stored. Two limits to know:
+
+- The `claude` backend holds the model to `pipeline/look.py` through Claude Code's own permission rules. That path
+  could not be exercised while this protocol was written, because the tool was signed out; its sign-out detection
+  was. Try one case first (`python3 study.py judge flag --cases <n>`) and read its log under `work/logs/`.
+- The `agent` backend cannot enforce anything: a subagent has whatever its session allows. The work order states
+  the limits, and that is all.
 
 To run a step with a different tool or model than the settings say, for one run:
 
