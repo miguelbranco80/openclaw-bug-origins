@@ -9,31 +9,53 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 ## Main results
 
+Some of this is what any engineer would guess, and the value is in having a number for it. The rest we did not
+expect.
+
+**As you would expect, now with numbers**
+
 - **New code is where the bugs are.** Changes that add a new code file are 13.7% of commits
   and the source of 69% of the traced bugs (346 of
   505). *Finding 1.*
-- **Shipping tests with a change is not a sign it is safe.** 494 of the 505
-  traced bugs came from a change that also changed tests. *Finding 21.*
-- **The review bot rarely named the bug, but its objection marks risk.** It had named the bug in
+- **Features cause more than their share.** Changes titled "feat" caused 123.7 bugs per 100
+  commits, against 18 for changes titled "fix". *Finding 3.*
+- **Bigger changes carry more bugs.** A commit of over 100 files carried about 131 times
+  the bugs of one of 1 to 5 files. The less obvious part: per file changed, the rate is about the same. A big change
+  is more exposure, not worse work. *Finding 4.*
+- **Files that several people are editing at once carry more bugs:** 1.67 times, for
+  files two or more other people had changed in the previous two weeks. *Finding 20.*
+
+**What we did not expect**
+
+- **Tests came with nearly every bug.** 494 of the 505 traced bugs came
+  from a change that also changed tests. Shipping tests with a change is not a sign it is safe. *Finding 21.*
+- **About half the bugs were never regressions.** 443 were new code that never worked,
+  against 389 working things broken later. A test of the old behavior cannot catch the
+  first kind. *Finding 2.*
+- **The review bot rarely named the bug, yet its objection marks risk.** It had named the bug in
   21 of the 645 bug-causing changes it reviewed. Changes merged over its
-  objection still carried 3.42 times the bugs of changes it called ready.
-  *Findings 6 and 12.*
-- **The bugs are concentrated.** 6.8% of changes show at least two of three warning signs
-  before they merge (the bot objected, the pull request was open a day or more, it touched more than 30 files), and
-  those changes carry 48% of the traced bugs. *Finding 17.*
-- **About half the bugs are not regressions.** 443 were new code that never worked, against
-  389 working things broken later. *Finding 2.*
-- **Large changes carry more bugs because they hold more change.** A commit of over 100 files carried about
-  131 times the bugs of one of 1 to 5 files, and about the same per file changed.
-  *Finding 4.*
+  objection still carried 3.42 times the bugs of changes it called ready, even
+  though its complaint was usually about something else. *Findings 6 and 12.*
+- **You can point at the risky changes before they merge.** 6.8% of changes show at least
+  two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
+  files), and those changes carry 48% of the traced bugs. *Finding 17.*
+- **A screenshot or video goes with more bugs, not fewer.** Among interface changes, those with one carried
+  3.72 times the bugs. *Finding 16.*
+- **Fast merges are the safe ones.** Pull requests merged within the hour carried far fewer bugs than those open a
+  day or more: 0.28 times as many. *Finding 14.*
+- **Nobody looks overloaded.** An author's heavy days are no worse than their light ones, although one account
+  merges 54.3% of all pull requests. *Finding 18.*
+- **Outsiders' changes are the safer ones.** Changes from people with 20 commits or fewer carried fewer bugs than
+  the most active author's: 0.47 times as many. *Finding 19.*
 - **Reading alone has a ceiling.** Two strong models, shown 30 bug-causing changes from November
-  with no hint, together named 10 of the bugs. 9 could not be seen by reading
-  code at all, and nobody named those. *Findings 7 and 9.*
-- **The results repeat.** We checked two ways. The fixes from September and October give the same picture as those
-  from November. And a second model, reading the same November fixes, pointed at the same causing change in
-  108 of 130 cases. Where the two models differ is on what counts
-  as a bug at all: one said 11% of those fixes repaired nothing, the other
-  33%. *Findings 22 and 23.*
+  with no hint, together named 10 of the bugs. 9 could not be
+  seen by reading code at all, and nobody named those. *Findings 7 and 9.*
+
+**And it repeats.** We checked two ways. The fixes from September and October give the same picture as those from
+November. And a second model, reading the same November fixes, pointed at the same causing change in
+108 of 130 cases. Where the two models differ is on what counts as
+a bug at all: one said 11% of those fixes repaired nothing, the other
+33%. *Findings 22 and 23.*
 
 **Share of the traced bugs that came from changes with each warning sign**
 
@@ -83,7 +105,7 @@ Findings 1 to 5: what kind of change had introduced each problem, and how long i
 
 ### 1. Changes that add new code files caused two thirds of the bugs
 
-*Well supported. Whether a change adds a file is counted from git, not judged. Findings 2 and 3 reach the same
+**As expected.** *Well supported. Whether a change adds a file is counted from git, not judged. Findings 2 and 3 reach the same
 place by other routes.*
 
 **Bugs per 100 changes, by whether the change adds new code files**
@@ -117,7 +139,7 @@ Recompute: `python3 questions/q24_do_changes_that_add_new_files_cause_more_bugs.
 
 ### 2. New code that never worked accounts for about as many bugs as working things broken later
 
-*Supported. About even by the main model in both periods; about double by the second model on the November
+**Surprising.** *Supported. About even by the main model in both periods; about double by the second model on the November
 fixes. Neither puts never-worked bugs clearly below.*
 
 Of the 832 bugs we could trace to the change that introduced them, 443 were
@@ -164,7 +186,7 @@ Recompute: `python3 questions/q02_new_code_or_broken_later.py`
 
 ### 3. Changes titled as new features cause far more than their share of bugs
 
-*Well supported. Measured against every commit on main in the same period, not against an estimate.*
+**As expected.** *Well supported. Measured against every commit on main in the same period, not against an estimate.*
 
 For each traced bug we looked at the title of the change that introduced it, and divided by how many commits carry
 that title. Changes titled "feat" caused 123.7 bugs per 100 commits, against 18
@@ -204,7 +226,7 @@ Recompute: `python3 questions/q03_what_kind_of_change_introduces_bugs.py`
 
 ### 4. Large changes cause far more bugs per change, but about the same per file changed
 
-*Well supported. The per-file figures vary by less than a factor of two across size groups.*
+**As expected.** *Well supported. The per-file figures vary by less than a factor of two across size groups.*
 
 A causing change touched a median of 36 files; an ordinary commit touches
 4. Per change, a commit of over 100 files carried about
@@ -303,7 +325,7 @@ models find when shown the same changes with no hint. Findings 7 to 10 cover Nov
 
 ### 6. The review bot had rarely named the bug before the change merged
 
-*Well supported. The November cases were read by both models, with close agreement.*
+**Surprising.** *Well supported. The November cases were read by both models, with close agreement.*
 
 For each of the 832 traced bugs we read what the bot had written on the causing change at the moment
 it merged, rebuilt from the comment's edit history. It had reviewed 645 of them and named the bug
@@ -461,7 +483,7 @@ Recompute: `python3 questions/q08_are_the_other_reported_problems_real.py`
 
 ### 9. About a third of the bugs could not be seen by reading code
 
-*Tentative. One model's judgment on 30 cases; the key group is nine.*
+**Surprising.** *Tentative. One model's judgment on 30 cases; the key group is nine.*
 
 **What a reviewer needed to see the bug, and how many were named**
 
@@ -507,7 +529,7 @@ by a model; it is counted from git and GitHub.
 
 ### 11. Changes committed straight to main caused fewer bugs per change, not more
 
-*Supported per change; much of the gap is size. The direct-commit side rests on 19 sampled
+**Surprising.** *Supported per change; much of the gap is size. The direct-commit side rests on 19 sampled
 bugs.*
 
 8.6% of commits since 10 September reached main with no pull request number in the title.
@@ -537,7 +559,7 @@ Recompute: `python3 questions/q11_does_skipping_a_pull_request_matter.py`
 
 ### 12. Changes merged while the bot objected carried more bugs
 
-*Supported. A comparison with ordinary changes, with size held equal. It shows a link, not a cause.*
+**Surprising.** *Supported. A comparison with ordinary changes, with size held equal. It shows a link, not a cause.*
 
 Findings 1 to 11 start from bugs. To ask whether a kind of change causes more bugs, we also need to know how common
 that kind is among ordinary changes. So we drew 400 merged pull requests at random and
@@ -608,7 +630,7 @@ Recompute: `python3 questions/q13_does_review_timing_matter.py`
 
 ### 14. Pull requests merged within the hour carried far fewer bugs than those open a day or more
 
-*Supported for time open. On who opened or merged a change, this sample of 400 is too thin; finding 19 asks the same
+**Surprising.** *Supported for time open. On who opened or merged a change, this sample of 400 is too thin; finding 19 asks the same
 of every pull request.*
 
 **Bugs per 100 changes, by how long the pull request was open**
@@ -685,7 +707,7 @@ Recompute: `python3 questions/q15_how_does_the_project_review_and_merge.py`
 
 ### 16. A screenshot or video in the pull request did not go with fewer bugs
 
-*Supported. It shows what such pull requests are like, not what the screenshot did.*
+**Surprising.** *Supported. It shows what such pull requests are like, not what the screenshot did.*
 
 The project asks for visual proof on visible changes, so we checked whether pull requests that carry it do better.
 Screenshots and videos are attached almost only to interface changes, and interface changes cause more bugs than
@@ -719,7 +741,7 @@ Recompute: `python3 questions/q16_do_changes_with_visual_proof_cause_fewer_bugs.
 
 ### 17. The bugs are concentrated in changes that could be pointed at beforehand
 
-*Supported. The three signs were picked after seeing the November fixes alone. On the full period, with four times
+**Surprising.** *Supported. The three signs were picked after seeing the November fixes alone. On the full period, with four times
 the bugs, they mark the same share.*
 
 Three things visible at or before merge each mark a small share of changes and a large share of bugs: the bot
@@ -760,7 +782,7 @@ Recompute: `python3 questions/q17_how_concentrated_are_the_bugs.py`
 
 ### 18. An individual's workload shows no effect; the project's busiest days carried more bugs
 
-*Supported for individual workload. Tentative for busy days: it is one clear result among about thirty comparisons.*
+**Surprising.** *Supported for individual workload. Tentative for busy days: it is one clear result among about thirty comparisons.*
 
 The worry is simple: one person lands hundreds of changes a day, the project lands a thousand, and care must be
 slipping. If that were so, changes landed under heavy load would cause more bugs than changes landed under light
@@ -824,7 +846,7 @@ Recompute: `python3 questions/q18_does_author_workload_matter.py`; `python3 ques
 
 ### 19. Changes from occasional contributors, and changes someone else merged, carried about half the bugs
 
-*Supported. The two overlap: an outside contributor cannot merge their own change.*
+**Surprising.** *Supported. The two overlap: an outside contributor cannot merge their own change.*
 
 Would more contributors mean more bugs? One way to ask is whether changes from people who contribute rarely cause
 more bugs than changes from the regulars. They cause fewer.
@@ -868,7 +890,7 @@ Recompute: `python3 questions/q22_do_occasional_contributors_cause_more_bugs.py`
 
 ### 20. Changes to files that several other people were also editing caused more bugs
 
-*Supported for the most-shared files. It cannot separate "too many hands" from "the busiest, most central code".*
+**As expected.** *Supported for the most-shared files. It cannot separate "too many hands" from "the busiest, most central code".*
 
 **Bugs per 100 changes, by how many other people were editing the same files**
 
@@ -906,7 +928,7 @@ Recompute: `python3 questions/q23_do_files_many_people_edit_cause_more_bugs.py`
 
 ### 21. Nearly every bug-causing change came with tests; no part of the code stands out
 
-*Measured.*
+**Surprising.** *Measured.*
 
 | Kind of change | Share of all commits | Sampled bugs | Bugs per 100 commits | Against the baseline, at equal size, kind and time |
 |---|---:|---:|---:|---|
@@ -1195,31 +1217,34 @@ nothing judged. **Well supported** means a large effect that held when checked a
 clear effect resting on one method. **Tentative** means a small number of cases, or a range that barely clears "no
 difference". **Depends on the model** means two models gave different answers.
 
-| # | Strength | Finding |
-|---|---|---|
-| 1 | Well supported | Changes that add new code files are 13.7% of commits and the source of 69% of the traced bugs. |
-| 2 | Supported | New code that never worked accounts for about as many bugs as working things broken later: 443 against 389 by the main model. The second model, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
-| 3 | Well supported | Changes titled as new features cause far more than their share of bugs. The title "fix" tells you little. |
-| 4 | Well supported | Large changes cause far more bugs per change, but about the same per file changed. |
-| 5 | Supported | A broken thing typically stayed broken for one to four weeks, unless someone traced the cause at once. |
-| 6 | Well supported | The review bot had rarely named the bug before the change merged: 21 of 645. |
-| 7 | Supported, November only | Two current models together named more of the known bugs than the bot had. For either model alone, the gap could still be chance. |
-| 8 | Supported, November only | Most of the other problems those models reported hold up when checked, and about a third of them are minor. |
-| 9 | Tentative, November only | About a third of the bugs could not be seen by reading code at all. This rests on nine cases. |
-| 10 | Tentative, November only | Most bugs broke no written rule. |
-| 11 | Supported | Changes committed straight to main, without a pull request, caused fewer bugs per change, not more. |
-| 12 | Well supported | Changes merged while the bot objected carried 3.42 times the bugs of changes it called ready, at equal size and month. Its objection marks risk even when its words do not name the bug. |
-| 13 | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk. |
-| 14 | Supported | Pull requests merged within the hour carried far fewer bugs than those open a day or more. |
-| 15 | Measured | 88.8% of pull requests were merged by their own author. Another person reviewed 1.0% of them before the merge. |
-| 16 | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused 3.72 times as many, at equal size and month. |
-| 17 | Supported | Bugs are concentrated. Changes with at least two of three warning signs are 6.8% of changes and the source of 48% of traced bugs. |
-| 18 | Supported, and one tentative result | An individual's workload shows no effect. Changes landed on the project's busiest days carried 1.73 times the bugs of changes landed on its quietest. |
-| 19 | Supported | Changes from occasional contributors, and changes merged by someone other than their author, carried about half the bugs. Review by a second person is too rare to measure. |
-| 20 | Supported | Changes to files that two or more other people were also editing caused 1.67 times the bugs of changes to files only their author was editing. |
-| 21 | Measured | 494 of the 505 traced bugs came from a change that also changed tests. No part of the code stands out. |
-| 22 | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
-| 23 | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
+**As expected** and **Surprising** are our own reading of whether an engineer would have guessed the result. They
+say nothing about how well supported it is.
+
+| # | | Strength | Finding |
+|---|---|---|---|
+| 1 | As expected | Well supported | Changes that add new code files are 13.7% of commits and the source of 69% of the traced bugs. |
+| 2 | Surprising | Supported | New code that never worked accounts for about as many bugs as working things broken later: 443 against 389 by the main model. The second model, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
+| 3 | As expected | Well supported | Changes titled as new features cause far more than their share of bugs. The title "fix" tells you little. |
+| 4 | As expected | Well supported | Large changes cause far more bugs per change, but about the same per file changed. |
+| 5 |  | Supported | A broken thing typically stayed broken for one to four weeks, unless someone traced the cause at once. |
+| 6 | Surprising | Well supported | The review bot had rarely named the bug before the change merged: 21 of 645. |
+| 7 |  | Supported, November only | Two current models together named more of the known bugs than the bot had. For either model alone, the gap could still be chance. |
+| 8 |  | Supported, November only | Most of the other problems those models reported hold up when checked, and about a third of them are minor. |
+| 9 | Surprising | Tentative, November only | About a third of the bugs could not be seen by reading code at all. This rests on nine cases. |
+| 10 |  | Tentative, November only | Most bugs broke no written rule. |
+| 11 | Surprising | Supported | Changes committed straight to main, without a pull request, caused fewer bugs per change, not more. |
+| 12 | Surprising | Well supported | Changes merged while the bot objected carried 3.42 times the bugs of changes it called ready, at equal size and month. Its objection marks risk even when its words do not name the bug. |
+| 13 |  | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk. |
+| 14 | Surprising | Supported | Pull requests merged within the hour carried far fewer bugs than those open a day or more. |
+| 15 |  | Measured | 88.8% of pull requests were merged by their own author. Another person reviewed 1.0% of them before the merge. |
+| 16 | Surprising | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused 3.72 times as many, at equal size and month. |
+| 17 | Surprising | Supported | Bugs are concentrated. Changes with at least two of three warning signs are 6.8% of changes and the source of 48% of traced bugs. |
+| 18 | Surprising | Supported, and one tentative result | An individual's workload shows no effect. Changes landed on the project's busiest days carried 1.73 times the bugs of changes landed on its quietest. |
+| 19 | Surprising | Supported | Changes from occasional contributors, and changes merged by someone other than their author, carried about half the bugs. Review by a second person is too rare to measure. |
+| 20 | As expected | Supported | Changes to files that two or more other people were also editing caused 1.67 times the bugs of changes to files only their author was editing. |
+| 21 | Surprising | Measured | 494 of the 505 traced bugs came from a change that also changed tests. No part of the code stands out. |
+| 22 |  | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
+| 23 |  | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
 
 ## Repository map
 

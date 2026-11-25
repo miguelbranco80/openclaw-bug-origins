@@ -141,31 +141,53 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 ## Main results
 
+Some of this is what any engineer would guess, and the value is in having a number for it. The rest we did not
+expect.
+
+**As you would expect, now with numbers**
+
 - **New code is where the bugs are.** Changes that add a new code file are {v('q24', 'new_share_adds')}% of commits
   and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs ({v('q24', 'new_bugs_adds')} of
   {v('q25', 'bugs')}). *Finding 1.*
-- **Shipping tests with a change is not a sign it is safe.** {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')}
-  traced bugs came from a change that also changed tests. *Finding 21.*
-- **The review bot rarely named the bug, but its objection marks risk.** It had named the bug in
+- **Features cause more than their share.** Changes titled "feat" caused {v('q03', 'rate_feat')} bugs per 100
+  commits, against {v('q03', 'rate_fix')} for changes titled "fix". *Finding 3.*
+- **Bigger changes carry more bugs.** A commit of over 100 files carried about {v('q04', 'per_commit_ratio')} times
+  the bugs of one of 1 to 5 files. The less obvious part: per file changed, the rate is about the same. A big change
+  is more exposure, not worse work. *Finding 4.*
+- **Files that several people are editing at once carry more bugs:** {v('q23', 'shared_adjusted_high')} times, for
+  files two or more other people had changed in the previous two weeks. *Finding 20.*
+
+**What we did not expect**
+
+- **Tests came with nearly every bug.** {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came
+  from a change that also changed tests. Shipping tests with a change is not a sign it is safe. *Finding 21.*
+- **About half the bugs were never regressions.** {v('q02', 'sens_never_all')} were new code that never worked,
+  against {v('q02', 'sens_broke_all')} working things broken later. A test of the old behavior cannot catch the
+  first kind. *Finding 2.*
+- **The review bot rarely named the bug, yet its objection marks risk.** It had named the bug in
   {v('q06', 'flag_exact')} of the {v('q06', 'reviewed')} bug-causing changes it reviewed. Changes merged over its
-  objection still carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready.
-  *Findings 6 and 12.*
-- **The bugs are concentrated.** {v('q17', 'changes_pct_two')}% of changes show at least two of three warning signs
-  before they merge (the bot objected, the pull request was open a day or more, it touched more than 30 files), and
-  those changes carry {v('q17', 'bugs_pct_two')}% of the traced bugs. *Finding 17.*
-- **About half the bugs are not regressions.** {v('q02', 'sens_never_all')} were new code that never worked, against
-  {v('q02', 'sens_broke_all')} working things broken later. *Finding 2.*
-- **Large changes carry more bugs because they hold more change.** A commit of over 100 files carried about
-  {v('q04', 'per_commit_ratio')} times the bugs of one of 1 to 5 files, and about the same per file changed.
-  *Finding 4.*
+  objection still carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready, even
+  though its complaint was usually about something else. *Findings 6 and 12.*
+- **You can point at the risky changes before they merge.** {v('q17', 'changes_pct_two')}% of changes show at least
+  two of three warning signs (the bot objected, the pull request was open a day or more, it touched more than 30
+  files), and those changes carry {v('q17', 'bugs_pct_two')}% of the traced bugs. *Finding 17.*
+- **A screenshot or video goes with more bugs, not fewer.** Among interface changes, those with one carried
+  {v('q16', 'interface_adjusted_yes')} times the bugs. *Finding 16.*
+- **Fast merges are the safe ones.** Pull requests merged within the hour carried far fewer bugs than those open a
+  day or more: {v('q14', 'open_adjusted_hour')} times as many. *Finding 14.*
+- **Nobody looks overloaded.** An author's heavy days are no worse than their light ones, although one account
+  merges {v('q20', 'top_pct')}% of all pull requests. *Finding 18.*
+- **Outsiders' changes are the safer ones.** Changes from people with 20 commits or fewer carried fewer bugs than
+  the most active author's: {v('q22', 'who_adjusted_occasional')} times as many. *Finding 19.*
 - **Reading alone has a ceiling.** Two strong models, shown {v('q07', 'cases')} bug-causing changes from November
-  with no hint, together named {v('q07', 'named_either_top')} of the bugs. {v('q09', 'needs_outside')} could not be seen by reading
-  code at all, and nobody named those. *Findings 7 and 9.*
-- **The results repeat.** We checked two ways. The fixes from September and October give the same picture as those
-  from November. And a second model, reading the same November fixes, pointed at the same causing change in
-  {v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')} cases. Where the two models differ is on what counts
-  as a bug at all: one said {v('q27', 'not_bug_pct_frame1')}% of those fixes repaired nothing, the other
-  {v('q27', 'not_bug_pct_published')}%. *Findings 22 and 23.*
+  with no hint, together named {v('q07', 'named_either_top')} of the bugs. {v('q09', 'needs_outside')} could not be
+  seen by reading code at all, and nobody named those. *Findings 7 and 9.*
+
+**And it repeats.** We checked two ways. The fixes from September and October give the same picture as those from
+November. And a second model, reading the same November fixes, pointed at the same causing change in
+{v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')} cases. Where the two models differ is on what counts as
+a bug at all: one said {v('q27', 'not_bug_pct_frame1')}% of those fixes repaired nothing, the other
+{v('q27', 'not_bug_pct_published')}%. *Findings 22 and 23.*
 
 {chart('q17', 0)}
 
@@ -210,7 +232,7 @@ Findings 1 to 5: what kind of change had introduced each problem, and how long i
 
 ### 1. Changes that add new code files caused two thirds of the bugs
 
-*Well supported. Whether a change adds a file is counted from git, not judged. Findings 2 and 3 reach the same
+**As expected.** *Well supported. Whether a change adds a file is counted from git, not judged. Findings 2 and 3 reach the same
 place by other routes.*
 
 {chart('q24', 0)}
@@ -236,7 +258,7 @@ only edits existing files (plausibly {span('q24', 'new_adjusted_adds')}).
 
 ### 2. New code that never worked accounts for about as many bugs as working things broken later
 
-*Supported. About even by the main model in both periods; about double by the second model on the November
+**Surprising.** *Supported. About even by the main model in both periods; about double by the second model on the November
 fixes. Neither puts never-worked bugs clearly below.*
 
 Of the {v('q02', 'traced')} bugs we could trace to the change that introduced them, {v('q02', 'sens_never_all')} were
@@ -267,7 +289,7 @@ disagree on which change caused it.
 
 ### 3. Changes titled as new features cause far more than their share of bugs
 
-*Well supported. Measured against every commit on main in the same period, not against an estimate.*
+**As expected.** *Well supported. Measured against every commit on main in the same period, not against an estimate.*
 
 For each traced bug we looked at the title of the change that introduced it, and divided by how many commits carry
 that title. Changes titled "feat" caused {v('q03', 'rate_feat')} bugs per 100 commits, against {v('q03', 'rate_fix')}
@@ -294,7 +316,7 @@ than others, so part of their higher rate is size, which is the next finding.
 
 ### 4. Large changes cause far more bugs per change, but about the same per file changed
 
-*Well supported. The per-file figures vary by less than a factor of two across size groups.*
+**As expected.** *Well supported. The per-file figures vary by less than a factor of two across size groups.*
 
 A causing change touched a median of {v('q03', 'cause_median_files')} files; an ordinary commit touches
 {v('q03', 'base_median_files')}. Per change, a commit of over 100 files carried about
@@ -355,7 +377,7 @@ models find when shown the same changes with no hint. Findings 7 to 10 cover Nov
 
 ### 6. The review bot had rarely named the bug before the change merged
 
-*Well supported. The November cases were read by both models, with close agreement.*
+**Surprising.** *Well supported. The November cases were read by both models, with close agreement.*
 
 For each of the {v('q06', 'traced')} traced bugs we read what the bot had written on the causing change at the moment
 it merged, rebuilt from the comment's edit history. It had reviewed {v('q06', 'reviewed')} of them and named the bug
@@ -458,7 +480,7 @@ real. That count is a floor: the same search found the fix for only {v('q08', 'l
 
 ### 9. About a third of the bugs could not be seen by reading code
 
-*Tentative. One model's judgment on 30 cases; the key group is nine.*
+**Surprising.** *Tentative. One model's judgment on 30 cases; the key group is nine.*
 
 {chart('q09', 0)}
 
@@ -494,7 +516,7 @@ by a model; it is counted from git and GitHub.
 
 ### 11. Changes committed straight to main caused fewer bugs per change, not more
 
-*Supported per change; much of the gap is size. The direct-commit side rests on {v('q11', 'bugs_direct')} sampled
+**Surprising.** *Supported per change; much of the gap is size. The direct-commit side rests on {v('q11', 'bugs_direct')} sampled
 bugs.*
 
 {v('q11', 'direct_share_pct')}% of commits since 10 September reached main with no pull request number in the title.
@@ -517,7 +539,7 @@ so size explains part of the gap. Within changes of 6 files or more, the rate wa
 
 ### 12. Changes merged while the bot objected carried more bugs
 
-*Supported. A comparison with ordinary changes, with size held equal. It shows a link, not a cause.*
+**Surprising.** *Supported. A comparison with ordinary changes, with size held equal. It shows a link, not a cause.*
 
 Findings 1 to 11 start from bugs. To ask whether a kind of change causes more bugs, we also need to know how common
 that kind is among ordinary changes. So we drew {v('q12', 'verdict_sample')} merged pull requests at random and
@@ -570,7 +592,7 @@ merged an hour or more later (plausibly {span('q13', 'speed_adjusted_fast')}). B
 
 ### 14. Pull requests merged within the hour carried far fewer bugs than those open a day or more
 
-*Supported for time open. On who opened or merged a change, this sample of 400 is too thin; finding 19 asks the same
+**Surprising.** *Supported for time open. On who opened or merged a change, this sample of 400 is too thin; finding 19 asks the same
 of every pull request.*
 
 {chart('q14', 0)}
@@ -623,7 +645,7 @@ not charts, because a bar would suggest a difference the numbers do not support.
 
 ### 16. A screenshot or video in the pull request did not go with fewer bugs
 
-*Supported. It shows what such pull requests are like, not what the screenshot did.*
+**Surprising.** *Supported. It shows what such pull requests are like, not what the screenshot did.*
 
 The project asks for visual proof on visible changes, so we checked whether pull requests that carry it do better.
 Screenshots and videos are attached almost only to interface changes, and interface changes cause more bugs than
@@ -649,7 +671,7 @@ changes without one, at equal size and month (plausibly {span('q16', 'interface_
 
 ### 17. The bugs are concentrated in changes that could be pointed at beforehand
 
-*Supported. The three signs were picked after seeing the November fixes alone. On the full period, with four times
+**Surprising.** *Supported. The three signs were picked after seeing the November fixes alone. On the full period, with four times
 the bugs, they mark the same share.*
 
 Three things visible at or before merge each mark a small share of changes and a large share of bugs: the bot
@@ -674,7 +696,7 @@ the source of {v('q17', 'bugs_pct_none')}%.
 
 ### 18. An individual's workload shows no effect; the project's busiest days carried more bugs
 
-*Supported for individual workload. Tentative for busy days: it is one clear result among about thirty comparisons.*
+**Surprising.** *Supported for individual workload. Tentative for busy days: it is one clear result among about thirty comparisons.*
 
 The worry is simple: one person lands hundreds of changes a day, the project lands a thousand, and care must be
 slipping. If that were so, changes landed under heavy load would cause more bugs than changes landed under light
@@ -715,7 +737,7 @@ Read each block against its first row.
 
 ### 19. Changes from occasional contributors, and changes someone else merged, carried about half the bugs
 
-*Supported. The two overlap: an outside contributor cannot merge their own change.*
+**Surprising.** *Supported. The two overlap: an outside contributor cannot merge their own change.*
 
 Would more contributors mean more bugs? One way to ask is whether changes from people who contribute rarely cause
 more bugs than changes from the regulars. They cause fewer.
@@ -747,7 +769,7 @@ more bugs than changes from the regulars. They cause fewer.
 
 ### 20. Changes to files that several other people were also editing caused more bugs
 
-*Supported for the most-shared files. It cannot separate "too many hands" from "the busiest, most central code".*
+**As expected.** *Supported for the most-shared files. It cannot separate "too many hands" from "the busiest, most central code".*
 
 {chart('q23', 0)}
 
@@ -772,7 +794,7 @@ files into others, is the higher one.
 
 ### 21. Nearly every bug-causing change came with tests; no part of the code stands out
 
-*Measured.*
+**Surprising.** *Measured.*
 
 {commit_table(('q25', 'tests', 'Among commits that change code: with or without tests'),
               ('q26', 'part', 'By the part of the code the commit touches'))}
@@ -1006,31 +1028,34 @@ nothing judged. **Well supported** means a large effect that held when checked a
 clear effect resting on one method. **Tentative** means a small number of cases, or a range that barely clears "no
 difference". **Depends on the model** means two models gave different answers.
 
-| # | Strength | Finding |
-|---|---|---|
-| 1 | Well supported | Changes that add new code files are {v('q24', 'new_share_adds')}% of commits and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs. |
-| 2 | Supported | New code that never worked accounts for about as many bugs as working things broken later: {v('q02', 'sens_never_all')} against {v('q02', 'sens_broke_all')} by the main model. The second model, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
-| 3 | Well supported | Changes titled as new features cause far more than their share of bugs. The title "fix" tells you little. |
-| 4 | Well supported | Large changes cause far more bugs per change, but about the same per file changed. |
-| 5 | Supported | A broken thing typically stayed broken for one to four weeks, unless someone traced the cause at once. |
-| 6 | Well supported | The review bot had rarely named the bug before the change merged: {v('q06', 'flag_exact')} of {v('q06', 'reviewed')}. |
-| 7 | Supported, November only | Two current models together named more of the known bugs than the bot had. For either model alone, the gap could still be chance. |
-| 8 | Supported, November only | Most of the other problems those models reported hold up when checked, and about a third of them are minor. |
-| 9 | Tentative, November only | About a third of the bugs could not be seen by reading code at all. This rests on nine cases. |
-| 10 | Tentative, November only | Most bugs broke no written rule. |
-| 11 | Supported | Changes committed straight to main, without a pull request, caused fewer bugs per change, not more. |
-| 12 | Well supported | Changes merged while the bot objected carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready, at equal size and month. Its objection marks risk even when its words do not name the bug. |
-| 13 | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk. |
-| 14 | Supported | Pull requests merged within the hour carried far fewer bugs than those open a day or more. |
-| 15 | Measured | {v('q15', 'self_merged_pct')}% of pull requests were merged by their own author. Another person reviewed {v('q15', 'all_second_review_pct')}% of them before the merge. |
-| 16 | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused {v('q16', 'interface_adjusted_yes')} times as many, at equal size and month. |
-| 17 | Supported | Bugs are concentrated. Changes with at least two of three warning signs are {v('q17', 'changes_pct_two')}% of changes and the source of {v('q17', 'bugs_pct_two')}% of traced bugs. |
-| 18 | Supported, and one tentative result | An individual's workload shows no effect. Changes landed on the project's busiest days carried {v('q19', 'busy_adjusted_busy')} times the bugs of changes landed on its quietest. |
-| 19 | Supported | Changes from occasional contributors, and changes merged by someone other than their author, carried about half the bugs. Review by a second person is too rare to measure. |
-| 20 | Supported | Changes to files that two or more other people were also editing caused {v('q23', 'shared_adjusted_high')} times the bugs of changes to files only their author was editing. |
-| 21 | Measured | {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came from a change that also changed tests. No part of the code stands out. |
-| 22 | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
-| 23 | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
+**As expected** and **Surprising** are our own reading of whether an engineer would have guessed the result. They
+say nothing about how well supported it is.
+
+| # | | Strength | Finding |
+|---|---|---|---|
+| 1 | As expected | Well supported | Changes that add new code files are {v('q24', 'new_share_adds')}% of commits and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs. |
+| 2 | Surprising | Supported | New code that never worked accounts for about as many bugs as working things broken later: {v('q02', 'sens_never_all')} against {v('q02', 'sens_broke_all')} by the main model. The second model, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
+| 3 | As expected | Well supported | Changes titled as new features cause far more than their share of bugs. The title "fix" tells you little. |
+| 4 | As expected | Well supported | Large changes cause far more bugs per change, but about the same per file changed. |
+| 5 |  | Supported | A broken thing typically stayed broken for one to four weeks, unless someone traced the cause at once. |
+| 6 | Surprising | Well supported | The review bot had rarely named the bug before the change merged: {v('q06', 'flag_exact')} of {v('q06', 'reviewed')}. |
+| 7 |  | Supported, November only | Two current models together named more of the known bugs than the bot had. For either model alone, the gap could still be chance. |
+| 8 |  | Supported, November only | Most of the other problems those models reported hold up when checked, and about a third of them are minor. |
+| 9 | Surprising | Tentative, November only | About a third of the bugs could not be seen by reading code at all. This rests on nine cases. |
+| 10 |  | Tentative, November only | Most bugs broke no written rule. |
+| 11 | Surprising | Supported | Changes committed straight to main, without a pull request, caused fewer bugs per change, not more. |
+| 12 | Surprising | Well supported | Changes merged while the bot objected carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready, at equal size and month. Its objection marks risk even when its words do not name the bug. |
+| 13 |  | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk. |
+| 14 | Surprising | Supported | Pull requests merged within the hour carried far fewer bugs than those open a day or more. |
+| 15 |  | Measured | {v('q15', 'self_merged_pct')}% of pull requests were merged by their own author. Another person reviewed {v('q15', 'all_second_review_pct')}% of them before the merge. |
+| 16 | Surprising | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused {v('q16', 'interface_adjusted_yes')} times as many, at equal size and month. |
+| 17 | Surprising | Supported | Bugs are concentrated. Changes with at least two of three warning signs are {v('q17', 'changes_pct_two')}% of changes and the source of {v('q17', 'bugs_pct_two')}% of traced bugs. |
+| 18 | Surprising | Supported, and one tentative result | An individual's workload shows no effect. Changes landed on the project's busiest days carried {v('q19', 'busy_adjusted_busy')} times the bugs of changes landed on its quietest. |
+| 19 | Surprising | Supported | Changes from occasional contributors, and changes merged by someone other than their author, carried about half the bugs. Review by a second person is too rare to measure. |
+| 20 | As expected | Supported | Changes to files that two or more other people were also editing caused {v('q23', 'shared_adjusted_high')} times the bugs of changes to files only their author was editing. |
+| 21 | Surprising | Measured | {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came from a change that also changed tests. No part of the code stands out. |
+| 22 |  | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
+| 23 |  | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
 
 ## Repository map
 
