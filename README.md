@@ -45,8 +45,10 @@ bugs against every commit and pull request of the period, to see which kinds of 
   first kind. *Finding 2.*
 - **Fast merges are the safe ones.** Pull requests merged within the hour carried far fewer bugs than those open a
   day or more: 0.28 times as many. *Finding 14.*
-- **Nobody looks overloaded.** An author's heavy days are no worse than their light ones, although one account
-  merges 54.3% of all pull requests. *Finding 18.*
+- **Nobody looks overloaded, not even the busiest account.** One account lands 54% of all
+  commits. It is also the source of 53% of the bugs: its share, no more. Per change it does
+  the same as the other regulars. And an author's heavy days are no worse than their light ones.
+  *Findings 18 and 19.*
 - **Outsiders' changes are the safer ones.** Changes from people with 20 commits or fewer carried fewer bugs than
   the most active author's: 0.47 times as many. *Finding 19.*
 - **Reading alone has a ceiling.** Two strong models, shown 30 bug-causing changes from November

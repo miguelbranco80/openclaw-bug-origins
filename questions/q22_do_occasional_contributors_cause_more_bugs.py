@@ -27,6 +27,8 @@ def main(quiet=False):
         return "core" if n > 500 else "regular" if n > 20 else "occasional"
     out = Result("q22")
     compare_commits(out, "who", commits, recent_causes(commits), group, GROUPS, "top")
+    out.add("size", "top_bugs_pct", "Share of the traced bugs that came from the most active author's changes, %",
+            round(100 * out.value("who_bugs_top") / sum(out.value("who_bugs_" + key) for key, _ in GROUPS)))
     for key, label in GROUPS:
         out.add("authors", "authors_" + key, label, len({c["author_rank"] for c in commits.values() if group(c) == key}))
     out.save(quiet)
