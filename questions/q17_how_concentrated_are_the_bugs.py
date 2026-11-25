@@ -13,7 +13,7 @@ period; they are not a tested prediction.
 Usage: python3 questions/q17_how_concentrated_are_the_bugs.py
 """
 import charts
-from common import Result, load
+from common import SCALE, Result, load, pull_request_commits
 
 SIGNS = {
     "objected": lambda c: c["bot_verdict_at_merge"] in ("blocked", "needs-changes"),
@@ -43,6 +43,11 @@ def main(quiet=False):
         out.add("changes_pct", "changes_pct_" + key, label, round(100 * sum(test(c) for c in sample) / len(sample), 1))
         out.add("bugs_pct", "bugs_pct_" + key, label, round(100 * bugs / total))
         out.add("bugs", "bugs_" + key, label, bugs)
+    changes = pull_request_commits()
+    for key, label, _ in GROUPS:
+        share = out.value("changes_pct_" + key) / 100
+        out.add("per_change", "per_change_" + key, label,
+                round(out.value("bugs_" + key) * SCALE / (share * changes), 2) if share else 0)
     example = GROUPS[0]
     out.chart(charts.bars(
         "q17-share-of-bugs-by-warning-sign", "How much of the bugs came from changes with each warning sign",

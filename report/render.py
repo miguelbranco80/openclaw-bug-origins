@@ -21,6 +21,7 @@ for path in sorted(glob.glob(os.path.join(ROOT, "results", "q*.json"))):
         RESULTS[name[:3]] = json.load(open(path))
 READERS = json.load(open(os.path.join(ROOT, "dataset", "readers.json")))
 MAIN, OTHER = READERS["fixes"], READERS["fixes_other_maker"]
+OPINION = "What I would do with this: an opinion"
 SCRIPTS = {os.path.basename(p)[:3]: "questions/" + os.path.basename(p)
            for p in glob.glob(os.path.join(ROOT, "questions", "q*.py"))}
 
@@ -194,6 +195,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
   {v('q07', 'cases')}, the bug could not be seen in the code at all: it depended on how a browser, a database or
   some other outside tool behaves. Nobody found any of those. To catch them you would have to run the thing.
   *Findings 7 and 9.*
+
+**So what would I do about it?** That is opinion, not part of the study, and it has its own section at the end:
+[{OPINION}]({anchor(OPINION)}).
 
 **And the pattern held.** We looked at two separate periods, September to October and then November, and found the
 same thing in both. We also had a second AI model judge the November fixes. It mostly agreed on which change caused
@@ -885,6 +889,53 @@ message made more precise, a report that never fitted a phone screen.
   bugs nobody has fixed yet, or bugs fixed under another title.
 
 {run_line('q01')}
+
+## {OPINION}
+
+*This section is my opinion. It is speculative and not part of the study. The study shows where the bugs are; it
+does not show that any of the checks below would catch them.*
+
+**The obvious one: stop treating every change the same.** Three signs are visible before a change merges: the bot
+objected, the pull request was open a day or more, it touched more than 30 files.
+
+| Changes with | Share of changes | Share of bugs | Later-fixed bugs per change |
+|---|---:|---:|---:|
+| Two or more signs | {v('q17', 'changes_pct_two')}% | {v('q17', 'bugs_pct_two')}% | {v('q17', 'per_change_two')} |
+| No sign | {v('q17', 'changes_pct_none')}% | {v('q17', 'bugs_pct_none')}% | {v('q17', 'per_change_none')} |
+
+- **Check the flagged {v('q17', 'changes_pct_two')}% hard.** It is a small enough slice to afford something
+  expensive: a stronger model, a second person, or actually running the feature.
+- **Let the unflagged {v('q17', 'changes_pct_none')}% flow.** Fast merges were the safe ones, and nothing suggests
+  slowing them would help.
+
+**Two that follow from it.**
+
+- **Treat "needs changes" or "blocked" as a stop sign, not a comment.** {v('q17', 'changes_pct_objected')}% of
+  changes merge over the bot's objection, and they carry {v('q17', 'bugs_pct_objected')}% of the bugs. The cheapest
+  rule is that such a change does not merge on its author's say alone, even when the bot's complaint looks unrelated.
+- **For new code, run it; do not take the tests' word for it.** Changes adding a code file carry
+  {v('q24', 'bugs_pct_adds')}% of the bugs, and {v('q25', 'tests_bugs_with')} of {v('q25', 'bugs')} traced bugs came
+  from changes that shipped with tests. A check the author did not write, one that exercises the feature for real,
+  is aimed at the right place. And {v('q09', 'needs_outside')} of the {v('q07', 'cases')} reviewed bugs could not be
+  seen in the code at all.
+
+**What the data says not to do.** These are just as actionable, because they are the rules a team reaches for
+first.
+
+- **Require tests or screenshots as a gate.** Both were present on the changes that broke.
+- **Slow people down or cap throughput.** Workload shows no effect, and the bug rate barely depends on who lands the
+  change.
+- **Add a second reviewer to everything.** It happens on {v('q15', 'all_second_review_pct')}% of pull requests, so
+  the data cannot say it helps.
+- **Worry about outside contributors.** Their changes were the safer ones.
+
+**The honest gap.** Every action above assumes that looking harder at a flagged change finds the bug. The only
+evidence on that is thin: two strong models reviewing {v('q07', 'cases')} November changes found
+{v('q07', 'named_either_top')} of the bugs. The gap can be tested on past data without touching the project. Take
+the flagged changes that did cause a bug and a matched set of flagged changes that did not, give both to a strong
+reviewer with no hint, and count how many real bugs it finds and how many false alarms it raises. That turns "this
+is where to look" into "this is what looking buys", which is the number anyone would ask for before adopting the
+rule.
 
 ## How this compares with published research
 

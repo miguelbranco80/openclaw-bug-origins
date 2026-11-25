@@ -63,6 +63,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
   some other outside tool behaves. Nobody found any of those. To catch them you would have to run the thing.
   *Findings 7 and 9.*
 
+**So what would I do about it?** That is opinion, not part of the study, and it has its own section at the end:
+[What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion).
+
 **And the pattern held.** We looked at two separate periods, September to October and then November, and found the
 same thing in both. We also had a second AI model judge the November fixes. It mostly agreed on which change caused
 each bug. It was stricter about what counts as a bug in the first place, so it counted fewer of them, but the
@@ -108,6 +111,7 @@ fix.
 - [Does it hold up](#does-it-hold-up)
   - [22. The earlier weeks look like November; what differs is the model](#22-the-earlier-weeks-look-like-november-what-differs-is-the-model)
   - [23. How many "fix" changes repair no bug depends on which model you ask](#23-how-many-fix-changes-repair-no-bug-depends-on-which-model-you-ask)
+- [What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion)
 - [How this compares with published research](#how-this-compares-with-published-research)
 - [About this study](#about-this-study)
 - [How each study was done](#how-each-study-was-done)
@@ -1109,6 +1113,53 @@ message made more precise, a report that never fitted a phone screen.
   bugs nobody has fixed yet, or bugs fixed under another title.
 
 Recompute: `python3 questions/q01_how_many_fixes_repair_a_real_bug.py`
+
+## What I would do with this: an opinion
+
+*This section is my opinion. It is speculative and not part of the study. The study shows where the bugs are; it
+does not show that any of the checks below would catch them.*
+
+**The obvious one: stop treating every change the same.** Three signs are visible before a change merges: the bot
+objected, the pull request was open a day or more, it touched more than 30 files.
+
+| Changes with | Share of changes | Share of bugs | Later-fixed bugs per change |
+|---|---:|---:|---:|
+| Two or more signs | 6.8% | 48% | 1.28 |
+| No sign | 63% | 19% | 0.05 |
+
+- **Check the flagged 6.8% hard.** It is a small enough slice to afford something
+  expensive: a stronger model, a second person, or actually running the feature.
+- **Let the unflagged 63% flow.** Fast merges were the safe ones, and nothing suggests
+  slowing them would help.
+
+**Two that follow from it.**
+
+- **Treat "needs changes" or "blocked" as a stop sign, not a comment.** 20.8% of
+  changes merge over the bot's objection, and they carry 63% of the bugs. The cheapest
+  rule is that such a change does not merge on its author's say alone, even when the bot's complaint looks unrelated.
+- **For new code, run it; do not take the tests' word for it.** Changes adding a code file carry
+  69% of the bugs, and 494 of 505 traced bugs came
+  from changes that shipped with tests. A check the author did not write, one that exercises the feature for real,
+  is aimed at the right place. And 9 of the 30 reviewed bugs could not be
+  seen in the code at all.
+
+**What the data says not to do.** These are just as actionable, because they are the rules a team reaches for
+first.
+
+- **Require tests or screenshots as a gate.** Both were present on the changes that broke.
+- **Slow people down or cap throughput.** Workload shows no effect, and the bug rate barely depends on who lands the
+  change.
+- **Add a second reviewer to everything.** It happens on 1.0% of pull requests, so
+  the data cannot say it helps.
+- **Worry about outside contributors.** Their changes were the safer ones.
+
+**The honest gap.** Every action above assumes that looking harder at a flagged change finds the bug. The only
+evidence on that is thin: two strong models reviewing 30 November changes found
+10 of the bugs. The gap can be tested on past data without touching the project. Take
+the flagged changes that did cause a bug and a matched set of flagged changes that did not, give both to a strong
+reviewer with no hint, and count how many real bugs it finds and how many false alarms it raises. That turns "this
+is where to look" into "this is what looking buys", which is the number anyone would ask for before adopting the
+rule.
 
 ## How this compares with published research
 

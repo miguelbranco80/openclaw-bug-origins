@@ -18,5 +18,11 @@
 {"group": "bugs", "metric": "bugs_two", "label": "At least two of the three signs", "value": 234, "low": null, "high": null},
 {"group": "changes_pct", "metric": "changes_pct_none", "label": "None of the three signs", "value": 63, "low": null, "high": null},
 {"group": "bugs_pct", "metric": "bugs_pct_none", "label": "None of the three signs", "value": 19, "low": null, "high": null},
-{"group": "bugs", "metric": "bugs_none", "label": "None of the three signs", "value": 91, "low": null, "high": null}
+{"group": "bugs", "metric": "bugs_none", "label": "None of the three signs", "value": 91, "low": null, "high": null},
+{"group": "per_change", "metric": "per_change_objected", "label": "The bot objected", "value": 0.55, "low": null, "high": null},
+{"group": "per_change", "metric": "per_change_long", "label": "Open a day or more", "value": 0.41, "low": null, "high": null},
+{"group": "per_change", "metric": "per_change_big", "label": "More than 30 files", "value": 0.81, "low": null, "high": null},
+{"group": "per_change", "metric": "per_change_any", "label": "At least one of the three signs", "value": 0.4, "low": null, "high": null},
+{"group": "per_change", "metric": "per_change_two", "label": "At least two of the three signs", "value": 1.28, "low": null, "high": null},
+{"group": "per_change", "metric": "per_change_none", "label": "None of the three signs", "value": 0.05, "low": null, "high": null}
 ]
