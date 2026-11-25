@@ -56,9 +56,12 @@ bugs against every commit and pull request of the period, to see which kinds of 
   *Findings 18 and 19.*
 - **Outsiders' changes are the safer ones.** Changes from people with 20 commits or fewer carried fewer bugs than
   the most active author's: 0.47 times as many. *Finding 19.*
-- **Reading alone has a ceiling.** Two strong models, shown 30 bug-causing changes from November
-  with no hint, together named 10 of the bugs. 9 could not be
-  seen by reading code at all, and nobody named those. *Findings 7 and 9.*
+- **Some bugs cannot be found by looking at the code.** We gave two strong AI models 30
+  bug-causing changes from November and asked them to review each one, without saying a bug was in there. Between
+  them they found the bug in 10. For 9 of the
+  30, the bug could not be seen in the code at all: it depended on how a browser, a database or
+  some other outside tool behaves. Nobody found any of those. To catch them you would have to run the thing.
+  *Findings 7 and 9.*
 
 **And the pattern held.** We looked at two separate periods, September to October and then November, and found the
 same thing in both. We also had a second AI model judge the November fixes. It mostly agreed on which change caused
