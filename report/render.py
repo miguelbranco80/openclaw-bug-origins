@@ -185,11 +185,10 @@ bugs against every commit and pull request of the period, to see which kinds of 
   with no hint, together named {v('q07', 'named_either_top')} of the bugs. {v('q09', 'needs_outside')} could not be
   seen by reading code at all, and nobody named those. *Findings 7 and 9.*
 
-**And it repeats.** We checked two ways. The fixes from September and October give the same picture as those from
-November. And a second model, reading the same November fixes, pointed at the same causing change in
-{v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')} cases. Where the two models differ is on what counts as
-a bug at all: one said {v('q27', 'not_bug_pct_frame1')}% of those fixes repaired nothing, the other
-{v('q27', 'not_bug_pct_published')}%. *Findings 22 and 23.*
+**And the pattern held.** We looked at two separate periods, September to October and then November, and found the
+same thing in both. We also had a second AI model judge the November fixes, and it mostly agreed on which change
+caused each bug. The one thing the two models disagreed on is how many "fixes" were really fixing a bug.
+*Findings 22 and 23.*
 
 {chart('q17', 0)}
 

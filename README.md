@@ -53,11 +53,10 @@ bugs against every commit and pull request of the period, to see which kinds of 
   with no hint, together named 10 of the bugs. 9 could not be
   seen by reading code at all, and nobody named those. *Findings 7 and 9.*
 
-**And it repeats.** We checked two ways. The fixes from September and October give the same picture as those from
-November. And a second model, reading the same November fixes, pointed at the same causing change in
-108 of 130 cases. Where the two models differ is on what counts as
-a bug at all: one said 11% of those fixes repaired nothing, the other
-33%. *Findings 22 and 23.*
+**And the pattern held.** We looked at two separate periods, September to October and then November, and found the
+same thing in both. We also had a second AI model judge the November fixes, and it mostly agreed on which change
+caused each bug. The one thing the two models disagreed on is how many "fixes" were really fixing a bug.
+*Findings 22 and 23.*
 
 **Share of the traced bugs that came from changes with each warning sign**
 
