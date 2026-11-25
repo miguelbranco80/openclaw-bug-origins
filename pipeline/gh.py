@@ -46,28 +46,34 @@ def _wait_for_budget(resource):
 
 
 def _run(args, resource, tolerate_errors=False):
-    """Run one gh api call and return parsed JSON."""
+    """Run one gh api call and return parsed JSON.
+
+    What went wrong is decided only from gh's own error output and from the error types GitHub puts in a GraphQL
+    answer. The content of a successful answer is never searched: pull request text often says "rate limit".
+    """
     pause = 5
     for attempt in range(7):
         code, out, err = _call(args)
-        text = (err + out[:2000]).lower()
+        problem = err.lower()
         data = None
         try:
             data = json.loads(out) if out.strip() else None
         except ValueError:
             pass
-        if any(mark.lower() in text for mark in AUTH):
-            raise Paused("the GitHub command line tool is not signed in. Run: gh auth login")
-        limited = any(mark.lower() in text for mark in LIMIT + SECONDARY)
-        if data is not None and not limited and (code == 0 or tolerate_errors):
+        kinds = {str(error.get("type")) for error in data.get("errors") or [] if isinstance(error, dict)} \
+            if isinstance(data, dict) else set()
+        limited = "RATE_LIMITED" in kinds or any(mark.lower() in problem for mark in LIMIT + SECONDARY)
+        if data is not None and not limited and (code == 0 or (tolerate_errors and data.get("data"))):
             return data
+        if any(mark.lower() in problem for mark in AUTH):
+            raise Paused("the GitHub command line tool is not signed in. Run: gh auth login")
         if limited:
             _wait_for_budget(resource)
-        elif code != 0 and not any(mark.lower() in text for mark in TRANSIENT):
+        elif code != 0 and not any(mark.lower() in problem for mark in TRANSIENT):
             raise RuntimeError(f"gh {' '.join(args)[:120]} failed: {err.strip()[:300]}")
         time.sleep(pause)
         pause = min(pause * 2, 300)
-    raise Paused(f"GitHub kept failing ({(err or out).strip()[:200]})")
+    raise Paused(f"GitHub kept failing ({err.strip()[:200] or 'no error text'})")
 
 
 def graphql(query, tolerate_errors=False, **variables):

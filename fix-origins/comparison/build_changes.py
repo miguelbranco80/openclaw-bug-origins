@@ -61,7 +61,7 @@ def main():
     sample = {row["sha"] for row in ordered[:args.count]}
     bugs = collections.Counter()
     origins = collections.defaultdict(list)
-    with open(os.path.join(ROOT, "dataset", "sampled_fixes.jsonl")) as handle:
+    with open(os.path.join(ROOT, "fix-origins", "cases.jsonl")) as handle:
         for line in handle:
             fix = json.loads(line)
             if fix.get("cause_sha"):

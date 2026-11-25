@@ -10,12 +10,15 @@ Usage: python3 fix-origins/review-pilot/assemble_results.py
 import glob
 import json
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 GRADE = os.path.join(HERE, "data", "grade")
-ORDER = ["gpt-5.6-sol__whole", "gpt-6-astra__whole", "gpt-6.1-sol__whole", "gpt-6.2-sol__whole",
-         "claude-opus-5-5__whole", "gpt-6.1-sol__per-file"]
+sys.path.insert(0, os.path.dirname(ROOT))
+from pipeline.settings import settings  # noqa: E402
+
+ORDER = [f"{arm['model']}__{arm['mode']}" for arm in settings()["judging"]["review"]]  # the reviewers, in study.json
 
 
 def main():

@@ -2,7 +2,8 @@
 """Fetch who opened, merged and reviewed every pull request in dataset/commits.tsv: dataset/pull_requests.tsv.
 
 One row per pull request number that appears in commits.tsv. Read-only GitHub GraphQL through `gh`, 100 pull
-requests per query; each answer is kept under population/raw/ so a rerun only fetches what is missing.
+requests per query, three queries at a time; each answer is kept under population/raw/ so a rerun fetches only the
+pull requests it does not have yet.
 
 Columns:
   number, author, merged_by, created_at, merged_at
@@ -10,14 +11,14 @@ Columns:
   reviewers_before_merge   people, other than the author and not automation, who submitted a review before the merge,
                            comma separated
 
-Usage: python3 fix-origins/population/fetch_pull_requests.py [--shard i/n]
+Usage: python3 fix-origins/population/fetch_pull_requests.py
 """
-import argparse
 import csv
 import json
 import os
 import subprocess
 import time
+from concurrent.futures import ThreadPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 import sys
@@ -49,31 +50,40 @@ def fetch(batch, more=False):
     return [pr for pr in data.values() if pr]
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--shard", default="0/1")
-    index, shards = map(int, parser.parse_args().shard.split("/"))
-    wanted = numbers()
-    batches = [wanted[i:i + BATCH] for i in range(0, len(wanted), BATCH)]
-    for position, batch in enumerate(batches):
-        path = os.path.join(RAW, f"{batch[0]}.json")
-        if position % shards != index or os.path.exists(path):
-            continue
-        found = fetch(batch)
-        cut = [pr["number"] for pr in found if pr["reviews"]["totalCount"] > len(pr["reviews"]["nodes"])]
-        if cut:
-            full = {pr["number"]: pr for group in (cut[i:i + 10] for i in range(0, len(cut), 10)) for pr in fetch(group, more=True)}
-            found = [full.get(pr["number"], pr) for pr in found]
-        with open(path + ".part", "w") as handle:
-            json.dump(found, handle)
-        os.replace(path + ".part", path)
-    if shards > 1:
-        return
-    rows = []
+def load_raw():
+    rows = {}
     for name in os.listdir(RAW):
         if name.endswith(".json"):
-            rows.extend(json.load(open(os.path.join(RAW, name))))
-    rows.sort(key=lambda pr: pr["number"])
+            for pr in json.load(open(os.path.join(RAW, name))):
+                rows[pr["number"]] = pr
+    return rows
+
+
+def fetch_batch(batch):
+    found = fetch(batch)
+    cut = [pr["number"] for pr in found if pr["reviews"]["totalCount"] > len(pr["reviews"]["nodes"])]
+    if cut:
+        full = {pr["number"]: pr for group in (cut[i:i + 10] for i in range(0, len(cut), 10)) for pr in fetch(group, more=True)}
+        found = [full.get(pr["number"], pr) for pr in found]
+    path = os.path.join(RAW, f"{batch[0]}-{batch[-1]}.json")
+    with open(path + ".part", "w") as handle:
+        json.dump(found, handle)
+    os.replace(path + ".part", path)
+    return len(found)
+
+
+def main():
+    os.makedirs(RAW, exist_ok=True)
+    wanted = numbers()
+    have = load_raw()
+    missing = [number for number in wanted if number not in have]
+    # Two numbers in the published list are not pull requests; asking again for a few misses is harmless.
+    batches = [missing[i:i + BATCH] for i in range(0, len(missing), BATCH)]
+    with ThreadPoolExecutor(3) as pool:
+        for count in pool.map(fetch_batch, batches):
+            pass
+    keep = set(wanted)
+    rows = sorted((pr for pr in load_raw().values() if pr["number"] in keep), key=lambda pr: pr["number"])
     with open(OUT, "w") as handle:
         handle.write("number\tauthor\tauthor_kind\tmerged_by\tcreated_at\tmerged_at\treviewers_before_merge\n")
         for pr in rows:

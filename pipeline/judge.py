@@ -131,7 +131,20 @@ def origin_cases(step, config):
     graft, graft_date = graft_point()
     text = (brief(FIX, "reader-prompt.md").replace("{tip}", settings()["tip"][:11])
             .replace("{graft}", graft).replace("{graft_date}", graft_date))
-    online = config["backend"] == "claude"  # the codex sandbox has no network
+    online = config["backend"] != "codex"  # the codex sandbox has no network
+    look = f"python3 {model.LOOK}"
+    lookups = f"""In this run, `git` and `gh` themselves are not available. Use the read-only lookup tool instead:
+
+- where the brief shows `git <subcommand> ...`, run `{look} git <subcommand> ...` (no `GIT_NO_LAZY_FETCH` prefix
+  and no `-C`; the tool adds them);
+- for the full-history git directory, run `{look} history log ...`;
+- for `gh api repos/.../commits/<sha>`, run `{look} commit <sha>`;
+- for `gh api repos/.../pulls/<n>`, run `{look} pull <n>`;
+- for blame beyond the graft, run `{look} blame <sha> <path>`.
+""" if online else f"""In this run you have read-only `git` and no network. Use `git -C {clone()} ...` for every git command, and
+`git --git-dir={history_dir()} log ...` for the full-history directory. GitHub lookups (`gh api`) are not
+available: where the brief says to use `gh`, skip that step and answer with lower confidence or `unclear` instead.
+"""
     if step == "origin":
         ranks = sampled_ranks()
     elif step == "origin_second":
@@ -152,10 +165,9 @@ Classify one fix.
 
 - Fix: rank {rank}, commit `{sha}`
 - Evidence bundle: `./bundle.md` in the current directory
-- The checkout: `{clone()}`. Use `git -C {clone()} ...` for every git command.
-- Full-history git directory: `{history_dir()}`
-- GitHub lookups (`gh api`): {"available, read-only" if online else "not available in this run. Where the brief says to use `gh`, skip that step and answer with lower confidence or `unclear` instead"}.
+- The checkout: `{clone()}`
 
+{lookups}
 Read only the bundle and what the brief allows in the checkout. Do not read any folder named `research` in the
 checkout, any other reader's answer, or any file of the study that produced this bundle. Your judgment must be your
 own.
@@ -464,7 +476,7 @@ def run_case(label, case, config, stop):
     return "failed: " + "; ".join(problems)[:160]
 
 
-def orders(label, cases):
+def orders(label, cases, config):
     """The `agent` backend: take in answers that subagents wrote, then write a work order for each case left."""
     folder = os.path.join(WORK, "orders", label.replace(" ", "_"))
     os.makedirs(folder, exist_ok=True)
@@ -474,7 +486,7 @@ def orders(label, cases):
         if os.path.exists(answer):
             problems = accept(case, open(answer, errors="replace").read())
             if not problems:
-                log(label, case, {"backend": "agent", "model": settings_model(label)}, None)
+                log(label, case, config, None)
                 os.remove(answer)
                 os.remove(os.path.join(folder, case.key + ".md"))
                 continue
@@ -483,17 +495,11 @@ def orders(label, cases):
         allowed = [f"`{work}` (your working directory)"] + [f"`{path}`" for path in case.read_dirs]
         with open(os.path.join(folder, case.key + ".md"), "w") as handle:
             handle.write(case.prompt + f"""Work in `{work}`. You may read only: {', '.join(allowed)}.
-{"You may run read-only git commands, each prefixed with GIT_NO_LAZY_FETCH=1." if case.git else "Do not run git."}
-{"You may run read-only `gh api` lookups." if case.gh else "Do not use the network."}
+{"Run git and GitHub lookups only as your task section says." if case.git else "Do not run git and do not use the network."}
 Write exactly one JSON object, and nothing else, to `{answer}`. Write no other file.
 """)
         waiting.append(case.key)
     return folder, waiting
-
-
-def settings_model(label):
-    configured = settings()["judging"][label.split(" ")[0]]
-    return label.split(" ")[1].split("__")[0] if " " in label else configured["model"]
 
 
 def run_step(step, only=None, backend=None, model_name=None, jobs=None, limit=None):
@@ -508,7 +514,7 @@ def run_step(step, only=None, backend=None, model_name=None, jobs=None, limit=No
         if not todo:
             continue
         if config["backend"] == "agent":
-            folder, left = orders(label, todo)
+            folder, left = orders(label, todo, config)
             waiting += len(left)
             if left:
                 say(f"  {len(left)} work orders in {folder}: give each .md file to a fresh subagent as its whole "

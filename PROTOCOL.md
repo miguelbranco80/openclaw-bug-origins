@@ -69,7 +69,7 @@ frame is added or a sample is enlarged.
 - The GitHub command line tool `gh`, signed in. Every GitHub call is read-only.
 - For the model steps: the Codex command line tool (`codex`), the Claude Code command line tool (`claude`), or an
   agent session that can start subagents. See [Model steps](#model-steps).
-- About 10 GB of free disk for a clone and the blind review's code exports.
+- About 20 GB of free disk: 12 GB for a clone of the project and 5 GB for the blind review's code exports.
 
 Before anything else, and whenever something stops:
 
@@ -83,6 +83,26 @@ what to fix. To see how far a run has got:
 ```bash
 python3 study.py status
 ```
+
+## Try it small first
+
+Before a full regeneration, run a ten-fix study in a second copy of this repository. It exercises every stage and
+every model step in about an hour, and shows whether your clone, sign-ins and quotas are in order.
+
+```bash
+git clone . ../study-trial && cd ../study-trial
+```
+
+```bash
+python3 study.py reset --yes && cp examples/small-study.json study.json
+```
+
+```bash
+OPENCLAW_CLONE=/path/to/your/openclaw/clone python3 study.py run all
+```
+
+`examples/small-study.json` uses Codex for every model step; edit its `judging` section to try other tools. With
+ten fixes the report's numbers mean nothing: the trial only shows that every step runs.
 
 ## Rebuild from the stored answers
 
@@ -103,6 +123,8 @@ The scripts read history with `git`; they never check files out, build or run th
 git clone --no-checkout --single-branch --branch main --shallow-since=2026-09-03 --filter=blob:limit=10m https://github.com/openclaw/openclaw.git work/openclaw
 ```
 
+- This takes about ten minutes and 12 GB. It was tested on 25 November 2026: the stages give the same sampling
+  frame and commit list from this clone as from the clone the published study used.
 - `--shallow-since` must be on or before the earliest date in `study.json`. The published study used 2026-09-03.
 - `--filter=blob:limit=10m` leaves out files over 10 MB. The scripts set `GIT_NO_LAZY_FETCH=1` on every git command
   so that git never downloads a missing file on its own. During the original study, searches without that setting
@@ -185,8 +207,12 @@ failure under `work/failures/`. Models never write files.
 | Backend | What runs | Isolation |
 |---|---|---|
 | `codex` | The Codex command line tool, headless | Read-only sandbox, no network, the user's Codex settings and project instructions ignored |
-| `claude` | The Claude Code command line tool, headless | Reading tools only, plus read-only git where the step allows it, and GitHub lookups for the `origin` steps |
+| `claude` | The Claude Code command line tool, headless | Reading tools only. Where a step needs git or GitHub, the model gets `pipeline/look.py` and nothing else: it can run a fixed set of read-only lookups and cannot write, push or post |
 | `agent` | No tool. See below | Whatever the subagent's session enforces; the work order states the limits |
+
+Readers work from text written by strangers: commit messages and pull request descriptions. That text can contain
+instructions. This is why no backend gives a model the `git` or `gh` commands with network access, and why answers
+are checked for shape before they are stored.
 
 To run a step with a different tool or model than the settings say, for one run:
 
@@ -278,6 +304,11 @@ lists every number that moved outside its earlier plausible range. The earlier r
   them ("no clear difference", "about three weeks") were written for the published numbers. After a regeneration,
   read the summary table and each finding's first paragraph against its numbers and edit `report/render.py` where
   a sentence no longer fits. `study.py compare` shows where to look first.
+- **Other reviewers in the blind review.** `questions/q07` compares named reviewers (the two strongest against the
+  bot, three files at a time against the whole change). With a different `judging.review` list every reviewer still
+  gets its row, but those named comparisons are skipped and the report prints "(not available)" where its text
+  expected them. `study.py rebuild` ends with a note listing every such gap. Edit `report/render.py` to match the
+  new design.
 - **The first study.** `detection-check/` is a one-off done by hand in November 2026: 29 bugs whose fix named the
   change that caused them, each checked against the project's written rules. Its figures are typed into
   `dataset/named_cause_study.json`. It is not regenerated. Finding 10 and one comparison in finding 5 rest on it and

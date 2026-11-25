@@ -57,7 +57,7 @@ def wanted(count):
     by_sha = {row["sha"]: row for row in commits}
     commits.sort(key=lambda row: hashlib.sha256(("comparison-v1:" + row["sha"]).encode()).hexdigest())
     numbers = {int(row["pr_number"]) for row in commits[:count]}
-    with open(os.path.join(ROOT, "dataset", "sampled_fixes.jsonl")) as handle:
+    with open(os.path.join(ROOT, "fix-origins", "cases.jsonl")) as handle:
         for line in handle:
             fix = json.loads(line)
             if fix.get("cause_sha") in by_sha:

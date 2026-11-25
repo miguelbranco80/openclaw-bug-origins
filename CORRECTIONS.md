@@ -34,6 +34,10 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
   figure is 2% of the sample and 1.0% of all 35,826 merged pull requests since 10 September.
 - Finding 15 said 20 people merge. That was the number seen in the 496 fetched pull requests. Across all pull
   requests it is 40 accounts. The most active account opens 52.1% of all pull requests (55.5% in the sample).
+- The briefs given to models were reworded on 25 November 2026 so that a program can run them with nothing filled
+  in by hand: one case per run, the answer given as the final message, and the clone's details inserted by the
+  runner. The rubrics, the categories and their definitions are unchanged. Every stored answer was made with the
+  earlier wording. `PROTOCOL.md`, "What differs from how the published answers were made", lists the differences.
 
 ## Not done
 

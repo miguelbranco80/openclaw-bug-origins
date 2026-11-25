@@ -4,31 +4,39 @@ the author has not touched before?
 
 Reads: commits.tsv, sampled_fixes.jsonl. Only commits that edit existing code files are compared.
   shared: for each code file the commit edits, the number of other authors who changed that file in the 14 days
-          before, averaged over the commit's edited files. Commits before 24 Sep 2026 are left out, because the
-          commit list starts on 10 Sep and has no earlier history to look back on.
-  familiar: of the code files the commit edits, how many the same author had already changed since 10 Sep.
-          Commits before 1 Oct 2026 are left out for the same reason.
+          before, averaged over the commit's edited files. Commits in the first 14 days of the commit list are
+          left out, because there is no earlier history to look back on (in the published study: before 24 Sep
+          2026, the list starting on 10 Sep).
+  familiar: of the code files the commit edits, how many the same author had already changed earlier in the list.
+          Commits in the first 21 days of the list are left out for the same reason (published: before 1 Oct 2026).
 Method: `compare_commits` in common.py.
 
 Usage: python3 questions/q23_do_files_many_people_edit_cause_more_bugs.py
 """
+from datetime import timedelta
+
 import charts
-from common import Result, compare_commits, load_commits, recent_causes
+from common import Result, compare_commits, load_commits, recent_causes, utc_day
 
 SHARED = [("low", "Fewer than 1 other person per file in the last 14 days"), ("mid", "1 to 2 other people per file"),
           ("high", "2 or more other people per file")]
 FAMILIAR = [("all", "The author had changed every edited file before"), ("some", "Some of them"), ("none", "None of them")]
 
 
+START = min(utc_day(commit["committed_at"]) for commit in load_commits().values())
+SHARED_FROM = (START + timedelta(days=14)).isoformat()
+FAMILIAR_FROM = (START + timedelta(days=21)).isoformat()
+
+
 def shared(commit):
-    if commit["edited_code_files"] == 0 or commit["committed_at"] < "2026-09-24":
+    if commit["edited_code_files"] == 0 or commit["committed_at"] < SHARED_FROM:
         return None
     others = commit["other_recent_authors_per_file"]
     return "low" if others < 1 else "mid" if others < 2 else "high"
 
 
 def familiar(commit):
-    if commit["edited_code_files"] == 0 or commit["committed_at"] < "2026-10-01":
+    if commit["edited_code_files"] == 0 or commit["committed_at"] < FAMILIAR_FROM:
         return None
     share = commit["familiar_code_files"] / commit["edited_code_files"]
     return "none" if share == 0 else "all" if share == 1 else "some"

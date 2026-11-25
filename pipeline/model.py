@@ -96,17 +96,35 @@ def _codex(model, prompt, cwd, log_dir, effort, timeout):
     answer = open(last, errors="replace").read().strip() if os.path.exists(last) else ""
     if code == 0 and answer:
         return answer
-    noise = open(errors, errors="replace").read()[-4000:] + open(events, errors="replace").read()[-4000:]
+    noise = open(errors, errors="replace").read()[-4000:] + " " + _codex_errors(events)
     _classify("codex", noise)
     raise RunFailed(f"codex exited {code} with no answer: {_tail(noise)}")
 
 
+def _codex_errors(events):
+    """The tool's own error events. The rest of the event log is the model's reading matter and is not searched:
+    a fix about rate limits must not look like a rate limit."""
+    found = []
+    with open(events, errors="replace") as handle:
+        for line in handle:
+            try:
+                event = json.loads(line)
+            except ValueError:
+                continue
+            kind = str(event.get("type", "")).lower() if isinstance(event, dict) else ""
+            if "error" in kind or "failed" in kind:
+                found.append(json.dumps(event)[:600])
+    return " ".join(found[-5:])
+
+
+LOOK = os.path.join(os.path.dirname(os.path.abspath(__file__)), "look.py")
+
+
 def _claude(model, prompt, cwd, log_dir, effort, timeout, read_dirs, git, gh):
+    # Never raw git or gh: a reader works from strangers' text. Lookups go through look.py, which can only read.
     tools = ["Read", "Grep", "Glob"]
-    if git:
-        tools += ["Bash(git:*)", "Bash(GIT_NO_LAZY_FETCH=1 git:*)"]
-    if gh:
-        tools += ["Bash(gh api:*)"]
+    if git or gh:
+        tools += [f"Bash(python3 {LOOK}:*)"]
     command = ["claude", "-p", "--model", model, "--output-format", "json", "--no-session-persistence",
                "--strict-mcp-config", "--effort", effort, "--allowedTools", *tools,
                "--disallowedTools", "Edit", "Write", "NotebookEdit", "WebFetch", "WebSearch", "Agent"]
@@ -126,10 +144,12 @@ def _claude(model, prompt, cwd, log_dir, effort, timeout, read_dirs, git, gh):
     except ValueError:
         result = {}
     answer = (result.get("result") or "").strip()
-    failed = done.returncode != 0 or result.get("is_error") or result.get("terminal_reason") == "api_error"
+    api_error = result.get("terminal_reason") == "api_error" or result.get("api_error_status")
+    failed = done.returncode != 0 or result.get("is_error") or api_error
     if answer and not failed:
         return answer
-    noise = answer + " " + done.stderr[-4000:] + " " + done.stdout[-2000:]
+    # On an API error the tool puts its own error text in `result`; otherwise `result` is the model's and is not searched.
+    noise = (answer if api_error or not result else "") + " " + done.stderr[-4000:]
     _classify("claude", noise)
     raise RunFailed(f"claude exited {done.returncode} with no answer: {_tail(noise)}")
 

@@ -71,6 +71,7 @@ def bars(stem, title, rows, unit="", top=None, context=(), reference=None):
     """rows: dicts with label, value and optionally note (printed, muted, after the value).
     `context` lists labels drawn in gray: reference rows that are not the subject of the chart.
     `reference` is (value, label): a vertical line across all bars at that value."""
+    rows = rows or [{"label": "(no cases in this study)", "value": 0}]
     top = top or max(row["value"] for row in rows) or 1
     head = 18 if reference else 0
     height = 8 + head + 42 * len(rows)

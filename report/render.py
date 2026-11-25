@@ -23,17 +23,32 @@ SCRIPTS = {os.path.basename(p)[:3]: "questions/" + os.path.basename(p)
            for p in glob.glob(os.path.join(ROOT, "questions", "q*.py"))}
 
 
+MISSING = []  # numbers the text asks for that the results do not hold (a study with other settings, or too few cases)
+
+
+def lookup(question, metric):
+    row = next((r for r in RESULTS.get(question, []) if r["metric"] == metric), None)
+    if row is None:
+        MISSING.append(f"{question} {metric}")
+    return row
+
+
 def v(question, metric):
-    value = next(r for r in RESULTS[question] if r["metric"] == metric)["value"]
-    return f"{value:,}" if isinstance(value, int) else str(value)
+    row = lookup(question, metric)
+    if row is None:
+        return "(not available)"
+    return f"{row['value']:,}" if isinstance(row["value"], int) else str(row["value"])
 
 
 def span(question, metric):
-    row = next(r for r in RESULTS[question] if r["metric"] == metric)
-    return f"{row['low']} to {row['high']}"
+    row = lookup(question, metric)
+    return f"{row['low']} to {row['high']}" if row else "(not available)"
 
 
 def chart(question, number=0):
+    if number >= len(CHARTS.get(question, [])):
+        MISSING.append(f"{question} chart {number}")
+        return "*(chart not available)*"
     drawn = CHARTS[question][number]
     return (f"**{drawn['title']}**\n\n"
             f"![{drawn['title']}](charts/{drawn['stem']}-light.svg#gh-light-mode-only)\n"
@@ -889,6 +904,10 @@ def main():
     with open(os.path.join(ROOT, "README.md"), "w") as handle:
         handle.write(text)
     print(len(text), "characters,", sum(len(c) for c in CHARTS.values()), "charts")
+    if MISSING:
+        print(f"NOTE: the report text asks for {len(set(MISSING))} numbers or charts that this study did not produce; "
+              "they read \"(not available)\". The text was written for the published settings: " +
+              ", ".join(sorted(set(MISSING))[:12]) + (" ..." if len(set(MISSING)) > 12 else ""))
 
 
 if __name__ == "__main__":
