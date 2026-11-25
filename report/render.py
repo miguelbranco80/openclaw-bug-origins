@@ -182,7 +182,8 @@ bugs against every commit and pull request of the period, to see which kinds of 
   against {v('q22', 'rest_rate')} for all other authors together. So it is the source of
   {v('q22', 'top_bugs_pct')}% of the bugs, which is its share and no more. Among people who contribute regularly, the
   bug rate barely depends on who lands the change, once changes of the same size and kind are compared. That would
-  make sense if everyone is working with coding agents, though this study cannot tell who is. The exception is people
+  make sense if everyone is working with coding agents, though this study cannot tell who is (although we know it is
+  everyone 😄). The exception is people
   who contribute rarely: see the next point. And an author's heavy days are no worse than their light ones.
   *Findings 18 and 19.*
 - **Outsiders' changes are the safer ones.** Changes from people with 20 commits or fewer carried fewer bugs than
