@@ -57,17 +57,21 @@ def main(quiet=False):
     out.add("size", "gpt_cause_same", "Of those, the same change",
             sum(r["first_cause"][:10] == r["second_cause"][:10] for r in both))
 
-    rows = []
     for a, b in zip(out.group("sens_never"), out.group("sens_broke")):
         key = a["metric"].replace("sens_never_", "")
         out.add("never_share", "never_share_" + key, a["label"], round(100 * a["value"] / (a["value"] + b["value"])))
-        rows.append({"label": a["label"], "value": out.value("never_share_" + key),
-                     "note": f"{a['value']} never worked, {b['value']} broken later"})
+    # Three counts are enough to show the spread; all six are in the table under the chart.
+    shown = [("all", "First readers, counting every bug they traced"),
+             ("high", "First readers, counting only bugs where they were sure of the cause"),
+             ("gpt60", "A second model, on the 60 fixes it re-read")]
+    rows = [{"label": label, "value": out.value("never_share_" + key),
+             "note": f"{out.value('sens_never_' + key)} never worked, {out.value('sens_broke_' + key)} broken later"}
+            for key, label in shown]
     out.chart(charts.bars(
-        "q02-share-never-worked", "Of the bugs that were either kind, the share that were new code that never worked",
-        rows, unit="%", top=100, reference=(50, "even")),
-        "Each row counts the same two kinds of bug under a different rule for which cases to include. A bar past "
-        "the dashed line means never-worked bugs outnumber broken-later ones.")
+        "q02-share-never-worked", "How much of the time the bug was new code that never worked, by three ways of counting",
+        rows, unit="%", top=100, reference=(50, "half")),
+        "Take only bugs that were one of two kinds: new code that never worked, or a working thing broken later. Each "
+        "bar is the percentage that were the first kind. Past the dashed line means the first kind is the more common.")
     out.save(quiet)
     return out
 

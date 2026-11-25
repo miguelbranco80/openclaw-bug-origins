@@ -126,29 +126,29 @@ broke. The two kinds need different defenses. A test of the old behavior can cat
 never-worked bug has no old behavior to test against, so the only chance to catch it is when the new code is
 reviewed or first run.
 
-**Of the bugs that were either kind, the share that were new code that never worked**
+**How much of the time the bug was new code that never worked, by three ways of counting**
 
-![Of the bugs that were either kind, the share that were new code that never worked](charts/q02-share-never-worked-light.svg#gh-light-mode-only)
-![Of the bugs that were either kind, the share that were new code that never worked](charts/q02-share-never-worked-dark.svg#gh-dark-mode-only)
+![How much of the time the bug was new code that never worked, by three ways of counting](charts/q02-share-never-worked-light.svg#gh-light-mode-only)
+![How much of the time the bug was new code that never worked, by three ways of counting](charts/q02-share-never-worked-dark.svg#gh-dark-mode-only)
 
-*How to read it: Each row counts the same two kinds of bug under a different rule for which cases to include. A bar past the dashed line means never-worked bugs outnumber broken-later ones.*
+*How to read it: Take only bugs that were one of two kinds: new code that never worked, or a working thing broken later. Each bar is the percentage that were the first kind. Past the dashed line means the first kind is the more common.*
 
 <details><summary>The numbers behind this chart</summary>
 
-| | Never worked | Broken later |
-|---|---:|---:|
-| Every traced bug | 105 | 51 |
-| Reader was confident or fairly confident of the cause | 92 | 48 |
-| Reader was confident of the cause | 30 | 24 |
-| Cause is a commit since 10 Sep 2026, readable in full | 65 | 43 |
-| First readers, on the fixes that were re-read | 17 | 15 |
-| Second model, on the same fixes | 16 | 17 |
+| | Never worked | Broken later | Never worked, % |
+|---|---:|---:|---:|
+| Every traced bug | 105 | 51 | 67 |
+| Reader was confident or fairly confident of the cause | 92 | 48 | 66 |
+| Reader was confident of the cause | 30 | 24 | 56 |
+| Cause is a commit since 10 Sep 2026, readable in full | 65 | 43 | 60 |
+| First readers, on the fixes that were re-read | 17 | 15 | 53 |
+| Second model, on the same fixes | 16 | 17 | 48 |
 
 </details>
 
-Older causes are harder to trace, and a reader who cannot find an earlier working version may lean toward "never
-worked". That is one reason the gap narrows when only confident or recent cases are kept. The last two rows are the
-60 fixes a second model re-read; on that smaller set both readers put the two kinds about even.
+The first readers found twice as many never-worked bugs as broken-later ones. Counting only the bugs where they were
+sure of the cause, the two kinds are closer. A second model, re-reading 60 of the fixes, found them about even. So
+the safe statement is "at least as many", not "twice as many".
 
 - **How we know.** The reader had to point at the lines in the causing change that were wrong, and to say whether the
   behavior had worked before that change.

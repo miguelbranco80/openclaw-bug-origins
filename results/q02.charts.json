@@ -1,7 +1,7 @@
 [
  {
   "stem": "q02-share-never-worked",
-  "title": "Of the bugs that were either kind, the share that were new code that never worked",
-  "reading": "Each row counts the same two kinds of bug under a different rule for which cases to include. A bar past the dashed line means never-worked bugs outnumber broken-later ones."
+  "title": "How much of the time the bug was new code that never worked, by three ways of counting",
+  "reading": "Take only bugs that were one of two kinds: new code that never worked, or a working thing broken later. Each bar is the percentage that were the first kind. Past the dashed line means the first kind is the more common."
  }
 ]

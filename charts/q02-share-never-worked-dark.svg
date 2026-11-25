@@ -1,35 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="278" viewBox="0 0 760 278" role="img" aria-label="Of the bugs that were either kind, the share that were new code that never worked">
-<title>Of the bugs that were either kind, the share that were new code that never worked</title>
-<text x="215.0" y="11" fill="#898781" font-size="11" font-weight="400" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif">even</text>
-<line x1="215.0" y1="16" x2="215.0" y2="274" stroke="#898781" stroke-width="1" stroke-dasharray="3 3"/>
-<text x="0.0" y="34" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Every traced bug</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="152" viewBox="0 0 760 152" role="img" aria-label="How much of the time the bug was new code that never worked, by three ways of counting">
+<title>How much of the time the bug was new code that never worked, by three ways of counting</title>
+<text x="215.0" y="11" fill="#898781" font-size="11" font-weight="400" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif">half</text>
+<line x1="215.0" y1="16" x2="215.0" y2="148" stroke="#898781" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="0.0" y="34" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First readers, counting every bug they traced</text>
 <rect x="0" y="42" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,42 H284.1 Q288.1,42 288.1,46 V48 Q288.1,52 284.1,52 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="52" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">67%</text>
 <text x="472.6" y="52" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">105 never worked, 51 broken later</text>
-<text x="0.0" y="76" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Reader was confident or fairly confident of the cause</text>
+<text x="0.0" y="76" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First readers, counting only bugs where they were sure of the cause</text>
 <rect x="0" y="84" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,84 H279.8 Q283.8,84 283.8,88 V90 Q283.8,94 279.8,94 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="94" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">66%</text>
-<text x="472.6" y="94" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">92 never worked, 48 broken later</text>
-<text x="0.0" y="118" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Reader was confident of the cause</text>
+<path d="M0,84 H236.8 Q240.8,84 240.8,88 V90 Q240.8,94 236.8,94 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="94" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">56%</text>
+<text x="472.6" y="94" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">30 never worked, 24 broken later</text>
+<text x="0.0" y="118" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">A second model, on the 60 fixes it re-read</text>
 <rect x="0" y="126" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,126 H236.8 Q240.8,126 240.8,130 V132 Q240.8,136 236.8,136 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="136" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">56%</text>
-<text x="472.6" y="136" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">30 never worked, 24 broken later</text>
-<text x="0.0" y="160" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Cause is a commit since 10 Sep 2026, readable in full</text>
-<rect x="0" y="168" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,168 H254.0 Q258.0,168 258.0,172 V174 Q258.0,178 254.0,178 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="178" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">60%</text>
-<text x="472.6" y="178" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">65 never worked, 43 broken later</text>
-<text x="0.0" y="202" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">First readers, on the fixes that were re-read</text>
-<rect x="0" y="210" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,210 H223.9 Q227.9,210 227.9,214 V216 Q227.9,220 223.9,220 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="220" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">53%</text>
-<text x="472.6" y="220" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17 never worked, 15 broken later</text>
-<text x="0.0" y="244" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second model, on the same fixes</text>
-<rect x="0" y="252" width="430" height="10" rx="2" fill="#2c2c2a"/>
-<path d="M0,252 H202.4 Q206.4,252 206.4,256 V258 Q206.4,262 202.4,262 H0 Z" fill="#3987e5"/>
-<text x="440.0" y="262" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">48%</text>
-<text x="472.6" y="262" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">16 never worked, 17 broken later</text>
+<path d="M0,126 H202.4 Q206.4,126 206.4,130 V132 Q206.4,136 202.4,136 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="136" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">48%</text>
+<text x="472.6" y="136" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">16 never worked, 17 broken later</text>
 </svg>

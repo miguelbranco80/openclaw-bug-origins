@@ -188,11 +188,11 @@ reviewed or first run.
 
 {chart('q02', 0)}
 
-{numbers('q02', 'sens_never', 'sens_broke', names=['Never worked', 'Broken later'])}
+{numbers('q02', 'sens_never', 'sens_broke', 'never_share', names=['Never worked', 'Broken later', 'Never worked, %'])}
 
-Older causes are harder to trace, and a reader who cannot find an earlier working version may lean toward "never
-worked". That is one reason the gap narrows when only confident or recent cases are kept. The last two rows are the
-60 fixes a second model re-read; on that smaller set both readers put the two kinds about even.
+The first readers found twice as many never-worked bugs as broken-later ones. Counting only the bugs where they were
+sure of the cause, the two kinds are closer. A second model, re-reading 60 of the fixes, found them about even. So
+the safe statement is "at least as many", not "twice as many".
 
 - **How we know.** The reader had to point at the lines in the causing change that were wrong, and to say whether the
   behavior had worked before that change.
