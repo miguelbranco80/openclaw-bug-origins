@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Question 15. How does this project review and merge changes, in numbers?
 
-Reads: commits.tsv (every commit on main since 10 Sep 2026), changes.jsonl (the 400 pull requests of the random
-comparison sample). Everything here is counted from git and GitHub; nothing is judged.
+Reads: commits.tsv (every commit on main since 10 Sep 2026), pull_requests.tsv (who opened, merged and reviewed
+every pull request among them), changes.jsonl (the 400 pull requests of the random comparison sample, for the facts
+that were only fetched for the sample: the review bot's verdict and timing).
+Everything here is counted from git and GitHub; nothing is judged.
 This is a description, to set beside what published studies report for other projects.
 
 Usage: python3 questions/q15_how_does_the_project_review_and_merge.py
@@ -12,7 +14,7 @@ import statistics
 from datetime import datetime
 
 import charts
-from common import Result, load, load_commits
+from common import Result, load, load_commits, load_pull_requests
 
 
 def main(quiet=False):
@@ -34,24 +36,35 @@ def main(quiet=False):
     out.add("size", "sample", "Pull requests in the random comparison sample", m)
 
     out.add("practice", "self_merged_pct", "Merged by its own author", share(sum(c["self_merged"] for c in sample), m))
-    out.add("practice", "no_human_review_pct", "Merged with no review by a person",
+    out.add("practice", "no_human_review_pct", "Merged with no review by another person",
             share(sum(not c["human_review_before_merge"] for c in sample), m))
     out.add("practice", "bot_reviewed_pct", "Reviewed by the bot before merge",
             share(sum(c["bot_review"] != "no review before merge" for c in sample), m))
     out.add("practice", "bot_objected_pct", "Merged while the bot said blocked or needs changes",
             share(sum(c["bot_verdict_at_merge"] in ("blocked", "needs-changes") for c in sample), m))
     out.add("practice", "under_hour_pct", "Merged within an hour of being opened", share(sum(c["minutes_open"] < 60 for c in sample), m))
-    out.add("size", "human_review_pct", "Share with a review by a person before merge",
+    out.add("size", "human_review_pct", "Share of the sample with a review by another person before merge",
             share(sum(c["human_review_before_merge"] for c in sample), m))
     out.add("size", "median_minutes_open", "Median minutes from opening a pull request to merging it",
             round(statistics.median(c["minutes_open"] for c in sample)))
     gaps = [c["minutes_bot_review_to_merge"] for c in sample if c["minutes_bot_review_to_merge"] is not None]
     out.add("size", "median_minutes_after_bot", "Median minutes from the bot's review to the merge", round(statistics.median(gaps)))
-    out.add("size", "mergers", "Distinct people who merged a fetched pull request",
-            len({c["merged_by"] for c in load("changes.jsonl") if c["merged_by_group"] == "maintainer"}))
-    authors = collections.Counter(c["author"] for c in sample)
-    out.add("size", "top_author_pct", "Share of sampled pull requests opened by the most active account",
-            share(authors.most_common(1)[0][1], m))
+    pulls = [p for p in load_pull_requests().values() if p["merged_by"]]
+    people = [p for p in pulls if p["author_kind"] == "person"]
+    out.add("size", "pulls", "Merged pull requests since 10 Sep 2026", len(pulls))
+    out.add("size", "mergers", "Distinct accounts that merged at least one", len({p["merged_by"] for p in pulls}))
+    out.add("size", "top_author_pct", "Share of all pull requests opened by the most active account",
+            share(collections.Counter(p["author"] for p in pulls).most_common(1)[0][1], len(pulls)))
+    out.add("size", "top_merger_pct", "Share of all pull requests merged by the most active account",
+            share(collections.Counter(p["merged_by"] for p in pulls).most_common(1)[0][1], len(pulls)))
+    out.add("size", "automation_pct", "Share of all pull requests opened by an automation account",
+            share(len(pulls) - len(people), len(pulls)))
+    out.add("size", "all_self_merged_pct", "Of all pull requests opened by a person, share merged by that person",
+            share(sum(p["merged_by"] == p["author"] for p in people), len(people)))
+    out.add("size", "all_second_review_pct", "Of all pull requests, share another person reviewed before the merge",
+            share(sum(bool(p["reviewers_before_merge"]) for p in pulls), len(pulls)))
+    out.add("size", "all_second_review", "Pull requests another person reviewed before the merge",
+            sum(bool(p["reviewers_before_merge"]) for p in pulls))
     by_group = collections.Counter(c["author_group"] for c in sample)
     for key, label in (("maintainer", "Opened by a maintainer"), ("automation", "Opened by an automation account"),
                        ("outside contributor", "Opened by an outside contributor")):

@@ -1,0 +1,7 @@
+[
+ {
+  "stem": "q23-bugs-by-how-many-people-edit-the-files",
+  "title": "Bugs per 100 changes, by how many other people were editing the same files",
+  "reading": "Each bar is the number of bugs per 100 changes of that kind. The first row is changes to files that mostly only their author had been editing; the rows below are changes to files that other people had also changed in the previous two weeks. Longer bars mean more bugs per change."
+ }
+]

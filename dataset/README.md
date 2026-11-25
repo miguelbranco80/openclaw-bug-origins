@@ -8,6 +8,7 @@ All files describe `openclaw/openclaw` as of commit `e6b42e31bc1522b8596958fbdd8
 | File | One row per | Made by |
 |---|---|---|
 | `commits.tsv` | commit on `main` since 2026-09-10 (UTC), 39,210 rows | `fix-origins/scripts/commit_list.py`, from git |
+| `pull_requests.tsv` | merged pull request named in `commits.tsv` (35,833 rows) | `fix-origins/population/fetch_pull_requests.py`, from GitHub |
 | `sampled_fixes.jsonl` | sampled fix (300), with the first reader's answer | `fix-origins/scripts/assemble.py`, from the readers' answers in `fix-origins/reads/` |
 | `fix_rereads_claude.jsonl` | fix re-read by a second Claude reader (47) | `dataset/build.py`, from `fix-origins/second_reads.jsonl` |
 | `fix_rereads_gpt.jsonl` | fix re-read by a GPT reader (60) | `fix-origins/audit/collect.py` |
@@ -26,7 +27,19 @@ Run `python3 dataset/build.py` to refresh the copies after changing a collection
 
 **`commits.tsv`**: `sha`; `committed_at`; `files_changed` (files in the commit's diff against its first parent);
 `pr_number` (the number in a trailing `(#123)` in the title, empty when there is none); `title_prefix` (the leading
-word of the title, lower case: `fix`, `feat`, `refactor`, ...).
+word of the title, lower case: `fix`, `feat`, `refactor`, ...); `author_commits_that_day` (commits on main by the
+same author on the same UTC day, this one included); `minutes_since_author_previous` (empty for an author's first
+commit in the list); `author_rank` (1 for the author with the most commits in the list; authors are told apart by
+commit email, which is not stored); `folders` (top-level folders touched, comma separated); `test_files` (changed
+files whose path marks them as tests); `code_files` (changed non-test files under `src/`, `ui/`, `extensions/`,
+`packages/` or `apps/`); `new_code_files` and `edited_code_files` (of those, how many the commit adds and how many
+it edits); `familiar_code_files` (of the edited ones, how many the same author had already changed earlier in the
+list); `other_recent_authors` (other authors who changed any of the edited code files in the 14 days before);
+`other_recent_authors_per_file` (the same count taken per edited file, then averaged).
+
+**`pull_requests.tsv`**: `number`; `author`; `author_kind` (`person` or `automation`); `merged_by`; `created_at`;
+`merged_at`; `reviewers_before_merge` (people other than the author, and not automation, who submitted a review
+before the merge, comma separated; empty for most). Two pull request numbers in `commits.tsv` could not be fetched.
 
 **`sampled_fixes.jsonl`**: `rank` (position in the fixed pseudo-random order; ranks 1 to 300 are the sample); `sha`,
 `fix_pr`, `fix_subject`, `fix_date`, `fix_author`; `origin` (`never-worked`, `regression`, `latent`, `not-a-defect`,
@@ -41,7 +54,8 @@ message or PR text mentions the causing change); `fix_adds_test`; `user_visible`
 `sha256("comparison-v1:" + sha)`); `sampled_bugs` (how many of the 300 sampled fixes trace back to this change; 0 for
 most), `bug_kinds`; `author`, `author_group` (`maintainer`: a person who merged at least one fetched pull request;
 `outside contributor`; `automation`), `author_association` (GitHub's own label, kept for reference), `from_fork`;
-`merged_by`, `merged_by_group`, `self_merged`; `minutes_open`; `human_review_before_merge`; `screenshots`, `videos`
+`merged_by`, `merged_by_group`, `self_merged`; `minutes_open`; `human_review_before_merge` (a person other than
+the author submitted a review before the merge); `screenshots`, `videos`
 (pictures and videos embedded in the description as it read at merge), `visual_proof` (either is present);
 `interface_files` (files changed under `ui/` or `apps/`); `bot_review` (`reviewed
 the merged revision`, `reviewed an earlier revision`, `no review before merge`), `bot_verdict_at_merge`,

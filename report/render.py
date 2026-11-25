@@ -61,6 +61,31 @@ def ratio_table(question, prefix):
     return "\n".join(lines)
 
 
+def commit_table(*parts):
+    """Like ratio_table, for comparisons made over every commit on main. Each part is (question, prefix); a part's
+    first row is its baseline. A part may carry a third item, a caption printed above its rows."""
+    lines = ["| Kind of change | Share of all commits | Sampled bugs | Bugs per 100 commits | Against the baseline, at equal size and kind |",
+             "|---|---:|---:|---:|---|"]
+    for question, prefix, *caption in parts:
+        rows = {r["metric"]: r for r in RESULTS[question]}
+        keys = [m[len(prefix) + 7:] for m in rows if m.startswith(prefix + "_share_")]
+        if caption:
+            lines.append(f"| ***{caption[0]}*** | | | | |")
+        for i, key in enumerate(keys):
+            adjusted = rows.get(f"{prefix}_adjusted_{key}")
+            if i == 0:
+                versus = "(the baseline)"
+            elif adjusted:
+                clear = adjusted["low"] > 1 or adjusted["high"] < 1
+                versus = f"{adjusted['value']} times (plausibly {adjusted['low']} to {adjusted['high']})"
+                versus = f"**{versus}**" if clear else versus + ": no clear difference"
+            else:
+                versus = "too few to say"
+            lines.append(f"| {rows[f'{prefix}_share_{key}']['label']} | {rows[f'{prefix}_share_{key}']['value']}% | "
+                         f"{rows[f'{prefix}_bugs_{key}']['value']} | {rows[f'{prefix}_rate_{key}']['value']} | {versus} |")
+    return "\n".join(lines)
+
+
 def numbers(question, *groups, names=None):
     """A folded table of the numbers behind a chart: one row per label, one column per group."""
     rows = {}
@@ -101,6 +126,7 @@ current models, shown {v('q07', 'cases')} of those changes with no hint, each na
 
 **Scope.** Changes merged to `main` from 1 to 22 November 2026. Model readers did the classifying; a second model
 from a different maker re-read the three central judgments. No project code was run and no test was written.
+Findings 18 to 22 set the traced bugs against every commit on `main` since 10 September 2026 and judge nothing.
 Written 25 November 2026.
 
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
@@ -126,9 +152,14 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 | 12 | Supported | Changes merged while the bot objected carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready, at equal size. Its objection marks risk even when its words do not name the bug. |
 | 13 | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk once size is held equal. |
 | 14 | Supported | Who opened a change, and whether its author merged it, made no detectable difference. Pull requests open a day or more carried far more bugs than those merged within the hour. |
-| 15 | Measured | {v('q15', 'self_merged_pct')}% of pull requests were merged by their own author and {v('q15', 'no_human_review_pct')}% had no review by a person. |
+| 15 | Measured | {v('q15', 'self_merged_pct')}% of pull requests were merged by their own author. Another person reviewed {v('q15', 'all_second_review_pct')}% of them before the merge. |
 | 16 | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused {v('q16', 'interface_adjusted_yes')} times as many, at equal size. |
 | 17 | Supported, not yet tested on new data | Bugs are concentrated. Changes with at least two of three warning signs are {v('q17', 'changes_pct_two')}% of changes and the source of {v('q17', 'bugs_pct_two')}% of traced bugs. |
+| 18 | Supported as "no sign found" | No sign that anyone is overloaded. Changes landed on an author's heavy days, on a merger's heavy days, on the project's busiest days, at weekends, or minutes after the previous one caused no more bugs than the rest. |
+| 19 | Tentative | Changes from people who contribute rarely caused no more bugs than the most active author's. Too few changes get a second person to tell whether one helps. |
+| 20 | Supported | Changes to files that other people were also editing caused {v('q23', 'shared_adjusted_mid')} times the bugs of changes to files only their author was editing, at equal size and kind. |
+| 21 | Well supported | Changes that add new code files are {v('q24', 'new_share_adds')}% of commits and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs. |
+| 22 | Measured | {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came from a change that also changed tests. No part of the code stands out once size is held equal. |
 
 ## Words used in this report
 
@@ -517,8 +548,9 @@ as tables, not charts, because a bar would suggest a difference the numbers do n
 
 - **How we know.** Same method as finding 12. A maintainer here is a person who merged at least one of the fetched
   pull requests; GitHub's own member label misses people whose membership is private.
-- **What it does not show.** That review by a person does not help. Only {v('q15', 'human_review_pct')}% of changes
-  had one, and people chose to review the risky ones, so the two groups are not alike.
+- **What it does not show.** That review by another person does not help. Only {v('q15', 'human_review_pct')}% of
+  the sampled changes had one, and people chose to review the risky ones, so the two groups are not alike. Finding
+  19 repeats this on every pull request, with the same answer.
 
 {run_line('q14')}
 
@@ -531,8 +563,12 @@ as tables, not charts, because a bar would suggest a difference the numbers do n
 | | |
 |---|---:|
 | Commits on main per day, 10 Sep to 22 Nov 2026 | {v('q15', 'commits_per_day')} |
-| People who merged at least one fetched pull request | {v('q15', 'mergers')} |
-| Share of sampled pull requests opened by the most active account | {v('q15', 'top_author_pct')}% |
+| Merged pull requests, 10 Sep to 22 Nov 2026 | {v('q15', 'pulls')} |
+| Accounts that merged at least one of them | {v('q15', 'mergers')} |
+| Share of all pull requests merged by the most active account | {v('q15', 'top_merger_pct')}% |
+| Share of all pull requests opened by the most active account | {v('q15', 'top_author_pct')}% |
+| Share of all pull requests opened by an automation account | {v('q15', 'automation_pct')}% |
+| Share of all pull requests another person reviewed before the merge | {v('q15', 'all_second_review_pct')}% ({v('q15', 'all_second_review')}) |
 | Median time from opening a pull request to merging it | {v('q15', 'median_minutes_open')} minutes |
 | Median time from the bot's review to the merge | {v('q15', 'median_minutes_after_bot')} minutes |
 | Share of commits titled "fix" | {v('q15', 'fix_title_pct')}% |
@@ -591,6 +627,138 @@ the source of {v('q17', 'bugs_pct_none')}%.
 
 {run_line('q17')}
 
+## 18. No sign that anyone is overloaded
+
+*Supported as "no sign found". These are comparisons across every commit since 10 September, with no model
+judging anything.*
+
+The worry is simple: one person lands hundreds of changes a day, the project lands a thousand, and care must be
+slipping. If that were so, changes landed under heavy load would cause more bugs than changes landed under light
+load. We looked for that six ways and did not find it.
+
+For the median commit, its author landed {v('q18', 'median_author_load')} changes that same day, and the previous
+one {v('q18', 'median_gap')} minutes earlier. On a typical day {v('q20', 'people_per_day')} accounts merge; one
+account merges {v('q20', 'top_pct')}% of all pull requests and three accounts merge {v('q20', 'top3_pct')}%.
+
+{commit_table(('q18', 'load', 'By how many changes the author landed that day'),
+              ('q18', 'gap', "By how soon after the author's previous change"),
+              ('q18', 'ownrest', "By the author's own usual pace, leaving out the most active author"),
+              ('q20', 'load', 'By how many pull requests the person merging merged that day'),
+              ('q19', 'busy', 'By how busy the whole project was that day'),
+              ('q19', 'week', 'By day of the week'))}
+
+Read each block against its first row. No row differs clearly from its baseline, and where the numbers lean, they
+lean toward fewer bugs under heavier load, not more.
+
+- **How we know.** For each of the {v('q18', 'commits')} commits we counted how many the same author landed that
+  day and how long since their previous one, and for each pull request how many the same person merged that day.
+  The bugs are the {v('q18', 'bugs')} sampled bugs whose causing commit is among those commits. "At equal size and
+  kind" compares changes of similar file count and the same title type (feat, fix, other).
+- **One exception, and what it is.** Taking all authors together, an author's light days carried more bugs per
+  change than their usual days ({v('q18', 'own_adjusted_usual')} times on usual days, plausibly
+  {span('q18', 'own_adjusted_usual')}). That comes from the single most active author, who lands over half of all
+  commits. Without that author the three kinds of day are alike, as the third block shows.
+- **What it does not show.** That the pace is harmless. A count per commit favors whoever cuts work into the most
+  pieces, and a tired author's mistakes need not land on the same day. It shows only that heavier days are not
+  where the traced bugs came from.
+
+{run_line('q18')}; `python3 {SCRIPTS['q19']}`; `python3 {SCRIPTS['q20']}`
+
+## 19. Occasional contributors did no worse; a second person is too rare to measure
+
+*Tentative. The groups are small.*
+
+Would more contributors mean more bugs? One way to ask is whether changes from people who contribute rarely cause
+more bugs than changes from the regulars.
+
+{commit_table(('q22', 'who', 'By how much the author contributes'),
+              ('q21', 'second', 'By whether a second person was involved'),
+              ('q21', 'review', 'By whether another person reviewed it'))}
+
+- The {v('q22', 'authors_occasional')} authors with 20 commits or fewer wrote {v('q22', 'who_share_occasional')}% of
+  commits and caused {v('q22', 'who_bugs_occasional')} of the sampled bugs: no more per change than the most active
+  author.
+- The {v('q22', 'authors_regular')} authors in the middle, with 21 to 500 commits, caused
+  {v('q22', 'who_adjusted_regular')} times as many per change (plausibly {span('q22', 'who_adjusted_regular')}).
+  The range only just excludes "no difference", and finding 14 saw none on a smaller sample.
+- A second person merged or reviewed {v('q21', 'second_share_second')}% of commits. Those caused no clearly
+  different number of bugs. Only {v('q21', 'review_commits_reviewed')} commits came from a pull request another
+  person had reviewed, which is too few to say anything.
+
+- **How we know.** Authors are grouped by how many commits they landed since 10 September. Who merged and who
+  reviewed comes from GitHub, for all {v('q15', 'pulls')} merged pull requests.
+- **What it does not show.** Whether review by a second person would help. It is hardly practised here, so this
+  data cannot answer it. Authors are told apart by commit email, so one person with two addresses counts twice.
+
+{run_line('q22')}; `python3 {SCRIPTS['q21']}`
+
+## 20. Changes to files that other people were also editing caused more bugs
+
+*Supported. It cannot separate "too many hands" from "the busiest, most central code".*
+
+{chart('q23', 0)}
+
+{commit_table(('q23', 'shared', 'By how many other people changed the same files in the previous 14 days'),
+              ('q23', 'familiar', 'By whether the author had changed those files before'))}
+
+When the files a change edits had also been changed by other people in the previous two weeks, the change caused
+about {v('q23', 'shared_adjusted_mid')} times the bugs (plausibly {span('q23', 'shared_adjusted_mid')}) of a change
+to files that only its author had been editing. Two or more other people per file was no worse than one.
+
+Whether the author knew the files made no steady difference: authors editing files they had never changed before
+did the same as authors who had changed all of them. The middle row, "some of them", is higher; those are changes
+that reach beyond the author's own files into others.
+
+- **How we know.** For every code file a commit edits, we counted the other authors who had changed that file in
+  the 14 days before, and averaged over the commit's files. Only commits that edit existing code are compared.
+- **What it does not show.** That several people editing a file is what causes the bugs. Files many people edit are
+  also the central ones where most things connect, and this data cannot tell those two apart.
+
+{run_line('q23')}
+
+## 21. Changes that add new code files caused two thirds of the bugs
+
+*Well supported. Counted from git; it agrees with findings 2 and 3 by a different route.*
+
+{chart('q24', 0)}
+
+{commit_table(('q24', 'new'))}
+
+A change that adds at least one new code file is {v('q24', 'new_share_adds')}% of commits and the source of
+{v('q24', 'new_bugs_adds')} of the {v('q25', 'bugs')} sampled bugs ({v('q24', 'bugs_pct_adds')}%). At equal size
+and kind it caused {v('q24', 'new_adjusted_adds')} times the bugs of a change that only edits existing files
+(plausibly {span('q24', 'new_adjusted_adds')}).
+
+- **How we know.** Git records which files a commit adds. A code file is a non-test file under `src/`, `ui/`,
+  `extensions/`, `packages/` or `apps/`.
+- **Why it matters here.** Finding 3 relied on the word "feat" in the title, which only {v('q03', 'rate_commits_feat')}
+  commits carry. Adding a file is a fact, not a label, and it marks the same thing: new code is where the bugs are.
+- **What it does not show.** That the bug sits in the new file. It says the change that carried the bug also added
+  one.
+
+{run_line('q24')}
+
+## 22. Nearly every bug-causing change came with tests; no part of the code stands out
+
+*Measured.*
+
+{commit_table(('q25', 'tests', 'Among commits that change code: with or without tests'),
+              ('q26', 'part', 'By the part of the code the commit touches'))}
+
+- {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} sampled bugs came from a change that also changed test files.
+  The tests that came with a change did not catch the bug it carried.
+- Code changes with no test file are few and small (refactors, chores, small fixes) and caused
+  {v('q25', 'tests_bugs_without')} of the sampled bugs. This is not evidence that skipping tests is safe: the two
+  groups are different kinds of change.
+- Interface changes cause about twice the bugs per commit of core changes, but they are also larger. At equal size
+  and kind, interface, plugin and core changes are alike.
+
+- **How we know.** A test file is one whose path marks it as a test (`.test.`, `.spec.`, `.e2e.`, a `test` or
+  `fixtures` folder). Each commit is put in one part of the code by the folders it touches.
+- **What it does not show.** Whether the tests were good, or whether they ran. No test was run for this study.
+
+{run_line('q25')}; `python3 {SCRIPTS['q26']}`
+
 ## How this compares with published research
 
 Only studies whose figures we could check against the paper or its abstract are quoted. None of them studied this
@@ -604,10 +772,11 @@ project, and none measured exactly what we measured, so read each row as "same d
 | Do fixes cause more bugs than other changes | No: "fix" is {v('q03', 'cmp_cause_fix')}% of causes and {v('q03', 'cmp_base_fix')}% of commits | Three times more in Eclipse, no difference in Mozilla [1]. 14.8% to 24.4% of operating-system bug fixes were themselves wrong [3]; nearly 40% of fault fixes led to further faults in one telecom system [4] | Unremarkable. Fixes that break things are normal everywhere |
 | "Fixes" that fix no bug | {v('q01', 'gpt_notbug_pct')}% to {v('q01', 'not_bug_pct')}%, depending on the reader | 33.8% of bug reports in five open-source projects were not bugs [5] | In line |
 | What review catches | The bot named {v('q06', 'flag_exact')} of {v('q06', 'reviewed')} bugs that got through | About 75% of what code review finds concerns maintainability, not function [6]; reviews find fewer defects than teams expect [7] | Same in kind. Not like for like: those studies count what review found, ours counts what it missed |
-| Review by a second person | {v('q15', 'human_review_pct')}% of changes; {v('q15', 'self_merged_pct')}% merged by their own author | At Google a change typically needs approval from at least one reviewer; the median is one reviewer [8]. Other studied projects had a median of two [8] | The clearest departure from studied practice |
+| Review by a second person | {v('q15', 'all_second_review_pct')}% of pull requests; {v('q15', 'self_merged_pct')}% merged by their own author | At Google a change typically needs approval from at least one reviewer; the median is one reviewer [8]. Other studied projects had a median of two [8] | The clearest departure from studied practice |
 | Does review coverage matter | No detectable difference here (finding 14) | In Qt, VTK and ITK, components with low review coverage and participation had up to two and five more post-release defects [9]; a later study at Sony Mobile did not find the link [10] | Open. The research is mixed and our sample cannot tell |
 | Size of an ordinary change | {v('q15', 'under_10_files_pct')}% of commits change fewer than 10 files; mean {v('q15', 'mean_files')} | About 90% at Google, with a median of 24 lines [8]; mean 3.5 files in Eclipse and Mozilla [1] | Larger batches here |
 | Speed of review | Median {v('q15', 'median_minutes_open')} minutes from opening to merge | Under 4 hours at Google; 15 to 24 hours at AMD, Chrome OS and Microsoft [8] | Much faster here |
+| Many people changing the same code | Changes to files others had also been editing caused {v('q23', 'shared_adjusted_mid')} times the bugs (finding 20). Authors new to a file did no worse | In Windows Vista and Windows 7, how many low-expertise developers changed a component, and how much of it its top owner wrote, were related to its faults before release and its failures after [14] | Same direction for shared code. The "unfamiliar author" part does not show here |
 
 ### What stands out, and what does not
 
@@ -621,6 +790,13 @@ Three things in these numbers depart from what the studies describe:
 One more thing follows from these: the bugs are not spread evenly. A small, recognisable share of changes carries
 about half of them (finding 17).
 
+On whether more people would help, the numbers say four things and leave one open. The work runs through few hands:
+one account merges {v('q20', 'top_pct')}% of pull requests and three merge {v('q20', 'top3_pct')}%. Yet nothing
+shows those hands are overloaded: heavy days are no worse than light ones (finding 18). Changes from occasional
+contributors are no worse than the core's (finding 19). Bugs are more common where several people edit the same
+files (finding 20). What stays open is whether a second pair of eyes helps, because only
+{v('q15', 'all_second_review_pct')}% of pull requests get one.
+
 Several things that might look alarming are ordinary by the same studies: half of all changes being fixes, fixes
 that introduce new bugs, changes titled "fix" that fix nothing, and a reviewer that misses functional bugs.
 
@@ -630,8 +806,9 @@ It cannot attribute any change to an agent or a person. Git records who landed a
 for no agent attribution on commits. So nothing here measures agent-written code against human-written code.
 
 What the numbers do show is the working pattern: {v('q15', 'commits_per_day')} commits a day through
-{v('q15', 'mergers')} people who merge, one account opening {v('q15', 'top_author_pct')}% of pull requests, and a
-median of {v('q15', 'median_minutes_open')} minutes from opening to merge.
+{v('q15', 'mergers')} accounts that merge, one account opening {v('q15', 'top_author_pct')}% of pull requests,
+{v('q15', 'automation_pct')}% opened by automation accounts, and a median of {v('q15', 'median_minutes_open')}
+minutes from opening to merge.
 
 Recent studies of AI-assisted development, which are newer and less settled than the work above, point at the same
 two pressures this data shows, volume and batch size:
@@ -660,6 +837,7 @@ On this evidence the thing to watch is not who or what writes a change. It is ho
 11. DORA. [Accelerate State of DevOps Report 2024](https://dora.dev/report/2024). A survey; the estimate is a correlation.
 12. H. He, B. Vasilescu and others. [Does AI-assisted coding deliver? A difference-in-differences study of Cursor's impact on software projects](https://arxiv.org/abs/2511.04427). Preprint, 2025.
 13. H. Li, H. Zhang, A. Hassan. [The rise of AI teammates in software engineering (SE) 3.0: how autonomous coding agents are reshaping software engineering](https://arxiv.org/abs/2507.15003). Preprint, 2025.
+14. C. Bird, N. Nagappan, B. Murphy, H. Gall, P. Devanbu. [Don't touch my code! Examining the effects of ownership on software quality](https://www.microsoft.com/en-us/research/publication/dont-touch-my-code-examining-the-effects-of-ownership-on-software-quality/). ESEC/FSE 2011.
 
 References 1 and 8 were read in full for the figures quoted. The others are quoted from their abstracts.
 
@@ -672,6 +850,7 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 | Blind review | {v('q07', 'cases')} | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
 | Are the reports real | {v('q08', 'findings')} | Every report from the two strongest reviewers | One later-fix reader; two code-tracing checkers | Known-real reports as a control, before and after the fix |
 | Kinds of change compared | {v('q15', 'sample')} | Lottery over every merged pull request since 10 September, plus every bug-causing one | Nobody: read from git and GitHub | The bot's verdict is read from its own marker |
+| Workload, people and files (findings 18 to 22) | {v('q18', 'commits')} | Every commit on main since 10 September; the bugs are the {v('q18', 'bugs')} sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
 | Written rules | {v('q10', 'confirmed')} | Fixes whose wording blames an earlier change | Claude readers, verdicts re-read | Three cases checked against source by hand |
 
 ## Limits that apply throughout
@@ -684,6 +863,9 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 - The model comparison covers changes of at most 30 files and one run per reviewer. The reviewers did not get
   identical guidance: some GPT runs read a personal review guide on the test machine, and the Claude runs had the
   repository's current contributor guide in context. Neither contains the answers.
+- Findings 18 to 22 make about thirty comparisons on the same {v('q18', 'bugs')} bugs. By chance alone, one or two
+  of thirty would look like a clear difference. The two we call supported (findings 20 and 21) are far from the
+  line; the others that cross it are labelled tentative.
 - The data files record the public author and merger of each change, as GitHub shows them. The report draws no
   conclusion about any person.
 

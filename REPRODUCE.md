@@ -51,7 +51,8 @@ cd openclaw && git clone https://github.com/miguelbranco80/openclaw-bug-origins.
 | Pilot PR descriptions | `python3 research/fix-origins/review-pilot/fetch_descriptions.py` | `data/pilot_pr_bodies.json` |
 | Pilot exports | `python3 research/fix-origins/review-pilot/export.py <out> <ranks.json> <bodies.json>` | one directory per case |
 | Comparison sample of pull requests | `python3 research/fix-origins/comparison/fetch.py`, `fetch_proof.py`, `paths.py`, then `build_changes.py` | `comparison/raw/`, `proof.json`, `areas.json`, `dataset/changes.jsonl` |
-| Commit list with sizes | `python3 research/fix-origins/scripts/commit_list.py` | `dataset/commits.tsv` |
+| Commit list with sizes, authors' load and files | `python3 research/fix-origins/scripts/commit_list.py` | `dataset/commits.tsv` |
+| Who opened, merged and reviewed every pull request | `python3 research/fix-origins/population/fetch_pull_requests.py` (about 360 queries; answers are kept under `population/raw/`, which is not published) | `dataset/pull_requests.tsv` |
 
 All history is pinned to commit `e6b42e31bc1522b8596958fbdd85c394b23fca7b`. `fix-origins/README.md` describes the
 sampling and the per-fix procedure in detail.

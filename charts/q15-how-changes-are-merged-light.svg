@@ -4,10 +4,10 @@
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,24 H377.8 Q381.8,24 381.8,28 V30 Q381.8,34 377.8,34 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">88.8%</text>
-<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Merged with no review by a person</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Merged with no review by another person</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
-<path d="M0,66 H406.6 Q410.6,66 410.6,70 V72 Q410.6,76 406.6,76 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">95.5%</text>
+<path d="M0,66 H417.4 Q421.4,66 421.4,70 V72 Q421.4,76 417.4,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">98%</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Reviewed by the bot before merge</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,108 H361.5 Q365.5,108 365.5,112 V114 Q365.5,118 361.5,118 H0 Z" fill="#2a78d6"/>

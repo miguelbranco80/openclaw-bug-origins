@@ -89,7 +89,8 @@ def main():
             "merged_by_group": "automation" if automation(pr["merged_by"], pr["merged_by_type"]) else "maintainer",
             "self_merged": bool(pr["author"]) and pr["author"] == pr["merged_by"],
             "minutes_open": minutes(pr["merged_at"], pr["created_at"]),
-            "human_review_before_merge": any(r["at"] and r["at"] <= pr["merged_at"] for r in pr["human_reviews"]),
+            "human_review_before_merge": any(r["at"] and r["at"] <= pr["merged_at"] and r["by"] != pr["author"]
+                                             for r in pr["human_reviews"]),
             "screenshots": proof[str(pr["number"])]["images"], "videos": proof[str(pr["number"])]["videos"],
             "visual_proof": proof[str(pr["number"])]["images"] + proof[str(pr["number"])]["videos"] > 0,
             "interface_files": areas.get(commit["sha"], {}).get("ui", 0) + areas.get(commit["sha"], {}).get("apps", 0),

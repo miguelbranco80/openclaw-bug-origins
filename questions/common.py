@@ -5,6 +5,7 @@ group, a unique metric name, a plain label and a value) plus its charts under ch
 """
 import collections
 import csv
+from datetime import datetime, timezone
 import json
 import math
 import os
@@ -32,7 +33,12 @@ def load_commits():
     commits = {}
     with open(os.path.join(DATASET, "commits.tsv")) as handle:
         for row in csv.DictReader(handle, delimiter="\t"):
-            row["files_changed"] = int(row["files_changed"])
+            for column in ("files_changed", "author_commits_that_day", "test_files", "code_files", "author_rank",
+                           "new_code_files", "edited_code_files", "familiar_code_files", "other_recent_authors"):
+                row[column] = int(row[column])
+            for column in ("minutes_since_author_previous", "other_recent_authors_per_file"):
+                row[column] = float(row[column]) if row[column] else None
+            row["folders"] = set(row["folders"].split(",")) if row["folders"] else set()
             commits[row["sha"]] = row
     return commits
 
@@ -194,3 +200,63 @@ def compare(out, prefix, changes, level_of, levels, reference):
     out.add("size", prefix + "_sample", "Ordinary changes in the comparison sample with this property known", len(sample))
     out.add("size", prefix + "_causing_bugs", "Sampled bugs from changes with this property known",
             sum(c["sampled_bugs"] for c in causing))
+
+
+def kind(commit):
+    """feat, fix or other, from the first word of the commit title."""
+    return commit["title_prefix"] if commit["title_prefix"] in ("feat", "fix") else "other"
+
+
+def compare_commits(out, prefix, commits, causes, level_of, levels, reference):
+    """Like `compare`, but against every commit on main instead of a sample of pull requests.
+
+    commits: load_commits(). causes: the causing commit of each sampled bug (one entry per bug) that is in the list.
+    Adds, per level: commits, share of all commits, sampled bugs, bugs per 100 commits, and the rate relative to the
+    reference level: crude, and with the size and the kind of the change (feat, fix, other) held equal.
+    """
+    known = {sha: level_of(commit) for sha, commit in commits.items()}
+    count = collections.Counter(level for level in known.values() if level is not None)
+    bugs = collections.Counter(known[sha] for sha in causes if known[sha] is not None)
+    for key, label in levels:
+        out.add(prefix + "_commits", f"{prefix}_commits_{key}", label, count[key])
+        out.add(prefix + "_share", f"{prefix}_share_{key}", label, round(100 * count[key] / len(commits), 1))
+        out.add(prefix + "_bugs", f"{prefix}_bugs_{key}", label, bugs[key])
+        out.add(prefix + "_rate", f"{prefix}_rate_{key}", label,
+                round(100 * bugs[key] * SCALE / count[key], 2) if count[key] else 0)
+        if key == reference:
+            continue
+        crude = odds_ratio(bugs[key], bugs[reference], count[key], count[reference])
+        if crude:
+            out.add(prefix + "_ratio", f"{prefix}_ratio_{key}", label, *crude)
+        tables = []
+        for name, title in [(name, title) for name, _, _ in SIZE_GROUPS for title in ("feat", "fix", "other")]:
+            inside = lambda sha: size_group(commits[sha]) == name and kind(commits[sha]) == title
+            tables.append((
+                sum(1 for sha in causes if inside(sha) and known[sha] == key),
+                sum(1 for sha in causes if inside(sha) and known[sha] == reference),
+                sum(1 for sha in commits if inside(sha) and known[sha] == key),
+                sum(1 for sha in commits if inside(sha) and known[sha] == reference),
+            ))
+        adjusted = stratified_ratio(tables)
+        if adjusted:
+            out.add(prefix + "_adjusted", f"{prefix}_adjusted_{key}", label, *adjusted)
+
+
+def recent_causes(commits):
+    """The causing commit of each sampled bug, where that commit is in the commit list (one entry per bug)."""
+    return [fix["cause_sha"] for fix in traced(load("sampled_fixes.jsonl")) if fix["cause_sha"] in commits]
+
+
+def utc_day(stamp):
+    """The UTC calendar day of an ISO timestamp."""
+    return datetime.fromisoformat(stamp.replace("Z", "+00:00")).astimezone(timezone.utc).date()
+
+
+def load_pull_requests():
+    """dataset/pull_requests.tsv as {number: row}, with `reviewers_before_merge` as a list."""
+    pulls = {}
+    with open(os.path.join(DATASET, "pull_requests.tsv")) as handle:
+        for row in csv.DictReader(handle, delimiter="\t"):
+            row["reviewers_before_merge"] = [name for name in row["reviewers_before_merge"].split(",") if name]
+            pulls[row["number"]] = row
+    return pulls

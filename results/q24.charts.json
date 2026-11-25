@@ -1,0 +1,7 @@
+[
+ {
+  "stem": "q24-bugs-by-whether-the-change-adds-files",
+  "title": "Bugs per 100 changes, by whether the change adds new code files",
+  "reading": "Each bar is the number of bugs per 100 changes of that kind. The gray note gives how many of the sampled bugs came from such changes and how common such changes are."
+ }
+]

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="92" viewBox="0 0 760 92" role="img" aria-label="Bugs per 100 changes, by whether the change adds new code files">
+<title>Bugs per 100 changes, by whether the change adds new code files</title>
+<text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Only edits existing code files</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,24 H47.7 Q51.7,24 51.7,28 V30 Q51.7,34 47.7,34 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2.12</text>
+<text x="480.8" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">37 sampled bugs, 59.3% of all commits</text>
+<text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Adds at least one new code file</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,66 H426.0 Q430.0,66 430.0,70 V72 Q430.0,76 426.0,76 H0 Z" fill="#3987e5"/>
+<text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">17.64</text>
+<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">71 sampled bugs, 13.7% of all commits</text>
+</svg>

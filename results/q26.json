@@ -1,0 +1,22 @@
+[
+{"group": "part_commits", "metric": "part_commits_core", "label": "Core code (src/, packages/), no interface or plugins", "value": 17856, "low": null, "high": null},
+{"group": "part_share", "metric": "part_share_core", "label": "Core code (src/, packages/), no interface or plugins", "value": 45.5, "low": null, "high": null},
+{"group": "part_bugs", "metric": "part_bugs_core", "label": "Core code (src/, packages/), no interface or plugins", "value": 43, "low": null, "high": null},
+{"group": "part_rate", "metric": "part_rate_core", "label": "Core code (src/, packages/), no interface or plugins", "value": 3.21, "low": null, "high": null},
+{"group": "part_commits", "metric": "part_commits_plugins", "label": "Plugins (extensions/), no interface", "value": 6137, "low": null, "high": null},
+{"group": "part_share", "metric": "part_share_plugins", "label": "Plugins (extensions/), no interface", "value": 15.7, "low": null, "high": null},
+{"group": "part_bugs", "metric": "part_bugs_plugins", "label": "Plugins (extensions/), no interface", "value": 15, "low": null, "high": null},
+{"group": "part_rate", "metric": "part_rate_plugins", "label": "Plugins (extensions/), no interface", "value": 3.26, "low": null, "high": null},
+{"group": "part_ratio", "metric": "part_ratio_plugins", "label": "Plugins (extensions/), no interface", "value": 1.01, "low": 0.56, "high": 1.83},
+{"group": "part_adjusted", "metric": "part_adjusted_plugins", "label": "Plugins (extensions/), no interface", "value": 0.72, "low": 0.4, "high": 1.3},
+{"group": "part_commits", "metric": "part_commits_interface", "label": "Interface (ui/ or apps/)", "value": 10179, "low": null, "high": null},
+{"group": "part_share", "metric": "part_share_interface", "label": "Interface (ui/ or apps/)", "value": 26, "low": null, "high": null},
+{"group": "part_bugs", "metric": "part_bugs_interface", "label": "Interface (ui/ or apps/)", "value": 50, "low": null, "high": null},
+{"group": "part_rate", "metric": "part_rate_interface", "label": "Interface (ui/ or apps/)", "value": 6.54, "low": null, "high": null},
+{"group": "part_ratio", "metric": "part_ratio_interface", "label": "Interface (ui/ or apps/)", "value": 2.04, "low": 1.36, "high": 3.07},
+{"group": "part_adjusted", "metric": "part_adjusted_interface", "label": "Interface (ui/ or apps/)", "value": 1.18, "low": 0.75, "high": 1.84},
+{"group": "part_commits", "metric": "part_commits_support", "label": "Only docs, scripts, tests or config", "value": 5038, "low": null, "high": null},
+{"group": "part_share", "metric": "part_share_support", "label": "Only docs, scripts, tests or config", "value": 12.8, "low": null, "high": null},
+{"group": "part_bugs", "metric": "part_bugs_support", "label": "Only docs, scripts, tests or config", "value": 0, "low": null, "high": null},
+{"group": "part_rate", "metric": "part_rate_support", "label": "Only docs, scripts, tests or config", "value": 0.0, "low": null, "high": null}
+]

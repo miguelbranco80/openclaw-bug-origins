@@ -29,6 +29,11 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
 - The bug rates in the comparisons of findings 12 to 14 are now computed against all ordinary changes. An earlier
   version divided by only the changes where the property was known, which understated the rates in the
   review-timing table by about a sixth. The ratios were not affected.
+- "Review by a person" now means review by a person other than the author. The first count, 4.5% of sampled pull
+  requests, included authors' own review comments on their own pull requests; 11 of the 18 were that. The corrected
+  figure is 2% of the sample and 1.0% of all 35,826 merged pull requests since 10 September.
+- Finding 15 said 20 people merge. That was the number seen in the 496 fetched pull requests. Across all pull
+  requests it is 40 accounts. The most active account opens 52.1% of all pull requests (55.5% in the sample).
 
 ## Not done
 

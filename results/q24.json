@@ -1,0 +1,13 @@
+[
+{"group": "new_commits", "metric": "new_commits_edits", "label": "Only edits existing code files", "value": 23252, "low": null, "high": null},
+{"group": "new_share", "metric": "new_share_edits", "label": "Only edits existing code files", "value": 59.3, "low": null, "high": null},
+{"group": "new_bugs", "metric": "new_bugs_edits", "label": "Only edits existing code files", "value": 37, "low": null, "high": null},
+{"group": "new_rate", "metric": "new_rate_edits", "label": "Only edits existing code files", "value": 2.12, "low": null, "high": null},
+{"group": "new_commits", "metric": "new_commits_adds", "label": "Adds at least one new code file", "value": 5360, "low": null, "high": null},
+{"group": "new_share", "metric": "new_share_adds", "label": "Adds at least one new code file", "value": 13.7, "low": null, "high": null},
+{"group": "new_bugs", "metric": "new_bugs_adds", "label": "Adds at least one new code file", "value": 71, "low": null, "high": null},
+{"group": "new_rate", "metric": "new_rate_adds", "label": "Adds at least one new code file", "value": 17.64, "low": null, "high": null},
+{"group": "new_ratio", "metric": "new_ratio_adds", "label": "Adds at least one new code file", "value": 8.32, "low": 5.59, "high": 12.4},
+{"group": "new_adjusted", "metric": "new_adjusted_adds", "label": "Adds at least one new code file", "value": 3.27, "low": 1.98, "high": 5.39},
+{"group": "size", "metric": "bugs_pct_adds", "label": "Share of the sampled bugs from changes that add a code file, %", "value": 66, "low": null, "high": null}
+]
