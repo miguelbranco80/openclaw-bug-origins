@@ -186,9 +186,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
   seen by reading code at all, and nobody named those. *Findings 7 and 9.*
 
 **And the pattern held.** We looked at two separate periods, September to October and then November, and found the
-same thing in both. We also had a second AI model judge the November fixes, and it mostly agreed on which change
-caused each bug. The one thing the two models disagreed on is how many "fixes" were really fixing a bug.
-*Findings 22 and 23.*
+same thing in both. We also had a second AI model judge the November fixes. It mostly agreed on which change caused
+each bug. It was stricter about what counts as a bug in the first place, so it counted fewer of them, but the
+patterns above showed up either way. *Findings 22 and 23.*
 
 {chart('q17', 0)}
 
