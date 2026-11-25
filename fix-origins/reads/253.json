@@ -1,0 +1,17 @@
+{
+  "rank": 253,
+  "sha": "9f4e2639e622352c912b1be58a13c2f4e5e01654",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After pressing Ctrl-C or sending SIGTERM to `openclaw skills list/info/check`, the command kept waiting for the Gateway read and then printed timeout diagnostics or the full report anyway.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "Forwards the command's async-work abort signal into the skills.status Gateway read, stops offline fallback after abort, and suppresses late output and the missing-skill exit when interrupted.",
+  "reasoning": "loadSkillsStatusReport never passed an abort signal; the call shape predates the 2026-09-03 graft (3949fc0850e5 and 08f4a198a310 only refactored and moved it), and skills-cli.ts first used getAsyncWorkSignal on the same day as this fix (#198163 for skills update). The cooperative signal-exit machinery (src/cli/signal-exit-barrier.ts, async-work-scope.ts) is also older than the graft, so I could not tell whether these reads were written without cancellation from the start (never-worked) or were exposed when SIGINT handling became cooperative (latent), and I could not identify either commit."
+}

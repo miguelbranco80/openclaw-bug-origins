@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The “Resolve merge risk” items cover ACK latency targets and a merge conflict. The “Technical review” mentions bounded diagnostics but raises no concern about counting a steered reply’s execution time as preparation."
+}

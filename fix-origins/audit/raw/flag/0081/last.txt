@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The restart E2E finding concerns intentional failure handling when a child execution stops. The lost marker in “What this changes” describes a pre-existing case, and neither section raises the root discovery gap through a visible spawned coordinator."
+}

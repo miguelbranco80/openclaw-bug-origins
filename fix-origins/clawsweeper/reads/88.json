@@ -1,0 +1,1 @@
+{"rank": 88, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Findings cover recoveryIncomplete propagation, cron revision enforcement, plugin compatibility guidance and settlement authority; nothing mentions the clawhub_manifest_invalid error discarding the reader's diagnostics."}

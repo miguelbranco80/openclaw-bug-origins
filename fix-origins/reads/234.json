@@ -1,0 +1,17 @@
+{
+  "rank": 234,
+  "sha": "3c408499583cb6d584473f72aa0bb8087a45bafc",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Opening /settings or a moved Settings section from a heavy page such as LobsterDex took roughly 8-36% longer because the outgoing page was briefly rebuilt before the redirect replaced it.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Applies the existing Settings redirect policy at the app's pre-match URL canonicalization step so retired Settings links no longer remount the outgoing page before reaching the real destination.",
+  "reasoning": "This is a performance improvement measured against a baseline; the transient rebuild came from the long-standing loader-based redirect design (blame points to the original settings routes, the shallow graft, and #150133), not from a commit that made navigation slower than before. A sibling perf change hours earlier (#194624) applied the same treatment to General settings, consistent with an optimization series rather than a regression fix."
+}

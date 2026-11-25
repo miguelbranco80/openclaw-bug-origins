@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "a77bf0478040f85086629714f1a48bf9e7fd4e88",
+  "confidence": "high",
+  "reasoning": "The original Advisor controller used `: \"fork_failed\"` as its catch-all and logged that outcome as a review failure, so expected Codex policy refusals were misreported from launch. I verified that the fork dispatcher already routed reviews through `/btw` with its existing policy guards and that the October 16 rewrite preserved the same classification."
+}

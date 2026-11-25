@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "title": "Transparent footer intercepts clicks on visible transcript links",
+      "file": "ui/src/styles/chat/startup-layout.css",
+      "line": 182,
+      "failure": "In a desktop chat with a centered composer notice, scroll until a message link sits beside the notice in the bottom 28–35 pixels of the transcript. The link is visible, but the full-width footer sits above it and receives the click. The link opens only after the user scrolls it above the overlap.",
+      "confidence": "high"
+    },
+    {
+      "title": "Composer clips the history Retry button in short panes",
+      "file": "ui/src/styles/chat/startup-layout.css",
+      "line": 182,
+      "failure": "Open a conversation whose history fails to load and has no cached messages, in a pane short enough that the error screen must scroll. The fallback uses its own scroll container and receives none of the new transcript bottom padding. Even at the bottom of its scroll range, the composer can cover most of the Retry button when the error text wraps.",
+      "confidence": "high"
+    },
+    {
+      "title": "Scroll to latest can cover a mobile Goal pill",
+      "file": "ui/src/styles/chat/layout.css",
+      "line": 811,
+      "failure": "In a short mobile pane with a pending approval and a Goal pill that reaches the center, the approval can shrink while the pill keeps its full height. Clearance is tested against the button position before the overlap offset is applied. The test can miss the pill, then CSS raises the button into it. When the user has scrolled up, tapping the covered part of the Goal pill jumps to the latest message instead of opening the goal.",
+      "confidence": "medium"
+    }
+  ]
+}

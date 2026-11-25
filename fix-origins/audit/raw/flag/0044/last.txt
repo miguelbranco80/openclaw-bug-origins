@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Update these assertions to the new overlap contract while preserving last-content clearance, notice ordering, and actionable controls",
+  "note": "The footer-test item was still open at merge and had no human response. It called for checking that the composer overlap left the last reply’s controls reachable, but it did not identify that Firefox excludes the desktop grid’s bottom padding from the scroll range."
+}

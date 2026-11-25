@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "title": "Storage-only tool details can prevent finalization",
+      "file": "src/agents/embedded-agent-runner/run/attempt-history-prepare.ts",
+      "line": 54,
+      "failure": "A plugin tool can return a short success receipt with a diagnostic details field larger than the finalizer's byte limit. The live tool result retains those details, while durable model-context hydration strips them. The new sizing pass counts the details before replay cleanup, and replacing the result body leaves them in place. If this is the last tool result and the model then returns an empty answer, the selector cannot retain the completed tool frame. Finalization fails before contacting the provider, leaving the user without a summary of the completed work.",
+      "confidence": "high"
+    },
+    {
+      "title": "A legacy message timestamp can abort finalization",
+      "file": "src/agents/embedded-agent-runner/run/attempt-history-prepare.ts",
+      "line": 33,
+      "failure": "An imported transcript can contain a historical user message with a valid entry timestamp and no timestamp inside the message payload. Session hydration preserves that payload, and a provider such as OpenAI Responses can replay its text. When a later tool turn needs finalization, converting the missing payload timestamp to ISO throws before the selector can even decide whether to retain that row. The completed tool turn gets no final answer.",
+      "confidence": "high"
+    },
+    {
+      "title": "Finalization can discard the active compaction summary",
+      "file": "src/agents/embedded-agent-runner/run/attempt-history-prepare.ts",
+      "line": 30,
+      "failure": "A compacted session can start a tool turn with a summary and retained history that fit the byte limit, then exceed that limit after the current request and completed tool exchanges are added. Durable hydration reserves space for the compaction summary before selecting the recent suffix. The new wrapper labels the summary as an ordinary message, so the suffix cut can discard it even when the summary and current turn fit together. The finalizer can then answer without decisions or constraints recorded only in that summary.",
+      "confidence": "high"
+    }
+  ]
+}

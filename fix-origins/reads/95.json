@@ -1,0 +1,17 @@
+{
+  "rank": 95,
+  "sha": "307d9c45fb2548d300276c473ccb7c5cab4768bc",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Command palette results could not be Cmd/Ctrl/middle-clicked to open in a new browser tab because they were not links.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "Rendered Control UI command palette results as anchors with real session/page hrefs so modifier and middle clicks open new tabs, while plain clicks keep in-app navigation.",
+  "reasoning": "The diff adds new capability: it computes hrefs (sessionNavigationTarget, a new pageDestination helper) and wraps results in `<a>` where they previously had no href at all. Nothing in the blamed history shows palette results ever being links, so no commit broke an existing behavior. There is no linked issue or PR describing a failure, so this is an enhancement titled as a fix (low certainty because no PR text was available)."
+}

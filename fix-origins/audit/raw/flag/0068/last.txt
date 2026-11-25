@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Evidence section’s prior finding concerned fixed entry limits that could skip eligible copies during a sweep. The review raised no concern that Doctor and triage snapshots could land in per-run namespaces outside the Gateway sweep."
+}

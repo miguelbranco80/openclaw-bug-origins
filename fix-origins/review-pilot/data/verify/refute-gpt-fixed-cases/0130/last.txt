@@ -1,0 +1,47 @@
+{
+  "case": "0130",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/worker-environments/local-workspace-review.ts:24-62 captures the base before Git runs, and src/agents/worktrees/registry-read.ts:58-60 limits the registry guard to identity and removal. If refresh finishes before the queued Git read starts, src/gateway/server-methods/sessions-diff.ts:231-260 still passes the old SHA and returns the result after guards that never recheck the projection base.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/session-worktree-binding.ts:13-18 preserves a nested cwd, and src/gateway/worker-environments/local-workspace-review.ts:53-62 accepts that path by containment. If it becomes a separate checkout, src/sessions/session-diff.runtime.ts:61-90 and :387-399 discover the nested Git root but use the supplied outer SHA, so a missing object triggers the error at :313-319.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/server.sessions.archive-worktree-lifecycle.test.ts:83-93 documents cleanup preserving the binding and snapshot while removing the checkout. src/gateway/worker-environments/local-workspace-review.ts:48-62 throws before Git can return not_git and gives a removal message with Restore guidance, even after the projection row expires.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/github-publication-base-refresh.ts:280-295 returns current when the fetched tip is already an ancestor of HEAD and leaves the stored base unchanged. src/sessions/session-diff.runtime.ts:395-402 and :454-464 then use the older SHA for history and All changes, including upstream commits and files that the ref-based merge base at src/sessions/session-diff-revisions.ts:20-26 would exclude.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/worker-environments/local-workspace-state.ts:456-478 stores the current HEAD on first preparation, so any existing task commits become part of the comparison base. src/sessions/session-diff.runtime.ts:395-447 and :454-464 use that SHA for All changes and branch metadata and return unknown_commit for commits already in its ancestry.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/worker-environments/local-workspace-review.ts:48-51 throws a removal error with Restore guidance for the retired registry record, and src/gateway/server-methods/sessions-diff.ts:362-365 propagates it. The claimed RPC failure occurs, with the removal message in place of the quoted ownership error.",
+      "same_as": "F3"
+    },
+    "F7": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/gateway/worker-environments/local-workspace-state.ts:429-434 throws while the projection remains pending, so src/gateway/github-publication-base-refresh.ts:433-434 and :481-489 never reach the merge commit. The prior comparison at src/sessions/session-diff-revisions.ts:20-35 also uses a merge base with HEAD, so advancing the default-branch ref alone could not hide the incoming files already applied to the working tree.",
+      "same_as": null
+    }
+  }
+}

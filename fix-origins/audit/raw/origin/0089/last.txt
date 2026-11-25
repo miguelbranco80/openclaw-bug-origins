@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "6946824aa91caca8230af5d8aed616854177f7bf",
+  "confidence": "high",
+  "reasoning": "The commit introduced the compact device-path form with `{t(\"newSession.deviceFolderPath\")}` as bare label text above an input whose text was inset by 8 px, so the label was misaligned from the form’s first version. I verified the introducing JSX and CSS and checked the separate mobile search selector changes, whose origin remains unverified."
+}

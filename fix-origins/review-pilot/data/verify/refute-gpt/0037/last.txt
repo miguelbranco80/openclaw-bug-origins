@@ -1,0 +1,23 @@
+{
+  "case": "0037",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The verifier latches and persists quarantine in src/state/openclaw-database-verify.impl.ts:274–293, but a warm search reader checks only file identity and the worker’s own latch in src/state/openclaw-agent-db-readonly-scope.ts:170–177, bypassing the persisted check in src/state/openclaw-agent-db-readonly-open.ts:161–167. If the file keeps the same inode and the queried tables remain readable, requests can keep succeeding and refreshing the idle timer at src/state/openclaw-agent-db-readonly-scope.ts:120–141 and :216–230.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "After quarantine of an unchanged file, the curated request can borrow the warm reader at extensions/memory-core/src/memory/manager-search.worker.ts:133–137 and query the intact memory tables at packages/memory-host-sdk/src/host/memory-recall-metadata.ts:206–227. The manager maps the returned text to snippets at extensions/memory-core/src/memory/manager-keyword-retrieval.ts:146–152, and automatic recall consumes those candidates at extensions/active-memory/trigger-recall.ts:317–330.",
+      "same_as": "F1"
+    },
+    "F3": {
+      "verdict": "unclear",
+      "impact": null,
+      "evidence": "The worker releases the claim even after a throw at extensions/memory-core/src/memory/manager-search.worker.ts:213–219, and src/state/openclaw-agent-db-readonly-scope.ts:216–230 keeps an open, transaction-free handle, while its read() error path discards a solely borrowed cached handle at :279–285. The cited schema-admission exception comes from a separate guard at src/state/openclaw-agent-db-readonly-open.ts:83–97 that the search worker never calls, and the code does not establish a corruption or I/O failure that would repeat on the retained handle but clear on a fresh open.",
+      "same_as": null
+    }
+  }
+}

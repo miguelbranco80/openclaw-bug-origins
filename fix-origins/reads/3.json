@@ -1,0 +1,17 @@
+{
+  "rank": 3,
+  "sha": "1835c9cad10a936fbd079a52e65bb2ede5ef1e38",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; only lint and typecheck failed on main.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "Removes a duplicate identical closeSessionTitle translation property and replaces a boolean-literal comparison with !copied to restore UI lint and typecheck.",
+  "reasoning": "The PR states no user-visible change: the duplicate key had an identical value and the comparison was semantically equivalent, so only static checks broke (introduced by a6a1d9c781c2 #192092 and e3d69a258683 #192046). This is a lint/type fix titled as a fix, which the rubric classes as not-a-defect."
+}

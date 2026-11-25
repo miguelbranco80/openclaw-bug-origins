@@ -1,0 +1,21 @@
+[
+{"group": "size", "metric": "findings", "label": "Findings from gpt-6.2 and Opus 5.5", "value": 148, "low": null, "high": null},
+{"group": "size", "metric": "known", "label": "Findings that are the known bug", "value": 14, "low": null, "high": null},
+{"group": "later", "metric": "later_yes", "label": "Later fixed on main", "value": 25, "low": null, "high": null},
+{"group": "later", "metric": "later_partly", "label": "Partly fixed later", "value": 12, "low": null, "high": null},
+{"group": "later", "metric": "later_no", "label": "No later fix found", "value": 111, "low": null, "high": null},
+{"group": "size", "metric": "later_other", "label": "Later-fixed findings that are not the known bug", "value": 17, "low": null, "high": null},
+{"group": "quality", "metric": "q_proven", "label": "Proven: the known bug, or fixed later on main", "value": 31, "low": null, "high": null},
+{"group": "quality", "metric": "q_visible", "label": "Both checkers: real, and a user would notice", "value": 64, "low": null, "high": null},
+{"group": "quality", "metric": "q_minor", "label": "Both checkers: real, but minor", "value": 40, "low": null, "high": null},
+{"group": "quality", "metric": "q_unconfirmed", "label": "Refuted or unclear to at least one checker", "value": 13, "low": null, "high": null},
+{"group": "size", "metric": "both_confirmed", "label": "Confirmed by both checkers", "value": 134, "low": null, "high": null},
+{"group": "size", "metric": "refuted_any", "label": "Refuted by at least one checker", "value": 7, "low": null, "high": null},
+{"group": "size", "metric": "later_found_known", "label": "Known-real findings for which the later-fix check found the fix", "value": 8, "low": null, "high": null},
+{"group": "control_original", "metric": "dismissed_gpt", "label": "gpt-6.2 checker", "value": 0, "low": null, "high": null},
+{"group": "control_fixed", "metric": "flipped_gpt", "label": "gpt-6.2 checker", "value": 9, "low": null, "high": null},
+{"group": "control_original", "metric": "dismissed_opus", "label": "Opus 5.5 checker", "value": 0, "low": null, "high": null},
+{"group": "control_fixed", "metric": "flipped_opus", "label": "Opus 5.5 checker", "value": 11, "low": null, "high": null},
+{"group": "size", "metric": "control_cases", "label": "Known-real findings used as the control", "value": 14, "low": null, "high": null},
+{"group": "size", "metric": "control_both_still", "label": "Still confirmed by both checkers after the fix", "value": 3, "low": null, "high": null}
+]

@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Before merge items about transcript publication focused on preventing stale lease owners from writing to the transcript. The review in force at merge raised no concern about importing an existing chat’s history when switching to the Agents API runtime."
+}

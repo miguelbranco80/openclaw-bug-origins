@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "dde29415eb5621f2c08e85d162b0913db70e8065",
+  "confidence": "high",
+  "reasoning": "The earlier reply-deduplication diff and replay tests show that matching a saved reply against the current stream removed the live bubble. The later commit changed that comparison to `self.liveText(self.displayedStreamingAssistantText)`, so pacing could hold back the last words and leave both bubbles visible when the saved reply arrived. The same diff added `.defaultScrollAnchor(..., for: .sizeChanges)` and made ordinary text growth skip timeline updates, which the simulator report ties to replies streaming below the composer."
+}

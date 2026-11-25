@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The findings concern Git rollback and staged activation Doctor cancellation."},
+    "B": {"flagged": "related", "finding": 1, "note": "It flags ineffective forward cancellation during restart verification, attributing it to a missing admission while the reported hang occurs after the forward scope is stopped."},
+    "C": {"flagged": "none", "finding": null, "note": "Finding 3 concerns ignored follow-up signals and the recovery exit gate, a separate mechanism from readiness polling after the first signal."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns Git rollback commands inheriting a cancelled scope during checkout."},
+    "E": {"flagged": "none", "finding": null, "note": "The findings concern cancellation or reporting during Git activation, config validation, candidate finalization, staged Doctor execution, or history capture."},
+    "F": {"flagged": "none", "finding": null, "note": "The findings concern cancellation of the staged activation Doctor and immediate Git rollback."}
+  }
+}

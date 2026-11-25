@@ -1,0 +1,6 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The fix moves the same survivor scan ahead of SQLite BEGIN, shortening the measured writer hold while preserving deletion and retained-history behavior. I checked the November 3 diff and its predecessor: the CTE replaced an existing in-transaction survivor scan, and the benchmark compares the fix with its immediate baseline, leaving any historical slowdown unverified."
+}

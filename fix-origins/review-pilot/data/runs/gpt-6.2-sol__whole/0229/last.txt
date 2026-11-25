@@ -1,0 +1,39 @@
+{
+  "findings": [
+    {
+      "title": "Plugin inspection fills the temporary volume before capacity selection",
+      "file": "src/infra/update-candidate-plugins.ts",
+      "line": 349,
+      "failure": "If an operator sets TMPDIR to a small volume and an enabled plugin imports a dependency with a large data payload, inventory now materializes that dependency on the temporary volume before reporting its size. The worker can fail with ENOSPC before the updater gets a chance to select the state volume, even when that volume has ample space for the rehearsal.",
+      "confidence": "high"
+    },
+    {
+      "title": "An unusable Doctor contract can now block the entire update",
+      "file": "src/infra/update-candidate-plugin-repair.ts",
+      "line": 116,
+      "failure": "A disabled custom plugin can still have a declared Doctor contract. If that contract imports a package alias whose imports target is invalid, such as a target starting with ../, the new inspection propagates ERR_INVALID_PACKAGE_TARGET and aborts candidate Doctor. Previously Doctor caught the contract load failure and continued, so the disabled plugin could remain installed during an update.",
+      "confidence": "high"
+    },
+    {
+      "title": "Repair rejects imports through the staged OpenClaw host link",
+      "file": "src/infra/update-candidate-plugin-repair.ts",
+      "line": 121,
+      "failure": "A plugin that imports a host module by a relative path through its node_modules/openclaw link worked in a published-driver snapshot because the copier points that link at the staged candidate. Repair resolves the import to the staged host outside the private state directory and rejects it as an escape, blocking the update even when the snapshot is complete.",
+      "confidence": "high"
+    },
+    {
+      "title": "Relative imports break when they cross the managed state projection",
+      "file": "src/infra/update-candidate-plugins.ts",
+      "line": 360,
+      "failure": "If a plugin at STATE/extensions/demo imports ../../shared/value.mjs from STATE/shared, inventory finds the helper but places it under candidate-plugins while the plugin is copied to REHEARSAL/extensions/demo. The unchanged import looks in REHEARSAL/shared, so the plugin still fails to load despite the helper being copied.",
+      "confidence": "high"
+    },
+    {
+      "title": "Sibling imports lose symlink names outside the plugin directory",
+      "file": "src/plugins/plugin-generation-source-inspection.ts",
+      "line": 73,
+      "failure": "If a plugin imports ../shared/value.mjs and that path is a symlink to ../lib/value.mjs, inspection returns the canonical file without the sibling symlink. Neither the fresh copy nor published-snapshot repair creates shared/value.mjs in the rehearsal, so the original module specifier still fails to resolve.",
+      "confidence": "high"
+    }
+  ]
+}

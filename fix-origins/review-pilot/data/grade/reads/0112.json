@@ -1,0 +1,6 @@
+{"rank": 112, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "Shadow DOM pointer transitions, not title-hint suppression."},
+"B": {"flagged": "none", "finding": null, "note": "Concerns GET side effects of previews, not the hidden audit hint."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "none", "finding": null, "note": "Concerns OAuth URLs fetched on hover."},
+"E": {"flagged": "related", "finding": 4, "note": "Says previews in tooltip-title hide authored link title hints, the same mechanism, but frames it as Markdown link titles with empty previews rather than the nested audit info hint."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

@@ -1,0 +1,17 @@
+{
+  "rank": 186,
+  "sha": "45b96ba60b1dcbe37ee633d9a70339061d842c7c",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "83f948498fde0dd597b95455adc30c216072cb28",
+  "cause_pr": 149520,
+  "confidence": "medium",
+  "cause_quote": "#149520 added `limits: { maxBytes: Math.min(64 * 1024 * 1024, Math.max(1024, Math.floor((contextTokenBudget ?? 128_000) * 8))), ... }` to the previously unbounded Codex mirrored-history read, so history past 8 bytes per budget token lost its oldest turns.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Codex, Agents API and Muse sessions with reasoning, screenshots or large tool output silently lost their oldest turns on each attempt (and the provider prompt cache missed) long before compaction.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "resolveAgentHarnessHistoryLimits now returns the embedded runner's fixed 16 MiB / 10,000-event guard instead of a contextTokenBudget x 8 byte cap, and bundled Codex, Agents API and Muse callers stop passing a budget.",
+  "reasoning": "The budget x 8 cap was first added to the Codex harness history read by 83f948498fd (#149520, a memory fix that also introduced the bounded-read mechanism); before it the Codex read passed no limits, so history was not cut. #159375 (42e53a49df3) only moved the same expression into the shared resolveAgentHarnessHistoryLimits helper and reused it for Agents API (Muse later adopted it). Medium rather than high because the cap was a deliberate memory tradeoff and I did not confirm the pre-#149520 read had no other default bound; one could also read it as never-worked for the bounded-read feature."
+}

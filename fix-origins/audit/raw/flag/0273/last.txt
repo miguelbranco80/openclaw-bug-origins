@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Tests item asked for proof of nested-subvolume fallback and capture cleanup. The Evidence section recorded higher command latency and CPU, but raised no concern about snapshot creation or removal stalling Gateway SQLite or RPCs."
+}

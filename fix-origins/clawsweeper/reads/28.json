@@ -1,0 +1,1 @@
+{"rank": 28, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The version in force at merge and the three earlier versions shown have no findings, only merge-conflict and CI items; nothing concerns the runtime gate treating an absent (implicit OpenClaw) runtime as unsupported."}

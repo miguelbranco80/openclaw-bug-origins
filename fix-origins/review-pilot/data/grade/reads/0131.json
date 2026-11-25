@@ -1,0 +1,6 @@
+{"rank": 131, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No findings."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "none", "finding": null, "note": "Spinner sizing inside an inline span, not WebKit repaint cost."},
+"D": {"flagged": "none", "finding": null, "note": "No findings."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "CSP blocking data: masks, not mask repaint performance."}}}

@@ -1,0 +1,1 @@
+{"rank": 126, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P1 findings concern the shipped 2026.9.3 post-core handoff lacking an executor and the PR wrapper import inventory; nothing addresses recovery-guard reads with schema admission copying the whole state database."}

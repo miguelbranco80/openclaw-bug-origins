@@ -1,0 +1,6 @@
+{"rank": 186, "reviewers": {"A": {"flagged": "exact", "finding": 3, "note": "States that the tokens*8 byte cap counts raw image/tool-output bytes so one large recent entry drops all older history despite fitting the model context."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "none", "finding": null, "note": "Findings concern ambiguous tool results, compaction read throws and empty branch summaries, not the over-tight cap."},
+"D": {"flagged": "none", "finding": null, "note": "Concerns metadata exceeding maxBytes, the opposite direction."},
+"E": {"flagged": "none", "finding": null, "note": "Concerns compaction completion suppressed by read errors."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

@@ -1,0 +1,53 @@
+{
+  "case": "0081",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "subagent-registry-read.ts:124–175 returns no wait source for a descendant-dependent yield if the parent lacks verified child authority or all descendant wakes fail the identity checks. subagent-registry-sweep-settle.ts:44–84 settles such a restored run with no recorded outcome as an error, and subagent-registry-read.ts:220–246 likewise classifies the matching parked session as unreachable at startup.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "subagent-registry-requester-wake-mutation.ts:220–249 settles B’s wake and writes an error to A’s session lifecycle without completing A’s registry run. subagent-registry-sweep-settle.ts:44–60 applies the descendant-loss check only to retired runs, and subagent-announce.requester-settle-state.ts:18–23 keeps paused A from becoming ready in the root’s completion batch.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "session-entry-write-policy.ts:75–79 preserves the original creation stamp when a user sends a later turn in the same dashboard chat. session-run-lifecycle-projection.ts:114–115 and session-restart-resume.ts:231–241, 569–578 exclude that running turn from shutdown marker creation and startup orphan recovery because the session was created by a spawn.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "session-lifecycle-state.ts:197–249 appends the notice after the failed lifecycle write commits, and session-run-error.ts:91–92 throws if the append fails. The retry at subagent-registry-lifecycle-wake.ts:621–633 repeats the lifecycle write, whose yielded guard at session-run-lifecycle-projection.ts:387–394 rejects the now-failed row, so the notice append is skipped.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "session-subagent-resume.ts:45–83 admits an otherwise eligible paused child for explicit task continuation without requiring a waitForMessage flag or descendants. subagent-registry-sweep-settle.ts:44–84 now settles a restored row with neither wait source, and subagent-registry-lifecycle-completion.ts:531–535 clears the pause required to resume that task.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "session-restart-resume.ts:599–618 commits marker removal before awaiting the yield-failure write at line 641, so a rejected write jumps to the catch at line 712 and skips queued-input continuation at lines 702–711. On a later startup, session-pending-input-withdrawal.worker.ts:108–127 can cancel the unmarked inputs as orphaned, leaving their text available for a manual resend.",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "sessions-spawn-visible.ts:392–407, 582–586 creates an independent visible session with spawn provenance and no completion route, and subagent-registry-read.ts:71–94 leaves its dashboard key as its own root. session-restart-resume.ts:124–130, 231–241, 569–578, 630–638 admits the key during shutdown enumeration but excludes the spawned row at marker write and startup, leaving no requester wake to recover the interrupted turn.",
+      "same_as": "F3"
+    },
+    "F8": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "subagent-announce.requester-settle-wake.ts:301–312 and 359–362 settle cancellation or an empty completion selection without an outcome, which still passes the failure predicate at subagent-registry-requester-wake-mutation.ts:220–249. The stable-batch path at lines 250–271 appends a visible failure notice without checking the current writer or yielded status, so it can report a failure after the user has moved on within the same session revision.",
+      "same_as": null
+    }
+  }
+}

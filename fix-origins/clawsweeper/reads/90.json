@@ -1,0 +1,1 @@
+{"rank": 90, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P1 finding is about mandatory capture refusing updates on disk shortage or hard-linked files, a different condition; nothing addresses concurrent readers rebuilding the WAL index so the capture fingerprint comparison fails."}

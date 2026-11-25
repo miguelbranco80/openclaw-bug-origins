@@ -1,0 +1,17 @@
+{
+  "rank": 108,
+  "sha": "8a456acf7136e5d3e90c2ac9d58066a5ee80c934",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "8a352c8f9dfd03b5afadb6c86421949141921110",
+  "cause_pr": 10072,
+  "confidence": "high",
+  "cause_quote": "The original usage dashboard built suggestion catalogs as `unique(sessions.map((s) => s.agentId)).slice(0, 6)` (and the same for channels, providers, models, tools) before filtering them by the typed value.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Typing a Usage filter such as model:seventh offered no autocomplete suggestion when the matching model, provider, agent, channel or tool was beyond the first six catalog entries.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "Filters the full categorical catalog by the typed value first and only then caps the suggestions at six.",
+  "reasoning": "GraphQL blame put the slice-then-filter code on the deslop refactor 8bfe139a13b0 and the module split 68dbbc7c5ff1, but both only moved the existing `values.slice(0, 6)` before the match; the raw file at 8a352c8f9dfd (Web UI: add token usage dashboard, #10072) already capped each catalog to six before `includes(value)` filtering. The defect therefore shipped with the feature."
+}

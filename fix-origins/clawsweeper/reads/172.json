@@ -1,0 +1,1 @@
+{"rank": 172, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review praises the canary's state isolation and raises backup/inventory and Windows concerns, but never mentions SecretRef/exec providers or missing credentials in the private state copy."}

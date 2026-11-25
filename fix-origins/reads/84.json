@@ -1,0 +1,17 @@
+{
+  "rank": 84,
+  "sha": "c91b0904ad4f1de9833a0e81d3c30f1150d44b06",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the Control UI sidebar, a running child session's elapsed label shifted and squeezed the title by a few pixels when the clock went from 9s to 10s.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Reserves a 7ch minimum, leading-aligned slot for the sidebar elapsed-time trail so the label and title stay put when the digit count grows.",
+  "reasoning": "git log -L on the .session-row-trail CSS shows it never reserved width for the elapsed text (only tabular-nums, since before the 2026-09-03 graft), so the label always moved when a digit was added; no commit broke a stable layout. This is a layout-stability polish choice (trading title width for a still clock) with no functional failure; if counted as a defect it would be never-worked from pre-graft code whose introducing commit I did not trace."
+}

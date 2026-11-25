@@ -1,0 +1,1 @@
+{"rank": 288, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Findings cover answer-shaped search responses and discarded model-policy errors; nothing mentions maxItems schema limits rejecting longer model replies or the prompt omitting those limits."}

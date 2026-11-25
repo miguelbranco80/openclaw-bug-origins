@@ -1,0 +1,35 @@
+{
+  "case": "0076",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The document toolbar renders the non-menu sizing select at ui/src/components/desktop/desktop-document-view.tsx:89, and ui/src/components/desktop/desktop-panel.css:141 fixes it at 88px outside the 400px grid breakpoint. With the 16px coarse-pointer floor at ui/src/styles/base.css:994, the shared padding and borders at ui/src/styles/settings-controls.css:204 and ui/src/styles/components.css:1079 and :1109 leave only 40–42px for the label, so Actual can be clipped or ellipsized.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The 340px media trigger at ui/src/styles/settings.css:798 sets the popup minimum via ui/src/styles/components.css:1137, which takes precedence over the 320px maximum on a wide screen. The option rules at ui/src/styles/components.css:1166–1176 ellipsize long labels, and the raw device options at ui/src/pages/config/view-appearance-preferences.tsx:226–230 have no title to reveal a distinguishing suffix.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "At 430px, the sizing select retains its 88px width at ui/src/components/desktop/desktop-panel.css:141 because the full-width rule begins at 400px and below at :924–933. At the 16px touch size set by ui/src/styles/base.css:994, the customizable select padding and clamp at ui/src/styles/components.css:1109–1116 leave 42px for text, which can truncate Actual.",
+      "same_as": "F1"
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Arabic and Persian enable document RTL through src/shared/control-ui-locale.ts:30 and ui/src/i18n/lib/translate.ts:40, and the session group control uses the shared class at ui/src/pages/sessions/category-cell.tsx:32. The icon moves to the left through inset-inline-end at ui/src/styles/components.css:1122, while the extra padding stays on the physical right at :1109, leaving a long RTL label or its ellipsis in the icon's space.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The picker uses the shared class at ui/src/pages/systems/systems-page.tsx:408, so the shared focus rule at ui/src/styles/components.css:3562–3565 removes its outline. At 768px and below, the more specific rule at ui/src/styles/systems.css:643–656 fixes the border color in both states, leaving no visible keyboard focus indicator in standard colors.",
+      "same_as": null
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "The contributor must reconcile main’s unconditional nested-task exclusion with this PR’s lifetime tracking; otherwise a launcher-finishes-first turn can settle before its forwarded child answer.",
+  "note": "The earlier “Resolve merge risk” item flagged premature settlement caused by excluding nested tasks. The merge-time review marked that concern resolved, and the single-pass bug still shipped when a snapshot listed a child before its parent."
+}

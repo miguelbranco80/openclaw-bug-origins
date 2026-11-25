@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "0dc63eecaddd06b66c3db3f92ab67644a526e954",
+  "confidence": "high",
+  "reasoning": "The provider-runtime commit introduced sidecar coverage reporting for `memory forget` with `emitMemoryCoreSidecarNotice(slotOwner, { json: Boolean(opts.json) })`, and its documentation confirms the notice went to stderr in JSON mode. The fix diff and CLI capture show that stdout serialized only `report`, so a saved JSON report omitted the selected provider and deletion scope from the start."
+}

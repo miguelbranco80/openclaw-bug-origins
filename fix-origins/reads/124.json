@@ -1,0 +1,17 @@
+{
+  "rank": 124,
+  "sha": "fc8c2d0c4d8e49b614382ac7275fec96e3c43608",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "unclear",
+  "user_saw": "Nothing reported; in theory an update could delete another unfinished update handoff's temp directory if it was more than 24 hours old.",
+  "impact": "data-loss-or-duplication",
+  "area": "update",
+  "summary": "Removed the global 24-hour age-based sweep of openclaw-update-run-handoff-* temp directories from mutable update preparation, leaving cleanup to each helper's own lifecycle.",
+  "reasoning": "The sweeper dates from the original managed-update handoff work (22a0ca9e3b2, May 2026, pre-graft; the only post-graft touch is the 74269ecbfee6 refactor) and deliberately pruned old handoff dirs; the fix is an ownership change (an installation fence should not delete other installations' handoffs) argued from source reading. The PR states the pre-fix deletion was only source-verified, with no reported incident or red baseline, and the failure needs an unfinished handoff older than 24 hours, so this reads as hardening/policy cleanup rather than a reported defect."
+}

@@ -1,0 +1,1 @@
+{"rank": 42, "needs": "repo", "where": "src/gateway/server-methods/chat-send-agent-dispatch.ts:364", "note": "Preparation is marked at onSessionPrepared and only closed by onAgentRunStart or dispatch settlement; seeing the misattribution needs knowing the existing steered/queued-followup path runs a prepared reply without calling onAgentRunStart."}

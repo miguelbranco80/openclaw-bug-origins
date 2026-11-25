@@ -1,0 +1,17 @@
+{
+  "rank": 87,
+  "sha": "9a0a5e6bb233a402535b2adaca4557db8ab607de",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "9eb72a0fbc173855ec493b4fbec56dea59d20497",
+  "cause_pr": 191711,
+  "confidence": "medium",
+  "cause_quote": "#191711 enabled statement timing for hydration reads (`operationLabel === \"session.lifecycle.delete\" || hydration ? startSqliteStatementTiming(hydration)`), but the timing only counts statements on connections wrapped by `observeConnection`, which the ordinary read-only agent opener never called.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Slow cron transcript hydration warnings in the Gateway log reported zero SQL statements even though SQLite did substantial reads.",
+  "impact": "other",
+  "area": "storage",
+  "summary": "Wraps the ordinary read-only agent database connection with the existing statement observer before statement caching, and bounds workspace sweep batch selection instead of copying the whole pending set.",
+  "reasoning": "The reported defect is the hydration slow-hold warning showing statementTiming.count 0; per-statement attribution for hydration was first enabled by 9eb72a0fbc17 (#191711) three hours earlier, whose own benchmark wrapped its handle explicitly and so missed that openOpenClawAgentDatabaseReadOnly never called observeConnection. I read #191711's sqlite-transaction.ts and observation.ts diffs; I did not confirm whether any earlier attribution path also used the read-only opener, hence medium. The sweep allocation change is a pure performance improvement and not part of the defect."
+}

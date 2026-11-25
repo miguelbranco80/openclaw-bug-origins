@@ -1,0 +1,35 @@
+{
+  "case": "0273",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The awaited cleanup in src/gateway/worker-environments/local-workspace-projection-operation.ts:115 is inside finally, so its rejection overrides either a successful acceptance or an error from the checkpoint. If the artifact remains unremovable, src/gateway/worker-environments/local-workspace-checkpoint.ts:55 retries removal before pausing, and src/gateway/worker-environments/local-workspace-projection.ts:150 retries it even on the unchanged path.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The scan uses the snapshot at src/gateway/worker-environments/local-workspace-manifest-scan.ts:545, and the ordinary empty directory underneath a host bind mount passes the inode-2 check at src/gateway/worker-environments/workspace-actual-manifest.ts:450. The scanner records the unseen baseline file as a deletion at src/gateway/worker-environments/local-workspace-manifest-scan.ts:623, and src/gateway/worker-environments/workspace-reconcile-preflight.ts:194 selects that deletion for application when the canonical file still matches the baseline.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "A snapshot preserves the foreign UID on a populated 0755 directory, so an unprivileged Gateway without write access cannot unlink its children, and src/infra/fs-safe-copy.worker.ts:39 skips chmod because the owner bits already include 0700. The second removal attempt at src/infra/fs-safe-copy.worker.ts:137 fails and leaves the capture that subsequent checkpoints must remove at src/gateway/worker-environments/local-workspace-checkpoint.ts:55.",
+      "same_as": "F1"
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "A native copy timeout produces an error without an errno code at src/agents/worktrees/filesystem-native.ts:99, and src/gateway/worker-environments/local-workspace-checkpoint.ts:69 rethrows it because the paused capture fallback accepts only CLONE_UNAVAILABLE, EXDEV, or ENOSYS. The command finalizer awaits that rejected checkpoint at src/agents/sandbox/local-workspace.ts:349.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "On a Linux cgroup v2 root that exposes cpu.stat, scripts/perf/local-workspace-checkpoint-measure.ts:2085 enables accounting. The unguarded cpu.max read at scripts/perf/local-workspace-checkpoint-measure.ts:2285 throws ENOENT because the root lacks that file, preventing the report write at scripts/perf/local-workspace-checkpoint-measure.ts:2373.",
+      "same_as": null
+    }
+  }
+}

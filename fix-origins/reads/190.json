@@ -1,0 +1,17 @@
+{
+  "rank": 190,
+  "sha": "8662c66b9050fb9328ad291fa2d198cca449df99",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Windows machines with an EFS-encrypted cache directory, SQLite snapshot reads failed with 'EXDEV: cross-device link not permitted' and `openclaw doctor` stopped because a state migration refused to continue.",
+  "impact": "failed-every-time",
+  "area": "storage",
+  "summary": "SQLite read-only snapshot preparation copies straight into the partial file instead of renaming an intermediate 'first' file, and final publication falls back to a guarded copy plus fsync when rename fails with EXDEV.",
+  "reasoning": "Issue #169157 (opened 2026-10-11) shows Windows EFS returning EXDEV for a rename between two files in the same directory, an OS/filesystem quirk outside the code; the rename-based snapshot publication was correct on normal filesystems and predates the 2026-09-03 graft (local history of src/infra/sqlite-readonly-location.ts reaches the graft), so no introducing commit can be named. It could also be read as never-worked for that setup, but with no identifiable cause and an external platform behavior, latent with no trigger fits best."
+}

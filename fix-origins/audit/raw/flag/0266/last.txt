@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Tests section notes missing proof that the keyboard opens on the first tap on a physical iPhone. The review does not raise the risk that Chrome retargets a mousedown after the keyboard opens, causing the editor to lose focus."
+}

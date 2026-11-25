@@ -1,0 +1,6 @@
+{"rank": 37, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No findings."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "none", "finding": null, "note": "Flags quarantine bypass and reuse of broken connections from the retained reader, not open descriptors blocking Doctor's NOCOW rewrite."},
+"D": {"flagged": "none", "finding": null, "note": "No findings."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "Flags quarantine bypass by retained readers, a different consequence than open store files blocking Doctor."}}}

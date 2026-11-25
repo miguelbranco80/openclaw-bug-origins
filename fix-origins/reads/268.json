@@ -1,0 +1,17 @@
+{
+  "rank": 268,
+  "sha": "79847449a9e38ab603612c5a516bf3c33e3f7d12",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible reported; a remote MCP server sending an impossible date such as February 31 would have had it silently rolled over instead of rejected.",
+  "impact": "other",
+  "area": "plugins",
+  "summary": "Tightens the mcp-events isoTimestamp check so calendar-impossible dates (for example 2026-02-31) are rejected instead of accepted after Date.parse rolls them over.",
+  "reasoning": "The lax check (regex plus `Number.isFinite(Date.parse(value))`) shipped unchanged with the plugin in e210870 (#165399); the fix adds stricter validation of untrusted remote input with no linked issue, reported failure or PR describing user impact. That is input-validation hardening rather than a defect anyone hit, so not-a-defect; if counted as a defect it would be never-worked in e210870."
+}

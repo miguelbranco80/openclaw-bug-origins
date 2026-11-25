@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge “Add real behavior proof” item and the earlier protocol revocation findings concern authorization and device lifecycle. None of the supplied review versions raises WebSocket query truncation or HTTP body framing in the tunnel proxy."
+}

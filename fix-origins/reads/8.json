@@ -1,0 +1,17 @@
+{
+  "rank": 8,
+  "sha": "f0f265835ffb74be429f2bb25abc1659c742cab4",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "7fa041d80fc2e3f970e7642dc179002fc33b61df",
+  "cause_pr": 186041,
+  "confidence": "medium",
+  "cause_quote": "The commit added `display: grid; gap: 4px;` to `.chat-activity-group` without a column template, so the summary's `max-width: 100%` (from `.chat-inline-disclosure`) resolved against an auto-sized grid track instead of the reading column.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Safari and Firefox a long collapsed tool activity summary ran past the right edge of the reply text and under the Details panel, and in Chromium it was cut mid-word without an ellipsis.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Gave the activity group a `minmax(0, 1fr)` column track, applied ellipsis to every summary label, and replaced the 760px fallback cap on tool rows and the activity block with 100%.",
+  "reasoning": "Checking every version of tool-cards.css shows `.chat-activity-group` first became `display: grid` in 7fa041d (#186041); before it the group was a block and the summary (inline-flex, `width: fit-content; max-width: 100%`) was bounded by the column, so the cross-browser overflow the fix targets began there. The missing ellipsis on non-live labels is older (present at the root import), and the WebKit/Firefox track-sizing mechanism comes from the fix PR's measurements rather than my own run, hence medium confidence."
+}

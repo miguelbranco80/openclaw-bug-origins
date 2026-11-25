@@ -1,0 +1,17 @@
+{
+  "rank": 7,
+  "sha": "09ad579c5612a2c95d53a243f0acfebadd9cccd5",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Agents sometimes cloned a repository already present in the workspace into task scratch, using extra disk until cleanup.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Added one line of checkout-reuse guidance to the shared Care section of the agent system prompt (regular and native harness) and regenerated prompt snapshots.",
+  "reasoning": "The change only adds new prompt guidance; the PR itself calls it 'guidance, not an enforced clone restriction' and the prior prompt never had a checkout-reuse instruction, so no code behavior broke or failed. This is a product/policy improvement to model behavior rather than a fix of defective code."
+}

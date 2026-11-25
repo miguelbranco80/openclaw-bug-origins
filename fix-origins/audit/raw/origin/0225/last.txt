@@ -1,0 +1,7 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "trigger_sha": "82a38fb2fe944b76c0604bb8ee1e0697404e64cd",
+  "confidence": null,
+  "reasoning": "The extension manifest diff upgrades `@openai/codex` from `0.164.0` to `0.169.0`, while the earlier observer and its tests were designed for structured spawn errors and exit code 1. The fix PR reproduced the new launcher emitting a fatal `process.execve` header and terminating with `SIGABRT` on Node 24, a dependency behavior the existing exit-code check could not handle."
+}

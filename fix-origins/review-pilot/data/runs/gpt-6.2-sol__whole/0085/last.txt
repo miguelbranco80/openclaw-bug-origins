@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Windows short-path caches can block SQLite snapshots",
+      "file": "src/infra/sqlite-readonly-location.ts",
+      "line": 180,
+      "failure": "When LOCALAPPDATA or an explicit staging root uses a Windows 8.3 path such as C:\\Users\\RUNNER~1\\AppData\\Local, the staging directory keeps that spelling. The guarded copier compares ordinary and native realpaths, which can interpret the short spelling and its expanded spelling as a moved root. Strict update or Doctor inspection then fails even though the database is stable and the cache is writable.",
+      "confidence": "medium"
+    },
+    {
+      "title": "Normal rollback-journal deletion can abort inspection",
+      "file": "src/infra/sqlite-readonly-location.ts",
+      "line": 178,
+      "failure": "If a SQLite writer commits and deletes its rollback journal after the snapshot pins and resolves the journal but before the guarded helper reopens it, the helper throws a terminal error. The previous copier could read the pinned descriptor and then retry after detecting that the journal had disappeared. Strict inspection now fails even when the database has already settled and a fresh attempt could inspect it.",
+      "confidence": "high"
+    }
+  ]
+}

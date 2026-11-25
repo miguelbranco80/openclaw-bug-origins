@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "Reviewer B reported no findings."},
+    "C": {"flagged": "none", "finding": null, "note": "Reviewer C reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "Reviewer D reported no findings."},
+    "E": {"flagged": "none", "finding": null, "note": "Reviewer E reported no findings."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns escaped NULs rejected when casting the stored job definition to jsonb, a separate failure from PostgreSQL 16 rejecting the json() call used to construct the enabled value."}
+  }
+}

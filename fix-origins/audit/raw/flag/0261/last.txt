@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The stop-history reader has the same problem, while createInstalledRuntimeLedger is initialized only after recovery finalization succeeds, which is never reached.",
+  "note": "The P1 item “Read migrated history through the verified candidate runtime” flagged the same schema compatibility problem during initial history reads. It remained open at merge, and fixing those reads alone would still leave terminal failure writes vulnerable after a schema-changing repair failed."
+}

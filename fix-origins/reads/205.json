@@ -1,0 +1,17 @@
+{
+  "rank": 205,
+  "sha": "97611bd5fb39e5f98c6404ae1da7e4a799873a1f",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "dde29415eb5621f2c08e85d162b0913db70e8065",
+  "cause_pr": 168919,
+  "confidence": "high",
+  "cause_quote": "The perf change moved `self.markTimelineChanged()` out of `updateStreamingAssistantText` into `applyStreamingAssistantDisplay` behind `guard self.streamingTextShape(text) != previousShape else { return }`, so streamed words stopped bumping timelineRevision (which drove the follow-to-bottom scroll) and following relied only on the newly added `.defaultScrollAnchor(... .bottom ..., for: .sizeChanges)`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With the keyboard up a long reply streamed out of sight below the composer and then jumped or left a blank view when it finished; with the keyboard hidden the finished reply jumped up 42 pt.",
+  "impact": "presentation",
+  "area": "apps",
+  "summary": "The shared iOS/macOS chat transcript now pins the bottom edge on every content-height change while following, decides the live bubble's visibility in the same pass that adds the durable row (flushing paced words on replaceMessages), and moves the working indicator below the streaming text.",
+  "reasoning": "At dde29415^ every `updateStreamingAssistantText` call ran `markTimelineChanged()`, and ChatView's `onChange(of: timelineRevision)` -> `handleTimelineChange` moved the scroll position to `scrollerBottomID` while followTarget was `.latest` (always so with the keyboard up), so streaming replies were followed; dde29415 limited timeline bumps to shape changes and also split the bubble into its own observation scope (`ChatLiveAssistantText`), producing the keyboard-up follow failure and the split-pass swap the fix describes. f2c27f09 only moved the same anchor into a modifier. The 42 pt indicator jump comes from indicator-above-text ordering that predates dde29415, a secondary part of this fix."
+}

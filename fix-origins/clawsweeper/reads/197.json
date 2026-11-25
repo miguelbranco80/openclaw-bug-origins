@@ -1,0 +1,1 @@
+{"rank": 197, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Findings concern the shipped 2026.9.3 post-core handoff lacking an executor and the wrapper import closure; nothing addresses hashing a missing package.json in a prior plugin directory and rolling back the core update."}

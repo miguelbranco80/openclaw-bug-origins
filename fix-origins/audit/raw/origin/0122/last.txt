@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "af9d6236b33fead310cc18aa01927bd8595e870d",
+  "confidence": "medium",
+  "reasoning": "The #199123 diff removed `-webkit-user-select: none` from `.chat-thread` and added `.chat-thread` to the `-webkit-user-select: text` rule, letting WebKit select a newline when the user double-clicks the gap. I checked the prior text-only CSS and its tests for unpainted turn gaps and blank double-clicks, though the exact WebKit gesture was only documented against main after #199123."
+}

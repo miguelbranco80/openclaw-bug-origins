@@ -1,0 +1,17 @@
+{
+  "rank": 19,
+  "sha": "73681d7bffda2b4dc1f3bcbdd3a4e305dfb1aa4b",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "fe784239d80d2827e67251cfe35ea7e9ce0a3664",
+  "cause_pr": 135315,
+  "confidence": "high",
+  "cause_quote": "#135315 added `getLoadedPwAiModule()?.hasCachedPlaywrightBrowserConnection(cdpUrl) ||` to shouldUsePlaywright, routing plain screenshots away from the raw CDP path (which sends Page.bringToFront) to a Playwright capture that never activates the tab and now runs with `timeout: 0` inside the page's transition queue.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a headless managed browser, a screenshot of a background tab timed out, and every later screenshot of that tab failed with 'A previous screenshot or emulation action was cancelled but is still running' until the browser was stopped.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "Playwright screenshot captures now bring the tab to the front unless the profile's Chrome is known to be headed, using a shared resolveProfileHeadless helper also passed from the snapshot routes.",
+  "reasoning": "Before #135315 (2026-09-01, older than the graft, read via gh api), plain screenshots went through captureScreenshot in cdp.ts, which already called Page.bringToFront; #135315 sent them to Playwright whenever a Playwright connection was cached and made the native capture wait with timeout 0 under the outer deadline, so a background headless tab's capture never settled and held the queue. The Playwright path never had activation (checked the pre-#135315 takeScreenshotViaPlaywright), and later candidates (#134400, deslop refactors) only touched the headed signal or code layout."
+}

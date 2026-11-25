@@ -1,0 +1,34 @@
+{
+  "reviewers": {
+    "A": {
+      "flagged": "related",
+      "finding": 2,
+      "note": "The finding identifies the enable flow’s reliance on the method catalog and the stuck button, but describes methods failing to register after a successful request."
+    },
+    "B": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The findings concern migration and read-only Gateways that reject enablement."
+    },
+    "C": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The stale-state finding concerns a failed plugin being disabled by another client."
+    },
+    "D": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The availability finding concerns an external disable leaving an existing load-failure message stale."
+    },
+    "E": {
+      "flagged": "related",
+      "finding": 5,
+      "note": "The finding identifies the stuck button after successful enablement when the broadcast arrives but the resulting descriptor request times out."
+    },
+    "F": {
+      "flagged": "related",
+      "finding": 3,
+      "note": "The finding identifies the stuck button when activation fails and a capability update arrives without the Workshop method."
+    }
+  }
+}

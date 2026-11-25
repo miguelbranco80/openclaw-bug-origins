@@ -1,0 +1,242 @@
+{
+ "8": {
+  "A": "gpt-6.2-sol__whole",
+  "B": "gpt-5.6-sol__whole",
+  "C": "gpt-6.1-sol__whole",
+  "D": "gpt-6-astra__whole",
+  "E": "gpt-6.1-sol__per-file",
+  "F": "claude-opus-5-5__whole"
+ },
+ "11": {
+  "A": "gpt-6.2-sol__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "gpt-6-astra__whole",
+  "D": "gpt-6.1-sol__whole",
+  "E": "claude-opus-5-5__whole",
+  "F": "gpt-5.6-sol__whole"
+ },
+ "37": {
+  "A": "gpt-5.6-sol__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "claude-opus-5-5__whole",
+  "D": "gpt-6.1-sol__whole",
+  "E": "gpt-6-astra__whole",
+  "F": "gpt-6.2-sol__whole"
+ },
+ "42": {
+  "A": "gpt-6.1-sol__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "gpt-5.6-sol__whole",
+  "D": "gpt-6.2-sol__whole",
+  "E": "gpt-6-astra__whole",
+  "F": "claude-opus-5-5__whole"
+ },
+ "44": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-5.6-sol__whole",
+  "C": "gpt-6.1-sol__per-file",
+  "D": "gpt-6-astra__whole",
+  "E": "gpt-6.2-sol__whole",
+  "F": "gpt-6.1-sol__whole"
+ },
+ "58": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6.2-sol__whole",
+  "C": "gpt-6.1-sol__whole",
+  "D": "gpt-6.1-sol__per-file",
+  "E": "gpt-6-astra__whole",
+  "F": "gpt-5.6-sol__whole"
+ },
+ "71": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-6.1-sol__per-file",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "gpt-6.2-sol__whole"
+ },
+ "76": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-6.2-sol__whole",
+  "C": "gpt-5.6-sol__whole",
+  "D": "claude-opus-5-5__whole",
+  "E": "gpt-6-astra__whole",
+  "F": "gpt-6.1-sol__whole"
+ },
+ "81": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6.2-sol__whole",
+  "C": "gpt-6.1-sol__per-file",
+  "D": "gpt-6-astra__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "gpt-5.6-sol__whole"
+ },
+ "85": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-6.2-sol__whole",
+  "C": "gpt-6-astra__whole",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "claude-opus-5-5__whole"
+ },
+ "87": {
+  "A": "gpt-6-astra__whole",
+  "B": "gpt-6.1-sol__whole",
+  "C": "gpt-6.1-sol__per-file",
+  "D": "gpt-6.2-sol__whole",
+  "E": "gpt-5.6-sol__whole",
+  "F": "claude-opus-5-5__whole"
+ },
+ "89": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-6.1-sol__whole",
+  "D": "gpt-6.1-sol__per-file",
+  "E": "gpt-6.2-sol__whole",
+  "F": "gpt-5.6-sol__whole"
+ },
+ "112": {
+  "A": "gpt-6.1-sol__whole",
+  "B": "claude-opus-5-5__whole",
+  "C": "gpt-6-astra__whole",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.2-sol__whole",
+  "F": "gpt-6.1-sol__per-file"
+ },
+ "130": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "gpt-6-astra__whole",
+  "D": "gpt-6.2-sol__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "gpt-5.6-sol__whole"
+ },
+ "131": {
+  "A": "gpt-6.1-sol__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-6.1-sol__per-file",
+  "D": "claude-opus-5-5__whole",
+  "E": "gpt-5.6-sol__whole",
+  "F": "gpt-6.2-sol__whole"
+ },
+ "151": {
+  "A": "gpt-5.6-sol__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "gpt-6.2-sol__whole",
+  "D": "gpt-6.1-sol__whole",
+  "E": "claude-opus-5-5__whole",
+  "F": "gpt-6-astra__whole"
+ },
+ "153": {
+  "A": "gpt-6.1-sol__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "gpt-6-astra__whole",
+  "D": "claude-opus-5-5__whole",
+  "E": "gpt-5.6-sol__whole",
+  "F": "gpt-6.2-sol__whole"
+ },
+ "163": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-6.1-sol__whole",
+  "D": "gpt-6.1-sol__per-file",
+  "E": "gpt-6.2-sol__whole",
+  "F": "gpt-5.6-sol__whole"
+ },
+ "186": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-6.2-sol__whole",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.1-sol__per-file",
+  "F": "gpt-6.1-sol__whole"
+ },
+ "203": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-6.1-sol__whole",
+  "C": "gpt-6-astra__whole",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.2-sol__whole",
+  "F": "claude-opus-5-5__whole"
+ },
+ "204": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-5.6-sol__whole",
+  "D": "gpt-6.1-sol__whole",
+  "E": "gpt-6.2-sol__whole",
+  "F": "gpt-6.1-sol__per-file"
+ },
+ "205": {
+  "A": "gpt-5.6-sol__whole",
+  "B": "gpt-6.1-sol__per-file",
+  "C": "gpt-6.2-sol__whole",
+  "D": "gpt-6.1-sol__whole",
+  "E": "gpt-6-astra__whole",
+  "F": "claude-opus-5-5__whole"
+ },
+ "218": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-5.6-sol__whole",
+  "C": "claude-opus-5-5__whole",
+  "D": "gpt-6-astra__whole",
+  "E": "gpt-6.2-sol__whole",
+  "F": "gpt-6.1-sol__whole"
+ },
+ "225": {
+  "A": "gpt-6.1-sol__whole",
+  "B": "claude-opus-5-5__whole",
+  "C": "gpt-6.1-sol__per-file",
+  "D": "gpt-6.2-sol__whole",
+  "E": "gpt-5.6-sol__whole",
+  "F": "gpt-6-astra__whole"
+ },
+ "229": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-5.6-sol__whole",
+  "C": "gpt-6-astra__whole",
+  "D": "gpt-6.2-sol__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "claude-opus-5-5__whole"
+ },
+ "241": {
+  "A": "gpt-5.6-sol__whole",
+  "B": "gpt-6.2-sol__whole",
+  "C": "claude-opus-5-5__whole",
+  "D": "gpt-6-astra__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "gpt-6.1-sol__per-file"
+ },
+ "247": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6.2-sol__whole",
+  "C": "gpt-6.1-sol__whole",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.1-sol__per-file",
+  "F": "gpt-6-astra__whole"
+ },
+ "264": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-6.1-sol__whole",
+  "C": "claude-opus-5-5__whole",
+  "D": "gpt-6-astra__whole",
+  "E": "gpt-5.6-sol__whole",
+  "F": "gpt-6.2-sol__whole"
+ },
+ "270": {
+  "A": "claude-opus-5-5__whole",
+  "B": "gpt-6-astra__whole",
+  "C": "gpt-6.2-sol__whole",
+  "D": "gpt-5.6-sol__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "gpt-6.1-sol__per-file"
+ },
+ "273": {
+  "A": "gpt-6.1-sol__per-file",
+  "B": "gpt-6-astra__whole",
+  "C": "claude-opus-5-5__whole",
+  "D": "gpt-6.2-sol__whole",
+  "E": "gpt-6.1-sol__whole",
+  "F": "gpt-5.6-sol__whole"
+ }
+}

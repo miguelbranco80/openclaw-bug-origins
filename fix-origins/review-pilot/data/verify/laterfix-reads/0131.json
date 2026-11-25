@@ -1,0 +1,1 @@
+{"case": "0131", "findings": {"F1": {"fixed": "no", "commit": null, "note": "No listed base.css commit replaces the data: SVG spinner masks or addresses img-src CSP blocking."}}}

@@ -1,0 +1,28 @@
+{
+  "findings": [
+    {
+      "title": "Environment controls lose parts of their keyboard focus rings",
+      "file": "ui/src/styles/chat/details-desktop.css",
+      "line": 346,
+      "failure": "Expand Environment and Tab to the machine selector or the Changes button. The section keeps its body at overflow: hidden even after it settles. The widened rows extend 4 px past both sides of that body, so it clips the left and right sides of the focused button’s outline. Those sides previously fit inside the body."
+      ,
+      "confidence": "high"
+    },
+    {
+      "title": "Task Progress failures use the ordinary status color",
+      "file": "ui/src/styles/chat/details-desktop.css",
+      "line": 566,
+      "failure": "Open desktop Details for a task whose run failed or whose delegated work reports a failed child. The runtime status is marked as an error, but the new selector overrides its danger color with muted text. The failure message and any error detail look like routine status text."
+      ,
+      "confidence": "high"
+    },
+    {
+      "title": "Subagent summary icons overlap",
+      "file": "ui/src/styles/chat/details-desktop.css",
+      "line": 449,
+      "failure": "Expand Subagents for a session with six or more subagents. The summary still overlaps its avatar slots by 6 px, but the shared row rule shrinks each slot to 16 px and enlarges each bot glyph to 15 px. Adjacent glyphs now intersect, and the transparent avatar backgrounds expose the intersecting strokes."
+      ,
+      "confidence": "high"
+    }
+  ]
+}

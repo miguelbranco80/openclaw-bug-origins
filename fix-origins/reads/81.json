@@ -1,0 +1,17 @@
+{
+  "rank": 81,
+  "sha": "2420b7db04c71c0a30ed94f724763181a122fda8",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "bbf0d7380315f660bf79561223da1d34eadd4ac3",
+  "cause_pr": 195661,
+  "confidence": "high",
+  "cause_quote": "restartResumeSkipReason changed to `if (isSubagentSessionKey(sessionKey) || entry?.createdVia === \"spawn\") { return \"subagent\"; }`, so a visible spawned coordinator's own restart marker was rejected while root resolution (narrowed to `while (isSubagentSessionKey(root.sessionKey))` by #188402) never walked past it to the real root.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a Gateway restart, a root chat whose work ran through a visible spawned coordinator and hidden workers stalled and did nothing until a human sent a message.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Root discovery for restart resume now follows recorded native spawn ownership (spawnedBy / createdVia spawn) through visible and hidden spawned children up to the ordinary root.",
+  "reasoning": "#185730 (9344233) walked requester links unconditionally, so visible children reached the root; #188402 (e051130) narrowed the walk to subagent-keyed sessions, but the visible coordinator then still got its own marker and resumed. #195661 (bbf0d73) added the createdVia === \"spawn\" skip ('keep spawned dashboard children with their requester') without extending the walk, so neither the visible child nor the real root was marked, which is exactly the failure the fix describes."
+}

@@ -1,0 +1,35 @@
+{
+  "case": "0270",
+  "findings": {
+    "F1": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The summary nests its avatars inside the stack span at chat-details-subagents.tsx:162, so the direct-child selectors at details-desktop.css:450 and :476 skip them. The stack keeps 20 px avatars, 14 px glyphs, and tinted fills from chat-details-subagents.css:55–69 and :152–164.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The transparent, muted override appears in .review/change.diff:163, but the supplied details-desktop.css:442–483 scopes avatar sizing to direct row children and contains no such color override. The hue still drives row and stack fills in chat-details-subagents.css:63–64 and :156–164, and the actual collapsed section renders only a conditional spinner at chat-details-subagents.tsx:121–136.",
+      "same_as": "F1"
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Environment enables animateContentResize at chat-details-environment.tsx:141, so chat-details-desktop-section.tsx:62–66 retains overflow: hidden after settling. The standalone Changes button at chat-details-environment-body.tsx:126–141 previously had 4 px of row padding for its outline, but details-desktop.css:344–355 and :518–520 now widen the row and remove that padding, clipping both sides of the ring defined at details.css:279–283.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "session-progress-card-content.tsx:211–222 sets data-error for a failed run or child and nests any error detail in the same status element. The three-class selector at details-desktop.css:561–564 overrides the danger color at progress-card.css:53–55, so both the status and its detail use muted text.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "chat-branch-actions.tsx:208–222 renders the trailing menu, and menu.tsx:641–655 puts its trigger inside a wrapper sized by the button. The −6 px margin at details-desktop.css:592–595 reduces that wrapper’s contribution to the pill width without shrinking the 26 px button, so its hover or open background overhangs the pill styled at chat-pull-request-presenters.css:56–87.",
+      "same_as": null
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 57,
+  "sha": "96189709bc5042cac232926c541f27fe2efd1dfc",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible to users; release operators got less diagnostic detail from failed QA release-validation runs.",
+  "impact": "other",
+  "area": "other",
+  "summary": "Added payload-free Telegram userbot role/phase diagnostics and RSS sampling-failure logging to QA Lab, kept independent RSS samples, resolved tsdown worker dependency entries against the repo root, and corrected two database admission test fixtures.",
+  "reasoning": "The change is release-validation and QA tooling: diagnostics in extensions/qa-lab, a build-config path resolution that only mattered for nested-checkout builds, and test fixture alignment; the PR says it does not change acceptance, admission policy or Telegram behavior. No shipped product behavior failed, so this is a tooling/diagnostics change titled as a fix."
+}

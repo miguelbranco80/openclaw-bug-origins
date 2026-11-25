@@ -1,0 +1,17 @@
+{
+  "rank": 162,
+  "sha": "a478a1e6b56ebb06217f93b14f68bda53bba533e",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "34a6d38b187fe90785ade0eb3584571f36a63ff8",
+  "cause_pr": 135862,
+  "confidence": "medium",
+  "cause_quote": "In gatherDaemonStatus, #135862 added `artifactPreservingReadOnly: true,` to the loadInstalledPluginIndexInstallRecords call, routing the status ledger read through withExistingOpenClawStateDatabaseArtifactPreservingReadOnly, which copies the state database (\"Copy in a child\") before reading.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw gateway status` took tens of seconds on large state databases while copying them into a snapshot cache, and killing it could leave a multi-gigabyte partial snapshot behind.",
+  "impact": "slower-or-heavier",
+  "area": "cli",
+  "summary": "Dropped artifactPreservingReadOnly from the gateway status plugin-ledger read so status uses the native read-only state connection instead of staging a database snapshot.",
+  "reasoning": "The removed line was added by 34a6d38b187f (#135862, sub-commit \"preserve state artifacts during status reads\"); at that commit the row reader already switched to withExistingOpenClawStateDatabaseArtifactPreservingReadOnly, which copies the database via prepareSqliteReadOnlyLocationSync, whereas before it status used the plain read-only connection. Medium rather than high because the cost depends on database size and the copy was a deliberate choice whose original justification I could not fully assess; it could also be read as a performance improvement."
+}

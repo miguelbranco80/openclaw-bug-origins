@@ -1,0 +1,17 @@
+{
+  "rank": 192,
+  "sha": "30ef0f155b30f45010b377d41bfd87759b93d4ff",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "6a97159ececbf6c0f5a2180b97d761ba1c5fe4df",
+  "cause_pr": 134943,
+  "confidence": "medium",
+  "cause_quote": "The plugin UI runtime's reportActivation was added with `error: formatUiError(error, \"Plugin UI activation failed.\").slice(0, 512)`, a raw UTF-16 slice that can split a surrogate pair.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A long update failure cause or plugin UI activation error that was cut inside an emoji ended with a broken character in Settings > Updates and in the stored plugin activation report.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Replaced three raw .slice() truncations (update failure cause, plugin grant error, plugin activation error) with the surrogate-safe truncateUtf16Safe helper.",
+  "reasoning": "Each truncation was a plain slice from the start, so the defect shipped with the code, not from a later change. The plugin activation slice came in with 6a97159 (#134943) and fef5402 (#179157) only moved it and copied it to the grant-error path; the update overlay's `last.slice(0, MAX_UPDATE_FAILURE_CAUSE_CHARS)` predates the 2026-09-03 shallow graft and its origin was not traced, hence medium confidence for one cause covering both sites."
+}

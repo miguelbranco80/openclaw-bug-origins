@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "59834998f25bacb0fadee2028cf720cf8cdd3b97",
+  "confidence": "high",
+  "reasoning": "The causing diff wrapped the existing `maybeRestartService` call in `await forward(() => ...)` and added `for (const stop of admission.forward) { stop(); }` to the signal handler. I checked the removed lines and confirmed that verification previously ran outside this cancellable scope and the old signal handler exited after settlement, so it could not strand readiness polling with every native service check cancelled. The patch also fixes a separate admission timeout whose introducing diff was unavailable."
+}

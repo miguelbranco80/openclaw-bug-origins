@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "C": {"flagged": "none", "finding": null, "note": "The finding concerns stalled skill preparation holding an admission ticket after cancellation."},
+    "D": {"flagged": "none", "finding": null, "note": "The steer findings concern cancellation and admission, and the diagnostics finding concerns WebSocket work before the timer starts."},
+    "E": {"flagged": "none", "finding": null, "note": "The finding concerns a cancelled skill-preparation step blocking later sends."},
+    "F": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."}
+  }
+}

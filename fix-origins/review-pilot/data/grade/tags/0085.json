@@ -1,0 +1,1 @@
+{"rank": 85, "needs": "outside", "where": "src/infra/sqlite-readonly-location.ts:183", "note": "The diff switches the live-database inspection copy from a byte copy to clone: \"auto\"; seeing the harm needs knowing Btrfs reflink (FICLONE) of a large fragmented live inode holds clone metadata and stalls concurrent writes."}

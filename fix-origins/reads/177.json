@@ -1,0 +1,17 @@
+{
+  "rank": 177,
+  "sha": "f1144b0391b0138e2afa5efb0af023f8e6af9b21",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After archiving a session, clicking Undo took a noticeable moment to bring the row back, and work the archive had already stopped stayed stopped.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Archive in the Control UI became a deferred commit held behind the Undo toast, so Undo cancels locally with no Gateway write and the old archive-then-unarchive restore machinery (and the Sessions page's separate flow) was removed.",
+  "reasoning": "PR #194694 describes a redesign of Undo from a compensating action (archive now, send unarchive later) into a cancellation, explicitly listed as a behavior change with archiving now applied seconds later. The prior design worked as built (Undo did restore the session, just via a round trip), so this is a UX/latency improvement rather than a defect introduced by a specific commit."
+}

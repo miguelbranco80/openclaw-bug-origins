@@ -1,0 +1,17 @@
+{
+  "rank": 14,
+  "sha": "82a38fb2fe944b76c0604bb8ee1e0697404e64cd",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Native Codex model discovery did not list the newest ChatGPT models (gpt-6.2-sol/astra) because the bundled Codex client was 0.164.0.",
+  "impact": "other",
+  "area": "models/providers",
+  "summary": "Upgraded the bundled Codex runtime and client-version pins from 0.164.0 to 0.169.0, regenerated the app-server protocol schemas, and added handling and tests for new terminal errors and audio fileId references.",
+  "reasoning": "This is a dependency upgrade to pick up upstream models that are exposed only to newer Codex clients; the old bundled version was not broken, it just predated the new models and protocol variants. The added error and audio handling covers shapes that come with the new upstream version, not a failure of earlier OpenClaw code, so there is no causing commit."
+}

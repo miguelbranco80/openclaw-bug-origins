@@ -1,0 +1,1 @@
+{"rank": 58, "needs": "repo", "where": "src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:33", "note": "new Date(message.timestamp).toISOString() throws RangeError when timestamp is missing; recognising this needs knowing that context-engine-selected messages (passed in from builtin-openclaw.ts) may lack a timestamp."}

@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The fix and its integration test show that a direct call to a tool available through Code Mode fell through to the generic “Tool not found” error because the session installed a deferred resolver only when directory tools were directly callable. I checked the Code Mode and session setup history, but the original Code Mode diff was unavailable and the readable diffs did not establish when this rejection behavior first appeared."
+}

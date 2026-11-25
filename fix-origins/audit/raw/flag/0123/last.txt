@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Before merge section flags missing write admission for PostgreSQL retention pruning and asks for general upgrade compatibility proof. Neither item identifies a risk in loading the Logbook PostgreSQL schema from disk in compiled installs."
+}

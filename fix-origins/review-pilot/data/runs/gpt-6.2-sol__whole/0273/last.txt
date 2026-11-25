@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "title": "Snapshots can delete canonical files backed by host mounts",
+      "file": "src/gateway/worker-environments/local-workspace-manifest-scan.ts",
+      "line": 545,
+      "failure": "Bind-mount a directory containing an already accepted file over an ordinary empty directory inside the btrfs projection, then edit a different file. The live scan can see the mounted file, but the btrfs snapshot contains the underlying empty directory. That directory has no inode-2 marker, so checkpointing treats the missing file as a guest deletion and removes it from the canonical worktree even though it remains visible in the guest.",
+      "confidence": "high"
+    },
+    {
+      "title": "Foreign-owned snapshot directories can block all later checkpoints",
+      "file": "src/infra/fs-safe-copy.worker.ts",
+      "line": 39,
+      "failure": "A non-root Gateway can read a guest-created directory owned by another UID, such as a root-owned 0755 directory created through a writable rootful Docker sandbox. The snapshot preserves that ownership. Cleanup cannot unlink files inside the directory, and the repair skips chmod because the owner's mode bits already include 0700. The command reports a checkpoint failure after its edits have reached canonical storage. Subsequent checkpoints fail while removing the same leftover snapshot, even if the directory is removed from the live guest.",
+      "confidence": "high"
+    },
+    {
+      "title": "Native benchmark loses its report on a standard cgroup v2 host",
+      "file": "scripts/perf/local-workspace-checkpoint-measure.ts",
+      "line": 2285,
+      "failure": "Run the native benchmark directly on a Linux host where /sys/fs/cgroup exposes the actual cgroup v2 root. Its cpu.stat exists, so the script enables CPU accounting, but root cgroups have no cpu.max. After the measured commands complete, the report builder throws ENOENT and the operator gets no benchmark report.",
+      "confidence": "high"
+    }
+  ]
+}

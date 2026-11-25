@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "Retire or supersede the claim when accepting a canonical event row with `updatedAt >=` the claim timestamp, and add a deferred-refresh regression.",
+  "note": "The earlier “Retire claims on accepted newer session events” finding warned that a claim could linger after an accepted update. The shipped bug cleared the claim when the reducer rejected a stale title update, and the finding was dropped from the open items by merge."
+}

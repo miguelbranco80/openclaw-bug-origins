@@ -1,0 +1,17 @@
+{
+  "rank": 136,
+  "sha": "68aff7f864148760c3800c95435cc36ddaa91654",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a Telegram forum topic bound to a persistent ACP session with progress streaming, the ACP agent's reply never appeared in the topic (only a status notice did), though it was in the session transcript.",
+  "impact": "failed-every-time",
+  "area": "channels",
+  "summary": "Telegram's progress-mode handler no longer reports a buffered (unsent) answer block as a visible reply, so ACP's existing final-delivery recovery sends it.",
+  "reasoning": "The suppressed progress-answer branch reporting visible=true (formerly `blockDelivered = true`) predates the 2026-09-03 graft and was carried unchanged through 3fb2ef2e972 and the refactor 1c3a4248bda; it was fine for Telegram's own turns, where the final flushes the buffered block. It broke only for ACP live delivery, whose final is a status notice and whose recovery trusts the visibility receipt; I could not pin which in-repo change made ACP rely on that receipt (2c543afc5ec, which added the ACP status-notice final path, is a plausible but unconfirmed trigger), so no trigger_sha is given."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 264,
+  "sha": "43ce96e4b8dd97a6d5a9053d25a7e2bb7e4f0a97",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "1f3524eec31abbfef396d69cc22758e510fdc4ee",
+  "cause_pr": 200758,
+  "confidence": "high",
+  "cause_quote": "It changed the drop-tint selector from `.new-session-page__composer::after` to `.new-session-page__composer > .agent-chat__input::after`, the same pseudo-element that `.agent-chat__input--dictating::after` in composer.css uses for the dictation border, overriding it with opacity 0 and inset 0.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Starting dictation in New Session no longer showed the animated recording border around the message box.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Moves the New Session image-drop tint from the message input's ::after to its unused ::before so it no longer overrides the dictation border.",
+  "reasoning": "At 1f3524e's parent, composer.css already drew the dictation border with `.agent-chat__input--dictating::after`, and the drop tint lived on the composer shell's own ::after. 1f3524e (#200758) retargeted the tint to `.agent-chat__input::after` with a more specific selector, so the tint rules replaced the border's styles; the fix PR describes the same mechanism and adds a red/green regression for it."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 172,
+  "sha": "65a13b12d9609d386dac41a53784d57b710f56aa",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "d1a69c0b2095594966ff0dbfe01f1ef36dff1343",
+  "cause_pr": 138839,
+  "confidence": "medium",
+  "cause_quote": "The new candidate canary started the candidate Gateway on a private state copy with `OPENCLAW_STATE_DIR: tempDir` and `delete copied.env`, never providing the credentials/ files or env vars that exec SecretRef providers such as 1Password read at boot.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw update` failed at candidate-gateway-startup with runtime-verification-failed and rolled back whenever a boot-time SecretRef used the 1Password exec provider.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "During private update rehearsal, exec secret providers are deferred, failing and unowned secret owners are kept cold instead of blocking startup, and a warning is recorded in the snapshot receipt.",
+  "reasoning": "Issue #192066 shows the rehearsal's private state copy lacks credentials/ and config env, so the exec provider fails and the candidate Gateway refuses to start. The candidate canary that starts a Gateway on an isolated state copy was introduced by d1a69c0b2095 (Sept 2026, its diff adds OPENCLAW_STATE_DIR: tempDir and delete copied.env) and later moved into update-candidate-rehearsal.ts by 76bf977faef; the 1Password exec plugin already existed (July 2026), so the combination never worked. Medium because I did not confirm the Gateway's strict startup secret check behaved identically at d1a69c0."
+}

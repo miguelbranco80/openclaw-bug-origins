@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence item “Complete reader cutover” records the removal of the TTL sweep without raising a concern about plaintext cache files left behind after upgrades. The earlier finding concerns fallback after a decode failure."
+}

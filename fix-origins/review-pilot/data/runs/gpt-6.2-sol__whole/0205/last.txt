@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Jump to latest can stay hidden while a reply grows",
+      "file": "apps/shared/OpenClawKit/Sources/OpenClawChatUI/ChatViewModel.swift",
+      "line": 816,
+      "failure": "If a history refresh introduces a new user message and buffered reply text together, the transcript anchors to the question and clears the flag that shows Jump to latest. Subsequent chunks of already-visible reply text no longer trigger the timeline update that sets the flag. The reply can grow below the viewport while the button stays hidden until another timeline event or a manual scroll.",
+      "confidence": "high"
+    },
+    {
+      "title": "A saved reply can appear alongside its stale streaming prefix",
+      "file": "apps/shared/OpenClawKit/Sources/OpenClawChatUI/ChatViewModel+TranscriptCache.swift",
+      "line": 28,
+      "failure": "If the live bubble shows “Hello” and the stream has already received “Hello world,” a saved “Hello world” message arriving before the next display update is compared against “Hello.” The transcript shows both the full reply and its stale prefix until the display update or a terminal event clears the live bubble. Touch tracking can defer that display update.",
+      "confidence": "high"
+    }
+  ]
+}

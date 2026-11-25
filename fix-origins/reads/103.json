@@ -1,0 +1,17 @@
+{
+  "rank": 103,
+  "sha": "9d5de42838ba1e4e3d700f9f26476c5e037fa9f4",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "0636e552396075096ba75976adef0eb35d43f135",
+  "cause_pr": 175069,
+  "confidence": "high",
+  "cause_quote": "The new pre-command engine selection added `if (isConfigReadFailure(snapshot) || ...) { throw createConfigReadError(snapshot); }`, throwing the read failure unprinted before the config guard (which printed the heading, file and issues) could run, so the root printer showed only the generic line and Doctor hint.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With an unreadable config (for example a missing include), `openclaw status` and `openclaw doctor` printed only \"The CLI command failed.\" and told the user to run `openclaw doctor`, which failed the same way.",
+  "impact": "failed-every-time",
+  "area": "cli",
+  "summary": "The root CLI failure printer now shows the redacted config-read reason, without the Doctor hint, for errors with code CONFIG_READ_FAILED.",
+  "reasoning": "Before 0636e552396 (#175069, CLI engine selection for PostgreSQL), config read failures reached src/cli/program/config-guard.ts, which printed the failure heading, file path and issues via runtime.error before throwing; I confirmed that code at 0636e552396^. #175069 added an earlier read in src/cli/database-engine-selection.ts that throws createConfigReadError unprinted, and the root printer (terse since #163381) drops the reason; #175677 later restored details only for invalid configs, leaving read failures broken until this fix."
+}

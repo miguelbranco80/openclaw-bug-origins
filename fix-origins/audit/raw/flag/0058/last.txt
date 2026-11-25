@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge Findings section was empty. The earlier Tests item asked for proof that finalization excluded old history, retained tool evidence, and avoided repeated effects, with no mention of missing timestamps or conversion failures."
+}

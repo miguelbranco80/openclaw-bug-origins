@@ -1,0 +1,35 @@
+{
+  "case": "0112",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/github-issue.ts:83 encodes the report title and sanitized diagnostic body in the GitHub URL, and ui/src/pages/config/updates.ts:230 renders it without a preview opt-out. With public previews enabled, a qualifying hover or keyboard focus sends the URL with its query intact through ui/src/lib/link-preview.ts:81-94, and src/gateway/control-ui-link-preview.ts:185-192 fetches it before any click.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "With public previews enabled, ui/src/components/link-reader-target.ts:109-132 accepts eligible external URLs without checking for action links, and ui/src/lib/link-preview.ts:81-94 preserves the path and query in the request. src/gateway/control-ui-link-preview.ts:113-119 and :185-192 fetch the URL with an anonymous GET, so a public endpoint that acts on GET using a URL token can perform the action or consume the token before the operator clicks.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/components/link-reader-panel.ts:58 and :691 put issue-body links in the panel's shadow root, while ui/src/components/link-reader-hovercard.ts:295-298 registers the transition listeners on the outer provider. When both ends of a pointer or focus transition retarget to the panel host, the provider misses the event, so an internal move can fail to open a preview or leave a pending fetch scheduled after the pointer leaves the link.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/components/tooltip-title.ts:66-72 and :196-199 suppress the shared tooltip and native title when the loaded runtime owns the link preview. If metadata is empty or the request fails, ui/src/components/link-reader-hovercard.ts:650-659 supplies only the visible link text as a fallback, and ui/src/components/link-reader-page-preview.ts:18-19 falls back to the host if that text is empty.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/components/image-lightbox.ts:178-198 renders Open original inside a modal hosted in the lightbox's shadow root, and ui/src/components/portaled-hovercard.ts:354-366 appends the card to that modal without moving it out of the root. Popover promotion changes where the card paints, so the document rules for card dimensions and image sizing in ui/src/styles/link-hovercard.css:1-9 and :75-80 still cannot reach it.",
+      "same_as": null
+    }
+  }
+}

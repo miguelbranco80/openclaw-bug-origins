@@ -1,0 +1,1 @@
+{"rank": 11, "needs": "repo", "where": "src/infra/node-runtime-executable.ts:55", "note": "The resolver's fast path and probe accept any non-Bun node; seeing that this is wrong needs the existing supported-Node floor (node-version.mjs / package.json engines, Node >=24.16) that the diff does not check against."}

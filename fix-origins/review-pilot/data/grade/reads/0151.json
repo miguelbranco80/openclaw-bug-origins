@@ -1,0 +1,6 @@
+{"rank": 151, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No finding about handle case validation."},
+"B": {"flagged": "none", "finding": null, "note": "No finding about handle case validation."},
+"C": {"flagged": "none", "finding": null, "note": "Publisher-account finding concerns which credential is used, not mixed-case handles."},
+"D": {"flagged": "none", "finding": null, "note": "No finding about handle case validation."},
+"E": {"flagged": "none", "finding": null, "note": "Whoami error mapping concerns request failures, not the lowercase-only regex."},
+"F": {"flagged": "none", "finding": null, "note": "No finding about handle case validation."}}}

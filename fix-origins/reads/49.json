@@ -1,0 +1,17 @@
+{
+  "rank": 49,
+  "sha": "f94477b9748898e345ed159b5622bd2f0c21ac9a",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Ctrl+C during a pending `openclaw devices list --json` or `devices approve --json` preview left the Gateway socket open until the launcher force-killed the CLI about 2 seconds later, sometimes printing a failure afterwards.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "The read-only devices list and approval-preview Gateway calls now take the command's async-work abort signal and print nothing once aborted, with the call helper moved to devices-cli-gateway.ts.",
+  "reasoning": "The removed devices Gateway helper (callGatewayCli without a signal) is older than the graft and predates the CLI's cooperative cancellation model (async-work-scope signal, signal-exit gates/barriers, and the launcher's SIGTERM/SIGKILL backstop in respawn-child-runner.ts), which only shuts down promptly when a command forwards the abort signal. The read code was correct under plain Node SIGINT exit and became slow to stop when that model arrived. This fix is one of several sibling Ctrl+C wiring fixes (for example #197508 for sessions import). I traced run-main.ts, signal-exit-barrier.ts, embedded-state-lock.ts (#177653) and respawn-child-runner.ts (#191181 set the 2s force-kill), but could not pin the one commit that stopped devices reads exiting on Ctrl+C, so trigger_sha is null; unclear would also be defensible."
+}

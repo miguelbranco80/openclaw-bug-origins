@@ -1,0 +1,41 @@
+{
+  "case": "0203",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/components/app-sidebar-session-types.ts:417–431 restores a saved foreign owner even for a guest, and ui/src/components/session-data-events.ts:122–134 sends that owner on each filtered sidebar read. src/gateway/session-profile-activity-policy.ts:54–67 rejects the filter, and ui/src/components/session-owner-filter.ts:144–156 skips automatic reset after a failed read.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/components/session-owner-filter.ts:33–48 restores the preference by gateway and user ID, so demotion leaves the saved selection in place across reloads. The chip sidebar observes the filtered query itself at ui/src/components/app-sidebar.tsx:169–173, and ui/src/components/session-owner-filter.ts:144–156 requires a successful result with an owner facet before it clears the selection.",
+      "same_as": "F1"
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/session-list-filters.ts:556–562 counts only guest-associated sessions in peopleSessionCount, while lines 627–634 still admit and count both visible rows when no person is selected. ui/src/pages/activity/session-activity.ts:237 supplies the smaller count to the Everyone row rendered at ui/src/pages/activity/session-activity-people.tsx:214–219.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "On the cached list path, src/gateway/session-utils-list.ts:97–110 skips empty partitions and reaches the filter only for a populated partition, so an admitted empty store returns a successful empty result. A draft populates the partition and triggers the foreign-owner denial at src/gateway/session-list-filters.ts:242–251 before the visibility check at lines 461–464 can exclude it.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/session-identity-projection.ts:195–220 accepts configured agents as assignable owners, and src/gateway/session-list-filters.ts:549 matches the requested owner by actor ID. The earlier guard at src/gateway/session-profile-activity-policy.ts:54–67 compares that agent ID with the guest's profile ID and returns the privacy denial even for a shared row.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/tools/sessions-list-tool.ts:250–269 forwards both actor IDs to sessions.list, and src/gateway/server-plugin-in-process-authority.ts:420–437 preserves the initiating operator's identity for a guest's run. src/gateway/session-profile-activity-policy.ts:54–67 rejects either agent ID under that authority, and src/gateway/session-list-filters.ts:540–544 omits agent owners whose IDs differ from the guest's profile ID.",
+      "same_as": "F5"
+    }
+  }
+}

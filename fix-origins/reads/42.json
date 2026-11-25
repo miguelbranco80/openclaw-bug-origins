@@ -1,0 +1,17 @@
+{
+  "rank": 42,
+  "sha": "898b2c85d73955008e93170aeafa6e666596b4f2",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "e532b82827670ccf49105e8399a9e121772c3f60",
+  "cause_pr": 165608,
+  "confidence": "medium",
+  "cause_quote": "The new dispatch timing scope marks `phase?.mark(\"preparation\")` in onSessionPrepared and only ends diagnostics in onAgentRunStart or after the whole dispatch settles, so a steered send that runs a prepared reply without the start callback books the run as preparation.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Operators saw slow chat send logs such as `preparation=476386ms` for a steered send that was acknowledged in 51 ms, when the time was actually a full agent turn.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "Adds a `run` phase to chat-send diagnostics and switches the dispatch scope to it while reply.run_prepared_reply runs, so prepared-reply execution is no longer reported as preparation.",
+  "reasoning": "The phase accounting, the onSessionPrepared preparation mark and the onAgentRunStart cutoff all arrive in #165608, while the steered queued-followup path predates it, so steered sends misattributed run time from the moment the timing shipped; #169006 only relabeled the stage as `steer`. Confidence is medium because I did not confirm that the reply.run_prepared_reply span was emitted on that path at #165608 time."
+}

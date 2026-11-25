@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "title": "Applying a browsed replacement can silently keep the old folder",
+      "file": "ui/src/pages/new-session/project-picker-content.tsx",
+      "line": 120,
+      "failure": "An admin selects a device folder, reopens the browser to replace it, and the device loses its last available worker slot while the picker is open. Use this folder remains enabled, but selectDeviceFolder rejects the change because the device is no longer selectable. The browser still closes. When a slot frees up, Start uses the old folder. The previous code still updated an existing selection in this situation.",
+      "confidence": "high"
+    },
+    {
+      "title": "Background updates erase an unsubmitted manual path",
+      "file": "ui/src/pages/new-session/project-picker-content.tsx",
+      "line": 65,
+      "failure": "While an operator types a path, an unrelated New Session update such as an agent roster refresh rebuilds the picker params. The writable signal re-derives from the saved selection and replaces the typed text with the previous path or an empty field. The editor stays open, so the operator can lose the edit without dismissing it.",
+      "confidence": "high"
+    },
+    {
+      "title": "Touch users cannot verify the full folder path before retrying",
+      "file": "ui/src/pages/new-session/project-chip.tsx",
+      "line": 63,
+      "failure": "After a pending device-folder session is restored on a phone, the picker trigger is disabled and shows only the final folder name. The full path is available through hover or assistive technology, so a sighted touch user cannot tell whether a retry will use /srv/client-a/project or /srv/client-b/project. The previous disabled field displayed the saved path directly.",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "title": "Node discovery can stall the Gateway with Tool Search disabled",
+      "file": "src/agents/tool-search-config.ts",
+      "line": 59,
+      "failure": "On a Bun-hosted Gateway, the first ordinary agent turn with Tool Search disabled or unset still probes for Node because the default mode is code. Each candidate runs synchronously with its own five-second timeout. A stale Node shim that hangs can freeze the Gateway for five seconds, delaying unrelated requests as well as the current turn. Multiple hanging candidates compound the delay.",
+      "confidence": "high"
+    },
+    {
+      "title": "Cached Node paths survive installation and upgrade changes",
+      "file": "src/infra/node-runtime-executable.ts",
+      "line": 67,
+      "failure": "If a Bun Gateway probes before Node is installed, installing a compatible Node into a directory already on PATH leaves Tool Search in structured mode. If a package upgrade removes the cached executable and puts a working replacement elsewhere on the same PATH, the Gateway keeps advertising code mode and calls fail with ENOENT. Both results persist across config reloads because the cache key stays the same.",
+      "confidence": "high"
+    },
+    {
+      "title": "Node version-manager shims lose their launch environment",
+      "file": "src/infra/node-runtime-executable.ts",
+      "line": 80,
+      "failure": "When the only compatible Node is exposed through an asdf shim that resolves the asdf command through PATH, invoking node from the operator's shell works. The probe strips PATH and version-manager settings, so the shim cannot find asdf in a directory such as /opt/homebrew/bin. The Gateway silently falls back to structured Tool Search despite having a compatible Node available.",
+      "confidence": "high"
+    },
+    {
+      "title": "Startup output is accepted as part of the executable path",
+      "file": "src/infra/node-runtime-executable.ts",
+      "line": 84,
+      "failure": "If an earlier node launcher on PATH prints a startup notice to stdout before forwarding to a compatible Node, the resolver caches the notice and the reported executable path as one string. It stops searching even if a plain Node executable appears later on PATH. The Gateway advertises tool_search_code, but calls fail because the cached string is not an executable path.",
+      "confidence": "high"
+    }
+  ]
+}

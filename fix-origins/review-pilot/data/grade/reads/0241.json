@@ -1,0 +1,7 @@
+{"rank": 241, "reviewers": {
+"A": {"flagged": "none", "finding": null, "note": "Foreground descendant completion order, not child-before-parent snapshot ordering."},
+"B": {"flagged": "none", "finding": null, "note": "Stopped nested task leaving turn open is a different defect."},
+"C": {"flagged": "none", "finding": null, "note": "Launcher running-state window is a different mechanism from single-pass snapshot ordering."},
+"D": {"flagged": "none", "finding": null, "note": "No findings."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

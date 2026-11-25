@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The earlier Before merge items concerned branch conflicts. The at-merge Verification section covered saved-text truncation and text exports, with no concern about image-only results showing as unavailable or exporting empty text."
+}

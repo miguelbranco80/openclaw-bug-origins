@@ -1,0 +1,17 @@
+{
+  "rank": 12,
+  "sha": "ea4879279abbf0e80d992a5649ef2f9b24debbd0",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Ctrl+C during `openclaw cron status/get/runs/scratch` left the CLI hanging about two seconds until the launcher force-killed it.",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "Added callCronReadFromCli, which passes the command's async-work abort signal to the Gateway call, and routed cron status, get, runs and scratch reads through it.",
+  "reasoning": "This is one step in a series that extends the newer CLI cancellation contract to more commands (#186750 run-wait, #187726 list/show, this PR, then #198012 and #199955); the cron read commands predate that contract and still exited via the launcher's forced kill. Extending a new capability to older commands is a behavior improvement rather than a broken or regressed behavior, so there is no causing commit."
+}

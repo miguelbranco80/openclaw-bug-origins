@@ -1,0 +1,1 @@
+{"rank": 180, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Review items concern the public prepareSyntheticAuth hook, cloud cleanup proof and skill-resource root binding; nothing flags that cancelling the Claude auth probe kills it mid-refresh (human comments actually requested the cancellable, process-tree-killing probe)."}

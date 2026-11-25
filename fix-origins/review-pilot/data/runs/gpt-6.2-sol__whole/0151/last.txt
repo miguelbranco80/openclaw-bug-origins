@@ -1,0 +1,53 @@
+{
+  "findings": [
+    {
+      "title": "Publication uses the Gateway's ClawHub account",
+      "file": "src/claws/draft-publish.ts",
+      "line": 19,
+      "failure": "If a creator uses a shared Gateway whose environment token or saved ClawHub login belongs to someone else, review and publish both use that host credential. The creator sees the other account as publisher and can publish an immutable version under that account.",
+      "confidence": "high"
+    },
+    {
+      "title": "Headless administrator clients can publish",
+      "file": "src/gateway/server-methods/claws-drafts.ts",
+      "line": 43,
+      "failure": "A headless client with a live authenticated administrator WebSocket passes the same check as the Control UI. It can request a review token and publish in sequence with no person opening the review or confirming publication in the UI.",
+      "confidence": "high"
+    },
+    {
+      "title": "Drafts are created outside the source session's worktree",
+      "file": "src/gateway/server-methods/claws-drafts.ts",
+      "line": 39,
+      "failure": "When the source chat runs in a local worktree, the Gateway creates the draft in the agent's configured workspace. The generated command gives the agent a relative path, which resolves inside the worktree. The agent either cannot open the draft or writes a separate copy, leaving the Gateway to review the untouched starter document.",
+      "confidence": "high"
+    },
+    {
+      "title": "Profile extensions are missing from dependency choices",
+      "file": "src/claws/draft-choices.ts",
+      "line": 67,
+      "failure": "A draft with a plugin declared only in the OpenClaw profile includes that dependency in the archive, and Add resolves it as a plugin. The creator gets no checkbox for that plugin and has to discard the entire profile, including unrelated settings, to remove it through review.",
+      "confidence": "high"
+    },
+    {
+      "title": "Excluding the avatar file breaks review",
+      "file": "src/claws/draft-choices.ts",
+      "line": 102,
+      "failure": "After a valid draft maps a file such as avatar.svg to the agent's workspace avatar, unchecking that file removes its workspace mapping but leaves the avatar reference in the manifest. The builder rejects the selection, so the creator cannot get a fresh review token without editing the proposal.",
+      "confidence": "high"
+    },
+    {
+      "title": "Excluding the profile can leave a broken metadata reference",
+      "file": "src/claws/draft-choices.ts",
+      "line": 125,
+      "failure": "A valid manifest can point to profiles/openclaw.yml through the supported legacy openclaw.config metadata key. Unchecking that profile removes the file but retains the pointer, so the next review fails when the builder tries to open the deleted profile.",
+      "confidence": "high"
+    },
+    {
+      "title": "A UTF-8 BOM makes every draft save look stale",
+      "file": "src/claws/draft.ts",
+      "line": 66,
+      "failure": "If an editor writes the draft with a UTF-8 byte-order mark, the read method strips it before calculating the revision. Save compares that revision with a hash of the original bytes, including the mark. An unchanged draft therefore produces a conflict even immediately after reloading.",
+      "confidence": "high"
+    }
+  ]
+}

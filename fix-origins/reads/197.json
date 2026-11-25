@@ -1,0 +1,17 @@
+{
+  "rank": 197,
+  "sha": "79d7e8f4f73865d02e83ff7fce94ebc577057ce0",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "6fd646e86cd7c4decdaadd8901dd7f2846b837c2",
+  "cause_pr": 188978,
+  "confidence": "high",
+  "cause_quote": "The new readPluginCohortArtifactIdentity computed `manifestSha256: createHash(\"sha256\").update(fs.readFileSync(path.join(packageDir, \"package.json\")))`, which throws ENOENT for a prior npm plugin directory missing package.json, failing package-swap.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "openclaw update rolled back the whole core update and reported failure whenever one managed npm plugin's install directory had lost its package.json.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Prior-plugin cohort identities now record a null manifest digest when package.json is missing, while staged/published artifacts keep the strict reader.",
+  "reasoning": "#188978 (6fd646e) added the plugin-cohort preimage that hashes each prior plugin's package.json before the core swap; reading a missing file threw ENOENT and rolled back the update. The update-corrupt-plugin Docker lane covering damaged plugins already existed at 6fd646e^ and the PR states it failed deterministically only since #188978, so core updates with a damaged plugin worked before and this commit broke them."
+}

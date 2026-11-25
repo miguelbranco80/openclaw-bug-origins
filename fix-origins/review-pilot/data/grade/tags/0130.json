@@ -1,0 +1,1 @@
+{"rank": 130, "needs": "diff", "where": "src/gateway/worker-environments/local-workspace-review.ts:50-59", "note": "The new condition visibly folds a missing or removed worktree (!worktree, removedAt set) into the same 'owner changed' error, giving a wrong diagnosis with no recovery guidance for cleaned-up worktrees."}

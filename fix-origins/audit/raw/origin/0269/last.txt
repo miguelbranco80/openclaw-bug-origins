@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "af1b5e2a07480b8e6034cf6c4cc4ed1983f7ebfd",
+  "confidence": "medium",
+  "reasoning": "I checked the commit diff and verified that the existing keyboard-dismissal step used an app-relative tap before the commit replaced it with `app.scrollViews[\"chat-transcript\"].coordinate(withNormalizedOffset: CGVector(dx: 0.99, dy: 0.05)).tap()`. The fix PR measured 22.625 seconds across three transcript lookups during tap synthesis, a cost the old app-relative tap avoided by construction. The bundle contains no timing run from before the candidate commit."
+}

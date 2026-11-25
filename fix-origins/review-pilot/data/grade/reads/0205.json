@@ -1,0 +1,6 @@
+{"rank": 205, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No findings."},
+"B": {"flagged": "none", "finding": null, "note": "Duplicate live bubble from stale displayed text, not scroll following."},
+"C": {"flagged": "related", "finding": 1, "note": "Notes streamed chunks no longer trigger the timeline update so the reply grows below the viewport, but frames it as a hidden Jump-to-latest button after a history refresh rather than lost follow-to-bottom."},
+"D": {"flagged": "none", "finding": null, "note": "No findings."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "Duplicate bubble and bottom anchor expanding content upward; not the streaming follow failure."}}}

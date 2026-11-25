@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Before merge items cover queued authorization, grep’s handling of failed launches, and Node pipe compatibility. Neither the at-merge review nor the supplied earlier items raise the buffered-output socket’s path length under a long temporary directory."
+}

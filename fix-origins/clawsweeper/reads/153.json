@@ -1,0 +1,1 @@
+{"rank": 153, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "No findings at merge; the earlier version asked only for authority-chain proof for guests and revocation. Nothing concerns taking the base commit from lagging PR details instead of the live branch ref."}

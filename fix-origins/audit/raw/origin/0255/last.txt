@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The fix confirms that iOS offered OpenClaw for selections the extension could not send, including four photos or a video. The file history identifies the original Share extension and a later change that blocked sends when attachments were omitted, but the blobs for both diffs are unavailable, so I could not verify whether either selection had ever worked or which commit introduced the mismatch."
+}

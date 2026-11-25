@@ -1,0 +1,17 @@
+{
+  "rank": 94,
+  "sha": "35b544cc5cb596d2f0cd6c0213a3784c1290f449",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; managed Codex sessions' hidden developer instructions carried Default-mode boilerplate and guidance for a disabled native question tool.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "Suppressed Codex's catalogue-owned Default collaboration block for managed sessions and replaced it with concise, capability-aware guidance on the developer-instruction carrier, withdrawn on resume.",
+  "reasoning": "The linked issue #187061 is filed as a [Feature] and states \"This is a prompt-quality improvement request\", and the PR says it is a prompt-quality change with no measured latency, cost or answer-quality improvement. The conditional native guidance (\"only when it is listed\") never instructed calling a missing tool, so no failure was reported; this is a product/prompt policy change."
+}

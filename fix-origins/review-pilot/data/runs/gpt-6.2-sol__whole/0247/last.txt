@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "title": "Repair closes remapped operations without verifying the previous installation",
+      "file": "src/infra/package-update-activation.ts",
+      "line": 341,
+      "failure": "If an update stops in prepared or before displacement in publishing, a remount leaves the previous package installed under its projected identity. The fallback guard compares the live identity with the unprojected identities and falls through. Neither verification branch runs, so repair archives the unfinished operation and clears the update block without checking the previous tree or its launchers. If the lease is unchanged, it also reports a manual replacement that never happened.",
+      "confidence": "high"
+    },
+    {
+      "title": "Repair rejects hot SQLite journals before replay can run",
+      "file": "src/infra/package-update-activation-journal.ts",
+      "line": 365,
+      "failure": "If the updater dies during a SQLite commit, readForRecovery can recover the committed record from a snapshot while leaving the live rollback journal for replay under the executor fence. The new inspectRemount call rereads the live database before that replay. SQLite returns SQLITE_READONLY_ROLLBACK, so public repair aborts and leaves the journal blocking recovery, even when the filesystem device numbers are unchanged.",
+      "confidence": "high"
+    },
+    {
+      "title": "Repair rejects launchers published by the updater",
+      "file": "src/infra/package-update-activation-settlement.ts",
+      "line": 73,
+      "failure": "When publication copies a launcher into place, the installed launcher gets a different inode from the staged launcher. The updater records that inode in publications, or in the launcher intent if it is interrupted before acknowledgement. After a remount, repair ignores both records and compares the installed inode with the previous or staged inode. It rejects an intact installed candidate with an inode-mapping error and leaves the journal active.",
+      "confidence": "high"
+    },
+    {
+      "title": "Repair rejects newer releases after some supported update targets",
+      "file": "src/infra/package-update-activation.ts",
+      "line": 455,
+      "failure": "An interrupted update can record an explicit target such as 2026.9.4-dev.1. If the operator then manually installs 2026.10.1 after a remount, the release comparator returns null because it excludes dev prereleases. Repair reports that it requires a newer manual installation and leaves the journal active without verifying the newer package.",
+      "confidence": "high"
+    }
+  ]
+}

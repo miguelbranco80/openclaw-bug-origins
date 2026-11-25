@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "94a06613227b5d1bedea7115af39b4219b81c104",
+  "confidence": "medium",
+  "reasoning": "The fix replaces `resourcesPromise ??= createCuaExecutionResources()`, which cached the first rejection and made retry and close rethrow it after the filesystem was repaired. File history points to the August 15 commit that introduced first-use initialization, and the two later refactor diffs leave that cache untouched. The August diff is unavailable, so the attribution rests on the commit subject and file history."
+}

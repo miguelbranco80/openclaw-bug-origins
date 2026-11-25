@@ -1,0 +1,17 @@
+{
+  "rank": 228,
+  "sha": "306bf7730b0108e863a6ecfc549bc8289d9bddc7",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible beyond extra CPU and allocation while streaming replies containing inline code or literal call-like prose.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Shares lazy code-protection ownership across tool-call candidate classification and lets the carried fence scanner settle paragraphs and judge unfinished lines, avoiding redundant full Markdown parses during plain-text tool-call streaming.",
+  "reasoning": "The PR frames itself as bounded waste removal measured against a benchmark, with output byte-for-byte unchanged and no reported failure or earlier faster state; it names no commit that made streaming slower. Under the rubric this is a performance improvement of code that was never faster before, so not-a-defect."
+}

@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "Reviewer B reported no findings."},
+    "C": {"flagged": "none", "finding": null, "note": "Reviewer C reported no findings."},
+    "D": {"flagged": "exact", "finding": 2, "note": "The finding identifies the missing statement observer on the ordinary SQLite read-only connection used by cron hydration, which leaves slow warnings with an empty statement summary."},
+    "E": {"flagged": "none", "finding": null, "note": "Reviewer E reported no findings."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns GC profiler overhead during hydration transactions."}
+  }
+}

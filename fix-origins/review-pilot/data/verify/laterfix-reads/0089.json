@@ -1,0 +1,4 @@
+{"case": "0089", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "3f3a4b0c03b3 only wraps the device path label in a span for mobile alignment."},
+"F2": {"fixed": "no", "commit": null, "note": "3f3a4b0c03b3 does not touch browsed-folder apply or selectDeviceFolder rejection."},
+"F3": {"fixed": "no", "commit": null, "note": "No later fix commits touch project-chip.tsx."}}}

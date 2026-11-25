@@ -1,0 +1,1 @@
+{"rank": 187, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P1 finding concerns tokenless native bindings being replaced with a failure page on route/URL refresh, a different path from a closed window's unloaded-but-live document reconnecting after native auth refusal."}

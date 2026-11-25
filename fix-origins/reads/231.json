@@ -1,0 +1,17 @@
+{
+  "rank": 231,
+  "sha": "f91bc9900e813a80f084ef9ca29a890b827af006",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Agent validation commands left large temporary trees in host /tmp that OpenClaw never cleaned up, filling tmpfs memory and swap until an operator removed them.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Defaults TMPDIR/TMP/TEMP for core exec, local CLI runs, native Codex shells and Docker/Podman commands to the workspace's .openclaw/tmp scratch so the existing 24-hour scratch expiry reclaims them, and extends cleanup inventory to sandbox workspaces.",
+  "reasoning": "Agent commands writing to the OS default /tmp is standard behavior that OpenClaw never claimed to manage; the 24-hour scratch expiry feature (99ba844a3cd5, #193677) only covered workspace scratch by design, and this PR extends that policy by redirecting temp environment variables, a new default rather than restoring broken behavior. Blame candidates are the scratch-expiry feature and unrelated sandbox/CLI env plumbing that the change rewires, none of which broke temp routing."
+}

@@ -1,0 +1,1 @@
+{"rank": 16, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review found no defects; the only earlier item was a PR-body disclosure and a generic missing end-to-end proof note. Nothing concerns relative-looking literals flowing into native resolution or Bun panics during standalone packaging."}

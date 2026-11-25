@@ -1,0 +1,17 @@
+{
+  "rank": 215,
+  "sha": "cab71dc06f8133c28e948183ee26bef97404f75a",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible to users; startup performance collectors could stop at a green /readyz before the batched terminal timeline events had been flushed.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Gateway startup now calls flushDiagnosticsTimeline() before marking dispatch ready and before marking sidecars ready, so the batched startup timeline events are written before /readyz goes green.",
+  "reasoning": "The only effect is on the completeness of startup diagnostics that the performance collector harness reads, which is internal measurement tooling, not product behavior (the PR also notes that main's readiness does not even wait for post-attach, so the release regression test could not be ported). This is a forward-port of release-branch commits f61748814a72/166d7610dba2. A path-limited search of src/infra/diagnostics-timeline.ts found no in-window commit that introduced the batched flush, so no cause commit is identified."
+}

@@ -1,0 +1,47 @@
+{
+  "case": "0229",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugin-tree.ts:621 points the copied node_modules/openclaw link at the staged candidate, and src/plugins/plugin-package-metadata-capture.ts:254 canonicalizes the module reached through that link. src/infra/update-candidate-plugin-repair.ts:120 treats the relative specifier as a private lookup and rejects its target outside the rehearsal root before checking whether anything is missing.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugin-sources.ts:42 includes a declared Doctor contract even when the plugin is disabled, and src/plugins/plugin-generation-artifact.ts:504 propagates ERR_INVALID_PACKAGE_TARGET for an invalid imports target. The inspection at src/infra/update-candidate-plugin-repair.ts:116 runs before the contract loader's warning-and-continue handler at src/plugins/doctor-contract-registry.ts:169.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/plugins/plugin-package-metadata-capture.ts:254 captures the canonical lib/value.mjs, and src/plugins/plugin-generation-source-inspection.ts:101 inventories the captured paths without the sibling alias. When shared is outside the scanned plugin tree, the copy plans at src/infra/update-candidate-plugins.ts:358 and src/infra/update-candidate-plugin-repair.ts:214 omit shared/value.mjs, leaving the original import unresolved.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-snapshot.ts:209 allocates the inventory directory using the database-only budget, and src/infra/update-candidate-snapshot.ts:311 waits for inventory before recalculating capacity with plugin bytes. The worker uses that directory for temporary files via src/infra/update-candidate-rehearsal.ts:149 and src/infra/update-rehearsal-paths.ts:10, so the dependency writes at src/plugins/plugin-generation-artifact.ts:206 can exhaust the volume before the state-volume fallback is considered.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugin-repair.ts:116 inspects the copied entry before the completeness check at line 128, and the catch at line 162 only covers original-source inspection. A parser error in a selected copied entry, including a disabled plugin's declared Doctor contract selected at src/infra/update-candidate-plugin-sources.ts:42, therefore rejects Doctor preflight at src/commands/doctor-config-preflight-plugin-index.ts:141.",
+      "same_as": "F2"
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugins.ts:358 projects the discovered helper using src/infra/update-candidate-paths.ts:59, which preserves the plugin's extensions/demo path but puts STATE/shared/value.mjs under candidate-plugins. The copied entry's unchanged ../../shared/value.mjs resolves to REHEARSAL/shared/value.mjs, where the copy plan places no helper.",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugins.ts:349 invokes inspection during inventory without a catch, so a parser failure in a selected entry, such as a disabled plugin's declared Doctor contract, rejects inventory before the tree copy. src/infra/update-candidate-state.worker.ts:44 exits with status 1, and src/infra/update-candidate-snapshot.ts:299 turns that exit into a snapshot failure.",
+      "same_as": null
+    }
+  }
+}

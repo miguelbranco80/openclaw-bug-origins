@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "A valid default legacy memory index prevents recovery capture from sealing",
+      "file": "extensions/memory-core/src/migration/doctor-memory-sidecar.ts",
+      "line": 515,
+      "failure": "When a valid legacy index exists at stateDir/memory/main.sqlite, the retry inventory also declares main.sqlite-wal, main.sqlite-shm, and main.sqlite-journal as recovery roots, even when those files are absent. The backup consolidates the SQLite database and strips companion entries from the manifest while retaining their roots. Manifest validation rejects the entire capture with “Update recovery manifest is missing a root entry.” Doctor or the updater can then proceed without a pre-migration recovery copy.",
+      "confidence": "high"
+    },
+    {
+      "title": "An empty legacy .sqlite placeholder aborts the entire recovery capture",
+      "file": "extensions/memory-core/src/migration/doctor-memory-sidecar.ts",
+      "line": 504,
+      "failure": "When a configured legacy memory index points to a zero-byte file named main.sqlite, declaring it as kind file still sends it through the SQLite snapshot path because the backup classifier recognizes the .sqlite suffix before checking the header. The snapshot requires a nonempty source and aborts the entire capture. Doctor can then continue and delete the placeholder without a sealed recovery copy of the rest of the pre-repair state.",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 102,
+  "sha": "535cf43388e7d4b63e1c14754e1fa84a40889136",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Changing Visitor Access maxVisitors or defaultTtlDays while agent turns were active queued a full plugin replacement, so Gateway readiness failed and new runs were delayed for up to about a minute.",
+  "impact": "sequence-or-timing",
+  "area": "plugins",
+  "summary": "Visitor Access now declares maxVisitors and defaultTtlDays as hot-reload prefixes and reads them live from committed runtime config, the loader only lends a retained Gateway plugin instance when the request's plugin config matches committed config, and config writes stop injecting managed-install unset paths.",
+  "reasoning": "The fix sidesteps the generic exclusive-replacement drain (which it keeps for Cloudflare settings and explicit reloads) by opting the plugin's numeric settings into the existing hot-reload contract; the plugin never declared hot prefixes, and its code predates the 2026-09-03 graft. Whether the stall reflects an original design gap in the plugin or a later change to the plugin-reload drain machinery (many commits from #151706 to #184243 reworked replacement waiting on admitted work) could not be pinned to a specific line, so no cause is named."
+}

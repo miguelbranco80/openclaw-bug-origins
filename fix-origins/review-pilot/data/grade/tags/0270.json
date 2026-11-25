@@ -1,0 +1,1 @@
+{"rank": 270, "needs": "repo", "where": "ui/src/styles/chat/details-desktop.css:484", "note": "Needed chat-details-subagents.css and the Subagents summary markup to know .chat-details-subagents__avatar is also the stacked, hue-tinted summary chip, which the transparent/muted override and 16px row-icon slot sizing break."}

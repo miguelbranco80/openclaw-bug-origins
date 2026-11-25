@@ -1,0 +1,17 @@
+{
+  "rank": 174,
+  "sha": "00ddcde27521ca792ec20faf21347c68ba233fa2",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; developers saw Control UI size-budget checks charge or hide bytes caused by asset hash renames.",
+  "impact": "other",
+  "area": "ui",
+  "summary": "The Control UI performance budget collector now normalizes generated asset hash suffixes before compressing, reports normalized and served bytes side by side, and shares the precompression eligibility rule with the Vite build.",
+  "reasoning": "The PR states the application and served assets are unchanged; the change corrects how a CI size-budget check measures compressed bytes. That is tooling/CI measurement work titled as a fix, not a product defect."
+}

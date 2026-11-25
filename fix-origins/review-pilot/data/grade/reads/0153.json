@@ -1,0 +1,6 @@
+{"rank": 153, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No findings."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "none", "finding": null, "note": "Concerns tool guidance text, not the stale base SHA from PR details."},
+"E": {"flagged": "none", "finding": null, "note": "Concerns interrupted refresh recovery, not lagging PR base SHA."},
+"F": {"flagged": "none", "finding": null, "note": "Different refresh defects; none about the base SHA lagging the branch ref."}}}

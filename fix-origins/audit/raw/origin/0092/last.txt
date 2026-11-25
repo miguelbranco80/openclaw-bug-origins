@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The September 12 diff shows that the prior global regex already rescanned the remaining text at each unmatched `@[`, so escaped-label support did not introduce the quadratic behavior. The October refactor moved the same parser into the activity builder, and the original mention-support diff was unavailable, so I could not verify which commit first introduced the defect."
+}

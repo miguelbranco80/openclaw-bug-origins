@@ -1,0 +1,1 @@
+{"rank": 123, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The only finding is about retention pruning bypassing the engine write envelope; nothing concerns loadLogbookPortDescriptor reading the .sql schema from the bundled plugins directory in compiled installs. The data-model compatibility item is generic."}

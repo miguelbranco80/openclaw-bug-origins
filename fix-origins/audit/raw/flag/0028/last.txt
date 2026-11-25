@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge Findings section is empty, and the supplied earlier Before merge items concern merge conflicts and a CI failure. The maintainer’s runtime-eligibility comment describes blocking submission for an incompatible runtime, while the shipped bug disabled Existing folder for compatible default-runtime models with missing runtime metadata."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 41,
+  "sha": "961a9d1e469b03927565f5f2573be3256bdf0608",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "4319ddbe8cb08a49335eff22b82e3a7afe3d3201",
+  "cause_pr": 106406,
+  "confidence": "medium",
+  "cause_quote": "The new migrations.memory.apply handler called `runMigrationApply({ runtime: silentRuntime, ..., opts: { yes: true, json: true, ... allowPartialResult: true } })` with no backupOutput, so the pre-migration backup fell to the backup engine's current-directory default.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A memory import from the Control UI or onboarding wrote the pre-migration backup archive into whatever folder the Gateway or onboarding process was started from, such as a source checkout.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "Adds a preferHomeOutput backup option so Gateway memory imports and onboarding migrations write their unattended pre-migration backup to the home folder instead of the process cwd.",
+  "reasoning": "The local history is grafted at b14a2cae (2026-09-03), so I traced the Gateway memory import through gh api to its introduction in #106406, whose runMigrationApply call passes no backup output and therefore always used the cwd default that the fix overrides; onboarding (#108977) reused the same path. Nothing later changed the cwd default, so the misplaced archive shipped with the feature; confidence is medium because the pre-graft backup default was not re-read line by line."
+}

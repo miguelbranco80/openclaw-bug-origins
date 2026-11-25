@@ -1,0 +1,17 @@
+{
+  "rank": 232,
+  "sha": "3a194b5e40e717233be2f3138e9fb575528cef67",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "282fc78eaf64208d6b6db70c56557ca24fc29097",
+  "cause_pr": 155184,
+  "confidence": "low",
+  "cause_quote": "The scoped session organization change wired rename and pin through `patchReason({ label: null }, true)` / `patchReason({ pinned: true }, true)` but left `const iconReason = patchReason({ icon: null });` and `const colorReason = patchReason({ color: null });` without the own-session scope.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Users with only session-write access could not set or reset the icon and color of their own sessions from the sidebar, Chat header or Sessions page (the action was disabled or silently did nothing), and Profile could preselect an unlinked Discord account instead of the existing link.",
+  "impact": "permissions",
+  "area": "ui",
+  "summary": "Routes set-icon, set-color and reset-appearance through the own-session (sessionScope) admission in all three UI dispatchers and makes the Profile Discord picker prefer an already-linked account.",
+  "reasoning": "git log -S sessionScope on session-menu-access.ts shows #155184 introduced the narrow own-session write path and in the same diff opted label/pin into it while leaving icon/color reasons unscoped, so appearance never worked for scoped writers; the runtime dispatchers likewise never passed sessionScope for appearance. Confidence is low because #155184's description only promised rename/pin/archive/restore, so the omission may have been scope rather than a bug, and the secondary Discord account-selection issue dates from #188910 (4674051ce50a), its own introduction."
+}

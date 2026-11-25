@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The at-merge Evidence section describes transcript version validation and expected rejection after a rewrite without raising the risk that a concurrent metadata append could block initial replay. The only earlier open item concerned a PR description heading."}

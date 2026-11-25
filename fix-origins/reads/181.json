@@ -1,0 +1,17 @@
+{
+  "rank": 181,
+  "sha": "35702b4bec67c2d556356c9d86707c21cd37a26e",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "3c971255fa90a4cd2384a90849e33fe8c61282e8",
+  "cause_pr": null,
+  "confidence": "low",
+  "cause_quote": "The commit added `params.stopProgress(\"Manual OAuth entry required\")` after the callback_timeout log in the local fallback, although the browser callback kept racing the manual prompt.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During a slow OpenAI Codex browser sign-in the CLI said manual OAuth entry was required while the browser could still finish, and with the callback port unavailable it waited about 16 seconds claiming to wait for the browser.",
+  "impact": "presentation",
+  "area": "models/providers",
+  "summary": "Reworded the 16-second Codex OAuth fallback to say the browser is still racing the paste prompt, confirms completion when the browser wins, and prompts immediately with an explanation when the callback server failed to bind.",
+  "reasoning": "The PR itself shows the listening case changes words, not behavior; the misleading 'Manual OAuth entry required' / 'switching to manual entry' wording traces (via GraphQL blame and the full-history log) to 3c971255fa9 (2026-05-04), when the manual prompt already raced the callback. The earlier 'callback was unavailable' immediate branch keyed on onAuth having run, which in the in-repo flow always ran before manual input, so b10d3f70114 removed dead code rather than breaking a working path; confidence is low because the pre-graft race semantics of the then pi-ai flow were not read directly."
+}

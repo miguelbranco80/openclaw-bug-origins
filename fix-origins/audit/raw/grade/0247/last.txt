@@ -1,0 +1,34 @@
+{
+  "reviewers": {
+    "A": {
+      "flagged": "related",
+      "finding": 1,
+      "note": "It identifies the raw-versus-remapped identity mismatch in a later repair guard, while the reported failure occurs at the automatic settlement gate."
+    },
+    "B": {
+      "flagged": "related",
+      "finding": 1,
+      "note": "It identifies a repair guard that compares the live identity with unprojected identities after a remount, which points toward the same comparison error in automatic settlement."
+    },
+    "C": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The reviewer reported no findings."
+    },
+    "D": {
+      "flagged": "related",
+      "finding": 1,
+      "note": "It identifies the same raw-versus-remapped comparison error in the guard that lets repair archive an inconsistent publication."
+    },
+    "E": {
+      "flagged": "none",
+      "finding": null,
+      "note": "Both findings concern repair rejecting published launcher inodes during remount inspection."
+    },
+    "F": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The finding concerns repair comparing installed launchers against staged or previous inodes during remount inspection."
+    }
+  }
+}

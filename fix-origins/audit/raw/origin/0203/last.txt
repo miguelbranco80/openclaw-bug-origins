@@ -1,0 +1,7 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "trigger_sha": "5d3e157432a84e085eebf5a43a7ae471ff0fefbb",
+  "confidence": null,
+  "reasoning": "The earlier Activity controller and its replacement both scheduled reads on session changes and cleared the displayed error when a read started. The trigger commit added `throw sessionMutationForbiddenError(...)` for guests opening another person's timeline, so the existing refresh logic began replacing that settled denial with loading placeholders on unrelated session events."
+}

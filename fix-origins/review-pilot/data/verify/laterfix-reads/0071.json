@@ -1,0 +1,1 @@
+{"case": "0071", "findings": {"F1": {"fixed": "no", "commit": null, "note": "7ab0143fc228 only replaces json() with jsonValue() for the enabled literal on PostgreSQL 16; it does not change casting a definition containing an escaped NUL to jsonb."}}}

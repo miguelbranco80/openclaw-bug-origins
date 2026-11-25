@@ -1,0 +1,1 @@
+{"rank": 85, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review's evidence describes the switch to copyRootFileSync with clone auto but treats it as correct; no item raises writer stalls from reflinking the live database inode. Only generic items remain (failing-check attribution, missing end-to-end proof)."}

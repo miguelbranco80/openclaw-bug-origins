@@ -1,0 +1,4 @@
+{"case": "0264", "findings": {
+"F1": {"verdict": "confirmed", "impact": "user-visible", "evidence": "In ui/src/pages/new-session/composer.tsx:536-546 the direct child of the .new-session-page__composer shell is the .agent-chat__input element that gains agent-chat__input--dictating; the new unlayered rule ui/src/styles/new-session.css:820 (specificity 0,2,1) beats .agent-chat__input--dictating::after in ui/src/styles/chat/composer.css:87 (0,1,1) and sets opacity 0, background var(--accent), inset 0 and z-index 1, so the dictation comet is hidden.", "same_as": null},
+"F2": {"verdict": "confirmed", "impact": "user-visible", "evidence": "Same collision: new-session.css:820 sets opacity 0 on the dictating element's ::after with higher specificity than composer.css:87, which sets no opacity, so the recording border is invisible while dictating in New Session.", "same_as": "F1"}
+}}

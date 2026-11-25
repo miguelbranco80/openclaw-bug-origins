@@ -1,0 +1,1 @@
+{"origin":"latent","cause_sha":null,"confidence":"high","reasoning":"The release qualification failures occurred when transient ClawHub outages outlasted the existing 1s/3s/10s retry schedule and the endpoints recovered shortly afterward. The intervening diffs preserved that schedule, and the fix adds a 30-second retry with a test that succeeds after four HTTP 500 responses."}

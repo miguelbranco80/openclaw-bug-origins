@@ -1,0 +1,9 @@
+{"case": "0081", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "272e2da60d2f makes retired children resume their parent and 4eb3541d2550 explicitly keeps the lost-source failure for sub-agents; neither stops unverified-authority retired yielded runs from being settled as unreachable."},
+"F2": {"fixed": "no", "commit": null, "note": "None of the listed wake-mutation commits settles the intermediate requester's paused registry run after a rejected nested handoff."},
+"F3": {"fixed": "yes", "commit": "b9377c626147", "note": "restartResumeSkipReason no longer skips createdVia spawn sessions when the interrupted turn is a direct chat turn, so new user turns in retained spawned chats resume."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed commit makes a retried lifecycle settlement append the classified notice after the requireYielded rejection."},
+"F5": {"fixed": "no", "commit": null, "note": "The sweep-settle commits change requester-ended detection, logging and crash-interrupted children, not legacy paused rows without waitForMessage or descendants."},
+"F6": {"fixed": "yes", "commit": "703c82d20c5c", "note": "Queued-input continuation moved out of the per-session try block into a separate loop over orphaned sessions driven by stored pending inputs, so a thrown yield-failure record no longer strands accepted queued messages."},
+"F7": {"fixed": "yes", "commit": "2420b7db04c7", "note": "resolveRootSubagentRequester now follows createdVia spawn/spawnedBy ancestry from visible dashboard-key children to the true root and marks it (b9377c626147 also lets direct-chat turns in spawned sessions resume)."},
+"F8": {"fixed": "partly", "commit": "5724f9518219", "note": "5724f9518219 removes the stable-batch visible run-failed notice branch, but the yield-batch error terminal on outcome?.delivered !== true remains."}}}

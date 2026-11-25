@@ -1,0 +1,17 @@
+{
+  "rank": 239,
+  "sha": "b85de3162b1d92beefd2bbae220ff7a3599f88b6",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An Agents API continuation whose saved native session never produced an event stayed silent until the outer turn watchdog expired, and could repeat on every turn.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "Added a 120-second first-native-event deadline to Agents API attempts that fails the turn with reset guidance and session-ID logging, instead of waiting for the outer watchdog.",
+  "reasoning": "The fix adds a liveness bound that the attempt never had; blame candidates are only context lines, and no earlier commit removed a startup deadline, so this is not a regression. The failure needs the hosted native service to stall without emitting events, an external service behavior the code relied on the outer watchdog to bound. It could also be read as never-worked (the attempt shipped without a first-event bound in the September 2026 Agents API work), but no single introducing line plainly causes it."
+}

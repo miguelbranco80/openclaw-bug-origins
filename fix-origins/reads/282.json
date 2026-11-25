@@ -1,0 +1,17 @@
+{
+  "rank": 282,
+  "sha": "7e06a07a6279d1789549a1e77849698eea4915e3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "28e16eedc374234f8d71ac28ee204d99fa91504a",
+  "cause_pr": 159860,
+  "confidence": "medium",
+  "cause_quote": "#159860 added `case nativeDevice(gatewayUrl:token:password:legacyCredentials:)` to the Equatable DashboardWindowAuth (\"nil means not ready\") and retained the page on reconnect only via `} else if needsRefresh {` with the comment \"Same-principal reconnects retain the page but replace its socket-owned projections before an old observer can retire them\", so when the old socket's startup credentials retire first the auth differs and `controller.auth != auth` replaces the document.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the macOS app, a chat message queued while the Gateway was offline vanished after the same Gateway came back, with no delivery and no retry option.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "Compares macOS dashboard auth by document identity (URL, token, password) instead of full equality, so socket-owned startup credentials changing across a same-Gateway reconnect no longer replace the WebView, and refreshes the retained document's auth.",
+  "reasoning": "The socket-owned legacyCredentials projection was introduced inside DashboardWindowAuth's Equatable identity by #159860, which designed page retention only for the reconnect-before-retirement order; the fix PR reports the unchanged base fails the retirement-first case while the opposite order passes, so the defect shipped with that design rather than being broken later. Later commits (#161464) only refined the same-socket refresh path; local blobs were missing so the diff was read through the GitHub API, and the exact old-to-new comparison lines in DashboardManager could not be blamed, hence medium confidence."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 299,
+  "sha": "82210a2bbdb0fca4c7103871a6e5c39eeda6a64d",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A chat turn rejected for inactive operator authority showed an error with no instruction on how to recover.",
+  "impact": "presentation",
+  "area": "gateway",
+  "summary": "The inactive operator source/execution authority errors now append guidance to reconnect to the Gateway and resend, or ask an administrator to restore access.",
+  "reasoning": "The production diff only changes error message text; every authority and revocation check is unchanged, and the PR states the triggering revocation was not attributed and is not claimed fixed. A copy change adding recovery guidance is not a defect under the rubric."
+}

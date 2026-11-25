@@ -1,0 +1,17 @@
+{
+  "rank": 134,
+  "sha": "98a00f48e4552f4587d02b35244c5ae573acba15",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Templates and Plugins, a selected category filter chip looked almost the same as an unselected chip under the pointer.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Gave the active plugin/template catalog chip its own solid inverted fill (text-color background, canvas-color label) instead of sharing the hover style.",
+  "reasoning": "The parent CSS deliberately grouped `.plugin-catalog-chip:hover, .plugin-catalog-chip.is-active` (from #142782 and older code), so selection styling worked as designed and only looked too similar to hover; PR #202073 restyles it. Nothing broke and no commit regressed it, so this is a visual design refinement titled as a fix."
+}

@@ -1,0 +1,4 @@
+{"case": "0241", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "99d5703eeb3f makes hold acquisition reach a fixed point for out-of-order snapshots but does not remove a launcher from runningDescendants when it leaves a snapshot before its notification."},
+"F2": {"fixed": "no", "commit": null, "note": "No listed commit settles the turn when the last nested hold is cleared by a stopped task."}
+}}

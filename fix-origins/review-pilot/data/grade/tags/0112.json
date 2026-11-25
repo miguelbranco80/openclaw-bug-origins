@@ -1,0 +1,1 @@
+{"rank": 112, "needs": "repo", "where": "ui/src/components/tooltip-title.ts:65", "note": "Needed the existing security-audit.ts markup, which nests a title-bearing info hint inside an external ClawHub audit link; with ownsHoverPreview now claiming every external http(s) link, that nested hint is suppressed in favor of the page preview."}

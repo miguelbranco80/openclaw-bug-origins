@@ -1,0 +1,17 @@
+{
+  "rank": 59,
+  "sha": "fc8afdae15b979e51b4a5ac1560f861f979ad07f",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A read of a missing file in a very large directory could stall the Gateway main thread for a few hundred milliseconds while it computed filename suggestions.",
+  "impact": "slower-or-heavier",
+  "area": "agents",
+  "summary": "Made the read tool's missing-file suggestions pass the distance cutoff into the shared bounded Levenshtein helper, skip impossible lengths, and trimmed per-cell guards and row-minimum rescans in that helper.",
+  "reasoning": "This is a performance optimization of a linear suggestion scan that the PR does not show was ever faster; results are identical before and after. Blame candidates are a refactor that added the bounded helper (32379ad) and a row-reuse perf change (c09eda8), neither of which made the read path slower, so there is no regressing commit and no functional failure."
+}

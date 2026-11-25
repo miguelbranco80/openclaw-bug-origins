@@ -1,0 +1,1 @@
+{"rank": 100, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review at merge had no findings; earlier versions raised generic data-model compatibility proof and an unrelated plugin allowlist P1, nothing about capturing the registry snapshot before a cold first-use database is created."}

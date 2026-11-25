@@ -1,0 +1,17 @@
+{
+  "rank": 100,
+  "sha": "e45fb2a22271748d5ed7425f1a5a8b03a2a4ac75",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "2c4413a6abbfeb4ac23cd07b775a105586548af1",
+  "cause_pr": 197510,
+  "confidence": "medium",
+  "cause_quote": "#197510 began holding `const registry = prepareOpenClawAgentDatabaseRegistrySnapshotRead({ env: environment.env }, registryFilter)` before storage readiness, with capturedSources seeded from `admitted.get(candidate.path)?.key` (undefined for a not-yet-created store), and only re-spliced qualified identities after `registry.assertCurrent()`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The first chat request to a fresh agent could fail with a storage-unavailable error while its database was still being created.",
+  "impact": "sequence-or-timing",
+  "area": "gateway",
+  "summary": "Waits for an already-running first-use database creator before capturing the registry witness and classifies registrations against physically qualified identities earlier, plus a private fixture state directory for tests.",
+  "reasoning": "The removed lines blame to #197510 (12 of 16), landed one day before the fix; its diff moved the registry snapshot and registration observation ahead of the readiness wait while the qualified capturedSources splice stayed after registry.assertCurrent(), which is exactly what the fix reorders. Before #197510 the registry mutation filter was built after readiness from fully qualified candidateIdentities. Medium because I did not run or fully trace that the pre-#197510 path served cold first chats, and the fix PR was opened before #197510 merged (its first-chat part was added after)."
+}

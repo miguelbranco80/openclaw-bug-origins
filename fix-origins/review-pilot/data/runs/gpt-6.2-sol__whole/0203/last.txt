@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "title": "Foreign-filter response reveals whether an agent has hidden sessions",
+      "file": "src/gateway/session-utils-list.ts",
+      "line": 98,
+      "failure": "On the cached WebSocket list path, a session-only guest who supplies a foreign ownerId and an agentId gets a successful empty result when the configured agent has no sessions. Once another user creates a draft on that agent, the same request returns FORBIDDEN even though the draft is invisible to the guest. Empty partitions skip authorization, while nonempty partitions run it before checking row visibility.",
+      "confidence": "high"
+    },
+    {
+      "title": "Person privacy check blocks filters for agent-owned sessions",
+      "file": "src/gateway/session-profile-activity-policy.ts",
+      "line": 58,
+      "failure": "A session-only guest can see a shared session whose assigned owner is the agent main, but filtering the list by ownerId main now returns FORBIDDEN with a message about other people's activity. The existing owner filter accepts agent identities, and the new guard treats every owner ID as a human profile ID.",
+      "confidence": "high"
+    },
+    {
+      "title": "Saved owner filter leaves the sidebar on a denied query after demotion",
+      "file": "ui/src/components/session-owner-filter.ts",
+      "line": 149,
+      "failure": "A member who saves another person's sidebar owner filter keeps that preference after becoming a guest. In the agent-chip sidebar, the restored filter now produces FORBIDDEN, and the automatic reset requires a successful result from that same query. The sidebar stays on the failed filter across reloads until the user manually chooses a different owner filter.",
+      "confidence": "high"
+    },
+    {
+      "title": "Everyone shows the guest's personal session count",
+      "file": "src/gateway/session-list-filters.ts",
+      "line": 562,
+      "failure": "If a guest can see two shared sessions and is associated with only one, the Activity people picker shows 1 next to Everyone even though choosing Everyone shows both sessions. The picker uses peopleSessionCount for the full time window, but the new calculation counts only sessions associated with the guest.",
+      "confidence": "high"
+    }
+  ]
+}

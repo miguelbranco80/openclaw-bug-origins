@@ -1,0 +1,17 @@
+{
+  "rank": 274,
+  "sha": "5724f95182197bef11ed726debf42beee3eda002",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A yielded parent agent waiting on several subagents could lose all of their finished results, sometimes with no failure notice, when one child in the completion batch had no live Gateway binding (after restart, visible spawning, or binding cleanup).",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Partitions frozen subagent completion batches by Gateway owner and retirement state, captures the caller's Gateway binding at visible spawn and watched follow-up registration, routes yielded-batch failures through the required-completion notice owner, and keeps Talk final attachments working across partitions.",
+  "reasoning": "The batch-wide failure comes from getSharedGatewayContextResolver throwing 'incompatible Gateway bindings: bound and unbound owners' for mixed batches. That throw is in gateway-context-binding.ts, which c69b8b98686 (#153508, an unrelated subject) created, and the -S search on its likely prior home in gateway-request-scope.ts timed out. Mixed batches also depend on separate gaps: restored rows lose their in-memory binding, and visible spawn did not capture the binding, from code I traced back to before the graft. The lost failure notice involves the yielded-batch path from #198807 and #163195. No single commit plainly introduced the failure, so I can't name a causing line with a straight face."
+}

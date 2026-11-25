@@ -1,0 +1,4 @@
+{"case": "0085", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "No listed commit converts the guarded helper's not-found/identity errors into retryable SqliteSourceChangedError when the rollback journal disappears; 751d5f8b6634 only renames error reasons."},
+"F2": {"fixed": "no", "commit": null, "note": "The listed commits change clone mode, staging, digest binding and a WAL online-backup fallback, but not FsSafeError retry on sidecar churn in copySourceFile."},
+"F3": {"fixed": "no", "commit": null, "note": "8662c66b9050 handles EFS EXDEV renames, not Windows 8.3 short-path realpath mismatches; no other commit concerns it."}}}

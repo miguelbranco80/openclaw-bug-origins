@@ -1,0 +1,1 @@
+{"rank": 186, "needs": "repo", "where": "extensions/codex/src/app-server/session-history.ts:112", "note": "Had to know that bounded model-context reads drop the oldest turns and that stored transcript bytes (reasoning, base64 screenshots, large tool output) far exceed 8 bytes per budget token, whereas the embedded runner's own history guard is a fixed 16 MiB / 10,000 events."}

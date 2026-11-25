@@ -1,0 +1,11 @@
+{
+  "case": "0071",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/cron/normalize-payload.ts:76 preserves an embedded NUL in a nonblank agent prompt, and src/cron/store/row-codec.ts:67 serializes it as an escaped \\u0000 in the PostgreSQL text column. A retained one-shot is disabled at src/cron/service/timer-outcomes.ts:358, triggering the update at src/cron/store/row-codec.ts:660 that casts the entire definition to jsonb at src/infra/database-engine/json-values.ts:211, where PostgreSQL rejects the escape and rolls back both the running-marker clear and the history write in the transaction at src/cron/store/run-finalization.worker.ts:30.",
+      "same_as": null
+    }
+  }
+}

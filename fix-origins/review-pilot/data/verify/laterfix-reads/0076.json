@@ -1,0 +1,6 @@
+{"case": "0076", "findings": {
+"F1": {"fixed": "partly", "commit": "a509a56e61be", "note": "a509a56e61be (listed under systems.css) cuts the sizing select's end padding to 28px so the full size shows on the Systems phone toolbar, but only inside .systems-desktop; the desktop-panel.css commits do not touch the sizing select."},
+"F2": {"fixed": "no", "commit": null, "note": "No listed components.css commit changes the select popup width or adds tooltips for long device names."},
+"F3": {"fixed": "partly", "commit": "a509a56e61be", "note": "a509a56e61be ('show the full desktop size on the Systems phone toolbar') reduces the chevron inset so the label fits, scoped to the Systems page rather than the shared desktop-panel rule."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed commit changes the chevron padding side for right-to-left layouts."},
+"F5": {"fixed": "no", "commit": null, "note": "The systems.css commits change typography, fullscreen button styles and sizing-select padding, not the machine picker's focus indicator."}}}

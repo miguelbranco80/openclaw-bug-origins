@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The “Ordinary Stop and session drain bounds” provenance item says unbounded local settlement is confined to agent deletion. It treats that scope as intentional and raises no concern about worker capacity with large idle session histories or catalog availability during pending deletion."
+}

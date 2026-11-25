@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The findings concern an unreadable Canvas directory and repeated declarations of host-event archives."},
+    "B": {"flagged": "none", "finding": null, "note": "Reviewer B reported no findings."},
+    "C": {"flagged": "related", "finding": 2, "note": "The finding examines how SQLite companion paths enter the recovery manifest and focuses on companions created after capture."},
+    "D": {"flagged": "none", "finding": null, "note": "Reviewer D reported no findings."},
+    "E": {"flagged": "exact", "finding": 1, "note": "The finding identifies that capture removes SQLite companion entries while retaining their declared roots, causing the reported manifest validation error."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns SQLite snapshotting rejecting an empty or malformed legacy database."}
+  }
+}

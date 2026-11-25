@@ -1,0 +1,1 @@
+{"rank": 87, "needs": "repo", "where": "src/infra/sqlite-transaction.ts:478", "note": "Statement timing only counts statements on connections wrapped by observeConnection; the ordinary read-only agent database opener (not in the diff) never wraps, so hydration timing always reports zero statements, while the diff's benchmark wraps its handle explicitly and hides this."}

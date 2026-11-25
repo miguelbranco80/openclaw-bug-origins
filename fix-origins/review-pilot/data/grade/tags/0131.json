@@ -1,0 +1,1 @@
+{"rank": 131, "needs": "outside", "where": "ui/src/styles/components.css:359", "note": "Requires knowing WebKit repaints a masked layer every frame when the mask sits on the rotating animated element, a browser rendering cost only visible by profiling."}

@@ -1,0 +1,35 @@
+{
+  "case": "0044",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/pages/chat/chat-view.tsx:623 replaces the transcript with the full-pane error scrollport when history fails and the transcript is empty. With a two-line error message in the 260px stage defined by ui/src/styles/chat/conversation-notices.css:8, Retry ends 7px above the scrollport’s bottom at maximum scroll, so the 28–35px overlap from ui/src/styles/chat/startup-layout.css:182 covers 21–28px of the 40px button.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/pages/chat/components/chat-composer-view.tsx:380 places the pill above the approval, and ui/src/styles/chat/composer-mobile.css:74 lets the approval shrink while the pill keeps its height. With a 10px approval and the default 28px overlap, a centered pill ends 56px above the transcript bottom, clearing the band checked by ui/src/pages/chat/components/chat-transcript-layout-owner.ts:293 but intersecting the raised button at ui/src/styles/chat/layout.css:797–812, which receives the tap and jumps to latest via ui/src/pages/chat/chat-view.tsx:652.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/pages/chat/chat-view.tsx:623 renders the full-pane error in place of the transcript, so it bypasses the padding at ui/src/styles/chat/startup-layout.css:53 while the footer still overlaps it at line 182. The stage at ui/src/styles/chat/conversation-notices.css:8 centers within the full scrollport, leaving Retry partly covered in a short pane and placing the error content 14–17.5px below the visible region’s midpoint in a taller pane.",
+      "same_as": "F1"
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/pages/chat/chat-view.tsx:682 mounts the footer after the transcript, and ui/src/styles/chat/startup-layout.css:174 makes it a full-width positioned box that hit-tests over the bottom band, including the scrollbar gutter defined at line 83. The handler at ui/src/pages/chat/chat-view.tsx:604 forwards wheel input only, leaving clicks and drags in that band with the footer.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ui/src/styles/chat/composer-surface.css:9 centers and caps the width of the composer shell, while ui/src/styles/chat/startup-layout.css:174 positions the full-width footer over the transcript’s bottom band. A link beside the notice stays visible through the transparent footer, but the footer receives the click until the link scrolls above the overlap.",
+      "same_as": "F4"
+    }
+  }
+}

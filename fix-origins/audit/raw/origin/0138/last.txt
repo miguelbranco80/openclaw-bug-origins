@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "f84a3aafa3b704bef77c57645396688c29d082c8",
+  "confidence": "high",
+  "reasoning": "The parent diff shows that the existing CLI maintenance-lock contention path previously returned a retry message without reading the lease. This commit added `captureStalledGatewayStartup(env)?.description` to that path, and its new helper called `readGatewayOwnerLease({ env, current: true })` for owners past five minutes. I checked the SQLite reader diff and confirmed that without `allowNativeRead`, this lookup takes the full snapshot path."
+}

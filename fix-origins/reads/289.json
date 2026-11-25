@@ -1,0 +1,17 @@
+{
+  "rank": 289,
+  "sha": "e6a222e1621ad6ace61be404b62987f4d4aeae0d",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "de1d329e316755fa5b83235e484ba491ac1492e0",
+  "cause_pr": 93678,
+  "confidence": "medium",
+  "cause_quote": "The new resolveAuthorizedDreamingSidecar set `selectedMemoryPluginId = normalizeLowercaseStringOrEmpty(params.memorySlot)` and then required `params.manifestRegistry.plugins.find((plugin) => plugin.id === selectedMemoryPluginId)`, replacing the earlier `pluginId !== dreamingEngineId` exemption, so a mixed-case memory plugin ID no longer matched its manifest and the sidecar was not authorized.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With a selected memory plugin whose declared ID has mixed case, recall worked but the bundled dreaming sidecar's intent tool was missing.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "Stops lowercasing the selected memory plugin ID in the startup dreaming-plugin planner and in the loader's dreaming sidecar authorization, using the slot normalizer so the declared ID matches its manifest.",
+  "reasoning": "GraphQL blame at the pre-split loader.ts shows the lowercased manifest lookup came from de1d329e (June 2026, #93678); before it, 5fde14b's resolveDreamingSidecarEngineId only lowercased to compare against \"none\"/memory-core and the loader exempted memory-core via `pluginId !== dreamingEngineId`, which worked regardless of the selected ID's case. Later refactors (f1fc708f75c, a38b64b2fea5) preserved the lowercasing. Medium because I did not confirm the startup-planner side's history or that mixed-case declared IDs were preserved through slot normalization before June."
+}

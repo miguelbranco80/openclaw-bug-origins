@@ -1,0 +1,7 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "When PostgreSQL loses its connection during COMMIT, the new write path throws a canonical SqliteWorkerError and this backend catches it into encodeWorkboardSqliteFailure.",
+  "outcome": "open-at-merge",
+  "note": "The P2 finding on uncertain-outcome classification identified the Workboard catch that turns connection loss into a reply. Preserving the error classification would still leave the worker reusing the dead connection on later requests."
+}

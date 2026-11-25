@@ -1,0 +1,17 @@
+{
+  "rank": 15,
+  "sha": "7d6f503c9cdc9a3960f4c0d5a56b17f703c9629d",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Pressing Ctrl+C or sending SIGTERM during a Gateway-run `openclaw sessions cleanup` left the CLI waiting until the launcher force-killed it (exit 137 instead of 130/143).",
+  "impact": "sequence-or-timing",
+  "area": "cli",
+  "summary": "Passed the command's async-work abort signal into the Gateway sessions.cleanup call and rethrew the abort before the local-fallback decision.",
+  "reasoning": "Like the sibling cron fixes (#187726, #197315, #199955), this extends the newer CLI interrupt-cancellation contract to an older command; the Gateway delegation path (#159223 and earlier) never took a signal, and the process still terminated via the forced-cleanup kill. The added throwIfAborted guard only protects the newly passed signal, so no earlier commit broke working behavior."
+}

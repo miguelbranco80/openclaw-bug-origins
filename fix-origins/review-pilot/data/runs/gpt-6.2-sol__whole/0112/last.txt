@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "title": "Hover sends a prefilled update report to GitHub",
+      "file": "ui/src/components/link-reader-target.ts",
+      "line": 131,
+      "failure": "When update reporting falls back to a prefilled GitHub issue and its URL is at most 2,048 characters, hovering or keyboard-focusing Open prefilled issue sends the URL through the Gateway to GitHub. The query contains the full report title and diagnostic body, so GitHub receives them even if the operator leaves without opening the issue form.",
+      "confidence": "high"
+    },
+    {
+      "title": "Hover and focus changes inside the link reader go unnoticed",
+      "file": "ui/src/components/link-reader-hovercard.ts",
+      "line": 295,
+      "failure": "Links in a GitHub issue body are inside the link reader panel's shadow root. When the pointer moves from issue text onto a link, or keyboard focus moves between controls in that same root, the browser keeps the transition events inside the root. The provider's outside listeners miss them, so previews can fail to open. If a preview was opened by entering the link from outside the root, moving onto nearby issue text can leave the preview open and allow a brief hover to trigger a fetch.",
+      "confidence": "high"
+    },
+    {
+      "title": "Hovercards lose their styles inside shadow-root modals",
+      "file": "ui/src/components/portaled-hovercard.ts",
+      "line": 365,
+      "failure": "Hovering Open original in a chat lightbox for an external image or video mounts the preview inside the lightbox's shadow root. The document stylesheet cannot reach the card there, even after popover promotion. The preview uses browser-default layout and loses its intended width, height, and image sizing.",
+      "confidence": "high"
+    },
+    {
+      "title": "Empty previews hide authored link hints",
+      "file": "ui/src/components/tooltip-title.ts",
+      "line": 67,
+      "failure": "After the hover runtime loads, a Markdown link with a title such as Requires administrator access loses that hint whenever public preview is enabled. If the destination has no metadata or the request fails, the card falls back to the visible link text and hostname, leaving the authored warning unavailable on both hover and keyboard focus.",
+      "confidence": "high"
+    }
+  ]
+}

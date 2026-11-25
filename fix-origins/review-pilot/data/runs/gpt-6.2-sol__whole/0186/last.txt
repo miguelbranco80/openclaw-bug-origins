@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "title": "An older ambiguous tool result blocks a valid recent context",
+      "file": "src/config/sessions/session-accessor.sqlite-model-context.ts",
+      "line": 230,
+      "failure": "If two older calls share an ID and a displaced result matches both, a size limit can cut away just one of those calls. The reader then rejects the entire context because the result would gain an owner. It rejects even when a shorter suffix containing a newer complete tool frame and the latest user message fits. Codex consequently fails before submitting the next turn.",
+      "confidence": "high"
+    },
+    {
+      "title": "A history read failure suppresses successful compaction reporting",
+      "file": "extensions/codex/src/app-server/event-projector-tool-transcript.ts",
+      "line": 602,
+      "failure": "If Codex completes native compaction after the current turn adds a mirrored message or tool frame that exceeds the history budget, the completion handler's history read throws. The notification controller only logs the exception at debug level. The handler skips the after-compaction hook, the transcript activity entry, and the compaction-end event, so the session can omit a compaction that actually completed.",
+      "confidence": "high"
+    },
+    {
+      "title": "An empty branch summary can erase the bounded context",
+      "file": "src/config/sessions/session-accessor.sqlite-model-context.ts",
+      "line": 264,
+      "failure": "A caller can append a short user message followed by a branch summary with an empty summary string. With maxEvents set to 1 and enough bytes for either entry, the bounded reader spends the only slot on the summary. The context builder skips empty branch summaries, so the caller receives an empty message list even though the latest visible message fits.",
+      "confidence": "high"
+    }
+  ]
+}

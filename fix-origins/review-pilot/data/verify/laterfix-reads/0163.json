@@ -1,0 +1,7 @@
+{"case": "0163", "findings": {"F1": {"fixed": "no", "commit": null, "note": "No later fix commits touch skill-workshop-plugin-migration.ts."},
+"F2": {"fixed": "yes", "commit": "d80b444161de", "note": "After a successful enable, a 15s timer rechecks plugins.list and shows a reload state instead of a permanently busy button."},
+"F3": {"fixed": "yes", "commit": "d80b444161de", "note": "Same recheck-after-enable turns the stuck 'Turning on...' state into a reload/retry state when Workshop methods never appear."},
+"F4": {"fixed": "partly", "commit": "e1cb4f4787a0", "note": "Hides the enable button when plugins.enabled is false, but not for plugins.deny or read-only config."},
+"F5": {"fixed": "no", "commit": null, "note": "No later fix commits touch the legacy runtime migration file."},
+"F6": {"fixed": "no", "commit": null, "note": "sync() still returns early for the same client; no listed commit rereads plugins.list on plugin generation changes."},
+"F7": {"fixed": "no", "commit": null, "note": "No later fix commits touch skill-workshop-plugin-migration.ts."}}}

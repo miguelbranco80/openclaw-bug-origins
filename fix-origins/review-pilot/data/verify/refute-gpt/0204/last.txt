@@ -1,0 +1,29 @@
+{
+  "case": "0204",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/canvas/doctor-contract-api.ts:41 calls a directory listing that throws on EACCES or ENOTDIR (extensions/canvas/src/config-migration.ts:51–65), and the unguarded await in src/plugins/doctor-migration-resources.ts:47 aborts baseline capture at src/infra/update-recovery-baseline-capture.ts:245. The updater logs the capture failure and continues at src/cli/update-cli/update-command-initialization-run.ts:226–242, but rehearsal plan collection can still fail because it awaits the collector before the detector’s catch at src/infra/state-migrations.plugin-doctor.ts:214–240.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/memory-core/src/migration/doctor-memory-sidecar.ts:509–517 declares the default index’s companion paths even when absent, and src/infra/update-recovery-baseline-capture.ts:543–565 keeps those roots while filtering out their entries, triggering the missing-root error at src/commands/backup-verify-manifest.ts:172–173. Standalone Doctor and the updater can continue after the failed capture at src/commands/doctor-original-capture.ts:118–134 and src/cli/update-cli/update-command-initialization-run.ts:226–242.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "extensions/memory-core/src/migration/doctor-host-events.ts:532–562 inventories retained archives without checking their checkpoints, so later live captures can include them again. The claimed recurring rehearsal deferral is prevented by src/infra/update-candidate-rehearsal.ts:79–125, which rewrites configured agent workspaces into the rehearsal root, and src/commands/doctor-update-rehearsal-inventory.ts:25–83 rejects a copied configuration that retains an outside workspace.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The file declaration at extensions/memory-core/src/migration/doctor-memory-sidecar.ts:500–505 reaches the classifier at src/infra/update-database-backup.ts:181–187, where src/infra/sqlite-file-header.ts:3–11 accepts the .sqlite suffix before reading the header. Backup requires a nonempty snapshot source at src/infra/update-database-backup.ts:294–304 and fails at src/infra/sqlite-snapshot.ts:93–103, while standalone Doctor can continue past the capture error at src/commands/doctor-original-capture.ts:118–134 and remove the empty placeholder at extensions/memory-core/src/migration/doctor-memory-sidecar.ts:389–403.",
+      "same_as": null
+    }
+  }
+}

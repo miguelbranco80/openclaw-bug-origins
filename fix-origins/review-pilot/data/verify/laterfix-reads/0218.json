@@ -1,0 +1,10 @@
+{"case": "0218", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "No listed post-update commit rechecks the interruption after the pending result is computed during terminal history capture."},
+"F2": {"fixed": "no", "commit": null, "note": "Listed mutable-signals commits address deadline clock, SIGHUP routing, ledger-retirement cancellation and recovery scope, not overwriting an existing failure reason/step with 'interrupted'."},
+"F3": {"fixed": "no", "commit": null, "note": "89ab73c2fd2e keeps verified updates successful after maintenance errors but still applies captured.interruptedResult to the final result; no listed commit stops a late signal from rewriting a verified success."},
+"F4": {"fixed": "no", "commit": null, "note": "Execution-guards commits change interruption error types, recovery-scope exemption and deadline checks, not the signal tracker's phase during post-stop revalidation."},
+"F5": {"fixed": "no", "commit": null, "note": "No listed execution.ts commit changes how the forward cancellation scope treats the Git runner's checkout recovery commands."},
+"F6": {"fixed": "no", "commit": null, "note": "4b0411a781b4 makes the recovery deadline monotonic and 637b6aaae76a reroutes SIGHUP; repeated signals are still dropped during the recovery budget."},
+"F7": {"fixed": "no", "commit": null, "note": "No listed execution.ts commit makes the pre-started staged install pipeline observe the activation cancellation scope."},
+"F8": {"fixed": "no", "commit": null, "note": "7888afec8bf2 keeps parent signal admission after candidate ledger retirement but does not propagate the interruption to the candidate finalization worker."}
+}}

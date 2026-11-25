@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The finding describes an incorrect denial when a guest filters shared sessions by an agent ID."},
+    "B": {"flagged": "none", "finding": null, "note": "The finding concerns valid agent owner and creator filters being rejected by the gateway."},
+    "C": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns the gateway treating agent IDs as foreign profile IDs when filtering shared sessions."},
+    "E": {"flagged": "none", "finding": null, "note": "The findings concern gateway authorization, a stale sidebar filter, and a picker count, leaving Activity’s reload after a settled denial unaddressed."},
+    "F": {"flagged": "none", "finding": null, "note": "The repeated denials described come from a persisted sidebar filter being sent on each load and refresh."}
+  }
+}

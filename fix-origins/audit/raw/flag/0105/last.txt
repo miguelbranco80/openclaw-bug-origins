@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Stored data model section mentions standing intents as a schema change requiring upgrade validation. The Before merge items across the supplied versions raise no concerns about tokenization or trigger matching in unspaced CJK prompts."
+}

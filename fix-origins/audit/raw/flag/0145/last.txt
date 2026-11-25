@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The at-merge Label justifications describe model identity as part of the replay fence without identifying it as a risk. The earlier findings address provider rejection and oversized worker payloads, which are separate causes of replay failure."}

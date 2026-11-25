@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The earlier “Add data-model compatibility proof” item asked broadly whether stored data would work after upgrade. The at-merge “Existing migration ownership retained” item described Doctor advancing the schema without raising the risk that a pending runtime pin could leave the app launching the old seeded Gateway."
+}

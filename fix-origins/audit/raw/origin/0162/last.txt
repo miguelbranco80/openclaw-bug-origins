@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "34a6d38b187fe90785ade0eb3584571f36a63ff8",
+  "confidence": "high",
+  "reasoning": "The pre-change status code already read the plugin ledger for drift, and I checked that the reader used the native read-only path when called without the option. The commit added `artifactPreservingReadOnly: true` to that existing call, selecting the snapshot path and allowing an interrupted copy to leave a partial database behind."
+}

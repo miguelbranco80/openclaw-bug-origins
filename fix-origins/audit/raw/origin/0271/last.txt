@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The October blame candidate replaced an existing `access was revoked` branch with a lookup that returned the same message. The September 13 diff shows that allowed navigation already retired page reads while preserving tab authority, but the August diffs needed to establish when that rejection first produced the misleading message were unavailable."
+}

@@ -1,0 +1,6 @@
+{"rank": 130, "reviewers": {"A": {"flagged": "exact", "finding": 1, "note": "States that a removed worktree hits removedAt and throws 'Local workspace review owner changed' on Review."},
+"B": {"flagged": "none", "finding": null, "note": "About base_commit hiding earlier task commits."},
+"C": {"flagged": "none", "finding": null, "note": "About base_commit hiding earlier task commits."},
+"D": {"flagged": "exact", "finding": 3, "note": "States that Review of an archived session with a cleaned-up checkout fails with the owner-changed error."},
+"E": {"flagged": "none", "finding": null, "note": "About base selection and refresh races."},
+"F": {"flagged": "none", "finding": null, "note": "About a refresh race."}}}

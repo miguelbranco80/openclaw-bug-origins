@@ -1,0 +1,7 @@
+{"rank": 247, "reviewers": {
+"A": {"flagged": "related", "finding": 1, "note": "Flags a guard comparing raw instead of remount-mapped identities, but in repair and with a different consequence, not the automatic settlement gate."},
+"B": {"flagged": "related", "finding": 1, "note": "Notes the fallback guard compares unprojected identities, a sibling of the raw-identity automatic gate, but describes repair over-archiving."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "related", "finding": 1, "note": "Raw-vs-projected identity guard mismatch in repair points toward the same mechanism but not the automatic settlement refusal."},
+"E": {"flagged": "none", "finding": null, "note": "Launcher publication inode records are a different defect."},
+"F": {"flagged": "none", "finding": null, "note": "Launcher publication inode records are a different defect."}}}

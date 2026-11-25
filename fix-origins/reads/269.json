@@ -1,0 +1,17 @@
+{
+  "rank": 269,
+  "sha": "1cf477ee81337da45e57968e928fb91ad94e84eb",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; only the iOS release screenshot UI test spent tens of seconds dismissing the keyboard.",
+  "impact": "slower-or-heavier",
+  "area": "apps",
+  "summary": "Resolves the chat transcript gutter point once and taps it relative to the app origin in the iOS screenshot UITest, avoiding repeated transcript lookups during tap synthesis.",
+  "reasoning": "The only file changed is apps/ios/UITests/OpenClawSnapshotUITests.swift; the PR states app behavior and captured screens are unchanged and it only speeds up screenshot-test automation. A test-tooling performance change is not-a-defect under the rubric; the slow gutter tap came from af1b5e2 (#185676), which was a working (if slow) test step."
+}

@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "[P1] Withdraw cached browser identity after Serve exit",
+  "note": "The earlier finding flagged stale identity when Serve went down, and the at-merge Evidence section treated withdrawal as covered. Testing the full outage and recovery cycle could have exposed the missing renewal for operator hellos sent while Serve was unavailable."
+}

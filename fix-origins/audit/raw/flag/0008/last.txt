@@ -1,0 +1,6 @@
+{
+  "flagged": "exact",
+  "where": "earlier-only",
+  "quote": "Adding grid layout without a bounded column lets the implicit auto track expand to the receipt's unbroken text width.",
+  "note": "The earlier “Constrain the new grid” item identified the same activity-grid overflow and proposed the bounded column used in the later fix. The bot dropped the item from its open findings after reporting that the merged head had added that column, which conflicts with the bundle’s account of what shipped."
+}

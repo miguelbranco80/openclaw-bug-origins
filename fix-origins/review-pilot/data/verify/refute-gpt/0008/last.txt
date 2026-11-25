@@ -1,0 +1,47 @@
+{
+  "case": "0008",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The summary button is a direct child of the activity group in ui/src/pages/chat/components/chat-message-activity-view.tsx:159–187, so the grid at ui/src/styles/chat/tool-cards.css:1037–1042 stretches it when the more specific rule at ui/src/styles/chat/grouped.css:2135–2141 sets width to auto. The full-width button carries the live border and centered content or the completed summary's click target and focus outline.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The multi-session wait button at ui/src/pages/chat/components/chat-handoff-sessions.tsx:96–114 renders the shared chevron defined at line 59 without a class that matches the reveal selectors. Its opacity stays at zero under ui/src/styles/chat/tool-cards.css:132–142 and 228–242 even when expanded, hovered, or focused.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The two-class selector at ui/src/styles/chat/grouped.css:2157–2160 wins over the coarse-pointer padding at ui/src/styles/chat/tool-cards.css:1179–1184, leaving completed summaries about 20px tall with the resting chevron hidden by line 139. Before the change, the more specific bubble rule supplied 4px vertical padding and a 28px minimum height, so the reported 35px starting height is overstated.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The mixes at ui/src/styles/chat/tool-cards.css:91–94, applied to file links at line 194 and to secondary text at lines 213–215 and 341–346, yield resting label contrast of about 3.6:1 in Absolutely Light and 5.6:1 in Beacon Light against their default content backgrounds. The palette values at ui/public/themes/absolutely.css:115–130 and ui/public/themes/beacon.css:117–127 give prior ratios of about 4.6:1 and 7.5:1, with new secondary ratios of about 2.2:1 and 2.8:1, respectively.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "In browsers that focus buttons on mouse click, ui/src/styles/chat/tool-cards.css:118–120 keeps the row text at full color while the row or a descendant retains focus. The toggle at ui/src/pages/chat/components/chat-tool-card-row.solid.tsx:288–314 updates expansion while the row stays mounted, and the file-link button defined at line 90 can trigger the same styling while it retains focus.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The grid at ui/src/styles/chat/tool-cards.css:1037–1042 stretches the bubble summary whose width is set to auto at ui/src/styles/chat/grouped.css:2135–2141. The click handler at ui/src/pages/chat/components/chat-message-activity-view.tsx:172–187 is on the whole button, so blank space beyond the label also toggles details.",
+      "same_as": "F1"
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Both the wait button at ui/src/pages/chat/components/chat-handoff-sessions.tsx:96–114 and the resumed handoff button at lines 175–184 render the same chevron defined at line 59. Neither button matches the reveal selectors at ui/src/styles/chat/tool-cards.css:228–242, so the zero opacity at line 139 applies in every state.",
+      "same_as": "F2"
+    }
+  }
+}

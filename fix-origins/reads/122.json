@@ -1,0 +1,17 @@
+{
+  "rank": 122,
+  "sha": "70806e1a540552a600b97798ff1209c2e6d149b3",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In the Control UI chat (notably in WebKit/Safari), double-clicking the empty gap between messages painted a blue selection strip across the whole conversation column.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Made multi-click presses on the transcript row margin clear the selection instead of selecting an inter-turn newline, and made the virtual row's own ::selection transparent so only its contents paint the highlight.",
+  "reasoning": "The fix only adds lines; blame context points at #185560 (which bounded double-click selection only when the press lands inside a .chat-bubble and returns early otherwise), #198922 and #199123, none of which added the row-gap selection painting. The behavior is native WebKit selection of a newline between flow-root virtual rows, which appears to have existed as long as this transcript layout, but I found no evidence it ever worked or a specific commit that introduced it, so the origin cannot be pinned with a straight face."
+}

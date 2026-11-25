@@ -1,0 +1,39 @@
+{
+  "findings": [
+    {
+      "title": "Restart drops user turns in previously spawned dashboard chats",
+      "file": "src/config/sessions/session-run-lifecycle-projection.ts",
+      "line": 114,
+      "failure": "After a visible spawned task finishes, a user can reopen its dashboard chat and start a new turn. If the Gateway restarts during that turn, the session's original `createdVia: \"spawn\"` stamp prevents shutdown from saving a recovery marker and startup from recovering the turn. The user's follow-up no longer resumes as it did before the change.",
+      "confidence": "high"
+    },
+    {
+      "title": "Upgrade closes legacy paused tasks that still accept continuations",
+      "file": "src/agents/subagents/registry/subagent-registry-sweep-settle.ts",
+      "line": 52,
+      "failure": "A paused native child saved by an older release can have neither a `waitForMessage` flag nor descendants. Its controlling requester could previously resume that exact task with `sessions_send`. After upgrade, the first sweep classifies the restored row as unreachable and settles it, so the requester loses the ability to continue the original task even when the requester is still present.",
+      "confidence": "high"
+    },
+    {
+      "title": "Failed nested handoff leaves the enclosing requester waiting",
+      "file": "src/agents/subagents/registry/subagent-registry-requester-wake-mutation.ts",
+      "line": 234,
+      "failure": "If a root yields for child A and A yields for child B, a permanent rejection of B's handoff marks A's session failed but leaves A's registry run paused. The lifecycle write updates the session row without settling the native task, and the sweeper's descendant-loss check applies only to retired runs. The root can still see A as waiting and never receive A's terminal result.",
+      "confidence": "high"
+    },
+    {
+      "title": "Retry loses the failure notice after the lifecycle commits",
+      "file": "src/agents/subagents/registry/subagent-registry-requester-wake-mutation.ts",
+      "line": 241,
+      "failure": "If the requester lifecycle commits as failed but the separate transcript append hits a transient write error, settlement retries the lifecycle event. The `requireYielded` check now rejects it because the run is already failed, so the retry completes without appending the classified guidance. The user sees the failed state without the notice explaining how to recover the child work.",
+      "confidence": "high"
+    },
+    {
+      "title": "A failed restart notice strands accepted queued messages",
+      "file": "src/gateway/session-restart-resume.ts",
+      "line": 641,
+      "failure": "When a yielded session has lost its child source and its restart marker contains accepted queued inputs, startup clears the marker before recording the yield failure. If recording that failure throws, startup skips the queued-input continuation. The messages are left unprocessed, and a later startup has no marker identifying them as inputs to resume.",
+      "confidence": "high"
+    }
+  ]
+}

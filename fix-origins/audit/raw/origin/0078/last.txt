@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "58dbe4055043f7c090a03b3c8a610a9e521e3452",
+  "confidence": "high",
+  "reasoning": "The introducing diff replaced recursive deletion with paced batches and added `const hasIoPressure = createHostIoPressureProbe();` as the gate for continuing. I checked the earlier worker and the probe implementation: the earlier worker had no pressure gate, and the new gate could let unlinking continue while btrfs metadata reservations were high because it checked I/O stalls and commit latency without reading the reservation counter."
+}

@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "29503e14a2d3e5b30ba8407b5a1d1630f49d23b9",
+  "confidence": "high",
+  "reasoning": "I checked the introducing diff, which added interrupted-updater recovery and gated the durable stop check on `if (updaterStopped)`, leaving helper-stopped services exposed to a restart after a later operator stop. The same diff initialized `terminalRuntimePath` to the staged runtime and switched to the installed writer only after recovery returned, so a schema-changing repair that threw left terminal settlement using the old writer. It also introduced `restoreRepairGateway` with an ownership branch that threw a plain `Error`, causing an unverified service to fail an otherwise completed repair."
+}

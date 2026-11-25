@@ -1,0 +1,17 @@
+{
+  "rank": 127,
+  "sha": "b9d3c00e4f91642e427958656d5182f15c778aa2",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "unclear",
+  "user_saw": "No failure is reported; ChatGPT subscription model discovery sent OpenClaw's calendar version (or 99.0.0) as the Codex client_version, and the fix's own live run only shows the new version working.",
+  "impact": "other",
+  "area": "models/providers",
+  "summary": "Makes ChatGPT subscription model discovery report the latest stable npm @openai/codex version (cached six hours, bundled 0.169.0 floor, one-second lookup timeout) instead of OpenClaw's calendar version.",
+  "reasoning": "The removed code came from #201493 (779c260b2e8a), which deliberately replaced #201130's npm lookup with the OpenClaw calendar version; this fix reverses that design choice on the grounds that the version is from the 'wrong release stream', with no reported failure, error, or missing model. Since a calendar version like 2026.11.5 is above every Codex version gate and the PR shows no failing request on the old behavior, this is a policy change between two designs, not a defect fix."
+}

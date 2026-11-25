@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The earlier “Consume the complete inline argument token” finding concerned Enter dispatching a truncated argument when the caret was inside it. The at-merge “Before merge” items concerned verification and did not identify the highlighted argument resetting when the user selected text."}

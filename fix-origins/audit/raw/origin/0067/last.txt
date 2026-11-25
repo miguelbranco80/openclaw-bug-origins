@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The September diffs already show explicit compiles generating a fresh publication ID and writing a new cache entry, and the October teardown diff shows the existing deletion of the predecessor. I found no earlier working reuse path, and the pre-September diffs for the original persisted cache and dashboard publication were unavailable, so I could not verify whether replacement shipped with the feature."
+}

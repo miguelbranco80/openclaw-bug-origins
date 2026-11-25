@@ -1,0 +1,17 @@
+{
+  "rank": 255,
+  "sha": "a0259a1faae10591dfd5d5729753aa99eb61144e",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "bfc9736366561aa8ba87ee43cd5a2b195195892a",
+  "cause_pr": 19424,
+  "confidence": "medium",
+  "cause_quote": "The original share extension declared `NSExtensionActivationSupportsImageWithMaxCount` 10 in Info.plist while ShareViewController used `let maxImageAttachments = 3` and only counted videos (`_ = videoCount`) without sending them.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "iOS offered OpenClaw in the share sheet for 4+ photos or a video, but the sheet then blocked Send with 'Only 3 of 4 images can be sent. Remove omitted items and share again.'",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "Narrows the iOS Share extension activation rule to at most 3 images and drops the movie entry so iOS only offers OpenClaw for content the extension can send.",
+  "reasoning": "Read via the GitHub commits API (pre-graft): #19424 (bfc9736) introduced the share extension with a 10-image activation rule but a 3-image send limit and no video sending; #20308 (c2d12b7e) later added NSExtensionActivationSupportsMovieWithMaxCount 1 while videos were still unsendable. Before #106513 (6e8df6c) the extra items were dropped silently; that commit made them a visible block without narrowing the activation rule. The mismatch shipped with the feature, so I classify it as never-worked with #19424 as cause; medium confidence because the video half came from #20308 and the blocked-sheet symptom from #106513."
+}

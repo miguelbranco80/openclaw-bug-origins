@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The fix’s tests show that the 20,000-character limit could cut off a network page while leaving its continuation cursor visible. The earliest readable renderer diff already contains the truncating branch, and the September optimization retained it. The older runtime diffs were unavailable, so I could not verify when that behavior first reached paginated results or whether those results had previously worked."
+}

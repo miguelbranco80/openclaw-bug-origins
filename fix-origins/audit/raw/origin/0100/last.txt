@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "2c4413a6abbfeb4ac23cd07b775a105586548af1",
+  "confidence": "high",
+  "reasoning": "The commit moved `const registry = prepareOpenClawAgentDatabaseRegistrySnapshotRead(...)` ahead of the existing storage-preparation wait and added `registry.assertCurrent()` before `capturedSources` was updated with the qualified file identities, so a valid cold registration could invalidate the read. I checked that the prior path waited for pending preparation before establishing the registry witness, and a later focused bisect independently identified #197510 as the first failing first-chat authorization boundary."
+}

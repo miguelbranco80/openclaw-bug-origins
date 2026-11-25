@@ -1,0 +1,1 @@
+{"rank": 76, "needs": "diff", "where": "ui/src/components/desktop/desktop-panel.css:138 (with desktop-panel-rail.tsx:522)", "note": "The diff shows the 88px select dropping its own 6px padding and joining select.settings-select, whose shared rule (shown in the components.css context) reserves padding-right: 36px, leaving too little width for the 'Actual' label."}

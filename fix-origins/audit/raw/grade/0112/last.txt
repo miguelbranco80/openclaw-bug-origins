@@ -1,0 +1,34 @@
+{
+  "reviewers": {
+    "A": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The finding concerns missed pointer transitions in Shadow DOM previews."
+    },
+    "B": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The finding concerns automatic preview requests consuming one-time links or triggering actions."
+    },
+    "C": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The reviewer reported no findings."
+    },
+    "D": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The finding concerns preview requests fetching OAuth URLs during channel setup."
+    },
+    "E": {
+      "flagged": "related",
+      "finding": 4,
+      "note": "The finding identifies preview suppression of authored Markdown link hints in the empty-preview case, which points toward the same suppression mechanism affecting the nested Security audit icon."
+    },
+    "F": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The reviewer reported no findings."
+    }
+  }
+}

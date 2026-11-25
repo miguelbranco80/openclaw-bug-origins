@@ -1,0 +1,47 @@
+{
+  "case": "0163",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Doctor checks valid configs for legacy issues in src/commands/config-preflight-snapshot.ts:149–155 and applies the Workshop migration in src/commands/doctor/shared/legacy-config-migrations.runtime.skills.ts:16–27. The migration uses the unmarked config as its own baseline and appends `skill-workshop` to `plugins.allow: [\"memory-core\"]` even when it was handwritten after the cutover (src/config/skill-workshop-plugin-migration.ts:33–38, 72–82), admitting a plugin that is enabled by default (extensions/skill-workshop/openclaw.plugin.json:6).",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The event-triggered `plugins.uiDescriptors` request can hit the Gateway request-start timeout (src/gateway/server/ws-connection/request-start.ts:115–117 and src/gateway/server/ws-connection/authenticated-request-dispatch.ts:541–563), after which the store sets `lastError` and retains the old method catalog (ui/src/app/plugin-capabilities.runtime.ts:34–55 and ui/src/app/gateway-store.ts:234–244). A successful enable leaves `enabling: true`, which keeps the button disabled, and the retry control is only rendered for an availability-check error (ui/src/pages/skill-workshop/plugin-availability.ts:47–61 and ui/src/pages/skill-workshop/view.tsx:172–193).",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "`restartRequired: true` comes from explicit bundled-code reloads (src/gateway/server-plugin-reload.ts:484–490 and src/plugins/lifecycle.ts:97–125). Enabling Workshop uses strict replacement loading, so a new load or registration failure rejects the RPC and clears the busy state through the page's catch branch (src/gateway/server-plugins.ts:463–475, src/plugins/loader-shared.ts:429–447, and ui/src/pages/skill-workshop/plugin-availability.ts:55–60).",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Workshop offers the button for an off catalog entry when the admin RPC is advertised, and its inventory read ignores `mutationAllowed` (ui/src/pages/skill-workshop/plugin-availability.ts:64–73, ui/src/pages/skill-workshop/access.ts:15–23, and ui/src/pages/skill-workshop/view.tsx:166–180). The Gateway rejects global disablement, an active denylist entry, or read-only config, and the page clears `enabling` after each rejection (src/plugins/enable.ts:45–50, src/plugins/management-config.ts:30–37, and ui/src/pages/skill-workshop/plugin-availability.ts:55–60).",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Startup uses the valid snapshot directly without the Doctor legacy scan (src/commands/config-preflight-snapshot.ts:149–155), and runtime Workshop policy projection leaves `plugins.allow` intact (src/config/materialize.ts:53–55 and src/config/skill-workshop-plugin-migration.ts:92–121). The exclusive allowlist blocks activation, so Workshop's per-agent learned-skill directory is excluded (src/plugins/config-activation-shared.ts:129–131 and src/plugins/plugin-root-contributions.ts:23–43).",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "`plugins.list` reports enablement separately from runtime health, and the page maps an enabled entry with absent methods to `failed` (src/gateway/server-methods/plugins.ts:131–147 and ui/src/pages/skill-workshop/plugin-availability.ts:64–73). After another client disables Workshop, the capability refresh preserves the client and the method remains absent, so the page passes the same client to `sync`, which returns before rereading inventory (ui/src/app/plugin-capabilities.runtime.ts:46–55, ui/src/pages/skill-workshop/skill-workshop-page.tsx:108–115, and ui/src/pages/skill-workshop/plugin-availability.ts:28–35).",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "An existing handwritten, unmarked exclusive allowlist keeps triggering the Doctor warning and prevents ordinary writes that retain the restriction from stamping the marker, because both paths see the same pending allowlist addition that Doctor repair applies (src/config/skill-workshop-plugin-migration.ts:72–82, 124–130 and src/commands/doctor/shared/legacy-config-migrations.runtime.skills.ts:13–27). The normal first-write path passes `null` and stamps the marker, while valid Gateway startup skips the Doctor scan (src/config/io.write.ts:284–293, src/config/io.meta.ts:74–92, and src/commands/config-preflight-snapshot.ts:149–155).",
+      "same_as": "F1"
+    }
+  }
+}

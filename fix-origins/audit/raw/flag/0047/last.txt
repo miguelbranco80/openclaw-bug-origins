@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The “Before merge” items focus on merge conflicts and global-session ownership. “Canonical target parsing and resolution” describes credential-bearing URL rejection but raises no concern about the error formatter crashing on a malformed --url."
+}

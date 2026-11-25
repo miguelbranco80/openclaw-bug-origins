@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "Reviewer B reported no findings."},
+    "C": {"flagged": "related", "finding": 1, "note": "The finding identifies that the search worker keeps its reader open between requests and focuses on quarantine bypass."},
+    "D": {"flagged": "none", "finding": null, "note": "Reviewer D reported no findings."},
+    "E": {"flagged": "none", "finding": null, "note": "Reviewer E reported no findings."},
+    "F": {"flagged": "related", "finding": 1, "note": "The finding identifies that closing handles in the Gateway isolate leaves the search worker's retained handle open and focuses on recall after quarantine."}
+  }
+}

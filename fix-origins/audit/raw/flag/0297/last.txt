@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Tests section asks for proof of recovery on the same admitted authority. The earlier HTTP revalidation finding concerns response status, and no supplied review item identifies the queue readers treating a temporary policy failure as lost authority."
+}

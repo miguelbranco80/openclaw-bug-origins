@@ -1,0 +1,17 @@
+{
+  "rank": 281,
+  "sha": "b129ffcd845009cb7c284ab18a93e4536b318ef9",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; the invitation policy this serves is not enabled on main (the PR's proof had to patch the config schema to add \"invited\").",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "Adds an atomic SQLite operation that commits invitation membership together with mention involvement and publishes the committed member facts to retained authorization readers, keeping replay watermarks.",
+  "reasoning": "The PR is step 13/17 of a feature stack building invited-member session sharing; it adds a new owner operation rather than repairing a reported failure, and its own comparison shows main has no equivalent operation (mention-only control grants no membership by design). The blame candidates are the features this extends (#152083, #164484), not a breaking change, so this is new capability titled as a fix."
+}

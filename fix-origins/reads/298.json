@@ -1,0 +1,17 @@
+{
+  "rank": 298,
+  "sha": "6655afcbfd14bff4cc016a489503bbc83b91e5ba",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; workspace snapshot reads loaded fingerprint blobs they did not use, with no measured user-facing cost.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "The workspace manifest snapshot query now selects only the fingerprint column the scan, probe or archive action needs and returns null for the unused one.",
+  "reasoning": "This is a performance optimization: the reader has selected both fingerprint columns since it was written (blamed to #184581), and the PR reports no failure and no measured production cost. Nothing became slower than before, so it is not a defect."
+}

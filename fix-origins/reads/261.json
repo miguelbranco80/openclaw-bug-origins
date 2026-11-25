@@ -1,0 +1,17 @@
+{
+  "rank": 261,
+  "sha": "21f17afce911a364138fa29fb10e20bffe15a3eb",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "29503e14a2d3e5b30ba8407b5a1d1630f49d23b9",
+  "cause_pr": 188497,
+  "confidence": "high",
+  "cause_quote": "The new recoverInterruptedUpdater checked the stop intent only `if (updaterStopped)` once before recovery, and restoreRepairGateway threw \"Recovered update's Gateway service ownership could not be verified\" for a non-owned verdict.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an interrupted update, recovery could restart a Gateway the operator had since stopped, report a completed repair as failed when service ownership was unverifiable, or lose the terminal failure record after a schema-changing repair failed.",
+  "impact": "sequence-or-timing",
+  "area": "update",
+  "summary": "Checks durable Gateway stop intent before recovery and immediately before each native start, turns an unowned-service verdict into a manual-start warning, and switches terminal writes to the verified installed runtime before finalization.",
+  "reasoning": "All removed lines blame to 29503e14 (#188497, 2026-11-02), and its diff adds recoverInterruptedUpdater, the conditional stop-intent check, the terminalRuntimePath staged-runtime choice and the ownership throw as new code. The fix a week later corrects how that newly added interrupted-recovery feature behaves, so the defects shipped with it."
+}

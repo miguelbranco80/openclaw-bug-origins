@@ -1,0 +1,39 @@
+{
+  "findings": [
+    {
+      "title": "Doctor overrides intentionally restrictive allowlists",
+      "file": "src/config/skill-workshop-plugin-migration.ts",
+      "line": 72,
+      "failure": "An operator who hand-writes a config for the plugin-based release with `plugins.allow: [\"memory-core\"]` to keep Workshop off will have Workshop enabled the next time they run `openclaw doctor --fix`. The migration treats every unmarked restrictive allowlist as built-in-era policy, so it adds `skill-workshop` even when the operator deliberately excluded it after the plugin returned.",
+      "confidence": "high"
+    },
+    {
+      "title": "Normal Gateway startup skips the allowlist migration",
+      "file": "src/commands/doctor/shared/legacy-config-migrations.runtime.skills.ts",
+      "line": 21,
+      "failure": "An operator who upgrades outside `openclaw update` and starts the Gateway with an otherwise valid built-in-era config such as `plugins.allow: [\"memory-core\"]` still loses Workshop. The startup preflight accepts the valid config without running this Doctor migration, so Workshop stays off and learned skills disappear from agent prompts until the operator repairs the config.",
+      "confidence": "high"
+    },
+    {
+      "title": "Workshop offers an enable button that policy always rejects",
+      "file": "ui/src/pages/skill-workshop/view.tsx",
+      "line": 169,
+      "failure": "An admin sees Turn on Skill Workshop even when `plugins.enabled` is false, a current `plugins.deny` includes `skill-workshop`, or `OPENCLAW_CONFIG_READONLY=1` makes the config immutable. In each case the Gateway refuses the request and the page re-enables the same button, so every click fails until the underlying policy changes.",
+      "confidence": "high"
+    },
+    {
+      "title": "Availability stays stale when Workshop methods remain absent",
+      "file": "ui/src/pages/skill-workshop/plugin-availability.ts",
+      "line": 29,
+      "failure": "If Workshop is enabled but failed to load, the open page displays the load-failure state. Disabling the plugin from another client publishes a new plugin generation, but the Workshop method is absent both before and after that change. The page keeps the same client and skips rereading `plugins.list`, so it still says Workshop is turned on and gives the admin no enable button until they reopen the page.",
+      "confidence": "high"
+    },
+    {
+      "title": "A failed capability refresh leaves the enable button stuck",
+      "file": "ui/src/pages/skill-workshop/plugin-availability.ts",
+      "line": 55,
+      "failure": "If `plugins.setEnabled` succeeds but the event-triggered `plugins.uiDescriptors` request times out, the Gateway has enabled Workshop while the page still has the old method catalog. The success path leaves the button disabled on “Turning on…” and offers no retry, so the Workshop never loads on that connection unless a later capability refresh succeeds.",
+      "confidence": "high"
+    }
+  ]
+}

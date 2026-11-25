@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "title": "Base refresh can apply private files after the requester loses repository access",
+      "file": "src/gateway/github-pr-workspace-preparation.ts",
+      "line": 397,
+      "failure": "A linked guest starts refreshing their prepared PR in a private repository. If their GitHub repository access is revoked during the base fetch while the managed publisher retains access, the final check still passes. It rechecks the publisher's write eligibility and the guest's local account link, then applies the fetched private target files to the guest's workspace.",
+      "confidence": "high"
+    },
+    {
+      "title": "Base refresh overwrites a staged deletion when a working copy exists",
+      "file": "src/gateway/github-publication-base-refresh.ts",
+      "line": 143,
+      "failure": "In a prepared workspace, a guest uses git rm --cached on a tracked file and keeps an edited working copy. Git reports the staged deletion and the untracked copy as separate records, so the partial-staging guard lets refresh proceed. The final git add -A stages the working copy and replaces the guest's staged deletion.",
+      "confidence": "high"
+    },
+    {
+      "title": "Merging the PR on GitHub strands pending local base conflicts",
+      "file": "src/gateway/github-pr-workspace-preparation.ts",
+      "line": 141,
+      "failure": "A base refresh conflicts with unpublished guest edits while the remote PR remains mergeable. If someone merges the PR on GitHub before the guest acknowledges the local resolution, refresh_base rejects the merged PR before it reaches recovery. The canonical workspace keeps MERGE_HEAD, so archive and eviction still reject it and tell the operator to finish the integration.",
+      "confidence": "high"
+    },
+    {
+      "title": "Refreshing after a fork rename leaves publication targeting stale repository metadata",
+      "file": "src/gateway/github-pr-workspace-preparation.ts",
+      "line": 370,
+      "failure": "After an external fork PR is prepared, rename its head repository without changing its branch or commit, then advance the target and run refresh_base. Refresh succeeds because the repository ID is unchanged, but it saves the new base with the old head repository name. Publication rejects the saved target, and prepare_pr takes its same-head, same-base shortcut without repairing the name.",
+      "confidence": "high"
+    }
+  ]
+}

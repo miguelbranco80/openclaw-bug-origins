@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Before merge items focused on rerunning the packaged upgrade after the optional-import correction. The Evidence section described private-path containment as a safeguard and raised no concern about candidate Doctor rejecting dependencies resolved into the staged package."
+}

@@ -1,0 +1,1 @@
+{"rank": 146, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The ClawSweeper review covers real-behavior proof, final-effect authority proof, SDK and compatibility risks; it never mentions the fixed 8080 callback port. A human review mentions port 8080 only regarding listener cleanup after a timeout, not the bot."}

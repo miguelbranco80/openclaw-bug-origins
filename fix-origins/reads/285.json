@@ -1,0 +1,17 @@
+{
+  "rank": 285,
+  "sha": "35b84dab3891fb9213a64300e968a59bbf78c8a8",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On a pnpm install, the second `openclaw update` ended with exit 1 `update-recovery-pending` although the new Gateway was serving, and every later update was refused for unfinished recovery.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "While an update retains its running runtime, registers a process-wide worker resolver that createCpuTrackedWorker applies, so detached process owners (state lease heartbeat carrier, file-log pool) load worker scripts from the retained copy instead of the removed installed package.",
+  "reasoning": "The retained-runtime generation (#153764, 2026-09-22) bound worker resolution through async context only, and the shared lease heartbeat carrier spawns workers via runInDetachedAsyncContext (present since at least #168807-era code in October); this was harmless as long as the updater's own dist stayed on disk, which still holds for npm and first pnpm installs. It broke only once the updater itself ran from a pnpm group-local virtual store that activation moves into the transaction backup, an install-layout situation produced by recent pnpm update work (#200366/#201735/#202017), but I could not pin which single commit first made activation move the running updater's group, so no trigger_sha is given."
+}

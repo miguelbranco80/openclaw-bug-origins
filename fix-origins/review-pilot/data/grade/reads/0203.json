@@ -1,0 +1,6 @@
+{"rank": 203, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "About agent owner/creator filters rejected, not invalidation reloading a denied query."},
+"B": {"flagged": "none", "finding": null, "note": "About agent owner/creator filters rejected."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "none", "finding": null, "note": "About agent owner/creator filters rejected."},
+"E": {"flagged": "none", "finding": null, "note": "Findings cover info leak, agent filters, stale sidebar filter and counts; none about denied Activity reloading on unrelated session changes."},
+"F": {"flagged": "none", "finding": null, "note": "Agent filters and stale sidebar filter; not the denial flicker on invalidation."}}}

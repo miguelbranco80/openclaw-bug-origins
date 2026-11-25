@@ -1,0 +1,11 @@
+{"case": "0151", "findings": {"F1": {"fixed": "no", "commit": null, "note": "f01f7a2f6172 only changes the returned package URL in draft-publish.ts, not which ClawHub credential is used."},
+"F2": {"fixed": "no", "commit": null, "note": "No later fix commits touch draft.ts."},
+"F3": {"fixed": "no", "commit": null, "note": "No later fix commits touch draft-choices.ts."},
+"F4": {"fixed": "no", "commit": null, "note": "No later fix commits touch draft-choices.ts."},
+"F5": {"fixed": "no", "commit": null, "note": "No later fix commits touch draft-choices.ts."},
+"F6": {"fixed": "no", "commit": null, "note": "No later fix commits touch draft-choices.ts."},
+"F7": {"fixed": "partly", "commit": "f01f7a2f6172", "note": "The draft prompt no longer hands the agent a workspace-relative draft path (drafts bound to skill invocations), but the draft is still created in the agent workspace."},
+"F8": {"fixed": "no", "commit": null, "note": "f01f7a2f6172 does not change the catch that maps publish errors to publication_unconfirmed."},
+"F9": {"fixed": "no", "commit": null, "note": "f01f7a2f6172 does not change draftError handling of ClawHubRequestError."},
+"F10": {"fixed": "no", "commit": null, "note": "No later fix commits touch draft-choices.ts."},
+"F11": {"fixed": "no", "commit": null, "note": "f01f7a2f6172 does not change the admin authorization check for headless clients."}}}

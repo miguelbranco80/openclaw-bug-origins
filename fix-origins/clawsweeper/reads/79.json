@@ -1,0 +1,1 @@
+{"rank": 79, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The merge-time review has no open items and earlier versions only asked to replace expect.poll waits in tests; nothing concerns the recheck publishing from a closed plugin invocation scope or channel surfaces not triggering it."}

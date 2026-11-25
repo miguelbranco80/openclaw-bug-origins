@@ -1,0 +1,17 @@
+{
+  "rank": 44,
+  "sha": "88a0f3baca8a19be0eed6605e62eb7fd99570db9",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "12eaf8ac11b523e767c66a3ccef40b16341644bb",
+  "cause_pr": 195508,
+  "confidence": "medium",
+  "cause_quote": "It pulled the composer up over the transcript with `margin-top: calc(-1 * var(--chat-composer-overlap, 0px))` and relied on `--chat-thread-padding-bottom: calc(6px + var(--chat-composer-overlap, 0px))` for clearance, padding that Firefox drops from the desktop transcript's grid scroll range.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Firefox on desktop, the last reply's footer controls (such as Copy) sat hidden behind the chat composer at the bottom of the transcript.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Moves the desktop Details reservation from a CSS grid on the transcript scroll container to a width-reduced .chat-thread-content wrapper, so Firefox includes the bottom padding in the scroll range, and updates geometry code for the extra wrapper.",
+  "reasoning": "The desktop scroll container became `display: grid` in #179059 (2026-10-21), and the fix says Firefox leaves trailing grid padding out of the scroll range. That cost only 6px until #195508 (2026-11-09) made the composer overlap the transcript and moved the last turn's clearance into that padding, so Firefox reply footers were first covered then. I read both diffs; confidence is medium because I did not reproduce the Firefox padding behavior myself, and #179059's grid is the precondition rather than the visible break."
+}

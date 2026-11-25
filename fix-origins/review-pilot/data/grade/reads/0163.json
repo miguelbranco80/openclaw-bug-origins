@@ -1,0 +1,6 @@
+{"rank": 163, "reviewers": {"A": {"flagged": "related", "finding": 2, "note": "Flags the stuck 'Turning on...' state after a successful enable, but from restartRequired or load failure, not a dropped broadcast, and not the layout, error or focus issues."},
+"B": {"flagged": "none", "finding": null, "note": "Concerns migration policy and the read-only mutationAllowed flag."},
+"C": {"flagged": "none", "finding": null, "note": "Concerns the read-only flag and stale failed-state availability."},
+"D": {"flagged": "none", "finding": null, "note": "Concerns migration policy, stale availability and the read-only flag."},
+"E": {"flagged": "related", "finding": 5, "note": "Says a failed capability refresh after a successful enable leaves the button stuck with no retry, close to the dropped broadcast; covers only one of the four symptoms."},
+"F": {"flagged": "related", "finding": 3, "note": "Flags a permanently enabling page when activation fails, the same stuck-enabling mechanism but a different trigger."}}}

@@ -1,0 +1,41 @@
+{
+  "case": "0186",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The old catch in .review/change.diff:147 returned undefined for ordinary read errors, while extensions/codex/src/app-server/session-history.ts:134 now rethrows every caught model-context error, including a worker timeout from src/config/sessions/session-transcript-worker-runtime.ts:79. The awaited reads in extensions/codex/src/app-server/run-attempt-context.ts:89 and :162 therefore reject before either history fallback can apply or the turn can start.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/sessions/session-manager-entries.ts:636 lets a caller append an empty branch summary as a child of the latest user message. With maxEvents set to 1, src/config/sessions/session-accessor.sqlite-model-context.ts:172 spends the slot on the summary, and packages/agent-core/src/harness/session/session.ts:111 skips it, leaving the caller with zero messages.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "If the newest persisted tool frame cannot fit, src/config/sessions/session-accessor.sqlite-model-context.ts:198–213 rejects the read awaited at extensions/codex/src/app-server/event-projector.ts:453, skipping the after-compaction hook, transcript activity, and end event at :459–481. extensions/codex/src/app-server/run-attempt-notification-controller.ts:177 logs the rejection at debug level, while the completed count has already advanced at event-projector.ts:448.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/codex/src/app-server/event-projector-tool-transcript.ts:591–605 selects the throwing bounded view without an explicit admission, so an oversized frame or a version change on an unadmitted read at src/agents/sessions/session-manager.ts:289–292 can skip the start or completion work in extensions/codex/src/app-server/event-projector.ts:370 and :453. Successful before-compaction hooks receive messages stripped of tool-result details and selected private metadata by src/config/sessions/session-model-context-projection.ts:13–16, while the after-compaction hook has always received counts only, as shown in src/agents/harness/prompt-compaction-hook-helpers.ts:208–215.",
+      "same_as": "F3"
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "packages/agent-core/src/harness/session/tool-result-pairing.ts:347–379 leaves a displaced result unowned while two earlier calls can claim it, then assigns it when only one remains. src/config/sessions/session-accessor.sqlite-model-context.ts:215–230 rejects that ownership change immediately even if dropping the whole ambiguous segment would leave a fitting newer frame and user message, and extensions/codex/src/app-server/session-history.ts:137 propagates the failure to prompt preparation.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/codex/src/app-server/session-history.ts:112–120 sets the default cap to 1,024,000 bytes, and src/config/sessions/session-accessor.sqlite-model-context.ts:459–465 measures projected JSON that still includes stored inline image data before Codex sanitizes it. The reverse scan at :172–213 stops at an oversized entry, excluding it and older candidates from hook and context-engine input or rejecting when no complete newest frame fits, and a larger budget or a later fitting suffix can also restore the read.",
+      "same_as": null
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The closest finding, “Reconcile older cached sections before rendering Pinned,” concerns duplicate rows after restoring an older snapshot. The review versions contain no finding about filtering snoozed sessions out of Pinned until they wake."
+}

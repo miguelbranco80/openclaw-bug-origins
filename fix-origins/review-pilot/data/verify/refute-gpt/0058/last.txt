@@ -1,0 +1,35 @@
+{
+  "case": "0058",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/sessions/agent-session-compaction.ts:545–547 installs the rebuilt context in the live session, and src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:27–35 wraps its compaction summary as an ordinary message. src/config/sessions/session-model-context-window.ts:43–51 and 161–165 reserve space for transcript boundary entries and can drop the flattened summary from the suffix sent to the finalizer.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/harness/context-engine-lifecycle.ts:355–367 and 403–415 pass assembled messages through without timestamp validation, and src/agents/embedded-agent-runner/run/attempt-stream-settle.ts:230–246 snapshots the live messages. A custom message with a missing or invalid timestamp throws at src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:33, and src/agents/embedded-agent-runner/run/settled-turn-finalization.ts:268–278 records failed recovery.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:40–54 counts the live details and can cause the tool frame to be dropped, but packages/agent-core/src/agent-stream-response.ts:340–350 and 515–536 still commit the subsequent empty assistant message. When that message fits, src/config/sessions/session-model-context-window.ts:109–119 and 161–186 retain it and avoid the empty-selection error, leaving finalization able to submit its prompt at src/agents/embedded-agent-runner/run/attempt-prompt-phase.ts:447–448.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "packages/agent-core/src/harness/session/session.ts:39–45 returns an ordinary message payload unchanged, and packages/ai/src/transports/openai-responses-replay-messages-internal.ts:419–450 can replay its text without a payload timestamp. src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:27–38 converts that missing timestamp to ISO before selection, so even a historical row that would be dropped can abort finalization.",
+      "same_as": "F2"
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/config/sessions/session-model-context-read.ts:19–27 and 53–56 pass the transcript boundary entry to the selector, which reserves its bytes before considering the suffix at src/config/sessions/session-model-context-window.ts:43–51. In the settled view, src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:27–35 flattens the summary, so intervening history can fill the suffix and displace it even when the summary and completed current turn would fit together.",
+      "same_as": "F1"
+    }
+  }
+}

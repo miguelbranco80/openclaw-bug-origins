@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The findings cover probe stalls, stale cache entries, shim environment failures, and malformed executable paths without addressing acceptance of unsupported Node versions."},
+    "B": {"flagged": "none", "finding": null, "note": "The findings describe stale Homebrew paths and missing shim variables, while the reported crash came from selecting an installed Node below the supported version floor."},
+    "C": {"flagged": "none", "finding": null, "note": "Reviewer C reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns a probe that cannot launch a compatible Node through an asdf shim."},
+    "E": {"flagged": "none", "finding": null, "note": "The findings concern failed shim probes and cached failures to find Node, while the reported crash followed successful selection of an unsupported Node."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns rejection of a compatible Node shim that requires environment variables."}
+  }
+}

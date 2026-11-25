@@ -1,0 +1,17 @@
+{
+  "rank": 71,
+  "sha": "7ab0143fc2288251377d0b355b1c78a30c1b55ac",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "e96c7041019b0623b234f8c2022ab9476e24f708",
+  "cause_pr": 181802,
+  "confidence": "high",
+  "cause_quote": "The PostgreSQL port of cron finalization kept `eb.fn<string>(\"json\", [eb.val(enabled ? \"true\" : \"false\")])` as the jsonSetPath replacement, emitting json($1), a function PostgreSQL 16 does not have.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On PostgreSQL 16, retained one-shot cron jobs could not finish and enabling or disabling a cron job failed with `function json(unknown) does not exist`.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "Added an engine-owned jsonValue helper that casts bound JSON text with ::json on PostgreSQL and uses json(...) on SQLite, and used it in the cron enabled-state update.",
+  "reasoning": "Before e96c704 the cron enabled update used SQLite json_set and could not run on PostgreSQL at all; e96c704 introduced the PostgreSQL path via jsonSetPath but kept the SQLite-only json(...) call for the replacement, which only resolves on PG17+ (SQL/JSON constructor), so the PG16 case shipped broken with the port. I read e96c704's diff and jsonSetPath at that commit, which passes the replacement through as `${replacement}::jsonb`, leaving json($1) in the SQL."
+}

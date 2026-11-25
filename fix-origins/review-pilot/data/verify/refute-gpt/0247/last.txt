@@ -1,0 +1,35 @@
+{
+  "case": "0247",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "In src/infra/package-update-activation.ts:301–345, the remapped previous package fails the guard’s historical identity comparison, and a remount disables verified retirement of an unused preparation. With both verification branches skipped, repair closes and archives the operation through src/infra/package-update-activation-custody.ts:197–209, using the misleading superseded-by-manual-install reason from src/infra/package-update-activation.ts:308–315 if the lease identity is unchanged.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/package-update-publication-owner.ts:440–474 records the copied launcher’s new inode in the launcher intent before rename and in publications after acknowledgement. src/infra/package-update-activation-settlement.ts:64–85 consults neither record, so the inode check at src/infra/package-update-activation-journal.ts:138–149 rejects the intact copy before settlement.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/sqlite-rollback-recovery.ts:60–94 obtains the committed record from a snapshot after SQLite error 776 and leaves live replay to admit at lines 104–121. src/infra/package-update-activation.ts:251–256 calls inspectRemount before that admission at line 373, and src/infra/package-update-activation-journal.ts:364–369 rereads the live database read-only before checking device identities, so the same error aborts repair.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "A crash after the displacement intent at src/infra/package-update-publication-owner.ts:375–385 leaves the previous package live, and after a remount the raw identity guard at src/infra/package-update-activation.ts:341–345 misses it, allowing unverified archival at lines 425–493. In that crash window, launcher publication is still ahead because the launcher loop at src/infra/package-update-publication-owner.ts:401–440 starts only after the candidate is installed.",
+      "same_as": "F1"
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/cli/update-cli/shared.ts:146–158 accepts explicit SemVer targets such as 2026.9.4-dev.1, and src/infra/package-update-activation-prepare.ts:158–169 and :298–311 record the staged package’s fingerprint as the candidate. src/infra/npm-registry-spec.ts:125–158 returns null for a dev prerelease, so src/infra/package-update-activation.ts:451–459 refuses the manually installed 2026.10.1 before verifying it or closing the journal.",
+      "same_as": null
+    }
+  }
+}

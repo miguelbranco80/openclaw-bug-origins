@@ -1,0 +1,1 @@
+{"rank": 164, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The finding is about an unbound macOS refresh racing a Gateway switch and overwriting profileAccentHex; the bug is the fallback to seamColorHex that Talk Mode fills with an already personally resolved color. Different condition."}

@@ -1,0 +1,7 @@
+{"rank": 270, "reviewers": {
+"A": {"flagged": "exact", "finding": 1, "note": "States the transparent/muted override and 16px slot make stacked subagent avatars lose tint and overlap."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "related", "finding": 3, "note": "Describes overlapping summary glyphs from slot sizing and mentions transparent backgrounds, but not the loss of colored avatars."},
+"D": {"flagged": "exact", "finding": 2, "note": "States the higher-specificity rule makes stacked avatars transparent gray bot icons instead of colored chips."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

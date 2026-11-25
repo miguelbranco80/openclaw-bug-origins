@@ -1,0 +1,17 @@
+{
+  "rank": 51,
+  "sha": "74d1342d3ac62ff40336c6b6cd9339ed2409aba3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "d277de776de254affc6bcec17a32a9a8e8a24862",
+  "cause_pr": 172792,
+  "confidence": "medium",
+  "cause_quote": "The new Doctor migration added `if (runtime && runtime !== \"openclaw\" && runtime !== \"auto\") { warnings.push(`...runtime ${runtime} inference ownership was left unchanged; no host account was adopted...`); continue; }`, skipping every explicitly selected Codex runtime job.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A migrated heartbeat automation on an explicitly set Codex runtime kept failing with 'Automation has no recorded inference account ... or with openclaw doctor --fix', while doctor --fix repeatedly said it left the job unchanged.",
+  "impact": "failed-every-time",
+  "area": "cron",
+  "summary": "Doctor's cron inference-binding migration now passes Codex harness facts to the auth planner and records a stored host-managed account for Codex-runtime jobs, and the refusal text qualifies the Doctor hint.",
+  "reasoning": "The blanket runtime skip that the fix narrows was written in d277de776 (#172792), the commit that introduced the Doctor migration file; the runner-side refusal for unbound cron runs using a stored profile already applied to every harness since d25a316 (#172590, `runtime: harness.id`), so Codex-runtime jobs that use host OAuth profiles were never recoverable via Doctor. Confidence is medium because I did not separately confirm that the Codex harness resolved a stored profile at d277de776's time, though the fix PR calls the skip a conflation of Codex selection with native ownership."
+}

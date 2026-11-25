@@ -1,0 +1,17 @@
+{
+  "rank": 194,
+  "sha": "aa73da727c8e92d45c130d417bc6064c5a42b422",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": "f6a854bd37b65134879c1b51edd61bffabb4dee5",
+  "user_visible": "yes",
+  "user_saw": "Saving a skill API key (Skills page or a raw skills.update call) silently replaced the skill's SecretRef or ${VAR} with the plaintext key in openclaw.json and reported success.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "updateSkillConfigEntry now throws SkillApiKeyReferenceError when skills.update would replace an authored SecretRef or ${VAR} apiKey with plaintext, and the skills.update handler returns it as an INVALID_REQUEST error.",
+  "reasoning": "The skills.update apiKey writer (`current.apiKey = trimmed`) predates the 2026-09-03 graft and dates back to the January 2026 gateway skills handler, when skill apiKey could only be a string. f6a854bd (2026-02-26, 'Secrets: add migrate rollback and skill ref support') changed `apiKey?: string` to `apiKey?: SecretInput` without teaching the writer to preserve references, so the overwrite appeared through a new usage. Issue #193149 reports the failure on 2026.10.9, and #197319 had already guarded only the UI side."
+}

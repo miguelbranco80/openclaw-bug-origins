@@ -1,0 +1,17 @@
+{
+  "rank": 209,
+  "sha": "95e9afcf2926d3e3a34fa591752023918361f19c",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A guest device paired with only operator.sessions.write, as the multiplayer guide recommends, could not use `openclaw gateway call` or `openclaw tui`: every connect filed a scope-upgrade request for the admin instead of working.",
+  "impact": "permissions",
+  "area": "cli",
+  "summary": "The CLI and TUI now fit their requested scopes to a stored session-only device grant (and retry once within the approved scopes reported by a scope-upgrade refusal), tokenless edgeAuth targets may dial, and session-only callers resolve identity before hello.",
+  "reasoning": "The CLI's fixed scope requests (operator.read for gateway call, admin/read/write/approvals for the TUI) were correct for the operator grants they were written for; they broke only once session-only guest grants (operator.sessions.*) became a recommended setup, a usage the CLI never promised to support. The multiplayer guidance predates its consolidation in bcfcfa4e5c1 and I did not pin the commit that first recommended session-only guests, so trigger_sha is null; this is close to a feature addition and could reasonably be read as not-a-defect."
+}

@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Evidence section describes the resolver’s Bun and flag checks without raising the risk that it could select an unsupported Node version. The Before merge section lists no open items."
+}

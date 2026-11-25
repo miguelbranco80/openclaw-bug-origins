@@ -1,0 +1,18 @@
+{
+  "findings": [
+    {
+      "title": "Large histories can exhaust temporary storage during bounded hydration",
+      "file": "src/config/sessions/session-accessor.sqlite-active-context.ts",
+      "line": 476,
+      "failure": "On PostgreSQL with a finite temp_file_limit, a session with enough unrelated custom events to exceed work_mem and the temporary-file allowance now fails to hydrate even a small context window. The CTE stores navigation rows for all those events before the outer predicates reject them. Previously the dependency query could reject each of those rows before storing it for the final sort.",
+      "confidence": "high"
+    },
+    {
+      "title": "SQLite hydration warnings report zero statement time on the regular reader",
+      "file": "src/infra/sqlite-transaction.ts",
+      "line": 480,
+      "failure": "On a normal SQLite Gateway, a bounded cron hydration worker opens a native read-only connection without observeConnection(). The inherited hydration label starts the timer, but the connection never feeds it statement measurements. A slow read therefore logs statementExecutionMs as 0 and an empty statement summary, attributing the query time to callbackOtherMs. The benchmark wraps its connection explicitly, so it bypasses this failure.",
+      "confidence": "high"
+    }
+  ]
+}

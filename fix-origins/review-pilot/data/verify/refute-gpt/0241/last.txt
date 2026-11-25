@@ -1,0 +1,17 @@
+{
+  "case": "0241",
+  "findings": {
+    "F1": {
+      "verdict": "unclear",
+      "impact": null,
+      "evidence": "extensions/anthropic/cli-runtime-tasks.ts:72–89 leaves the launcher in the map until its notification, so an intervening child notification would clear the child's hold in extensions/anthropic/cli.runtime.ts:483–488 and let a subsequent launcher result end the turn at line 543. The fixture at extensions/anthropic/cli-runtime.task-ownership.test.ts:143–151 places the launcher notification immediately after the snapshot and the forwarded child notification later, leaving the claimed native interleaving unverified.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/anthropic/cli.runtime.ts:483–488 clears the last hold on the stopped notification, which has no notification query, but lines 498–562 require a result to settle the turn through this path. The parent's result has already gone out as interim, so the runner keeps waiting at src/agents/cli-runner/execute-plugin.ts:624–649 until the watchdog aborts the wait at lines 505–512.",
+      "same_as": null
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"rank": 8, "needs": "outside", "where": "ui/src/styles/chat/tool-cards.css:1038", "note": "Adding display:grid without a minmax(0,1fr) column makes the summary's max-width:100% resolve against an auto-sized track; seeing the overflow/clip needs knowledge of how Safari, Firefox and Chromium size auto grid tracks around fit-content, percentage-capped items."}

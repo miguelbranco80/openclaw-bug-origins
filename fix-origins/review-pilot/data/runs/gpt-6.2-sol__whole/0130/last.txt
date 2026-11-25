@@ -1,0 +1,32 @@
+{
+  "findings": [
+    {
+      "title": "Review shows upstream changes after an already-current base refresh",
+      "file": "src/gateway/server-methods/sessions-diff.ts",
+      "line": 107,
+      "failure": "If an operator fetches a newer default-branch tip and rebases the managed task onto it, `refresh_base` sees that tip in HEAD's ancestry and returns `current` without updating the projection's `base_commit`. Review now uses the older stored SHA even though the default-branch ref is up to date. The file list, ahead count, and commit picker include upstream changes that the previous merge-base calculation excluded.",
+      "confidence": "high"
+    },
+    {
+      "title": "Concurrent refresh can pair an old base with the refreshed checkout",
+      "file": "src/gateway/worker-environments/local-workspace-review.ts",
+      "line": 45,
+      "failure": "If Review reads the projection just before `refresh_base` accepts a new base, and its queued Git read starts after the refresh finishes, it compares the refreshed checkout to the old SHA. Refresh changes neither the session binding nor the registry identity, so both final guards pass. Review can return upstream-only files and commits in the task diff.",
+      "confidence": "high"
+    },
+    {
+      "title": "Archived Review reports an ownership error after normal cleanup",
+      "file": "src/gateway/worker-environments/local-workspace-review.ts",
+      "line": 52,
+      "failure": "Archiving a projected session preserves its worktree binding. Background cleanup then removes the checkout and marks its registry record removed while retaining the projection for recovery. An authorized Review request now fails with `Local workspace review owner changed`. Previously the missing checkout returned `not_git`, which the panel displays as an unavailable-checkout message.",
+      "confidence": "high"
+    },
+    {
+      "title": "Review applies the outer repository's base to a nested checkout",
+      "file": "src/gateway/worker-environments/local-workspace-review.ts",
+      "line": 57,
+      "failure": "Worktree preparation supports a session whose cwd is a subdirectory of the managed checkout. If that directory becomes a separate Git checkout after the projection is created, the path containment check still passes. Git resolves the nested repository from the session cwd, but Review supplies the outer repository's SHA. When that SHA is absent from the nested repository, All changes fails with `Unable to read tracked Git changes`. Previously Review used the nested repository's own refs.",
+      "confidence": "medium"
+    }
+  ]
+}

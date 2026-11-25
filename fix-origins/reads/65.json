@@ -1,0 +1,17 @@
+{
+  "rank": 65,
+  "sha": "c23cd7f6ec5f5813a0a33897949d9d0691507d83",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "9344233e7a66fe36479d55b7f7ae8e10eb886586",
+  "cause_pr": 185730,
+  "confidence": "high",
+  "cause_quote": "In resolvePrivateCompletionDeliveryResult it changed `if (outcome?.reason === \"cancelled\" && outcome.stopReason !== \"restart\")` to `if (outcome?.reason === \"cancelled\")`, so a restart-aborted private continuation became intentional non-delivery.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A finished subagent result queued behind a private requester continuation was never delivered after a Gateway restart; it was marked failed and lost.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Excludes stopReason=restart from the private completion delivery's cancelled branch so restart-aborted deliveries stay retryable and startup recovery delivers them.",
+  "reasoning": "The fix restores exactly the restart exclusion that 9344233e7a66 (graceful-restart resume refactor) deleted from resolvePrivateCompletionDeliveryResult; before that commit, restart cancellations fell through to the retryable outcome instead of terminal non-delivery. The refactor's diff on this file shows the removed `&& outcome.stopReason !== \"restart\"` guard, and the fix's red-on-base Gateway restart e2e shows the queued result turning failed without it."
+}

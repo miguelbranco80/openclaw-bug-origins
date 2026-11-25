@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "Reviewer B reported no findings."},
+    "C": {"flagged": "none", "finding": null, "note": "Reviewer C reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "Reviewer D reported no findings."},
+    "E": {"flagged": "none", "finding": null, "note": "The findings concern folder selection, draft persistence, and path visibility, with no finding about label alignment or search field sizing and padding on touch focus."},
+    "F": {"flagged": "none", "finding": null, "note": "Reviewer F reported no findings."}
+  }
+}

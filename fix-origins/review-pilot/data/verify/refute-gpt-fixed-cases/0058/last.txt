@@ -1,0 +1,35 @@
+{
+  "case": "0058",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Compaction publishes its replacement history to the live session in src/agents/sessions/agent-session-compaction.ts:466, and attempt-stream-settle.ts:194 snapshots that history. attempt-history-prepare.ts:35 wraps the summary as a plain message, so src/config/sessions/session-model-context-window.ts:45 and :111 let byte pressure drop it while retaining the latest turn.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The checked-out src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:31 computes the synthetic timestamp from new Date(0), and line 38 reuses it for every message. The payload timestamp conversion shown in .review/change.diff is absent from the checked-out code.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:48–59 counts the retained details, so an oversized result can eject the completed tool frame. A completed empty reply still adds a trailing assistant message at packages/agent-core/src/agent-stream-response.ts:552, which src/config/sessions/session-model-context-window.ts:111–122 and :168–169 can retain, so the oversized result alone does not cause the claimed pre-provider failure.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The checked-out src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:31–39 assigns a fixed entry timestamp and passes the legacy payload through unchanged. A missing payload timestamp therefore cannot trigger the reported ISO conversion error.",
+      "same_as": "F2"
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/config/sessions/session-model-context-read.ts:26–32 and :87–92 pass the real compaction entry to the selector, which reserves its bytes at session-model-context-window.ts:45–53. The settled-view wrapper at src/agents/embedded-agent-runner/run/attempt-history-prepare.ts:35 removes that distinction, so the suffix cut can drop the summary even when it and the current turn fit together.",
+      "same_as": "F1"
+    }
+  }
+}

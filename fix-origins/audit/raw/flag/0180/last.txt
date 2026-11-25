@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "ClawSweeper’s Before merge items covered cloud cleanup evidence and approval of the public provider hook. The human review raised a surviving descendant of the Claude auth probe, while the later bug came from killing the probe during OAuth refresh and leaving the lock behind."
+}

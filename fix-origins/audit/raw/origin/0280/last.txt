@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "e90a3baabc14ca1639b68514b76a90b090ee567e",
+  "confidence": "medium",
+  "reasoning": "The introducing diff registered `kind: \"session:report\"` and mounted it with `return staticHtml` inside the existing saved-height plugin cell, where oversized content scrolled internally. I checked the original report styles and the later phone table change, whose `block.columns.length > 3` condition excludes the fix’s failing three-column table. The pre-September mobile grid diff was unavailable, so the launch behavior is inferred from the surviving diffs."
+}

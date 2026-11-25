@@ -1,0 +1,11 @@
+{
+  "case": "0131",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The proxy’s enforced `img-src 'self'` blocks the `data:` SVG masks at ui/src/styles/base.css:366–367 even though the Gateway allows `data:` at src/gateway/control-ui-csp.ts:120, because browsers enforce both policies. The busy Send button replaces its arrow with a masked spinner at ui/src/pages/chat/components/chat-composer-controls.tsx:378 and hides its text at ui/src/styles/chat/composer-surface.css:834, while the sidebar’s running-session indicator uses a masked ring at ui/src/styles/layout.css:2345, so both indicators disappear.",
+      "same_as": null
+    }
+  }
+}

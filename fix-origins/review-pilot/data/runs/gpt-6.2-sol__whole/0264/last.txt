@@ -1,0 +1,11 @@
+{
+  "findings": [
+    {
+      "title": "Starting dictation hides its recording border",
+      "file": "ui/src/styles/new-session.css",
+      "line": 820,
+      "failure": "When a user starts voice dictation in New Session, the drop overlay and the recording border both target the message box’s ::after pseudo-element. The more specific drop rule forces its opacity to zero whenever no file is being dragged, so the recording border disappears while the microphone is active.",
+      "confidence": "high"
+    }
+  ]
+}

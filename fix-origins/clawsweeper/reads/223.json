@@ -1,0 +1,1 @@
+{"rank": 223, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The P2 findings concern the Agents header not reacting to locale changes and a removed model-picker reset assertion; nothing mentions JSX dropping the whitespace between a translated sentence and the following value."}

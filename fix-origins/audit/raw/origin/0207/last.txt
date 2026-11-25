@@ -1,0 +1,6 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The earlier design commit explicitly added `margin-block-end: 2px` to give the reply more breathing room and updated the browser test to expect a 10px gap instead of 8px. The fix removes the following bubble’s top margin at the collapsed-summary boundary and changes the expected gap to 4px, establishing a new spacing preference."
+}

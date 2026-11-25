@@ -1,0 +1,29 @@
+{
+  "case": "0225",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/codex/package.json:11 pins 0.169.0, while scripts/perf/inline-command-build-verification.mjs:50–53 reads the installed package version from each selected checkout and requires 0.164.0. Both benchmarks await verification before measuring at scripts/perf/inline-command-gateway-measure.mjs:90 and scripts/perf/inline-command-same-service-measure.mjs:107, with the latter also verifying a single selected cell.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The generated account schema includes `gcp`, but extensions/codex/src/app-server/protocol.ts:463–469 omits it and extensions/codex/src/migration/source.ts:341–348 classifies it as missing. In the default migration flow, source.ts:272–300 assigns every pending app-owning plugin `codex_account_unavailable` with the reported message, and extensions/codex/src/command-formatters.ts:291–305 renders the bare GCP account as `available` when the account summary is shown.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/codex/src/app-server/transport-stdio.ts:44–55 starts the managed launcher under Node, and extensions/codex/src/app-server/transport-process-registration.ts:170–198 can fingerprint that command line as soon as Node has spawned, before the launcher calls `execve`. If the native process survives the Gateway, transport-process-registration.ts:120–131 deletes the row on the changed fingerprint and skips termination of the process tree.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "extensions/codex/src/app-server/managed-launcher-failure.ts:34–39 compares Node's quoted `path` field directly with the filesystem path, so a backslash escaped in the diagnostic prevents the match. The observer then skips recording the failure at managed-launcher-failure.ts:61–72, leaving subsequent requests to pass the cached-failure guard in extensions/codex/src/app-server/transport-stdio.ts:135–140 and retry the unusable binary.",
+      "same_as": null
+    }
+  }
+}

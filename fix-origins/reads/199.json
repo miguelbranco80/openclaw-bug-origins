@@ -1,0 +1,17 @@
+{
+  "rank": 199,
+  "sha": "f6d5e173601a3fed8ace2fd036215c92f61d5356",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "fa54950d2ee17bb03c95d6222e77b0db8f98926f",
+  "cause_pr": null,
+  "confidence": "low",
+  "cause_quote": "feat(browser): add MCP tool dispatch added `page.on(\"request\", (req: Request) => { ... state.requestMap.set(req, entry) ... })`, a permanent Playwright Request subscription for the network log.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Gateway memory grew steadily (about 8 MB/min of buffers in the measured workload) while an attached managed-browser page kept sending background POST requests.",
+  "impact": "slower-or-heavier",
+  "area": "plugins",
+  "summary": "Replaced the permanent Playwright request/response/requestfailed page listeners with a bounded network metadata log fed from CDP messages the transport already receives.",
+  "reasoning": "The leak comes from the page-level Playwright request listeners, which make Playwright materialize and retain Request dispatchers and POST buffers; GraphQL blame at the parent puts the current listener lines in refactor 425df19 (#149651), whose diff only moves the same pre-existing listeners, and full-history listing traces the listener design to fa54950 (2025-12-19), where `page.on(\"request\")` first appears in src/browser/pw-session.ts. I could not confirm the lineage was continuous through later prunes or whether Playwright's dispatcher retention changed with a dependency upgrade (which would make this latent), so confidence is low."
+}

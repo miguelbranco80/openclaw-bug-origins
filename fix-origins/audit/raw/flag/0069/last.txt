@@ -1,0 +1,7 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "An annotation records the unchanged typing-growth test expecting scrollTop 904 and receiving 804.",
+  "outcome": "unclear",
+  "note": "The CI evidence records the transcript falling short as typing content grows, which points to follow continuity without identifying the End-key failure during tool-result streaming. The review records the failed test as evidence and lists no open finding for it."
+}

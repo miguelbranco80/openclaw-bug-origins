@@ -1,0 +1,1 @@
+{"rank": 44, "needs": "outside", "where": "ui/src/styles/chat/startup-layout.css:57", "note": "Clearance for the overlapping composer moved into the transcript's bottom padding; seeing the bug needs knowing Firefox leaves trailing padding of a display:grid scroll container out of its scroll range (plus that the desktop transcript is a grid)."}

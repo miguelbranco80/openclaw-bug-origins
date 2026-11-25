@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The Before merge items in both versions focus on admitting the initial blank tab and restricting eligible destinations. Neither version raises the risk that an allowed navigation interrupts an in-flight read and falsely reports that tab access was revoked."}

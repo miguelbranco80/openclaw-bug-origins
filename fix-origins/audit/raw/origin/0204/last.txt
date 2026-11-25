@@ -1,0 +1,7 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "trigger_sha": "7187a9afa71af15eb5f7889f6af47faed021097a",
+  "confidence": null,
+  "reasoning": "The original capture kept all declared roots in `roots: [...roots].toSorted()` and filtered SQLite sidecars out of `entries`, which worked for sidecars found inside directory roots. The trigger added Memory Core’s `collectBackupResources` loop, which declared the database and its suffixed paths as separate file roots, exposing the mismatch when manifest validation required an entry for each root."
+}

@@ -1,0 +1,7 @@
+{"rank": 264, "reviewers": {
+"A": {"flagged": "exact", "finding": 1, "note": "States the new ::after selector overrides the dictation border so it disappears during dictation."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "exact", "finding": 1, "note": "States the drop-tint ::after rule hides the dictation edge animation in New Session."},
+"D": {"flagged": "exact", "finding": 1, "note": "States the drop overlay hides the active dictation indicator."},
+"E": {"flagged": "exact", "finding": 1, "note": "States the drop overlay rule makes the dictation edge disappear."},
+"F": {"flagged": "exact", "finding": 1, "note": "States the drop rule hides the recording border during dictation."}}}

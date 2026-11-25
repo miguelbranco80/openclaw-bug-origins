@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "The existing fixture supplies neither a session nor cleanup registration; the base skips publication without a session, whereas this PR publishes immediately and substitutes the detached publication on the next call.",
+  "note": "The P2 digest-cache item remained open and identified the change to sessionless publication. Its requested fixture update would still leave the extra cleanup callback for empty one-shot tool catalogs."
+}

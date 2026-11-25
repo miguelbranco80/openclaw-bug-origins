@@ -1,0 +1,6 @@
+{"rank": 218, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "Git rollback inside cancelled scope and staged package cancellation, not the readiness poller ignoring the scope signal."},
+"B": {"flagged": "none", "finding": null, "note": "Admission lost at mutation start; not the restart readiness poll hang."},
+"C": {"flagged": "none", "finding": null, "note": "Late signal rollback, reason overwrite, repeated signals ignored; not the poller hang."},
+"D": {"flagged": "none", "finding": null, "note": "Git rollback in cancelled scope."},
+"E": {"flagged": "none", "finding": null, "note": "Various signal-path defects, none about waitForGatewayHealthyRestart polling after scope stop."},
+"F": {"flagged": "none", "finding": null, "note": "Staged operation cancellation and Git rollback scope."}}}

@@ -1,0 +1,35 @@
+{
+  "case": "0042",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/embedded-agent-runner/run/attempt-queue-message.ts:155 and :335 turn a failed withdrawal of an accepted steer into an unconfirmed outcome. After the source run is aborted, the guard at src/gateway/server-methods/chat-send-agent-dispatch.ts:253 throws before finalization can abort the backing run at src/auto-reply/reply/reply-run-registry.message-injection.ts:525, leaving it free to continue with the steer.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/server-methods/chat-send-handler.ts:304 requires an existing row to stage ordinary input, but :566–586 acknowledges it before the skill read at src/gateway/server-methods/chat-send-agent-dispatch.ts:302, which can reject on a concurrent library edit through src/skills/library/store-access.ts:86. The fallback at src/gateway/server-methods/chat-send-dispatch-errors.ts:413 cannot save the input because src/config/sessions/session-turn.kernel.ts:62–74 requires an existing matching row or an initial entry, which src/gateway/server-methods/chat-send-admission.ts:326 prepares only for Goal creation.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/chat-abort.ts:555–567 cancels the run and broadcasts the abort, but the skill read at src/skills/library/store-access.ts:81 receives no run abort signal and src/gateway/server-methods/chat-send-agent-dispatch.ts:700 releases the ticket only when dispatch unwinds. A later same-session send can acknowledge and finish preparation, then wait on the cancelled run's ticket at src/auto-reply/reply/dispatch-from-config.prepare-operation.ts:168–174.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "After runtime acceptance, src/gateway/server-methods/chat-send-handler.ts:540–550 and :581–586 reserve a ticket and acknowledge the steer while src/gateway/server-methods/chat-send-agent-dispatch.ts:228 waits for its outcome, with a default two-minute transcript deadline at src/agents/embedded-agent-runner/run/attempt-queue-message.ts:30 and :114. A later ordinary follow-up can acknowledge but must pass the ticket wait at src/auto-reply/reply/dispatch-from-config.prepare-operation.ts:168–174 before it can reach the enqueue at src/auto-reply/reply/agent-runner-run.ts:379–388.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "src/gateway/server/ws-connection/authenticated-request-dispatch.ts:244 and :430 await profile binding and transport admission before calling the timed dispatch at src/gateway/server-methods.ts:282. The new phase metrics begin there, and src/gateway/server-methods/chat-send-diagnostics.ts:47–78 logs only when the measured interval reaches one second, so a slow WebSocket acknowledgement can have no slow chat send request record.",
+      "same_as": null
+    }
+  }
+}

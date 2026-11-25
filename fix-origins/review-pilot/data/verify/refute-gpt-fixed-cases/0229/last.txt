@@ -1,0 +1,47 @@
+{
+  "case": "0229",
+  "findings": {
+    "F1": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/plugins/plugin-generation-capture.ts:588–596 canonicalizes the linked module to its staged host path. src/infra/update-candidate-plugin-repair.ts:81,119–124 explicitly accepts dependency targets inside the canonical candidate root.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugin-sources.ts:85–100 selects declared Doctor contracts even for disabled plugins, and its handler at lines 36–43 rethrows the invalid-target error from src/plugins/plugin-source-references.ts:60–68. The inspection runs before Doctor's contract loader can warn and continue, as shown in src/commands/doctor-config-preflight.ts:145–155 and src/plugins/doctor-contract-registry.ts:189–196.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/plugins/plugin-generation-capture.ts:588–596 captures an external sibling module under its real path, so the graph contains lib/value.mjs without the shared/value.mjs link. Fresh inventory and published-snapshot repair build their copy plans from those captured paths in src/infra/update-candidate-plugins.ts:375–379 and src/infra/update-candidate-plugin-repair.ts:180–185, leaving the original import unresolved.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-snapshot.ts:279–284,495–515 allocates inventory scratch using an estimate that excludes plugin bytes, and only reselects the volume after inventory succeeds. The worker uses that scratch as its state and temp root (src/infra/update-candidate-rehearsal.ts:202–213 and src/infra/update-rehearsal-paths.ts:8–20), and dependency capture copies package bodies there (src/plugins/plugin-generation-capture.ts:245–251,300–305), so a large package can exhaust the initial volume before reselection.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The copied-source inspection at src/infra/update-candidate-plugin-repair.ts:101 uses the wrapper in src/infra/update-candidate-plugin-sources.ts:24–52, which catches a parser SyntaxError and records a warning. The worker preserves the SyntaxError type at src/plugins/plugin-generation-worker.ts:425–429, and repair skips the failed graph at src/infra/update-candidate-plugin-repair.ts:116–118.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/update-candidate-plugins.ts:269–270,375–379 projects the discovered helper independently. src/infra/update-candidate-paths.ts:105–117 preserves the state-relative layout only for npm and extensions, so ../../shared/value.mjs still looks under rehearsal/shared while the helper is copied under candidate-plugins.",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Inventory catches SyntaxError but rethrows other inspection errors at src/infra/update-candidate-plugin-sources.ts:11–20,36–43. For example, inspecting a literal dynamic import in a disabled plugin's Doctor contract can eagerly capture a package and throw for its missing required dependency (src/plugins/plugin-generation-capture.ts:245–251,300–305 and src/plugins/plugin-package-metadata-capture.ts:205–224), while the tree copier's inventory tolerates the missing dependency at src/infra/update-candidate-plugin-tree.ts:250–293.",
+      "same_as": null
+    }
+  }
+}

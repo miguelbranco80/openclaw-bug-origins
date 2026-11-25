@@ -1,0 +1,35 @@
+{
+  "case": "0153",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Refresh writes canonical MERGE_HEAD before returning conflicts (src/gateway/github-publication-base-refresh.ts:585–604), but a retry after the PR merges fails preflight before reaching recovery (src/gateway/github-pr-workspace-preparation.ts:141,205,303 and src/gateway/github-publication-pr-preflight.ts:26–27). Archiving then refuses on MERGE_HEAD (src/gateway/worker-environments/local-workspace-state.ts:593–603), while capacity eviction records the archive error and proceeds with the purge (src/agents/worktrees/eviction.ts:146–155,206–229).",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Initial inspection checks the guest's private repository access (src/gateway/github-publication-inspect.ts:262–294), but its retained reader only rechecks the locally linked account IDs and host (src/gateway/github-publication-inspect-reader.ts:72–79). After fetching with the publisher's credentials, refresh repeats publisher write preflight and can apply the private files even if the guest lost GitHub repository access during the fetch (src/gateway/github-pr-workspace-preparation.ts:394–402 and src/gateway/github-publication-base-refresh.ts:273–288,435–436,585–592).",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The status parser evaluates each record independently, so a staged deletion (`1 D.`) and the retained untracked copy (`?`) never populate `partiallyStaged` and pass the refresh guard (src/gateway/github-publication-workspace-review.ts:34–58,167–172 and src/gateway/github-publication-base-refresh.ts:136–149). On successful refresh, review-base preparation runs `git add -A` on the guest index, which stages the retained nonignored copy in place of the deletion (src/gateway/github-publication-base-refresh.ts:704–712 and src/gateway/github-publication-workspace-review.ts:213–218).",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The `prepare_pr` description calls importing a newer head an explicit refresh, while the adjacent `refresh_base` description says it preserves the accepted head (src/agents/tools/github-publish-tool.ts:97), so choosing `refresh_base` for that update can leave the next publish failing with `push_rejected` (src/gateway/github-publication-target.ts:293,332–339 and src/gateway/github-publication-failure.ts:77–82). If the model instead sends `expectedHeadCommit` to acknowledge base conflicts, the tool rejects the field before dispatch, so that call produces a different error from the one quoted (src/agents/tools/github-publish-tool.ts:490–514).",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "With the upstream repository as the workspace origin, a fork rename passes the origin and association checks, and refresh updates `base` while retaining the old `head.repository` (src/gateway/github-pr-workspace-preparation.ts:243–255,283–289,367–373). Publication rejects the mismatch against the live head repository name (src/gateway/github-publication-target.ts:117–130,323–332), and a subsequent `prepare_pr` with the same head and refreshed base returns before rewriting the binding (src/gateway/github-pr-workspace-preparation.ts:321–358).",
+      "same_as": null
+    }
+  }
+}

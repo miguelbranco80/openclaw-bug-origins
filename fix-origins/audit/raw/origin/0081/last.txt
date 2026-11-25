@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "e051130c6ae044289990bb1045773c89f0014a87",
+  "confidence": "high",
+  "reasoning": "The original restart-resume implementation followed registered requester links in a `for (;;)` loop, which let it reach the ordinary root through a visible spawned child. I checked that visible dashboard children predated that implementation and that the causing diff replaced the loop with `while (isSubagentSessionKey(root.sessionKey))`. That guard stops at a visible child's dashboard key, so the true root never gets a restart marker."
+}

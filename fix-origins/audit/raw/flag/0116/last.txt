@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "“Support released targets that lack check-release” concerns a missing command in the target release. No review item in the supplied files raises the new Git update path’s reliance on pnpm being on PATH."
+}

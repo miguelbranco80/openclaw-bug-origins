@@ -1,0 +1,17 @@
+{
+  "rank": 216,
+  "sha": "0e7aab7cd5c2d6d4018bdc5e380a3849f4ad8700",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Nothing was reported; under an explicit strict browser SSRF policy, existing-session (Chrome MCP) navigation could follow redirects to destinations the policy would otherwise inspect, and now such navigations are refused with an error.",
+  "impact": "permissions",
+  "area": "plugins",
+  "summary": "Adds a Chrome MCP navigation preflight that refuses http(s) navigation and tab opens on existing-session profiles when the strict SSRF policy requires redirect-hop inspection.",
+  "reasoning": "The fix extends the existing strict-policy redirect-inspection requirement (requiresInspectableBrowserNavigationRedirectsForUrl, which already gated the raw CDP fallback) to the Chrome MCP existing-session transport, closing an audit-found SSRF policy gap with no linked user report. It is either a never-worked gap from whichever commit first let Chrome MCP navigate without that gate or plain hardening; both the helper (GraphQL blame: April 2026 commits 8cfdc8dea15/121c452d666 and older) and the Chrome MCP navigation path predate the 2026-09-03 graft, and I could not pin the introducing line, so no cause is named."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 257,
+  "sha": "56e6861a4d0967f9794a6bca1759cc72cd9965e2",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; a Gateway with many sessions kept roughly 14 MB of completed restart-recovery data in memory after startup.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Clears preparation.recoverInputs after restart input recovery settles so published admission callbacks no longer retain the parsed session rows, and reuses assertionSucceeds for a line-cap.",
+  "reasoning": "This is a bounded, one-time memory retention reduction (13-14 MB on a 35 GiB synthetic fixture) with no reported failure; the PR itself says it does not explain long-running growth and claims no other behavior change. The retained closure dates to restart input recovery (9bf3231d253, #187822) and was never lighter, so under the rubric this is a resource optimization rather than a defect; the blamed f787a896894 lines are only the unrelated assertion-helper refactor."
+}

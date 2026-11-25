@@ -1,0 +1,6 @@
+{"rank": 11, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "Findings cover probe stalls, caching, env stripping and stdout parsing, not the missing Node version floor."},
+"B": {"flagged": "none", "finding": null, "note": "Findings cover cache staleness and env stripping, not unsupported Node versions."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "none", "finding": null, "note": "Only env stripping for version-manager shims."},
+"E": {"flagged": "none", "finding": null, "note": "Env stripping and negative caching, not version gating."},
+"F": {"flagged": "none", "finding": null, "note": "Only env stripping for shims."}}}

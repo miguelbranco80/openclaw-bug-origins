@@ -1,0 +1,17 @@
+{
+  "rank": 207,
+  "sha": "a97bfd8352d688ca8f8610d6955efe67e9c90727",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The answer sat 10px below a collapsed 'Worked for' summary, which looked like an oversized gap.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Added a CSS rule removing the extra top margin of a chat bubble that directly follows a collapsed work summary, reducing the gap from 10px to 4px, and moved spacing tests to a sibling file.",
+  "reasoning": "This is a design spacing adjustment: the existing run-block gap was applied as intended, and the fix only adds a new rule for one boundary; nothing broke and no prior commit regressed the spacing (the diff only adds lines). Classified as a cosmetic/design change, not a defect."
+}

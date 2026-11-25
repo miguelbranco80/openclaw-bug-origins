@@ -1,0 +1,7 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "trigger_sha": "b37936459a68b39081647320093207b038efec10",
+  "confidence": null,
+  "reasoning": "The sanitizer already used `failedSteps.slice(-3)` to retain recent failures, so it dropped the initiating failure once three later failures followed it. The October 2 diff adds `result.steps.push({ name: \"gateway migration recovery\", … exitCode: 1 })` on the recovery path after a refused database rollback, adding one of the three later failures that displaced the trigger in the reported case."
+}

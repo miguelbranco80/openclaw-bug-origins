@@ -1,0 +1,17 @@
+{
+  "rank": 98,
+  "sha": "45cfb69823a4b4125794b7401c116bb84880251c",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "aeeb4e813c15827d53ccdbdba634aeb06efd89c0",
+  "cause_pr": 172543,
+  "confidence": "medium",
+  "cause_quote": "The feature commit read history with `max: 12, maxHistoryBytes: 24_000` (tool calls and results count toward it) and kept `text.slice(0, 2_000)`, so after tool-heavy replies no user turn was in the window and the handler returned no prediction, while its prompt banned suggesting approval.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Composer suggestions were missing after tool-heavy replies, and otherwise often echoed the assistant's question back instead of answering it.",
+  "impact": "failed-every-time",
+  "area": "ui",
+  "summary": "Rewrites the composer prediction prompt to answer or approve the assistant's question, widens the history window past tool rows to 100 messages/200 KB, and keeps the end rather than the start of long turns.",
+  "reasoning": "Blame of all removed lines (the prompt, max: 12, 24_000 bytes, slice(0, 2_000)) points only to the introducing feature commit aeeb4e813c15, which I confirmed contains them; later commits to the handler were refactors. The empty-prediction failure in tool-heavy conversations and the prompt's deferential behavior both shipped with the feature; the prompt part is partly quality tuning, hence medium confidence."
+}

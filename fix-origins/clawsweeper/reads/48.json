@@ -1,0 +1,1 @@
+{"rank": 48, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The at-merge items concern the 2026.9.3 post-core executor guard, wrapper import closure, and a generic data-model compatibility proof request; nothing addresses restorePluginCohortMigrationRowsInDatabase refusing when an obligation changed after publication."}

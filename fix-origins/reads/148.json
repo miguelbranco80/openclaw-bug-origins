@@ -1,0 +1,17 @@
+{
+  "rank": 148,
+  "sha": "ae0d37b3c442c1ff4c06ea9a30e85a7dd4514093",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "e7b868bbabfc245668520db520863fc56b260440",
+  "cause_pr": 146546,
+  "confidence": "low",
+  "cause_quote": "The commit that created managed browser audio capture added `const result = await callCapture(\"pull\");` and `callCapture(\"stop\")` running in the async context of the joining request, whose authority expires when the join responds.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In a bidi Google Meet (or other meeting) session with managed browser capture, the bot greeted and then went deaf about 300 ms after the join returned, logging 'Gateway requester authority changed' or 'Browser requester is no longer active'.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "Meeting browser capture pulls/cleanup and chrome-node bridge commands now run on the plugin instance's background runner (shared captureCurrentPluginBackgroundRunner helper) instead of the joining request's context.",
+  "reasoning": "Managed browser audio capture was created in e7b868bbabfc (2026-09-12) with pull/stop dispatched from the join request's context, and the requester-authority checks it trips (browser-request hasCurrentClientAuthority, operator tool authority that aborts after the invocation in server-plugin-in-process-dispatch.ts) already existed at that commit, so the failure most likely shipped with the feature; the issue was reported on 2026.10.4. Low confidence because I could not confirm the CLI-join authority actually expired at that commit, and the chrome-node transport predates the graft so its own origin is unknown."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 153,
+  "sha": "0e70bc443ec9a5e2921446e902a720a9e18cc52e",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "5cac93c15f2a2bc168ca2cb3aa994af65152e26f",
+  "cause_pr": 190223,
+  "confidence": "high",
+  "cause_quote": "The commit that added refresh_base for prepared PRs set the binding's `base: pendingBase ? previous.base : structuredClone(pullRequest.base)` from GitHub PR details and integrated `commit: binding.base.commit`, never reading the live branch ref.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A guest conversation continuing an existing PR reported its base as current after the target branch advanced, leaving the newer target files out of the workspace.",
+  "impact": "failed-every-time",
+  "area": "gateway",
+  "summary": "Prepared-PR refresh_base (and preparation when the accepted base disagrees with PR metadata) now reads the live target branch SHA via readGitHubPublicationBaseSha instead of trusting lagging PR-detail base SHA.",
+  "reasoning": "Refreshing a prepared PR's target branch was introduced hours earlier by 5cac93c15f2 (#190223), whose title says prepared PRs could not refresh before; it took the base commit from inspectOwnGitHubPullRequest PR details, which lag the branch ref. No other commit touched the preparation file between that commit and the fix, so the stale-base defect shipped with the feature."
+}

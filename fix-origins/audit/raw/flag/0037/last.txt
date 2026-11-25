@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section describes retained readers without raising a concern about their lifetime during Doctor’s btrfs repair. The Tests items in both versions concern recall and replacement freshness."
+}

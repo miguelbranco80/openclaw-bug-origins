@@ -1,0 +1,7 @@
+{"case": "0247", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "ea1c9d559bbf remaps identities only for the automatic-admission early return; no listed commit visibly changes the repair guard that falls through to unverified archival after a remount."},
+"F2": {"fixed": "yes", "commit": "f22f675dbcb3", "note": "Remount inspection now takes the historical launcher identity from the recorded publication for the candidate before falling back to previous/staged inodes."},
+"F3": {"fixed": "no", "commit": null, "note": "No listed commit changes inspectRemount's reread of the live database before hot-journal replay."},
+"F4": {"fixed": "no", "commit": null, "note": "Same raw-versus-mapped identity guard as F1; only the automatic-admission guard was remapped (ea1c9d559bbf), not the repair recovery-required check."},
+"F5": {"fixed": "no", "commit": null, "note": "No listed commit changes the release comparator's handling of dev prerelease targets."}
+}}

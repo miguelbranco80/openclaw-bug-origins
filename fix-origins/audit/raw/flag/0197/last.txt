@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The Before merge findings concern a missing executor in the post-core handoff and a missing wrapper dependency. The data-model compatibility item asks for proof that stored recovery data still works after upgrade and gives no indication that a managed npm plugin missing package.json can trigger a core rollback."
+}

@@ -1,0 +1,4 @@
+{"case": "0087", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "The listed commits widen which operation labels get statement attribution but do not wrap the cron hydration worker's read-only connection with observeConnection."},
+"F2": {"fixed": "no", "commit": null, "note": "e33981dc1462 changes the boundary payload join and 777fc99a8993 moves the reader to another module; neither changes the CTE materializing unrelated navigation rows."},
+"F3": {"fixed": "no", "commit": null, "note": "The observation.ts commits add attribution labels and affected-row counts; GC sampling explicitly stays on for every hydration transaction."}}}

@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The Solid migration carried forward the Lit root’s cold-start splash and reconnect routing, and the fix changes tests that explicitly expected the splash or sign-in during a retry. I checked the earlier draft-retention change and the commit that added the HTTP startup wait, but neither establishes when an already-open chat first lost its shell or draft during a Gateway restart."
+}

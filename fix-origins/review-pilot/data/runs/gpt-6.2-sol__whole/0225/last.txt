@@ -1,0 +1,25 @@
+{
+  "findings": [
+    {
+      "title": "Codex can escape orphan cleanup after the launcher replaces itself",
+      "file": "extensions/codex/package.json",
+      "line": 11,
+      "failure": "With the new execve launcher on POSIX, process registration can read and hash the Node launcher's command line before it replaces itself with Codex at the same PID. If the Gateway is then killed while that app-server is still alive, the next Gateway sees the native command line, treats it as a different process, and deletes the registration without reaping the old app-server or its descendants.",
+      "confidence": "medium"
+    },
+    {
+      "title": "Inline-command benchmarks reject the bundled Codex version",
+      "file": "scripts/perf/inline-command-build-verification.mjs",
+      "line": 53,
+      "failure": "When an operator selects a checkout containing this change as the candidate for either inline-command benchmark, the verifier reads the installed Codex version as 0.169.0 and asserts that it is 0.164.0. Both benchmark entry points abort before collecting measurements, even when the candidate is the only selected cell.",
+      "confidence": "high"
+    },
+    {
+      "title": "Execve launch errors are missed for escaped installation paths",
+      "file": "extensions/codex/src/app-server/managed-launcher-failure.ts",
+      "line": 35,
+      "failure": "If a POSIX installation path contains a literal backslash and the bundled binary lacks execute permission, Node escapes the backslash in the printed EACCES path. The observer compares that escaped text with the literal filesystem path, so the operator gets a generic startup failure and later requests retry the same unusable binary instead of using the recorded launch failure.",
+      "confidence": "high"
+    }
+  ]
+}

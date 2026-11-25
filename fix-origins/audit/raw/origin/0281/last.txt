@@ -1,0 +1,6 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The product and test diffs introduce an optional invitation input that commits membership with mention involvement and publishes the resulting membership changes. The PR’s main-base comparison shows that existing membership and access flows passed, and the human-mention caller was planned for a later PR."
+}

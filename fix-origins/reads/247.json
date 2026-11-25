@@ -1,0 +1,17 @@
+{
+  "rank": 247,
+  "sha": "ea1c9d559bbff71dded98f46c53561ac1415b3fa",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "c66da3d764b0ba7996aa77c98a885298bb0dc2c4",
+  "cause_pr": 170046,
+  "confidence": "medium",
+  "cause_quote": "c66da3d added the remount-mapped `previousIdentity = identities?.currentIdentity(initial.descriptor.previous.identity) ?? ...` only after the automatic (`onlyStaleLease`) gate, which kept comparing the raw recorded `[initial.descriptor.previous.identity, initial.descriptor.candidate.identity]` and so declined after a device renumbering.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After a reboot renumbered the disk mid-update, every later `openclaw update` or Control UI update failed with update-recovery-pending ('device number changed only') until the user ran `openclaw update repair`.",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Computes the remount-mapped previous/candidate identities before the automatic settlement gate so the pre-admission settlement handles device-renumbered journals like `update repair` does.",
+  "reasoning": "The raw-identity automatic gate came from ff6f58a (#169038), before remount settlement existed; c66da3d (#170046) introduced the verified remount mapping for settlement but applied it only below that gate, so automatic settlement never handled a remounted journal (the PR's regression tests fail on base). 0679b18 (#181307) later widened automatic settlement to interrupted updates but kept the same gate; I attribute to c66da3d as the PR does, with medium confidence because c66da3d deliberately routed remount recovery through repair and which automatic path the reporter hit is not fully confirmed."
+}

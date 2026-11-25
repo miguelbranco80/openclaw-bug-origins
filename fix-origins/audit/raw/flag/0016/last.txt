@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The Evidence section describes literal-call collection and a test for keeping ordinary missing paths optional. The Tests sections ask for full-distribution proof of worker bootstrap, with no warning about ordinary path arguments reaching Bun’s resolver during desktop packaging or about the stale codegen filename prefix."}

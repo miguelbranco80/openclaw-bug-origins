@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "exact", "finding": 1, "note": "It identifies the RangeError from converting a context-engine message’s missing timestamp during settled-turn finalization."},
+    "B": {"flagged": "exact", "finding": 2, "note": "It uses an imported message as its example and identifies the same missing payload timestamp and ISO conversion that abort tool-turn finalization."},
+    "C": {"flagged": "none", "finding": null, "note": "It identifies a byte-limit failure caused by tool-result metadata."},
+    "D": {"flagged": "none", "finding": null, "note": "It identifies the loss of a compaction summary when the settled view is bounded."},
+    "E": {"flagged": "none", "finding": null, "note": "It identifies oversized tool-result metadata as the cause of discarded tool evidence or failed finalization."},
+    "F": {"flagged": "none", "finding": null, "note": "Its findings concern tool-result metadata sizing and the loss of a compaction summary."}
+  }
+}

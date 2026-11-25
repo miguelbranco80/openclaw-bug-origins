@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The snapshot finding concerns omitted mount contents and unintended file deletions."},
+    "B": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "C": {"flagged": "related", "finding": 1, "note": "The finding identifies snapshot removal timing out on very large trees, but does not identify the btrfs transaction commits that stall Gateway SQLite and RPCs."},
+    "D": {"flagged": "none", "finding": null, "note": "The cleanup finding concerns ownership permissions leaving a snapshot that blocks later checkpoints."},
+    "E": {"flagged": "none", "finding": null, "note": "The finding concerns permission errors when removing guest-owned snapshot contents."},
+    "F": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."}
+  }
+}

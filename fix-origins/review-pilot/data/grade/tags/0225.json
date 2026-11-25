@@ -1,0 +1,1 @@
+{"rank": 225, "needs": "outside", "where": "extensions/codex/src/app-server/managed-launcher-failure.ts:33", "note": "Had to know that the Codex 0.169 launcher uses process.execve and that on Node 24 a failed execve aborts with SIGABRT and a bare 'process.execve failed with error code X' header rather than the structured syscall/path error the new branch matches."}

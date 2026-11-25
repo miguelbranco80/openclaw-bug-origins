@@ -1,0 +1,5 @@
+{"case": "0112", "findings": {"F1": {"fixed": "no", "commit": null, "note": "No listed commit changes hover preview fetching of prefilled GitHub issue URLs; 18872ea508b9 only drops a browser-tab-card selector."},
+"F2": {"fixed": "no", "commit": null, "note": "No listed commit restricts which external links the Gateway fetches on hover; 18872ea508b9 removes an unrelated selector."},
+"F3": {"fixed": "no", "commit": null, "note": "d68385dea667 rewrites the provider host and adds a load-failure fallback, not shadow-root pointer/focus event handling."},
+"F4": {"fixed": "no", "commit": null, "note": "d68385dea667 restores title hints only when the hover runtime import fails, not when a loaded preview is empty or its request fails."},
+"F5": {"fixed": "no", "commit": null, "note": "None of the portaled-hovercard commits concern styling of hovercards mounted inside shadow-root modals."}}}

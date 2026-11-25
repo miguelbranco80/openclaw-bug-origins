@@ -1,0 +1,41 @@
+{
+  "case": "0011",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/node-runtime-executable.ts:60–69 and :78–99 silently cache a failed search, including a timeout when no later candidate succeeds, and reuse that result for the same key until eviction or process exit. src/agents/tool-search-config.ts:37–59 silently selects structured tools, hiding tool_search_code on normal turns through src/agents/tool-search.ts:195–204, while a call that reaches src/agents/tool-search-code-mode.ts:51–56 throws the reported error.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Ordinary turn preparation calls the tool surface planner at src/agents/embedded-agent-runner/run/attempt-tool-prepare.ts:102, and src/agents/tool-search-config.ts:53–66 probes the default code mode before checking whether Tool Search is enabled. On a Bun cache miss, src/infra/node-runtime-executable.ts:4 and :76–89 run candidates synchronously and sequentially with a five-second timeout each, so hanging candidates can block unrelated Gateway work and compound the delay.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/node-runtime-executable.ts:76–93 trims all stdout, accepts the first nonempty result, and caches it, so an earlier launcher's notice becomes part of the cached path and later candidates are skipped. src/agents/tool-search-config.ts:43–45 counts that value as support, and src/agents/tool-search-code-mode.ts:51–60 and :120–128 use the entire string as the executable.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/node-runtime-executable.ts:60–69 and :93–99 reuse both misses and successful paths without checking the filesystem, so installing Node into an existing PATH directory or replacing it at another location on the same PATH leaves the cached result in place across config reloads. src/agents/tool-search-config.ts:43–59 downgrades on the cached miss and preserves code mode on the stale path, which src/agents/tool-search-code-mode.ts:120–128 and :175–176 attempts to spawn and reports as a launch error if the executable was removed.",
+      "same_as": "F1"
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/node-runtime-executable.ts:9–17 and :76–93 omit HOME, PATH, and version-manager settings from the probe, so a shim that requires those values is skipped and the resolver caches a miss if no other candidate works. src/agents/tool-search-config.ts:43–59 silently falls back to structured tools, and src/test-utils/node-process.ts:20–25 throws on its own unresolved lookup after replacing the probe that inherited the parent environment in .review/change.diff:173.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/node-runtime-executable.ts:9–17, :28–31, and :76–89 use the parent PATH to locate the node shim but omit it from the shim's environment, so an asdf shim that needs the operator's PATH to find asdf in a directory such as /opt/homebrew/bin fails the probe. With no other compatible candidate, src/agents/tool-search-config.ts:43–59 silently selects structured tools.",
+      "same_as": "F5"
+    }
+  }
+}

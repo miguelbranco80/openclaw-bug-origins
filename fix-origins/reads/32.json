@@ -1,0 +1,17 @@
+{
+  "rank": 32,
+  "sha": "86fa3cedff45f1806bad18e3fd84f515b36088c9",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; the app kept one destroyed Activity in memory until the next Activity attached.",
+  "impact": "slower-or-heavier",
+  "area": "apps",
+  "summary": "CameraCaptureManager now observes the attached lifecycle owner, clears it on ON_DESTROY if it is still current, removes the old observer on replacement, and ignores owners that are already destroyed.",
+  "reasoning": "Issue #195636 came from static review: it describes a retained reference and a hypothetical bind against a destroyed owner, and the only device evidence is a trace showing the reference held until a replacement attaches. Captures already require foreground admission, which implies a live replacement Activity, so no failed capture was reported. The plain `lifecycleOwner = owner` store is long-standing (GraphQL blame goes back past the graft to January 2026 renames) and was never changed by a breaking commit, so this is lifecycle hardening of a bounded single-object leak rather than a reported defect."
+}

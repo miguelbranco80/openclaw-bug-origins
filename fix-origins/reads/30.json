@@ -1,0 +1,17 @@
+{
+  "rank": 30,
+  "sha": "71fe30869afb45a40696ac304c9a794e9b12befe",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "54e0bc0c213234dd3a616cd83610e0ccb709b227",
+  "cause_pr": 196168,
+  "confidence": "medium",
+  "cause_quote": "The new github-publication-task-workspace.ts keyed each linked publication task by the tool call: `const taskId = deriveGitHubPublicationTaskId(origin, params.idempotencyKey);`, so every fresh github_publish(workspacePath) call created a new task, branch and PR.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Publishing a local checkout again after a follow-up commit (for example a CI fix) opened a second pull request instead of updating the first.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Keys local publication tasks by conversation and canonical checkout (reusing older invocation-keyed tasks when exactly one matches) and merges the checkout's newest commit into the task branch so later publications update the same PR.",
+  "reasoning": "Before #196168, the local workspacePath flow from #184531 adopted the checkout into the conversation, so later publications from that session went to the session's one PR; #196168 replaced that adoption with linked tasks keyed by the invocation idempotency key, which the fix PR names as the cause. Medium because I read the causing line and the replaced adoption design but did not trace the pre-#196168 republish path end to end."
+}

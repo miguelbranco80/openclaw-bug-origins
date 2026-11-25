@@ -1,0 +1,41 @@
+{
+  "case": "0186",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The previous catch in .review/change.diff:147 returned undefined for ordinary read errors, while extensions/codex/src/app-server/session-history.ts:98–112 now lets SQLite read and header errors propagate past the fallback at extensions/codex/src/app-server/run-attempt-context.ts:69–86. A worker timeout therefore aborts attempt preparation, and the current model-context worker timeout is 180 seconds at src/config/sessions/session-transcript-read-worker-runtime.ts:143–157.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/sessions/session-manager-entries.ts:485–503 accepts an empty summary attached to the user entry, and src/config/sessions/session-model-context-read.ts:24–33 includes it among the requests. The newest-first selection at src/config/sessions/session-model-context-window.ts:109–122 gives it the sole event slot, then packages/agent-core/src/harness/session/session.ts:292–295 drops it and leaves an empty message list.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "After recording native completion, extensions/codex/src/app-server/event-projector.ts:516–568 awaits the bounded read before the after-compaction hook and the transcript activity write, so a read rejection skips both and is logged at debug level by extensions/codex/src/app-server/run-attempt-notification-controller.ts:174–178. Closeout can still emit the end event for an item whose start was recorded at extensions/codex/src/app-server/event-projector.ts:398–406.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "extensions/codex/src/app-server/event-projector-tool-transcript.ts:615–627 passes no explicit admission to the bounded SQLite reader, and a rejection at extensions/codex/src/app-server/event-projector.ts:458 or :537 skips the corresponding hook. Successful reads strip tool-result details and selected private metadata at src/config/sessions/session-model-context-projection.ts:101–108, while ordinary appends that preserve the captured prefix pass validation at src/config/sessions/session-accessor.sqlite-model-context.ts:151–168.",
+      "same_as": "F3"
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "A displaced result gains an owner when a cut leaves just one unresolved matching call, per packages/agent-core/src/harness/session/tool-pairing-facts.ts:164–192. With the latest user message already retained, src/config/sessions/session-model-context-window.ts:171–205 and :225–233 reject the changed ownership without trying the shorter suffix containing the newer complete frame, and the rejection propagates through extensions/codex/src/app-server/run-attempt-context.ts:69–86.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "extensions/codex/src/app-server/session-history.ts:101–105 uses the fixed 16 MiB cap from src/plugin-sdk/agent-harness-attempt-runtime.ts:328–336 and src/agents/embedded-agent-runner/run/session-context-limits.ts:9–19, so a 2–4 MB entry alone does not trigger the reported failure at a 128k token budget. Projected JSON bytes still count, but src/config/sessions/session-model-context-window.ts:61–93 can replace large tool-result bodies before cutting the suffix, and :109–122 allows later entries that fit to be retained.",
+      "same_as": null
+    }
+  }
+}

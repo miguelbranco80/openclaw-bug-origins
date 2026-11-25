@@ -1,0 +1,1 @@
+{"rank": 229, "needs": "repo", "where": "src/infra/update-candidate-plugin-repair.ts:120", "note": "Had to know from update-candidate-plugin-tree.ts (host-link projection not shown in the diff) that private plugin copies link host dependencies into the staged candidate root, so assertPrivate on reference targets rejects legitimate candidate-package dependencies such as typebox."}

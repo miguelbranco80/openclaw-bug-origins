@@ -1,0 +1,29 @@
+{
+  "case": "0204",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The collector at extensions/canvas/doctor-contract-api.ts:41 propagates EACCES or ENOTDIR from extensions/canvas/src/config-migration.ts:58–65, aborting baseline capture at src/infra/update-recovery-baseline-capture.ts:227 and rehearsal plan collection at src/infra/state-migrations.plugin-doctor.ts:247. The updater treats baseline capture failure as a warning and continues at src/cli/update-cli/update-command-initialization-run.ts:262–285, so an update block comes from the rehearsal failure.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/infra/update-recovery-baseline-capture.ts:392–396 computes the companion paths from the database names regardless of whether the companions exist. Lines 508–524 remove those paths from both manifest roots and entries, so they cannot trigger the missing-root check at src/commands/backup-verify-manifest.ts:177.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The collector at extensions/memory-core/src/migration/doctor-host-events.ts:532–553 does keep declaring retained archives after their checkpoints match, so live captures can copy them again. The update rehearsal rewrites default and per-agent workspaces under its private root at src/infra/update-candidate-rehearsal.ts:87–128, and src/commands/doctor-update-rehearsal-inventory.ts:26–81 rejects an external agent workspace, so a configured absolute workspace cannot cause the claimed recurring deferral.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The file declaration at extensions/memory-core/src/migration/doctor-memory-sidecar.ts:534–539 reaches the classifier at src/infra/sqlite-file-header.ts:3–5, which accepts the .sqlite suffix immediately, and the backup requires a nonempty snapshot source at src/infra/update-database-backup.ts:387–397. Standalone Doctor can return a warning after capture fails at src/commands/doctor-original-capture.ts:259–289 and proceed to remove the placeholder at extensions/memory-core/src/migration/doctor-memory-sidecar.ts:400–414.",
+      "same_as": null
+    }
+  }
+}

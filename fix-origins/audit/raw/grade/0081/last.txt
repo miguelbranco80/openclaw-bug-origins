@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "exact", "finding": 1, "note": "The finding identifies both the skipped marker for the active visible spawned session and the ancestry walk that fails to reach its requester."},
+    "B": {"flagged": "related", "finding": 1, "note": "The finding identifies the same spawn-based marker exclusion in a later user turn, without tracing how it leaves the root unmarked during delegated work."},
+    "C": {"flagged": "exact", "finding": 2, "note": "The finding identifies the missing ancestry traversal for an active visible spawned child and calls for routing recovery to its requester before skipping the child."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns a lost transcript notice after a lifecycle write commits."},
+    "E": {"flagged": "none", "finding": null, "note": "The finding concerns a lost failure notice when terminal settlement is retried."},
+    "F": {"flagged": "related", "finding": 1, "note": "The finding identifies both the ancestry restriction and the spawn-based marker exclusion, but describes an interrupted later user turn rather than a root stalled during delegated work."}
+  }
+}

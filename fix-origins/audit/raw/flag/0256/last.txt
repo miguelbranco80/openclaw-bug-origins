@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The earlier startup and hot-reload items warned that maintenance could archive automation parents. The at-merge Recorded retention tradeoff explicitly said disposable-row cleanup was preserved and raised no concern about SQLite cap candidate selection during deferral."
+}

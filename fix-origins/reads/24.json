@@ -1,0 +1,17 @@
+{
+  "rank": 24,
+  "sha": "852f25b33359715ed0a950b39aaec336b7f0c2f1",
+  "rubric": "v1",
+  "origin": "regression",
+  "cause_sha": "c83dcc2bc089ca22db9ba19bb602694a66e19337",
+  "cause_pr": 118984,
+  "confidence": "medium",
+  "cause_quote": "In formatToolSearchControlResult it replaced `const text = wrapExternalContent(content.text, ...)` with `truncateSanitizedExternalContent(content.text, 20_000)` plus a `19_988`-char prefix and `[truncated]`, so large network pages reached the model cut short with their continuation cursor intact.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "When an agent paged through a large network-backed result via Tool Search, it saw a truncated page that still carried a next-page cursor, so it advanced and silently skipped the omitted content.",
+  "impact": "data-loss-or-duplication",
+  "area": "agents",
+  "summary": "Replaces Tool Search's fixed 20,000-character prefix truncation of network results with the model's tool-result budget, omitting an over-budget execution result entirely (with a request-a-smaller-page notice) instead of showing a partial page with a cursor, while discovery metadata may still keep a prefix.",
+  "reasoning": "The local clone is shallow (blamed b14a2cae4bf6 is the grafted root, and c447d53491e3 only reshaped the same 20_000/19_988 logic); GitHub history shows the logic moved from tool-search-runtime.ts in #132945 and was first added there by c83dcc2bc089 (#118984), whose patch shows the network result previously wrapped whole and then cut to a 20,000-char prefix. Confidence is medium because I could not confirm how large network pages fared under the generic context guard before that commit, only that the separate ceiling the fix removes was introduced there."
+}

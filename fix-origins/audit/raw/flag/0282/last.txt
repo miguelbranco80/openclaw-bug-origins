@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 item “Admit tokenless native bindings on Primary route updates” flags route guards that send an approved dashboard to a failure page. Fixing those guards would still leave the WebView vulnerable to replacement when the old socket’s startup credentials retire before a same-Gateway reconnect."
+}

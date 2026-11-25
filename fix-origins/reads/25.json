@@ -1,0 +1,17 @@
+{
+  "rank": 25,
+  "sha": "d54b2989c6c488a00652cf938b31bcfd0e73e396",
+  "rubric": "v1",
+  "origin": "never-worked",
+  "cause_sha": "4d62efeccf7e1c41d51c285358050e44da367035",
+  "cause_pr": 152094,
+  "confidence": "medium",
+  "cause_quote": "The feature set `environmentFailure` from a failed status read and rendered `t(failed ? \"portalsPage.environmentUnavailable\" ...)` with `environmentUnavailable: \"The machine could not start...\"` for both read errors and any status other than starting/available.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Portal panel beside a conversation said the device could not start when only the status check had failed or the device was stopping or unavailable, with a retry button that only re-read status.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Gives the Portal pending-device panel distinct messages for a failed status read, a stopping device, and an unavailable device, and relabels the recovery button \"Check again\".",
+  "reasoning": "The conflation dates to 4d62efeccf7 (#152094), which introduced the pending-environment panel and mapped any status-read error or non-starting/available status to the single 'machine could not start' message; 7fb4e046d7bf and 6afa9c60f62c only moved the logic and reworded the same string. It is a wrong-diagnosis presentation bug rather than broken function, so confidence is medium and it sits close to a copy change."
+}

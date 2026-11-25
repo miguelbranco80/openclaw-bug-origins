@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "exact", "finding": 1, "note": "Finding 1 identifies that opening Review after an archived session’s worktree is removed triggers the misleading ownership error."},
+    "B": {"flagged": "none", "finding": null, "note": "The finding concerns earlier task commits disappearing from Review when sandboxing is first enabled."},
+    "C": {"flagged": "none", "finding": null, "note": "The finding concerns sandbox creation selecting a Review base that hides earlier task commits."},
+    "D": {"flagged": "exact", "finding": 3, "note": "Finding 3 identifies the ownership error when Review opens an archived session after normal worktree cleanup."},
+    "E": {"flagged": "none", "finding": null, "note": "The findings concern hidden task commits and stale base selection during a concurrent refresh."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns a concurrent base refresh causing Review to return a stale diff."}
+  }
+}

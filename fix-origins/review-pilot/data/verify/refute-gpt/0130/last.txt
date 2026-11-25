@@ -1,0 +1,47 @@
+{
+  "case": "0130",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/server-methods/sessions-diff.ts:93–123 captures one projection SHA before dispatching the Git read, so a queued read can use that SHA after refresh has updated the projection and committed the merge at src/gateway/github-publication-base-refresh.ts:351–385. The final guard at src/gateway/worker-environments/local-workspace-review.ts:42–61 checks session authority and registry identity and removal, so it accepts a diff that includes upstream files and commits.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/session-worktree-preparation.ts:549–562 persists a nested cwd, and src/gateway/worker-environments/local-workspace-review.ts:50–61 checks path containment before returning the outer checkout's SHA. src/sessions/session-diff.runtime.ts:65–79 discovers the nested repository from that cwd and uses the supplied SHA at line 304, so a missing object causes the tracked diff to throw at line 231.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/sessions-patch.ts:276–289 preserves the existing session fields, and src/agents/worktrees/removal-finalization.ts:45–54 records removal and the snapshot while the projection survives until expiry at src/gateway/worker-environments/local-workspace-state.ts:604. With that retained row, src/gateway/worker-environments/local-workspace-review.ts:50–59 throws before the missing checkout can produce `not_git` at src/sessions/session-diff.runtime.ts:296–298.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/github-publication-base-refresh.ts:204–214 returns `current` when the selected tip is already an ancestor of HEAD, leaving the stored SHA untouched. src/gateway/server-methods/sessions-diff.ts:107 still supplies that older SHA, so the file diff and the `base..HEAD` history at src/sessions/session-diff-revisions.ts:104–108 can include upstream changes already incorporated by the operator's rebase.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/worker-environments/local-workspace-state.ts:323–343 stores the checkout's HEAD at first preparation, so existing task commits become part of Review's base. src/sessions/session-diff.runtime.ts:304–365 uses that base for All changes and rejects commits already in its history, while the PR comparison starts from the default-branch merge base at src/gateway/control-ui-session-prs-landing.ts:286–304.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/worktrees/gc-removal.ts:436–461 schedules removal for the retired owner, and src/agents/worktrees/removal-finalization.ts:45–54 marks the checkout removed. An authorized Review with a retained projection then throws at src/gateway/worker-environments/local-workspace-review.ts:50–59, and the panel renders the request failure at ui/src/pages/chat/components/session-diff-panel.tsx:675.",
+      "same_as": "F3"
+    },
+    "F7": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/gateway/worker-environments/local-workspace-state.ts:255–303 can leave the old SHA in the row after installing files in the canonical checkout, but src/gateway/github-publication-base-refresh.ts:343–385 advances HEAD only after projection application succeeds. The previous comparison uses the default ref's merge base with HEAD at src/sessions/session-diff-revisions.ts:24–27, so updating that ref alone would still leave the newly applied upstream changes visible during this pending state.",
+      "same_as": null
+    }
+  }
+}

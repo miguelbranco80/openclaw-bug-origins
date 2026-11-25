@@ -1,0 +1,6 @@
+{"rank": 225, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No findings."},
+"B": {"flagged": "none", "finding": null, "note": "GCP account variant, unrelated."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "none", "finding": null, "note": "Finding 3 concerns execve errors missed for backslash-escaped paths, a different input than Node 24's SIGABRT header."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

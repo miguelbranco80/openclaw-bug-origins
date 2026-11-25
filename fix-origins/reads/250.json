@@ -1,0 +1,17 @@
+{
+  "rank": 250,
+  "sha": "b99ed97b8f8f7b741d87951ebe95e67e46023e35",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A saved `openclaw memory forget --json` report did not name the plugin that owned the memory slot, although the same coverage notice was already printed on stderr.",
+  "impact": "other",
+  "area": "cli",
+  "summary": "`memory forget --json` now adds `provider` and `memoryCore: \"consolidation-sidecar\"` fields to its report when another plugin owns the memory slot, matching `memory status --json`.",
+  "reasoning": "The change adds two informational fields to an existing JSON report; deletion behavior, human output and the stderr notice that already disclosed the sidecar coverage are unchanged, so nothing that previously worked broke and no command produced wrong results. It is an additive reporting improvement, which the rubric treats as not-a-defect; with no removed lines there was no causing code to trace."
+}

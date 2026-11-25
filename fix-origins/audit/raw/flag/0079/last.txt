@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The earlier “Await catalog publication instead of polling model-list responses” finding addressed test timing. The at-merge “Scoped refresh and lifecycle checks” section raised no concern about publication after the request scope closed or the missing recheck on channel surfaces."
+}

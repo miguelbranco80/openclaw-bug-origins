@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The finding concerns long device names in the microphone and camera pickers."},
+    "B": {"flagged": "exact", "finding": 4, "note": "The finding identifies that the shared padding leaves too little room for Actual in the 88px desktop sizing selector on phones."},
+    "C": {"flagged": "none", "finding": null, "note": "The finding concerns clipped author names in the dashboard filter popup."},
+    "D": {"flagged": "exact", "finding": 1, "note": "The finding identifies the shared chevron padding as the reason Actual is truncated in the fixed-width desktop sizing selector on touch devices."},
+    "E": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "F": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."}
+  }
+}

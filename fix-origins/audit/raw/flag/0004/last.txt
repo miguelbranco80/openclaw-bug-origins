@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge “Resolve merge risk” item concerns unmanaged third-party resources, and the earlier finding concerns retained startup errors that reject a replacement registry. Neither identifies native-command channels continuing to use candidates from the retired registry after a hot reload."
+}

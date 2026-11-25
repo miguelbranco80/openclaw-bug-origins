@@ -1,0 +1,39 @@
+{
+  "findings": [
+    {
+      "title": "Interrupting Git activation also cancels checkout rollback",
+      "file": "src/cli/update-cli/update-command-execution.ts",
+      "line": 671,
+      "failure": "On a managed Git install, send SIGTERM after checkout changes HEAD but before the runner registers its rollback transaction, for example while it sets the new dev branch's upstream. The new scope cancels the Git runner's recovery commands along with its forward commands. The checkout can stay on the candidate commit, and without a verified source rollback or a retained transaction the updater leaves the Gateway stopped.",
+      "confidence": "high"
+    },
+    {
+      "title": "Post-stop config validation disables signal recovery",
+      "file": "src/cli/update-cli/update-command-execution-guards.ts",
+      "line": 110,
+      "failure": "If the config changes while the Gateway is stopping, the post-stop refresh reruns candidate validation. The ledger correctly keeps the phase at activating, but the signal tracker stores the requested validating phase. A SIGTERM during that rehearsal takes the pre-activation exit path, seals compensation, and can leave the Gateway stopped.",
+      "confidence": "high"
+    },
+    {
+      "title": "Migrated finalization can complete successfully after interruption",
+      "file": "src/cli/update-cli/update-command-mutable-signals.ts",
+      "line": 310,
+      "failure": "If the installed updater receives SIGTERM while the candidate worker owns finalization after a schema migration, the worker is outside the tracked forward scopes and receives no interruption. It can keep mutating state, start the candidate Gateway, and publish a success report even though the parent announced an interruption and exits with code 143.",
+      "confidence": "high"
+    },
+    {
+      "title": "Staged updates keep running activation commands after a signal",
+      "file": "src/cli/update-cli/update-command-execution.ts",
+      "line": 623,
+      "failure": "For an update using an explicit package artifact, the staging code starts the install pipeline before this cancellation scope exists. Calling run here resumes and awaits that existing pipeline, so a SIGTERM sent to the updater during the staged candidate's activation Doctor does not reach the Doctor process. The Gateway can remain down while recovery waits for Doctor to finish or for the signal recovery budget to expire.",
+      "confidence": "high"
+    },
+    {
+      "title": "A signal during final history capture can produce a success report",
+      "file": "src/cli/update-cli/update-command-post-update.ts",
+      "line": 400,
+      "failure": "After a successful restart, send SIGTERM while the updater is awaiting capture of the completed history record. The signal handler still accepts the signal as a verification interruption, but the pending result was already computed and terminal publication never checks it again. The updater can save a success report without the signal and then exit with code 143.",
+      "confidence": "high"
+    }
+  ]
+}

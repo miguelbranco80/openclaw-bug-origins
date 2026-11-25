@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Before merge items call for runtime checks of optional clearing on Apple and terminal feedback on Telegram. Neither check exercises the Control UI summary that displays “Answered” for an empty submission."
+}

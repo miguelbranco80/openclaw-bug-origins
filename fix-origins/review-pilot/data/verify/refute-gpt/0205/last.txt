@@ -1,0 +1,28 @@
+{
+  "case": "0205",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ChatView.swift:485–487 applies the bottom size-change anchor to the entire transcript while following latest. ChatCompletedWorkDisclosure.swift:10–16 inserts the expanded rows without changing follow state, so keeping the bottom in place shifts the disclosure header upward and can move it out of view."
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ChatViewModel+TransportEvents.swift:499–504 publishes a saved reply without clearing the live stream, and ChatViewModel+TranscriptCache.swift:27–28 and 49–56 compare the saved text against the displayed prefix, which fails the exact match. ChatViewModel+StreamPacing.swift:19–26 queues the full text in the default run-loop mode, so both copies can remain visible during touch tracking.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ChatViewModel+HistoryReconciliation.swift:801–809 publishes a saved assistant row before applying the run snapshot, and ChatViewModel+RunSnapshot.swift:61–82 can preserve the existing stream for that same run. ChatViewModel+TranscriptCache.swift:27–34 and 49–56 then let the stale displayed prefix through because only an exact match suppresses it.",
+      "same_as": "F2"
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "ChatView.swift:1243–1256 clears the newer-content flag and anchors to the new question with the keyboard hidden. ChatViewModel.swift:813–818 skips the timeline revision when visible text grows without changing shape, and ChatView.swift:488–497 updates live-edge geometry without setting the flag required by the button at line 61.",
+      "same_as": null
+    }
+  }
+}

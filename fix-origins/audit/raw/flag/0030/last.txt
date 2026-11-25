@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge Evidence section describes the switch to linked publication tasks without raising a concern about task identity across fresh calls for the same checkout. The earlier “Add data-model compatibility proof” item concerned recovery of existing receipts after an upgrade."
+}

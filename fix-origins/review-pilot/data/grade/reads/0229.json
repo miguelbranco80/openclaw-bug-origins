@@ -1,0 +1,7 @@
+{"rank": 229, "reviewers": {
+"A": {"flagged": "none", "finding": null, "note": "Findings concern missing bare imports and sibling assets, not host-link targets into the staged candidate."},
+"B": {"flagged": "none", "finding": null, "note": "Symlinked file plugin ID loss is a different defect."},
+"C": {"flagged": "none", "finding": null, "note": "Missing bare-package repair trigger is a different defect."},
+"D": {"flagged": "exact", "finding": 3, "note": "States that repair rejects imports resolving through the openclaw host link into the staged candidate as an escape, blocking the update."},
+"E": {"flagged": "none", "finding": null, "note": "No findings."},
+"F": {"flagged": "none", "finding": null, "note": "Unguarded inspection errors are a different failure."}}}

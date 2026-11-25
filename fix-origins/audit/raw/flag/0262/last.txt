@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge “Resolve merge risk” item about unsupported recovery records focused on when updates should be blocked. Neither that item nor the supplied earlier reviews raised the loss of the original error or the lack of a repair command when recovery admission refused after a failed update."
+}

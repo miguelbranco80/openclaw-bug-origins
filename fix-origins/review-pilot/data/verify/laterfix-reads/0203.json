@@ -1,0 +1,8 @@
+{"case": "0203", "findings": {
+"F1": {"fixed": "yes", "commit": "4005ca2f0faa", "note": "Removes resolveProfileActivitySelection's FORBIDDEN guard, so a saved foreign owner filter no longer makes the sidebar list fail."},
+"F2": {"fixed": "yes", "commit": "5b3ff077dcbd", "note": "SessionOwnerFilter.read now resets a restored foreign owner filter to involvingMe on each authenticated hello when the viewer is restricted, recovering stale sidebar filters after role changes."},
+"F3": {"fixed": "yes", "commit": "4005ca2f0faa", "note": "peopleSessionCount now increments for every readable session instead of only those associated with the guest."},
+"F4": {"fixed": "yes", "commit": "4005ca2f0faa", "note": "The foreign-filter FORBIDDEN path is removed entirely, so the empty-vs-forbidden distinction that leaked hidden sessions no longer exists."},
+"F5": {"fixed": "yes", "commit": "4005ca2f0faa", "note": "The person-privacy guard that compared every ownerId to the viewer profile is deleted, so agent owner filters are accepted."},
+"F6": {"fixed": "yes", "commit": "4005ca2f0faa", "note": "Guard deleted and owner facet now adds every effective owner of readable sessions, restoring agent owner/creator filters and facet options."}
+}}

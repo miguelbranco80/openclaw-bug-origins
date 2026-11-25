@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "After a remount, previous identity 57:100 becomes 32:100: manualReplacement is false and externalPublication is false, but this refusal still compares 32:100 with historical identities.",
+  "note": "The open P2 item identified a stale identity comparison after a remount that let manual repair settle without verification. Fixing that check alone would have left the separate automatic settlement gate rejecting remapped journals."
+}

@@ -1,0 +1,1 @@
+{"rank": 241, "needs": "diff", "where": "extensions/anthropic/cli.runtime.ts:384", "note": "The new parent-held gate is evaluated inside a single pass over message.tasks, so a child listed before its parent in the same snapshot sees no held parent; the order dependence is visible in the diff with general reasoning about unordered snapshots."}

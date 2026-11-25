@@ -1,0 +1,48 @@
+{
+ "commits": 38801,
+ "traced_bugs": 106,
+ "by_size": [
+  {
+   "size": "1 to 5 files",
+   "commits": 21893,
+   "sampled_bugs": 10,
+   "bugs_per_100_commits": 0.61,
+   "bugs_per_1000_files_changed": 2.36
+  },
+  {
+   "size": "6 to 30 files",
+   "commits": 12746,
+   "sampled_bugs": 45,
+   "bugs_per_100_commits": 4.7,
+   "bugs_per_1000_files_changed": 3.76
+  },
+  {
+   "size": "31 to 100 files",
+   "commits": 3591,
+   "sampled_bugs": 25,
+   "bugs_per_100_commits": 9.27,
+   "bugs_per_1000_files_changed": 1.77
+  },
+  {
+   "size": "Over 100 files",
+   "commits": 571,
+   "sampled_bugs": 26,
+   "bugs_per_100_commits": 60.65,
+   "bugs_per_1000_files_changed": 3.0
+  }
+ ],
+ "by_route": [
+  {
+   "route": "Through a pull request",
+   "commits": 35427,
+   "sampled_bugs": 101,
+   "bugs_per_100_commits": 3.8
+  },
+  {
+   "route": "Straight to main",
+   "commits": 3374,
+   "sampled_bugs": 5,
+   "bugs_per_100_commits": 1.97
+  }
+ ]
+}

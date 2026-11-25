@@ -1,0 +1,35 @@
+{
+  "case": "0076",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The document touch toolbar renders the shared sizing select at ui/src/components/desktop/desktop-document-view.tsx:89 and ui/src/components/desktop/desktop-panel-rail.tsx:522. Above the 400px layout breakpoint, its 88px width, shared padding and borders, and 16px coarse-pointer font leave only 40–42px for the value, enough to truncate labels such as “Actual” (ui/src/components/desktop/desktop-panel.css:134,926; ui/src/styles/settings-controls.css:412–417; ui/src/styles/components.css:1140–1179; ui/src/styles/base.css:1012–1016).",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "On wide screens, the device trigger is 220px and the popup is capped at 320px, so the single-line ellipsis can hide the only differing suffix (ui/src/styles/settings.css:917–919; ui/src/styles/components.css:1197–1202,1229–1239). The camera and microphone options render the device label without a title tooltip (ui/src/pages/config/view-appearance-preferences.tsx:188–217).",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "At 430px, the touch toolbar still uses the 88px sizing control because its full-width grid rule starts at 400px and below (ui/src/components/desktop/desktop-panel.css:134–142,920–929). On a coarse-pointer device with customizable selects, the 16px font, padding and borders leave 42px for “Actual,” which can be truncated by the one-line clamp (ui/src/styles/base.css:1012–1016; ui/src/styles/settings-controls.css:412–417; ui/src/styles/components.css:1164–1179).",
+      "same_as": "F1"
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Arabic and Persian set the document direction to RTL (src/shared/control-ui-locale.ts:30; ui/src/i18n/lib/translate.ts:35–40), and the session group cell uses the shared select (ui/src/pages/sessions/category-cell.tsx:28–32). The chevron moves to the left via `inset-inline-end` while the extra padding remains on the physical right, letting a long selected label or its ellipsis occupy the chevron’s space (ui/src/styles/components.css:1172–1188).",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The Systems machine picker uses `settings-select` (ui/src/pages/systems/systems-page.tsx:415–419), whose keyboard-focus rule removes the outline and changes the border color (ui/src/styles/components.css:3935,3961–3962). At 768px and below, the more specific Systems rule keeps the border at `var(--border)` even while focused, leaving no visible keyboard focus indicator in standard colors (ui/src/styles/systems.css:643–656).",
+      "same_as": null
+    }
+  }
+}

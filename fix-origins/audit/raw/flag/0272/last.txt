@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The earlier “Fence publication and pruning after namespace takeover” finding concerned whether a displaced installation could still write or delete backups. The at-merge “Review config compatibility” item concerned upgrades, and neither item addressed the error printed by verify or restore when `--namespace` is used with `--json` and `--from` is omitted."
+}

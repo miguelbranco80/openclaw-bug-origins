@@ -1,0 +1,23 @@
+{
+  "case": "0087",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "The bounded worker takes the read-only path at src/config/sessions/session-transcript-hydration-read.worker.ts:104, which returns an unobserved native connection at src/state/openclaw-agent-db-readonly-open.ts:214, while the benchmark explicitly wraps its connection at scripts/perf/cron-hydration-statement-measure.ts:226. The inherited hydration label starts timing at src/infra/sqlite-transaction.ts:473, but without statement samples the slow-hold warning at lines 538–555 reports zero statement time, an empty summary, and the query time in callbackOtherMs.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The PostgreSQL path sends the compiled query to the server at src/infra/kysely-sync.ts:143, and the materialized CTE at src/config/sessions/session-accessor.sqlite-active-context.ts:475–511 stores unrelated active custom rows before the outer filter at lines 534–538 rejects them. Those rows can spill past work_mem and exceed temp_file_limit even for a small context window, whereas the prior query applied the dependency predicates before its final sort (.review/change.diff:466–557).",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Every outer SQLite hydration transaction starts and stops GC collection around its callback at src/infra/sqlite-transaction.ts:473–486 and src/infra/database-engine/observation.ts:22–29, before the slow-hold check at src/infra/sqlite-transaction.ts:520. On Node, src/infra/gc-observer.ts:42–77 and :89–117 show that each scope creates and tears down a profiler and timer or forces two synchronous stop-and-restart cycles with sample fan-out, adding work to every hold regardless of the one-second idle timer.",
+      "same_as": null
+    }
+  }
+}

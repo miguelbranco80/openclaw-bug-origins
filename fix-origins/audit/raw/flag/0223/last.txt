@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The “Subscribe the Agents header to locale changes” finding concerns stale translations after a language switch. The review items in the bundle do not address JSX dropping the space between a settings sentence and the following value."
+}

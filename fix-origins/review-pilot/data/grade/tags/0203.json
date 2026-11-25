@@ -1,0 +1,1 @@
+{"rank": 203, "needs": "repo", "where": "ui/src/pages/activity/session-activity-owner.ts:545", "note": "Had to know the owner's existing invalidate()/bucket-rollover path reloads the current query on every unrelated session change, so a FORBIDDEN branch that records no settled-denial state re-requests the denied query and flashes loading placeholders."}

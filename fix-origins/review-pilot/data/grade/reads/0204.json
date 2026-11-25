@@ -1,0 +1,6 @@
+{"rank": 204, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "Canvas inventory errors and host-event archives, unrelated to sidecar roots."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "none", "finding": null, "note": "Duplicate kind conflict and late companions not inventoried; not sidecar roots lacking manifest entries."},
+"D": {"flagged": "none", "finding": null, "note": "No findings."},
+"E": {"flagged": "exact", "finding": 1, "note": "States that declaring -wal/-shm/-journal roots for a legacy memory index makes the manifest fail with 'missing a root entry'."},
+"F": {"flagged": "none", "finding": null, "note": "Empty .sqlite placeholder snapshot failure, a different defect."}}}

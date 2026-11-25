@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "related", "finding": 4, "note": "The finding links the new grid to summary width in bubble mode, but describes stretching within the column rather than long labels overflowing it."},
+    "B": {"flagged": "none", "finding": null, "note": "Both findings concern reduced vertical touch targets."},
+    "C": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns hidden handoff chevrons."},
+    "E": {"flagged": "none", "finding": null, "note": "The finding concerns hidden handoff chevrons."},
+    "F": {"flagged": "related", "finding": 2, "note": "The finding identifies how the new grid changes summary sizing in bubble mode, but describes items stretching to fill the column rather than long labels causing the column to overflow."}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "Reviewer B reported no findings."},
+    "C": {"flagged": "none", "finding": null, "note": "The finding concerns a spinner disappearing because its inline box collapses."},
+    "D": {"flagged": "none", "finding": null, "note": "Reviewer D reported no findings."},
+    "E": {"flagged": "none", "finding": null, "note": "Reviewer E reported no findings."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns a Content Security Policy blocking the SVG masks and making the spinners disappear."}
+  }
+}

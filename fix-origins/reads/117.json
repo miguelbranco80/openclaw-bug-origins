@@ -1,0 +1,17 @@
+{
+  "rank": 117,
+  "sha": "355e5ae57e4eef2d39d1afa765613f2981d8d62c",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A read-only viewer could edit channel settings fields and press Save, but nothing was saved and no explanation appeared.",
+  "impact": "permissions",
+  "area": "ui",
+  "summary": "The shared channel configuration form now disables its fields and Save when the viewer lacks administrator access and shows the existing admin-required explanation.",
+  "reasoning": "The channel config form never consulted canAdmin in any version I checked: not in the Solid rewrite (f49b7cd0eb5f), nor in the Lit view.config.ts before it (canAdmin gated only the detail toggle, pairing and wizard), and the form itself dates back to pre-graft code (fullhist shows 1ad26d6fea0, Jan 2026, 'schema-driven channels and settings'). Whether read-only operator access existed when that form was written (never-worked) or arrived later without updating it (latent) is older than the graft and I could not establish it, so the origin is left unclear."
+}

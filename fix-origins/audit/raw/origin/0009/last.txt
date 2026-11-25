@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The fix shows that Telegram clears the typing indicator on delivery while OpenClaw keeps its four-second gate, suppressing the first cue on an immediate follow-up. The September account-throttler diff moved an existing gate from bot-core, and the October refactor retained the same interval. The older diffs were unavailable, so I could not verify when the defect first appeared or whether immediate follow-up typing had previously worked."
+}

@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "related", "finding": 2, "note": "The history-error finding identifies how insufficient bottom scroll clearance lets the composer hide a control, but it does not identify Firefox dropping that clearance from the desktop transcript."},
+    "B": {"flagged": "none", "finding": null, "note": "The finding concerns pointer and touch events intercepted over visible content beside the composer."},
+    "C": {"flagged": "none", "finding": null, "note": "The finding concerns clicks, selection, and swipes intercepted over visible messages in the overlap."},
+    "D": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "E": {"flagged": "related", "finding": 2, "note": "The Retry finding links missing bottom scroll clearance to a control hidden by the composer at maximum scroll, but it concerns the history fallback rather than Firefox's desktop transcript."},
+    "F": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."}
+  }
+}

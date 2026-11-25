@@ -1,0 +1,17 @@
+{
+  "rank": 86,
+  "sha": "d5d4f6494db64790911a82f36dc40b29ae44e4ac",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After an automatic restart the Gateway looked healthy and nothing recorded that the previous process had crashed.",
+  "impact": "other",
+  "area": "gateway",
+  "summary": "Adds a bounded crash history recorded at boot from the existing boot receipt and surfaces it in logs, status, Doctor, health and readiness, plus bounded crash retries for Windows task children and macOS SIGILL exits.",
+  "reasoning": "The bulk of the change is new observability (persistent crash records and operator surfaces), which never existed rather than broke. The macOS part reverses a deliberate policy from f492d369d69b (#181123), which intentionally stopped retrying after SIGILL, and the Windows supervisor gains crash retries it never had; both are policy/behavior changes rather than a regression with a breaking line. Classified as a feature/behavior change titled as a fix."
+}

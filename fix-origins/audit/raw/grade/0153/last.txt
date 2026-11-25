@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "C": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns misleading guidance about importing the PR head and acknowledging conflicts."},
+    "E": {"flagged": "none", "finding": null, "note": "The finding concerns losing an already accepted base when an interrupted refresh is retried after the PR is retargeted."},
+    "F": {"flagged": "none", "finding": null, "note": "The findings concern access revocation, staged deletions, conflict recovery, and stale fork names."}
+  }
+}

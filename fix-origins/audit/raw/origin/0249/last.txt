@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "fc58825c81bd466691afb484427677f9a99002fc",
+  "confidence": "high",
+  "reasoning": "The commit that introduced live chat automation cards set `retryable: true` in the catch block for every non-aborted `cron.get` error, including the not-found response for a deleted job. I checked that the original card showed Retry whenever `state().retryable && !state().loading` and that c9cc12844c7d preserved that condition."
+}

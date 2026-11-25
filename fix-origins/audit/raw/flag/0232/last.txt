@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge Before merge items concern configuration and migration compatibility, and the earlier Complete next step items concern screenshots, timings, or preserving reconnect, ownership denial, and staff controls. None raises the missing own-session scope for icon and color changes or the Discord account preselection issue."
+}

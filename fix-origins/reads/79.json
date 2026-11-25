@@ -1,0 +1,17 @@
+{
+  "rank": 79,
+  "sha": "9a19582e925588e07d70ff3e94bc8adee2c42613",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "f215c401e69a22547b31b9e1a2436944ab9528a7",
+  "cause_pr": 166305,
+  "confidence": "low",
+  "cause_quote": "createNativeLoginRecheck fired `void refreshScopedModelCatalogAuth(owner, { providerIds }).then((auth) => { ... publish(auth) })` in the triggering read's async context and was wired only to models.list.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After signing in to Claude Code on a running Gateway, /models and the Discord picker kept showing Claude CLI models as 'Sign-in needed' and /model rejected them until a Gateway restart.",
+  "impact": "sequence-or-timing",
+  "area": "models/providers",
+  "summary": "Runs the native-login recheck in a detached async context with a logged failure, and triggers it from /models, the channel picker data and /model selection, not only Gateway models.list.",
+  "reasoning": "The PR names two defects. First, the recheck published from inside the triggering request's plugin invocation scope, which had already closed ('Plugin invocation scope is closed' at prepareModelCatalogThinkingPolicies, swallowed by .catch). Second, channel surfaces never triggered the recheck. The recheck and its fire-and-forget publish in the caller's context, wired only to models.list, came in #166305; #166434 and #172471 reworked the probe but kept that shape. The scope-closure enforcement (plugin-invocation-scope.ts) predates both, and the issue reproduced on release 2026.11.2, before e230abd098e. I could not confirm models.list ran inside a closing invocation scope as of #166305, and the channel-surface gap is a missing caller rather than a broken line, so confidence is low."
+}

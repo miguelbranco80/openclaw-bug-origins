@@ -1,0 +1,17 @@
+{
+  "rank": 38,
+  "sha": "e691b34fcdbc2cdf02ecbc5213fbf893cbd7b287",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; only the deadcode CI check flagged unused exports.",
+  "impact": "other",
+  "area": "other",
+  "summary": "Removed an unused update-status initialization wrapper and test-only reset exports, made the deep-research managedResult helper private, and reworked update tests to isolate state via fresh module cohorts.",
+  "reasoning": "The product diff only deletes or un-exports unused functions (initializeGatewayUpdateStatus, resetUpdateAvailableStateForTest, resetUpdateStatusState, managedResult export) with an equivalent inline call; no runtime behavior changes. It is a CI deadcode/lint cleanup titled as a fix."
+}

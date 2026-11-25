@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge “Candidate isolation and downgrade behavior” section describes the canary’s redirected paths without raising a concern about boot-time exec SecretRefs. The earlier findings concern backup recovery after activation failures."
+}

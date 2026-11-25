@@ -1,0 +1,17 @@
+{
+  "rank": 106,
+  "sha": "f0fff93de3664b1306fedab2bc42422f60a6dc65",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "1bc029e59c6cef775559b6603091316560b00760",
+  "cause_pr": 176498,
+  "confidence": "medium",
+  "cause_quote": "The new composer view set data-composer-layout={props.mobileComposer && !mobileEditing() ? \"single-line\" : undefined}, collapsing the composer whenever the pane supplied mobile presentation, with CSS noting it applies \"independently of width\".",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In browser windows between about 641 and 900 px wide (drawer navigation), the empty chat composer collapsed to one line and hid its toolbar controls.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Gates the one-line resting composer on a phone-width media query so wider drawer-navigation windows keep the expanded editor and toolbar.",
+  "reasoning": "The one-line resting composer was introduced in 1bc029e59c6 keyed only on mobileComposer, and the stacked feature 1894bb9b0a5 (#176653, ten minutes later) wired it as mobileComposer: Boolean(mobileHost), which is true for the whole drawer-nav range (MOBILE_NAV_MAX_WIDTH 900, unchanged since before the graft). composer-mobile.css never had a width media gate in its history, and later commits (4c1855035ed mobileResting) only refined the same condition, so wide drawer windows collapsed from the start; cause is the feature pair, medium because the defect needs both commits."
+}

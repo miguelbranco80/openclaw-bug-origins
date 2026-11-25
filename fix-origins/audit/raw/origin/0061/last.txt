@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "f15f221a5333c9747f28179a7787814593a9c99f",
+  "confidence": "high",
+  "reasoning": "The original Files disclosure diff passed `() => ({ open: props.open, active: props.active, instant: props.instant })` to the measurement helper and checked `next === applied`, so equal reactive invalidations produced a fresh object, bypassed the guard, and briefly cleared then restored `hidden`. I checked that the original Review disclosure shipped with the same pattern and that the later consolidation carried it forward. The fix also removes redundant shell `inert` writes from separate changes."
+}

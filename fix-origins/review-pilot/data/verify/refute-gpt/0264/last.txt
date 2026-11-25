@@ -1,0 +1,17 @@
+{
+  "case": "0264",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The direct child marked as dictating in ui/src/pages/new-session/composer.tsx:514 and :542–545 gets its recording edge from ui/src/styles/chat/composer.css:87–110, but the more specific rule at ui/src/styles/new-session.css:820–829 replaces the gradient and sets opacity to zero. The follow-on drag claim is blocked because dictation locks the composer at ui/src/pages/new-session/composer.tsx:97–98 and :238–240, so ui/src/pages/chat/components/chat-attachments.ts:239–251 cannot activate the drop tint for a drag started during dictation.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Active dictation adds the recording class to the message surface at ui/src/pages/new-session/composer.tsx:542–545. The more specific selector at ui/src/styles/new-session.css:820–829 sets opacity to zero on the same ::after that draws the recording border at ui/src/styles/chat/composer.css:87–110.",
+      "same_as": "F1"
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The earlier “Resolve merge risk” item concerned guest authorization and revocation during base transfer. The at-merge “Findings” section was empty, and the review raised no concern about using stale PR metadata after the target branch advanced."}

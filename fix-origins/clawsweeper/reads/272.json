@@ -1,0 +1,1 @@
+{"rank": 272, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Items concern namespace takeover fencing and config compatibility; nothing mentions the --namespace requires --from guard being a plain Error in JSON mode."}

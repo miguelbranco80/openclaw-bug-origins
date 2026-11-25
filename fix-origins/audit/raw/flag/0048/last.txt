@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Tests section asks for proof of persisted recovery preservation without identifying the case where a plugin obligation or install record changes after publication. The Evidence section describes the preimage and postimage comparisons without raising a concern that a mismatch could make every repair attempt fail."
+}

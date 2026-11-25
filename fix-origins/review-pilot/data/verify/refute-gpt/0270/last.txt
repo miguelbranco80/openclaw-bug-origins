@@ -1,0 +1,35 @@
+{
+  "case": "0270",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "On desktop, `ui/src/pages/chat/components/chat-details-subagents.tsx:135` renders the avatar stack for six or more subagents. The 16px slots and 15px glyphs in `ui/src/styles/chat/details-desktop.css:449–486` combine with the −6px margin in `ui/src/pages/chat/components/chat-details-subagents.css:152`, leaving the adjacent bot strokes in `ui/src/components/icon-data.ts:292–298` intersecting on transparent backgrounds.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "The desktop rule at `ui/src/styles/chat/details-desktop.css:484` overrides the tinted stack background at `ui/src/pages/chat/components/chat-details-subagents.css:156` and the per-agent row colors at line 58. The stack appears in the expanded section’s summary button at `ui/src/pages/chat/components/chat-details-subagents.tsx:149–160`, while the collapsed header can show a spinner at lines 117–131.",
+      "same_as": "F1"
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Environment enables `animateContentResize` at `ui/src/pages/chat/components/chat-details-environment.tsx:123`, and `ui/src/pages/chat/components/chat-details-desktop-section.tsx:62–66` retains `overflow: hidden` after settling. The new 4px outset at `ui/src/styles/chat/details-desktop.css:344–355` worsens clipping of the focus outline at `ui/src/styles/chat/details.css:279–282`, whose sides already extended beyond the old full-width machine trigger and standalone Changes button.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "`ui/src/components/session-progress-card-content.tsx:208–218` sets `data-error=\"true\"` for a failed run or a failed child when runtime data is available and nests the error detail in the same status element. The more specific desktop rule at `ui/src/styles/chat/details-desktop.css:565–566` overrides the danger color at `ui/src/styles/chat/progress-card.css:53–54`, so the label and detail inherit the ordinary muted color.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "minor",
+      "evidence": "`ui/src/pages/chat/components/chat-branch-actions.tsx:216–221` puts the menu wrapper inside the shaded pill styled at `ui/src/pages/chat/components/chat-pull-request-presenters.css:56–86`, and `ui/src/components/solid/menu.tsx:632–645` puts the trigger inside that wrapper. The −6px end margin at `ui/src/styles/chat/details-desktop.css:596–598` reduces the wrapper’s layout width while keeping the trigger 26px wide, making its hover or expanded background overhang the pill.",
+      "same_as": null
+    }
+  }
+}

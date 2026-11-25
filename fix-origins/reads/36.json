@@ -1,0 +1,17 @@
+{
+  "rank": 36,
+  "sha": "86c93003e2ab1eb1ea29859a39931675e6164d7d",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With no models available, clicking the composer's model control opened a large, mostly empty picker that overflowed the composer instead of taking them to setup.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Replaced the model picker with a direct 'Set up a model' button when the loaded catalog is empty (including automatic account selection), and moved search/shortcut wiring into the lazy panel to stay within the bundle budget.",
+  "reasoning": "Issue #200612 asks for new behavior ('replace the model control with a Set up models button'); the fix does not repair the empty picker but swaps it for a setup action, which is a UX/product change. The oversized empty popover traces to the fixed 'height: 350px' added by feat #192135 (92e16d25ce0), but that cosmetic aspect is not what the fix changes, so this is classed as a design change rather than a regression or never-worked defect."
+}

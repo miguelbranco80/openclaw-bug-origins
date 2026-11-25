@@ -1,0 +1,17 @@
+{
+  "rank": 204,
+  "sha": "e552c49f373cdb6b7490d197f7eef3462846f288",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "7187a9afa71af15eb5f7889f6af47faed021097a",
+  "cause_pr": 169436,
+  "confidence": "medium",
+  "cause_quote": "Memory Core's new `collectBackupResources` declared every `memory/<agent>.sqlite` suffix in `LEGACY_MEMORY_SIDECAR_SUFFIXES` (\"-wal\", \"-shm\", \"-journal\") as `kind: \"file\"` resources, while the capture at that commit seeded `roots = new Set(resources.keys())` and dropped only sidecar entries, leaving sidecar roots without entries.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "`openclaw doctor --fix` on installs with an unmigrated legacy memory index warned every run that original state capture was unavailable: \"Update recovery manifest is missing a root entry.\"",
+  "impact": "failed-every-time",
+  "area": "update",
+  "summary": "Doctor's original-state capture now omits declared roots that are SQLite sidecars of a captured database, and the capture-reuse comparer skips the same declarations so an unchanged install can reuse the sealed baseline.",
+  "reasoning": "At 7187a9afa71 the capture code (read via git show) adds all declared resources as roots and filters only entries via `!sidecars.has(entry.sourcePath)`, and that same commit introduced Memory Core's declaration of the base file plus its -wal/-shm/-journal paths, so the manifest's root-completeness check could never pass for installs with a real legacy memory SQLite file. The blame candidate d417b52 only added the rehearsal filter to the unchanged roots line. Medium because the exact header-based database recognition of the base file at that commit was inferred from its comment and the capture structure, not run."
+}

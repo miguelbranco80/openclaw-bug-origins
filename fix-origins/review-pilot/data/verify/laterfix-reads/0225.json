@@ -1,0 +1,6 @@
+{"case": "0225", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "No later fix commits touch the file."},
+"F2": {"fixed": "no", "commit": null, "note": "No later fix commits touch the file."},
+"F3": {"fixed": "no", "commit": null, "note": "No later fix commits touch the file."},
+"F4": {"fixed": "partly", "commit": "e93a426be329", "note": "Adds a path-independent detection of Node 24's 'process.execve failed with error code EACCES' abort, which avoids the escaped-path comparison on Node 24, but the literal-path comparison for other runtimes is unchanged."}
+}}

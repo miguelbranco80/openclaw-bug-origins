@@ -1,0 +1,17 @@
+{
+  "rank": 198,
+  "sha": "29e5360e957886bf47810b72dfe25dca44250e96",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "ClawRouter-routed vision models could show as text-only and use router pricing limits instead of the selected endpoint's context and output limits.",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "ClawRouter catalog discovery now reads the selected endpoint's clawrouter.native-capabilities.v1 facts for text/image input, context window, context tokens and output cap, and tolerates audio/video/json modalities instead of falling back to text-only.",
+  "reasoning": "The catalog parser from aab56517 (#178859) deliberately failed unknown modalities closed to [\"text\"] and took limits from pricing rows, which was correct for the catalog shape it was written against; the router service later supplied per-endpoint native capability facts and wider modality lists, which the plugin did not consume. That is an external contract change exposing older code, not a broken in-repo commit; the PR is framed as campaign work adopting an existing router contract, so this borders on not-a-defect and no single cause commit applies."
+}

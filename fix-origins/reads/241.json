@@ -1,0 +1,17 @@
+{
+  "rank": 241,
+  "sha": "99d5703eeb3f9ff56bb4aa123052aec5283054a8",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "3d7f8fbf399df62820f8982cab7f7c2de83648b0",
+  "cause_pr": 182516,
+  "confidence": "high",
+  "cause_quote": "Inside the single for-loop over message.tasks it added the gate `(parentTaskId === undefined || input.pendingBackgroundTaskIds.has(parentTaskId) || input.pendingBackgroundTaskIds.has(id))`, so a child seen before its parent in the same snapshot found no held parent and was skipped.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With the Claude CLI runtime, answers from nested subagents or workflows were lost because the turn ended after the root agent's answer when a task snapshot listed a child before its parent.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "Replaced the single-pass background-task hold scan with a fixed-point scan (after recording ownership for the whole snapshot) so children listed before parents still get held.",
+  "reasoning": "Before 3d7f8fbf (#182516) nested Agents/Workflows with a parent_task_id were owner=false and never held; that commit introduced holding children of held parents, with the parent-held check evaluated in one pass in snapshot order, which is exactly the ordering defect fixed here. Intervening commits (c93890f, etc.) only renamed calls to tasks.*; the PR body confirms main's scan was single-pass."
+}

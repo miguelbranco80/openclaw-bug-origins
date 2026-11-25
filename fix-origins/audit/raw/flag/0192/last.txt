@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge Findings section focused on operator authority, and earlier activation findings concerned asset grants, base paths, and HTTP admission. None of the supplied review items raised how truncating a long plugin activation error could split an emoji."
+}

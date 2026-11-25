@@ -1,0 +1,1 @@
+{"rank": 153, "needs": "outside", "where": "src/gateway/github-pr-workspace-preparation.ts:372", "note": "Requires knowing GitHub's pull request detail base SHA lags the live target branch ref, so refreshing from PR details reports a stale base as current."}

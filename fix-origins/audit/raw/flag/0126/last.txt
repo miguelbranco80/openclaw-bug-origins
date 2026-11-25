@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Before merge items cover the missing post-core executor, a wrapper import, and stored-data compatibility. None raises the recovery-guard reads that repeatedly copied the whole state database and stalled updates."
+}

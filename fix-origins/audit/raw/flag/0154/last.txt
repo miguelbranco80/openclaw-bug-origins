@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge Evidence section mentions a screenshot showing a child failure, and the earlier “Include interrupted children in the stopped count” finding concerns status classification. Neither raises a concern about truncating failure detail or splitting an emoji at the 240-unit limit."
+}

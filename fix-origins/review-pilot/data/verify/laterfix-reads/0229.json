@@ -1,0 +1,9 @@
+{"case": "0229", "findings": {
+"F1": {"fixed": "yes", "commit": "dab086c0d82b", "note": "Private-copy lookups may now resolve into the realpath of the staged candidate package (dependencyRoots), so targets reached through the host link into the staged candidate are no longer rejected as escapes."},
+"F2": {"fixed": "no", "commit": null, "note": "Later commits only downgrade SyntaxError parse failures to warnings; non-syntax errors such as ERR_INVALID_PACKAGE_TARGET still propagate."},
+"F3": {"fixed": "no", "commit": null, "note": "No listed commit changes how sibling symlink names are recorded by source inspection."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed commit moves inventory materialization off TMPDIR or reorders it after capacity selection."},
+"F5": {"fixed": "yes", "commit": "b4b2da4e7d3e", "note": "Wraps the copied-graph inspection in repair so a SyntaxError becomes a named warning and the entry is skipped instead of failing candidate Doctor (non-parse capture failures still throw)."},
+"F6": {"fixed": "no", "commit": null, "note": "No listed commit changes where helpers outside the plugin tree are projected relative to the rehearsal state layout."},
+"F7": {"fixed": "partly", "commit": "f525f462414f", "note": "prepareUpdateCandidatePlugins now routes each entry through inspectUpdateCandidatePluginSource, which turns SyntaxError into a warning, but link-escape and other inspection errors still abort."}
+}}

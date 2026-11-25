@@ -1,0 +1,1 @@
+{"rank": 218, "needs": "repo", "where": "src/cli/update-cli/update-command-mutable-signals.ts:310", "note": "Had to know that waitForGatewayHealthyRestart polls with params.deadline?.signal ?? params.signal and never reads the forward command-process scope, so stopping that scope on a signal kills each status probe while polling continues until the update deadline."}

@@ -1,0 +1,17 @@
+{
+  "rank": 120,
+  "sha": "4c61c20fb1a7e0e98c994ec48b16284f2dd8ce0a",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; a macOS outbox attachment-budget test intermittently failed in CI.",
+  "impact": "sequence-or-timing",
+  "area": "apps",
+  "summary": "The ChatFileAdmissionTests fixture now awaits settleComposerDraft before setting its input, so draft loading cannot advance the revision mid-test.",
+  "reasoning": "The change touches only a Swift test file and the PR states no product behavior changes: production code correctly preserved the newer draft, and the test raced initial draft loading. A test-only flake fix titled fix(ci) is a tooling/CI change under the rubric, so not-a-defect."
+}

@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Tests section asks for a Gateway cron run to demonstrate the warning and latency. It gives no indication that the read-only connection bypassed statement observation or that the warning could report zero SQL statements."
+}

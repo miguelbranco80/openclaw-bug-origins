@@ -1,0 +1,17 @@
+{
+  "rank": 283,
+  "sha": "f4b42cc9ae727019836365698b9a010a18ed9e70",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible beyond extra database and decompression work on large transcripts; accounting results were correct.",
+  "impact": "slower-or-heavier",
+  "area": "storage",
+  "summary": "Selects the bounded active path from compact navigation first and lazily reads transcript bodies only until usage and taint facts settle, instead of decoding up to 512 bodies, and shares navigation parsing between history and accounting.",
+  "reasoning": "The pre-fix accounting policy used a visitor with no early exit and deliberately counted every candidate event and scanned for leaf controls, so reading the whole 512-event tail was the design since the worker accounting move (#163045) and #190182 only fixed the limit constant; no commit removed an earlier early exit. This is a performance improvement of code that was never faster, with unchanged results, so it is not a defect."
+}

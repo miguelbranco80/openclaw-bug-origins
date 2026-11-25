@@ -1,0 +1,17 @@
+{
+  "rank": 263,
+  "sha": "1110e81c7b93da2eb1a8b3ba26f70cf4a9660553",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "During background reclaim of large expired scratch clones, the Gateway thread spent minutes of CPU and tens of GB of allocation on recursive deletion, competing with chat responsiveness.",
+  "impact": "slower-or-heavier",
+  "area": "gateway",
+  "summary": "Atomically claims each expired scratch directory by rename and moves its recursive inspection and deletion into the existing filesystem worker, leaving expiry, custody and identity decisions on the Gateway thread.",
+  "reasoning": "Scratch expiry was added by 99ba844a (#193677, 2026-11-05) as paced main-thread streaming deletion, and it has always run on the Gateway thread; this change relocates that work to a worker for a measured performance gain rather than restoring earlier behavior or fixing incorrect results. Per the rubric, improving code that was never faster is not-a-defect, although the cost was user-visible as Gateway load."
+}

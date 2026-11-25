@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "earlier-only",
+  "quote": "paced growth following the live edge while preserving a paused reader, and normal completion/narration settlement on code carrying this change",
+  "note": "The October 11 “Add real behavior proof” item asked for evidence that paced text followed the live edge through completion, without identifying the keyboard-up scroll failure or the jump when the reply finished. The item was dropped by merge."
+}

@@ -1,0 +1,17 @@
+{
+  "rank": 185,
+  "sha": "0f6184f2b7e07c7f5a61d02cfa13856af1cbd335",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "The Worktrees 'Clean up now' button read 'Loading…' during an ordinary list read, and the action group shifted about 23 px on mobile when the read finished.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "The Worktrees cleanup button shows the loading label only while cleanup itself runs, not during inventory reads; it stays disabled during reads as before.",
+  "reasoning": "The label was deliberately bound to list loading (`view().loading ? t(\"common.loading\")`) since at least the Solid port 7dd5b520d47, and 02a1caa67dd0 only carried it forward while adding the gc operation; nothing broke. The change is a small UX polish that removes a sub-0.001 CLS layout shift, so it reads as a presentation decision rather than a regression or failure."
+}

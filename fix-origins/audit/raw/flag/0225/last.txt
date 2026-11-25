@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The at-merge Provenance checked section described native launch failure recognition as preserving prior behavior and raised no concern about Node 24 losing the executable error. The earlier catalog-relay finding concerned HTTP 502s during model discovery."
+}

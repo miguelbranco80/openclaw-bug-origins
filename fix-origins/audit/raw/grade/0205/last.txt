@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "related", "finding": 1, "note": "The stale paced text points to a problem in the live-to-saved reply handoff, while the finding describes a temporary duplicate."},
+    "C": {"flagged": "related", "finding": 1, "note": "The finding identifies the missing timeline updates as a reply grows below the viewport, but describes a hidden Jump to Latest button while anchored to the question."},
+    "D": {"flagged": "none", "finding": null, "note": "Reviewer D reported no findings."},
+    "E": {"flagged": "none", "finding": null, "note": "Reviewer E reported no findings."},
+    "F": {"flagged": "related", "finding": 1, "note": "The finding identifies a timing mismatch between paced live text and a saved row, but describes a duplicate bubble during an active run."}
+  }
+}

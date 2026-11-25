@@ -1,0 +1,7 @@
+{"case": "0273", "findings": {
+"F1": {"fixed": "partly", "commit": "d7f90ec35cff", "note": "Accepted captures are now renamed and deleted in the background with failures only logged, so accepted checkpoints no longer turn into errors, but leftover retired captures are still removed unguarded before the next capture (bfe47f1ccbf8 later stops using snapshot capture for ordinary checkpoints)."},
+"F2": {"fixed": "no", "commit": null, "note": "No commit listed for the manifest scan addresses bind-mounted directories missing from the btrfs snapshot."},
+"F3": {"fixed": "no", "commit": null, "note": "No listed fs-safe-copy worker commit changes the cleanup chmod/ownership handling for foreign-owned snapshot directories."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed checkpoint.ts commit widens the native-copy fallback; snapshot capture for checkpoints was later dropped in bfe47f1ccbf8, which is not listed for this file."},
+"F5": {"fixed": "yes", "commit": "3bf03a667332", "note": "The benchmark report now reads /sys/fs/cgroup/cpu.max only if it exists and records null otherwise."}
+}}

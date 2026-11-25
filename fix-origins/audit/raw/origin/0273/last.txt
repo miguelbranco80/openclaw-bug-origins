@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "10d67445fbecbc3c25f9bb5a5020766e3513b64b",
+  "confidence": "high",
+  "reasoning": "The parent-side diff shows that changed command checkpoints already synchronized guest files into the canonical workspace without a filesystem snapshot. The causing commit added `await nativeWorktreeFilesystem.copy(projectionPath, root, options)` to the new btrfs checkpoint path and removed the capture afterward, introducing the filesystem-wide transaction and cleanup work behind the reported Gateway stalls. Later commits narrowed snapshot use to large or slow checkpoints and changed when cleanup ran."
+}

@@ -1,0 +1,7 @@
+{"case": "0270", "findings": {
+"F1": {"fixed": "yes", "commit": "cb9d2c2df6e6", "note": "Scopes the 16px icon-slot sizing to row avatars so stacked summary avatars keep their native size instead of shrinking under enlarged glyphs."},
+"F2": {"fixed": "yes", "commit": "cb9d2c2df6e6", "note": "Removes the transparent/muted avatar override and limits the slot rule to rows, restoring tinted stacked chips and per-agent hues."},
+"F3": {"fixed": "no", "commit": null, "note": "No listed commit changes the Environment section body's overflow clipping of widened rows."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed commit restores the danger color for errored Task Progress status."},
+"F5": {"fixed": "yes", "commit": "596c9d463e4c", "note": "Restricts the -6px trigger margin to the unboxed summary trigger so the publication split button's trigger no longer overhangs its pill."}
+}}

@@ -1,0 +1,8 @@
+{"case": "0186", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "aed3a5e6a7bd made the catch rethrow unconditionally (the opposite direction) and 45b96ba60b1d only drops the budget argument; no listed commit restores returning undefined for ordinary read failures (85ae291136b2's diff for this file could not be read: objects missing locally)."},
+"F2": {"fixed": "no", "commit": null, "note": "No listed commit changes how empty branch summaries consume the bounded event slot."},
+"F3": {"fixed": "partly", "commit": "45b96ba60b1d", "note": "Harness history now uses the fixed 16 MiB guard instead of tokens*8, making the budget-exceeded throw during compaction handling far less likely, but the throwing read and debug-only handling remain."},
+"F4": {"fixed": "partly", "commit": "45b96ba60b1d", "note": "Removes the tokens*8 budget cut that made oversized newest frames throw, but the model-context read still rethrows (e.g. concurrent append) and still lacks native-evidence details."},
+"F5": {"fixed": "no", "commit": null, "note": "c16bff1978ba moved the window selection to a new module but kept the 'would change tool-result ownership' RangeError; no listed commit retries a shorter suffix."},
+"F6": {"fixed": "partly", "commit": "85ae291136b2", "note": "Adds toolResultOverflow 'omit' so an oversized newest tool frame is retained with its result body omitted instead of throwing, but the raw-byte tokens*8 budget and break-at-first-miss scan remain in this file's listed commits (45b96ba60b1d replaced the budget but is not listed for this file)."}
+}}

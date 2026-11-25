@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "1fed8f304f087bb35059e4cf86b727d4ff3bc730",
+  "confidence": "high",
+  "reasoning": "The original Systems sidebar hid the session list and rendered its own machine inventory. The October 11 diff replaced `renderSidebarScope(this)` with `renderSessionListToolbar(...)` immediately above the container hidden by `contextualSidebar`, exposing the Sessions owner picker, filter, and new-session control on Systems. The avatar symptom came from a separate later change, `b4bf350c7b0d`, whose new click handler treated every open `sessions` view as eligible for the agent menu."
+}

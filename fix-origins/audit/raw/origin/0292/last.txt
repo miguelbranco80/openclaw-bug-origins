@@ -1,0 +1,6 @@
+{
+  "origin": "regression",
+  "cause_sha": "bfbb6560585b1b7241a44a5202d927d093e776a8",
+  "confidence": "high",
+  "reasoning": "Before #193548, archive reads called `sweepMaterializedArchiveCache(cacheDir)`, which deleted cache entries older than 24 hours with `fs.rmSync(entry.path, { force: true })`. The #193548 diff removed that call and the sweep when it switched to direct streaming, leaving existing plaintext caches without automatic cleanup until Doctor added it."
+}

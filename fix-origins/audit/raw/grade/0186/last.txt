@@ -1,0 +1,34 @@
+{
+  "reviewers": {
+    "A": {
+      "flagged": "exact",
+      "finding": 3,
+      "note": "The finding identifies how the token budget multiplied by eight makes screenshots and large tool outputs silently cut older turns from history."
+    },
+    "B": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The reviewer reported no findings."
+    },
+    "C": {
+      "flagged": "related",
+      "finding": 2,
+      "note": "The finding identifies that a large mirrored tool frame can exceed the history budget, but describes a thrown error during compaction reporting."
+    },
+    "D": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The finding concerns metadata bypassing the byte limit."
+    },
+    "E": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The finding concerns a concurrent append causing a history read to fail during compaction reporting."
+    },
+    "F": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The reviewer reported no findings."
+    }
+  }
+}

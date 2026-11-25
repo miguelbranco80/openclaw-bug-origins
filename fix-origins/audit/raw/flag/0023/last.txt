@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The Windows isolation finding concerns whether Linux containers can use native Windows paths. Docker splitting comma-bearing paths while parsing `--mount` is a separate failure that neither the merge review nor the earlier items raised."
+}

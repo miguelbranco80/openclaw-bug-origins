@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge “Resolve merge risk” item concerned cross-Gateway transcript isolation, and the earlier “Release the roster wait” item concerned an IndexedDB read during startup. No review item in the supplied record raised the risk that repeated Gateway updates could keep postponing the boot-record write."
+}

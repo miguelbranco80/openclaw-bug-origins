@@ -1,0 +1,1 @@
+{"rank": 163, "needs": "diff", "where": "ui/src/pages/skill-workshop/view.tsx:175", "note": "The diff shows a busy button made disabled during enabling (dropping keyboard focus) and raw Gateway error text passed to ErrorBanner; the layout conflict additionally needs the settings-group CSS and the stuck state needs the plugins.changed broadcast flow."}

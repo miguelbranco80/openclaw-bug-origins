@@ -1,0 +1,23 @@
+{
+  "case": "0085",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/sqlite-readonly-location.ts:352 sends an observed rollback journal through the same guarded copy as the main file, and src/infra/sqlite-readonly-location.copy.test.ts:233 covers deletion at the helper’s reopen and expects an FsSafeError with zero retries. A commit that unlinks the journal after realpath resolution therefore aborts strict inspection at src/infra/sqlite-readonly-location.ts:178 and :615 even if the database has settled.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/sqlite-readonly-location.ts:178 and :615 let a guarded reopen failure escape the synchronous snapshot without retry, and src/infra/update-candidate-state.ts:158 calls that snapshot for strict candidate inspection. The worker’s sync mode uses the asynchronous copier at src/infra/sqlite-readonly-location.worker.ts:149, where the finally check in src/infra/sqlite-readonly-location.ts:433 still turns source drift into SqliteSourceChangedError.",
+      "same_as": "F1"
+    },
+    "F3": {
+      "verdict": "unclear",
+      "impact": null,
+      "evidence": "src/infra/sqlite-private-directory.ts:56 preserves an explicit Windows staging root’s spelling, and src/infra/sqlite-readonly-location.ts:180 passes that spelling to the guarded copier. The copier is imported from @openclaw/fs-safe/advanced at src/infra/sqlite-readonly-location.ts:5, and its implementation is absent from the checkout, so the claimed rejection of an 8.3 alias cannot be verified.",
+      "same_as": null
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "case": "0087",
+  "findings": {
+    "F1": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "The bounded worker requests a read-only snapshot in src/config/sessions/session-transcript-hydration-read.worker.ts:104, and its scope obtains the connection from the opener that calls observeConnection(db) in src/state/openclaw-agent-db-readonly-open.ts:216. The wrapper records iterator execution in src/infra/database-engine/observation.ts:241–278, and the benchmark in the supplied tree uses the same opener at scripts/perf/cron-hydration-statement-measure.ts:259.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The dependency query runs on PostgreSQL through src/infra/kysely-sync.ts:143–145 and 351–359. In src/config/sessions/session-accessor.sqlite-active-context.ts:475–541, unrelated active custom rows enter the unbounded materialized CTE before the outer custom-type filter rejects them, so the CTE can spill past a finite temp_file_limit even for a small context window, whereas the previous query filtered those rows before the final sort (.review/change.diff:453–476).",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "On Node, src/infra/sqlite-transaction.ts:473–486 starts and stops GC observation inside each matching SQLite transaction hold, including fast holds, since the warning threshold is checked later at line 520. In src/infra/gc-observer.ts:42–46 and 89–116, a lone subscriber creates and tears down the profiler and timer, while an existing subscriber causes two synchronous profiler restarts per hold outside the one-second timer cadence.",
+      "same_as": null
+    }
+  }
+}

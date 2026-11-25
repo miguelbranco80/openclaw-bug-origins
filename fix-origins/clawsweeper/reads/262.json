@@ -1,0 +1,1 @@
+{"rank": 262, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "Items concern executor fencing of rollback mutations, installed preservation, SDK lock options and generic compatibility proof; nothing addresses the pending-recovery failure dropping the original error message."}

@@ -1,0 +1,17 @@
+{
+  "rank": 143,
+  "sha": "da3ac019109595089011558077bb5c1f620dada3",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "internal",
+  "user_saw": "Nothing visible; release qualification gates (deadcode, SDK surface budget, import-graph and package-size checks, test fixtures) were red.",
+  "impact": "other",
+  "area": "other",
+  "summary": "Repaired beta release-qualification gates by removing dead exports, reconciling the plugin SDK surface budget, fixing test fixtures and socket paths, and moving transcript navigation out of the host-logging import graph.",
+  "reasoning": "The PR describes itself as a CI/release-qualification repair 'without adding release features'; every change is dead-export cleanup, SDK export inventory, flaky or path-length test fixtures, or an import-boundary refactor to satisfy the runtime build-graph and package-size checks. No user-reported runtime failure is fixed, so this is tooling/CI work titled as a fix."
+}

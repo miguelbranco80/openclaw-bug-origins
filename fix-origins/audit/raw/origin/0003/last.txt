@@ -1,0 +1,6 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "I checked that #192092 added a duplicate `closeSessionTitle` property and #192046 added the `copied === false` comparison. The fix restores TypeScript and lint checks while preserving the displayed copy and pairing behavior."
+}

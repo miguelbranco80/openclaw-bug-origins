@@ -1,0 +1,17 @@
+{
+  "rank": 262,
+  "sha": "dc13ca6d99ce258296cf74d501965ef4d9bf2ae1",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "000af986dc991e9cef3d10663c121503606f25cc",
+  "cause_pr": 140339,
+  "confidence": "medium",
+  "cause_quote": "When post-failure recovery admission refused, the unwind threw `new UpdateCommandPendingRecoveryFailure(primaryResult(failure?.error), formatErrorMessage(error), ...)`, printing only the admission refusal and dropping the original failure's message.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A failed update printed only 'Update <run> has unfinished recovery; reconcile it before starting another update.' with no sign of the error that actually stopped it and no next command.",
+  "impact": "presentation",
+  "area": "update",
+  "summary": "Appends a redacted 'First failure: ...' line to the pending-recovery failure and names `openclaw update repair` when repair can settle the run's plugin cohort.",
+  "reasoning": "The unwind file was created in 000af986 (#140339), whose admission-refusal catch formatted the pending failure from the refusal alone; later refactors (d780fdc, 16095df's pendingFailure helper) kept formatErrorMessage(cause) unchanged, so the first failure was never shown. Treated as a diagnostics defect that shipped with the path rather than a pure copy change because the root cause was unrecoverable from output; confidence is medium since the original error may have survived in the result object."
+}

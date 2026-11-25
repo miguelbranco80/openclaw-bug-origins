@@ -1,0 +1,6 @@
+{"rank": 42, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "No findings."},
+"B": {"flagged": "none", "finding": null, "note": "No findings."},
+"C": {"flagged": "none", "finding": null, "note": "Cancellation of skill preparation, unrelated to phase misattribution."},
+"D": {"flagged": "none", "finding": null, "note": "Diagnostics finding concerns pre-handler WebSocket time, not run time booked as preparation."},
+"E": {"flagged": "none", "finding": null, "note": "Cancellation blocking later sends, unrelated."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

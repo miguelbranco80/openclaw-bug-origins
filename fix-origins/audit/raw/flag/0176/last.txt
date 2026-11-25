@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The earlier item “Feed typing 429s into the shared flood gate” concerns how typing responses affect the limiter. The bug occurs when an already active flood wait skips a typing request and the logging wrapper records the synthetic 429 at ERROR."
+}

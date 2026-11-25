@@ -1,0 +1,23 @@
+{
+  "case": "0089",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Agent roster notifications publish a page revision through ui/src/pages/new-session/new-session-page-owner.ts:267–274, causing the memo at ui/src/pages/new-session/new-session-page.tsx:169–181 to create a fresh picker params object. The writable signal at ui/src/pages/new-session/project-picker-content.tsx:65 then re-reads the saved path and overwrites the typed value while the editor remains open under the branch at lines 342–343.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "When refreshed capacity shows zero slots, ui/src/pages/new-session/device-placement.ts:68–76 and 197–209 make the device folder unavailable, so ui/src/pages/new-session/draft-target-actions.ts:37–46 returns before writing the replacement. The button at ui/src/pages/new-session/place-browser.tsx:210–219 still accepts an absolute path and closes the browser, leaving Start to use the old folder once capacity returns, while the removed setter in .review/change.diff:350–359 would have updated the existing selection.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Recovery restores the full path at ui/src/pages/new-session/draft-place-state.ts:506–513, but ui/src/pages/new-session/project-chip.tsx:28–33 and 60–65 display only the final segment and put the full path in the title and, absent a warning, the accessibility description. Pending placement disables the trigger at ui/src/pages/new-session/picker.tsx:62–72, and .review/change.diff:522–545 removes the field that previously showed the saved path, leaving a sighted touch user without a visible way to verify it before retrying.",
+      "same_as": null
+    }
+  }
+}

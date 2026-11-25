@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The Findings section lists no issues. The Evidence section mentions #203259 in connection with the inline editor being removed, without raising the label inset mismatch in the new picker or the project search layout shift on touch focus."}

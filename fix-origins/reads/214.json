@@ -1,0 +1,17 @@
+{
+  "rank": 214,
+  "sha": "70377534b792f032383c6f1e27d7a52d18a8fd0a",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "With maxActiveTranscriptBytes set and many tools, byte-triggered compaction ran early and every reply showed the 'continuing with bounded recent context' notice, even right after compaction.",
+  "impact": "other",
+  "area": "agents",
+  "summary": "Added transcriptEventChargesContextBytes so that SQLite, actor and memory-actor active-transcript byte counters stop charging `custom` entries (such as the openclaw.system-prompt checkpoint), while those entries keep context eligibility.",
+  "reasoning": "The accounting rule (sum serialized_bytes over context_eligible=1, where transcriptEventContextEligibility returns 1 for custom entries) and the openclaw.system-prompt checkpoint writer (session-prompt-state.ts) both predate the 2026-09-03 graft; the later actor counters (c9e7c71c0859 #171448, 87ca2c83893c #174274) only copied the existing SQL semantics, so none of them is a regression. This most likely never worked as intended once the byte cap and the tool-bearing checkpoint coexisted, but a path-limited -S search for when maxActiveTranscriptBytes and the latch were introduced timed out, so I could not identify the introducing commit and do not name a cause."
+}

@@ -1,0 +1,1 @@
+{"rank": 71, "needs": "outside", "where": "src/cron/store/row-codec.ts:664", "note": "The diff visibly routes the SQLite-only json($1) call into the new PostgreSQL jsonSetPath path; seeing it breaks needs knowing PostgreSQL 16 has no json(unknown) function (only PG17+ adds the SQL/JSON json() constructor)."}

@@ -1,0 +1,6 @@
+{"case": "0204", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "No later fix commits touch the file."},
+"F2": {"fixed": "no", "commit": null, "note": "d75915ee8834 only marks sidecar warnings recoverable and 4a95b4eed497 adds archived reindex shadow cleanup; neither changes declaration of absent WAL/SHM/journal roots."},
+"F3": {"fixed": "no", "commit": null, "note": "No later fix commits touch the file."},
+"F4": {"fixed": "no", "commit": null, "note": "Neither listed commit changes how a zero-byte legacy .sqlite placeholder is declared or snapshotted."}
+}}

@@ -1,0 +1,5 @@
+{"case": "0153", "findings": {"F1": {"fixed": "no", "commit": null, "note": "No listed commit changes refresh_base handling of merged PRs with pending local conflicts."},
+"F2": {"fixed": "no", "commit": null, "note": "9be946395212 splits verify/accept but still checks the publisher's write access, not the guest's repository access."},
+"F3": {"fixed": "no", "commit": null, "note": "Base-refresh commits concern pauses, memory and disk writes; none addresses staged deletion with an untracked working copy."},
+"F4": {"fixed": "no", "commit": null, "note": "The prepare_pr guidance still says a bound-PR refresh integrates its newer head and uses expectedHeadCommit after be9444ea8617 and later edits."},
+"F5": {"fixed": "no", "commit": null, "note": "No listed commit refreshes head repository metadata after a fork rename."}}}

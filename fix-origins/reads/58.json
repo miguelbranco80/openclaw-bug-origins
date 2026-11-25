@@ -1,0 +1,17 @@
+{
+  "rank": 58,
+  "sha": "9156690807ff86d730e12940585a3d72ef54809d",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "1714e2026713c5af46eba5465d44a0253d6fa939",
+  "cause_pr": 186288,
+  "confidence": "high",
+  "cause_quote": "#186288 fed the context engine's selected messages into settled finalization through the new boundSettledFinalizationMessages, which builds each entry with `timestamp: new Date(message.timestamp).toISOString()`, throwing RangeError for engine messages without a timestamp.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In sessions using a context engine such as Lossless Claw, a tool-only turn ended with an incomplete-turn error (or NO_REPLY_RECEIVED to a sessions_send requester) instead of a final answer.",
+  "impact": "failed-every-time",
+  "area": "agents",
+  "summary": "Gave the temporary bookkeeping entries in settled-turn finalization a fixed timestamp instead of converting each message's possibly missing timestamp.",
+  "reasoning": "Settled-turn finalization predates the graft (settled-turn-finalization.ts history goes back before 2026-09) and previously rebuilt from raw session history with no timestamp conversion. Commit 1714e20 (#186288) switched it to the engine-selected view and added the per-message toISOString conversion; I read that diff, including builtin-openclaw.ts passing the context-engine messages in, and new Date(undefined).toISOString() throws exactly the RangeError the fix's incident and regression test show."
+}

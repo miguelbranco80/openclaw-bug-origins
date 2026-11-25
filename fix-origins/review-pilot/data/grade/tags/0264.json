@@ -1,0 +1,1 @@
+{"rank": 264, "needs": "repo", "where": "ui/src/styles/new-session.css:820", "note": "Needed to know that composer.css already draws the dictation border with .agent-chat__input--dictating::after, so retargeting the drop tint to the more specific .agent-chat__input::after overrides it."}

@@ -1,0 +1,17 @@
+{
+  "rank": 52,
+  "sha": "feebcaa6160f2f3694eff41f0040014bed7ab133",
+  "rubric": "v1.1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An operator whose config or include file already contained invalid UTF-8 bytes would see openclaw config set succeed while those bytes were silently turned into replacement characters, also in rotated backups; no such report was filed.",
+  "impact": "data-loss-or-duplication",
+  "area": "cli",
+  "summary": "Ordinary config writes now strictly decode the original root and include files with decodeUtf8Input before staging backups and refuse with '<path> must be valid UTF-8.' instead of rewriting malformed bytes.",
+  "reasoning": "The lossy `readFileSync(..., \"utf-8\")` reread in the write guard is long-standing code (blame reaches the shallow graft and 78ca70be only moved it); the fix is one of a series of malformed-UTF-8 hardening sweeps (#167251, #180861, #179022, #186476) that add strict decoding to rewriters, found by audit rather than a user report. It changes policy from lossy success to refusal for already-corrupt input, so I classify it as hardening without a reported failure; if counted as a defect it would be never-worked in pre-graft config I/O whose introducing commit I did not trace."
+}

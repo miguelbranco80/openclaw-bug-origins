@@ -1,0 +1,17 @@
+{
+  "rank": 221,
+  "sha": "bc063becd5524c7dc0d773955f386fbcfa1916f7",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "6aedc54bd73309d61635b2e86af808595e969e76",
+  "cause_pr": 11756,
+  "confidence": "high",
+  "cause_quote": "The iOS node services were added parsing params with a default formatter: `let formatter = ISO8601DateFormatter()` / `guard let start = formatter.date(from: params.startISO)`, which rejects fractional seconds.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On iOS nodes, calendar.add and reminders.add failed with CALENDAR_INVALID/REMINDERS_INVALID for timestamps like 2026-11-08T10:00:00.000Z, and calendar/motion queries silently used their default date range.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "Added a shared OpenClawISO8601.date(from:) parser that accepts fractional seconds and used it in the iOS calendar, reminders and motion services.",
+  "reasoning": "The removed default-options ISO8601DateFormatter parsing is older than the graft; full-history listing shows the services landed on main in #11756 (6aedc54, after an earlier revert), and its diff (via gh api) contains the same `ISO8601DateFormatter()` + `formatter.date(from:)` parsing in Calendar, Motion and Reminders services. Later commits were refactors that kept this parsing, so the fractional-seconds rejection shipped with the feature."
+}

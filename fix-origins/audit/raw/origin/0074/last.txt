@@ -1,0 +1,6 @@
+{
+  "origin": "never-worked",
+  "cause_sha": "074b316e9ec8a4f9330f1ca3619bc8a53c1799c4",
+  "confidence": "high",
+  "reasoning": "The failed Code Mode test queues corrections inside the request hook introduced by this commit. Its diff adds `const requestMessages = await beforeRequest(signal);` after the steering checkpoint and proceeds to model dispatch without checking steering again, so corrections accepted during that hook missed the upcoming request from the day it shipped. I also checked the earlier `prepareContinuation` diff, which created a similar gap on a separate path."
+}

@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "exact", "finding": 1, "note": "Identifies that the more specific drop overlay rule overrides the shared ::after and hides the recording border during New Session dictation."},
+    "B": {"flagged": "none", "finding": null, "note": "Reported no findings."},
+    "C": {"flagged": "exact", "finding": 1, "note": "Identifies the selector specificity conflict on the message input's ::after and explains why the animated border becomes invisible when dictation starts in New Session."},
+    "D": {"flagged": "exact", "finding": 1, "note": "Identifies that the drop overlay sets the shared ::after to zero opacity during ordinary New Session dictation, hiding the recording border."},
+    "E": {"flagged": "exact", "finding": 1, "note": "Identifies that the higher-specificity drop overlay rule overrides the dictation edge on the same ::after, making it disappear in New Session."},
+    "F": {"flagged": "exact", "finding": 1, "note": "Identifies that the more specific drop overlay rule forces the shared ::after to zero opacity and hides the recording border during New Session dictation."}
+  }
+}

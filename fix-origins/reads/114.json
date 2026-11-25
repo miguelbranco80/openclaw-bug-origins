@@ -1,0 +1,17 @@
+{
+  "rank": 114,
+  "sha": "543917c0d2920e5bf34837e0bd858c457a0810cb",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "1338b0d0bc2bc105b7a31e93d10c894a4bba9e5e",
+  "cause_pr": 104567,
+  "confidence": "medium",
+  "cause_quote": "#104567's final revision added `// Google requires enum entries as strings even when the declared schema type is numeric or boolean. Keep the type intact...` and mapped `const` to `cleaned.enum = cleanGeminiEnumValues([value])` without retyping, so a boolean literal became `{\"type\":\"boolean\",\"enum\":[\"true\"]}`.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Every Gemini or Vertex turn that exposed the built-in read tool failed with HTTP 400 \"enum: only allowed for STRING type\".",
+  "impact": "failed-every-time",
+  "area": "models/providers",
+  "summary": "The Gemini schema cleaner now keeps stringified const/enum values only on string or untyped schemas and drops the enum (keeping the type) for boolean/numeric schemas.",
+  "reasoning": "The enum/const handling that emits string enums on non-string types was written by #104567 (its first commit message even notes Gemini only accepts enum on string-typed schemas, but the final revision kept the declared type); later commits (f16e8bc refactor, 5eab3f5 scalar types) only moved or left it unchanged. The read tool's `optional: Type.Literal(true)` parameter (from #126262, 2026-08-20) is the caller that hit it. Medium confidence because #185581 (2026-11-02) suggests Gemini-path requests with this shape were being sent without a reported 400 until 2026-11-10, so a provider-side enforcement change (latent) cannot be ruled out, and the fix was verified only against a stand-in."
+}

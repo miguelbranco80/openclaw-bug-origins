@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The at-merge Evidence section describes hover preview eligibility without raising the risk that a preview could suppress the Security audit tooltip. Before merge and the earlier review history list no findings."}

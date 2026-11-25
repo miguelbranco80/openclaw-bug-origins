@@ -1,0 +1,1 @@
+{"rank": 81, "needs": "repo", "where": "src/config/sessions/session-run-lifecycle-projection.ts:114", "note": "Needs resolveRootSubagentRequester (not in the diff), which only walks up subagent-keyed sessions, so a visible createdVia=spawn coordinator is now skipped as 'subagent' while root resolution never climbs past it to the real root, leaving nothing marked for resume."}

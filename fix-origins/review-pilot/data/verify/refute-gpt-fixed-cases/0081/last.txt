@@ -1,0 +1,53 @@
+{
+  "case": "0081",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/subagents/registry/subagent-registry-read.ts:166 and :203–209 show that a legacy-unverified parent without a message wait never reaches the descendant lookup, and a mismatched requester run ID also excludes an otherwise eligible descendant. The checkout has no requester lifecycle-revision comparison in that lookup, but the missing source still triggers registry error settlement at src/agents/subagents/registry/subagent-registry-sweep-settle.ts:61–103 and can trigger the startup failure at src/gateway/session-restart-resume.ts:473–475.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/subagents/registry/subagent-registry-requester-wake-mutation.ts:201–230 records a session lifecycle error for A after B's handoff fails, while the runtime row listener at src/agents/subagents/registry/subagent-registry-listener.ts:56–70 only checks A's children. A's live registry row stays paused because src/agents/subagents/registry/subagent-registry-sweep-settle.ts:57–71 requires retirement for descendant-loss settlement, and src/agents/subagents/announce/subagent-announce.requester-settle-state.ts:15–20 excludes paused A from the root's ready results.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "A normal follow-up preserves the existing creation stamp at src/auto-reply/reply/session.ts:596–610, so a dashboard conversation created by spawn still matches src/config/sessions/session-run-lifecycle-projection.ts:118–119. That classification skips shutdown marker creation at src/gateway/session-restart-resume.ts:120–130, blocks the shutdown lifecycle fallback at src/config/sessions/session-run-lifecycle-projection.ts:447–455, and excludes the running follow-up from startup orphan recovery at src/gateway/session-restart-resume-discovery.ts:182–190.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/session-lifecycle-state.ts:199–220 commits the failed lifecycle before the separate transcript append at :250–258, and src/sessions/session-run-error.ts:93–95 propagates an append failure. A retry of the same event from src/agents/subagents/registry/subagent-registry-requester-wake-mutation.ts:215–230 fails the yielded-writer check at src/config/sessions/session-run-lifecycle-projection.ts:383–401, so it cannot regenerate the notice.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/session-subagent-resume.ts:45–83 and :183–209 allow a controlling requester to resume an eligible paused task without a message-wait flag or descendants. The restored task is retired at src/agents/subagents/registry/subagent-registry-persistence.ts:607–613, and the missing wait source triggers settlement at src/agents/subagents/registry/subagent-registry-sweep-settle.ts:61–103, which clears the pause required by explicit resume at src/agents/subagents/registry/subagent-registry-lifecycle-completion.ts:536–540.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "src/gateway/session-restart-resume.ts:473–475 and :577–597 catch a non-abort failure from the yield notice and then continue into a separate queued-input recovery loop. src/config/sessions/session-pending-input-withdrawal.worker.ts:37–50 discovers queued inputs from durable rows by session and lifecycle generation independently of the restart marker, so clearing that marker does not hide the inputs from a later startup.",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/tools/sessions-spawn-visible.ts:405–416 and :594–599 stamp independent visible sessions as spawned and omit registry registration, so the registry-based ancestry lookup at src/agents/subagents/registry/subagent-registry-read.ts:75–95 leaves the session as its own root. That lookup also handles registered dashboard keys, but for the independent case the spawn stamp still blocks the marker at src/gateway/session-restart-resume.ts:120–130 and orphan recovery at src/gateway/session-restart-resume-discovery.ts:182–190.",
+      "same_as": "F3"
+    },
+    "F8": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/agents/subagents/announce/subagent-announce.requester-settle-wake.ts:293–304 quietly completes a cancellation-closed batch with no outcome, but src/agents/subagents/registry/subagent-registry-requester-wake-mutation.ts:201–230 turns that into a delivery error if the exact requester lifecycle is still parked. The kill flag can be published at src/agents/subagents/registry/subagent-registry-run-manager.ts:373–403 before session timing persists at :440–464, leaving a window for the false failure, while batches without a requester run ID have no notice-writing branch in this checkout.",
+      "same_as": null
+    }
+  }
+}

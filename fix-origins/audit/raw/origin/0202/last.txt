@@ -1,0 +1,7 @@
+{
+  "origin": "latent",
+  "cause_sha": null,
+  "trigger_sha": "aa0ad4c78044f389460de42caa798ad5f75c86a9",
+  "confidence": null,
+  "reasoning": "The original rehearsal snapshot copied SQLite databases and only transformed the shared database. I checked that the later cold-storage commit introduced rows with `storage: \"file\"` and `archive_blob: null`, so the existing snapshot began carrying references without their payloads. The bundle shows that Doctor could hit those missing files through either of two repair paths, and the report leaves the exact path unconfirmed."
+}

@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The closest item, “Keep optional catalog reads off the inspection response,” concerns a server-side delay in returning successful local inspection results. The Permissions skeleton persists after the inspection request has already failed because the UI treats a missing result as loading."
+}

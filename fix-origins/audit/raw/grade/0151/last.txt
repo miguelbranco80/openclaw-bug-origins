@@ -1,0 +1,34 @@
+{
+  "reviewers": {
+    "A": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The publisher finding concerns which account supplies the credential."
+    },
+    "B": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The findings concern exclusion limits, missing plugin choices, and a dangling profile reference."
+    },
+    "C": {
+      "flagged": "none",
+      "finding": null,
+      "note": "The publisher finding concerns review and publish using the Gateway host's account."
+    },
+    "D": {
+      "flagged": "none",
+      "finding": null,
+      "note": "Both findings concern how draft exclusions affect the selected package."
+    },
+    "E": {
+      "flagged": "none",
+      "finding": null,
+      "note": "Finding 3 concerns how failed whoami requests are reported, while the mixed-case handle is rejected during validation of a successful response."
+    },
+    "F": {
+      "flagged": "none",
+      "finding": null,
+      "note": "Both findings concern plugin and avatar exclusions during draft review."
+    }
+  }
+}

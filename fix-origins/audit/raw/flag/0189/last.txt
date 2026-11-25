@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The at-merge “Ordering repair uses existing owners” item describes delayed scheduler cancellation as part of the fix for queued ingress. The earlier “Resolve merge risk” item concerns revoked or reassigned ingress grants, and neither item raises the risk that a scope-upgrade observer could start a pairing-state read during restart-marker persistence."
+}

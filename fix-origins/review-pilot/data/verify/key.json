@@ -1,0 +1,654 @@
+{
+ "8": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 3
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F7": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  }
+ },
+ "11": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F5": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ },
+ "37": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  }
+ },
+ "42": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 5
+  }
+ },
+ "44": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "58": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ },
+ "71": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "76": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "81": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 3
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 5
+  },
+  "F7": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F8": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  }
+ },
+ "85": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "87": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  }
+ },
+ "89": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ },
+ "112": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ },
+ "130": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F7": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 3
+  }
+ },
+ "131": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "151": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 7
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 5
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F7": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F8": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 4
+  },
+  "F9": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 3
+  },
+  "F10": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 6
+  },
+  "F11": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  }
+ },
+ "153": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  }
+ },
+ "163": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 5
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F7": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  }
+ },
+ "186": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F6": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 3
+  }
+ },
+ "203": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F6": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  }
+ },
+ "204": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  }
+ },
+ "205": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "218": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 5
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F3": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F6": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 3
+  },
+  "F7": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F8": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ },
+ "225": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ },
+ "229": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 5
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F6": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  },
+  "F7": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  }
+ },
+ "241": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "247": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 4
+  }
+ },
+ "264": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  }
+ },
+ "270": {
+  "F1": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  },
+  "F2": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F4": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F5": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  }
+ },
+ "273": {
+  "F1": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 1
+  },
+  "F2": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 1
+  },
+  "F3": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 2
+  },
+  "F4": {
+   "arm": "claude-opus-5-5__whole",
+   "index": 2
+  },
+  "F5": {
+   "arm": "gpt-6.2-sol__whole",
+   "index": 3
+  }
+ }
+}

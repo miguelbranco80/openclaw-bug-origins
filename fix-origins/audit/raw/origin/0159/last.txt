@@ -1,0 +1,6 @@
+{
+  "origin": "unclear",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The fix reproduces a write that reports success even though the Markdown reader cannot read the key back. The October 15 diff shows that the writer already passed the key directly into `frontmatter: [...ast.frontmatter, { key, value, line: 0 }]` and serialized it via `rebuildMdRaw`. The original feature and early parser diffs were unavailable, so I could not verify whether the mismatch shipped with the feature or arose later."
+}

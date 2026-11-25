@@ -1,0 +1,17 @@
+{
+  "rank": 21,
+  "sha": "a27e885d0ccd5bcf58823e23b05fb370c423f721",
+  "rubric": "v1",
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "After choosing a free-form slash command such as /steer, the composer gave no inline hint of what argument to type.",
+  "impact": "presentation",
+  "area": "ui",
+  "summary": "Shows the command's free-form argument text (e.g. <message>) as a composer placeholder right after a slash command is selected, hidden once typing starts.",
+  "reasoning": "The PR frames this as missing guidance, not broken behavior; it adds a new placeholder hint derived from existing command metadata. The pre-Solid Lit composer (removed lines in 07384e072380) only rendered cmd.args inside slash menu rows, which the Solid menu still does, so no prior inline hint was lost. This is a UX enhancement titled as a fix."
+}

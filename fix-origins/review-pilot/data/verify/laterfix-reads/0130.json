@@ -1,0 +1,7 @@
+{"case": "0130", "findings": {"F1": {"fixed": "no", "commit": null, "note": "Neither listed commit addresses a concurrent refresh_base racing the Review base read."},
+"F2": {"fixed": "no", "commit": null, "note": "Path containment check against the outer worktree remains; nested checkout base mismatch is not addressed."},
+"F3": {"fixed": "partly", "commit": "366814443535", "note": "Removed worktrees now throw a restore-guidance error instead of 'owner changed', but Review still errors rather than returning an empty/not_git diff."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed sessions-diff commit concerns stale base_commit after an already-current refresh."},
+"F5": {"fixed": "no", "commit": null, "note": "No listed sessions-diff commit changes the accepted base being HEAD at sandbox preparation."},
+"F6": {"fixed": "yes", "commit": "366814443535", "note": "Distinguishes removed worktree records from ownership changes so archived cleaned-up sessions get restore guidance instead of 'Local workspace review owner changed'."},
+"F7": {"fixed": "no", "commit": null, "note": "Neither listed commit touches pending/conflicted refresh base_commit handling."}}}

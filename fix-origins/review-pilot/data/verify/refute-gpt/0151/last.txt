@@ -1,0 +1,71 @@
+{
+  "case": "0151",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The review and publish handlers in src/gateway/server-methods/claws-drafts.ts:186 and :202 supply no per-caller credential, so src/infra/clawhub-client.ts:161 resolves the Gateway environment token or saved login. src/claws/draft-publish.ts:19–39 and :64–69 return that credential's handle for review, and :98–120 use the handle as the package owner and the same credential for upload.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/claws/draft.ts:66–67 hashes text after the UTF-8 decoder strips the leading BOM. src/gateway/server-methods/workspace-fs.ts:279–284 hashes the original bytes, so the revision returned after a reload still conflicts with the unchanged BOM-prefixed file.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/claws/draft-choices.ts:96–100 assigns the package slug to agent.name even when choices are omitted. src/claws/project-build.ts:117–119 archives the rewritten manifest, and src/claws/lifecycle.ts:189–195 uses its agent name when configuring an installed agent.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/claws/draft.ts:40–43 initializes the top-level description to an empty string, which src/claws/draft-choices.ts:97–101 selects over the manifest description before setting agent.description to undefined. src/claws/draft-choices.ts:134–143 serializes the resulting manifest and returns the empty review description. The reference example itself supplies both descriptions at skills/create-claw/references/draft-format.md:8 and :16.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/claws/draft-choices.ts:102–104 removes the excluded avatar's workspace mapping while retaining agent.identity.avatar in the manifest serialized at :139. src/claws/schema.ts:586–599 rejects a workspace-relative avatar without a matching destination, so src/claws/project-build.ts:83–88 aborts the build before review can return a token for that selection.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/claws/draft-choices.ts:53–74 exposes the conventional profile as one file and creates plugin choices only from manifest.packages, so a profile-only extension has no individual checkbox. src/claws/project-build.ts:130–140 archives the retained profile, and src/claws/lifecycle.ts:502–506 and src/claws/application-plan.ts:132–141 send its extensions through plugin preflight during Add.",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/server-methods/claws-drafts.ts:39 and :122–127 create the draft in the configured agent workspace and return the relative prompt from src/claws/draft-prompt.ts:3–4. src/gateway/session-worktree-preparation.ts:549–562 records the checkout as the session cwd, which src/agents/spawned-context.ts:92–105 and src/gateway/agent-turn/agent-run-execution-phase.ts:290–294 and :606–610 use for execution, so the prompt's relative path can miss the starter file.",
+      "same_as": null
+    },
+    "F8": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/infra/clawhub-client.ts:306–323 and :354–360 retain the HTTP status and response body for non-success responses. src/claws/draft-publish.ts:117–128 discards those details and emits the same publication_unconfirmed message for definite rejections such as HTTP 409.",
+      "same_as": null
+    },
+    "F9": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Review and publish both call the identity lookup in src/claws/draft-publish.ts:28–31, :64 and :85. HTTP failures become ClawHubRequestError in src/infra/clawhub-client.ts:354–360, and transport failures propagate from :254–262, so src/gateway/server-methods/claws-drafts.ts:89–94 gives both the same generic draft-content message.",
+      "same_as": null
+    },
+    "F10": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/claws/draft-choices.ts:125–139 drops the excluded profile file while serializing the manifest with its legacy metadata pointer intact. src/claws/openclaw-profile.ts:126–131 and :160–203 follows that pointer even when the conventional file is absent, then fails when it cannot read the deleted file.",
+      "same_as": null
+    },
+    "F11": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "src/gateway/server-methods/claws-drafts.ts:40–63 and src/gateway/server-methods/gateway-personal-caller.ts:45–63 admit an eligible registered administrator socket without checking its client type or requiring a human interaction. src/claws/draft-publish.ts:64–69 and :84–91 issue and validate the review token based on the draft and publisher, so publication can proceed without anyone opening or confirming the review in the Control UI.",
+      "same_as": null
+    }
+  }
+}

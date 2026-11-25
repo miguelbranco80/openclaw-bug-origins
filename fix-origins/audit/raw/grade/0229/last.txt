@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "The findings concern unresolved bare imports and missing assets."},
+    "B": {"flagged": "none", "finding": null, "note": "The finding concerns plugin discovery losing the configured ID when it resolves a symlink."},
+    "C": {"flagged": "none", "finding": null, "note": "The finding concerns missing hoisted packages being omitted from repair discovery."},
+    "D": {"flagged": "exact", "finding": 3, "note": "The finding identifies the private-root check rejecting a plugin import that resolves through a host link into the staged candidate."},
+    "E": {"flagged": "none", "finding": null, "note": "The reviewer reported no findings."},
+    "F": {"flagged": "none", "finding": null, "note": "The findings concern errors thrown by static source inspection before the resolved dependency target is checked."}
+  }
+}

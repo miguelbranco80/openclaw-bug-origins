@@ -1,0 +1,17 @@
+{
+  "case": "0264",
+  "findings": {
+    "F1": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "Although .review/change.diff:135 and :144 show the drop tint targeting ::after, the supplied ui/src/styles/new-session.css:820 and :832 apply it to ::before in both drag states. The masked conic gradient remains on ::after in ui/src/styles/chat/composer.css:87, so the tint rules can neither hide it nor turn it into a flat ring.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "ui/src/pages/new-session/composer.tsx:544 adds the dictation class to the message box, and ui/src/styles/chat/composer.css:87 draws the recording border on its ::after. The opacity of zero in ui/src/styles/new-session.css:828 applies only to the ::before selector at line 820.",
+      "same_as": "F1"
+    }
+  }
+}

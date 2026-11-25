@@ -1,0 +1,17 @@
+{
+  "rank": 195,
+  "sha": "6ba1e73173d7ad69c1be6f81d0977c9568e5af31",
+  "rubric": "v1.1",
+  "origin": "regression",
+  "cause_sha": "f23ccb5ad358d5901e8cf8d10289265f0425c1e7",
+  "cause_pr": 165367,
+  "confidence": "low",
+  "cause_quote": "#165367 rewrote the initial readCurrentTurn to admit through readSessionTranscriptAnchorsAsync with `...(prepared ? { contextValidation: { version: prepared.version } } : {})` and `throw new Error(\"Persisted user turn changed before replay admission\")`, where before the initial read only reloaded and selected the turn without a version check.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "A persisted user request sometimes failed to start because another writer appended transcript metadata at the same moment, and the user had to resend the unchanged message.",
+  "impact": "sequence-or-timing",
+  "area": "agents",
+  "summary": "Moved the one-shot refresh-and-readmit retry from the final consumption path into the shared readCurrentTurn, so initial persisted-turn preparation also recovers from a benign concurrent transcript append while keeping the original entry ID and generation.",
+  "reasoning": "In #165367's diff the old initial read (`reloadPersistedTranscriptAsync` and then prepare) had no transcript-version validation; the new one validates the prepared version inside the reader snapshot, which opens the selection-to-admission race. #181473 later added a retry only to the final consumption path. Confidence is low because many later commits (#166804, #167238, #167662, #197510) reworked these readers, and the fix names the current failure as a SessionTranscriptReadFenceError, which I did not trace to a single commit."
+}

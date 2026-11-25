@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The P2 item “Propagate interruption into migrated candidate finalization” concerns a parent signal that never reaches the child process. The reported hang occurs when the Gateway readiness poller keeps running after its own command scope is canceled."
+}

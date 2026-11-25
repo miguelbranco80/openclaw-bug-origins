@@ -1,0 +1,1 @@
+{"rank": 37, "needs": "repo", "where": "extensions/memory-core/src/memory/manager-search.worker.ts:143", "note": "Switching from close() to retaining an idle read-only reader looks fine locally; the bug needs knowing that Doctor runs memory-status checks in-process and its NOCOW repair refuses to rewrite agent stores that its own PID holds open."}

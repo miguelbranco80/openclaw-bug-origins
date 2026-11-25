@@ -1,0 +1,17 @@
+{
+  "rank": 300,
+  "sha": "c3caf57cac959dc0416a8a90d0393ff4354d70f3",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "a59c32370a2d41b73c48283e98c6fb622e50eb09",
+  "cause_pr": 175025,
+  "confidence": "medium",
+  "cause_quote": "It subscribed the widget to gateway events and, whenever `!state.view` and a `chat` event reached state `final`/`aborted`/`error` for the session, ran `forgetPendingCanvasView(binding); activeBinding = undefined; reconcile();`, re-requesting even widgets that had already failed terminally.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "An old chat with a missing Canvas widget kept offering Retry and re-requested the failed view on every later chat event or remount, and those requests scanned the transcript and slowed other users' history reads.",
+  "impact": "slower-or-heavier",
+  "area": "ui",
+  "summary": "Control UI now keeps terminal Canvas widget failures across remounts and later chat events and caps transient retries with exponential backoff; the server reads the document before the transcript receipt scan and marks sandbox-host startup failures retryable.",
+  "reasoning": "The event-driven re-read that floods history reads was added by #175025 (pending/access-denied/host-failure states) and fired for any widget without a view, including terminal unavailable errors; later refactors (#176457, #183467) only moved this logic into the loader/owner modules. The fix also bundles a server-side ordering optimization and a sandbox-failure classification, so the single cause is medium confidence."
+}

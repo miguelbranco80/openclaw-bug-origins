@@ -1,0 +1,6 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "note": "The “Validate authority after asynchronous preparation” finding asked for proof that revoked or reassigned callers would be rejected. The reported bug involved a valid follow-up turn being rejected because a warm Claude CLI transport reused the first turn’s async context, a condition absent from the review."
+}

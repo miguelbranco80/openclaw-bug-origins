@@ -1,0 +1,1 @@
+{"flagged":"none","where":null,"quote":null,"note":"The Findings and Before merge sections list no issues. The Evidence section discusses how the spinners looked in Safari and raises no concern about rotating masks causing WebKit to repaint every frame."}

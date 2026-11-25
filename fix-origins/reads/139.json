@@ -1,0 +1,17 @@
+{
+  "rank": 139,
+  "sha": "f4e59f3f8b26aec3e7d5d53deadd050df8108608",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "In Slack sessions with /reasoning stream on and Slack streaming off, the Gateway pegged its main thread during long reasoning streams, with multi-second event-loop stalls and replies arriving many minutes late.",
+  "impact": "slower-or-heavier",
+  "area": "channels",
+  "summary": "Slack's pushReasoningProgress returns early when no preview can show reasoning, skipping the quadratic re-merge of accumulated reasoning text.",
+  "reasoning": "GraphQL blame puts the non-progress-mode merge block in pushReasoningProgress at 64daf8dd239 (a July 2026 split refactor that moved older code), and no commit after September touched those lines; the wasted per-delta re-merge was always there but harmless for short streams. It became a visible stall only with hour-long, megabyte-scale reasoning streams from newer models, a data-growth trigger rather than a specific in-repo change."
+}

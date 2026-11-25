@@ -1,0 +1,53 @@
+{
+  "case": "0218",
+  "findings": {
+    "F1": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "update-command-post-update.ts:400–405 fixes the successful result before awaiting history capture, and update-command-terminal.ts:724–728 publishes that result without rereading the signal state. For a replaced core, update-command-run.ts:431–435 retires phase tracking at activation, so the handler can still wait for publication and exit 143 under the retained activating phase in update-command-mutable-signals.ts:284–329.",
+      "same_as": null
+    },
+    "F2": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "Already-current maintenance enters finalization without retiring the signal admission at update-command-noop.ts:238–253, so a signal can arrive during recovery observation after a real restart failure at update-command-post-update.ts:611–626. The second interruption check at update-command-post-update.ts:382–403 then replaces the original reason and primary failed step through update-command-mutable-signals.ts:95–124, and publication uses the rewritten result for history and next-action guidance at update-command-terminal.ts:724–728.",
+      "same_as": null
+    },
+    "F3": {
+      "verdict": "refuted",
+      "impact": null,
+      "evidence": "Core replacement calls onActivation before mutation at update-command-execution.ts:559–564, and update-command.ts:546–549 and update-command-run.ts:431–435 remove the run from the signal-admission map. Both the verification-phase update and the result rewrite require an entry in that map at update-command-mutable-signals.ts:59–66 and 91–106, so the late signal cannot turn the verified replacement into a rollback-triggering error or rewrite its report.",
+      "same_as": null
+    },
+    "F4": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The refresh after the service stop at update-command-execution.ts:544–557 can call validation again at update-command-candidate-validation.ts:155–172 and update-command-execution.ts:372–375. update-run-write.ts:75–87 preserves the ledger's activating phase, but update-command-execution-guards.ts:106–110 stores validating in memory, causing SIGTERM to seal compensation and exit through the pre-activation branch at update-command-mutable-signals.ts:284–325.",
+      "same_as": null
+    },
+    "F5": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "The scope at update-command-execution.ts:671 encloses both checkout and immediate rollback: update-runner-git.ts:117–126, 246–267 and 508–536 route rollback after a failed upstream command through the same command runner. After cancellation, exec-runner.ts:160–190 returns a signal result before spawning the restore commands, leaving the checkout change in place without the verified recovery that would permit restarting the Gateway.",
+      "same_as": null
+    },
+    "F6": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "update-command-mutable-signals.ts:280–305 ignores subsequent signals while waiting on terminal settlement, with a 30-minute fallback defined at update-run-timeouts.ts:2, and signal-exit-barrier.ts:130–142 detaches the CLI fallback. After the gate drains, signal-exit-barrier.ts:106–117 still awaits the compensation barrier at update-command-mutable-signals.ts:265–267 without applying that deadline.",
+      "same_as": null
+    },
+    "F7": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "update-command-package.ts:497–504 starts and pauses the package pipeline before update-command-execution.ts:621–625 enters the tracked command scope, and the staged run at update-command-package.ts:561–568 only resolves the continuation and awaits that existing pipeline. Doctor is launched by the original pipeline at update-command-package.ts:664–666, outside the async-local scope that the signal handler cancels.",
+      "same_as": null
+    },
+    "F8": {
+      "verdict": "confirmed",
+      "impact": "user-visible",
+      "evidence": "update-command.ts:609–616 calls migrated finalization outside the tracked forward scopes, and update-command-migrated.ts:278–299 launches the worker without a signal tied to the parent's mutable-update handler. The handler keeps the parent alive while awaiting terminal settlement at update-command-mutable-signals.ts:284–329, so the worker can retain its live delegation, finish and publish successfully at update-migrated-finalize.worker.ts:131–139, 197–222 and 454–470 before the parent exits 143.",
+      "same_as": null
+    }
+  }
+}

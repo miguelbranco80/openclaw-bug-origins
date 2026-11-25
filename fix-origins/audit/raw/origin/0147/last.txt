@@ -1,0 +1,6 @@
+{
+  "origin": "not-a-defect",
+  "cause_sha": null,
+  "confidence": null,
+  "reasoning": "The reported 4.9-second delivery delay prompted new instrumentation that measures worker event-loop activity and logs it for slow deliveries. The product diff leaves dispatch and execution behavior unchanged, and the sole blame candidate added thread IDs for diagnostics without showing a change that could explain the delay."
+}

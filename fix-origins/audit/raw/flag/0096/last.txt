@@ -1,0 +1,7 @@
+{
+  "flagged": "none",
+  "where": null,
+  "quote": null,
+  "outcome": null,
+  "note": "The P1 merge-risk item asked for verification that the terminal formatter preserved captured updater diagnostics. The at-merge review and earlier open items did not raise the loss of error text on stderr for `capability inspect --json`."
+}

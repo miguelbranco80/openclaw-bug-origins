@@ -1,0 +1,17 @@
+{
+  "rank": 240,
+  "sha": "f121a7f70da43b14cd66151b2adf4211cf5fedd7",
+  "rubric": "v1.1",
+  "origin": "unclear",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Searching the config editor, Usage conversation, or dashboard gallery for an accented word found nothing when the stored text used the other Unicode normalization form (for example NFD text from macOS).",
+  "impact": "other",
+  "area": "ui",
+  "summary": "NFC-normalized both query and candidate in three Control UI local searches (config form fields and tags, Usage conversation filter, dashboard gallery).",
+  "reasoning": "None of the three comparisons ever normalized Unicode, so the gap is effectively never-worked, but it spans three independent surfaces each written separately, and blame failed on missing objects, so no single introducing commit can be named. Nothing suggests a regression: the removed lines only lowercased."
+}

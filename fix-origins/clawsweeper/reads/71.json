@@ -1,0 +1,1 @@
+{"rank": 71, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review found no findings and praised the jsonSetPath substitution; its only note is generic missing end-to-end PostgreSQL proof, with nothing about the json($1) replacement being unavailable on PostgreSQL 16."}

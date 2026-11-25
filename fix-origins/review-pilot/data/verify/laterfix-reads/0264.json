@@ -1,0 +1,4 @@
+{"case": "0264", "findings": {
+"F1": {"fixed": "yes", "commit": "43ce96e4b8dd", "note": "Moves the New Session drop tint from the message surface's ::after to ::before so it no longer overrides the dictation comet."},
+"F2": {"fixed": "yes", "commit": "43ce96e4b8dd", "note": "Same change: the drop rule no longer forces the shared ::after to opacity 0, so the recording border stays visible."}
+}}

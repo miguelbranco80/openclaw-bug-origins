@@ -1,0 +1,17 @@
+{
+  "rank": 227,
+  "sha": "235e38488bf2cac52d29ffde71c7e066b69f1649",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "5fa8356483a8357e7c7bd0943caa52f1982beefe",
+  "cause_pr": 134939,
+  "confidence": "medium",
+  "cause_quote": "The sidebar rebuild added SidebarCollapsibleHeader with `.heightIn(min = 44.dp)` and the Pages pencil as `IconButton(... modifier = Modifier.size(44.dp).testTag(\"sidebar-pages-menu\"))`, sizes below Compose's 48dp touch target so the automatic expansion overlaps the neighboring control.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "On Android, tapping near the edge of the Pages pencil or a sidebar section header toggled the neighboring control, for example collapsing Pages instead of opening the pencil menu.",
+  "impact": "failed-every-time",
+  "area": "apps",
+  "summary": "Raises the Android sidebar collapsible header minimum height and the Pages pencil button from 44dp to 48dp so edge taps reach the intended control, with a coordinate regression test.",
+  "reasoning": "GraphQL blame at the fix parent attributes both changed lines to 5fa8356 (#134939), and that commit's diff shows it adding SidebarCollapsibleHeader and the sidebar-pages-menu IconButton with the 44dp sizes (it even replaced older 48dp minimums), so the defect shipped with the introducing code. Medium because I did not verify that the adjacency causing touch-target overlap existed exactly as at the fix parent when 5fa8356 landed."
+}

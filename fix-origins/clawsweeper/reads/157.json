@@ -1,0 +1,1 @@
+{"rank": 157, "flagged": "none", "where": null, "quote": null, "outcome": null, "note": "The review reports no findings and endorses the shared unreadable-state diagnostic. Its only open item is the generic data-model compatibility proof, and nothing mentions snapshot capacity errors (ENOSPC/EDQUOT) producing misleading restore advice."}

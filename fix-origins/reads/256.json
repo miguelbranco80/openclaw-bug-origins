@@ -1,0 +1,17 @@
+{
+  "rank": 256,
+  "sha": "059e96aab664f0ebf26661144d795d17f4a9cd08",
+  "rubric": "v1.1",
+  "origin": "never-worked",
+  "cause_sha": "ac797242b03fd00e4afe82a976972d833a8deb40",
+  "cause_pr": 196297,
+  "confidence": "high",
+  "cause_quote": "#196297 added deferArchiving to planSessionEntryMaintenance with the promise 'Defer dashboard, age and cap archiving; disposable runtime rows are still removed', but left the SQLite readCapCandidates call to readSessionMaintenanceCapCandidates without deferArchiving, so deferred durable rows filled the overflow slots and capEntryCount then preserved them all.",
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "While automatic archiving was deferred (cron automations still loading or failed to load), disposable subagent/runtime sessions over the entry cap were never cleaned up and the session store kept growing.",
+  "impact": "sequence-or-timing",
+  "area": "storage",
+  "summary": "Passes the archiving-deferred flag into the SQLite cap-candidate reader so deferred durable rows are skipped and disposable rows can be selected and removed.",
+  "reasoning": "The deferral feature and its stated guarantee that disposable rows are still removed both arrived in ac797242b03; its diff threaded deferArchiving through the planner, memory path and age/cap helpers but not the pre-existing SQLite cap candidate query (from 2ff5d6fbb21), whose oldest-first selection picked only durable rows that the planner then preserved. The fix's test (two older durable rows, one newer disposable, cap 1) shows exactly that, so the feature never worked on the SQLite path."
+}

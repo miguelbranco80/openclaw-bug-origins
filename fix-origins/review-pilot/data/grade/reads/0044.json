@@ -1,0 +1,6 @@
+{"rank": 44, "reviewers": {"A": {"flagged": "none", "finding": null, "note": "Pointer interception and history-error view padding, not Firefox dropping grid bottom padding from the transcript scroll range."},
+"B": {"flagged": "none", "finding": null, "note": "Pointer interception in the overlap band only."},
+"C": {"flagged": "none", "finding": null, "note": "Pointer interception in the overlap band only."},
+"D": {"flagged": "none", "finding": null, "note": "No findings."},
+"E": {"flagged": "none", "finding": null, "note": "Pointer interception, history-error Retry clipping and mobile Goal pill, not the Firefox transcript clearance."},
+"F": {"flagged": "none", "finding": null, "note": "No findings."}}}

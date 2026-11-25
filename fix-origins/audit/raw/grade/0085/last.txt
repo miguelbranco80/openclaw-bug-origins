@@ -1,0 +1,10 @@
+{
+  "reviewers": {
+    "A": {"flagged": "none", "finding": null, "note": "Reviewer A reported no findings."},
+    "B": {"flagged": "none", "finding": null, "note": "The findings describe inspection failures caused by Windows short paths and rollback journal deletion."},
+    "C": {"flagged": "none", "finding": null, "note": "Reviewer C reported no findings."},
+    "D": {"flagged": "none", "finding": null, "note": "The finding concerns guarded copies rejecting aliased staging roots."},
+    "E": {"flagged": "none", "finding": null, "note": "The finding concerns a destination path mismatch caused by Windows 8.3 aliases."},
+    "F": {"flagged": "none", "finding": null, "note": "The finding concerns snapshot retries when a SQLite sidecar disappears or changes identity before the copy helper reopens it."}
+  }
+}

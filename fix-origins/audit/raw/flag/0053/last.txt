@@ -1,0 +1,6 @@
+{
+  "flagged": "related",
+  "where": "at-merge",
+  "quote": "Previously untracked panel tabs disappear from session panels after upgrade, an explicitly accepted tradeoff documented with an unscoped dock access path.",
+  "note": "The at-merge compatibility item identifies the same session filter excluding untracked tabs, but covers pre-upgrade panel tabs and misses the cold-start focus page omitting its fixed tab from the request. The maintainer answered the earlier finding by accepting the upgrade behavior."
+}

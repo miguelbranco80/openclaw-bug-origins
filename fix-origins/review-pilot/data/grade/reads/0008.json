@@ -1,0 +1,6 @@
+{"rank": 8, "reviewers": {"A": {"flagged": "related", "finding": 4, "note": "Notes the new grid on the activity group changes summary sizing (bubble stretch), same mechanism but not the overflow past the column."},
+"B": {"flagged": "none", "finding": null, "note": "Findings concern touch padding, not summary overflow."},
+"C": {"flagged": "none", "finding": null, "note": "No findings."},
+"D": {"flagged": "none", "finding": null, "note": "Only flags invisible handoff chevrons."},
+"E": {"flagged": "none", "finding": null, "note": "Only flags invisible handoff chevrons."},
+"F": {"flagged": "related", "finding": 2, "note": "Identifies display:grid on .chat-activity-group altering summary width, but describes bubble-mode stretching rather than overflow beyond the reading column."}}}

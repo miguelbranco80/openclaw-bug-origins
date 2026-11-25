@@ -1,0 +1,17 @@
+{
+  "rank": 260,
+  "sha": "e3e615b7115d2b1ee0744f1f40e6819cfe8a6005",
+  "rubric": "v1.1",
+  "origin": "latent",
+  "cause_sha": null,
+  "cause_pr": null,
+  "confidence": null,
+  "cause_quote": null,
+  "trigger_sha": null,
+  "user_visible": "yes",
+  "user_saw": "Running openclaw plugins update for the Codex plugin under a macOS Seatbelt profile that denies exec in ~/.openclaw failed with 'Failed to verify platform-specific npm dependencies ... EPERM: operation not permitted, access .../bin/codex'.",
+  "impact": "failed-every-time",
+  "area": "plugins",
+  "summary": "Platform-package completeness now checks the vendored binary with fs.stat (regular file plus Unix exec bits) instead of fs.access(X_OK), so a sandbox that denies exec no longer aborts install.",
+  "reasoning": "GraphQL blame puts the fs.access(X_OK) probe (EPERM not tolerated) in b68c13660904 (#128370, 2026-08-25), where it is equivalent to a mode-bit check on an ordinary host and worked for its intended use. It fails only when the user runs OpenClaw under a custom Seatbelt profile denying process-exec, which macOS evaluates for X_OK probes; that external sandbox usage was never promised, so latent with no in-repo trigger."
+}

@@ -1,0 +1,6 @@
+{"case": "0205", "findings": {
+"F1": {"fixed": "no", "commit": null, "note": "Later commits restructure follow/scroll logic (97611bd5fb39 even pins the bottom edge on every content-height change) but none scopes the bottom size-change anchor away from user-expanded content."},
+"F2": {"fixed": "yes", "commit": "97611bd5fb39", "note": "replaceMessages now calls flushPendingStreamingAssistantDisplay so the live text equals the saved reply and the stale-prefix bubble leaves in the same update."},
+"F3": {"fixed": "yes", "commit": "97611bd5fb39", "note": "Same flush of held-back paced words on durable-history replacement makes the exact-match suppression see the full text, removing the truncated duplicate bubble."},
+"F4": {"fixed": "no", "commit": null, "note": "No listed ChatViewModel.swift commit changes how the Jump to latest flag is set when buffered reply text grows after a history refresh."}
+}}

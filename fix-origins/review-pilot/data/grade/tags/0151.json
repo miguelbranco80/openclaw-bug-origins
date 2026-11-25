@@ -1,0 +1,1 @@
+{"rank": 151, "needs": "outside", "where": "src/claws/draft-publish.ts:32", "note": "Requires knowing ClawHub's /whoami returns handles with uppercase letters (e.g. GitHub-cased), so the lowercase-only regex rejects real accounts."}
