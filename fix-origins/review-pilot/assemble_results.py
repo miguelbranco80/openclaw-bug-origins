@@ -2,7 +2,7 @@
 """Unblind the grades and write the pilot's per-case results.
 
 Reads data/grade/reads/<rank>.json (graders' verdicts by reviewer letter), data/grade/key.json (letter -> reviewer),
-data/grade/tags/<rank>.json (what each bug needed), findings.jsonl, ../cases.jsonl and ../clawsweeper/results.jsonl.
+data/grade/tags/<rank>.json (what each bug needed), findings.jsonl, and the pinned case facts data/pilot_cases.jsonl and data/pilot_bot.jsonl.
 Writes data/grade/grid.json and results.jsonl.
 
 Usage: python3 fix-origins/review-pilot/assemble_results.py
@@ -24,8 +24,8 @@ ORDER = [f"{arm['model']}__{arm['mode']}" for arm in settings()["judging"]["revi
 def main():
     key = {int(k): v for k, v in json.load(open(os.path.join(GRADE, "key.json"))).items()}
     findings = {(r["arm"], r["rank"]): r for r in (json.loads(line) for line in open(os.path.join(HERE, "findings.jsonl")))}
-    cases = {c["rank"]: c for c in (json.loads(line) for line in open(os.path.join(ROOT, "cases.jsonl")))}
-    bot = {r["rank"]: r for r in (json.loads(line) for line in open(os.path.join(ROOT, "clawsweeper", "results.jsonl")))}
+    cases = {c["rank"]: c for c in (json.loads(line) for line in open(os.path.join(HERE, "data", "pilot_cases.jsonl")))}
+    bot = {r["rank"]: r for r in (json.loads(line) for line in open(os.path.join(HERE, "data", "pilot_bot.jsonl")))}
     grid = {}
     for path in sorted(glob.glob(os.path.join(GRADE, "reads", "*.json"))):
         data = json.load(open(path))

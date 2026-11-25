@@ -40,7 +40,7 @@ def main():
     runs, out = sys.argv[1:3]
     os.makedirs(os.path.join(out, "bundles"), exist_ok=True)
     cases = {}
-    with open(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "cases.jsonl")) as handle:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "pilot_cases.jsonl")) as handle:
         for line in handle:
             case = json.loads(line)
             cases[case["rank"]] = case

@@ -21,7 +21,7 @@ ROOT = os.path.dirname(HERE)
 
 def main():
     ranks = json.load(open(os.path.join(HERE, "data", "pilot_ranks.json")))
-    cases = {c["rank"]: c for c in (json.loads(line) for line in open(os.path.join(ROOT, "cases.jsonl")))}
+    cases = {c["rank"]: c for c in (json.loads(line) for line in open(os.path.join(HERE, "data", "pilot_cases.jsonl")))}
     path = os.path.join(HERE, "data", "pilot_pr_bodies.json")
     bodies = json.load(open(path)) if os.path.exists(path) else {}
     numbers = sorted({cases[rank]["cause_pr"] for rank in ranks} - {int(number) for number in bodies})

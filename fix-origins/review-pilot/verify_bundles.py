@@ -42,7 +42,7 @@ def main():
     for sub in ("refute", "laterfix"):
         os.makedirs(os.path.join(out, sub), exist_ok=True)
     cases = {}
-    with open(os.path.join(HERE, "..", "cases.jsonl")) as handle:
+    with open(os.path.join(HERE, "data", "pilot_cases.jsonl")) as handle:
         for line in handle:
             case = json.loads(line)
             cases[case["rank"]] = case

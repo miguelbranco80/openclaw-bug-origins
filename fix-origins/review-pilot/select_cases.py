@@ -22,6 +22,11 @@ from pipeline.settings import settings  # noqa: E402
 
 
 def main():
+    pinned = os.path.join(HERE, "data", "pilot_cases.jsonl")
+    if os.path.exists(pinned):
+        print(f"blind review cases are already chosen and pinned: {sum(1 for _ in open(pinned))} "
+              "(delete review-pilot/data/ to choose again)")
+        return
     pilot = settings()["pilot"]
     skip, per_kind, since = set(pilot.get("skip", [])), pilot["per_kind"], settings()["commits_since"][:10]
     cases = {c["rank"]: c for c in (json.loads(line) for line in open(os.path.join(ROOT, "cases.jsonl")))}
@@ -38,9 +43,17 @@ def main():
         if len(picked[case["origin"]]) < per_kind:
             picked[case["origin"]].append(rank)
     ranks = sorted(picked["regression"] + picked["never-worked"])
+    os.makedirs(os.path.join(HERE, "data"), exist_ok=True)
     with open(os.path.join(HERE, "data", "pilot_ranks.json"), "w") as handle:
         json.dump(ranks, handle)
-    print(f"blind review cases chosen: {len(ranks)} (ranks {ranks})")
+    # Pin the facts the experiment uses, so that later changes to the main reading cannot alter it.
+    with open(pinned, "w") as handle:
+        for rank in ranks:
+            handle.write(json.dumps(cases[rank]) + "\n")
+    with open(os.path.join(HERE, "data", "pilot_bot.jsonl"), "w") as handle:
+        for rank in ranks:
+            handle.write(json.dumps(reviews[rank]) + "\n")
+    print(f"blind review cases chosen and pinned: {len(ranks)} (ranks {ranks})")
 
 
 if __name__ == "__main__":
