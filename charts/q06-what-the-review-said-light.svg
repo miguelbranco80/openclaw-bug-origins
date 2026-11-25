@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="264" viewBox="0 0 760 264" role="img" aria-label="What the bot&#x27;s review said about the bug, by two readers">
-<title>What the bot&#x27;s review said about the bug, by two readers</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="264" viewBox="0 0 760 264" role="img" aria-label="What the bot&#x27;s review said about the bug, by two models">
+<title>What the bot&#x27;s review said about the bug, by two models</title>
 <rect x="0" y="3" width="10" height="10" rx="2" fill="#2a78d6"/>
-<text x="16.0" y="12" fill="#52514e" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main reader (gpt-6.2-sol)</text>
-<rect x="213.0" y="3" width="10" height="10" rx="2" fill="#eb6834"/>
-<text x="229.0" y="12" fill="#52514e" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Other maker&#x27;s reader (Claude Opus 5.5)</text>
+<text x="16.0" y="12" fill="#52514e" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main model (gpt-6.2-sol)</text>
+<rect x="206.0" y="3" width="10" height="10" rx="2" fill="#eb6834"/>
+<text x="222.0" y="12" fill="#52514e" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Second model (Claude Opus 5.5)</text>
 <text x="0.0" y="44" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Said nothing about this bug</text>
 <rect x="0" y="52" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,52 H387.9 Q391.9,52 391.9,56 V58 Q391.9,62 387.9,62 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="62" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">72</text>
+<text x="464.4" y="62" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main model (gpt-6.2-sol)</text>
 <rect x="0" y="74" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,74 H426.0 Q430.0,74 430.0,78 V80 Q430.0,84 426.0,84 H0 Z" fill="#eb6834"/>
 <text x="440.0" y="84" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">79</text>
@@ -15,6 +16,7 @@
 <rect x="0" y="130" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,130 H72.2 Q76.2,130 76.2,134 V136 Q76.2,140 72.2,140 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="140" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">14</text>
+<text x="464.4" y="140" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main model (gpt-6.2-sol)</text>
 <rect x="0" y="152" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,152 H34.1 Q38.1,152 38.1,156 V158 Q38.1,162 34.1,162 H0 Z" fill="#eb6834"/>
 <text x="440.0" y="162" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7</text>
@@ -22,6 +24,7 @@
 <rect x="0" y="208" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,208 H6.9 Q10.9,208 10.9,212 V214 Q10.9,218 6.9,218 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="218" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
+<text x="456.2" y="218" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main model (gpt-6.2-sol)</text>
 <rect x="0" y="230" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,230 H6.9 Q10.9,230 10.9,234 V236 Q10.9,240 6.9,240 H0 Z" fill="#eb6834"/>
 <text x="440.0" y="240" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>

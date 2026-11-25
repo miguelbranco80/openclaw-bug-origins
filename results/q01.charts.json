@@ -1,12 +1,12 @@
 [
  {
   "stem": "q01-what-fixes-repaired",
-  "title": "What each of the 1,202 sampled fixes repaired, by the main reader",
+  "title": "What each of the 1,202 sampled fixes repaired, by the main model",
   "reading": "Each bar is a number of sampled fixes. The five bars add up to 1,202."
  },
  {
   "stem": "q01-two-readers",
-  "title": "How two makers' models sorted the same 300 fixes",
-  "reading": "The same 300 fixes, sorted twice. Blue is where the main reader put them, orange where the other maker's reader did; each color adds up to 300."
+  "title": "How the two models sorted the same 300 fixes",
+  "reading": "The same 300 fixes, sorted twice. Blue is where the main model put them, orange where the second model did; each color adds up to 300."
  }
 ]

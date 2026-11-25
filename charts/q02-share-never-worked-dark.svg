@@ -2,17 +2,17 @@
 <title>How much of the time the bug was new code that never worked, by three ways of counting</title>
 <text x="215.0" y="11" fill="#898781" font-size="11" font-weight="400" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif">half</text>
 <line x1="215.0" y1="16" x2="215.0" y2="148" stroke="#898781" stroke-width="1" stroke-dasharray="3 3"/>
-<text x="0.0" y="34" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main reader, counting every bug it traced</text>
+<text x="0.0" y="34" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main model, counting every bug it traced</text>
 <rect x="0" y="42" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,42 H223.9 Q227.9,42 227.9,46 V48 Q227.9,52 223.9,52 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="52" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">53%</text>
 <text x="472.6" y="52" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">443 never worked, 389 broken later</text>
-<text x="0.0" y="76" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main reader, counting only bugs where it was sure of the cause</text>
+<text x="0.0" y="76" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Main model, counting only bugs where it was sure of the cause</text>
 <rect x="0" y="84" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,84 H228.2 Q232.2,84 232.2,88 V90 Q232.2,94 228.2,94 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="94" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">54%</text>
 <text x="472.6" y="94" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">399 never worked, 336 broken later</text>
-<text x="0.0" y="118" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">The other maker&#x27;s reader, on the 300 fixes it also read</text>
+<text x="0.0" y="118" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">The second model, on the 300 fixes it also read</text>
 <rect x="0" y="126" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,126 H284.1 Q288.1,126 288.1,130 V132 Q288.1,136 284.1,136 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="136" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">67%</text>

@@ -1,12 +1,12 @@
 [
  {
   "stem": "q27-not-a-bug-by-reader-and-period",
-  "title": "Share of changes titled fix that repaired no bug, by who read them and when they merged",
-  "reading": "Each bar is the percentage of sampled fixes that the reader said repaired no bug. The first two bars are the same fixes read by two different models: their gap is the reader. The last two bars are one model reading two periods: their gap is the period."
+  "title": "Share of changes titled fix that repaired no bug, by which model judged them and when they merged",
+  "reading": "Each bar is the percentage of sampled fixes that the model said repaired no bug. The first two bars are the same fixes read by two different models: their gap is the model. The last two bars are one model reading two periods: their gap is the period."
  },
  {
   "stem": "q27-never-worked-by-reader-and-period",
-  "title": "Share of traced bugs that were new code that never worked, by who read them and when",
+  "title": "Share of traced bugs that were new code that never worked, by which model judged them and when",
   "reading": "Take only bugs that were new code that never worked, or a working thing broken later. Each bar is the percentage that were the first kind. Past the dashed line means the first kind is the more common."
  }
 ]

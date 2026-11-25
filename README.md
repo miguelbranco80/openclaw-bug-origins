@@ -11,9 +11,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 - **New code is where the bugs are.** Changes that add a new code file are 13.7% of commits
   and the source of 69% of the traced bugs (346 of
-  505). *Finding 21.*
+  505). *Finding 1.*
 - **Shipping tests with a change is not a sign it is safe.** 494 of the 505
-  traced bugs came from a change that also changed tests. *Finding 22.*
+  traced bugs came from a change that also changed tests. *Finding 21.*
 - **The review bot rarely named the bug, but its objection marks risk.** It had named the bug in
   21 of the 645 bug-causing changes it reviewed. Changes merged over its
   objection still carried 3.42 times the bugs of changes it called ready.
@@ -33,7 +33,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
   from November. And a second model, reading the same November fixes, pointed at the same causing change in
   108 of 130 cases. Where the two models differ is on what counts
   as a bug at all: one said 11% of those fixes repaired nothing, the other
-  33%. *Findings 1 and 23.*
+  33%. *Findings 22 and 23.*
 
 **Share of the traced bugs that came from changes with each warning sign**
 
@@ -71,80 +71,53 @@ bugs, not fewer (finding 16).
   change capped a data stream at 16 MiB, and long replies that used to work began to fail.
 - **Broken from outside.** Old code that was fine until something outside the project changed. Example: a package
   manager changed the format of its launcher files, and every command failed after an update.
+- **Main model and second model.** A model read each fix and said what it repaired and which earlier change had
+  caused the problem. The main model, gpt-6.2-sol, read every fix. The second model, Claude Opus 5.5, comes from a different
+  company and read the November fixes, so that one model's habits can be told apart from facts.
 - **Review bot.** ClawSweeper, the automated reviewer that comments on the project's pull requests before they merge.
 - **Plausible range.** Where the true figure plausibly lies given the sample size (a 95% interval).
 
 ## Where the bugs come from
 
-Findings 1 to 5: what the sampled fixes repaired, and what kind of change had introduced the problem.
+Findings 1 to 5: what kind of change had introduced each problem, and how long it lasted.
 
-### 1. How many "fix" changes repair no bug depends on who reads them
+### 1. Changes that add new code files caused two thirds of the bugs
 
-*Depends on the reader. Two models given the same written rule drew the line in different places, and each was
-consistent with itself.*
+*Well supported. Whether a change adds a file is counted from git, not judged. Findings 2 and 3 reach the same
+place by other routes.*
 
-We drew 1,202 fixes by lottery from the 16,016 merged in the period and asked of
-each: what was broken, and how did it get that way? The main reader found that nothing had been broken in
-95 of them (8%): they were redesign steps, speed-ups, wording
-changes or tooling work that carried the title "fix". A model from a different maker, reading the
-300 November fixes under the same rule, said so of 33%. The cases they
-dispute are improvements that can also be described as a flaw present from the start: a slow path made faster, a log
-message made more precise, a report that never fitted a phone screen.
+**Bugs per 100 changes, by whether the change adds new code files**
 
-**What each of the 1,202 sampled fixes repaired, by the main reader**
+![Bugs per 100 changes, by whether the change adds new code files](charts/q24-bugs-by-whether-the-change-adds-files-light.svg#gh-light-mode-only)
+![Bugs per 100 changes, by whether the change adds new code files](charts/q24-bugs-by-whether-the-change-adds-files-dark.svg#gh-dark-mode-only)
 
-![What each of the 1,202 sampled fixes repaired, by the main reader](charts/q01-what-fixes-repaired-light.svg#gh-light-mode-only)
-![What each of the 1,202 sampled fixes repaired, by the main reader](charts/q01-what-fixes-repaired-dark.svg#gh-dark-mode-only)
+*How to read it: Each bar is the number of bugs per 100 changes of that kind. The gray note gives how many of the sampled bugs came from such changes and how common such changes are.*
 
-*How to read it: Each bar is a number of sampled fixes. The five bars add up to 1,202.*
+| Kind of change | Share of all commits | Sampled bugs | Bugs per 100 commits | Against the baseline, at equal size, kind and time |
+|---|---:|---:|---:|---|
+| Only edits existing code files | 59.3% | 159 | 9.11 | (the baseline) |
+| Adds at least one new code file | 13.7% | 346 | 86.01 | **3.18 times (plausibly 2.51 to 4.02)** |
 
-<details><summary>The numbers behind this chart</summary>
+A change that adds at least one new code file is 13.7% of commits and the source of
+346 of the 505 traced bugs (69%). Such changes are
+also larger than others, so we compared like with like: among changes of similar size, with the same kind of title,
+landed in the same weeks, one that adds a file caused 3.18 times the bugs of one that
+only edits existing files (plausibly 2.51 to 4.02).
 
-| | Count | Plausible range |
-|---|---:|---:|
-| New code that never worked | 443 | 34–40% |
-| Not a bug: redesign, speed-up, wording or tooling | 95 | 7–10% |
-| A working thing that a later change broke | 389 | 30–35% |
-| Old code that broke because something outside changed | 74 | 5–8% |
-| Could not tell | 201 | 15–19% |
+- **How we know.** For each sampled fix, a model traced the problem back to the earlier change that caused it. We
+  then looked up that change among all 39,210 commits on main since 10 September. Git records which
+  files a commit adds. A code file is a non-test file under `src/`, `ui/`, `extensions/`, `packages/` or `apps/`.
+  The 505 bugs here are the traced ones whose causing change falls in that list.
+- **Why it matters.** Finding 3 uses the word "feat" in a change's title, which only 1,325
+  commits carry. Adding a file is a fact, not a label, and it marks the same thing: new code is where the bugs are.
+- **What it does not show.** That the bug sits in the new file. It says the change that carried the bug also added
+  one.
 
-</details>
-
-**How two makers' models sorted the same 300 fixes**
-
-![How two makers' models sorted the same 300 fixes](charts/q01-two-readers-light.svg#gh-light-mode-only)
-![How two makers' models sorted the same 300 fixes](charts/q01-two-readers-dark.svg#gh-dark-mode-only)
-
-*How to read it: The same 300 fixes, sorted twice. Blue is where the main reader put them, orange where the other maker's reader did; each color adds up to 300.*
-
-<details><summary>The numbers behind this chart</summary>
-
-| | Main reader (gpt-6.2-sol) | Other maker's reader (Claude Opus 5.5) |
-|---|---:|---:|
-| New code that never worked | 115 | 105 |
-| Not a bug: redesign, speed-up, wording or tooling | 34 | 100 |
-| A working thing that a later change broke | 91 | 51 |
-| Old code that broke because something outside changed | 20 | 29 |
-| Could not tell | 40 | 15 |
-
-</details>
-
-- **How we know.** One model reader per fix worked from the fix's diff, its PR text and the history of the changed
-  lines, with a written rubric that told it to answer "could not tell" when the evidence was thin.
-- **How it was checked.** A second run of the main reader, blind to the first answer, re-read
-  191 fixes and agreed on bug or not a bug for 184. The other maker's
-  reader had read 300 of the same fixes and agreed for 209. So each
-  model is steady, and the two differ.
-- **What it does not show.** A single right number. Treat the main reader's share as the lower end and the other
-  maker's third as the upper end. The main reader also answered "could not tell" for 201
-  fixes: it worked without GitHub lookups, so it could not trace anything older than 1 July 2026. It cannot show
-  bugs nobody has fixed yet, or bugs fixed under another title.
-
-Recompute: `python3 questions/q01_how_many_fixes_repair_a_real_bug.py`
+Recompute: `python3 questions/q24_do_changes_that_add_new_files_cause_more_bugs.py`
 
 ### 2. New code that never worked accounts for about as many bugs as working things broken later
 
-*Supported. About even by the main reader in both periods; about double by the other maker's reader on the November
+*Supported. About even by the main model in both periods; about double by the second model on the November
 fixes. Neither puts never-worked bugs clearly below.*
 
 Of the 832 bugs we could trace to the change that introduced them, 443 were
@@ -165,23 +138,23 @@ reviewed or first run.
 | | Never worked | Broken later | Never worked, % |
 |---|---:|---:|---:|
 | Every traced bug | 443 | 389 | 53 |
-| Reader was confident or fairly confident of the cause | 443 | 389 | 53 |
-| Reader was confident of the cause | 399 | 336 | 54 |
+| Model was confident or fairly confident of the cause | 443 | 389 | 53 |
+| Model was confident of the cause | 399 | 336 | 54 |
 | Cause is a commit since 10 Sep 2026, readable in full | 234 | 271 | 46 |
-| Main reader, on the fixes the other maker's reader also read | 115 | 91 | 56 |
-| The other maker's reader, on the same fixes | 105 | 51 | 67 |
+| Main model, on the fixes the second model also read | 115 | 91 | 56 |
+| The second model, on the same fixes | 105 | 51 | 67 |
 
 </details>
 
-Across the main reader's ways of counting, the ratio of never-worked to broken-later runs from
-0.86 to 1.19. The other maker's reader, on the November fixes, put it at
+Across the main model's ways of counting, the ratio of never-worked to broken-later runs from
+0.86 to 1.19. The second model, on the November fixes, put it at
 2.06. The two models split a bug between these two kinds differently more often than they
 disagree on which change caused it.
 
-- **How we know.** The reader had to point at the lines in the causing change that were wrong, and to say whether the
+- **How we know.** The model had to point at the lines in the causing change that were wrong, and to say whether the
   behavior had worked before that change.
-- **How it was checked.** Where two runs of the main reader both chose one of these two kinds, they made the same
-  choice in 121 of 127 cases. The two makers' readers made the
+- **How it was checked.** Where two runs of the main model both chose one of these two kinds, they made the same
+  choice in 121 of 127 cases. The two models made the
   same choice in 115 of 130, and named the same causing change in
   108 of 130.
 - **What it does not show.** A firm ratio, or that features are the problem. New code arrives in changes of every
@@ -222,7 +195,7 @@ than others, so part of their higher rate is size, which is the next finding.
 - **How we know.** The comparison uses the 505 sampled bugs whose causing change was made
   since 10 September 2026 and all 39,210 commits on main since that date, counted from git.
 - **How it was checked.** Titles and file counts are read mechanically from git, not judged. Which change caused
-  each bug is the reader's judgment from finding 2.
+  each bug is the model's judgment from finding 2.
 - **What it does not show.** What the change was really for, or how much of the gap is size. The rates are not
   adjusted for the size of the change. A rate counts the bugs fixed between 10 September and 22 November, so it grows
   with the length of the period watched: compare these rates with each other, not with another study's.
@@ -270,7 +243,7 @@ they hold more change, not because each part of them is worse.
   one sampled fix traced to a causing commit in that list (505 cases), scaled from the sample to all
   fixes in the period. So a rate reads as "bugs fixed between 10 September and 22 November, per 100 commits made in
   that time".
-- **How it was checked.** Sizes come from git. The causing commit is the reader's judgment; two makers' models named
+- **How it was checked.** Sizes come from git. The causing commit is the model's judgment; the two models named
   the same one in 108 of 130 cases.
 - **What it does not show.** Risk per line, or whether splitting a large change would lower the total. It also
   counts only bugs fixed within the period, so slow-to-surface bugs from recent changes are missing.
@@ -279,7 +252,7 @@ Recompute: `python3 questions/q04_do_large_changes_cause_more_bugs.py`
 
 ### 5. A broken thing typically stayed broken for one to four weeks
 
-*Supported. Dates come from git. The split depends on the reader naming the right causing change, and the figure for
+*Supported. Dates come from git. The split depends on the model naming the right causing change, and the figure for
 the earlier weeks is cut short by how far back a cause could be traced.*
 
 **Broken-later bugs, by time from cause to fix**
@@ -317,7 +290,7 @@ broken-later fixes say which change caused the bug, and those were fixed within 
 - **How it was checked.** An earlier study that could only find fixes naming their cause had put the typical time at
   1.7 days. The random sample shows that figure described the quick cases only.
 - **What it does not show.** How long users were affected, or how many noticed. A bug counts only once it is fixed,
-  so long-lived bugs still open are missing. The reader could trace causes back to 1 July 2026 and no further, so a
+  so long-lived bugs still open are missing. The model could trace causes back to 1 July 2026 and no further, so a
   fix from September cannot show a bug older than about ten weeks, where one from November can show one of twenty.
   That alone makes the earlier weeks look quicker.
 
@@ -330,23 +303,23 @@ models find when shown the same changes with no hint. Findings 7 to 10 cover Nov
 
 ### 6. The review bot had rarely named the bug before the change merged
 
-*Well supported. The November cases were read by models from two makers, with close agreement.*
+*Well supported. The November cases were read by both models, with close agreement.*
 
 For each of the 832 traced bugs we read what the bot had written on the causing change at the moment
 it merged, rebuilt from the comment's edit history. It had reviewed 645 of them and named the bug
 in 21. It raised a related concern, without stating the failure, in
 82.
 
-**What the bot's review said about the bug, by two readers**
+**What the bot's review said about the bug, by two models**
 
-![What the bot's review said about the bug, by two readers](charts/q06-what-the-review-said-light.svg#gh-light-mode-only)
-![What the bot's review said about the bug, by two readers](charts/q06-what-the-review-said-dark.svg#gh-dark-mode-only)
+![What the bot's review said about the bug, by two models](charts/q06-what-the-review-said-light.svg#gh-light-mode-only)
+![What the bot's review said about the bug, by two models](charts/q06-what-the-review-said-dark.svg#gh-dark-mode-only)
 
 *How to read it: The same 88 reviews, read twice. Each bar is a number of bug-causing changes; each color adds up to 88.*
 
 <details><summary>The numbers behind this chart</summary>
 
-| | Main reader (gpt-6.2-sol) | Other maker's reader (Claude Opus 5.5) |
+| | Main model (gpt-6.2-sol) | Second model (Claude Opus 5.5) |
 |---|---:|---:|
 | Said nothing about this bug | 72 | 79 |
 | Raised a related concern, not this failure | 14 | 7 |
@@ -374,7 +347,7 @@ bug, such as missing proof. Only 44 items that touched the bug were open and una
 merge. The bot also said "ready" on changes that carried a bug. Finding 12 adds the other half: although its words
 rarely named the bug, the changes it objected to were the riskier ones.
 
-- **How we know.** A reader compared each bug with the review text under a strict rule: it counts as named only if
+- **How we know.** A model compared each bug with the review text under a strict rule: it counts as named only if
   fixing what the review described would have prevented the bug.
 - **How it was checked.** For 88 November cases both makers' models read the same review of the
   same causing change. They gave the same answer for 79, and agreed on whether the bug was
@@ -475,7 +448,7 @@ failure happens?
 real. That count is a floor: the same search found the fix for only 8 of the
 14 problems we already knew were fixed.
 
-- **How we know.** The reports were pooled under anonymous labels with nothing marking the known bugs. One reader
+- **How we know.** The reports were pooled under anonymous labels with nothing marking the known bugs. One model
   searched later fix commits; two checkers each traced every report in the exported code.
 - **How it was checked.** The checkers were tested on the known-real problems, first on the original code and then on
   the code after the fix. After the fix, both still confirmed 3; two of those belong
@@ -488,7 +461,7 @@ Recompute: `python3 questions/q08_are_the_other_reported_problems_real.py`
 
 ### 9. About a third of the bugs could not be seen by reading code
 
-*Tentative. One reader's judgment on 30 cases; the key group is nine.*
+*Tentative. One model's judgment on 30 cases; the key group is nine.*
 
 **What a reviewer needed to see the bug, and how many were named**
 
@@ -501,9 +474,9 @@ No reviewer named a bug that depended on how a browser lays out a page, what a d
 behaves under load. Size mattered too: reviewers named 6 of 12 bugs in
 changes of 7 files or fewer, and 4 of 18 in larger ones.
 
-- **How we know.** A reader given the bug and the causing change chose the least demanding thing a reviewer would
+- **How we know.** A model given the bug and the causing change chose the least demanding thing a reviewer would
   have needed: the changed lines, other repository code, or outside knowledge.
-- **How it was checked.** It was not checked by a second reader. The reader flagged several close calls between the
+- **How it was checked.** It was not checked by a second model. The model flagged several close calls between the
   first two groups.
 - **What it does not show.** A firm share. Nine cases cannot fix a proportion; they show that such bugs exist in
   number and that none was caught by reading.
@@ -529,7 +502,7 @@ Recompute: `python3 questions/q10_did_a_written_rule_cover_it.py`
 
 ## Which changes carry the bugs
 
-Findings 11 to 22: the traced bugs set against every commit and pull request of the period. Nothing here is judged
+Findings 11 to 21: the traced bugs set against every commit and pull request of the period. Nothing here is judged
 by a model; it is counted from git and GitHub.
 
 ### 11. Changes committed straight to main caused fewer bugs per change, not more
@@ -598,7 +571,7 @@ reviewed were no different from ones it called ready.
   groups: 1 to 5 files, 6 to 30, and over 30. The month is held equal because an older change has had longer for its
   bugs to be found and fixed.
 - **How it was checked.** The verdict is read mechanically from the marker the bot writes into its own comment, for
-  the last version written before the merge. The causing change is the readers' judgment (finding 2).
+  the last version written before the merge. The causing change is the models' judgment (finding 2).
 - **What it does not show.** That merging against the verdict causes bugs. The bot objects to changes that are
   harder for other reasons too. And finding 6 still holds: in most of these cases its open items were about something
   other than the bug.
@@ -931,37 +904,7 @@ files into others, is the higher one.
 
 Recompute: `python3 questions/q23_do_files_many_people_edit_cause_more_bugs.py`
 
-### 21. Changes that add new code files caused two thirds of the bugs
-
-*Well supported. Counted from git; it agrees with findings 2 and 3 by a different route.*
-
-**Bugs per 100 changes, by whether the change adds new code files**
-
-![Bugs per 100 changes, by whether the change adds new code files](charts/q24-bugs-by-whether-the-change-adds-files-light.svg#gh-light-mode-only)
-![Bugs per 100 changes, by whether the change adds new code files](charts/q24-bugs-by-whether-the-change-adds-files-dark.svg#gh-dark-mode-only)
-
-*How to read it: Each bar is the number of bugs per 100 changes of that kind. The gray note gives how many of the sampled bugs came from such changes and how common such changes are.*
-
-| Kind of change | Share of all commits | Sampled bugs | Bugs per 100 commits | Against the baseline, at equal size, kind and time |
-|---|---:|---:|---:|---|
-| Only edits existing code files | 59.3% | 159 | 9.11 | (the baseline) |
-| Adds at least one new code file | 13.7% | 346 | 86.01 | **3.18 times (plausibly 2.51 to 4.02)** |
-
-A change that adds at least one new code file is 13.7% of commits and the source of
-346 of the 505 sampled bugs (69%). At equal size
-and kind it caused 3.18 times the bugs of a change that only edits existing files
-(plausibly 2.51 to 4.02).
-
-- **How we know.** Git records which files a commit adds. A code file is a non-test file under `src/`, `ui/`,
-  `extensions/`, `packages/` or `apps/`.
-- **Why it matters here.** Finding 3 relied on the word "feat" in the title, which only 1,325
-  commits carry. Adding a file is a fact, not a label, and it marks the same thing: new code is where the bugs are.
-- **What it does not show.** That the bug sits in the new file. It says the change that carried the bug also added
-  one.
-
-Recompute: `python3 questions/q24_do_changes_that_add_new_files_cause_more_bugs.py`
-
-### 22. Nearly every bug-causing change came with tests; no part of the code stands out
+### 21. Nearly every bug-causing change came with tests; no part of the code stands out
 
 *Measured.*
 
@@ -992,28 +935,29 @@ Recompute: `python3 questions/q25_do_changes_with_tests_cause_fewer_bugs.py`; `p
 
 ## Does it hold up
 
-Finding 23: the same questions asked of a second period and a second reader.
+Findings 22 and 23: the same questions asked of a second period and of a second model, and the one answer that
+depends on which model is asked.
 
-### 23. The earlier weeks look like November; what differs is the reader
+### 22. The earlier weeks look like November; what differs is the model
 
-*Supported. This is the check on everything above: a second period, and a second reader.*
+*Supported. This is the check on everything above: a second period, and a second model.*
 
 Every fix was read by gpt-6.2-sol. The 300 November fixes were also read by a model from a different
 maker, Claude Opus 5.5. That gives three sets to put side by side. The first two are the same November fixes read by two
-models, so their difference is the reader. The last two are one model reading two periods, so their difference is
+models, so their difference is the model. The last two are one model reading two periods, so their difference is
 the period.
 
-**Share of changes titled fix that repaired no bug, by who read them and when they merged**
+**Share of changes titled fix that repaired no bug, by which model judged them and when they merged**
 
-![Share of changes titled fix that repaired no bug, by who read them and when they merged](charts/q27-not-a-bug-by-reader-and-period-light.svg#gh-light-mode-only)
-![Share of changes titled fix that repaired no bug, by who read them and when they merged](charts/q27-not-a-bug-by-reader-and-period-dark.svg#gh-dark-mode-only)
+![Share of changes titled fix that repaired no bug, by which model judged them and when they merged](charts/q27-not-a-bug-by-reader-and-period-light.svg#gh-light-mode-only)
+![Share of changes titled fix that repaired no bug, by which model judged them and when they merged](charts/q27-not-a-bug-by-reader-and-period-dark.svg#gh-dark-mode-only)
 
-*How to read it: Each bar is the percentage of sampled fixes that the reader said repaired no bug. The first two bars are the same fixes read by two different models: their gap is the reader. The last two bars are one model reading two periods: their gap is the period.*
+*How to read it: Each bar is the percentage of sampled fixes that the model said repaired no bug. The first two bars are the same fixes read by two different models: their gap is the model. The last two bars are one model reading two periods: their gap is the period.*
 
-**Share of traced bugs that were new code that never worked, by who read them and when**
+**Share of traced bugs that were new code that never worked, by which model judged them and when**
 
-![Share of traced bugs that were new code that never worked, by who read them and when](charts/q27-never-worked-by-reader-and-period-light.svg#gh-light-mode-only)
-![Share of traced bugs that were new code that never worked, by who read them and when](charts/q27-never-worked-by-reader-and-period-dark.svg#gh-dark-mode-only)
+![Share of traced bugs that were new code that never worked, by which model judged them and when](charts/q27-never-worked-by-reader-and-period-light.svg#gh-light-mode-only)
+![Share of traced bugs that were new code that never worked, by which model judged them and when](charts/q27-never-worked-by-reader-and-period-dark.svg#gh-dark-mode-only)
 
 *How to read it: Take only bugs that were new code that never worked, or a working thing broken later. Each bar is the percentage that were the first kind. Past the dashed line means the first kind is the more common.*
 
@@ -1027,24 +971,88 @@ the period.
 
 </details>
 
-**The period changes little.** Under one reader, November and the earlier weeks are close on how many fixes repaired
+**The period changes little.** Under one model, November and the earlier weeks are close on how many fixes repaired
 no bug (11% and 7%), on the split between never-worked and
 broken-later (56% and 52% never-worked), on how large a
 causing change is, and on how rarely the bot named the bug. The one clear gap is how long a broken thing stayed
 broken, and finding 5 explains why that one cannot be trusted across periods.
 
-**The reader changes one thing a lot.** On the same November fixes, Claude Opus 5.5 said 33%
+**The model changes one thing a lot.** On the same November fixes, Claude Opus 5.5 said 33%
 repaired no bug and gpt-6.2-sol said 11%. They also split never-worked from broken-later
 differently. But where both named a causing change, they named the same one in 108 of
-130 cases, and everything from finding 3 on depends on the causing change, not on the label.
+130 cases, and every finding that counts bugs by kind of change depends on the causing change, not on the label.
 
 - **How we know.** The same brief was given to both models. Claude Opus 5.5 read the November fixes first, with GitHub
   lookups; gpt-6.2-sol read every fix later, without them.
 - **What it does not show.** That another project, or another season of this one, would look the same. And the two
   periods share one commit list and one sample of ordinary changes, so they are not fully separate tests of
-  findings 11 to 22.
+  findings 11 to 21.
 
 Recompute: `python3 questions/q27_do_the_findings_hold_across_periods_and_readers.py`
+
+### 23. How many "fix" changes repair no bug depends on which model you ask
+
+*Depends on the model. We gave two models the same written rule for what counts as a bug. They drew the line in
+different places, and each gave nearly the same answers when asked a second time.*
+
+We drew 1,202 fixes by lottery from the 16,016 merged in the period and asked of
+each: what was broken, and how did it get that way? The main model found that nothing had been broken in
+95 of them (8%): they were redesign steps, speed-ups, wording
+changes or tooling work that carried the title "fix". The second model, reading the
+300 November fixes under the same rule, said so of 33%. The cases they
+dispute are improvements that can also be described as a flaw present from the start: a slow path made faster, a log
+message made more precise, a report that never fitted a phone screen.
+
+**What each of the 1,202 sampled fixes repaired, by the main model**
+
+![What each of the 1,202 sampled fixes repaired, by the main model](charts/q01-what-fixes-repaired-light.svg#gh-light-mode-only)
+![What each of the 1,202 sampled fixes repaired, by the main model](charts/q01-what-fixes-repaired-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is a number of sampled fixes. The five bars add up to 1,202.*
+
+<details><summary>The numbers behind this chart</summary>
+
+| | Count | Plausible range |
+|---|---:|---:|
+| New code that never worked | 443 | 34–40% |
+| Not a bug: redesign, speed-up, wording or tooling | 95 | 7–10% |
+| A working thing that a later change broke | 389 | 30–35% |
+| Old code that broke because something outside changed | 74 | 5–8% |
+| Could not tell | 201 | 15–19% |
+
+</details>
+
+**How the two models sorted the same 300 fixes**
+
+![How the two models sorted the same 300 fixes](charts/q01-two-readers-light.svg#gh-light-mode-only)
+![How the two models sorted the same 300 fixes](charts/q01-two-readers-dark.svg#gh-dark-mode-only)
+
+*How to read it: The same 300 fixes, sorted twice. Blue is where the main model put them, orange where the second model did; each color adds up to 300.*
+
+<details><summary>The numbers behind this chart</summary>
+
+| | Main model (gpt-6.2-sol) | Second model (Claude Opus 5.5) |
+|---|---:|---:|
+| New code that never worked | 115 | 105 |
+| Not a bug: redesign, speed-up, wording or tooling | 34 | 100 |
+| A working thing that a later change broke | 91 | 51 |
+| Old code that broke because something outside changed | 20 | 29 |
+| Could not tell | 40 | 15 |
+
+</details>
+
+- **How we know.** One model read each fix, working from the fix's diff, its PR text and the history of the changed
+  lines, with a written rubric that told it to answer "could not tell" when the evidence was thin.
+- **How it was checked.** A second run of the main model, blind to the first answer, re-read
+  191 fixes and agreed on bug or not a bug for 184. The second model's
+  model had read 300 of the same fixes and agreed for 209. So each
+  model is steady, and the two differ.
+- **What it does not show.** A single right number. Treat the main model's share as the lower end and the second
+  model's third as the upper end. The main model also answered "could not tell" for 201
+  fixes: it worked without GitHub lookups, so it could not trace anything older than 1 July 2026. It cannot show
+  bugs nobody has fixed yet, or bugs fixed under another title.
+
+Recompute: `python3 questions/q01_how_many_fixes_repair_a_real_bug.py`
 
 ## How this compares with published research
 
@@ -1057,7 +1065,7 @@ project, and none measured exactly what we measured, so read each row as "same d
 | Risk per change against risk per file | Per change, 131 times higher for the largest; per file changed, flat | A model of change risk at Bell Labs found how widely a change spreads across the code essential to predicting failure [2] | Consistent: a bigger change is more exposure |
 | Share of changes that are fixes | 50.9% titled "fix" | 20.8% in Eclipse, 48.5% in Mozilla [1] | At the high end of what has been reported |
 | Do fixes cause more bugs than other changes | No: "fix" is 53% of causes and 50.9% of commits | Three times more in Eclipse, no difference in Mozilla [1]. 14.8% to 24.4% of operating-system bug fixes were themselves wrong [3]; nearly 40% of fault fixes led to further faults in one telecom system [4] | Unremarkable. Fixes that break things are normal everywhere |
-| "Fixes" that fix no bug | 8% to 33%, depending on the reader | 33.8% of bug reports in five open-source projects were not bugs [5] | In line |
+| "Fixes" that fix no bug | 8% to 33%, depending on the model | 33.8% of bug reports in five open-source projects were not bugs [5] | In line |
 | What review catches | The bot named 21 of 645 bugs that got through | About 75% of what code review finds concerns maintainability, not function [6]; reviews find fewer defects than teams expect [7] | Same in kind. Not like for like: those studies count what review found, ours counts what it missed |
 | Review by a second person | 1.0% of pull requests; 88.8% merged by their own author | At Google a change typically needs approval from at least one reviewer; the median is one reviewer [8]. Other studied projects had a median of two [8] | The clearest departure from studied practice |
 | Does review coverage matter | No detectable difference here (finding 14) | In Qt, VTK and ITK, components with low review coverage and participation had up to two and five more post-release defects [9]; a later study at Sony Mobile did not find the link [10] | Open. The research is mixed and our sample cannot tell |
@@ -1133,11 +1141,11 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 **Scope.** Changes merged to `main` from 10 September to 22 November 2026. One model (gpt-6.2-sol) read every fix.
 A model from a different maker (Claude Opus 5.5) had earlier read the 300 November fixes, and its
 answers serve as the check. No project code was run and no test was written. Findings 7 to 10 cover
-November only. Findings 11 to 22 set the traced bugs against every commit and pull
-request of the period and judge nothing. Finding 23 puts the two periods and the two readers side by side.
+November only. Findings 1, 3, 4 and 11 to 21 set the traced bugs against every commit and pull
+request of the period. Findings 22 and 23 put the two periods and the two models side by side.
 
 **An earlier version.** A first version of this report covered only the 300 November fixes, with Claude Opus 5.5 as the
-main reader. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
+main model. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
 
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
 reads only the dataset and writes the numbers and charts used on this page. `python3 study.py rebuild` runs them all and
@@ -1149,33 +1157,33 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 
 | Study | Cases | How cases were chosen | Who judged | Independent check |
 |---|---:|---|---|---|
-| What fixes repaired | 1,202 | Lottery over every fix in the period, in a fixed pseudo-random order | One gpt-6.2-sol reader per fix | Second run of the same model on 191; Claude Opus 5.5 on the 300 November fixes |
-| What the bot had said | 645 | Every traced bug whose causing change the bot reviewed | One gpt-6.2-sol reader per case | Claude Opus 5.5 on 88 November cases with the same causing change |
+| What fixes repaired | 1,202 | Lottery over every fix in the period, in a fixed pseudo-random order | One gpt-6.2-sol model per fix | Second run of the same model on 191; Claude Opus 5.5 on the 300 November fixes |
+| What the bot had said | 645 | Every traced bug whose causing change the bot reviewed | One gpt-6.2-sol model per case | Claude Opus 5.5 on 88 November cases with the same causing change |
 | Blind review (November) | 30 | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
-| Are the reports real | 148 | Every report from the two strongest reviewers | One later-fix reader; two code-tracing checkers | Known-real reports as a control, before and after the fix |
+| Are the reports real | 148 | Every report from the two strongest reviewers | One later-fix model; two code-tracing checkers | Known-real reports as a control, before and after the fix |
 | Kinds of change compared | 400 | Lottery over every merged pull request since 10 September, plus every bug-causing one | Nobody: read from git and GitHub | The bot's verdict is read from its own marker |
-| Workload, people and files (findings 18 to 22) | 39,210 | Every commit on main since 10 September; the bugs are the 505 sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
-| Written rules (November, first study) | 29 | Fixes whose wording blames an earlier change | Claude readers, verdicts re-read | Three cases checked against source by hand |
+| Workload, people and files (findings 1 and 18 to 21) | 39,210 | Every commit on main since 10 September; the bugs are the 505 sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
+| Written rules (November, first study) | 29 | Fixes whose wording blames an earlier change | Claude models, verdicts re-read | Three cases checked against source by hand |
 
 ## Limits that apply throughout
 
-- Every classification is a model's judgment made in hindsight from code changes and PR text. Two makers' models
+- Every classification is a model's judgment made in hindsight from code changes and PR text. Two models from different companies
   agreeing reduces the risk of one model's habit; it does not make the judgment a measurement.
 - Nothing was executed. No bug was reproduced and no reported problem was confirmed by a failing test.
-- The period is ten and a half weeks of one project. Finding 23 shows the earlier weeks agree with November; it
+- The period is ten and a half weeks of one project. Finding 22 shows the earlier weeks agree with November; it
   does not show another project would.
-- The main reader worked without GitHub lookups and could trace a cause back to 1 July 2026 and no further. It
-  answered "could not tell" more often than the other maker's reader, which had lookups.
-- 327 of the 832 traced bugs are left out of findings 3, 4 and 11 to 22, because
+- The main model worked without GitHub lookups and could trace a cause back to 1 July 2026 and no further. It
+  answered "could not tell" more often than the second model, which had lookups.
+- 327 of the 832 traced bugs are left out of findings 1, 3, 4 and 11 to 21, because
   their causing change is older than 10 September, where the commit list starts, or was not a pull request.
-- Findings 7 to 10 cover 30 November cases, chosen when Claude Opus 5.5 was the main reader, and were not repeated for the
+- Findings 7 to 10 cover 30 November cases, chosen when Claude Opus 5.5 was the main model, and were not repeated for the
   earlier weeks.
 - A sample of fixes cannot see bugs that were never fixed, or bugs the bot stopped before merge.
 - The model comparison covers changes of at most 30 files and one run per reviewer. The reviewers did not get
   identical guidance: some GPT runs read a personal review guide on the test machine, and the Claude runs had the
   repository's current contributor guide in context. Neither contains the answers.
-- Findings 18 to 22 make about thirty comparisons on the same 505 bugs. By chance alone, one or two
-  of thirty would look like a clear difference. The two we call supported (findings 20 and 21) are far from the
+- Findings 1 and 18 to 21 make about thirty comparisons on the same 505 bugs. By chance alone, one or two
+  of thirty would look like a clear difference. The two we call supported (findings 1 and 20) are far from the
   line; the others that cross it are labelled tentative.
 - The data files record the public author and merger of each change, as GitHub shows them. The report draws no
   conclusion about any person.
@@ -1185,12 +1193,12 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 Each finding carries a label for how far it can be trusted. **Measured** means counted from git or GitHub, with
 nothing judged. **Well supported** means a large effect that held when checked a second way. **Supported** means a
 clear effect resting on one method. **Tentative** means a small number of cases, or a range that barely clears "no
-difference". **Depends on the reader** means two models gave different answers.
+difference". **Depends on the model** means two models gave different answers.
 
 | # | Strength | Finding |
 |---|---|---|
-| 1 | Depends on the reader | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
-| 2 | Supported | New code that never worked accounts for about as many bugs as working things broken later: 443 against 389 by the main reader. The other maker's reader, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
+| 1 | Well supported | Changes that add new code files are 13.7% of commits and the source of 69% of the traced bugs. |
+| 2 | Supported | New code that never worked accounts for about as many bugs as working things broken later: 443 against 389 by the main model. The second model, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
 | 3 | Well supported | Changes titled as new features cause far more than their share of bugs. The title "fix" tells you little. |
 | 4 | Well supported | Large changes cause far more bugs per change, but about the same per file changed. |
 | 5 | Supported | A broken thing typically stayed broken for one to four weeks, unless someone traced the cause at once. |
@@ -1209,9 +1217,9 @@ difference". **Depends on the reader** means two models gave different answers.
 | 18 | Supported, and one tentative result | An individual's workload shows no effect. Changes landed on the project's busiest days carried 1.73 times the bugs of changes landed on its quietest. |
 | 19 | Supported | Changes from occasional contributors, and changes merged by someone other than their author, carried about half the bugs. Review by a second person is too rare to measure. |
 | 20 | Supported | Changes to files that two or more other people were also editing caused 1.67 times the bugs of changes to files only their author was editing. |
-| 21 | Well supported | Changes that add new code files are 13.7% of commits and the source of 69% of the traced bugs. |
-| 22 | Measured | 494 of the 505 traced bugs came from a change that also changed tests. No part of the code stands out. |
-| 23 | Supported | The earlier weeks look like November when the same model reads both. What differs is the reader: the two models disagree on what counts as a bug, and agree on what caused one. |
+| 21 | Measured | 494 of the 505 traced bugs came from a change that also changed tests. No part of the code stands out. |
+| 22 | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
+| 23 | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
 
 ## Repository map
 

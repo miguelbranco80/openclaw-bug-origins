@@ -143,9 +143,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 - **New code is where the bugs are.** Changes that add a new code file are {v('q24', 'new_share_adds')}% of commits
   and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs ({v('q24', 'new_bugs_adds')} of
-  {v('q25', 'bugs')}). *Finding 21.*
+  {v('q25', 'bugs')}). *Finding 1.*
 - **Shipping tests with a change is not a sign it is safe.** {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')}
-  traced bugs came from a change that also changed tests. *Finding 22.*
+  traced bugs came from a change that also changed tests. *Finding 21.*
 - **The review bot rarely named the bug, but its objection marks risk.** It had named the bug in
   {v('q06', 'flag_exact')} of the {v('q06', 'reviewed')} bug-causing changes it reviewed. Changes merged over its
   objection still carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready.
@@ -165,7 +165,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
   from November. And a second model, reading the same November fixes, pointed at the same causing change in
   {v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')} cases. Where the two models differ is on what counts
   as a bug at all: one said {v('q27', 'not_bug_pct_frame1')}% of those fixes repaired nothing, the other
-  {v('q27', 'not_bug_pct_published')}%. *Findings 1 and 23.*
+  {v('q27', 'not_bug_pct_published')}%. *Findings 22 and 23.*
 
 {chart('q17', 0)}
 
@@ -198,50 +198,45 @@ bugs, not fewer (finding 16).
   change capped a data stream at 16 MiB, and long replies that used to work began to fail.
 - **Broken from outside.** Old code that was fine until something outside the project changed. Example: a package
   manager changed the format of its launcher files, and every command failed after an update.
+- **Main model and second model.** A model read each fix and said what it repaired and which earlier change had
+  caused the problem. The main model, {MAIN}, read every fix. The second model, {OTHER}, comes from a different
+  company and read the November fixes, so that one model's habits can be told apart from facts.
 - **Review bot.** ClawSweeper, the automated reviewer that comments on the project's pull requests before they merge.
 - **Plausible range.** Where the true figure plausibly lies given the sample size (a 95% interval).
 
 ## Where the bugs come from
 
-Findings 1 to 5: what the sampled fixes repaired, and what kind of change had introduced the problem.
+Findings 1 to 5: what kind of change had introduced each problem, and how long it lasted.
 
-### 1. How many "fix" changes repair no bug depends on who reads them
+### 1. Changes that add new code files caused two thirds of the bugs
 
-*Depends on the reader. Two models given the same written rule drew the line in different places, and each was
-consistent with itself.*
+*Well supported. Whether a change adds a file is counted from git, not judged. Findings 2 and 3 reach the same
+place by other routes.*
 
-We drew {v('q01', 'sample')} fixes by lottery from the {v('q01', 'population')} merged in the period and asked of
-each: what was broken, and how did it get that way? The main reader found that nothing had been broken in
-{v('q01', 'origin_not-a-defect')} of them ({v('q01', 'not_bug_pct')}%): they were redesign steps, speed-ups, wording
-changes or tooling work that carried the title "fix". A model from a different maker, reading the
-{v('q01', 'other_n')} November fixes under the same rule, said so of {v('q01', 'other_notbug_pct')}%. The cases they
-dispute are improvements that can also be described as a flaw present from the start: a slow path made faster, a log
-message made more precise, a report that never fitted a phone screen.
+{chart('q24', 0)}
 
-{chart('q01', 0)}
+{commit_table(('q24', 'new'))}
 
-{numbers('q01', 'origin')}
+A change that adds at least one new code file is {v('q24', 'new_share_adds')}% of commits and the source of
+{v('q24', 'new_bugs_adds')} of the {v('q25', 'bugs')} traced bugs ({v('q24', 'bugs_pct_adds')}%). Such changes are
+also larger than others, so we compared like with like: among changes of similar size, with the same kind of title,
+landed in the same weeks, one that adds a file caused {v('q24', 'new_adjusted_adds')} times the bugs of one that
+only edits existing files (plausibly {span('q24', 'new_adjusted_adds')}).
 
-{chart('q01', 1)}
+- **How we know.** For each sampled fix, a model traced the problem back to the earlier change that caused it. We
+  then looked up that change among all {v('q18', 'commits')} commits on main since 10 September. Git records which
+  files a commit adds. A code file is a non-test file under `src/`, `ui/`, `extensions/`, `packages/` or `apps/`.
+  The {v('q25', 'bugs')} bugs here are the traced ones whose causing change falls in that list.
+- **Why it matters.** Finding 3 uses the word "feat" in a change's title, which only {v('q03', 'rate_commits_feat')}
+  commits carry. Adding a file is a fact, not a label, and it marks the same thing: new code is where the bugs are.
+- **What it does not show.** That the bug sits in the new file. It says the change that carried the bug also added
+  one.
 
-{numbers('q01', 'other_first', 'other_second', names=[f'Main reader ({MAIN})', f"Other maker's reader ({OTHER})"])}
-
-- **How we know.** One model reader per fix worked from the fix's diff, its PR text and the history of the changed
-  lines, with a written rubric that told it to answer "could not tell" when the evidence was thin.
-- **How it was checked.** A second run of the main reader, blind to the first answer, re-read
-  {v('q01', 'second_n')} fixes and agreed on bug or not a bug for {v('q01', 'second_real_same')}. The other maker's
-  reader had read {v('q01', 'other_n')} of the same fixes and agreed for {v('q01', 'other_real_same')}. So each
-  model is steady, and the two differ.
-- **What it does not show.** A single right number. Treat the main reader's share as the lower end and the other
-  maker's third as the upper end. The main reader also answered "could not tell" for {v('q01', 'origin_unclear')}
-  fixes: it worked without GitHub lookups, so it could not trace anything older than 1 July 2026. It cannot show
-  bugs nobody has fixed yet, or bugs fixed under another title.
-
-{run_line('q01')}
+{run_line('q24')}
 
 ### 2. New code that never worked accounts for about as many bugs as working things broken later
 
-*Supported. About even by the main reader in both periods; about double by the other maker's reader on the November
+*Supported. About even by the main model in both periods; about double by the second model on the November
 fixes. Neither puts never-worked bugs clearly below.*
 
 Of the {v('q02', 'traced')} bugs we could trace to the change that introduced them, {v('q02', 'sens_never_all')} were
@@ -254,15 +249,15 @@ reviewed or first run.
 
 {numbers('q02', 'sens_never', 'sens_broke', 'never_share', names=['Never worked', 'Broken later', 'Never worked, %'])}
 
-Across the main reader's ways of counting, the ratio of never-worked to broken-later runs from
-{v('q02', 'ratio_low')} to {v('q02', 'ratio_high')}. The other maker's reader, on the November fixes, put it at
+Across the main model's ways of counting, the ratio of never-worked to broken-later runs from
+{v('q02', 'ratio_low')} to {v('q02', 'ratio_high')}. The second model, on the November fixes, put it at
 {v('q02', 'other_ratio')}. The two models split a bug between these two kinds differently more often than they
 disagree on which change caused it.
 
-- **How we know.** The reader had to point at the lines in the causing change that were wrong, and to say whether the
+- **How we know.** The model had to point at the lines in the causing change that were wrong, and to say whether the
   behavior had worked before that change.
-- **How it was checked.** Where two runs of the main reader both chose one of these two kinds, they made the same
-  choice in {v('q02', 'second_pair_same')} of {v('q02', 'second_pair_n')} cases. The two makers' readers made the
+- **How it was checked.** Where two runs of the main model both chose one of these two kinds, they made the same
+  choice in {v('q02', 'second_pair_same')} of {v('q02', 'second_pair_n')} cases. The two models made the
   same choice in {v('q02', 'other_pair_same')} of {v('q02', 'other_pair_n')}, and named the same causing change in
   {v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')}.
 - **What it does not show.** A firm ratio, or that features are the problem. New code arrives in changes of every
@@ -290,7 +285,7 @@ than others, so part of their higher rate is size, which is the next finding.
 - **How we know.** The comparison uses the {v('q03', 'recent_causes')} sampled bugs whose causing change was made
   since 10 September 2026 and all {v('q03', 'base_commits')} commits on main since that date, counted from git.
 - **How it was checked.** Titles and file counts are read mechanically from git, not judged. Which change caused
-  each bug is the reader's judgment from finding 2.
+  each bug is the model's judgment from finding 2.
 - **What it does not show.** What the change was really for, or how much of the gap is size. The rates are not
   adjusted for the size of the change. A rate counts the bugs fixed between 10 September and 22 November, so it grows
   with the length of the period watched: compare these rates with each other, not with another study's.
@@ -319,7 +314,7 @@ they hold more change, not because each part of them is worse.
   one sampled fix traced to a causing commit in that list ({v('q04', 'bugs')} cases), scaled from the sample to all
   fixes in the period. So a rate reads as "bugs fixed between 10 September and 22 November, per 100 commits made in
   that time".
-- **How it was checked.** Sizes come from git. The causing commit is the reader's judgment; two makers' models named
+- **How it was checked.** Sizes come from git. The causing commit is the model's judgment; the two models named
   the same one in {v('q02', 'other_cause_same')} of {v('q02', 'other_cause_n')} cases.
 - **What it does not show.** Risk per line, or whether splitting a large change would lower the total. It also
   counts only bugs fixed within the period, so slow-to-surface bugs from recent changes are missing.
@@ -328,7 +323,7 @@ they hold more change, not because each part of them is worse.
 
 ### 5. A broken thing typically stayed broken for one to four weeks
 
-*Supported. Dates come from git. The split depends on the reader naming the right causing change, and the figure for
+*Supported. Dates come from git. The split depends on the model naming the right causing change, and the figure for
 the earlier weeks is cut short by how far back a cause could be traced.*
 
 {chart('q05', 0)}
@@ -347,7 +342,7 @@ broken-later fixes say which change caused the bug, and those were fixed within 
 - **How it was checked.** An earlier study that could only find fixes naming their cause had put the typical time at
   {v('q05', 'first_study_median_days')} days. The random sample shows that figure described the quick cases only.
 - **What it does not show.** How long users were affected, or how many noticed. A bug counts only once it is fixed,
-  so long-lived bugs still open are missing. The reader could trace causes back to 1 July 2026 and no further, so a
+  so long-lived bugs still open are missing. The model could trace causes back to 1 July 2026 and no further, so a
   fix from September cannot show a bug older than about ten weeks, where one from November can show one of twenty.
   That alone makes the earlier weeks look quicker.
 
@@ -360,7 +355,7 @@ models find when shown the same changes with no hint. Findings 7 to 10 cover Nov
 
 ### 6. The review bot had rarely named the bug before the change merged
 
-*Well supported. The November cases were read by models from two makers, with close agreement.*
+*Well supported. The November cases were read by both models, with close agreement.*
 
 For each of the {v('q06', 'traced')} traced bugs we read what the bot had written on the causing change at the moment
 it merged, rebuilt from the comment's edit history. It had reviewed {v('q06', 'reviewed')} of them and named the bug
@@ -369,7 +364,7 @@ in {v('q06', 'flag_exact')}. It raised a related concern, without stating the fa
 
 {chart('q06', 0)}
 
-{numbers('q06', 'other_first', 'other_flag', names=[f'Main reader ({MAIN})', f"Other maker's reader ({OTHER})"])}
+{numbers('q06', 'other_first', 'other_flag', names=[f'Main model ({MAIN})', f"Second model ({OTHER})"])}
 
 {chart('q06', 1)}
 
@@ -381,7 +376,7 @@ bug, such as missing proof. Only {v('q06', 'open_unanswered')} items that touche
 merge. The bot also said "ready" on changes that carried a bug. Finding 12 adds the other half: although its words
 rarely named the bug, the changes it objected to were the riskier ones.
 
-- **How we know.** A reader compared each bug with the review text under a strict rule: it counts as named only if
+- **How we know.** A model compared each bug with the review text under a strict rule: it counts as named only if
   fixing what the review described would have prevented the bug.
 - **How it was checked.** For {v('q06', 'other_n')} November cases both makers' models read the same review of the
   same causing change. They gave the same answer for {v('q06', 'other_same')}, and agreed on whether the bug was
@@ -450,7 +445,7 @@ failure happens?
 real. That count is a floor: the same search found the fix for only {v('q08', 'later_found_known')} of the
 {v('q08', 'control_cases')} problems we already knew were fixed.
 
-- **How we know.** The reports were pooled under anonymous labels with nothing marking the known bugs. One reader
+- **How we know.** The reports were pooled under anonymous labels with nothing marking the known bugs. One model
   searched later fix commits; two checkers each traced every report in the exported code.
 - **How it was checked.** The checkers were tested on the known-real problems, first on the original code and then on
   the code after the fix. After the fix, both still confirmed {v('q08', 'control_both_still')}; two of those belong
@@ -463,7 +458,7 @@ real. That count is a floor: the same search found the fix for only {v('q08', 'l
 
 ### 9. About a third of the bugs could not be seen by reading code
 
-*Tentative. One reader's judgment on 30 cases; the key group is nine.*
+*Tentative. One model's judgment on 30 cases; the key group is nine.*
 
 {chart('q09', 0)}
 
@@ -471,9 +466,9 @@ No reviewer named a bug that depended on how a browser lays out a page, what a d
 behaves under load. Size mattered too: reviewers named {v('q09', 'small_named')} of {v('q09', 'small_cases')} bugs in
 changes of 7 files or fewer, and {v('q09', 'large_named')} of {v('q09', 'large_cases')} in larger ones.
 
-- **How we know.** A reader given the bug and the causing change chose the least demanding thing a reviewer would
+- **How we know.** A model given the bug and the causing change chose the least demanding thing a reviewer would
   have needed: the changed lines, other repository code, or outside knowledge.
-- **How it was checked.** It was not checked by a second reader. The reader flagged several close calls between the
+- **How it was checked.** It was not checked by a second model. The model flagged several close calls between the
   first two groups.
 - **What it does not show.** A firm share. Nine cases cannot fix a proportion; they show that such bugs exist in
   number and that none was caught by reading.
@@ -494,7 +489,7 @@ whose fix names the causing change, a rule existed for {v('q10', 'rules_existing
 
 ## Which changes carry the bugs
 
-Findings 11 to 22: the traced bugs set against every commit and pull request of the period. Nothing here is judged
+Findings 11 to 21: the traced bugs set against every commit and pull request of the period. Nothing here is judged
 by a model; it is counted from git and GitHub.
 
 ### 11. Changes committed straight to main caused fewer bugs per change, not more
@@ -546,7 +541,7 @@ reviewed were no different from ones it called ready.
   groups: 1 to 5 files, 6 to 30, and over 30. The month is held equal because an older change has had longer for its
   bugs to be found and fixed.
 - **How it was checked.** The verdict is read mechanically from the marker the bot writes into its own comment, for
-  the last version written before the merge. The causing change is the readers' judgment (finding 2).
+  the last version written before the merge. The causing change is the models' judgment (finding 2).
 - **What it does not show.** That merging against the verdict causes bugs. The bot objects to changes that are
   harder for other reasons too. And finding 6 still holds: in most of these cases its open items were about something
   other than the bug.
@@ -775,29 +770,7 @@ files into others, is the higher one.
 
 {run_line('q23')}
 
-### 21. Changes that add new code files caused two thirds of the bugs
-
-*Well supported. Counted from git; it agrees with findings 2 and 3 by a different route.*
-
-{chart('q24', 0)}
-
-{commit_table(('q24', 'new'))}
-
-A change that adds at least one new code file is {v('q24', 'new_share_adds')}% of commits and the source of
-{v('q24', 'new_bugs_adds')} of the {v('q25', 'bugs')} sampled bugs ({v('q24', 'bugs_pct_adds')}%). At equal size
-and kind it caused {v('q24', 'new_adjusted_adds')} times the bugs of a change that only edits existing files
-(plausibly {span('q24', 'new_adjusted_adds')}).
-
-- **How we know.** Git records which files a commit adds. A code file is a non-test file under `src/`, `ui/`,
-  `extensions/`, `packages/` or `apps/`.
-- **Why it matters here.** Finding 3 relied on the word "feat" in the title, which only {v('q03', 'rate_commits_feat')}
-  commits carry. Adding a file is a fact, not a label, and it marks the same thing: new code is where the bugs are.
-- **What it does not show.** That the bug sits in the new file. It says the change that carried the bug also added
-  one.
-
-{run_line('q24')}
-
-### 22. Nearly every bug-causing change came with tests; no part of the code stands out
+### 21. Nearly every bug-causing change came with tests; no part of the code stands out
 
 *Measured.*
 
@@ -820,15 +793,16 @@ and kind it caused {v('q24', 'new_adjusted_adds')} times the bugs of a change th
 
 ## Does it hold up
 
-Finding 23: the same questions asked of a second period and a second reader.
+Findings 22 and 23: the same questions asked of a second period and of a second model, and the one answer that
+depends on which model is asked.
 
-### 23. The earlier weeks look like November; what differs is the reader
+### 22. The earlier weeks look like November; what differs is the model
 
-*Supported. This is the check on everything above: a second period, and a second reader.*
+*Supported. This is the check on everything above: a second period, and a second model.*
 
 Every fix was read by {MAIN}. The {v('q01', 'other_n')} November fixes were also read by a model from a different
 maker, {OTHER}. That gives three sets to put side by side. The first two are the same November fixes read by two
-models, so their difference is the reader. The last two are one model reading two periods, so their difference is
+models, so their difference is the model. The last two are one model reading two periods, so their difference is
 the period.
 
 {chart('q27', 0)}
@@ -838,24 +812,58 @@ the period.
 {numbers('q27', 'fixes', 'not_bug_pct', 'unclear_pct', 'never', 'broke', 'never_share', 'feat_pct', 'cause_files', 'days', 'reviewed', 'named',
          names=['Fixes', 'Fixed no bug, %', 'Could not tell, %', 'Never worked', 'Broken later', 'Never worked, % of the two', 'Causes titled feat, %', 'Median files in a causing change', 'Median days broken, broken-later', 'Causing changes the bot reviewed', 'Bot named the bug'])}
 
-**The period changes little.** Under one reader, November and the earlier weeks are close on how many fixes repaired
+**The period changes little.** Under one model, November and the earlier weeks are close on how many fixes repaired
 no bug ({v('q27', 'not_bug_pct_frame1')}% and {v('q27', 'not_bug_pct_frame2')}%), on the split between never-worked and
 broken-later ({v('q27', 'never_share_frame1')}% and {v('q27', 'never_share_frame2')}% never-worked), on how large a
 causing change is, and on how rarely the bot named the bug. The one clear gap is how long a broken thing stayed
 broken, and finding 5 explains why that one cannot be trusted across periods.
 
-**The reader changes one thing a lot.** On the same November fixes, {OTHER} said {v('q27', 'not_bug_pct_published')}%
+**The model changes one thing a lot.** On the same November fixes, {OTHER} said {v('q27', 'not_bug_pct_published')}%
 repaired no bug and {MAIN} said {v('q27', 'not_bug_pct_frame1')}%. They also split never-worked from broken-later
 differently. But where both named a causing change, they named the same one in {v('q02', 'other_cause_same')} of
-{v('q02', 'other_cause_n')} cases, and everything from finding 3 on depends on the causing change, not on the label.
+{v('q02', 'other_cause_n')} cases, and every finding that counts bugs by kind of change depends on the causing change, not on the label.
 
 - **How we know.** The same brief was given to both models. {OTHER} read the November fixes first, with GitHub
   lookups; {MAIN} read every fix later, without them.
 - **What it does not show.** That another project, or another season of this one, would look the same. And the two
   periods share one commit list and one sample of ordinary changes, so they are not fully separate tests of
-  findings 11 to 22.
+  findings 11 to 21.
 
 {run_line('q27')}
+
+### 23. How many "fix" changes repair no bug depends on which model you ask
+
+*Depends on the model. We gave two models the same written rule for what counts as a bug. They drew the line in
+different places, and each gave nearly the same answers when asked a second time.*
+
+We drew {v('q01', 'sample')} fixes by lottery from the {v('q01', 'population')} merged in the period and asked of
+each: what was broken, and how did it get that way? The main model found that nothing had been broken in
+{v('q01', 'origin_not-a-defect')} of them ({v('q01', 'not_bug_pct')}%): they were redesign steps, speed-ups, wording
+changes or tooling work that carried the title "fix". The second model, reading the
+{v('q01', 'other_n')} November fixes under the same rule, said so of {v('q01', 'other_notbug_pct')}%. The cases they
+dispute are improvements that can also be described as a flaw present from the start: a slow path made faster, a log
+message made more precise, a report that never fitted a phone screen.
+
+{chart('q01', 0)}
+
+{numbers('q01', 'origin')}
+
+{chart('q01', 1)}
+
+{numbers('q01', 'other_first', 'other_second', names=[f'Main model ({MAIN})', f"Second model ({OTHER})"])}
+
+- **How we know.** One model read each fix, working from the fix's diff, its PR text and the history of the changed
+  lines, with a written rubric that told it to answer "could not tell" when the evidence was thin.
+- **How it was checked.** A second run of the main model, blind to the first answer, re-read
+  {v('q01', 'second_n')} fixes and agreed on bug or not a bug for {v('q01', 'second_real_same')}. The second model's
+  model had read {v('q01', 'other_n')} of the same fixes and agreed for {v('q01', 'other_real_same')}. So each
+  model is steady, and the two differ.
+- **What it does not show.** A single right number. Treat the main model's share as the lower end and the second
+  model's third as the upper end. The main model also answered "could not tell" for {v('q01', 'origin_unclear')}
+  fixes: it worked without GitHub lookups, so it could not trace anything older than 1 July 2026. It cannot show
+  bugs nobody has fixed yet, or bugs fixed under another title.
+
+{run_line('q01')}
 
 ## How this compares with published research
 
@@ -868,7 +876,7 @@ project, and none measured exactly what we measured, so read each row as "same d
 | Risk per change against risk per file | Per change, {v('q04', 'per_commit_ratio')} times higher for the largest; per file changed, flat | A model of change risk at Bell Labs found how widely a change spreads across the code essential to predicting failure [2] | Consistent: a bigger change is more exposure |
 | Share of changes that are fixes | {v('q15', 'fix_title_pct')}% titled "fix" | 20.8% in Eclipse, 48.5% in Mozilla [1] | At the high end of what has been reported |
 | Do fixes cause more bugs than other changes | No: "fix" is {v('q03', 'cmp_cause_fix')}% of causes and {v('q03', 'cmp_base_fix')}% of commits | Three times more in Eclipse, no difference in Mozilla [1]. 14.8% to 24.4% of operating-system bug fixes were themselves wrong [3]; nearly 40% of fault fixes led to further faults in one telecom system [4] | Unremarkable. Fixes that break things are normal everywhere |
-| "Fixes" that fix no bug | {v('q01', 'not_bug_pct')}% to {v('q01', 'other_notbug_pct')}%, depending on the reader | 33.8% of bug reports in five open-source projects were not bugs [5] | In line |
+| "Fixes" that fix no bug | {v('q01', 'not_bug_pct')}% to {v('q01', 'other_notbug_pct')}%, depending on the model | 33.8% of bug reports in five open-source projects were not bugs [5] | In line |
 | What review catches | The bot named {v('q06', 'flag_exact')} of {v('q06', 'reviewed')} bugs that got through | About 75% of what code review finds concerns maintainability, not function [6]; reviews find fewer defects than teams expect [7] | Same in kind. Not like for like: those studies count what review found, ours counts what it missed |
 | Review by a second person | {v('q15', 'all_second_review_pct')}% of pull requests; {v('q15', 'self_merged_pct')}% merged by their own author | At Google a change typically needs approval from at least one reviewer; the median is one reviewer [8]. Other studied projects had a median of two [8] | The clearest departure from studied practice |
 | Does review coverage matter | No detectable difference here (finding 14) | In Qt, VTK and ITK, components with low review coverage and participation had up to two and five more post-release defects [9]; a later study at Sony Mobile did not find the link [10] | Open. The research is mixed and our sample cannot tell |
@@ -944,11 +952,11 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 **Scope.** Changes merged to `main` from 10 September to 22 November 2026. One model ({MAIN}) read every fix.
 A model from a different maker ({OTHER}) had earlier read the {v('q01', 'other_n')} November fixes, and its
 answers serve as the check. No project code was run and no test was written. Findings 7 to 10 cover
-November only. Findings 11 to 22 set the traced bugs against every commit and pull
-request of the period and judge nothing. Finding 23 puts the two periods and the two readers side by side.
+November only. Findings 1, 3, 4 and 11 to 21 set the traced bugs against every commit and pull
+request of the period. Findings 22 and 23 put the two periods and the two models side by side.
 
 **An earlier version.** A first version of this report covered only the 300 November fixes, with {OTHER} as the
-main reader. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
+main model. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
 
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
 reads only the dataset and writes the numbers and charts used on this page. `python3 study.py rebuild` runs them all and
@@ -960,33 +968,33 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 
 | Study | Cases | How cases were chosen | Who judged | Independent check |
 |---|---:|---|---|---|
-| What fixes repaired | {v('q01', 'sample')} | Lottery over every fix in the period, in a fixed pseudo-random order | One {MAIN} reader per fix | Second run of the same model on {v('q01', 'second_n')}; {OTHER} on the {v('q01', 'other_n')} November fixes |
-| What the bot had said | {v('q06', 'reviewed')} | Every traced bug whose causing change the bot reviewed | One {MAIN} reader per case | {OTHER} on {v('q06', 'other_n')} November cases with the same causing change |
+| What fixes repaired | {v('q01', 'sample')} | Lottery over every fix in the period, in a fixed pseudo-random order | One {MAIN} model per fix | Second run of the same model on {v('q01', 'second_n')}; {OTHER} on the {v('q01', 'other_n')} November fixes |
+| What the bot had said | {v('q06', 'reviewed')} | Every traced bug whose causing change the bot reviewed | One {MAIN} model per case | {OTHER} on {v('q06', 'other_n')} November cases with the same causing change |
 | Blind review (November) | {v('q07', 'cases')} | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
-| Are the reports real | {v('q08', 'findings')} | Every report from the two strongest reviewers | One later-fix reader; two code-tracing checkers | Known-real reports as a control, before and after the fix |
+| Are the reports real | {v('q08', 'findings')} | Every report from the two strongest reviewers | One later-fix model; two code-tracing checkers | Known-real reports as a control, before and after the fix |
 | Kinds of change compared | {v('q15', 'sample')} | Lottery over every merged pull request since 10 September, plus every bug-causing one | Nobody: read from git and GitHub | The bot's verdict is read from its own marker |
-| Workload, people and files (findings 18 to 22) | {v('q18', 'commits')} | Every commit on main since 10 September; the bugs are the {v('q18', 'bugs')} sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
-| Written rules (November, first study) | {v('q10', 'confirmed')} | Fixes whose wording blames an earlier change | Claude readers, verdicts re-read | Three cases checked against source by hand |
+| Workload, people and files (findings 1 and 18 to 21) | {v('q18', 'commits')} | Every commit on main since 10 September; the bugs are the {v('q18', 'bugs')} sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
+| Written rules (November, first study) | {v('q10', 'confirmed')} | Fixes whose wording blames an earlier change | Claude models, verdicts re-read | Three cases checked against source by hand |
 
 ## Limits that apply throughout
 
-- Every classification is a model's judgment made in hindsight from code changes and PR text. Two makers' models
+- Every classification is a model's judgment made in hindsight from code changes and PR text. Two models from different companies
   agreeing reduces the risk of one model's habit; it does not make the judgment a measurement.
 - Nothing was executed. No bug was reproduced and no reported problem was confirmed by a failing test.
-- The period is ten and a half weeks of one project. Finding 23 shows the earlier weeks agree with November; it
+- The period is ten and a half weeks of one project. Finding 22 shows the earlier weeks agree with November; it
   does not show another project would.
-- The main reader worked without GitHub lookups and could trace a cause back to 1 July 2026 and no further. It
-  answered "could not tell" more often than the other maker's reader, which had lookups.
-- {v('q27', 'left_out')} of the {v('q02', 'traced')} traced bugs are left out of findings 3, 4 and 11 to 22, because
+- The main model worked without GitHub lookups and could trace a cause back to 1 July 2026 and no further. It
+  answered "could not tell" more often than the second model, which had lookups.
+- {v('q27', 'left_out')} of the {v('q02', 'traced')} traced bugs are left out of findings 1, 3, 4 and 11 to 21, because
   their causing change is older than 10 September, where the commit list starts, or was not a pull request.
-- Findings 7 to 10 cover 30 November cases, chosen when {OTHER} was the main reader, and were not repeated for the
+- Findings 7 to 10 cover 30 November cases, chosen when {OTHER} was the main model, and were not repeated for the
   earlier weeks.
 - A sample of fixes cannot see bugs that were never fixed, or bugs the bot stopped before merge.
 - The model comparison covers changes of at most 30 files and one run per reviewer. The reviewers did not get
   identical guidance: some GPT runs read a personal review guide on the test machine, and the Claude runs had the
   repository's current contributor guide in context. Neither contains the answers.
-- Findings 18 to 22 make about thirty comparisons on the same {v('q18', 'bugs')} bugs. By chance alone, one or two
-  of thirty would look like a clear difference. The two we call supported (findings 20 and 21) are far from the
+- Findings 1 and 18 to 21 make about thirty comparisons on the same {v('q18', 'bugs')} bugs. By chance alone, one or two
+  of thirty would look like a clear difference. The two we call supported (findings 1 and 20) are far from the
   line; the others that cross it are labelled tentative.
 - The data files record the public author and merger of each change, as GitHub shows them. The report draws no
   conclusion about any person.
@@ -996,12 +1004,12 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 Each finding carries a label for how far it can be trusted. **Measured** means counted from git or GitHub, with
 nothing judged. **Well supported** means a large effect that held when checked a second way. **Supported** means a
 clear effect resting on one method. **Tentative** means a small number of cases, or a range that barely clears "no
-difference". **Depends on the reader** means two models gave different answers.
+difference". **Depends on the model** means two models gave different answers.
 
 | # | Strength | Finding |
 |---|---|---|
-| 1 | Depends on the reader | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
-| 2 | Supported | New code that never worked accounts for about as many bugs as working things broken later: {v('q02', 'sens_never_all')} against {v('q02', 'sens_broke_all')} by the main reader. The other maker's reader, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
+| 1 | Well supported | Changes that add new code files are {v('q24', 'new_share_adds')}% of commits and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs. |
+| 2 | Supported | New code that never worked accounts for about as many bugs as working things broken later: {v('q02', 'sens_never_all')} against {v('q02', 'sens_broke_all')} by the main model. The second model, on the November fixes, found twice as many never-worked. When both name a cause, they usually name the same change. |
 | 3 | Well supported | Changes titled as new features cause far more than their share of bugs. The title "fix" tells you little. |
 | 4 | Well supported | Large changes cause far more bugs per change, but about the same per file changed. |
 | 5 | Supported | A broken thing typically stayed broken for one to four weeks, unless someone traced the cause at once. |
@@ -1020,9 +1028,9 @@ difference". **Depends on the reader** means two models gave different answers.
 | 18 | Supported, and one tentative result | An individual's workload shows no effect. Changes landed on the project's busiest days carried {v('q19', 'busy_adjusted_busy')} times the bugs of changes landed on its quietest. |
 | 19 | Supported | Changes from occasional contributors, and changes merged by someone other than their author, carried about half the bugs. Review by a second person is too rare to measure. |
 | 20 | Supported | Changes to files that two or more other people were also editing caused {v('q23', 'shared_adjusted_high')} times the bugs of changes to files only their author was editing. |
-| 21 | Well supported | Changes that add new code files are {v('q24', 'new_share_adds')}% of commits and the source of {v('q24', 'bugs_pct_adds')}% of the traced bugs. |
-| 22 | Measured | {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came from a change that also changed tests. No part of the code stands out. |
-| 23 | Supported | The earlier weeks look like November when the same model reads both. What differs is the reader: the two models disagree on what counts as a bug, and agree on what caused one. |
+| 21 | Measured | {v('q25', 'tests_bugs_with')} of the {v('q25', 'bugs')} traced bugs came from a change that also changed tests. No part of the code stands out. |
+| 22 | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
+| 23 | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
 
 ## Repository map
 

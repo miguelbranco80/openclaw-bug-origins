@@ -43,7 +43,7 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
 
 The study was first published with 300 November fixes read by Claude Opus 5.5 (tag `published-2026-11`). It was then
 extended to 1,202 fixes from 10 September to 22 November, all read by gpt-6.2-sol, with the Opus answers for the
-November fixes kept as the check. Finding 23 in the README compares the two readers and the two periods. What
+November fixes kept as the check. Findings 22 and 23 in the README compare the two periods and the two models. What
 changed between the versions is recorded here, not in the README:
 
 | Claim in the first version | What the extension found | What the report now says |

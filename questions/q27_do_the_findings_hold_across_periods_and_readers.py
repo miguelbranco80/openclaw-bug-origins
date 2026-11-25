@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Question 27. Do the central findings hold in an earlier period, and under a different reader?
+"""Question 27. Do the central findings hold in an earlier period, and under a different model?
 
-Reads: sampled_fixes.jsonl (the main reader's answer for every sampled fix of every period), bot_reviews.jsonl,
-frames.json, readers.json, and commits.tsv, and published_2026_11.json (the numbers of the study as first published, when a
+Reads: sampled_fixes.jsonl (the main model's answer for every sampled fix of every period), bot_reviews.jsonl,
+frames.json, models.json, and commits.tsv, and published_2026_11.json (the numbers of the study as first published, when a
 different model read the November fixes; tag `published-2026-11`).
 
 Three columns:
-  the November fixes, read by the other maker's model (its answers are in published_2026_11.json);
-  the same November fixes, read by the current main reader;
-  the fixes of the other period, read by the current main reader.
-Comparing the first two shows what the reader changes. Comparing the last two shows what the period changes.
+  the November fixes, read by the second model (its answers are in published_2026_11.json);
+  the same November fixes, read by the current main model;
+  the fixes of the other period, read by the current main model.
+Comparing the first two shows what the model changes. Comparing the last two shows what the period changes.
 
 Usage: python3 questions/q27_do_the_findings_hold_across_periods_and_readers.py
 """
@@ -85,14 +85,14 @@ def main(quiet=False):
     out.add("size", "left_out", "Traced bugs whose causing commit is not in the commit list",
             sum(f["cause_sha"] not in commits for f in traced_bugs))
     out.chart(charts.bars(
-        "q27-not-a-bug-by-reader-and-period", "Share of changes titled fix that repaired no bug, by who read them and when they merged",
+        "q27-not-a-bug-by-reader-and-period", "Share of changes titled fix that repaired no bug, by which model judged them and when they merged",
         [{"label": label, "value": out.value("not_bug_pct_" + key), "note": f"of {out.value('fixes_' + key)} fixes"}
          for key, label in columns], unit="%", top=100),
-        "Each bar is the percentage of sampled fixes that the reader said repaired no bug. The first two bars are the "
-        "same fixes read by two different models: their gap is the reader. The last two bars are one model reading "
+        "Each bar is the percentage of sampled fixes that the model said repaired no bug. The first two bars are the "
+        "same fixes read by two different models: their gap is the model. The last two bars are one model reading "
         "two periods: their gap is the period.")
     out.chart(charts.bars(
-        "q27-never-worked-by-reader-and-period", "Share of traced bugs that were new code that never worked, by who read them and when",
+        "q27-never-worked-by-reader-and-period", "Share of traced bugs that were new code that never worked, by which model judged them and when",
         [{"label": label, "value": out.value("never_share_" + key),
           "note": f"{out.value('never_' + key)} never worked, {out.value('broke_' + key)} broken later"}
          for key, label in columns], unit="%", top=100, reference=(50, "half")),

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Question 6. Before a bug-causing change merged, had the project's review bot named the bug?
 
-Reads: bot_reviews.jsonl (one row per traced bug, with the bot's review as it stood at merge and a Claude reader's
-verdict), bot_review_rereads_other_maker.jsonl (a GPT reader's verdict on the same reviews).
-Answer in short: almost never. Two readers agree on the two cases where it did.
+Reads: bot_reviews.jsonl (one row per traced bug, with the bot's review as it stood at merge and a Claude model's
+verdict), bot_review_rereads_other_maker.jsonl (a GPT model's verdict on the same reviews).
+Answer in short: almost never. Two models agree on the two cases where it did.
 
 Usage: python3 questions/q06_did_the_review_bot_name_the_bug.py
 """
@@ -53,8 +53,8 @@ def main(quiet=False):
         out.add("verdict", "verdict_" + verdict, label, sum(r["verdict"] == verdict for r in reviewed))
 
     gpt = load("bot_review_rereads_other_maker.jsonl")
-    out.add("size", "other_n", "Reviews also read by the other maker's reader", len(gpt))
-    out.add("size", "other_same", "Same answer from both makers' readers", sum(r["first"] == r["second"] for r in gpt))
+    out.add("size", "other_n", "Reviews also read by the second model", len(gpt))
+    out.add("size", "other_same", "Same answer from both models", sum(r["first"] == r["second"] for r in gpt))
     out.add("size", "other_exact_same", "Same answer on whether the bot named the bug",
             sum((r["first"] == "exact") == (r["second"] == "exact") for r in gpt))
     for level, label in LEVELS:
@@ -63,9 +63,9 @@ def main(quiet=False):
 
     labels = [label for _, label in LEVELS]
     out.chart(charts.grouped(
-        "q06-what-the-review-said", "What the bot's review said about the bug, by two readers", labels,
-        [(f"Main reader ({READERS['bot_reviews']})", [r["value"] for r in out.group("other_first")]),
-         (f"Other maker's reader ({READERS['bot_reviews_other_maker']})", [r["value"] for r in out.group("other_flag")])]),
+        "q06-what-the-review-said", "What the bot's review said about the bug, by two models", labels,
+        [(f"Main model ({READERS['bot_reviews']})", [r["value"] for r in out.group("other_first")]),
+         (f"Second model ({READERS['bot_reviews_other_maker']})", [r["value"] for r in out.group("other_flag")])]),
         f"The same {len(gpt)} reviews, read twice. Each bar is a number of bug-causing changes; each color adds "
         f"up to {len(gpt)}.")
     out.chart(charts.bars("q06-was-there-a-review", "Whether the bot had reviewed the causing change",

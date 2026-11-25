@@ -1,7 +1,7 @@
 [
  {
   "stem": "q06-what-the-review-said",
-  "title": "What the bot's review said about the bug, by two readers",
+  "title": "What the bot's review said about the bug, by two models",
   "reading": "The same 88 reviews, read twice. Each bar is a number of bug-causing changes; each color adds up to 88."
  },
  {

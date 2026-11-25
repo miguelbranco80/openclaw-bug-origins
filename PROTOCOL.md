@@ -178,8 +178,8 @@ or one stage at a time, in this order. Each stage skips what is already done, so
 | 7 | `pilot` | The blind review experiment: chooses cases, exports the code as it stood at each causing change (into `work/exports/`, about 5 GB for the published 40 exports, never committed), runs the reviewers, has graders say who named the known bug, and has checkers test the other reports | clone, GitHub, model, disk | `fix-origins/review-pilot/` | `status`: every `review`, `grade`, `tags`, `refute` and `laterfix` line answered |
 | 8 | `report` | Assembles the dataset, runs every question, draws the charts, writes the report | nothing | `dataset/`, `results/`, `charts/`, `README.md` | It ends with "Rebuilt." Read the report's claims against its numbers (see [What a rerun cannot do](#what-a-rerun-cannot-do-for-you)) |
 
-Stage 7 is separate from the rest. Stages 1 to 6 and 8 give findings 1 to 6 and 11 to 26; stage 7 gives findings
-7 to 9.
+Stage 7 is separate from the rest: it gives findings 7 to 9. Every other finding comes from stages 1 to 6 and 8,
+except finding 10, which rests on the first study (see below).
 
 ## Model steps
 

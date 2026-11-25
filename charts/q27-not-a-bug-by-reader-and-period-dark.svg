@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="134" viewBox="0 0 760 134" role="img" aria-label="Share of changes titled fix that repaired no bug, by who read them and when they merged">
-<title>Share of changes titled fix that repaired no bug, by who read them and when they merged</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="134" viewBox="0 0 760 134" role="img" aria-label="Share of changes titled fix that repaired no bug, by which model judged them and when they merged">
+<title>Share of changes titled fix that repaired no bug, by which model judged them and when they merged</title>
 <text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">November fixes, read by Claude Opus 5.5</text>
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,24 H137.9 Q141.9,24 141.9,28 V30 Q141.9,34 137.9,34 H0 Z" fill="#3987e5"/>
