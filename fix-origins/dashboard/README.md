@@ -10,12 +10,10 @@ the top-level report is right and those reports are superseded.
 
 | File | What it is |
 |---|---|
-| `index.html` | The page: words in the HTML, every number drawn from a data file. |
-| `build_data.py` | Builds the five data files from the studies' per-case outputs. Run from the repo root. |
-| `*.json` | The five data files: one row per number on the page. |
-| `../audit/second_read_codex.py` | Re-reads the three central judgments with a GPT model through the Codex CLI. |
-| `../audit/collect.py` | Collects those re-reads into `../audit/*-second-reads.jsonl` and prints agreement. |
-| `../audit/base_rates.py` | Measures ordinary commits on main, for comparison with bug-causing changes. |
+| `index.html` | An interactive version of the report. It needs a host page that supplies the data and draws the charts. |
+| `*.json` | Its five data files, exported from the question scripts' results by `report/export_dashboard.py`. |
+
+The report itself is the top-level `README.md`, rendered by `report/render.py` from `results/`.
 
 ## What the second-model check changed
 
@@ -34,10 +32,8 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
 
 ## Other corrections
 
-- The median size of a causing change is 28.5 files for causes since 10 September 2026 (106 cases), measured against
-  38,812 ordinary commits with a median of 4. Earlier text said 30, from a slightly different subset.
-- Shares of bug-causing changes over 100 files (25%) and titled `feat` (25%) are compared with shares among all
-  commits (1.5% and 3.3%) recomputed from git by `../audit/base_rates.py`.
+- Sizes and titles of bug-causing changes are compared with every commit on main since 10 September 2026 (UTC),
+  listed in `dataset/commits.tsv` (39,210 commits). Earlier text used slightly different subsets and cutoffs.
 - The population of 3,996 fixes uses a UTC cutoff. An earlier count of 3,884 used the local time zone.
 
 ## Not done

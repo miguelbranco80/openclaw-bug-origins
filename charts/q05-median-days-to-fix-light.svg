@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="176" viewBox="0 0 760 176" role="img" aria-label="Median days from the causing change to the fix">
+<title>Median days from the causing change to the fix</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Working things broken later, all</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H228.6 Q232.6,24 232.6,28 V30 Q232.6,34 228.6,34 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">20.4 days</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Broken later, fix says what caused it</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H1.7 Q5.7,66 5.7,70 V72 Q5.7,76 1.7,76 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0.5 days</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Broken later, fix does not say</text>
+<rect x="0" y="108" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H272.0 Q276.0,108 276.0,112 V114 Q276.0,118 272.0,118 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">24.2 days</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">New code that never worked</text>
+<rect x="0" y="150" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H516.0 Q520.0,150 520.0,154 V156 Q520.0,160 516.0,160 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">45.6 days</text>
+</svg>

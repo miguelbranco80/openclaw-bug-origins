@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="176" viewBox="0 0 760 176" role="img" aria-label="Bugs per 100 commits, by size of the change">
+<title>Bugs per 100 commits, by size of the change</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">1 to 5 files</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
+<rect x="0" y="24" width="5.0" height="10" fill="#2a78d6"/>
+<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0.6</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">6 to 30 files</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H35.5 Q39.5,66 39.5,70 V72 Q39.5,76 35.5,76 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">4.76</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">31 to 100 files</text>
+<rect x="0" y="108" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H72.3 Q76.3,108 76.3,112 V114 Q76.3,118 72.3,118 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">9.19</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Over 100 files</text>
+<rect x="0" y="150" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H516.0 Q520.0,150 520.0,154 V156 Q520.0,160 516.0,160 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">62.66</text>
+</svg>

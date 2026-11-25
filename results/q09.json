@@ -1,0 +1,12 @@
+[
+{"group": "needs_cases", "metric": "needs_diff", "label": "The changed lines alone", "value": 4, "low": null, "high": null},
+{"group": "needs_named", "metric": "needs_named_diff", "label": "The changed lines alone", "value": 2, "low": null, "high": null},
+{"group": "needs_cases", "metric": "needs_repo", "label": "Other code in the repository", "value": 17, "low": null, "high": null},
+{"group": "needs_named", "metric": "needs_named_repo", "label": "Other code in the repository", "value": 8, "low": null, "high": null},
+{"group": "needs_cases", "metric": "needs_outside", "label": "Knowledge from outside the repository", "value": 9, "low": null, "high": null},
+{"group": "needs_named", "metric": "needs_named_outside", "label": "Knowledge from outside the repository", "value": 0, "low": null, "high": null},
+{"group": "size", "metric": "small_cases", "label": "Changes of 7 files or fewer", "value": 12, "low": null, "high": null},
+{"group": "size", "metric": "small_named", "label": "Of those, bug named by a reviewer", "value": 6, "low": null, "high": null},
+{"group": "size", "metric": "large_cases", "label": "Changes of more than 7 files", "value": 18, "low": null, "high": null},
+{"group": "size", "metric": "large_named", "label": "Of those, bug named by a reviewer", "value": 4, "low": null, "high": null}
+]

@@ -1,0 +1,10 @@
+[
+ {
+  "stem": "q05-age-of-broken-later-bugs",
+  "title": "Broken-later bugs, by time from cause to fix"
+ },
+ {
+  "stem": "q05-median-days-to-fix",
+  "title": "Median days from the causing change to the fix"
+ }
+]

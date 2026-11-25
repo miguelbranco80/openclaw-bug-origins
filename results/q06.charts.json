@@ -1,0 +1,14 @@
+[
+ {
+  "stem": "q06-what-the-review-said",
+  "title": "What the bot's review said about the bug, by two readers"
+ },
+ {
+  "stem": "q06-was-there-a-review",
+  "title": "Whether the bot had reviewed the causing change"
+ },
+ {
+  "stem": "q06-verdict-at-merge",
+  "title": "The bot's overall verdict when the change merged"
+ }
+]

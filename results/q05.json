@@ -1,0 +1,14 @@
+[
+{"group": "age", "metric": "age_day", "label": "Under a day", "value": 12, "low": null, "high": null},
+{"group": "age", "metric": "age_week", "label": "1 to 7 days", "value": 5, "low": null, "high": null},
+{"group": "age", "metric": "age_month", "label": "7 to 30 days", "value": 17, "low": null, "high": null},
+{"group": "age", "metric": "age_more", "label": "Over 30 days", "value": 17, "low": null, "high": null},
+{"group": "lifetime", "metric": "median_broke", "label": "Working things broken later, all", "value": 20.4, "low": null, "high": null},
+{"group": "lifetime", "metric": "median_named", "label": "Broken later, fix says what caused it", "value": 0.5, "low": null, "high": null},
+{"group": "lifetime", "metric": "median_unnamed", "label": "Broken later, fix does not say", "value": 24.2, "low": null, "high": null},
+{"group": "lifetime", "metric": "median_never", "label": "New code that never worked", "value": 45.6, "low": null, "high": null},
+{"group": "size", "metric": "named_count", "label": "Broken-later fixes that say what caused the bug", "value": 18, "low": null, "high": null},
+{"group": "size", "metric": "broke_count", "label": "Broken-later bugs in the sample", "value": 51, "low": null, "high": null},
+{"group": "size", "metric": "broke_scaled", "label": "Broken-later bugs fixed in the three weeks, scaled from the sample", "value": 680, "low": 520, "high": 880},
+{"group": "size", "metric": "first_study_median_days", "label": "Median days in the first, wording-based study", "value": 1.7, "low": null, "high": null}
+]

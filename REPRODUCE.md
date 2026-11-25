@@ -13,22 +13,19 @@ repository cannot give you, and their results will not match to the last digit.
 git status --short
 ```
 
-This re-runs every step that turns the readers' and reviewers' stored answers into the report: joining verdicts,
-unblinding grades, tabulating the checks, computing the agreement figures, building the five data files and
-rendering `README.md`. It needs Python 3 and no packages. If the second command prints nothing, your rebuild matches
-what is published.
+This re-runs every step from the models' stored answers to the report, in four stages:
 
-To check a single number, find its row in `fix-origins/dashboard/*.json`, then read the function in
-`fix-origins/dashboard/build_data.py` that produced it. Each one is a few lines over the per-case files:
+1. the collection folders turn stored answers into per-case files (joining verdicts, unblinding grades, tabulating
+   checks);
+2. `dataset/build.py` gathers those into `dataset/`, the only folder the questions read;
+3. `questions/run_all.py` runs one script per question, writing numbers to `results/` and charts to `charts/`;
+4. `report/render.py` writes `README.md` from those results.
 
-| Per-case file | One row per |
-|---|---|
-| `fix-origins/cases.jsonl` | sampled fix, with the first reader's answer |
-| `fix-origins/second_reads.jsonl` | fix re-read by a second Claude reader |
-| `fix-origins/audit/origin-second-reads.jsonl` | fix re-read by the GPT reader |
-| `fix-origins/clawsweeper/results.jsonl` | traced bug, with what the review bot had said |
-| `fix-origins/review-pilot/results.jsonl` | pilot case, with every reviewer's grade |
-| `fix-origins/review-pilot/verify-results.jsonl` | reported problem, with the three checks |
+It needs Python 3 and no packages. If the second command prints nothing, your rebuild matches what is published.
+
+To check a single number, open the question script named under that finding in the README. Each is short and reads
+only `dataset/`; [dataset/README.md](dataset/README.md) explains every file and column. To ask a new question, copy
+a question script, change what it counts, and run it.
 
 ## Level 2: re-fetch the public data
 
@@ -53,7 +50,7 @@ cd openclaw && git clone https://github.com/miguelbranco80/openclaw-bug-origins.
 | First readers' answers into one file | `python3 research/fix-origins/scripts/assemble.py --reads <dir> --from 1 --to 300` | `cases.jsonl` |
 | Pilot PR descriptions | `python3 research/fix-origins/review-pilot/fetch_descriptions.py` | `data/pilot_pr_bodies.json` |
 | Pilot exports | `python3 research/fix-origins/review-pilot/export.py <out> <ranks.json> <bodies.json>` | one directory per case |
-| Commit base rates | `python3 research/fix-origins/audit/base_rates.py` | `audit/base-rates.json` |
+| Commit list with sizes | `python3 research/fix-origins/scripts/commit_list.py` | `dataset/commits.tsv` |
 
 All history is pinned to commit `e6b42e31bc1522b8596958fbdd85c394b23fca7b`. `fix-origins/README.md` describes the
 sampling and the per-fix procedure in detail.
@@ -98,9 +95,11 @@ grade the new letter in each bundle under `data/grade/bundles/`.
 
 ## Extending it
 
-The sample is ordered by a fixed hash, so the next batch is the next ranks: fixes 301 onward in
-`fix-origins/population.tsv`. Questions of the form "do changes of kind X cause more bugs" need two things: the
-attribute for the traced causing changes, and the same attribute for ordinary changes. `audit/size_and_route.py`
-shows the pattern for size and for commits made without a pull request. Questions about review, such as whether
-changes merged against the bot's verdict cause more bugs, need the bot's verdicts on a comparison sample of changes
-that caused no bug; that sample has not been collected.
+**More fixes.** The sample is ordered by a fixed hash, so the next batch is the next ranks: fixes 301 onward in
+`fix-origins/population.tsv`.
+
+**A new question.** Questions of the form "do changes of kind X cause more bugs" need the attribute for the traced
+causing changes and for ordinary changes. `questions/q04_do_large_changes_cause_more_bugs.py` and
+`questions/q11_does_skipping_a_pull_request_matter.py` show the pattern using `dataset/commits.tsv`. Attributes that
+git does not record, such as what the review bot said, need a comparison sample of ordinary changes fetched from
+GitHub.

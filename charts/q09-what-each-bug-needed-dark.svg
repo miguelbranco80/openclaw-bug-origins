@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="156" viewBox="0 0 760 156" role="img" aria-label="What a reviewer needed to see the bug, and how many were named">
+<title>What a reviewer needed to see the bug, and how many were named</title>
+<rect x="0" y="3" width="10" height="10" rx="2" fill="#5b5a55"/>
+<text x="16.0" y="12" fill="#c3c2b7" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Cases</text>
+<rect x="73.0" y="3" width="10" height="10" rx="2" fill="#3987e5"/>
+<text x="89.0" y="12" fill="#c3c2b7" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Named by at least one reviewer</text>
+<text x="0.0" y="44" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">The changed lines alone</text>
+<rect x="0" y="52" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,52 H118.4 Q122.4,52 122.4,56 V58 Q122.4,62 118.4,62 H0 Z" fill="#5b5a55"/>
+<path d="M0,52 H57.2 Q61.2,52 61.2,56 V58 Q61.2,62 57.2,62 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="62" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2 of 4</text>
+<text x="0.0" y="86" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Other code in the repository</text>
+<rect x="0" y="94" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,94 H516.0 Q520.0,94 520.0,98 V100 Q520.0,104 516.0,104 H0 Z" fill="#5b5a55"/>
+<path d="M0,94 H240.7 Q244.7,94 244.7,98 V100 Q244.7,104 240.7,104 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="104" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">8 of 17</text>
+<text x="0.0" y="128" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Knowledge from outside the repository</text>
+<rect x="0" y="136" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,136 H271.3 Q275.3,136 275.3,140 V142 Q275.3,146 271.3,146 H0 Z" fill="#5b5a55"/>
+<rect x="0" y="136" width="0.0" height="10" fill="#3987e5"/>
+<text x="530.0" y="146" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0 of 9</text>
+</svg>

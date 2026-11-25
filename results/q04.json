@@ -1,0 +1,22 @@
+[
+{"group": "size", "metric": "bugs", "label": "Sampled bugs with a causing commit since 10 Sep 2026", "value": 108, "low": null, "high": null},
+{"group": "commits", "metric": "commits_1to5", "label": "1 to 5 files", "value": 22130, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_1to5", "label": "1 to 5 files", "value": 10, "low": null, "high": null},
+{"group": "per_commit", "metric": "per_commit_1to5", "label": "1 to 5 files", "value": 0.6, "low": null, "high": null},
+{"group": "per_file", "metric": "per_file_1to5", "label": "1 to 5 files", "value": 2.34, "low": null, "high": null},
+{"group": "commits", "metric": "commits_6to30", "label": "6 to 30 files", "value": 12883, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_6to30", "label": "6 to 30 files", "value": 46, "low": null, "high": null},
+{"group": "per_commit", "metric": "per_commit_6to30", "label": "6 to 30 files", "value": 4.76, "low": null, "high": null},
+{"group": "per_file", "metric": "per_file_6to30", "label": "6 to 30 files", "value": 3.8, "low": null, "high": null},
+{"group": "commits", "metric": "commits_31to100", "label": "31 to 100 files", "value": 3623, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_31to100", "label": "31 to 100 files", "value": 25, "low": null, "high": null},
+{"group": "per_commit", "metric": "per_commit_31to100", "label": "31 to 100 files", "value": 9.19, "low": null, "high": null},
+{"group": "per_file", "metric": "per_file_31to100", "label": "31 to 100 files", "value": 1.76, "low": null, "high": null},
+{"group": "commits", "metric": "commits_over100", "label": "Over 100 files", "value": 574, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_over100", "label": "Over 100 files", "value": 27, "low": null, "high": null},
+{"group": "per_commit", "metric": "per_commit_over100", "label": "Over 100 files", "value": 62.66, "low": null, "high": null},
+{"group": "per_file", "metric": "per_file_over100", "label": "Over 100 files", "value": 3.1, "low": null, "high": null},
+{"group": "size", "metric": "per_commit_ratio", "label": "Bugs per commit, over 100 files against 1 to 5 files", "value": 104, "low": null, "high": null},
+{"group": "size", "metric": "per_file_low", "label": "Lowest bugs per 1,000 files changed across size groups", "value": 1.76, "low": null, "high": null},
+{"group": "size", "metric": "per_file_high", "label": "Highest bugs per 1,000 files changed across size groups", "value": 3.8, "low": null, "high": null}
+]

@@ -1,0 +1,10 @@
+[
+ {
+  "stem": "q07-known-bugs-named",
+  "title": "Known bugs named by each reviewer, out of 30"
+ },
+ {
+  "stem": "q07-problems-reported",
+  "title": "Problems each reviewer reported across the 30 changes"
+ }
+]

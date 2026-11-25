@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="342" viewBox="0 0 760 342" role="img" aria-label="Bug-causing changes against all commits, in percent">
+<title>Bug-causing changes against all commits, in percent</title>
+<rect x="0" y="3" width="10" height="10" rx="2" fill="#3987e5"/>
+<text x="16.0" y="12" fill="#c3c2b7" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Bug-causing changes</text>
+<rect x="171.0" y="3" width="10" height="10" rx="2" fill="#d95926"/>
+<text x="187.0" y="12" fill="#c3c2b7" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">All commits</text>
+<text x="0.0" y="44" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled feat</text>
+<rect x="0" y="52" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,52 H131.2 Q135.2,52 135.2,56 V58 Q135.2,62 131.2,62 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="62" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">26%</text>
+<text x="562.6" y="62" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Bug-causing changes</text>
+<rect x="0" y="74" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,74 H13.7 Q17.7,74 17.7,78 V80 Q17.7,84 13.7,84 H0 Z" fill="#d95926"/>
+<text x="530.0" y="84" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">3.4%</text>
+<text x="570.8" y="84" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">All commits</text>
+<text x="0.0" y="122" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled fix</text>
+<rect x="0" y="130" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,130 H282.0 Q286.0,130 286.0,134 V136 Q286.0,140 282.0,140 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="140" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">55%</text>
+<text x="562.6" y="140" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Bug-causing changes</text>
+<rect x="0" y="152" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,152 H260.7 Q264.7,152 264.7,156 V158 Q264.7,162 260.7,162 H0 Z" fill="#d95926"/>
+<text x="530.0" y="162" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">50.9%</text>
+<text x="579.0" y="162" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">All commits</text>
+<text x="0.0" y="200" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Changed more than 30 files</text>
+<rect x="0" y="208" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,208 H245.6 Q249.6,208 249.6,212 V214 Q249.6,218 245.6,218 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="218" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">48%</text>
+<text x="562.6" y="218" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Bug-causing changes</text>
+<rect x="0" y="230" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,230 H51.6 Q55.6,230 55.6,234 V236 Q55.6,240 51.6,240 H0 Z" fill="#d95926"/>
+<text x="530.0" y="240" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">10.7%</text>
+<text x="579.0" y="240" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">All commits</text>
+<text x="0.0" y="278" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Changed more than 100 files</text>
+<rect x="0" y="286" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,286 H126.0 Q130.0,286 130.0,290 V292 Q130.0,296 126.0,296 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="296" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">25%</text>
+<text x="562.6" y="296" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Bug-causing changes</text>
+<rect x="0" y="308" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,308 H3.8 Q7.8,308 7.8,312 V314 Q7.8,318 3.8,318 H0 Z" fill="#d95926"/>
+<text x="530.0" y="318" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">1.5%</text>
+<text x="570.8" y="318" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">All commits</text>
+</svg>

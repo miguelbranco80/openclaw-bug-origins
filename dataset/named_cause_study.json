@@ -1,0 +1,12 @@
+[
+{"group": "size", "metric": "candidates", "label": "Fix commits whose wording blames an earlier change", "value": 355, "low": null, "high": null},
+{"group": "size", "metric": "pairs", "label": "Cause and fix pairs kept after reading", "value": 41, "low": null, "high": null},
+{"group": "size", "metric": "confirmed", "label": "Confirmed bugs a user could hit", "value": 29, "low": null, "high": null},
+{"group": "size", "metric": "median_days", "label": "Median days from cause to fix", "value": 1.7, "low": null, "high": null},
+{"group": "rules", "metric": "no_rule", "label": "No written rule covered it", "value": 24, "low": null, "high": null},
+{"group": "rules", "metric": "rule_missed", "label": "A rule the bot loads covered it, and review missed it", "value": 3, "low": null, "high": null},
+{"group": "rules", "metric": "rule_unloaded", "label": "A rule covered it, in a guide the bot does not load", "value": 1, "low": null, "high": null},
+{"group": "rules", "metric": "rule_later", "label": "No rule then; one was added afterwards", "value": 1, "low": null, "high": null},
+{"group": "size", "metric": "rules_checkable", "label": "Existing rules that could be checked from the changed lines alone", "value": 0, "low": null, "high": null},
+{"group": "size", "metric": "rules_existing", "label": "Cases where a rule existed when the change was written", "value": 4, "low": null, "high": null}
+]

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="302" viewBox="0 0 760 302" role="img" aria-label="Known bugs named by each reviewer, out of 30">
+<title>Known bugs named by each reviewer, out of 30</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-5.6-sol</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H48.0 Q52.0,24 52.0,28 V30 Q52.0,34 48.0,34 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">3</text>
+<text x="546.2" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 3–26%</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6-astra</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H13.3 Q17.3,66 17.3,70 V72 Q17.3,76 13.3,76 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">1</text>
+<text x="546.2" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 1–17%</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6.1-sol (the model the bot&#x27;s README names)</text>
+<rect x="0" y="108" width="520" height="10" rx="2" fill="#ebeae4"/>
+<rect x="0" y="108" width="0.0" height="10" fill="#2a78d6"/>
+<text x="530.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0</text>
+<text x="546.2" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 0–11%</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6.2-sol</text>
+<rect x="0" y="150" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H117.3 Q121.3,150 121.3,154 V156 Q121.3,160 117.3,160 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7</text>
+<text x="546.2" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 12–41%</text>
+<text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Claude Opus 5.5</text>
+<rect x="0" y="192" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,192 H117.3 Q121.3,192 121.3,196 V198 Q121.3,202 117.3,202 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7</text>
+<text x="546.2" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 12–41%</text>
+<text x="0.0" y="226" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6.1-sol, three files at a time</text>
+<rect x="0" y="234" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,234 H30.7 Q34.7,234 34.7,238 V240 Q34.7,244 30.7,244 H0 Z" fill="#2a78d6"/>
+<text x="530.0" y="244" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
+<text x="546.2" y="244" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 2–21%</text>
+<text x="0.0" y="268" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">The review bot&#x27;s actual reviews at the time</text>
+<rect x="0" y="276" width="520" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,276 H30.7 Q34.7,276 34.7,280 V282 Q34.7,286 30.7,286 H0 Z" fill="#c3c2b7"/>
+<text x="530.0" y="286" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">2</text>
+<text x="546.2" y="286" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">true rate plausibly 2–21%</text>
+</svg>

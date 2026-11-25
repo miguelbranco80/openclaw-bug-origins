@@ -1,0 +1,23 @@
+[
+{"group": "title", "metric": "title_fix", "label": "Titled fix", "value": 84, "low": null, "high": null},
+{"group": "title_never", "metric": "title_never_fix", "label": "Titled fix", "value": 53, "low": null, "high": null},
+{"group": "title_broke", "metric": "title_broke_fix", "label": "Titled fix", "value": 31, "low": null, "high": null},
+{"group": "title", "metric": "title_feat", "label": "Titled feat (a new feature)", "value": 48, "low": null, "high": null},
+{"group": "title_never", "metric": "title_never_feat", "label": "Titled feat (a new feature)", "value": 42, "low": null, "high": null},
+{"group": "title_broke", "metric": "title_broke_feat", "label": "Titled feat (a new feature)", "value": 6, "low": null, "high": null},
+{"group": "title", "metric": "title_other", "label": "Another title", "value": 24, "low": null, "high": null},
+{"group": "title_never", "metric": "title_never_other", "label": "Another title", "value": 10, "low": null, "high": null},
+{"group": "title_broke", "metric": "title_broke_other", "label": "Another title", "value": 14, "low": null, "high": null},
+{"group": "cmp_cause", "metric": "cmp_cause_feat", "label": "Titled feat", "value": 26, "low": null, "high": null},
+{"group": "cmp_base", "metric": "cmp_base_feat", "label": "Titled feat", "value": 3.4, "low": null, "high": null},
+{"group": "cmp_cause", "metric": "cmp_cause_fix", "label": "Titled fix", "value": 55, "low": null, "high": null},
+{"group": "cmp_base", "metric": "cmp_base_fix", "label": "Titled fix", "value": 50.9, "low": null, "high": null},
+{"group": "cmp_cause", "metric": "cmp_cause_over30", "label": "Changed more than 30 files", "value": 48, "low": null, "high": null},
+{"group": "cmp_base", "metric": "cmp_base_over30", "label": "Changed more than 30 files", "value": 10.7, "low": null, "high": null},
+{"group": "cmp_cause", "metric": "cmp_cause_over100", "label": "Changed more than 100 files", "value": 25, "low": null, "high": null},
+{"group": "cmp_base", "metric": "cmp_base_over100", "label": "Changed more than 100 files", "value": 1.5, "low": null, "high": null},
+{"group": "size", "metric": "recent_causes", "label": "Sampled bugs whose causing change is a commit since 10 Sep 2026", "value": 108, "low": null, "high": null},
+{"group": "size", "metric": "base_commits", "label": "All commits on main since 10 Sep 2026", "value": 39210, "low": null, "high": null},
+{"group": "size", "metric": "cause_median_files", "label": "Median files changed by a causing change", "value": 28.5, "low": null, "high": null},
+{"group": "size", "metric": "base_median_files", "label": "Median files changed by any commit", "value": 4, "low": null, "high": null}
+]

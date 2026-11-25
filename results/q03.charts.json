@@ -1,0 +1,10 @@
+[
+ {
+  "stem": "q03-causing-changes-against-all",
+  "title": "Bug-causing changes against all commits, in percent"
+ },
+ {
+  "stem": "q03-title-of-causing-change",
+  "title": "Title of the causing change, by kind of bug"
+ }
+]

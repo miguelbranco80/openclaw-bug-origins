@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" viewBox="0 0 760 260" role="img" aria-label="Problems each reviewer reported across the 30 changes">
+<title>Problems each reviewer reported across the 30 changes</title>
+<text x="0.0" y="16" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-5.6-sol</text>
+<rect x="0" y="24" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,24 H165.8 Q169.8,24 169.8,28 V30 Q169.8,34 165.8,34 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">32</text>
+<text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6-astra</text>
+<rect x="0" y="66" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,66 H65.0 Q69.0,66 69.0,70 V72 Q69.0,76 65.0,76 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">13</text>
+<text x="0.0" y="100" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6.1-sol (the model the bot&#x27;s README names)</text>
+<rect x="0" y="108" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,108 H75.6 Q79.6,108 79.6,112 V114 Q79.6,118 75.6,118 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="118" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">15</text>
+<text x="0.0" y="142" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6.2-sol</text>
+<rect x="0" y="150" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,150 H516.0 Q520.0,150 520.0,154 V156 Q520.0,160 516.0,160 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="160" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">98</text>
+<text x="0.0" y="184" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Claude Opus 5.5</text>
+<rect x="0" y="192" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,192 H261.3 Q265.3,192 265.3,196 V198 Q265.3,202 261.3,202 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="202" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">50</text>
+<text x="0.0" y="226" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">gpt-6.1-sol, three files at a time</text>
+<rect x="0" y="234" width="520" height="10" rx="2" fill="#2c2c2a"/>
+<path d="M0,234 H171.1 Q175.1,234 175.1,238 V240 Q175.1,244 171.1,244 H0 Z" fill="#3987e5"/>
+<text x="530.0" y="244" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">33</text>
+</svg>

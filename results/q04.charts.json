@@ -1,0 +1,10 @@
+[
+ {
+  "stem": "q04-bugs-per-100-commits",
+  "title": "Bugs per 100 commits, by size of the change"
+ },
+ {
+  "stem": "q04-bugs-per-1000-files",
+  "title": "Bugs per 1,000 files changed, by size of the change"
+ }
+]
