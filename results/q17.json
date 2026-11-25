@@ -1,0 +1,22 @@
+[
+{"group": "size", "metric": "bugs", "label": "Sampled bugs traced to a fetched pull request", "value": 103, "low": null, "high": null},
+{"group": "size", "metric": "sample", "label": "Ordinary pull requests in the comparison sample", "value": 400, "low": null, "high": null},
+{"group": "changes_pct", "metric": "changes_pct_objected", "label": "The bot objected", "value": 20.8, "low": null, "high": null},
+{"group": "bugs_pct", "metric": "bugs_pct_objected", "label": "The bot objected", "value": 54, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_objected", "label": "The bot objected", "value": 56, "low": null, "high": null},
+{"group": "changes_pct", "metric": "changes_pct_long", "label": "Open a day or more", "value": 10.2, "low": null, "high": null},
+{"group": "bugs_pct", "metric": "bugs_pct_long", "label": "Open a day or more", "value": 29, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_long", "label": "Open a day or more", "value": 30, "low": null, "high": null},
+{"group": "changes_pct", "metric": "changes_pct_big", "label": "More than 30 files", "value": 12.8, "low": null, "high": null},
+{"group": "bugs_pct", "metric": "bugs_pct_big", "label": "More than 30 files", "value": 49, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_big", "label": "More than 30 files", "value": 50, "low": null, "high": null},
+{"group": "changes_pct", "metric": "changes_pct_any", "label": "At least one of the three signs", "value": 37, "low": null, "high": null},
+{"group": "bugs_pct", "metric": "bugs_pct_any", "label": "At least one of the three signs", "value": 70, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_any", "label": "At least one of the three signs", "value": 72, "low": null, "high": null},
+{"group": "changes_pct", "metric": "changes_pct_two", "label": "At least two of the three signs", "value": 6.8, "low": null, "high": null},
+{"group": "bugs_pct", "metric": "bugs_pct_two", "label": "At least two of the three signs", "value": 47, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_two", "label": "At least two of the three signs", "value": 48, "low": null, "high": null},
+{"group": "changes_pct", "metric": "changes_pct_none", "label": "None of the three signs", "value": 63, "low": null, "high": null},
+{"group": "bugs_pct", "metric": "bugs_pct_none", "label": "None of the three signs", "value": 30, "low": null, "high": null},
+{"group": "bugs", "metric": "bugs_none", "label": "None of the three signs", "value": 31, "low": null, "high": null}
+]

@@ -159,6 +159,7 @@ def compare(out, prefix, changes, level_of, levels, reference):
 
     levels: list of (key, label). level_of(change) returns a key or None to leave the change out.
     """
+    everything = sum(1 for c in changes if c["in_comparison_sample"])
     sample = [c for c in changes if c["in_comparison_sample"] and level_of(c) is not None]
     causing = [c for c in changes if c["sampled_bugs"] and level_of(c) is not None]
     total = pull_request_commits()
@@ -167,7 +168,7 @@ def compare(out, prefix, changes, level_of, levels, reference):
     for c in causing:
         bugs[level_of(c)] += c["sampled_bugs"]
     for key, label in levels:
-        share = seen[key] / len(sample) if sample else 0
+        share = seen[key] / everything  # of all ordinary changes, including those where the property is unknown
         out.add(prefix + "_seen", f"{prefix}_seen_{key}", label, seen[key])
         out.add(prefix + "_share", f"{prefix}_share_{key}", label, round(100 * share, 1))
         out.add(prefix + "_bugs", f"{prefix}_bugs_{key}", label, bugs[key])

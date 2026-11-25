@@ -1,0 +1,7 @@
+[
+ {
+  "stem": "q16-bugs-by-visual-proof",
+  "title": "Among interface changes: bugs per 100 changes, with and without a screenshot or video",
+  "reading": "Only pull requests that change files under ui/ or apps/. Each bar is a rate: bugs fixed in the three weeks that trace back to such pull requests, per 100 of them."
+ }
+]

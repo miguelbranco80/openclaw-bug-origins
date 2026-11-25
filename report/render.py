@@ -127,6 +127,8 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 | 13 | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk once size is held equal. |
 | 14 | Supported | Who opened a change, and whether its author merged it, made no detectable difference. Pull requests open a day or more carried far more bugs than those merged within the hour. |
 | 15 | Measured | {v('q15', 'self_merged_pct')}% of pull requests were merged by their own author and {v('q15', 'no_human_review_pct')}% had no review by a person. |
+| 16 | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused {v('q16', 'interface_adjusted_yes')} times as many, at equal size. |
+| 17 | Supported, not yet tested on new data | Bugs are concentrated. Changes with at least two of three warning signs are {v('q17', 'changes_pct_two')}% of changes and the source of {v('q17', 'bugs_pct_two')}% of traced bugs. |
 
 ## Words used in this report
 
@@ -539,6 +541,56 @@ as tables, not charts, because a bar would suggest a difference the numbers do n
 
 {run_line('q15')}
 
+## 16. A screenshot or video in the pull request did not go with fewer bugs
+
+*Supported. It shows what such pull requests are like, not what the screenshot did.*
+
+The project asks for visual proof on visible changes, so we checked whether pull requests that carry it do better.
+Screenshots and videos are attached almost only to interface changes, and interface changes cause more bugs than
+others, so the fair comparison is among interface changes alone.
+
+{chart('q16', 0)}
+
+{ratio_table('q16', 'interface')}
+
+Interface changes with a screenshot or video caused {v('q16', 'interface_adjusted_yes')} times the bugs of interface
+changes without one, at equal size (plausibly {span('q16', 'interface_adjusted_yes')}).
+
+- **How we know.** For each of the {v('q17', 'sample')} sampled pull requests and each bug-causing one, we read the
+  description as it stood at merge and counted embedded pictures and videos. An interface change is one that touches
+  files under `ui/` or `apps/`.
+- **How it was checked.** Counts are mechanical. Nearly every description has an "Evidence" heading, so the heading
+  alone says nothing; only an embedded picture or video counts here.
+- **What it does not show.** That proof makes things worse. People attach screenshots to the changes a user will
+  see, and a visible bug is the kind that gets noticed and fixed within three weeks. What it does show is that a
+  screenshot of the change working once is not a sign the change is safe.
+
+{run_line('q16')}
+
+## 17. The bugs are concentrated in changes that could be pointed at beforehand
+
+*Supported for this period. The three signs were picked after seeing the earlier findings, so this is a description,
+not a tested prediction.*
+
+Three things visible at or before merge each mark a small share of changes and a large share of bugs: the bot
+objected, the pull request had been open a day or more, or the change touched more than 30 files.
+
+{chart('q17', 0)}
+
+{numbers('q17', 'changes_pct', 'bugs_pct', 'bugs', names=['Share of all changes, %', 'Share of traced bugs, %', 'Sampled bugs'])}
+
+Changes with at least two of the three signs are {v('q17', 'changes_pct_two')}% of all changes and the source of
+{v('q17', 'bugs_pct_two')}% of the traced bugs. Changes with none are {v('q17', 'changes_pct_none')}% of changes and
+the source of {v('q17', 'bugs_pct_none')}%.
+
+- **How we know.** The share of changes comes from the random comparison sample; the share of bugs from the
+  {v('q17', 'bugs')} sampled bugs whose causing change is a fetched pull request.
+- **How it was checked.** All three signs are read from git and GitHub. No model judged them.
+- **What it does not show.** That the same signs will mark the bugs of another period, or that looking harder at
+  those changes would have caught the bugs. Finding 7 bears on the second point; nothing here tests the first.
+
+{run_line('q17')}
+
 ## How this compares with published research
 
 Only studies whose figures we could check against the paper or its abstract are quoted. None of them studied this
@@ -565,6 +617,9 @@ Three things in these numbers depart from what the studies describe:
 - **Changes are large.** {v('q15', 'over_100_files_pct')}% of commits change more than 100 files, and those carry
   {v('q03', 'cmp_cause_over100')}% of the traced bugs.
 - **A fifth of changes merge while the bot objects**, and those carry more bugs at equal size (finding 12).
+
+One more thing follows from these: the bugs are not spread evenly. A small, recognisable share of changes carries
+about half of them (finding 17).
 
 Several things that might look alarming are ordinary by the same studies: half of all changes being fixes, fixes
 that introduce new bugs, changes titled "fix" that fix nothing, and a reviewer that misses functional bugs.

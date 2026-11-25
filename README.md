@@ -37,6 +37,8 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 | 13 | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk once size is held equal. |
 | 14 | Supported | Who opened a change, and whether its author merged it, made no detectable difference. Pull requests open a day or more carried far more bugs than those merged within the hour. |
 | 15 | Measured | 88.8% of pull requests were merged by their own author and 95.5% had no review by a person. |
+| 16 | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused 5.3 times as many, at equal size. |
+| 17 | Supported, not yet tested on new data | Bugs are concentrated. Changes with at least two of three warning signs are 6.8% of changes and the source of 47% of traced bugs. |
 
 ## Words used in this report
 
@@ -574,9 +576,9 @@ equal size the ratio falls to 1.39 (plausibly
 
 | Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
 |---|---:|---:|---:|---|
-| Merged an hour or more after the bot's review | 23.5% | 29 | 4.58 | (the baseline) |
-| Merged 10 to 60 minutes after it | 45.6% | 43 | 3.51 | 0.61 times (plausibly 0.32 to 1.14) |
-| Merged within 10 minutes of it | 30.9% | 20 | 2.41 | 0.66 times (plausibly 0.33 to 1.32) |
+| Merged an hour or more after the bot's review | 20% | 29 | 5.39 | (the baseline) |
+| Merged 10 to 60 minutes after it | 38.8% | 43 | 4.12 | 0.61 times (plausibly 0.32 to 1.14) |
+| Merged within 10 minutes of it | 26.2% | 20 | 2.83 | 0.66 times (plausibly 0.33 to 1.32) |
 
 Changes merged within ten minutes of the bot's review did not carry more bugs: 0.66
 times the rate of those merged an hour or more later, at equal size (plausibly
@@ -660,6 +662,80 @@ Recompute: `python3 questions/q14_does_who_lands_the_change_matter.py`
 
 Recompute: `python3 questions/q15_how_does_the_project_review_and_merge.py`
 
+## 16. A screenshot or video in the pull request did not go with fewer bugs
+
+*Supported. It shows what such pull requests are like, not what the screenshot did.*
+
+The project asks for visual proof on visible changes, so we checked whether pull requests that carry it do better.
+Screenshots and videos are attached almost only to interface changes, and interface changes cause more bugs than
+others, so the fair comparison is among interface changes alone.
+
+**Among interface changes: bugs per 100 changes, with and without a screenshot or video**
+
+![Among interface changes: bugs per 100 changes, with and without a screenshot or video](charts/q16-bugs-by-visual-proof-light.svg#gh-light-mode-only)
+![Among interface changes: bugs per 100 changes, with and without a screenshot or video](charts/q16-bugs-by-visual-proof-dark.svg#gh-dark-mode-only)
+
+*How to read it: Only pull requests that change files under ui/ or apps/. Each bar is a rate: bugs fixed in the three weeks that trace back to such pull requests, per 100 of them.*
+
+| Kind of change | Share of ordinary changes | Sampled bugs | Bugs per 100 changes | Against the first row, at equal size |
+|---|---:|---:|---:|---|
+| No screenshot or video in the description | 15.2% | 11 | 2.68 | (the baseline) |
+| A screenshot or video in the description | 10.5% | 35 | 12.39 | 5.3 times (plausibly 2.17 to 12.94) |
+
+Interface changes with a screenshot or video caused 5.3 times the bugs of interface
+changes without one, at equal size (plausibly 2.17 to 12.94).
+
+- **How we know.** For each of the 400 sampled pull requests and each bug-causing one, we read the
+  description as it stood at merge and counted embedded pictures and videos. An interface change is one that touches
+  files under `ui/` or `apps/`.
+- **How it was checked.** Counts are mechanical. Nearly every description has an "Evidence" heading, so the heading
+  alone says nothing; only an embedded picture or video counts here.
+- **What it does not show.** That proof makes things worse. People attach screenshots to the changes a user will
+  see, and a visible bug is the kind that gets noticed and fixed within three weeks. What it does show is that a
+  screenshot of the change working once is not a sign the change is safe.
+
+Recompute: `python3 questions/q16_do_changes_with_visual_proof_cause_fewer_bugs.py`
+
+## 17. The bugs are concentrated in changes that could be pointed at beforehand
+
+*Supported for this period. The three signs were picked after seeing the earlier findings, so this is a description,
+not a tested prediction.*
+
+Three things visible at or before merge each mark a small share of changes and a large share of bugs: the bot
+objected, the pull request had been open a day or more, or the change touched more than 30 files.
+
+**Share of the traced bugs that came from changes with each warning sign**
+
+![Share of the traced bugs that came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-light.svg#gh-light-mode-only)
+![Share of the traced bugs that came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is the percentage of traced bugs whose causing change had that sign. The gray note says how common such changes are. A bar much longer than its note's percentage means bugs are concentrated there. The first three rows overlap; the last three are combinations of them.*
+
+<details><summary>The numbers behind this chart</summary>
+
+| | Share of all changes, % | Share of traced bugs, % | Sampled bugs |
+|---|---:|---:|---:|
+| The bot objected | 20.8 | 54 | 56 |
+| Open a day or more | 10.2 | 29 | 30 |
+| More than 30 files | 12.8 | 49 | 50 |
+| At least one of the three signs | 37 | 70 | 72 |
+| At least two of the three signs | 6.8 | 47 | 48 |
+| None of the three signs | 63 | 30 | 31 |
+
+</details>
+
+Changes with at least two of the three signs are 6.8% of all changes and the source of
+47% of the traced bugs. Changes with none are 63% of changes and
+the source of 30%.
+
+- **How we know.** The share of changes comes from the random comparison sample; the share of bugs from the
+  103 sampled bugs whose causing change is a fetched pull request.
+- **How it was checked.** All three signs are read from git and GitHub. No model judged them.
+- **What it does not show.** That the same signs will mark the bugs of another period, or that looking harder at
+  those changes would have caught the bugs. Finding 7 bears on the second point; nothing here tests the first.
+
+Recompute: `python3 questions/q17_how_concentrated_are_the_bugs.py`
+
 ## How this compares with published research
 
 Only studies whose figures we could check against the paper or its abstract are quoted. None of them studied this
@@ -686,6 +762,9 @@ Three things in these numbers depart from what the studies describe:
 - **Changes are large.** 1.5% of commits change more than 100 files, and those carry
   25% of the traced bugs.
 - **A fifth of changes merge while the bot objects**, and those carry more bugs at equal size (finding 12).
+
+One more thing follows from these: the bugs are not spread evenly. A small, recognisable share of changes carries
+about half of them (finding 17).
 
 Several things that might look alarming are ordinary by the same studies: half of all changes being fixes, fixes
 that introduce new bugs, changes titled "fix" that fix nothing, and a reviewer that misses functional bugs.

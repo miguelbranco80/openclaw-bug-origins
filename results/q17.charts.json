@@ -1,0 +1,7 @@
+[
+ {
+  "stem": "q17-share-of-bugs-by-warning-sign",
+  "title": "Share of the traced bugs that came from changes with each warning sign",
+  "reading": "Each bar is the percentage of traced bugs whose causing change had that sign. The gray note says how common such changes are. A bar much longer than its note's percentage means bugs are concentrated there. The first three rows overlap; the last three are combinations of them."
+ }
+]

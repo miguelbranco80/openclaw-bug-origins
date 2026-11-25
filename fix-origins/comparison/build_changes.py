@@ -2,7 +2,8 @@
 """Build dataset/changes.jsonl: one row per fetched pull request, ordinary or bug-causing, with the facts the
 "does X cause more bugs" questions need.
 
-Reads comparison/raw/<number>.json (from fetch.py), dataset/commits.tsv and dataset/sampled_fixes.jsonl.
+Reads comparison/raw/<number>.json (from fetch.py), comparison/proof.json (from fetch_proof.py), comparison/areas.json
+(from paths.py), dataset/commits.tsv and dataset/sampled_fixes.jsonl.
 Everything here is mechanical: dates, sizes, who opened and merged, and the review bot's verdict in force when the
 pull request merged (the last version of its review written at or before the merge time).
 
@@ -66,6 +67,8 @@ def main():
             if fix.get("cause_sha"):
                 bugs[fix["cause_sha"]] += 1
                 origins[fix["cause_sha"]].append(fix["origin"])
+    proof = json.load(open(os.path.join(HERE, "proof.json")))
+    areas = json.load(open(os.path.join(HERE, "areas.json")))
     rows = []
     raw = os.path.join(HERE, "raw")
     fetched = [json.load(open(os.path.join(raw, name))) for name in sorted(os.listdir(raw), key=lambda n: int(n[:-5]))]
@@ -87,6 +90,9 @@ def main():
             "self_merged": bool(pr["author"]) and pr["author"] == pr["merged_by"],
             "minutes_open": minutes(pr["merged_at"], pr["created_at"]),
             "human_review_before_merge": any(r["at"] and r["at"] <= pr["merged_at"] for r in pr["human_reviews"]),
+            "screenshots": proof[str(pr["number"])]["images"], "videos": proof[str(pr["number"])]["videos"],
+            "visual_proof": proof[str(pr["number"])]["images"] + proof[str(pr["number"])]["videos"] > 0,
+            "interface_files": areas.get(commit["sha"], {}).get("ui", 0) + areas.get(commit["sha"], {}).get("apps", 0),
             "bot_review_versions_before_merge": len(before),
         }
         if before:

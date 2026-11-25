@@ -41,7 +41,9 @@ message or PR text mentions the causing change); `fix_adds_test`; `user_visible`
 `sha256("comparison-v1:" + sha)`); `sampled_bugs` (how many of the 300 sampled fixes trace back to this change; 0 for
 most), `bug_kinds`; `author`, `author_group` (`maintainer`: a person who merged at least one fetched pull request;
 `outside contributor`; `automation`), `author_association` (GitHub's own label, kept for reference), `from_fork`;
-`merged_by`, `merged_by_group`, `self_merged`; `minutes_open`; `human_review_before_merge`; `bot_review` (`reviewed
+`merged_by`, `merged_by_group`, `self_merged`; `minutes_open`; `human_review_before_merge`; `screenshots`, `videos`
+(pictures and videos embedded in the description as it read at merge), `visual_proof` (either is present);
+`interface_files` (files changed under `ui/` or `apps/`); `bot_review` (`reviewed
 the merged revision`, `reviewed an earlier revision`, `no review before merge`), `bot_verdict_at_merge`,
 `minutes_bot_review_to_merge`.
 

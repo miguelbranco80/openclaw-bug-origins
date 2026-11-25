@@ -26,6 +26,10 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
   listed in `dataset/commits.tsv` (39,210 commits). Earlier text used slightly different subsets and cutoffs.
 - The population of 3,996 fixes uses a UTC cutoff. An earlier count of 3,884 used the local time zone.
 
+- The bug rates in the comparisons of findings 12 to 14 are now computed against all ordinary changes. An earlier
+  version divided by only the changes where the property was known, which understated the rates in the
+  review-timing table by about a sixth. The ratios were not affected.
+
 ## Not done
 
 - No project code was run and no test was written.

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" viewBox="0 0 760 260" role="img" aria-label="Share of the traced bugs that came from changes with each warning sign">
+<title>Share of the traced bugs that came from changes with each warning sign</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">The bot objected</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H228.2 Q232.2,24 232.2,28 V30 Q232.2,34 228.2,34 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">54%</text>
+<text x="472.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 20.8% of all changes</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open a day or more</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H120.7 Q124.7,66 124.7,70 V72 Q124.7,76 120.7,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">29%</text>
+<text x="472.6" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 10.2% of all changes</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">More than 30 files</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H206.7 Q210.7,108 210.7,112 V114 Q210.7,118 206.7,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">49%</text>
+<text x="472.6" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 12.8% of all changes</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">At least one of the three signs</text>
+<rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H297.0 Q301.0,150 301.0,154 V156 Q301.0,160 297.0,160 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">70%</text>
+<text x="472.6" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 37% of all changes</text>
+<text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">At least two of the three signs</text>
+<rect x="0" y="192" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,192 H198.1 Q202.1,192 202.1,196 V198 Q202.1,202 198.1,202 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">47%</text>
+<text x="472.6" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 6.8% of all changes</text>
+<text x="0.0" y="226" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">None of the three signs</text>
+<rect x="0" y="234" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,234 H125.0 Q129.0,234 129.0,238 V240 Q129.0,244 125.0,244 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="244" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">30%</text>
+<text x="472.6" y="244" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 63% of all changes</text>
+</svg>
