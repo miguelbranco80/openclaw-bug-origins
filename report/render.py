@@ -103,20 +103,6 @@ def commit_table(*parts):
     return "\n".join(lines)
 
 
-THEN = json.load(open(os.path.join(ROOT, "dataset", "published_2026_11.json")))
-
-
-def then_now(rows):
-    """A table of one number as first published and as it stands now. rows: (label, question, metric[, old metric])."""
-    lines = ["| | First version: 300 November fixes | Now: 1,202 fixes, 10 Sep to 22 Nov |", "|---|---:|---:|"]
-    for label, question, metric, *old in rows:
-        was = THEN[question].get(old[0] if old else metric)
-        cell = lambda r: "–" if r is None else str(r["value"]) + (f" ({r['low']} to {r['high']})" if r.get("low") is not None else "")
-        now = lookup(question, metric)
-        lines.append(f"| {label} | {cell(was)} | {cell(now)} |")
-    return "\n".join(lines)
-
-
 def numbers(question, *groups, names=None):
     """A folded table of the numbers behind a chart: one row per label, one column per group."""
     rows = {}
@@ -175,8 +161,8 @@ bugs against every commit and pull request of the period, to see which kinds of 
 - **Reading alone has a ceiling.** Two strong models, shown {v('q07', 'cases')} bug-causing changes from November
   with no hint, together named {v('q07', 'named_either_top')} of the bugs. {v('q09', 'needs_outside')} could not be seen by reading
   code at all, and nobody named those. *Findings 7 and 9.*
-- **It held up.** Seven earlier weeks, read by the same model, look like November. Four times the data reversed
-  nothing. *Finding 23.*
+- **It held up.** The seven earlier weeks, read by the same model, look like November. A second model disagrees on
+  what counts as a bug, and agrees on what caused one. *Finding 23.*
 
 {chart('q17', 0)}
 
@@ -524,8 +510,7 @@ so size explains part of the gap. Within changes of 6 files or more, the rate wa
 {v('q11', 'strat_direct_larger')} for direct commits against {v('q11', 'strat_pr_larger')} through a pull request.
 
 - **How we know.** Same method as finding 4, split by whether the commit title carries a pull request number.
-- **How it was checked.** It was not checked further. In the first version, with 5 bugs on the direct side, the
-  same comparison could not tell the two apart.
+- **How it was checked.** It was not checked further.
 - **What it does not show.** Who made the direct commits or why, or that skipping a pull request is safe: the
   changes people commit directly are the ones they judge routine. Finding 12 takes up changes merged against the
   review bot's verdict.
@@ -684,8 +669,8 @@ the source of {v('q17', 'bugs_pct_none')}%.
   {v('q17', 'bugs')} sampled bugs whose causing change is a fetched pull request.
 - **How it was checked.** All three signs are read from git and GitHub. No model judged them.
 - **What it does not show.** That looking harder at those changes would have caught the bugs. Finding 7 bears on
-  that. The earlier weeks are a partial test of the signs, not a clean one: the comparison sample of ordinary
-  changes is the same as before.
+  that. The earlier weeks are a partial test of the signs, not a clean one: both periods share one comparison
+  sample of ordinary changes.
 
 {run_line('q17')}
 
@@ -716,7 +701,7 @@ Read each block against its first row.
   everyone else (finding 19). Above that level the rate does not rise with load.
 - **The project.** Changes landed on the busiest third of days carried {v('q19', 'busy_adjusted_busy')} times the bugs
   of changes landed on the quietest third (plausibly {span('q19', 'busy_adjusted_busy')}), with the middle third in
-  between. Weekends are no different from weekdays.
+  between. The range starts close to no difference. Weekends are no different from weekdays.
 
 - **How we know.** For each of the {v('q18', 'commits')} commits we counted how many the same author landed that
   day and how long since their previous one, and for each pull request how many the same person merged that day.
@@ -724,8 +709,6 @@ Read each block against its first row.
   and time" compares changes of similar file count, the same title type (feat, fix, other), landed in the same
   half-month. Time has to be held equal because an older commit has had longer for its bugs to be found and fixed:
   September commits show {v('q27', 'rate_sep')} bugs per 100, November commits {v('q27', 'rate_nov')}.
-- **What changed from the first version.** With 108 bugs, none of these comparisons was clear. With
-  {v('q18', 'bugs')}, the busy-day one is. Its range starts close to no difference.
 - **What it does not show.** That the pace is harmless. A count per commit favors whoever cuts work into the most
   pieces, and a tired author's mistakes need not land on the same day. Busy days may also differ in what gets
   landed, in ways that size and title do not capture.
@@ -747,8 +730,7 @@ more bugs than changes from the regulars. They cause fewer.
 - The {v('q22', 'authors_occasional')} authors with 20 commits or fewer wrote {v('q22', 'who_share_occasional')}% of
   commits and caused {v('q22', 'who_adjusted_occasional')} times the bugs per change of the most active author
   (plausibly {span('q22', 'who_adjusted_occasional')}).
-- Among everyone else, how much an author contributes makes no clear difference. The first version saw the middle
-  group at about double; with more data that is gone.
+- Among everyone else, how much an author contributes makes no clear difference.
 - Changes merged by someone other than their author carried {v('q21', 'merge_adjusted_other')} times the bugs
   (plausibly {span('q21', 'merge_adjusted_other')}). Most of these are outside contributors' changes. Among authors
   who could have merged it themselves the ratio is {v('q21', 'pair_adjusted_other')} (plausibly
@@ -767,8 +749,7 @@ more bugs than changes from the regulars. They cause fewer.
 
 ### 20. Changes to files that several other people were also editing caused more bugs
 
-*Supported, and weaker than the first version suggested. It cannot separate "too many hands" from "the busiest, most
-central code".*
+*Supported for the most-shared files. It cannot separate "too many hands" from "the busiest, most central code".*
 
 {chart('q23', 0)}
 
@@ -786,8 +767,6 @@ files into others, is the higher one.
 
 - **How we know.** For every code file a commit edits, we counted the other authors who had changed that file in
   the 14 days before, and averaged over the commit's files. Only commits that edit existing code are compared.
-- **What changed from the first version.** With 108 bugs the shared-files ratio was about two and a half; with
-  {v('q18', 'bugs')} it is {v('q23', 'shared_adjusted_high')}, and only for the most-shared files.
 - **What it does not show.** That several people editing a file is what causes the bugs. Files many people edit are
   also the central ones where most things connect, and this data cannot tell those two apart.
 
@@ -844,10 +823,10 @@ Finding 23: the same questions asked of a second period and a second reader.
 
 *Supported. This is the check on everything above: a second period, and a second reader.*
 
-The study was first done on 300 fixes from November, read by {OTHER}. It was then extended to 902 fixes from the
-seven weeks before, with {MAIN} reading all 1,202. That gives three sets to put side by side. The first two are the
-same November fixes read by two models, so their difference is the reader. The last two are one model reading two
-periods, so their difference is the period.
+Every fix was read by {MAIN}. The {v('q01', 'other_n')} November fixes were also read by a model from a different
+maker, {OTHER}. That gives three sets to put side by side. The first two are the same November fixes read by two
+models, so their difference is the reader. The last two are one model reading two periods, so their difference is
+the period.
 
 {chart('q27', 0)}
 
@@ -867,42 +846,11 @@ repaired no bug and {MAIN} said {v('q27', 'not_bug_pct_frame1')}%. They also spl
 differently. But where both named a causing change, they named the same one in {v('q02', 'other_cause_same')} of
 {v('q02', 'other_cause_n')} cases, and everything from finding 3 on depends on the causing change, not on the label.
 
-**What moved from the first version to this one.** Every comparison now also holds equal the time a change landed.
-
-{then_now([
-    ('Fixes that repaired no bug, % (the readers differ: finding 1)', 'q01', 'not_bug_pct'),
-    ('Bugs traced to the change that introduced them', 'q02', 'traced'),
-    ('Causing changes titled feat, %', 'q03', 'cmp_cause_feat'),
-    ('Median files changed by a causing change', 'q03', 'cause_median_files'),
-    ('Bugs per commit, over 100 files against 1 to 5 files', 'q04', 'per_commit_ratio'),
-    ('Causing changes the bot reviewed', 'q06', 'reviewed'),
-    ('Of those, the bot named the bug', 'q06', 'flag_exact'),
-    ('Straight to main against through a pull request', 'q11', 'direct_ratio'),
-    ('Merged over the bot\'s objection against called ready', 'q12', 'verdict_adjusted_objected'),
-    ('Open under an hour against open a day or more', 'q14', 'open_adjusted_hour'),
-    ('Interface change with a screenshot or video against without', 'q16', 'interface_adjusted_yes'),
-    ('Share of bugs from changes with two or more warning signs, %', 'q17', 'bugs_pct_two'),
-    ('Busiest third of days against quietest third', 'q19', 'busy_adjusted_busy'),
-    ('Merged by someone else against by the author', 'q21', 'merge_adjusted_other'),
-    ('Occasional contributors against the most active author', 'q22', 'who_adjusted_occasional'),
-    ('Files two or more others were editing against files only the author was', 'q23', 'shared_adjusted_high'),
-    ('Adds a new code file against only edits', 'q24', 'new_adjusted_adds'),
-    ('Share of bugs from changes that add a code file, %', 'q24', 'bugs_pct_adds'),
-    ('Code change with no test file against with tests', 'q25', 'tests_adjusted_without'),
-])}
-
-Read across each row. Where both versions give a range and the ranges overlap, the finding held. Four held and
-tightened: the bot's objection, new code files, time open, and screenshots. Two were unclear and are now clear in
-the same direction: straight-to-main commits, and code changes with no test file. Three that showed nothing now show
-something: busy days, changes merged by someone else, and occasional contributors. One weakened: shared files. None
-reversed. The first version's ratios did not hold landing time equal; that matters little over three weeks of
-fixes and a lot over ten.
-
-- **How we know.** The first version's numbers are kept in `dataset/published_2026_11.json` and in the tag
-  `published-2026-11`.
-- **What it does not show.** That the two periods are independent tests. The comparison sample of ordinary changes,
-  the commit list and the pull request data are the same in both versions; what grew is the number of traced bugs,
-  from 156 to {v('q02', 'traced')}.
+- **How we know.** The same brief was given to both models. {OTHER} read the November fixes first, with GitHub
+  lookups; {MAIN} read every fix later, without them.
+- **What it does not show.** That another project, or another season of this one, would look the same. And the two
+  periods share one commit list and one sample of ordinary changes, so they are not fully separate tests of
+  findings 11 to 22.
 
 {run_line('q27')}
 
@@ -992,13 +940,12 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 
 **Scope.** Changes merged to `main` from 10 September to 22 November 2026. One model ({MAIN}) read every fix.
 A model from a different maker ({OTHER}) had earlier read the {v('q01', 'other_n')} November fixes, and its
-answers serve as the check. No project code was run and no test was written. Findings 7 to 10 come from the first
-version of this study and cover November only. Findings 11 to 22 set the traced bugs against every commit and pull
+answers serve as the check. No project code was run and no test was written. Findings 7 to 10 cover
+November only. Findings 11 to 22 set the traced bugs against every commit and pull
 request of the period and judge nothing. Finding 23 puts the two periods and the two readers side by side.
 
-**Two versions.** This study was first published on 25 November 2026 with 300 November fixes read by {OTHER}
-(tag `published-2026-11`). It was extended the same day to the earlier weeks, with {MAIN} reading every fix so
-that the periods can be compared under one reader. Finding 23 and [CORRECTIONS.md](CORRECTIONS.md) say what moved.
+**An earlier version.** A first version of this report covered only the 300 November fixes, with {OTHER} as the
+main reader. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
 
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
 reads only the dataset and writes the numbers and charts used on this page. `python3 study.py rebuild` runs them all and
@@ -1012,7 +959,7 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 |---|---:|---|---|---|
 | What fixes repaired | {v('q01', 'sample')} | Lottery over every fix in the period, in a fixed pseudo-random order | One {MAIN} reader per fix | Second run of the same model on {v('q01', 'second_n')}; {OTHER} on the {v('q01', 'other_n')} November fixes |
 | What the bot had said | {v('q06', 'reviewed')} | Every traced bug whose causing change the bot reviewed | One {MAIN} reader per case | {OTHER} on {v('q06', 'other_n')} November cases with the same causing change |
-| Blind review (November, first version) | {v('q07', 'cases')} | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
+| Blind review (November) | {v('q07', 'cases')} | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
 | Are the reports real | {v('q08', 'findings')} | Every report from the two strongest reviewers | One later-fix reader; two code-tracing checkers | Known-real reports as a control, before and after the fix |
 | Kinds of change compared | {v('q15', 'sample')} | Lottery over every merged pull request since 10 September, plus every bug-causing one | Nobody: read from git and GitHub | The bot's verdict is read from its own marker |
 | Workload, people and files (findings 18 to 22) | {v('q18', 'commits')} | Every commit on main since 10 September; the bugs are the {v('q18', 'bugs')} sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
@@ -1029,7 +976,8 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
   answered "could not tell" more often than the other maker's reader, which had lookups.
 - {v('q27', 'left_out')} of the {v('q02', 'traced')} traced bugs are left out of findings 3, 4 and 11 to 22, because
   their causing change is older than 10 September, where the commit list starts, or was not a pull request.
-- Findings 7 to 10 were not repeated. They cover 30 November cases chosen from the first version.
+- Findings 7 to 10 cover 30 November cases, chosen when {OTHER} was the main reader, and were not repeated for the
+  earlier weeks.
 - A sample of fixes cannot see bugs that were never fixed, or bugs the bot stopped before merge.
 - The model comparison covers changes of at most 30 files and one run per reviewer. The reviewers did not get
   identical guidance: some GPT runs read a personal review guide on the test machine, and the Claude runs had the

@@ -43,7 +43,8 @@ classifications, all 113 review-bot verdicts and all 180 gradings of the blind r
 
 The study was first published with 300 November fixes read by Claude Opus 5.5 (tag `published-2026-11`). It was then
 extended to 1,202 fixes from 10 September to 22 November, all read by gpt-6.2-sol, with the Opus answers for the
-November fixes kept as the check. Finding 23 in the README sets the versions side by side. What changed:
+November fixes kept as the check. Finding 23 in the README compares the two readers and the two periods. What
+changed between the versions is recorded here, not in the README:
 
 | Claim in the first version | What the extension found | What the report now says |
 |---|---|---|
@@ -56,6 +57,38 @@ November fixes kept as the check. Finding 23 in the README sets the versions sid
 | A second person merging or reviewing: no clear difference | Merged by someone else: 0.42 times (0.26 to 0.68) | About half the bugs; mostly outside contributors' changes |
 | Files other people were editing: about two and a half times the bugs | 1.67 times, and only where two or more others were editing | Supported, weaker |
 | Code changes without tests: no clear difference | 0.32 times (0.18 to 0.57) | Fewer; they are a different, smaller kind of change |
+
+The same comparisons in numbers, as each version reported them. Where both give a range and the ranges overlap,
+the finding held. The first version's ratios did not hold landing time equal.
+
+| | First version: 300 November fixes | Now: 1,202 fixes, 10 Sep to 22 Nov |
+|---|---:|---:|
+| Fixes that repaired no bug, % (the readers differ: finding 1) | 33 (28 to 39) | 8 (7 to 10) |
+| Bugs traced to the change that introduced them | 156 | 832 |
+| Causing changes titled feat, % | 26 | 24 |
+| Median files changed by a causing change | 28.5 | 36 |
+| Bugs per commit, over 100 files against 1 to 5 files | 104 | 131 |
+| Causing changes the bot reviewed | 113 | 645 |
+| Of those, the bot named the bug | 2 | 21 |
+| Straight to main against through a pull request | 0.52 (0.21 to 1.26) | 0.42 (0.26 to 0.66) |
+| Merged over the bot's objection against called ready | 2.58 (1.5 to 4.44) | 3.42 (2.34 to 4.99) |
+| Open under an hour against open a day or more | 0.19 (0.09 to 0.39) | 0.28 (0.16 to 0.47) |
+| Interface change with a screenshot or video against without | 5.3 (2.17 to 12.94) | 3.72 (2.0 to 6.93) |
+| Share of bugs from changes with two or more warning signs, % | 47 | 48 |
+| Busiest third of days against quietest third | 0.83 (0.52 to 1.34) | 1.73 (1.11 to 2.71) |
+| Merged by someone else against by the author | 0.56 (0.24 to 1.32) | 0.42 (0.26 to 0.68) |
+| Occasional contributors against the most active author | 0.78 (0.23 to 2.6) | 0.47 (0.25 to 0.9) |
+| Files two or more others were editing against files only the author was | 2.69 (1.44 to 5.03) | 1.67 (1.22 to 2.28) |
+| Adds a new code file against only edits | 3.27 (1.98 to 5.39) | 3.18 (2.51 to 4.02) |
+| Share of bugs from changes that add a code file, % | 66 | 69 |
+| Code change with no test file against with tests | 0.29 (0.07 to 1.13) | 0.32 (0.18 to 0.57) |
+
+Read across: four held and tightened (the bot's objection, new code files, time open, screenshots). Two were unclear
+and are now clear in the same direction (straight-to-main commits, code changes with no test file). Three that showed
+nothing now show something (busy days, changes merged by someone else, occasional contributors). One weakened (shared
+files). None reversed. The two versions are not independent tests: the comparison sample of ordinary changes, the
+commit list and the pull request data are the same in both; what grew is the number of traced bugs, from 156 to 832.
+The first version's numbers are also kept in `dataset/published_2026_11.json`.
 
 Method changes made with the extension:
 

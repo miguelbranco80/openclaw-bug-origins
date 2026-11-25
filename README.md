@@ -29,8 +29,8 @@ bugs against every commit and pull request of the period, to see which kinds of 
 - **Reading alone has a ceiling.** Two strong models, shown 30 bug-causing changes from November
   with no hint, together named 10 of the bugs. 9 could not be seen by reading
   code at all, and nobody named those. *Findings 7 and 9.*
-- **It held up.** Seven earlier weeks, read by the same model, look like November. Four times the data reversed
-  nothing. *Finding 23.*
+- **It held up.** The seven earlier weeks, read by the same model, look like November. A second model disagrees on
+  what counts as a bug, and agrees on what caused one. *Finding 23.*
 
 **Share of the traced bugs that came from changes with each warning sign**
 
@@ -552,8 +552,7 @@ so size explains part of the gap. Within changes of 6 files or more, the rate wa
 26.94 for direct commits against 36.8 through a pull request.
 
 - **How we know.** Same method as finding 4, split by whether the commit title carries a pull request number.
-- **How it was checked.** It was not checked further. In the first version, with 5 bugs on the direct side, the
-  same comparison could not tell the two apart.
+- **How it was checked.** It was not checked further.
 - **What it does not show.** Who made the direct commits or why, or that skipping a pull request is safe: the
   changes people commit directly are the ones they judge routine. Finding 12 takes up changes merged against the
   review bot's verdict.
@@ -778,8 +777,8 @@ the source of 19%.
   486 sampled bugs whose causing change is a fetched pull request.
 - **How it was checked.** All three signs are read from git and GitHub. No model judged them.
 - **What it does not show.** That looking harder at those changes would have caught the bugs. Finding 7 bears on
-  that. The earlier weeks are a partial test of the signs, not a clean one: the comparison sample of ordinary
-  changes is the same as before.
+  that. The earlier weeks are a partial test of the signs, not a clean one: both periods share one comparison
+  sample of ordinary changes.
 
 Recompute: `python3 questions/q17_how_concentrated_are_the_bugs.py`
 
@@ -833,7 +832,7 @@ Read each block against its first row.
   everyone else (finding 19). Above that level the rate does not rise with load.
 - **The project.** Changes landed on the busiest third of days carried 1.73 times the bugs
   of changes landed on the quietest third (plausibly 1.11 to 2.71), with the middle third in
-  between. Weekends are no different from weekdays.
+  between. The range starts close to no difference. Weekends are no different from weekdays.
 
 - **How we know.** For each of the 39,210 commits we counted how many the same author landed that
   day and how long since their previous one, and for each pull request how many the same person merged that day.
@@ -841,8 +840,6 @@ Read each block against its first row.
   and time" compares changes of similar file count, the same title type (feat, fix, other), landed in the same
   half-month. Time has to be held equal because an older commit has had longer for its bugs to be found and fixed:
   September commits show 23.1 bugs per 100, November commits 8.1.
-- **What changed from the first version.** With 108 bugs, none of these comparisons was clear. With
-  505, the busy-day one is. Its range starts close to no difference.
 - **What it does not show.** That the pace is harmless. A count per commit favors whoever cuts work into the most
   pieces, and a tired author's mistakes need not land on the same day. Busy days may also differ in what gets
   landed, in ways that size and title do not capture.
@@ -876,8 +873,7 @@ more bugs than changes from the regulars. They cause fewer.
 - The 676 authors with 20 commits or fewer wrote 4.7% of
   commits and caused 0.47 times the bugs per change of the most active author
   (plausibly 0.25 to 0.9).
-- Among everyone else, how much an author contributes makes no clear difference. The first version saw the middle
-  group at about double; with more data that is gone.
+- Among everyone else, how much an author contributes makes no clear difference.
 - Changes merged by someone other than their author carried 0.42 times the bugs
   (plausibly 0.26 to 0.68). Most of these are outside contributors' changes. Among authors
   who could have merged it themselves the ratio is 0.37 (plausibly
@@ -896,8 +892,7 @@ Recompute: `python3 questions/q22_do_occasional_contributors_cause_more_bugs.py`
 
 ### 20. Changes to files that several other people were also editing caused more bugs
 
-*Supported, and weaker than the first version suggested. It cannot separate "too many hands" from "the busiest, most
-central code".*
+*Supported for the most-shared files. It cannot separate "too many hands" from "the busiest, most central code".*
 
 **Bugs per 100 changes, by how many other people were editing the same files**
 
@@ -928,8 +923,6 @@ files into others, is the higher one.
 
 - **How we know.** For every code file a commit edits, we counted the other authors who had changed that file in
   the 14 days before, and averaged over the commit's files. Only commits that edit existing code are compared.
-- **What changed from the first version.** With 108 bugs the shared-files ratio was about two and a half; with
-  505 it is 1.67, and only for the most-shared files.
 - **What it does not show.** That several people editing a file is what causes the bugs. Files many people edit are
   also the central ones where most things connect, and this data cannot tell those two apart.
 
@@ -1002,10 +995,10 @@ Finding 23: the same questions asked of a second period and a second reader.
 
 *Supported. This is the check on everything above: a second period, and a second reader.*
 
-The study was first done on 300 fixes from November, read by Claude Opus 5.5. It was then extended to 902 fixes from the
-seven weeks before, with gpt-6.2-sol reading all 1,202. That gives three sets to put side by side. The first two are the
-same November fixes read by two models, so their difference is the reader. The last two are one model reading two
-periods, so their difference is the period.
+Every fix was read by gpt-6.2-sol. The 300 November fixes were also read by a model from a different
+maker, Claude Opus 5.5. That gives three sets to put side by side. The first two are the same November fixes read by two
+models, so their difference is the reader. The last two are one model reading two periods, so their difference is
+the period.
 
 **Share of changes titled fix that repaired no bug, by who read them and when they merged**
 
@@ -1025,7 +1018,7 @@ periods, so their difference is the period.
 
 | | Fixes | Fixed no bug, % | Could not tell, % | Never worked | Broken later | Never worked, % of the two | Causes titled feat, % | Median files in a causing change | Median days broken, broken-later | Causing changes the bot reviewed | Bot named the bug |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| November fixes, as first published (read by Claude Opus 5.5) | 300 | 33 | 5 | 105 | 51 | 67 | 26 | 28.5 | 20.4 | 113 | 2 |
+| November fixes, read by Claude Opus 5.5 | 300 | 33 | 5 | 105 | 51 | 67 | 26 | 28.5 | 20.4 | 113 | 2 |
 | Fixes from 2026-11-01 to 2026-11-23, read by gpt-6.2-sol | 300 | 11 | 13 | 115 | 91 | 56 | 30 | 34.5 | 28.8 | 170 | 2 |
 | Fixes from 2026-09-10 to 2026-11-01, read by gpt-6.2-sol | 902 | 7 | 18 | 328 | 298 | 52 | 29 | 34 | 8.6 | 475 | 19 |
 
@@ -1042,42 +1035,11 @@ repaired no bug and gpt-6.2-sol said 11%. They also split never-worked from brok
 differently. But where both named a causing change, they named the same one in 108 of
 130 cases, and everything from finding 3 on depends on the causing change, not on the label.
 
-**What moved from the first version to this one.** Every comparison now also holds equal the time a change landed.
-
-| | First version: 300 November fixes | Now: 1,202 fixes, 10 Sep to 22 Nov |
-|---|---:|---:|
-| Fixes that repaired no bug, % (the readers differ: finding 1) | 33 (28 to 39) | 8 (7 to 10) |
-| Bugs traced to the change that introduced them | 156 | 832 |
-| Causing changes titled feat, % | 26 | 24 |
-| Median files changed by a causing change | 28.5 | 36 |
-| Bugs per commit, over 100 files against 1 to 5 files | 104 | 131 |
-| Causing changes the bot reviewed | 113 | 645 |
-| Of those, the bot named the bug | 2 | 21 |
-| Straight to main against through a pull request | 0.52 (0.21 to 1.26) | 0.42 (0.26 to 0.66) |
-| Merged over the bot's objection against called ready | 2.58 (1.5 to 4.44) | 3.42 (2.34 to 4.99) |
-| Open under an hour against open a day or more | 0.19 (0.09 to 0.39) | 0.28 (0.16 to 0.47) |
-| Interface change with a screenshot or video against without | 5.3 (2.17 to 12.94) | 3.72 (2.0 to 6.93) |
-| Share of bugs from changes with two or more warning signs, % | 47 | 48 |
-| Busiest third of days against quietest third | 0.83 (0.52 to 1.34) | 1.73 (1.11 to 2.71) |
-| Merged by someone else against by the author | 0.56 (0.24 to 1.32) | 0.42 (0.26 to 0.68) |
-| Occasional contributors against the most active author | 0.78 (0.23 to 2.6) | 0.47 (0.25 to 0.9) |
-| Files two or more others were editing against files only the author was | 2.69 (1.44 to 5.03) | 1.67 (1.22 to 2.28) |
-| Adds a new code file against only edits | 3.27 (1.98 to 5.39) | 3.18 (2.51 to 4.02) |
-| Share of bugs from changes that add a code file, % | 66 | 69 |
-| Code change with no test file against with tests | 0.29 (0.07 to 1.13) | 0.32 (0.18 to 0.57) |
-
-Read across each row. Where both versions give a range and the ranges overlap, the finding held. Four held and
-tightened: the bot's objection, new code files, time open, and screenshots. Two were unclear and are now clear in
-the same direction: straight-to-main commits, and code changes with no test file. Three that showed nothing now show
-something: busy days, changes merged by someone else, and occasional contributors. One weakened: shared files. None
-reversed. The first version's ratios did not hold landing time equal; that matters little over three weeks of
-fixes and a lot over ten.
-
-- **How we know.** The first version's numbers are kept in `dataset/published_2026_11.json` and in the tag
-  `published-2026-11`.
-- **What it does not show.** That the two periods are independent tests. The comparison sample of ordinary changes,
-  the commit list and the pull request data are the same in both versions; what grew is the number of traced bugs,
-  from 156 to 832.
+- **How we know.** The same brief was given to both models. Claude Opus 5.5 read the November fixes first, with GitHub
+  lookups; gpt-6.2-sol read every fix later, without them.
+- **What it does not show.** That another project, or another season of this one, would look the same. And the two
+  periods share one commit list and one sample of ordinary changes, so they are not fully separate tests of
+  findings 11 to 22.
 
 Recompute: `python3 questions/q27_do_the_findings_hold_across_periods_and_readers.py`
 
@@ -1167,13 +1129,12 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 
 **Scope.** Changes merged to `main` from 10 September to 22 November 2026. One model (gpt-6.2-sol) read every fix.
 A model from a different maker (Claude Opus 5.5) had earlier read the 300 November fixes, and its
-answers serve as the check. No project code was run and no test was written. Findings 7 to 10 come from the first
-version of this study and cover November only. Findings 11 to 22 set the traced bugs against every commit and pull
+answers serve as the check. No project code was run and no test was written. Findings 7 to 10 cover
+November only. Findings 11 to 22 set the traced bugs against every commit and pull
 request of the period and judge nothing. Finding 23 puts the two periods and the two readers side by side.
 
-**Two versions.** This study was first published on 25 November 2026 with 300 November fixes read by Claude Opus 5.5
-(tag `published-2026-11`). It was extended the same day to the earlier weeks, with gpt-6.2-sol reading every fix so
-that the periods can be compared under one reader. Finding 23 and [CORRECTIONS.md](CORRECTIONS.md) say what moved.
+**An earlier version.** A first version of this report covered only the 300 November fixes, with Claude Opus 5.5 as the
+main reader. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
 
 **How this repository is organised.** `dataset/` holds the facts. `questions/` holds one script per question; each
 reads only the dataset and writes the numbers and charts used on this page. `python3 study.py rebuild` runs them all and
@@ -1187,7 +1148,7 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 |---|---:|---|---|---|
 | What fixes repaired | 1,202 | Lottery over every fix in the period, in a fixed pseudo-random order | One gpt-6.2-sol reader per fix | Second run of the same model on 191; Claude Opus 5.5 on the 300 November fixes |
 | What the bot had said | 645 | Every traced bug whose causing change the bot reviewed | One gpt-6.2-sol reader per case | Claude Opus 5.5 on 88 November cases with the same causing change |
-| Blind review (November, first version) | 30 | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
+| Blind review (November) | 30 | First 15 of each kind in random order, among smaller recent changes the bot reviewed | Claude Opus 5.5 graders, blind to the reviewer | GPT grader on all pairs; run logs audited for leaks |
 | Are the reports real | 148 | Every report from the two strongest reviewers | One later-fix reader; two code-tracing checkers | Known-real reports as a control, before and after the fix |
 | Kinds of change compared | 400 | Lottery over every merged pull request since 10 September, plus every bug-causing one | Nobody: read from git and GitHub | The bot's verdict is read from its own marker |
 | Workload, people and files (findings 18 to 22) | 39,210 | Every commit on main since 10 September; the bugs are the 505 sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
@@ -1204,7 +1165,8 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
   answered "could not tell" more often than the other maker's reader, which had lookups.
 - 327 of the 832 traced bugs are left out of findings 3, 4 and 11 to 22, because
   their causing change is older than 10 September, where the commit list starts, or was not a pull request.
-- Findings 7 to 10 were not repeated. They cover 30 November cases chosen from the first version.
+- Findings 7 to 10 cover 30 November cases, chosen when Claude Opus 5.5 was the main reader, and were not repeated for the
+  earlier weeks.
 - A sample of fixes cannot see bugs that were never fixed, or bugs the bot stopped before merge.
 - The model comparison covers changes of at most 30 files and one run per reviewer. The reviewers did not get
   identical guidance: some GPT runs read a personal review guide on the test machine, and the Claude runs had the

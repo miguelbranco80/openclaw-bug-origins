@@ -6,7 +6,7 @@ frames.json, readers.json, and commits.tsv, and published_2026_11.json (the numb
 different model read the November fixes; tag `published-2026-11`).
 
 Three columns:
-  the November fixes as first published, read by the earlier main reader;
+  the November fixes, read by the other maker's model (its answers are in published_2026_11.json);
   the same November fixes, read by the current main reader;
   the fixes of the other period, read by the current main reader.
 Comparing the first two shows what the reader changes. Comparing the last two shows what the period changes.
@@ -52,7 +52,7 @@ def main(quiet=False):
     before = load("published_2026_11.json")
     was = lambda question, metric: before[question][metric]["value"]
     out = Result("q27")
-    first = "November fixes, as first published (read by Claude Opus 5.5)"
+    first = f"November fixes, read by {READERS['fixes_other_maker']}"
     n = was("q01", "sample")
     never, broke = was("q01", "origin_never-worked"), was("q01", "origin_regression")
     out.add("fixes", "fixes_published", first, n)
