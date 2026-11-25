@@ -4,15 +4,15 @@
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">40.99</text>
-<text x="489.0" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">113 sampled bugs; 10.2% of changes</text>
+<text x="489.0" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">113 bugs, from 10.2% of changes</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open 1 to 24 hours</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,66 H276.6 Q280.6,66 280.6,70 V72 Q280.6,76 276.6,76 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">26.75</text>
-<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">313 sampled bugs; 43.5% of changes</text>
+<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">313 bugs, from 43.5% of changes</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open under an hour</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,108 H46.6 Q50.6,108 50.6,112 V114 Q50.6,118 46.6,118 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">4.82</text>
-<text x="480.8" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">60 sampled bugs; 46.2% of changes</text>
+<text x="480.8" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">60 bugs, from 46.2% of changes</text>
 </svg>

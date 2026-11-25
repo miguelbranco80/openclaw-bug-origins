@@ -31,7 +31,7 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q12-bugs-by-bot-verdict", "Bugs per 100 changes, by what the bot said when the change merged",
         [{"label": label, "value": out.value("verdict_rate_" + key),
-          "note": f"{out.value('verdict_bugs_' + key)} sampled bugs; {out.value('verdict_share_' + key)}% of changes"}
+          "note": f"{out.value('verdict_bugs_' + key)} bugs, from {out.value('verdict_share_' + key)}% of changes"}
          for key, label in LEVELS if key in keep]),
         "Each bar is a rate: bugs fixed in the period studied that trace back to changes merged under that verdict, per "
         "100 such changes. Verdicts seen on fewer than 20 sampled changes are left out.")

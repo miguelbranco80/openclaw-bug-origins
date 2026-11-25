@@ -4,10 +4,10 @@
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,24 H151.4 Q155.4,24 155.4,28 V30 Q155.4,34 151.4,34 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="34" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">18.04</text>
-<text x="489.0" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">74 sampled bugs; 15.2% of all changes</text>
+<text x="489.0" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">74 bugs, from 15.2% of all changes</text>
 <text x="0.0" y="58" fill="#c3c2b7" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">A screenshot or video in the description</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#2c2c2a"/>
 <path d="M0,66 H426.0 Q430.0,66 430.0,70 V72 Q430.0,76 426.0,76 H0 Z" fill="#3987e5"/>
 <text x="440.0" y="76" fill="#f0efec" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">49.93</text>
-<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">141 sampled bugs; 10.5% of all changes</text>
+<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">141 bugs, from 10.5% of all changes</text>
 </svg>

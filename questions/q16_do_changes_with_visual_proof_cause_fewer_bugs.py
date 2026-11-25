@@ -26,7 +26,7 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q16-bugs-by-visual-proof", "Among interface changes: bugs per 100 changes, with and without a screenshot or video",
         [{"label": label, "value": out.value("interface_rate_" + key),
-          "note": f"{out.value('interface_bugs_' + key)} sampled bugs; {out.value('interface_share_' + key)}% of all changes"}
+          "note": f"{out.value('interface_bugs_' + key)} bugs, from {out.value('interface_share_' + key)}% of all changes"}
          for key, label in LEVELS]),
         "Only pull requests that change files under ui/ or apps/. Each bar is a rate: bugs fixed in the period studied "
         "that trace back to such pull requests, per 100 of them.")

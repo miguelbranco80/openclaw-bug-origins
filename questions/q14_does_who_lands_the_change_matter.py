@@ -29,7 +29,7 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q14-bugs-by-time-open", "Bugs per 100 changes, by how long the pull request was open",
         [{"label": label, "value": out.value("open_rate_" + key),
-          "note": f"{out.value('open_bugs_' + key)} sampled bugs; {out.value('open_share_' + key)}% of changes"}
+          "note": f"{out.value('open_bugs_' + key)} bugs, from {out.value('open_share_' + key)}% of changes"}
          for key, label in OPEN]),
         "Each bar is a rate: bugs fixed in the period studied that trace back to pull requests open that long, per 100 "
         "such pull requests. The three groups cover every pull request.")

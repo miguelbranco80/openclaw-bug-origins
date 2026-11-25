@@ -43,14 +43,17 @@ def main(quiet=False):
         out.add("changes_pct", "changes_pct_" + key, label, round(100 * sum(test(c) for c in sample) / len(sample), 1))
         out.add("bugs_pct", "bugs_pct_" + key, label, round(100 * bugs / total))
         out.add("bugs", "bugs_" + key, label, bugs)
+    example = GROUPS[0]
     out.chart(charts.bars(
-        "q17-share-of-bugs-by-warning-sign", "Share of the traced bugs that came from changes with each warning sign",
+        "q17-share-of-bugs-by-warning-sign", "How much of the bugs came from changes with each warning sign",
         [{"label": label, "value": out.value("bugs_pct_" + key),
-          "note": f"these are {out.value('changes_pct_' + key)}% of all changes"} for key, label, _ in GROUPS],
-        unit="%", top=100),
-        "Each bar is the percentage of traced bugs whose causing change had that sign. The gray note says how common "
-        "such changes are. A bar much longer than its note's percentage means bugs are concentrated there. The first "
-        "three rows overlap; the last three are combinations of them.")
+          "note": f"from {round(out.value('changes_pct_' + key))}% of changes"} for key, label, _ in GROUPS],
+        unit="% of bugs", top=100),
+        "Each row is a warning sign you can see before a change merges. The bar is the share of all traced bugs that "
+        "came from changes with that sign. The gray text is how common such changes are. Example, first row: the bot "
+        f"objected to {round(out.value('changes_pct_' + example[0]))}% of changes, and those changes produced "
+        f"{out.value('bugs_pct_' + example[0])}% of the bugs. The first three rows overlap; the last three combine "
+        "them.")
     out.save(quiet)
     return out
 

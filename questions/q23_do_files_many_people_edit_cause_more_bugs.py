@@ -51,7 +51,7 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q23-bugs-by-how-many-people-edit-the-files", "Bugs per 100 changes, by how many other people were editing the same files",
         [{"label": label, "value": out.value("shared_rate_" + key),
-          "note": f"{out.value('shared_bugs_' + key)} sampled bugs, {out.value('shared_share_' + key)}% of all commits"}
+          "note": f"{out.value('shared_bugs_' + key)} bugs, from {out.value('shared_share_' + key)}% of commits"}
          for key, label in SHARED], unit="", top=None),
         "Each bar is the number of bugs per 100 changes of that kind. The first row is changes to files that mostly "
         "only their author had been editing; the rows below are changes to files that other people had also changed "

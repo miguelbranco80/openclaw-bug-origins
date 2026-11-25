@@ -4,15 +4,15 @@
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,24 H57.3 Q61.3,24 61.3,28 V30 Q61.3,34 57.3,34 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7.84</text>
-<text x="480.8" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">135 sampled bugs; 64% of changes</text>
+<text x="480.8" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">135 bugs, from 64% of changes</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Bot said blocked or needs changes</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,66 H426.0 Q430.0,66 430.0,70 V72 Q430.0,76 426.0,76 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">55.01</text>
-<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">307 sampled bugs; 20.8% of changes</text>
+<text x="489.0" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">307 bugs, from 20.8% of changes</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">No bot review before merge</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,108 H81.3 Q85.3,108 85.3,112 V114 Q85.3,118 81.3,118 H0 Z" fill="#2a78d6"/>
 <text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">10.91</text>
-<text x="489.0" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">44 sampled bugs; 15% of changes</text>
+<text x="489.0" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">44 bugs, from 15% of changes</text>
 </svg>

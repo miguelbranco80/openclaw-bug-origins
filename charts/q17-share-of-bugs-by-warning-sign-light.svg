@@ -1,33 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" viewBox="0 0 760 260" role="img" aria-label="Share of the traced bugs that came from changes with each warning sign">
-<title>Share of the traced bugs that came from changes with each warning sign</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" viewBox="0 0 760 260" role="img" aria-label="How much of the bugs came from changes with each warning sign">
+<title>How much of the bugs came from changes with each warning sign</title>
 <text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">The bot objected</text>
 <rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,24 H266.9 Q270.9,24 270.9,28 V30 Q270.9,34 266.9,34 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">63%</text>
-<text x="472.6" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 20.8% of all changes</text>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">63% of bugs</text>
+<text x="538.2" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">from 21% of changes</text>
 <text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Open a day or more</text>
 <rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,66 H94.9 Q98.9,66 98.9,70 V72 Q98.9,76 94.9,76 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">23%</text>
-<text x="472.6" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 10.2% of all changes</text>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">23% of bugs</text>
+<text x="538.2" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">from 10% of changes</text>
 <text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">More than 30 files</text>
 <rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,108 H241.1 Q245.1,108 245.1,112 V114 Q245.1,118 241.1,118 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">57%</text>
-<text x="472.6" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 12.8% of all changes</text>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">57% of bugs</text>
+<text x="538.2" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">from 13% of changes</text>
 <text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">At least one of the three signs</text>
 <rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,150 H344.3 Q348.3,150 348.3,154 V156 Q348.3,160 344.3,160 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">81%</text>
-<text x="472.6" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 37% of all changes</text>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">81% of bugs</text>
+<text x="538.2" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">from 37% of changes</text>
 <text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">At least two of the three signs</text>
 <rect x="0" y="192" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,192 H202.4 Q206.4,192 206.4,196 V198 Q206.4,202 202.4,202 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">48%</text>
-<text x="472.6" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 6.8% of all changes</text>
+<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">48% of bugs</text>
+<text x="538.2" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">from 7% of changes</text>
 <text x="0.0" y="226" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">None of the three signs</text>
 <rect x="0" y="234" width="430" height="10" rx="2" fill="#ebeae4"/>
 <path d="M0,234 H77.7 Q81.7,234 81.7,238 V240 Q81.7,244 77.7,244 H0 Z" fill="#2a78d6"/>
-<text x="440.0" y="244" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">19%</text>
-<text x="472.6" y="244" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">these are 63% of all changes</text>
+<text x="440.0" y="244" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">19% of bugs</text>
+<text x="538.2" y="244" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">from 63% of changes</text>
 </svg>

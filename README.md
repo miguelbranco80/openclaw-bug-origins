@@ -58,12 +58,12 @@ same thing in both. We also had a second AI model judge the November fixes, and 
 caused each bug. The one thing the two models disagreed on is how many "fixes" were really fixing a bug.
 *Findings 22 and 23.*
 
-**Share of the traced bugs that came from changes with each warning sign**
+**How much of the bugs came from changes with each warning sign**
 
-![Share of the traced bugs that came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-light.svg#gh-light-mode-only)
-![Share of the traced bugs that came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-dark.svg#gh-dark-mode-only)
+![How much of the bugs came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-light.svg#gh-light-mode-only)
+![How much of the bugs came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-dark.svg#gh-dark-mode-only)
 
-*How to read it: Each bar is the percentage of traced bugs whose causing change had that sign. The gray note says how common such changes are. A bar much longer than its note's percentage means bugs are concentrated there. The first three rows overlap; the last three are combinations of them.*
+*How to read it: Each row is a warning sign you can see before a change merges. The bar is the share of all traced bugs that came from changes with that sign. The gray text is how common such changes are. Example, first row: the bot objected to 21% of changes, and those changes produced 63% of the bugs. The first three rows overlap; the last three combine them.*
 
 ## What the numbers point to
 
@@ -748,12 +748,12 @@ the bugs, they mark the same share.*
 Three things visible at or before merge each mark a small share of changes and a large share of bugs: the bot
 objected, the pull request had been open a day or more, or the change touched more than 30 files.
 
-**Share of the traced bugs that came from changes with each warning sign**
+**How much of the bugs came from changes with each warning sign**
 
-![Share of the traced bugs that came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-light.svg#gh-light-mode-only)
-![Share of the traced bugs that came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-dark.svg#gh-dark-mode-only)
+![How much of the bugs came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-light.svg#gh-light-mode-only)
+![How much of the bugs came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-dark.svg#gh-dark-mode-only)
 
-*How to read it: Each bar is the percentage of traced bugs whose causing change had that sign. The gray note says how common such changes are. A bar much longer than its note's percentage means bugs are concentrated there. The first three rows overlap; the last three are combinations of them.*
+*How to read it: Each row is a warning sign you can see before a change merges. The bar is the share of all traced bugs that came from changes with that sign. The gray text is how common such changes are. Example, first row: the bot objected to 21% of changes, and those changes produced 63% of the bugs. The first three rows overlap; the last three combine them.*
 
 <details><summary>The numbers behind this chart</summary>
 

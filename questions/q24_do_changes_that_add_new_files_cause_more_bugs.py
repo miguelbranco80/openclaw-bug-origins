@@ -29,7 +29,7 @@ def main(quiet=False):
     out.chart(charts.bars(
         "q24-bugs-by-whether-the-change-adds-files", "Bugs per 100 changes, by whether the change adds new code files",
         [{"label": label, "value": out.value("new_rate_" + key),
-          "note": f"{out.value('new_bugs_' + key)} sampled bugs, {out.value('new_share_' + key)}% of all commits"}
+          "note": f"{out.value('new_bugs_' + key)} bugs, from {out.value('new_share_' + key)}% of commits"}
          for key, label in LEVELS], unit="", top=None),
         "Each bar is the number of bugs per 100 changes of that kind. The gray note gives how many of the sampled "
         "bugs came from such changes and how common such changes are.")
