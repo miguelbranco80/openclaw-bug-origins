@@ -325,24 +325,6 @@
     </div>
   </section>
 
-  <section class="bo-section" id="actions">
-    <h2 class="bo-h2" id="actions-heading">What this supports doing</h2>
-    <ul class="bo-list">
-      <li><b>Add a plain "find the defects" pass by a current top model to the bot's review, and compare it on this benchmark first.</b> Rests on finding 6. The 30 cases and scripts can score any reviewer, so the claim can be re-tested before anything changes.</li>
-      <li><b>Use two different models for that pass.</b> Rests on finding 6: the two overlapped on only <b class="bo-num dash-skeleton" data-draw="num" data-source="pilot" data-field="value" data-where="metric=named_both_top">—</b> of <b class="bo-num dash-skeleton" data-draw="num" data-source="pilot" data-field="value" data-where="metric=named_either_top">—</b>.</li>
-      <li><b>Have a second model check each reported problem before a person sees it.</b> Rests on finding 7: the checkers could say no, and a third of confirmed reports were minor.</li>
-      <li><b>Review large changes in parts, and mark any change the bot never reviewed.</b> Rests on findings 3 and 5. <b class="bo-num dash-skeleton" data-draw="num" data-source="reviews" data-field="value" data-where="metric=unreviewed_large">—</b> traced bugs came from changes of 500 files or more that the bot acknowledged and did not review.</li>
-      <li><b>Cover what reading cannot: run it.</b> Rests on finding 8, which is tentative. Browser checks for interface style changes and real database runs for query changes are the two places the nine cases point to.</li>
-    </ul>
-    <h3 class="bo-h3" id="not-supported">What it does not support</h3>
-    <ul class="bo-list">
-      <li>Enforcing the bot's current verdicts more strictly. Ignored warnings were rare.</li>
-      <li>Leading with more written rules. Most bugs broke none, and the rules that existed could not be checked from the change alone.</li>
-      <li>Relying on tests of old behavior alone. They cannot catch new code that never worked, which is at least half of the traced bugs.</li>
-      <li>Waiting for better models. The better result came from models available now.</li>
-    </ul>
-  </section>
-
   <section class="bo-section" id="method">
     <h2 class="bo-h2" id="method-heading">How each study was done</h2>
     <div class="bo-scroll">
