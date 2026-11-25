@@ -190,24 +190,12 @@ same thing in both. We also had a second AI model judge the November fixes. It m
 each bug. It was stricter about what counts as a bug in the first place, so it counted fewer of them, but the
 patterns above showed up either way. *Findings 22 and 23.*
 
+One caution on all of it: this shows where the bugs are, not what would have caught them. Nothing was tried as a
+fix.
+
 {chart('q17', 0)}
 
-## What the numbers point to
-
-These are ideas, not advice to the project. Each rests on a count in this report. None was tried here, and the
-last column says which step from the count to the idea is untested.
-
-| Idea | The count behind it | What was not tested |
-|---|---|---|
-| Decide where to look hard using signs visible before a change merges | {v('q17', 'changes_pct_two')}% of changes carry {v('q17', 'bugs_pct_two')}% of the bugs. The signs were picked on November's bugs and marked the same share with four times as many | Whether looking hard at those changes would catch the bug |
-| Treat the bot's objection as a flag, whatever its words say | Changes merged over its objection carried {v('q12', 'verdict_adjusted_objected')} times the bugs, although in {v('q06', 'merged_against_unrelated')} of {v('q06', 'merged_against')} such cases its open items were about something else | Why those changes are riskier |
-| Do not take the author's tests as a sign of safety; give new code a check its author did not write | {v('q24', 'bugs_pct_adds')}% of bugs came from changes adding a code file; {v('q25', 'tests_bugs_with')} of {v('q25', 'bugs')} traced bugs came from changes that shipped with tests | Whether an independent check would have caught them |
-| For some bugs, run the thing; reading will not find them | {v('q09', 'needs_outside')} of {v('q07', 'cases')} bugs needed knowledge that is not in the code, and no reviewer named any of them | Whether running it would. Thirty cases, November only |
-
-Three things the numbers do not support as ideas. More reviewers: a second person reviews
-{v('q15', 'all_second_review_pct')}% of pull requests, too few to tell whether it helps (finding 19). Slowing people
-down: an individual's workload shows no effect (finding 18). Asking for a screenshot: changes with one carried more
-bugs, not fewer (finding 16).
+<!-- contents -->
 
 ## Words used in this report
 
@@ -1069,8 +1057,26 @@ difference". **Depends on the model** means two models gave different answers.
 """
 
 
+def anchor(title):
+    """The link GitHub gives a heading: lower case, punctuation dropped, spaces turned into hyphens."""
+    kept = "".join(ch for ch in title.lower() if ch.isalnum() or ch in " -_")
+    return "#" + kept.replace(" ", "-")
+
+
+def contents(text):
+    """A table of contents from the report's own headings: sections, with each finding under its group."""
+    lines = ["## Contents", ""]
+    for line in text.split("\n"):
+        if line.startswith("## ") and line[3:] not in ("Main results", "Contents"):
+            lines.append(f"- [{line[3:]}]({anchor(line[3:])})")
+        elif line.startswith("### ") and line[4:5].isdigit():
+            lines.append(f"  - [{line[4:]}]({anchor(line[4:])})")
+    return "\n".join(lines)
+
+
 def main():
     text = report()
+    text = text.replace("<!-- contents -->", contents(text))
     with open(os.path.join(ROOT, "README.md"), "w") as handle:
         handle.write(text)
     print(len(text), "characters,", sum(len(c) for c in CHARTS.values()), "charts")

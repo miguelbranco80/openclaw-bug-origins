@@ -58,6 +58,9 @@ same thing in both. We also had a second AI model judge the November fixes. It m
 each bug. It was stricter about what counts as a bug in the first place, so it counted fewer of them, but the
 patterns above showed up either way. *Findings 22 and 23.*
 
+One caution on all of it: this shows where the bugs are, not what would have caught them. Nothing was tried as a
+fix.
+
 **How much of the bugs came from changes with each warning sign**
 
 ![How much of the bugs came from changes with each warning sign](charts/q17-share-of-bugs-by-warning-sign-light.svg#gh-light-mode-only)
@@ -65,22 +68,42 @@ patterns above showed up either way. *Findings 22 and 23.*
 
 *How to read it: Each row is a warning sign you can see before a change merges. The bar is the share of all traced bugs that came from changes with that sign. The gray text is how common such changes are. Example, first row: the bot objected to 21% of changes, and those changes produced 63% of the bugs. The first three rows overlap; the last three combine them.*
 
-## What the numbers point to
+## Contents
 
-These are ideas, not advice to the project. Each rests on a count in this report. None was tried here, and the
-last column says which step from the count to the idea is untested.
-
-| Idea | The count behind it | What was not tested |
-|---|---|---|
-| Decide where to look hard using signs visible before a change merges | 6.8% of changes carry 48% of the bugs. The signs were picked on November's bugs and marked the same share with four times as many | Whether looking hard at those changes would catch the bug |
-| Treat the bot's objection as a flag, whatever its words say | Changes merged over its objection carried 3.42 times the bugs, although in 346 of 418 such cases its open items were about something else | Why those changes are riskier |
-| Do not take the author's tests as a sign of safety; give new code a check its author did not write | 69% of bugs came from changes adding a code file; 494 of 505 traced bugs came from changes that shipped with tests | Whether an independent check would have caught them |
-| For some bugs, run the thing; reading will not find them | 9 of 30 bugs needed knowledge that is not in the code, and no reviewer named any of them | Whether running it would. Thirty cases, November only |
-
-Three things the numbers do not support as ideas. More reviewers: a second person reviews
-1.0% of pull requests, too few to tell whether it helps (finding 19). Slowing people
-down: an individual's workload shows no effect (finding 18). Asking for a screenshot: changes with one carried more
-bugs, not fewer (finding 16).
+- [Words used in this report](#words-used-in-this-report)
+- [Where the bugs come from](#where-the-bugs-come-from)
+  - [1. Changes that add new code files caused two thirds of the bugs](#1-changes-that-add-new-code-files-caused-two-thirds-of-the-bugs)
+  - [2. New code that never worked accounts for about as many bugs as working things broken later](#2-new-code-that-never-worked-accounts-for-about-as-many-bugs-as-working-things-broken-later)
+  - [3. Changes titled as new features cause far more than their share of bugs](#3-changes-titled-as-new-features-cause-far-more-than-their-share-of-bugs)
+  - [4. Large changes cause far more bugs per change, but about the same per file changed](#4-large-changes-cause-far-more-bugs-per-change-but-about-the-same-per-file-changed)
+  - [5. A broken thing typically stayed broken for one to four weeks](#5-a-broken-thing-typically-stayed-broken-for-one-to-four-weeks)
+- [What review caught, and what it could have](#what-review-caught-and-what-it-could-have)
+  - [6. The review bot had rarely named the bug before the change merged](#6-the-review-bot-had-rarely-named-the-bug-before-the-change-merged)
+  - [7. Two current models together named more of the known bugs than the bot had](#7-two-current-models-together-named-more-of-the-known-bugs-than-the-bot-had)
+  - [8. Most of the other problems those models reported hold up when checked](#8-most-of-the-other-problems-those-models-reported-hold-up-when-checked)
+  - [9. About a third of the bugs could not be seen by reading code](#9-about-a-third-of-the-bugs-could-not-be-seen-by-reading-code)
+  - [10. Most bugs broke no written rule](#10-most-bugs-broke-no-written-rule)
+- [Which changes carry the bugs](#which-changes-carry-the-bugs)
+  - [11. Changes committed straight to main caused fewer bugs per change, not more](#11-changes-committed-straight-to-main-caused-fewer-bugs-per-change-not-more)
+  - [12. Changes merged while the bot objected carried more bugs](#12-changes-merged-while-the-bot-objected-carried-more-bugs)
+  - [13. Merging soon after the bot's review shows no clear extra risk](#13-merging-soon-after-the-bots-review-shows-no-clear-extra-risk)
+  - [14. Pull requests merged within the hour carried far fewer bugs than those open a day or more](#14-pull-requests-merged-within-the-hour-carried-far-fewer-bugs-than-those-open-a-day-or-more)
+  - [15. How this project reviews and merges, in numbers](#15-how-this-project-reviews-and-merges-in-numbers)
+  - [16. A screenshot or video in the pull request did not go with fewer bugs](#16-a-screenshot-or-video-in-the-pull-request-did-not-go-with-fewer-bugs)
+  - [17. The bugs are concentrated in changes that could be pointed at beforehand](#17-the-bugs-are-concentrated-in-changes-that-could-be-pointed-at-beforehand)
+  - [18. An individual's workload shows no effect; the project's busiest days carried more bugs](#18-an-individuals-workload-shows-no-effect-the-projects-busiest-days-carried-more-bugs)
+  - [19. Changes from occasional contributors, and changes someone else merged, carried about half the bugs](#19-changes-from-occasional-contributors-and-changes-someone-else-merged-carried-about-half-the-bugs)
+  - [20. Changes to files that several other people were also editing caused more bugs](#20-changes-to-files-that-several-other-people-were-also-editing-caused-more-bugs)
+  - [21. Nearly every bug-causing change came with tests; no part of the code stands out](#21-nearly-every-bug-causing-change-came-with-tests-no-part-of-the-code-stands-out)
+- [Does it hold up](#does-it-hold-up)
+  - [22. The earlier weeks look like November; what differs is the model](#22-the-earlier-weeks-look-like-november-what-differs-is-the-model)
+  - [23. How many "fix" changes repair no bug depends on which model you ask](#23-how-many-fix-changes-repair-no-bug-depends-on-which-model-you-ask)
+- [How this compares with published research](#how-this-compares-with-published-research)
+- [About this study](#about-this-study)
+- [How each study was done](#how-each-study-was-done)
+- [Limits that apply throughout](#limits-that-apply-throughout)
+- [All findings at a glance](#all-findings-at-a-glance)
+- [Repository map](#repository-map)
 
 ## Words used in this report
 

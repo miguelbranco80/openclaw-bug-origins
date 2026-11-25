@@ -27,11 +27,10 @@ to rebuild the report, regenerate the study from nothing, or extend it, using `p
 - **`README.md` is generated. Never edit it directly:** the next rebuild overwrites it. Change the text in
   `report/render.py` and run `python3 study.py rebuild`. If someone has edited `README.md` on GitHub, carry their
   edit into `report/render.py` before rebuilding, then check the rebuilt file against theirs.
-- **The report states findings.** Its one section of ideas, "What the numbers point to", ties each idea to a count
-  in the report and names the step that was not tested. Keep it that way: no advice to the project, and no idea
-  without its count. Every number in `README.md` comes from `results/` through `report/render.py`; never type a
-  number into the report. After numbers change, read the sentences around them and
-  edit the ones that no longer fit.
+- **The report states findings.** The main results at the top say what was found and, in a clause, what follows
+  from it. Do not add a section of advice or ideas: one was tried and removed as repetition. Every number in
+  `README.md` comes from `results/` through `report/render.py`; never type a number into the report. After numbers
+  change, read the sentences around them and edit the ones that no longer fit.
 - **Changing a brief changes the instrument.** Edit a brief under `fix-origins/` only on request, bump its version
   line, and note the change in `CORRECTIONS.md`.
 
