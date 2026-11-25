@@ -180,8 +180,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
 - **Nobody looks overloaded, not even the busiest account.** One account lands {v('q22', 'who_share_top')}% of all
   commits (guess who?). Its bug rate is the same as everyone else's: {v('q22', 'who_rate_top')} bugs per 100 commits,
   against {v('q22', 'rest_rate')} for all other authors together. So it is the source of
-  {v('q22', 'top_bugs_pct')}% of the bugs, which is its share and no more. And an author's heavy days are no worse
-  than their light ones. *Findings 18 and 19.*
+  {v('q22', 'top_bugs_pct')}% of the bugs, which is its share and no more. Among the regulars, the bug rate barely
+  depends on who lands the change. That would make sense if everyone is working with coding agents, though this
+  study cannot tell who is. And an author's heavy days are no worse than their light ones. *Findings 18 and 19.*
 - **Outsiders' changes are the safer ones.** Changes from people with 20 commits or fewer carried fewer bugs than
   the most active author's: {v('q22', 'who_adjusted_occasional')} times as many. *Finding 19.*
 - **Reading alone has a ceiling.** Two strong models, shown {v('q07', 'cases')} bug-causing changes from November
