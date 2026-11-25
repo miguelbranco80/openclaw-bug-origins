@@ -33,7 +33,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
   "blocked" carried 3.42 times the bugs of changes it called ready. It was not
   hinting at the bug: in 346 of 418 such cases its
   complaints were about something else, such as missing proof. It is as if the reviewer felt something was wrong
-  without being able to say what.
+  without being able to say what. Or the pull request was simply being rushed past its review.
   *Findings 6 and 12.*
 - **A screenshot or video goes with more bugs, not fewer.** (In hindsight makes sense because interface changes are
   hard). Among interface changes, those with one carried 3.72 times the bugs.

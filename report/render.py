@@ -165,7 +165,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
   "blocked" carried {v('q12', 'verdict_adjusted_objected')} times the bugs of changes it called ready. It was not
   hinting at the bug: in {v('q06', 'merged_against_unrelated')} of {v('q06', 'merged_against')} such cases its
   complaints were about something else, such as missing proof. It is as if the reviewer felt something was wrong
-  without being able to say what.
+  without being able to say what. Or the pull request was simply being rushed past its review.
   *Findings 6 and 12.*
 - **A screenshot or video goes with more bugs, not fewer.** (In hindsight makes sense because interface changes are
   hard). Among interface changes, those with one carried {v('q16', 'interface_adjusted_yes')} times the bugs.
