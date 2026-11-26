@@ -30,7 +30,9 @@ to rebuild the report, regenerate the study from nothing, or extend it, using `p
 - **The report states findings.** The main results at the top say what was found. One section after the findings,
   "What I would do with this: an opinion", holds the author's own view, says it is opinion and not part of the study,
   and is linked from the end of the main results. Keep advice there and nowhere else. Every number in `README.md`
-  comes from `results/` through `report/render.py`; never type a number into the report. After numbers change, read
+  comes from `results/` through `report/render.py`; never type a number into the report. The one exception is the
+  paragraph "I tried it, informally" in the opinion section: its counts come from `one-off/looking-harder.json`,
+  recorded by hand from a test that cannot be rerun from this repository (see `one-off/looking-harder.md`). After numbers change, read
   the sentences around them and edit the ones that no longer fit.
 - **Changing a brief changes the instrument.** Edit a brief under `fix-origins/` only on request, bump its version
   line, and note the change in `CORRECTIONS.md`.
@@ -44,3 +46,4 @@ to rebuild the report, regenerate the study from nothing, or extend it, using `p
 | `fix-origins/` | Collection scripts, briefs, stored answers |
 | `dataset/`, `questions/`, `results/`, `charts/`, `report/` | Facts, one script per question, their output, the report renderer |
 | `CORRECTIONS.md` | Claims an earlier draft made that a later check weakened |
+| `one-off/` | A test done by hand outside the study, with its counts; not produced by `study.py` |

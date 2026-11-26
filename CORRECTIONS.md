@@ -107,3 +107,12 @@ Method changes made with the extension:
 - The "what each bug needed" tags (finding 9) were not re-read by a second model.
 - The GPT reader could not look up history older than September 2026 on GitHub, so it answered "could not tell" for
   16 of 60 fixes.
+
+## The opinion section, after a test by hand
+
+- The opinion section advised checking flagged changes hard, "a stronger model, a second person, or actually running
+  the feature", and said of new code "run it". A one-off test on 25 and 26 November 2026 tried both reading and
+  running on changes with a known bug (`one-off/looking-harder.md`). Reading named the known bug in 10 of 30 and
+  running in 0 of 6, while both found other bugs that were later fixed. The section now says that extra scrutiny
+  finds real problems but not reliably the one that later needs fixing, and reports the test in place of the
+  paragraph that proposed it.

@@ -1127,8 +1127,9 @@ objected, the pull request was open a day or more, it touched more than 30 files
 | Two or more signs | 6.8% | 48% | 1.28 |
 | No sign | 63% | 19% | 0.05 |
 
-- **Check the flagged 6.8% hard.** It is a small enough slice to afford something
-  expensive: a stronger model, a second person, or actually running the feature.
+- **Look harder at the flagged 6.8%.** It is a small enough slice to afford a deep
+  review. Expect that to turn up real problems, but not necessarily the one that later needs fixing (see the end of
+  this section).
 - **Let the unflagged 63% flow.** Fast merges were the safe ones, and nothing suggests
   slowing them would help.
 
@@ -1137,11 +1138,10 @@ objected, the pull request was open a day or more, it touched more than 30 files
 - **Treat "needs changes" or "blocked" as a stop sign, not a comment.** 20.8% of
   changes merge over the bot's objection, and they carry 63% of the bugs. The cheapest
   rule is that such a change does not merge on its author's say alone, even when the bot's complaint looks unrelated.
-- **For new code, run it; do not take the tests' word for it.** Changes adding a code file carry
+- **For new code, do not take the tests' word for it.** Changes adding a code file carry
   69% of the bugs, and 494 of 505 traced bugs came
-  from changes that shipped with tests. A check the author did not write, one that exercises the feature for real,
-  is aimed at the right place. And 9 of the 30 reviewed bugs could not be
-  seen in the code at all.
+  from changes that shipped with tests. So the author's tests are not the safety net. Even after trying several
+  ways, prompts and models, I also do not have a check that is.
 
 **What the data says not to do.** These are just as actionable, because they are the rules a team reaches for
 first.
@@ -1153,13 +1153,19 @@ first.
   the data cannot say it helps.
 - **Worry about outside contributors.** Their changes were the safer ones.
 
-**The honest gap.** Every action above assumes that looking harder at a flagged change finds the bug. The only
-evidence on that is thin: two strong models reviewing 30 November changes found
-10 of the bugs. The gap can be tested on past data without touching the project. Take
-the flagged changes that did cause a bug and a matched set of flagged changes that did not, give both to a strong
-reviewer with no hint, and count how many real bugs it finds and how many false alarms it raises. That turns "this
-is where to look" into "this is what looking buys", which is the number anyone would ask for before adopting the
-rule.
+**I tried it, informally.** I took 30 flagged changes that later caused a known bug and had them
+reviewed as they looked before merge, in nine ways with two models. One ordinary
+review named the known bug in 1 to 4 of the 30;
+everything together named it in 10. I then built eight of the missed changes and
+had an agent use them for real, against a fixed list of conditions. Six reported,
+and none named the known bug. Both approaches did find other bugs that
+were later fixed: reading in 18 of the 30 changes, running in
+3 of the 6. So the warning signs say where the bugs are, and
+extra scrutiny there finds real problems, but I could not make it find the particular bug that later bites. Some of
+those were not bugs in the traditional sense: the change did what it promised, and the maintainers later decided it
+should behave differently. Others were judgment calls about how something should look. A generic check has no way
+to know either. This was a one-off by hand and is not part of the study; the details are in
+[one-off/looking-harder.md](one-off/looking-harder.md).
 
 ## How this compares with published research
 
@@ -1339,3 +1345,4 @@ difference". **Depends on the model** means two models gave different answers.
 | `report/` | The renderer for this page |
 | `fix-origins/` | How the dataset was collected: sampling, evidence bundles, the briefs given to models, every model answer |
 | `detection-check/` | The first, wording-based study |
+| `one-off/` | A test done by hand outside the study: does looking harder at a flagged change find the bug? |
