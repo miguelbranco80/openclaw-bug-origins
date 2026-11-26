@@ -118,3 +118,27 @@ Method changes made with the extension:
   list to act on. It reports the tests in place of the paragraph that proposed them.
 - A first write-up of those tests, in the same section for one day, gave 10 of 30 for reading. That was before the
   narrow-question reviews were run.
+
+## After looking at how the project produces its code
+
+On 26 and 27 November 2026 we read the project's instruction files for coding agents and the commit pattern of its
+most active accounts, and fetched the branch name and linked issue of every pull request. The report gained a
+section on how the code is produced and findings 24 and 25. These claims changed:
+
+- **"Fast merges are the safe ones"** (main results, finding 14, and the opinion section). Pull requests merged
+  within the hour carried 0.28 times the bugs of those open a day or more, at equal size and month. With the kind of
+  change held equal as well, the figure is 0.65 with a range that includes no difference. Quick merges are mostly
+  small routine steps. The claim is withdrawn; the description stays.
+- **"Changes committed straight to main caused fewer bugs per change"** (finding 11). True per commit. With size,
+  kind of change and time held equal there is no clear difference.
+- **Time to fix** (finding 5). The medians mixed two things. Bugs fixed in answer to an issue filed from outside the
+  project took about twice as long as the rest.
+- **"One AI review caught the bug in 2 of 30"** (top summary and opinion section). The project's review bot had
+  already reviewed 29 of those 30 changes before they merged. The text now says this was one more review, not the
+  first.
+- **The section on coding agents** said the study could only show a working pattern. The repository documents the
+  process, and the report now describes it.
+
+Checked and unchanged: the busy-day result of finding 18 (1.73 before, 1.86 with six kinds of change held equal),
+and findings 1, 3 and 4, which look the same on the bugs that someone outside the project reported (finding 24).
+

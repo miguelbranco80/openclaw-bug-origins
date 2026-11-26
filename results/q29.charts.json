@@ -1,0 +1,12 @@
+[
+ {
+  "stem": "q29-bugs-per-100-commits-by-kind",
+  "title": "Bugs per 100 commits, by the kind of work in the title",
+  "reading": "Each bar is a rate: bugs fixed in the period studied that trace back to commits with that title, per 100 such commits made since 10 September. The six titles cover every commit."
+ },
+ {
+  "stem": "q29-lines-of-work-on-the-busiest-day",
+  "title": "Pull requests the most active account merged on its busiest day, by line of work",
+  "reading": "Each bar is a count of pull requests merged that day whose branch names start the same way. The label is that shared start, as the project wrote it."
+ }
+]

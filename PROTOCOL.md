@@ -173,7 +173,7 @@ or one stage at a time, in this order. Each stage skips what is already done, so
 | 2 | `evidence` | For each sampled fix, finds which earlier commits last touched the lines it changed, and writes one evidence file | clone, GitHub | `fix-origins/blame.jsonl`, `fix-origins/evidence/` | `status` shows as many evidence files as sampled fixes |
 | 3 | `origin` | A model reads each fix and says what it repaired and which change caused it. A second reader takes about 15% of fixes, chosen by a fixed rule | clone, model | `fix-origins/reads/`, `reads-second/`, `cases.jsonl`, `second_reads.jsonl` | No `PROBLEM` lines. `status` shows as many accepted answers as sampled fixes |
 | 4 | `bot` | Fetches what the review bot wrote on each causing pull request, as it stood at merge. A model says whether the bot named the bug | GitHub, model | `fix-origins/clawsweeper/` | `status`: `flag` answered equals its cases |
-| 5 | `facts` | Fetches who opened, merged and reviewed every pull request, and a random comparison sample of ordinary pull requests | clone, GitHub | `dataset/pull_requests.tsv`, `fix-origins/comparison/`, `dataset/changes.jsonl` | It prints how many pull requests it has of how many wanted |
+| 5 | `facts` | Fetches who opened, merged and reviewed every pull request, its branch name and the issue it closes, and a random comparison sample of ordinary pull requests | clone, GitHub | `dataset/pull_requests.tsv`, `dataset/pull_request_links.tsv`, `fix-origins/comparison/`, `dataset/changes.jsonl` | It prints how many pull requests it has of how many wanted |
 | 6 | `rereads` | A model from a different maker re-reads a slice of the fixes and every bot review | clone, model | `fix-origins/audit/raw/` | `status`: both re-read steps answered |
 | 7 | `pilot` | The blind review experiment: chooses cases, exports the code as it stood at each causing change (into `work/exports/`, about 5 GB for the published 40 exports, never committed), runs the reviewers, has graders say who named the known bug, and has checkers test the other reports | clone, GitHub, model, disk | `fix-origins/review-pilot/` | `status`: every `review`, `grade`, `tags`, `refute` and `laterfix` line answered |
 | 8 | `report` | Assembles the dataset, runs every question, draws the charts, writes the report | nothing | `dataset/`, `results/`, `charts/`, `README.md` | It ends with "Rebuilt." Read the report's claims against its numbers (see [What a rerun cannot do](#what-a-rerun-cannot-do-for-you)) |
@@ -280,7 +280,7 @@ What makes this safe: every answer and every fetched record is its own file, wri
 looks at which files exist and does only the rest. Two runs of the same step at once are harmless but wasteful.
 
 Budget to expect, from the published study: about one model run per sampled fix for `origin` (several minutes
-each), one GitHub query per causing pull request, about 360 queries for all pull requests, and about 400 for the
+each), one GitHub query per causing pull request, about 360 queries for all pull requests, about 720 more for their branch names and linked issues, and about 400 for the
 comparison sample.
 
 ## Extend to more fixes or a longer period

@@ -14,8 +14,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
 half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. Can the bug be
 caught before it merges? Only by brute force, and only about half the time. We tried by hand on
 30 risky changes: one AI review caught the bug in 2 of them, and
-25 AI reviews of each change, taken together, caught it in 14. That test is
-not part of the study and is explained in [What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion).
+25 AI reviews of each change, taken together, caught it in 14. The project's
+review bot had already reviewed nearly all of those changes before they merged, so ours was one more review, not
+the first. That test is not part of the study and is explained in [What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion).
 
 ## Main results
 
@@ -53,8 +54,19 @@ not part of the study and is explained in [What I would do with this: an opinion
 - **About half the bugs were never regressions.** 443 were new code that never worked,
   against 389 working things broken later. A test of the old behavior cannot catch the
   first kind. *Finding 2.*
-- **Fast merges are the safe ones.** Pull requests merged within the hour carried far fewer bugs than those open a
-  day or more: 0.28 times as many. *Finding 14.*
+- **Fast merges look safe mostly because of what they are.** Pull requests merged within the hour carried
+  0.28 times the bugs of those open a day or more. Most of that gap is the kind of
+  change: quick merges are small routine steps. With the kind of change held equal the figure is
+  0.65, which can no longer be told from no difference. *Findings 14 and 25.*
+- **The code comes off a production line.** The most active account committed on every day of the period, at every
+  hour, a median of 290 times a day and 2.3 minutes apart.
+  47% of its pull requests belong to 8 long-running lines of
+  work, such as a cleanup pass or a migration done in hundreds of small steps, and the repository holds the
+  instruction files that drive them. *[How this project produces its code](#how-this-project-produces-its-code).*
+- **Most bugs were found by the project itself.** Only 14% of the traced bugs were fixed
+  in answer to an issue filed by someone outside the project. Those bugs came from the same kinds of change as the
+  rest, so the results here do not depend on who found the bug. They did take about twice as long to fix.
+  *Finding 24.*
 - **Nobody looks overloaded, not even the busiest account.** One account lands 54% of all
   commits (guess who?). Its bug rate is the same as everyone else's: 17 bugs per 100 commits,
   against 17.4 for all other authors together. So it is the source of
@@ -99,6 +111,7 @@ outside the study, found that only brute force gets partway (see [the opinion se
 ## Contents
 
 - [Words used in this report](#words-used-in-this-report)
+- [How this project produces its code](#how-this-project-produces-its-code)
 - [Where the bugs come from](#where-the-bugs-come-from)
   - [1. Changes that add new code files caused two thirds of the bugs](#1-changes-that-add-new-code-files-caused-two-thirds-of-the-bugs)
   - [2. New code that never worked accounts for about as many bugs as working things broken later](#2-new-code-that-never-worked-accounts-for-about-as-many-bugs-as-working-things-broken-later)
@@ -115,7 +128,7 @@ outside the study, found that only brute force gets partway (see [the opinion se
   - [11. Changes committed straight to main caused fewer bugs per change, not more](#11-changes-committed-straight-to-main-caused-fewer-bugs-per-change-not-more)
   - [12. Changes merged while the bot objected carried more bugs](#12-changes-merged-while-the-bot-objected-carried-more-bugs)
   - [13. Merging soon after the bot's review shows no clear extra risk](#13-merging-soon-after-the-bots-review-shows-no-clear-extra-risk)
-  - [14. Pull requests merged within the hour carried far fewer bugs than those open a day or more](#14-pull-requests-merged-within-the-hour-carried-far-fewer-bugs-than-those-open-a-day-or-more)
+  - [14. Pull requests merged within the hour carried fewer bugs than those open a day or more, mostly because of what they are](#14-pull-requests-merged-within-the-hour-carried-fewer-bugs-than-those-open-a-day-or-more-mostly-because-of-what-they-are)
   - [15. How this project reviews and merges, in numbers](#15-how-this-project-reviews-and-merges-in-numbers)
   - [16. A screenshot or video in the pull request did not go with fewer bugs](#16-a-screenshot-or-video-in-the-pull-request-did-not-go-with-fewer-bugs)
   - [17. The bugs are concentrated in changes that could be pointed at beforehand](#17-the-bugs-are-concentrated-in-changes-that-could-be-pointed-at-beforehand)
@@ -126,6 +139,8 @@ outside the study, found that only brute force gets partway (see [the opinion se
 - [Does it hold up](#does-it-hold-up)
   - [22. The earlier weeks look like November; what differs is the model](#22-the-earlier-weeks-look-like-november-what-differs-is-the-model)
   - [23. How many "fix" changes repair no bug depends on which model you ask](#23-how-many-fix-changes-repair-no-bug-depends-on-which-model-you-ask)
+  - [24. Most bugs were found by the project itself; those reported from outside came from the same kinds of change](#24-most-bugs-were-found-by-the-project-itself-those-reported-from-outside-came-from-the-same-kinds-of-change)
+  - [25. With the kind of work held equal, quick merges and direct commits are no safer; busy days still carry more bugs](#25-with-the-kind-of-work-held-equal-quick-merges-and-direct-commits-are-no-safer-busy-days-still-carry-more-bugs)
 - [What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion)
 - [How this compares with published research](#how-this-compares-with-published-research)
 - [About this study](#about-this-study)
@@ -151,6 +166,88 @@ outside the study, found that only brute force gets partway (see [the opinion se
   company and read the November fixes, so that one model's habits can be told apart from facts.
 - **Review bot.** ClawSweeper, the automated reviewer that comments on the project's pull requests before they merge.
 - **Plausible range.** Where the true figure plausibly lies given the sample size (a 95% interval).
+
+## How this project produces its code
+
+*Measured. Counted from git and GitHub, and read from the project's own files. Nothing is judged.*
+
+The rest of this report counts changes as if each were one person's piece of work. That is not how this project is
+built, and it matters for reading the findings.
+
+**It runs around the clock.** The most active account committed on 74 of the
+74 days of the period. Its median day had 290 commits, each
+2.3 minutes after the one before. In its quietest hour of the day it made
+70% as many commits as in its busiest, and in the whole period it paused for more than
+six hours 2 times.
+
+**Changes merge without a second person.** 88.8% of pull requests were merged by their
+own author, another person reviewed 1.0% of them first, and the median pull request
+was open 70 minutes (finding 15).
+
+**Most of it is repair and upkeep.** 96.6% of commits are not titled as a feature. Half
+are titled "fix"; refactors, speed work and test work make up most of the rest (finding 3).
+
+**The work runs in long lines.** Pull requests that belong together share the start of their branch name.
+8 such lines of work, each of 100 pull requests or more, hold
+47% of the most active account's pull requests.
+
+| Branch names start with | Pull requests | Days with at least one |
+|---|---:|---:|
+| `perf-micro` | 1,933 | 62 |
+| `solid2` | 1,893 | 31 |
+| `deslop` | 1,802 | 35 |
+| `dbasync` | 1,138 | 31 |
+| `upd` | 860 | 44 |
+| `tcr` | 860 | 31 |
+| `pgprep` | 156 | 17 |
+| `perf-session` | 102 | 23 |
+
+On its busiest day, 19 October 2026, that account merged 687 pull requests,
+82% of them in 6 lines of work.
+
+**Pull requests the most active account merged on its busiest day, by line of work**
+
+![Pull requests the most active account merged on its busiest day, by line of work](charts/q29-lines-of-work-on-the-busiest-day-light.svg#gh-light-mode-only)
+![Pull requests the most active account merged on its busiest day, by line of work](charts/q29-lines-of-work-on-the-busiest-day-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is a count of pull requests merged that day whose branch names start the same way. The label is that shared start, as the project wrote it.*
+
+The project does not document these names. Judging by the titles of the pull requests, some lines are engineering
+projects done in hundreds of small steps: moving the web interface to a newer framework (`solid2`), taking database
+calls off the main thread (`dbasync`), preparing for a second database (`pgprep`). The others are upkeep: speed and
+memory gains (`perf-micro`, `perf-session`), cleanup (`deslop`), pruning tests (`tcr`), and the update and repair
+tools (`upd`).
+
+**The instructions are in the repository.** The project keeps instruction files for coding agents under
+`.agents/skills/`. Several describe standing campaigns, not single tasks:
+
+- one sets a default goal of 100 verified, merged fixes and asks for at least ten areas of the product to be under
+  inspection at all times ([auto-qa](https://github.com/openclaw/openclaw/blob/e6b42e31bc1522b8596958fbdd85c394b23fca7b/.agents/skills/auto-qa/SKILL.md));
+- one works through reported issues with up to 64 workers
+  ([repair sweep](https://github.com/openclaw/openclaw/blob/e6b42e31bc1522b8596958fbdd85c394b23fca7b/.agents/skills/openclaw-repair-sweep/SKILL.md));
+- one prunes tests one area at a time ([test audit](https://github.com/openclaw/openclaw/blob/e6b42e31bc1522b8596958fbdd85c394b23fca7b/.agents/skills/test-audit/CAMPAIGN.md)).
+
+The project's rules also ask for a fresh review before a nontrivial change is committed, which the campaign files
+hand to another agent, and for a test with every fix ([AGENTS.md](https://github.com/openclaw/openclaw/blob/e6b42e31bc1522b8596958fbdd85c394b23fca7b/AGENTS.md)).
+
+**What this means for the rest of the report.**
+
+- For the most active accounts, an author is an account that runs such lines of work, not a person typing each
+  change.
+- A commit is often one small step of a larger job. Rates per commit favor whoever cuts the work finest.
+- Most fixes are the project going back over its own code, so a "bug" in this report is mostly something the
+  project found and repaired itself (finding 24).
+- The study still cannot say which single change an agent wrote: commits carry no such mark.
+
+- **How we know.** Hours and gaps come from commit times, in UTC. A line of work is a group of pull requests whose
+  branch names start the same way: the part before the first `/`, or, when that part is the author's own account
+  name or the name of a coding tool, the first two words after it. Names that only state a type of change
+  (`fix/...`, `feat/...`) are not counted.
+- **What it does not show.** How many machines, agents or people stand behind an account, how much each change was
+  steered by hand, or what the instruction files were used for on a given day. Lines of work that do not share a
+  branch name are missed.
+
+Recompute: `python3 questions/q29_how_is_the_code_produced.py`
 
 ## Where the bugs come from
 
@@ -262,6 +359,29 @@ for changes titled "fix" and 8.3 for everything else.
 
 </details>
 
+Split into six titles instead of three, features still stand apart, and one thing shows that the three hid: none of
+the sampled bugs traced back to a change titled "test".
+
+**Bugs per 100 commits, by the kind of work in the title**
+
+![Bugs per 100 commits, by the kind of work in the title](charts/q29-bugs-per-100-commits-by-kind-light.svg#gh-light-mode-only)
+![Bugs per 100 commits, by the kind of work in the title](charts/q29-bugs-per-100-commits-by-kind-dark.svg#gh-dark-mode-only)
+
+*How to read it: Each bar is a rate: bugs fixed in the period studied that trace back to commits with that title, per 100 such commits made since 10 September. The six titles cover every commit.*
+
+<details><summary>The numbers behind this chart</summary>
+
+| | Commits since 10 Sep | Share of commits, % | Sampled bugs | Bugs per 100 commits |
+|---|---:|---:|---:|---:|
+| Titled feat (a new feature) | 1325 | 3.4 | 123 | 123.7 |
+| Titled fix | 19951 | 50.9 | 270 | 18 |
+| Titled refactor | 5593 | 14.3 | 55 | 13.1 |
+| Titled perf (speed or memory) | 3832 | 9.8 | 35 | 12.2 |
+| Titled test | 4640 | 11.8 | 0 | 0.0 |
+| Any other title | 3869 | 9.9 | 22 | 7.6 |
+
+</details>
+
 In absolute numbers most bugs still come from changes titled "fix" (428 of the
 832 traced), because half of everything merged carries that title. And a title is a loose label:
 one change titled as a fix touched 138 files and added a whole rollback mechanism. Feature changes are also larger
@@ -275,7 +395,7 @@ than others, so part of their higher rate is size, which is the next finding.
   adjusted for the size of the change. A rate counts the bugs fixed between 10 September and 22 November, so it grows
   with the length of the period watched: compare these rates with each other, not with another study's.
 
-Recompute: `python3 questions/q03_what_kind_of_change_introduces_bugs.py`
+Recompute: `python3 questions/q03_what_kind_of_change_introduces_bugs.py`; `python3 questions/q29_how_is_the_code_produced.py`
 
 ### 4. Large changes cause far more bugs per change, but about the same per file changed
 
@@ -360,6 +480,10 @@ fixes merged in November the figure is 28.8 days; for fixes merged from 10 Septe
 1 November it is 8.6. Only 88 of the 389
 broken-later fixes say which change caused the bug, and those were fixed within a day. Scaled from the sample, about
 5,180 broken-later bugs were fixed in the period (plausibly 4800 to 5610).
+
+These figures mix two things. Counting every traced bug, those fixed in answer to an issue filed from outside the
+project took a median of 35.2 days, and the rest 17.2 (finding 24). One is
+how long a user's report waits; the other is how soon the project's own passes over the code reach a problem.
 
 - **How we know.** Days are the commit time of the fix minus the commit time of the causing change, both on main.
 - **How it was checked.** An earlier study that could only find fixes naming their cause had put the typical time at
@@ -582,8 +706,8 @@ by a model; it is counted from git and GitHub.
 
 ### 11. Changes committed straight to main caused fewer bugs per change, not more
 
-*Supported per change; much of the gap is size. The direct-commit side rests on 19 sampled
-bugs.*
+*Supported per change; the gap is size and kind of change, not the route (finding 25). The direct-commit side rests
+on 19 sampled bugs.*
 
 8.6% of commits since 10 September reached main with no pull request number in the title.
 Per commit they carried 0.42 times the bugs of changes that went through a pull request
@@ -601,9 +725,11 @@ Per commit they carried 0.42 times the bugs of changes that went through a pull 
 They are also smaller (a median of 2 files against 5),
 so size explains part of the gap. Within changes of 6 files or more, the rate was
 26.94 for direct commits against 36.8 through a pull request.
+With size, kind of change and time all held equal, direct commits carried 1.26 times the bugs
+(plausibly 0.78 to 2.03): no clear difference either way.
 
 - **How we know.** Same method as finding 4, split by whether the commit title carries a pull request number.
-- **How it was checked.** It was not checked further.
+- **How it was checked.** Finding 25 repeats it with size, kind of change and time held equal.
 - **What it does not show.** Who made the direct commits or why, or that skipping a pull request is safe: the
   changes people commit directly are the ones they judge routine. Finding 12 takes up changes merged against the
   review bot's verdict.
@@ -681,9 +807,9 @@ merged an hour or more later (plausibly 0.56 to 1.54). Both ranges include no di
 
 Recompute: `python3 questions/q13_does_review_timing_matter.py`
 
-### 14. Pull requests merged within the hour carried far fewer bugs than those open a day or more
+### 14. Pull requests merged within the hour carried fewer bugs than those open a day or more, mostly because of what they are
 
-*Supported for time open. On who opened or merged a change, this sample of 400 is too thin; finding 19 asks the same
+*Supported as a description; most of the gap is the kind of change (finding 25). On who opened or merged a change, this sample of 400 is too thin; finding 19 asks the same
 of every pull request.*
 
 **Bugs per 100 changes, by how long the pull request was open**
@@ -700,8 +826,15 @@ of every pull request.*
 | Open under an hour | 46.2% | 60 | 4.82 | 0.28 times (plausibly 0.16 to 0.47) |
 
 Pull requests merged within an hour of being opened carried 0.28 times the bugs of those
-open a day or more, at equal size and month (plausibly 0.16 to 0.47). A change that stays open is
-usually one that needed work, and those are the ones that later needed fixing.
+open a day or more, at equal size and month (plausibly 0.16 to 0.47).
+
+Most of that gap is the kind of change. Quick merges are mostly small routine steps:
+38% of them belong to a long-running line of work, against
+20% of those open a day or more. With the title of the change held equal as well, the
+figure moves to 0.65 (plausibly 0.32 to 1.3), which can no longer be told from no
+difference (finding 25). A change that stays open is usually a feature, or one that needed work, and those are the
+ones that later needed fixing. Being open a day or more still marks where the bugs are (finding 17); it does not
+show that merging quickly is what keeps a change safe.
 
 The other three comparisons show no difference that can be told from none in this sample. They are given as tables,
 not charts, because a bar would suggest a difference the numbers do not support.
@@ -883,7 +1016,8 @@ Read each block against its first row.
   everyone else (finding 19). Above that level the rate does not rise with load.
 - **The project.** Changes landed on the busiest third of days carried 1.73 times the bugs
   of changes landed on the quietest third (plausibly 1.11 to 2.71), with the middle third in
-  between. The range starts close to no difference. Weekends are no different from weekdays.
+  between. The range starts close to no difference. Holding six kinds of change equal instead of three leaves it
+  at 1.86 (finding 25). Weekends are no different from weekdays.
 
 - **How we know.** For each of the 39,210 commits we counted how many the same author landed that
   day and how long since their previous one, and for each pull request how many the same person merged that day.
@@ -996,6 +1130,8 @@ Recompute: `python3 questions/q23_do_files_many_people_edit_cause_more_bugs.py`
 
 - 494 of the 505 sampled bugs came from a change that also changed test files.
   The tests that came with a change did not catch the bug it carried.
+- Tests arriving with a change is the rule here, not a sign of extra care: the project's instructions for its coding
+  agents ask for a test with every fix ([AGENTS.md](https://github.com/openclaw/openclaw/blob/e6b42e31bc1522b8596958fbdd85c394b23fca7b/AGENTS.md)).
 - Code changes with no test file are few and small (refactors, chores, small fixes) and caused
   11 of the sampled bugs, 0.32 times the rate of
   changes with tests. This is not evidence that skipping tests is safe: the two groups are different kinds of change.
@@ -1010,8 +1146,8 @@ Recompute: `python3 questions/q25_do_changes_with_tests_cause_fewer_bugs.py`; `p
 
 ## Does it hold up
 
-Findings 22 and 23: the same questions asked of a second period and of a second model, and the one answer that
-depends on which model is asked.
+Findings 22 to 25: the same questions asked of a second period and of a second model, the one answer that depends
+on which model is asked, and two checks made after looking at how the project produces its code.
 
 ### 22. The earlier weeks look like November; what differs is the model
 
@@ -1129,6 +1265,75 @@ message made more precise, a report that never fitted a phone screen.
 
 Recompute: `python3 questions/q01_how_many_fixes_repair_a_real_bug.py`
 
+### 24. Most bugs were found by the project itself; those reported from outside came from the same kinds of change
+
+*Supported, on a small group: 53 outside-reported bugs have a causing change in the commit
+list.*
+
+A bug in this report is something a later fix repaired. 20% of the sampled fixes
+close an issue at all, and 14% of the traced bugs (118 of
+832) were fixed in answer to an issue filed by someone outside the project. The rest were found
+some other way, mostly by the project's own work. 58% of the sampled fixes were landed by
+the two most active accounts or opened by an automation account; 8% of those
+close an outside report, against 25% of everyone else's.
+
+If the project's own passes over the code found a different sort of bug than users do, the earlier findings would
+describe those passes and not the bugs. They do not:
+
+| | Reported from outside | No outside report | All commits |
+|---|---:|---:|---:|
+| The causing change was titled as a feature | 32% (21 to 45) | 23% (20 to 28) | 3.4% |
+| The causing change added a new code file | 74% (60 to 84) | 68% (63 to 72) | 13.7% |
+| The causing change touched more than 30 files | 53% (40 to 66) | 56% (52 to 61) | 10.7% |
+| The bug was new code that never worked | 57% (48 to 65) | 53% (49 to 56) | |
+| Median days from the causing change to the fix | 35.2 | 17.2 | |
+
+In brackets: the plausible range. Both groups point at the same changes: features, new code files, large changes.
+The clear difference is time. A bug that someone outside had to report took about twice as long to fix.
+
+- **How we know.** GitHub records which issue a pull request closes. "From outside" means the issue was filed by a
+  person who merged none of the fetched pull requests. The first three rows use the bugs whose causing change is in
+  the commit list (53 and 452); the last two use every traced bug.
+- **How it was checked.** Nothing in the split is judged by a model.
+- **What it does not show.** That the project found the other 86% unaided. A fix can answer
+  a report made in chat or in a comment, or an issue it does not formally close. And the counts of bugs follow what
+  the project chose to look for, and when: a period with more passes over the code will show more bugs.
+
+Recompute: `python3 questions/q28_does_it_matter_who_found_the_bug.py`
+
+### 25. With the kind of work held equal, quick merges and direct commits are no safer; busy days still carry more bugs
+
+*Supported for busy days. For the other two, the earlier gap shrinks to a range that includes no difference.*
+
+Small routine changes dominate three of the earlier comparisons: they merge fast, they are the ones committed
+straight to main, and a busy day is mostly made of them. So each comparison was repeated holding the kind of change
+equal more finely: six titles (feat, fix, refactor, perf, test, other) instead of three, and for pull requests also
+whether the change belongs to a long-running line of work.
+
+| Bugs per change | As first reported | Three kinds of change held equal | Six kinds held equal | Six kinds and line of work |
+|---|---:|---:|---:|---:|
+| Merged within the hour, against open a day or more (finding 14) | 0.28 (0.16 to 0.47) | 0.46 (0.24 to 0.86) | 0.65 (0.32 to 1.3) | 0.76 (0.34 to 1.68) |
+| Straight to main, against through a pull request (finding 11) | 0.42 (0.26 to 0.66) | 1.15 (0.72 to 1.85) | 1.26 (0.78 to 2.03) | |
+| Busiest third of days, against the quietest (finding 18) | 1.73 (1.11 to 2.71) | 1.73 (1.11 to 2.71) | 1.86 (1.19 to 2.91) | |
+
+Each cell is a ratio with its plausible range; 1 means no difference. Size and the time the change landed are held
+equal in every column but the first of the second row, which is the plain rate.
+
+- **Quick merges.** The gap narrows at each step and ends in a range that includes 1. What looked like speed being
+  safe is mostly quick merges being routine work.
+- **Direct commits.** Per commit they carry fewer bugs, but only because they are small and routine. Like for like,
+  there is no clear difference.
+- **Busy days.** Unchanged. Changes landed on the busiest third of days still carry more bugs than those landed on
+  the quietest.
+
+- **How we know.** The same stratified ratio as findings 11, 14 and 18, with finer groups. The kind of change is the
+  first word of its title. A line of work is defined in [How this project produces its code](#how-this-project-produces-its-code).
+- **What it does not show.** That merging fast is harmless, or harmful. With six kinds the groups are small and the
+  ranges wide, so a real but modest effect of speed would not show. A title is the author's label, not a measured
+  property of the change.
+
+Recompute: `python3 questions/q30_do_three_findings_hold_at_equal_kind_of_work.py`
+
 ## What I would do with this: an opinion
 
 *This section is my opinion. It is speculative and not part of the study. The study shows where the bugs are; it
@@ -1145,8 +1350,8 @@ objected, the pull request was open a day or more, it touched more than 30 files
 - **Look harder at the flagged 6.8%.** It is a small enough slice to afford a deep
   review. Expect that to turn up real problems, but not necessarily the one that later needs fixing (see the end of
   this section).
-- **Let the unflagged 63% flow.** Fast merges were the safe ones, and nothing suggests
-  slowing them would help.
+- **Let the unflagged 63% flow.** They carry few bugs, and nothing suggests slowing them
+  would help.
 
 **Two that follow from it.**
 
@@ -1170,7 +1375,8 @@ first.
 
 **I tried it, informally.** I took 30 flagged changes that later caused a known bug and had AI
 reviewers read each one as it was before merge, with no hint. One ordinary review wrote the known bug down in
-2 of the 30. Then I piled on: different prompts, a stronger model, second passes,
+2 of the 30. (The project's review bot had already reviewed
+29 of them before they merged, so this was one more review, not the first.) Then I piled on: different prompts, a stronger model, second passes,
 and narrow reviews that each ask one question, such as "what happens after a restart?". About
 25 reviews per change, pooled, wrote it down in 14 of the
 30. So brute force works, up to a point 🙂. The catch is the pile: about
@@ -1179,7 +1385,12 @@ them on built changes and 43 really happened; the project just never fixed most 
 and running the change found none of the known bugs: 0 of 6 by using the
 product, and 0 of 7 by comparing it with the version before. So the
 warning signs say where the bugs are, and enough reviewing writes about half of them down, but I have no way to turn
-that pile into a short list a maintainer could act on. Some of the missed bugs were not bugs in the traditional
+that pile into a short list a maintainer could act on. I tried one way: a model that saw only the change scored
+the problems three ordinary reviews had reported, and picked the three per change most likely to hit an ordinary
+user. Of its picks, 12% were later fixed; of the problems it passed over,
+11%. One thing did come out better than the count above suggests. Counting any reported
+problem that was later fixed, and not only the known bug, those three reviews had at least one in
+17 of the 30 changes. Some of the missed bugs were not bugs in the traditional
 sense: the change did what it promised, and the maintainers later decided it should behave differently. Others were
 judgment calls about how something should look. A generic check has no way to know either. This was done by hand and
 is not part of the study; the details are in [one-off/looking-harder.md](one-off/looking-harder.md).
@@ -1227,10 +1438,13 @@ that introduce new bugs, changes titled "fix" that fix nothing, and a reviewer t
 
 ### What this study can and cannot say about coding agents
 
-It cannot attribute any change to an agent or a person. Git records who landed a change, and this project's rules ask
-for no agent attribution on commits. So nothing here measures agent-written code against human-written code.
+It cannot attribute any single change to an agent or a person. Git records who landed a change, and this project's
+rules ask for no agent attribution on commits. So nothing here measures agent-written code against human-written
+code.
 
-What the numbers do show is the working pattern: 531 commits a day through
+What it can describe is the process, because the repository documents it: instruction files for coding agents,
+standing campaigns, and long-running lines of work that merge hundreds of small steps a day
+([How this project produces its code](#how-this-project-produces-its-code)). The numbers show the same working pattern: 531 commits a day through
 40 accounts that merge, one account opening 52.1% of pull requests,
 11% opened by automation accounts, and a median of 70
 minutes from opening to merge.
@@ -1272,7 +1486,8 @@ References 1 and 8 were read in full for the figures quoted. The others are quot
 A model from a different maker (Claude Opus 5.5) had earlier read the 300 November fixes, and its
 answers serve as the check. No project code was run and no test was written. Findings 7 to 10 cover
 November only. Findings 1, 3, 4 and 11 to 21 set the traced bugs against every commit and pull
-request of the period. Findings 22 and 23 put the two periods and the two models side by side.
+request of the period. Findings 22 and 23 put the two periods and the two models side by side. Findings 24 and 25 were added after
+looking at how the project produces its code.
 
 **An earlier version.** A first version of this report covered only the 300 November fixes, with Claude Opus 5.5 as the
 main model. It is kept as the tag `published-2026-11`, and [CORRECTIONS.md](CORRECTIONS.md) lists what changed.
@@ -1293,6 +1508,7 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 | Are the reports real | 148 | Every report from the two strongest reviewers | One later-fix model; two code-tracing checkers | Known-real reports as a control, before and after the fix |
 | Kinds of change compared | 400 | Lottery over every merged pull request since 10 September, plus every bug-causing one | Nobody: read from git and GitHub | The bot's verdict is read from its own marker |
 | Workload, people and files (findings 1 and 18 to 21) | 39,210 | Every commit on main since 10 September; the bugs are the 505 sampled bugs whose causing commit is among them | Nobody: read from git and GitHub | Size and kind of change held equal; heavy-day result repeated without the most active author |
+| How the code is produced, who reported the bug, kind of work (findings 24 and 25) | 35,826 | Every merged pull request since 10 September, with its branch name and the issue it closes | Nobody: read from git and GitHub | Branch-name groups checked against pull request titles by hand |
 | Written rules (November, first study) | 29 | Fixes whose wording blames an earlier change | Claude models, verdicts re-read | Three cases checked against source by hand |
 
 ## Limits that apply throughout
@@ -1309,6 +1525,10 @@ Claims that an earlier draft made and a later check weakened are listed in [CORR
 - Findings 7 to 10 cover 30 November cases, chosen when Claude Opus 5.5 was the main model, and were not repeated for the
   earlier weeks.
 - A sample of fixes cannot see bugs that were never fixed, or bugs the bot stopped before merge.
+- Most bugs counted here are ones the project went back and fixed with no outside report (finding 24). How many
+  bugs a period shows depends on how hard the project was looking in it.
+- The blind review (findings 7 to 9) ran on changes the project's review bot had already reviewed before merge. It
+  measures what one more AI review adds, not what a first one finds.
 - The model comparison covers changes of at most 30 files and one run per reviewer. The reviewers did not get
   identical guidance: some GPT runs read a personal review guide on the test machine, and the Claude runs had the
   repository's current contributor guide in context. Neither contains the answers.
@@ -1337,10 +1557,10 @@ difference". **Depends on the model** means two models gave different answers.
 | 8 | Supported, November only | Most of the other problems those models reported hold up when checked, and about a third of them are minor. |
 | 9 | Tentative, November only | About a third of the bugs could not be seen by reading code at all. This rests on nine cases. |
 | 10 | Tentative, November only | Most bugs broke no written rule. |
-| 11 | Supported | Changes committed straight to main, without a pull request, caused fewer bugs per change, not more. |
+| 11 | Supported | Changes committed straight to main, without a pull request, caused fewer bugs per change, not more. Like for like, there is no clear difference. |
 | 12 | Well supported | Changes merged while the bot objected carried 3.42 times the bugs of changes it called ready, at equal size and month. Its objection marks risk even when its words do not name the bug. |
 | 13 | Tentative | Merging minutes after the bot's review, or after it saw only an earlier revision, shows no clear extra risk. |
-| 14 | Supported | Pull requests merged within the hour carried far fewer bugs than those open a day or more. |
+| 14 | Supported as a description | Pull requests merged within the hour carried fewer bugs than those open a day or more, mostly because of what they are: with the kind of change held equal the gap can no longer be told from none. |
 | 15 | Measured | 88.8% of pull requests were merged by their own author. Another person reviewed 1.0% of them before the merge. |
 | 16 | Supported | Attaching a screenshot or video did not go with fewer bugs. Among interface changes, those with one caused 3.72 times as many, at equal size and month. |
 | 17 | Supported | Bugs are concentrated. Changes with at least two of three warning signs are 6.8% of changes and the source of 48% of traced bugs. |
@@ -1350,6 +1570,8 @@ difference". **Depends on the model** means two models gave different answers.
 | 21 | Measured | 494 of the 505 traced bugs came from a change that also changed tests. No part of the code stands out. |
 | 22 | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
 | 23 | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
+| 24 | Supported, on a small group | 14% of the traced bugs were fixed in answer to an issue filed from outside the project. They came from the same kinds of change as the rest, and took about twice as long to fix. |
+| 25 | Supported for busy days | With the kind of work held equal, quick merges and direct commits are no safer than slow ones and pull requests. Changes landed on the busiest days still carry more bugs. |
 
 ## Repository map
 

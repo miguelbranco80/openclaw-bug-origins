@@ -126,6 +126,53 @@ Sorted by hand from each bug's description, so rough:
 Several of the presentation cases are not bugs in the traditional sense. The change did what its author said, and
 the maintainers later decided it should look or behave differently.
 
+## Can the pile be cut to a short list?
+
+Tried on 27 November 2026, on problems already collected. The pool is what three ordinary reviews (plain, hunt,
+new code) reported on the 30 changes with a known bug and on 25 changes without one: 649 problems on the 49 changes
+that could be scored.
+
+**The answer key.** For each problem, a model compared it with every later fix to the same file, up to 25 November,
+and said whether one of them repaired it.
+
+| | Problems | Share |
+|---|---:|---:|
+| Later fixed | 73 | 11% |
+| Partly fixed | 56 | 9% |
+| Not fixed | 520 | 80% |
+
+**The filter.** A second model saw only the change and the list of problems, nothing later. It scored each problem
+from 0 to 10 on one rule, fixed before any result was seen: the problem is real, an ordinary user on a default setup
+would run into it in normal use, and it costs them something. It then named its top three per change.
+
+| | Problems | Later fixed |
+|---|---:|---:|
+| The filter's top three per change | 139 | 16 (12%) |
+| Problems it did not pick | 510 | 57 (11%) |
+
+| Score the filter gave | Problems | Later fixed |
+|---|---:|---:|
+| 0 to 2 | 236 | 5% |
+| 3 to 5 | 246 | 13% |
+| 6 to 7 | 88 | 20% |
+| 8 to 10 | 79 | 14% |
+
+The picks are no better than the rest. The filter can tell what to throw away: the lowest third of the pile is
+fixed half as often. It cannot find the top.
+
+**Any later-fixed problem, not only the known bug.** The three reviews had reported at least one problem that was
+later fixed in 17 of the 30 changes with a known bug, and in 4 of the 19 scored changes without one. So reviews
+find fixable bugs more often than the count of known bugs suggests.
+
+**When the fixes came.** Of the later-fixed problems, 60% were fixed within 3 days of the change merging and 81%
+within 28 days. By age of the change, the share of reported problems later fixed was 6% for changes under three
+weeks old, 8% at three to six weeks, 11% at six to nine, and 16% for older ones. More time adds fixes, but most
+reported problems were not fixed within the eleven weeks this can see.
+
+Limits: three filter runs failed and are left out, all on changes without a known bug. "Later fixed" is one model's
+judgment. One rule and one model were tried. No filter run read anything outside its own change folder; the run
+logs were checked.
+
 ## What this shows
 
 - **More reviews find more of the known bugs.** The count rose steadily from 2 to 14 and had not levelled off.
@@ -133,11 +180,14 @@ the maintainers later decided it should look or behave differently.
   than a fixed checklist. The stronger model was the best single step.
 - **Running the change added nothing** on these bugs, in any of three forms.
 - **The pooled output is not usable as it stands.** The known bug is one item among about 110 mostly real problems
-  per change, and nothing marks it as the one that will matter.
+  per change, and nothing marks it as the one that will matter. A filter asked to pick the ones that matter did no
+  better than chance.
+- **These changes had been reviewed before.** The project's review bot had reviewed 29 of the 30 before they
+  merged. The reviews here measure what more reviewing adds, not what a first review finds.
 
 ## What it does not show
 
-- Whether the pile can be cut to a short list that still holds the bug. That was not tested.
+- That no filter can work. One rule and one model were tried, and they did no better than chance.
 - Anything about changes without the warning signs.
 - A firm rate. These are 30 chosen changes, the graders were models, and the hand-sorted kinds are one person's
   reading. The stronger model was not run with the narrow questions.

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="302" viewBox="0 0 760 302" role="img" aria-label="Pull requests the most active account merged on its busiest day, by line of work">
+<title>Pull requests the most active account merged on its busiest day, by line of work</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">deslop</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">198</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">solid2</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H376.1 Q380.1,66 380.1,70 V72 Q380.1,76 376.1,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">175</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">dbasync</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H180.6 Q184.6,108 184.6,112 V114 Q184.6,118 180.6,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">85</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">tcr</text>
+<rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H93.7 Q97.7,150 97.7,154 V156 Q97.7,160 93.7,160 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">45</text>
+<text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">perf-micro</text>
+<rect x="0" y="192" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,192 H91.6 Q95.6,192 95.6,196 V198 Q95.6,202 91.6,202 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">44</text>
+<text x="0.0" y="226" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">upd</text>
+<rect x="0" y="234" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,234 H19.9 Q23.9,234 23.9,238 V240 Q23.9,244 19.9,244 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="244" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">11</text>
+<text x="0.0" y="268" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Everything else</text>
+<rect x="0" y="276" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,276 H276.2 Q280.2,276 280.2,280 V282 Q280.2,286 276.2,286 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="286" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">129</text>
+</svg>
