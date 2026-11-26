@@ -136,6 +136,9 @@ def report():
     read, ran, conf = ONE_OFF["reading"], ONE_OFF["running"], ONE_OFF["confirm"]
     return f"""# Where OpenClaw's bugs come from
 
+*This is a work in progress. No giant findings yet: we are building a dataset and running experiments to see how
+robustness can be improved.*
+
 An informal, independent look at the public [openclaw/openclaw](https://github.com/openclaw/openclaw) repository.
 It is not affiliated with the project. It judges changes, not people.
 
