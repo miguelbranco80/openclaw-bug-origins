@@ -144,9 +144,11 @@ We took a random sample of {v('q01', 'sample')} changes titled "fix", merged bet
 bugs against every commit and pull request of the period, to see which kinds of change carry them.
 
 **In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
-half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. What we did not
-find is a check that catches these bugs before they merge. We tried several, by hand, and describe them in
-[{OPINION}]({anchor(OPINION)}).
+half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. Can the bug be
+caught before it merges? Only by brute force, and only about half the time. We tried by hand on
+{read['changes']} risky changes: one AI review caught the bug in {read['one_review']} of them, and
+{read['reviews_per_change']} AI reviews of each change, taken together, caught it in {read['pooled']}. That test is
+not part of the study and is explained in [{OPINION}]({anchor(OPINION)}).
 
 ## Main results
 
