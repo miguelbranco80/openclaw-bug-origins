@@ -9,8 +9,9 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 **In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
 half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. What we could not do
-is catch the bug itself. Strong AI reviewers, several kinds of prompt, and building and running the change found the
-known bug in a third of cases at best (that last part was a test by hand, outside the study).
+is catch the bug itself with one more review. Pooling about 25 AI reviews per change wrote
+the known bug down in about half the cases, buried in a long list of other real problems, and building and running
+the change found none (that last part was a test by hand, outside the study).
 
 ## Main results
 
@@ -81,8 +82,8 @@ changes being fixes, fixes that cause new bugs, and reviews that miss real bugs.
 no change is reviewed by a second person, changes are large, and a fifth of them merge while the bot objects.
 *[How this compares with published research](#how-this-compares-with-published-research).*
 
-One caution on all of it: this shows where the bugs are, not what would have caught them. A quick try by hand,
-outside the study, did not find a check that does (see [the opinion section](#what-i-would-do-with-this-an-opinion)).
+One caution on all of it: this shows where the bugs are, not what would have caught them. A test by hand,
+outside the study, found that only brute force gets partway (see [the opinion section](#what-i-would-do-with-this-an-opinion)).
 
 **How much of the bugs came from changes with each warning sign**
 
@@ -1163,19 +1164,21 @@ first.
   the data cannot say it helps.
 - **Worry about outside contributors.** Their changes were the safer ones.
 
-**I tried it, informally.** I took 30 flagged changes that later caused a known bug and had them
-reviewed as they looked before merge, in nine ways with two models. One ordinary
-review named the known bug in 1 to 4 of the 30;
-everything together named it in 10. I then built eight of the missed changes and
-had an agent use them for real, against a fixed list of conditions. Six reported,
-and none named the known bug. Both approaches did find other bugs that
-were later fixed: reading in 18 of the 30 changes, running in
-3 of the 6. So the warning signs say where the bugs are, and
-extra scrutiny there finds real problems, but I could not make it find the particular bug that later bites. Some of
-those were not bugs in the traditional sense: the change did what it promised, and the maintainers later decided it
-should behave differently. Others were judgment calls about how something should look. A generic check has no way
-to know either. This was a one-off by hand and is not part of the study; the details are in
-[one-off/looking-harder.md](one-off/looking-harder.md).
+**I tried it, informally.** I took 30 flagged changes that later caused a known bug and had AI
+reviewers read each one as it was before merge, with no hint. One ordinary review wrote the known bug down in
+2 of the 30. Then I piled on: different prompts, a stronger model, second passes,
+and narrow reviews that each ask one question, such as "what happens after a restart?". About
+25 reviews per change, pooled, wrote it down in 14 of the
+30. So brute force works, up to a point 🙂. The catch is the pile: about
+110 reported problems per change. They are mostly real. An agent tried 47 of
+them on built changes and 43 really happened; the project just never fixed most of them. Building
+and running the change found none of the known bugs: 0 of 6 by using the
+product, and 0 of 7 by comparing it with the version before. So the
+warning signs say where the bugs are, and enough reviewing writes about half of them down, but I have no way to turn
+that pile into a short list a maintainer could act on. Some of the missed bugs were not bugs in the traditional
+sense: the change did what it promised, and the maintainers later decided it should behave differently. Others were
+judgment calls about how something should look. A generic check has no way to know either. This was done by hand and
+is not part of the study; the details are in [one-off/looking-harder.md](one-off/looking-harder.md).
 
 ## How this compares with published research
 

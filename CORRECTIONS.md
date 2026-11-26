@@ -108,11 +108,13 @@ Method changes made with the extension:
 - The GPT reader could not look up history older than September 2026 on GitHub, so it answered "could not tell" for
   16 of 60 fixes.
 
-## The opinion section, after a test by hand
+## The opinion section, after tests by hand
 
 - The opinion section advised checking flagged changes hard, "a stronger model, a second person, or actually running
-  the feature", and said of new code "run it". A one-off test on 25 and 26 November 2026 tried both reading and
-  running on changes with a known bug (`one-off/looking-harder.md`). Reading named the known bug in 10 of 30 and
-  running in 0 of 6, while both found other bugs that were later fixed. The section now says that extra scrutiny
-  finds real problems but not reliably the one that later needs fixing, and reports the test in place of the
-  paragraph that proposed it.
+  the feature", and said of new code "run it". Tests by hand on 25 and 26 November 2026 tried reading and running on
+  30 changes with a known bug (`one-off/looking-harder.md`). One review found the known bug in 2 of 30; about 25
+  pooled reviews per change found it in 14 of 30; running found it in none. The section now says that extra scrutiny
+  finds real problems, that only brute force finds about half of the known bugs, and that the result is too long a
+  list to act on. It reports the tests in place of the paragraph that proposed them.
+- A first write-up of those tests, in the same section for one day, gave 10 of 30 for reading. That was before the
+  narrow-question reviews were run.
