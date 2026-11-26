@@ -8,11 +8,9 @@ We took a random sample of 1,202 changes titled "fix", merged between 10 Septemb
 bugs against every commit and pull request of the period, to see which kinds of change carry them.
 
 **In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
-half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. What we could not do
-is catch the bug before it merged. One extra AI review rarely spotted it. Running 25
-different AI reviews on the same change spotted it about half the time, but as one item in a list of about
-110 problems. Building the change and trying it out did not spot it at all. (These last
-tests were done by hand and are not part of the study.)
+half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. What we did not
+find is a check that catches these bugs before they merge. We tried several, by hand, and describe them in
+[What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion).
 
 ## Main results
 
