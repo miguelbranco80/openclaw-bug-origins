@@ -11,10 +11,11 @@ We took a random sample of 1,202 changes titled "fix", merged between 10 Septemb
 bugs against every commit and pull request of the period, to see which kinds of change carry them.
 
 **In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
-half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. AI reviews of
-these risky changes do find real bugs, and many of them when enough reviews are run. What is still missing is a way
-to tell which of those bugs matter. That part is work in progress, done by hand so far and described in
-[What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion).
+half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. Can the bug be
+caught before it merges? Only by brute force, and only about half the time. We tried by hand on
+30 risky changes: one AI review caught the bug in 2 of them, and
+25 AI reviews of each change, taken together, caught it in 14. That test is
+not part of the study and is explained in [What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion).
 
 ## Main results
 
