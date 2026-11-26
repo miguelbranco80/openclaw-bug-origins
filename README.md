@@ -7,6 +7,11 @@ We took a random sample of 1,202 changes titled "fix", merged between 10 Septemb
 2026, and traced each back to what it repaired and which earlier change had caused the problem. Then we set those
 bugs against every commit and pull request of the period, to see which kinds of change carry them.
 
+**In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
+half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. What we could not do
+is catch the bug itself. Strong AI reviewers, several kinds of prompt, and building and running the change found the
+known bug in a third of cases at best (that last part was a test by hand, outside the study).
+
 ## Main results
 
 **Expected results**
