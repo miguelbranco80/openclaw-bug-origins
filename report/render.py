@@ -23,6 +23,7 @@ READERS = json.load(open(os.path.join(ROOT, "dataset", "readers.json")))
 MAIN, OTHER = READERS["fixes"], READERS["fixes_other_maker"]
 ONE_OFF = json.load(open(os.path.join(ROOT, "one-off", "looking-harder.json")))  # hand-recorded; see that folder
 OPINION = "What I would do with this: an opinion"
+RESEARCH = "How this compares with published research"
 SCRIPTS = {os.path.basename(p)[:3]: "questions/" + os.path.basename(p)
            for p in glob.glob(os.path.join(ROOT, "questions", "q*.py"))}
 
@@ -196,7 +197,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
   bug-causing changes from November and asked them to review each one, without saying a bug was in there. Between
   them they found the bug in {v('q07', 'named_either_top')}. For {v('q09', 'needs_outside')} of the
   {v('q07', 'cases')}, the bug could not be seen in the code at all: it depended on how a browser, a database or
-  some other outside tool behaves. Nobody found any of those. To catch them you would have to run the thing.
+  some other outside tool behaves. Nobody found any of those.
   *Findings 7 and 9.*
 
 **So what would I do about it?** That is opinion, not part of the study, and it has its own section at the end:
@@ -207,8 +208,13 @@ same thing in both. We also had a second AI model judge the November fixes. It m
 each bug. It was stricter about what counts as a bug in the first place, so it counted fewer of them, but the
 patterns above showed up either way. *Findings 22 and 23.*
 
-One caution on all of it: this shows where the bugs are, not what would have caught them. Nothing was tried as a
-fix.
+**And compared with published research?** Much of this is ordinary: other projects also see about half of all
+changes being fixes, fixes that cause new bugs, and reviews that miss real bugs. Three things stand out here: almost
+no change is reviewed by a second person, changes are large, and a fifth of them merge while the bot objects.
+*[{RESEARCH}]({anchor(RESEARCH)}).*
+
+One caution on all of it: this shows where the bugs are, not what would have caught them. A quick try by hand,
+outside the study, did not find a check that does (see [the opinion section]({anchor(OPINION)})).
 
 {chart('q17', 0)}
 
@@ -946,7 +952,7 @@ should behave differently. Others were judgment calls about how something should
 to know either. This was a one-off by hand and is not part of the study; the details are in
 [one-off/looking-harder.md](one-off/looking-harder.md).
 
-## How this compares with published research
+## {RESEARCH}
 
 Only studies whose figures we could check against the paper or its abstract are quoted. None of them studied this
 project, and none measured exactly what we measured, so read each row as "same direction or not", not as a ranking.

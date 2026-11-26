@@ -60,7 +60,7 @@ bugs against every commit and pull request of the period, to see which kinds of 
   bug-causing changes from November and asked them to review each one, without saying a bug was in there. Between
   them they found the bug in 10. For 9 of the
   30, the bug could not be seen in the code at all: it depended on how a browser, a database or
-  some other outside tool behaves. Nobody found any of those. To catch them you would have to run the thing.
+  some other outside tool behaves. Nobody found any of those.
   *Findings 7 and 9.*
 
 **So what would I do about it?** That is opinion, not part of the study, and it has its own section at the end:
@@ -71,8 +71,13 @@ same thing in both. We also had a second AI model judge the November fixes. It m
 each bug. It was stricter about what counts as a bug in the first place, so it counted fewer of them, but the
 patterns above showed up either way. *Findings 22 and 23.*
 
-One caution on all of it: this shows where the bugs are, not what would have caught them. Nothing was tried as a
-fix.
+**And compared with published research?** Much of this is ordinary: other projects also see about half of all
+changes being fixes, fixes that cause new bugs, and reviews that miss real bugs. Three things stand out here: almost
+no change is reviewed by a second person, changes are large, and a fifth of them merge while the bot objects.
+*[How this compares with published research](#how-this-compares-with-published-research).*
+
+One caution on all of it: this shows where the bugs are, not what would have caught them. A quick try by hand,
+outside the study, did not find a check that does (see [the opinion section](#what-i-would-do-with-this-an-opinion)).
 
 **How much of the bugs came from changes with each warning sign**
 
