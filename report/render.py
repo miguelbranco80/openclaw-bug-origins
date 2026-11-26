@@ -145,9 +145,10 @@ bugs against every commit and pull request of the period, to see which kinds of 
 
 **In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
 half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. What we could not do
-is catch the bug itself with one more review. Pooling about {read['reviews_per_change']} AI reviews per change wrote
-the known bug down in about half the cases, buried in a long list of other real problems, and building and running
-the change found none (that last part was a test by hand, outside the study).
+is catch the bug before it merged. One extra AI review rarely spotted it. Running {read['reviews_per_change']}
+different AI reviews on the same change spotted it about half the time, but as one item in a list of about
+{read['problems_per_change']} problems. Building the change and trying it out did not spot it at all. (These last
+tests were done by hand and are not part of the study.)
 
 ## Main results
 
