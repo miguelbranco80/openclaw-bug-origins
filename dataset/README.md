@@ -9,6 +9,7 @@ All files describe `openclaw/openclaw` as of commit `e6b42e31bc1522b8596958fbdd8
 |---|---|---|
 | `commits.tsv` | commit on `main` since 2026-09-10 (UTC), 39,210 rows | `fix-origins/scripts/commit_list.py`, from git |
 | `pull_requests.tsv` | merged pull request named in `commits.tsv` (35,833 rows) | `fix-origins/population/fetch_pull_requests.py`, from GitHub |
+| `pull_request_links.tsv` | merged pull request named in `commits.tsv`: its branch name, and the issue it closes if any | `fix-origins/population/fetch_pull_request_links.py`, from GitHub |
 | `frames.json` | period of fixes studied, with how many fixes it holds and how many were sampled | `dataset/build.py`, from `study.json` and `fix-origins/population.tsv` |
 | `readers.json` | which model read what: the main reader and the other maker's reader | `dataset/build.py`, from `study.json` |
 | `published_2026_11.json` | every number of the study as first published (tag `published-2026-11`) | Copied once from that tag's `results/` |
@@ -43,6 +44,10 @@ list); `other_recent_authors` (other authors who changed any of the edited code 
 **`pull_requests.tsv`**: `number`; `author`; `author_kind` (`person` or `automation`); `merged_by`; `created_at`;
 `merged_at`; `reviewers_before_merge` (people other than the author, and not automation, who submitted a review
 before the merge, comma separated; empty for most). Two pull request numbers in `commits.tsv` could not be fetched.
+
+**`pull_request_links.tsv`**: `number`; `head_branch` (the name of the branch the pull request was merged from);
+`closes_issue` (the first issue GitHub records the pull request as closing, empty for most); `issue_author` and
+`issue_author_kind` (`person` or `automation`) for that issue.
 
 **`sampled_fixes.jsonl`**: `rank` (position in the fixed pseudo-random order; ranks 1 to 300 are the sample); `sha`,
 `fix_pr`, `fix_subject`, `fix_date`, `fix_author`; `origin` (`never-worked`, `regression`, `latent`, `not-a-defect`,

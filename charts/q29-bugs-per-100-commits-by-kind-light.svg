@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" viewBox="0 0 760 260" role="img" aria-label="Bugs per 100 commits, by the kind of work in the title">
+<title>Bugs per 100 commits, by the kind of work in the title</title>
+<text x="0.0" y="16" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled feat (a new feature)</text>
+<rect x="0" y="24" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,24 H426.0 Q430.0,24 430.0,28 V30 Q430.0,34 426.0,34 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="34" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">123.7</text>
+<text x="489.0" y="34" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">123 sampled bugs, 3.4% of commits</text>
+<text x="0.0" y="58" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled fix</text>
+<rect x="0" y="66" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,66 H58.6 Q62.6,66 62.6,70 V72 Q62.6,76 58.6,76 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="76" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">18</text>
+<text x="464.4" y="76" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">270 sampled bugs, 50.9% of commits</text>
+<text x="0.0" y="100" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled refactor</text>
+<rect x="0" y="108" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,108 H41.5 Q45.5,108 45.5,112 V114 Q45.5,118 41.5,118 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="118" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">13.1</text>
+<text x="480.8" y="118" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">55 sampled bugs, 14.3% of commits</text>
+<text x="0.0" y="142" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled perf (speed or memory)</text>
+<rect x="0" y="150" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,150 H38.4 Q42.4,150 42.4,154 V156 Q42.4,160 38.4,160 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="160" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">12.2</text>
+<text x="480.8" y="160" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">35 sampled bugs, 9.8% of commits</text>
+<text x="0.0" y="184" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Titled test</text>
+<rect x="0" y="192" width="430" height="10" rx="2" fill="#ebeae4"/>
+<rect x="0" y="192" width="0.0" height="10" fill="#2a78d6"/>
+<text x="440.0" y="202" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0</text>
+<text x="456.2" y="202" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">0 sampled bugs, 11.8% of commits</text>
+<text x="0.0" y="226" fill="#52514e" font-size="13" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">Any other title</text>
+<rect x="0" y="234" width="430" height="10" rx="2" fill="#ebeae4"/>
+<path d="M0,234 H22.4 Q26.4,234 26.4,238 V240 Q26.4,244 22.4,244 H0 Z" fill="#2a78d6"/>
+<text x="440.0" y="244" fill="#0b0b0b" font-size="13" font-weight="600" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">7.6</text>
+<text x="472.6" y="244" fill="#898781" font-size="12" font-weight="400" text-anchor="start" font-family="system-ui, -apple-system, Segoe UI, sans-serif">22 sampled bugs, 9.9% of commits</text>
+</svg>

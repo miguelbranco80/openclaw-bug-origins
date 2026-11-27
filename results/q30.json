@@ -1,0 +1,12 @@
+[
+{"group": "open", "metric": "open_as_reported", "label": "Size and month held equal, as in finding 14", "value": 0.28, "low": 0.16, "high": 0.47},
+{"group": "open", "metric": "open_three", "label": "Size, month and three kinds of change (feat, fix, other) held equal", "value": 0.46, "low": 0.24, "high": 0.86},
+{"group": "open", "metric": "open_kind", "label": "Size, month and six kinds of change held equal", "value": 0.65, "low": 0.32, "high": 1.3},
+{"group": "open", "metric": "open_kind_line", "label": "Size, month, six kinds of change and line of work held equal", "value": 0.76, "low": 0.34, "high": 1.68},
+{"group": "size", "metric": "quick_in_line_pct", "label": "Share of pull requests merged within the hour that belong to a line of work", "value": 38, "low": null, "high": null},
+{"group": "size", "metric": "slow_in_line_pct", "label": "Share of pull requests open a day or more that belong to a line of work", "value": 20, "low": null, "high": null},
+{"group": "direct", "metric": "direct_as_reported", "label": "Size, three kinds of change and half-month held equal", "value": 1.15, "low": 0.72, "high": 1.85},
+{"group": "direct", "metric": "direct_kind", "label": "Size, six kinds of change and half-month held equal", "value": 1.26, "low": 0.78, "high": 2.03},
+{"group": "busy", "metric": "busy_as_reported", "label": "Size, three kinds of change and half-month held equal", "value": 1.73, "low": 1.11, "high": 2.71},
+{"group": "busy", "metric": "busy_kind", "label": "Size, six kinds of change and half-month held equal", "value": 1.86, "low": 1.19, "high": 2.91}
+]

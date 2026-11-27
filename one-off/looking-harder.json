@@ -1,12 +1,13 @@
 {
-  "note": "Counts recorded by hand from tests run on 25 and 26 November 2026. They cannot be recomputed from this repository. See looking-harder.md in this folder.",
+  "note": "Counts recorded by hand from tests run on 25 to 27 November 2026. They cannot be recomputed from this repository. See looking-harder.md in this folder.",
   "reading": {
     "changes": 30,
     "one_review": 2,
     "best_single": 7,
     "pooled": 14,
     "reviews_per_change": 25,
-    "problems_per_change": 110
+    "problems_per_change": 110,
+    "bot_reviewed": 29
   },
   "running": {
     "used_changes": 6,
@@ -17,5 +18,23 @@
   "confirm": {
     "tried": 47,
     "happened": 43
+  },
+  "backtest": {
+    "changes": 49,
+    "known_bug_changes": 30,
+    "known_bug_changes_hit": 17,
+    "other_changes": 19,
+    "other_changes_hit": 4,
+    "problems": 649,
+    "later_fixed": 73,
+    "later_fixed_pct": 11,
+    "top3_picks": 139,
+    "top3_fixed": 16,
+    "top3_fixed_pct": 12,
+    "unpicked": 510,
+    "unpicked_fixed": 57,
+    "unpicked_fixed_pct": 11,
+    "fixed_within_3_days_pct": 60,
+    "fixed_within_28_days_pct": 81
   }
 }

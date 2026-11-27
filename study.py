@@ -109,9 +109,11 @@ def stage_bot():
 
 
 def stage_facts():
-    """Who opened, merged and reviewed every pull request, and a random comparison sample of ordinary ones."""
+    """Who opened, merged and reviewed every pull request, its branch name and the issue it closes, and a random
+    comparison sample of ordinary ones."""
     need_clone()
     script("fix-origins/population/fetch_pull_requests.py")
+    script("fix-origins/population/fetch_pull_request_links.py")
     script("fix-origins/comparison/fetch.py")
     script("fix-origins/comparison/fetch_proof.py")
     in_clone("fix-origins/comparison/paths.py")
@@ -298,7 +300,7 @@ GENERATED = ["fix-origins/population.tsv", "fix-origins/blame.jsonl", "fix-origi
              "fix-origins/clawsweeper/raw", "fix-origins/clawsweeper/bundles", "fix-origins/clawsweeper/reads",
              "fix-origins/clawsweeper/table.jsonl", "fix-origins/clawsweeper/results.jsonl",
              "fix-origins/comparison/raw", "fix-origins/comparison/proof.json", "fix-origins/comparison/areas.json",
-             "fix-origins/population/raw", "fix-origins/audit/raw", "fix-origins/audit/origin-second-reads.jsonl",
+             "fix-origins/population/raw", "fix-origins/population/raw-links", "fix-origins/audit/raw", "fix-origins/audit/origin-second-reads.jsonl",
              "fix-origins/audit/flag-second-reads.jsonl", "fix-origins/audit/grade-second-reads.jsonl",
              "fix-origins/review-pilot/data", "fix-origins/review-pilot/findings.jsonl",
              "fix-origins/review-pilot/results.jsonl", "fix-origins/review-pilot/verify-results.jsonl",

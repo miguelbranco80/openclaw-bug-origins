@@ -2,4 +2,5 @@ __pycache__/
 *.pyc
 .DS_Store
 fix-origins/population/raw/
+fix-origins/population/raw-links/
 work/
