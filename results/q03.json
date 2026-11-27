@@ -28,6 +28,7 @@
 {"group": "rate_bugs", "metric": "rate_bugs_fix", "label": "Titled fix", "value": 270, "low": null, "high": null},
 {"group": "rate", "metric": "rate_fix", "label": "Titled fix", "value": 18, "low": null, "high": null},
 {"group": "rate_median_files", "metric": "rate_median_files_fix", "label": "Titled fix", "value": 4, "low": null, "high": null},
+{"group": "size", "metric": "fix_one_in", "label": "One change titled fix in this many led to a later fix", "value": 6, "low": null, "high": null},
 {"group": "rate_commits", "metric": "rate_commits_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 17934, "low": null, "high": null},
 {"group": "rate_bugs", "metric": "rate_bugs_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 112, "low": null, "high": null},
 {"group": "rate", "metric": "rate_other", "label": "Any other title (refactor, perf, test, chore, ...)", "value": 8.3, "low": null, "high": null},

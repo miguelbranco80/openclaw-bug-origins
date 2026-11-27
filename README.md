@@ -11,7 +11,9 @@ We took a random sample of 1,202 changes titled "fix", merged between 10 Septemb
 bugs against every commit and pull request of the period, to see which kinds of change carry them.
 
 **In short.** You can tell beforehand where the bugs will be: a small, recognisable share of changes carries about
-half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. Can the bug be
+half of them. Tests did not protect: nearly every change that caused a bug shipped with tests. Most bugs were
+fixed with no report from outside; the 14% that someone outside did report took about
+twice as long to fix. Can the bug be
 caught before it merges? Only by brute force, and only about half the time. We tried by hand on
 30 risky changes: one AI review caught the bug in 2 of them, and
 25 AI reviews of each change, taken together, caught it in 14. The project's
@@ -63,10 +65,12 @@ the first. That test is not part of the study and is explained in [What I would 
   47% of its pull requests belong to 8 long-running lines of
   work, such as a cleanup pass or a migration done in hundreds of small steps, and the repository holds the
   instruction files that drive them. *[How this project produces its code](#how-this-project-produces-its-code).*
-- **Most bugs were found by the project itself.** Only 14% of the traced bugs were fixed
-  in answer to an issue filed by someone outside the project. Those bugs came from the same kinds of change as the
-  rest, so the results here do not depend on who found the bug. They did take about twice as long to fix.
-  *Finding 24.*
+- **Bugs that users report wait longer.** 14% of the traced bugs were fixed in answer to
+  an issue filed by someone outside the project; the rest were fixed with no outside report. An outside report took a median
+  of 35.2 days from the causing change to the fix, against 17.2 for the
+  rest. Of the fixes landed by the two most active accounts or by automation,
+  8% answer an outside report; of everyone else's,
+  25%. The bugs come from the same kinds of change either way. *Finding 24.*
 - **Nobody looks overloaded, not even the busiest account.** One account lands 54% of all
   commits (guess who?). Its bug rate is the same as everyone else's: 17 bugs per 100 commits,
   against 17.4 for all other authors together. So it is the source of
@@ -139,7 +143,7 @@ outside the study, found that only brute force gets partway (see [the opinion se
 - [Does it hold up](#does-it-hold-up)
   - [22. The earlier weeks look like November; what differs is the model](#22-the-earlier-weeks-look-like-november-what-differs-is-the-model)
   - [23. How many "fix" changes repair no bug depends on which model you ask](#23-how-many-fix-changes-repair-no-bug-depends-on-which-model-you-ask)
-  - [24. Most bugs were found by the project itself; those reported from outside came from the same kinds of change](#24-most-bugs-were-found-by-the-project-itself-those-reported-from-outside-came-from-the-same-kinds-of-change)
+  - [24. Bugs reported from outside came from the same kinds of change, and waited twice as long for a fix](#24-bugs-reported-from-outside-came-from-the-same-kinds-of-change-and-waited-twice-as-long-for-a-fix)
   - [25. With the kind of work held equal, quick merges and direct commits are no safer; busy days still carry more bugs](#25-with-the-kind-of-work-held-equal-quick-merges-and-direct-commits-are-no-safer-busy-days-still-carry-more-bugs)
 - [What I would do with this: an opinion](#what-i-would-do-with-this-an-opinion)
 - [How this compares with published research](#how-this-compares-with-published-research)
@@ -381,6 +385,9 @@ the sampled bugs traced back to a change titled "test".
 | Any other title | 3869 | 9.9 | 22 | 7.6 |
 
 </details>
+
+Put plainly, about one change titled "fix" in 6 led to a later fix of its own within the
+period.
 
 In absolute numbers most bugs still come from changes titled "fix" (428 of the
 832 traced), because half of everything merged carries that title. And a title is a loose label:
@@ -1265,7 +1272,7 @@ message made more precise, a report that never fitted a phone screen.
 
 Recompute: `python3 questions/q01_how_many_fixes_repair_a_real_bug.py`
 
-### 24. Most bugs were found by the project itself; those reported from outside came from the same kinds of change
+### 24. Bugs reported from outside came from the same kinds of change, and waited twice as long for a fix
 
 *Supported, on a small group: 53 outside-reported bugs have a causing change in the commit
 list.*
@@ -1290,6 +1297,9 @@ describe those passes and not the bugs. They do not:
 
 In brackets: the plausible range. Both groups point at the same changes: features, new code files, large changes.
 The clear difference is time. A bug that someone outside had to report took about twice as long to fix.
+
+Read plainly: most of what gets fixed is fixed with no outside report, most likely found by the project's own
+passes over the code, and it is fixed sooner. Reports from users are the smaller share and the slower one.
 
 - **How we know.** GitHub records which issue a pull request closes. "From outside" means the issue was filed by a
   person who merged none of the fetched pull requests. The first three rows use the bugs whose causing change is in
@@ -1570,7 +1580,7 @@ difference". **Depends on the model** means two models gave different answers.
 | 21 | Measured | 494 of the 505 traced bugs came from a change that also changed tests. No part of the code stands out. |
 | 22 | Supported | The earlier weeks look like November when the same model reads both. What differs is the model: the two models disagree on what counts as a bug, and agree on what caused one. |
 | 23 | Depends on the model | Between about a tenth and a third of changes titled "fix" repair no bug. Two models drew the line differently, and each was consistent with itself. |
-| 24 | Supported, on a small group | 14% of the traced bugs were fixed in answer to an issue filed from outside the project. They came from the same kinds of change as the rest, and took about twice as long to fix. |
+| 24 | Supported, on a small group | Bugs reported from outside the project (14% of the traced bugs) came from the same kinds of change as the rest, and waited about twice as long for a fix. |
 | 25 | Supported for busy days | With the kind of work held equal, quick merges and direct commits are no safer than slow ones and pull requests. Changes landed on the busiest days still carry more bugs. |
 
 ## Repository map

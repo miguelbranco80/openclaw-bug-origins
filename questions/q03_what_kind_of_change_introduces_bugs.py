@@ -68,6 +68,8 @@ def main(quiet=False):
         out.add("rate", "rate_" + key, rate_names[key], round(100 * bugs_here * SCALE / len(made), 1))
         out.add("rate_median_files", "rate_median_files_" + key, rate_names[key],
                 int(statistics.median(c["files_changed"] for c in made)))
+        if key == "fix":
+            out.add("size", "fix_one_in", "One change titled fix in this many led to a later fix", round(len(made) / (bugs_here * SCALE)))
         rows.append({"label": rate_names[key], "value": out.value("rate_" + key),
                      "note": f"{bugs_here} sampled bugs from {len(made):,} commits"})
     out.chart(charts.bars("q03-bugs-per-100-commits-by-title", "Bugs per 100 commits, by how the change was titled", rows),
